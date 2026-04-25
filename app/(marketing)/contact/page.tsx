@@ -2,8 +2,19 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: `Get in touch with ${siteConfig.author} for project inquiries, collaborations, or freelance work.`,
+  title: "Contact Smit Parekh — Hire a Full Stack Developer",
+  description:
+    "Start a project with Smit Parekh. Get a scoped proposal within 48 hours. Available for web development, API builds, and long-term partnerships worldwide.",
+  alternates: { canonical: `${siteConfig.url}/contact` },
+  openGraph: { url: `${siteConfig.url}/contact` },
+  keywords: [
+    "hire full stack developer",
+    "contact Smit Parekh",
+    "hire React developer",
+    "web developer for hire",
+    "freelance web developer contact",
+    "hire Next.js developer",
+  ],
 };
 
 export default function ContactPage() {

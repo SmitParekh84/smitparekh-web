@@ -1,8 +1,23 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Browse projects built by Smit Parekh — web apps, tools, and full-stack solutions.",
+  title: "Portfolio — Full Stack Web Development Projects by Smit Parekh",
+  description:
+    "Real production applications built by Smit Parekh — FinTech platforms, SaaS dashboards, legal tech, and enterprise systems. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS.",
+  alternates: { canonical: `${siteConfig.url}/portfolio` },
+  openGraph: { url: `${siteConfig.url}/portfolio` },
+  keywords: [
+    "Smit Parekh portfolio",
+    "full stack developer portfolio",
+    "React developer projects",
+    "Next.js projects",
+    "FinTech web app",
+    "SaaS dashboard development",
+    "enterprise web development",
+    "Node.js portfolio",
+    "TypeScript developer portfolio",
+  ],
 };
 
 export default function PortfolioPage() {

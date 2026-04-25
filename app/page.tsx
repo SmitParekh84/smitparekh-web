@@ -12,14 +12,24 @@ import { siteConfig } from "@/data/site";
 import { faqData } from "@/data/faq";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Full Stack Developer & Free Tools`,
-  description: siteConfig.description,
-  alternates: {
-    canonical: siteConfig.url,
-  },
-  openGraph: {
-    url: siteConfig.url,
-  },
+  title: "Smit Parekh — Full Stack Developer for Hire | React, Next.js & Node.js",
+  description:
+    "Hire Smit Parekh — Full Stack Developer with 3.5+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
+  alternates: { canonical: siteConfig.url },
+  openGraph: { url: siteConfig.url },
+  keywords: [
+    "hire full stack developer",
+    "React developer for hire",
+    "Next.js developer",
+    "Node.js developer",
+    "TypeScript developer",
+    "full stack web developer",
+    "Smit Parekh",
+    "freelance developer",
+    "web application development",
+    "FinTech developer",
+    "SaaS developer",
+  ],
 };
 
 const personSchema = {
@@ -27,10 +37,15 @@ const personSchema = {
   "@type": "Person",
   name: "Smit Parekh",
   url: siteConfig.url,
-  jobTitle: "Full Stack Developer",
+  jobTitle: "Full-Stack Web Developer",
   description:
-    "Full Stack Developer specialising in React, Node.js, TypeScript, and cloud infrastructure.",
-  sameAs: [siteConfig.social.linkedin, siteConfig.social.github],
+    "Full-Stack Web Developer with 3.5+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
+  email: siteConfig.email,
+  sameAs: [
+    siteConfig.social.linkedin,
+    siteConfig.social.github,
+    siteConfig.social.x,
+  ],
 };
 
 const websiteSchema = {
@@ -48,11 +63,20 @@ const faqSchema = {
   mainEntity: faqData.map((item) => ({
     "@type": "Question",
     name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
   })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Full-Stack Web Development",
+  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  serviceType: "Web Development",
+  description:
+    "End-to-end web development services including React frontends, Node.js backends, PostgreSQL databases, and AWS cloud deployment.",
+  areaServed: "Worldwide",
+  url: `${siteConfig.url}/services`,
 };
 
 export default function HomePage() {
@@ -69,6 +93,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       <Hero />

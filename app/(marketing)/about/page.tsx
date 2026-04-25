@@ -2,8 +2,23 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: `Learn about ${siteConfig.author} — Full Stack Developer with expertise in React, Node.js, and cloud technologies.`,
+  title: "About Smit Parekh — Full Stack Developer | React & Node.js Expert",
+  description:
+    "Meet Smit Parekh — Full Stack Developer with 3.5+ years building production web applications across FinTech, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
+  alternates: { canonical: `${siteConfig.url}/about` },
+  openGraph: { url: `${siteConfig.url}/about` },
+  keywords: [
+    "Smit Parekh",
+    "Smit Parekh developer",
+    "about Smit Parekh",
+    "full stack developer",
+    "React developer",
+    "Node.js developer",
+    "TypeScript developer",
+    "FinTech developer",
+    "SaaS developer",
+    "web developer India",
+  ],
 };
 
 export default function AboutPage() {
