@@ -1,0 +1,246 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS  —  two-layer architecture
+   Layer 1  Primitive scale      @theme inline, static OKLCH values
+   Layer 2  Semantic aliases     :root / .dark, consumed by shadcn + Tailwind
+   ─────────────────────────────────────────────────────────────────────────
+   Brand palette:
+     Electric blue   #0628FF  →  blue-500
+     Aqua cyan       #00C5EC  →  cyan-400
+     Material blue   #2196F3  →  sky-500
+     Logo cream      #FFFDE7  →  cream-100
+───────────────────────────────────────────────────────────────────────── */
+@theme inline {
+
+  /* ── Layer 1: Primitive palette ──────────────────────────────────────── */
+
+  /* Electric blue  #0628FF */
+  --color-blue-50:   oklch(0.965 0.018 264.1);
+  --color-blue-100:  oklch(0.935 0.038 264.1);
+  --color-blue-200:  oklch(0.870 0.085 264.1);
+  --color-blue-300:  oklch(0.760 0.145 264.1);
+  --color-blue-400:  oklch(0.610 0.210 264.1);
+  --color-blue-500:  oklch(0.432 0.277 264.1);   /* #0628FF */
+  --color-blue-600:  oklch(0.370 0.265 264.1);
+  --color-blue-700:  oklch(0.310 0.235 264.1);
+  --color-blue-800:  oklch(0.250 0.190 264.1);
+  --color-blue-900:  oklch(0.190 0.140 264.1);
+  --color-blue-950:  oklch(0.140 0.090 264.1);
+
+  /* Aqua cyan  #00C5EC */
+  --color-cyan-50:   oklch(0.975 0.015 204.6);
+  --color-cyan-100:  oklch(0.950 0.030 204.6);
+  --color-cyan-200:  oklch(0.895 0.065 204.6);
+  --color-cyan-300:  oklch(0.838 0.100 204.6);
+  --color-cyan-400:  oklch(0.761 0.141 204.6);   /* #00C5EC */
+  --color-cyan-500:  oklch(0.680 0.135 204.6);
+  --color-cyan-600:  oklch(0.600 0.120 204.6);
+  --color-cyan-700:  oklch(0.500 0.100 204.6);
+  --color-cyan-800:  oklch(0.400 0.080 204.6);
+  --color-cyan-900:  oklch(0.300 0.060 204.6);
+  --color-cyan-950:  oklch(0.200 0.040 204.6);
+
+  /* Material blue  #2196F3 */
+  --color-sky-50:    oklch(0.975 0.012 240.6);
+  --color-sky-100:   oklch(0.945 0.028 240.6);
+  --color-sky-200:   oklch(0.880 0.065 240.6);
+  --color-sky-300:   oklch(0.800 0.105 240.6);
+  --color-sky-400:   oklch(0.710 0.140 240.6);
+  --color-sky-500:   oklch(0.621 0.174 240.6);   /* #2196F3 */
+  --color-sky-600:   oklch(0.545 0.165 240.6);
+  --color-sky-700:   oklch(0.465 0.145 240.6);
+  --color-sky-800:   oklch(0.375 0.120 240.6);
+  --color-sky-900:   oklch(0.285 0.090 240.6);
+  --color-sky-950:   oklch(0.195 0.060 240.6);
+
+  /* Logo cream  #FFFDE7 */
+  --color-cream-50:  oklch(0.999 0.004 97.1);
+  --color-cream-100: oklch(0.992 0.022 97.1);    /* #FFFDE7 */
+  --color-cream-200: oklch(0.976 0.040 97.1);
+  --color-cream-300: oklch(0.952 0.060 97.1);
+
+  /* Blue-tinted neutral scale */
+  --color-neutral-0:   oklch(1     0     0);
+  --color-neutral-50:  oklch(0.985 0.003 264);
+  --color-neutral-100: oklch(0.970 0.005 264);
+  --color-neutral-200: oklch(0.920 0.008 264);
+  --color-neutral-300: oklch(0.850 0.010 264);
+  --color-neutral-400: oklch(0.720 0.015 264);
+  --color-neutral-500: oklch(0.600 0.020 264);
+  --color-neutral-600: oklch(0.500 0.020 264);
+  --color-neutral-700: oklch(0.380 0.020 264);
+  --color-neutral-800: oklch(0.260 0.020 264);
+  --color-neutral-900: oklch(0.170 0.016 264);
+  --color-neutral-950: oklch(0.120 0.018 264);
+
+  /* ── Layer 2: Semantic aliases — wire Tailwind utilities to CSS vars ─── */
+  --color-background:                 var(--background);
+  --color-foreground:                 var(--foreground);
+  --color-card:                       var(--card);
+  --color-card-foreground:            var(--card-foreground);
+  --color-popover:                    var(--popover);
+  --color-popover-foreground:         var(--popover-foreground);
+  --color-primary:                    var(--primary);
+  --color-primary-foreground:         var(--primary-foreground);
+  --color-secondary:                  var(--secondary);
+  --color-secondary-foreground:       var(--secondary-foreground);
+  --color-muted:                      var(--muted);
+  --color-muted-foreground:           var(--muted-foreground);
+  --color-accent:                     var(--accent);
+  --color-accent-foreground:          var(--accent-foreground);
+  --color-destructive:                var(--destructive);
+  --color-border:                     var(--border);
+  --color-input:                      var(--input);
+  --color-ring:                       var(--ring);
+  --color-chart-1:                    var(--chart-1);
+  --color-chart-2:                    var(--chart-2);
+  --color-chart-3:                    var(--chart-3);
+  --color-chart-4:                    var(--chart-4);
+  --color-chart-5:                    var(--chart-5);
+  --color-sidebar:                    var(--sidebar);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
+
+  /* Fonts */
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  /* Radii */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LIGHT MODE
+───────────────────────────────────────────────────────────────────────── */
+:root {
+  --background:           oklch(1 0 0);
+  --foreground:           oklch(0.145 0 0);
+  --card:                 oklch(0.990 0.004 264);
+  --card-foreground:      oklch(0.145 0 0);
+  --popover:              oklch(1 0 0);
+  --popover-foreground:   oklch(0.145 0 0);
+  --primary:              oklch(0.432 0.277 264.1);
+  --primary-foreground:   oklch(1 0 0);
+  --secondary:            oklch(0.992 0.022 97.1);
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted:                oklch(0.970 0.005 240);
+  --muted-foreground:     oklch(0.520 0.020 240);
+  --accent:               oklch(0.940 0.025 204.6);
+  --accent-foreground:    oklch(0.432 0.277 264.1);
+  --destructive:          oklch(0.577 0.245 27.325);
+  --border:               oklch(0.910 0.010 240);
+  --input:                oklch(0.910 0.010 240);
+  --ring:                 oklch(0.761 0.141 204.6);
+  --chart-1:              oklch(0.432 0.277 264.1);
+  --chart-2:              oklch(0.761 0.141 204.6);
+  --chart-3:              oklch(0.621 0.174 240.6);
+  --chart-4:              oklch(0.370 0.265 264.1);
+  --chart-5:              oklch(0.992 0.022 97.1);
+  --radius:               0.625rem;
+  --sidebar:              oklch(0.992 0.022 97.1);
+  --sidebar-foreground:   oklch(0.145 0 0);
+  --sidebar-primary:      oklch(0.432 0.277 264.1);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:       oklch(0.940 0.025 204.6);
+  --sidebar-accent-foreground:  oklch(0.432 0.277 264.1);
+  --sidebar-border:       oklch(0.910 0.010 240);
+  --sidebar-ring:         oklch(0.761 0.141 204.6);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DARK MODE
+───────────────────────────────────────────────────────────────────────── */
+.dark {
+  --background:           oklch(0.120 0.018 264);
+  --foreground:           oklch(0.960 0 0);
+  --card:                 oklch(0.170 0.016 264);
+  --card-foreground:      oklch(0.960 0 0);
+  --popover:              oklch(0.170 0.016 264);
+  --popover-foreground:   oklch(0.960 0 0);
+  --primary:              oklch(0.432 0.277 264.1);
+  --primary-foreground:   oklch(1 0 0);
+  --secondary:            oklch(0.220 0.025 264);
+  --secondary-foreground: oklch(0.960 0 0);
+  --muted:                oklch(0.220 0.025 264);
+  --muted-foreground:     oklch(0.620 0.025 264);
+  --accent:               oklch(0.260 0.040 240);
+  --accent-foreground:    oklch(0.960 0 0);
+  --destructive:          oklch(0.704 0.191 22.216);
+  --border:               oklch(1 0 0 / 9%);
+  --input:                oklch(1 0 0 / 12%);
+  --ring:                 oklch(0.761 0.141 204.6);
+  --chart-1:              oklch(0.432 0.277 264.1);
+  --chart-2:              oklch(0.761 0.141 204.6);
+  --chart-3:              oklch(0.621 0.174 240.6);
+  --chart-4:              oklch(0.550 0.120 240);
+  --chart-5:              oklch(0.350 0.060 264);
+  --sidebar:              oklch(0.170 0.016 264);
+  --sidebar-foreground:   oklch(0.960 0 0);
+  --sidebar-primary:      oklch(0.432 0.277 264.1);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:       oklch(0.260 0.040 240);
+  --sidebar-accent-foreground:  oklch(0.960 0 0);
+  --sidebar-border:       oklch(1 0 0 / 9%);
+  --sidebar-ring:         oklch(0.761 0.141 204.6);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   AURORA ANIMATION  (components/ui/aurora-background.tsx)
+───────────────────────────────────────────────────────────────────────── */
+@keyframes aurora-float {
+  0%   { transform: translate(0px, 0px)    scale(1.00) rotate(0deg);  }
+  25%  { transform: translate(35px, -20px) scale(1.04) rotate(3deg);  }
+  50%  { transform: translate(-15px, 18px) scale(0.97) rotate(-2deg); }
+  75%  { transform: translate(22px, 32px)  scale(1.03) rotate(2deg);  }
+  100% { transform: translate(-28px, -8px) scale(1.01) rotate(-1deg); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LAYOUT UTILITIES  —  use these instead of repeating container + padding
+   .page-container   full-width, max-w-7xl, responsive px
+   .page-section     vertical rhythm for page sections
+───────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .page-section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+}
