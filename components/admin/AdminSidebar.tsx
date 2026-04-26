@@ -35,7 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { clearAdminToken } from "@/hooks/use-auth";
+import { clearAdminToken } from "@/lib/api";
 import { siteConfig } from "@/data/site";
 
 const NAV_MAIN = [
@@ -59,8 +59,8 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  function handleLogout() {
-    clearAdminToken();
+  async function handleLogout() {
+    await clearAdminToken();
     router.replace("/admin/login");
   }
 

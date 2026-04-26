@@ -1,2 +1,2 @@
 export * from "./api/use-auth";
-export { getAdminToken, setAdminToken, clearAdminToken } from "@/lib/api";
+export { getAdminToken, clearAdminToken } from "@/lib/api";

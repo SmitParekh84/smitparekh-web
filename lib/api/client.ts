@@ -1,9 +1,8 @@
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "axios";
+import { createClient } from "@/lib/supabase/client";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, "") ?? "http://localhost:5000/api";
-
-const TOKEN_KEY = "admin_token";
 
 export class ApiError extends Error {
   constructor(
@@ -16,10 +15,12 @@ export class ApiError extends Error {
   }
 }
 
-function getToken(): string | null {
+async function getToken(): Promise<string | null> {
   if (typeof window === "undefined") return null;
   try {
-    return localStorage.getItem(TOKEN_KEY);
+    const supabase = createClient();
+    const { data } = await supabase.auth.getSession();
+    return data.session?.access_token ?? null;
   } catch {
     return null;
   }
@@ -31,8 +32,8 @@ export const apiClient: AxiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-apiClient.interceptors.request.use((config) => {
-  const token = getToken();
+apiClient.interceptors.request.use(async (config) => {
+  const token = await getToken();
   if (token) {
     config.headers = config.headers ?? {};
     (config.headers as Record<string, string>).Authorization = `Bearer ${token}`;

@@ -5,7 +5,6 @@ export { queryKeys } from "./query-keys";
 export {
   authApi,
   getAdminToken,
-  setAdminToken,
   clearAdminToken,
   type LoginPayload,
 } from "./auth";

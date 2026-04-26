@@ -74,8 +74,16 @@ export interface BackendOneResponse<T> {
   data: T;
 }
 
+export interface AuthUser {
+  id: string;
+  email: string;
+  name?: string;
+  role: string;
+}
+
 export interface AuthResponse {
-  success: boolean;
-  message: string;
+  success?: boolean;
+  message?: string;
   token: string;
+  user?: AuthUser;
 }

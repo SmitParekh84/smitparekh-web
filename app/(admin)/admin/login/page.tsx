@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useLogin, getAdminToken } from "@/hooks/use-auth";
+import { useLogin } from "@/hooks/use-auth";
+import { createClient } from "@/lib/supabase/client";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -15,7 +16,10 @@ export default function AdminLoginPage() {
   const login = useLogin();
 
   useEffect(() => {
-    if (getAdminToken()) router.replace("/admin");
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) router.replace("/admin");
+    });
   }, [router]);
 
   async function handleSubmit(e: React.FormEvent) {
