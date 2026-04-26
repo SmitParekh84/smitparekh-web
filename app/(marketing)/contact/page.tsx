@@ -5,8 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Mail, Clock, MapPin, Send } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@/lib/api";
+import { useSubmitContact } from "@/hooks/api/use-contact";
 import { toast } from "@/lib/toast";
 import {
   GitHubIcon,
@@ -40,17 +39,19 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const mutation = useMutation({
-    mutationFn: (data: ContactPayload) =>
-      api.post<{ message: string }>("/contact", data),
-    onSuccess: () => {
-      setSubmitted(true);
-      setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
-    },
-    onError: () => {
-      toast.error("Something went wrong", "Please try again or email me directly.");
-    },
-  });
+  const mutation = useSubmitContact();
+
+  function submit(payload: ContactPayload) {
+    mutation.mutate(payload, {
+      onSuccess: () => {
+        setSubmitted(true);
+        setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
+      },
+      onError: () => {
+        toast.error("Something went wrong", "Please try again or email me directly.");
+      },
+    });
+  }
 
   function handleChange(
     e: React.ChangeEvent<

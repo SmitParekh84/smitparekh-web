@@ -1,250 +1,274 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Plus, Pencil, Trash2, ExternalLink, Star, Loader2 } from "lucide-react";
-import { AdminGuard } from "@/components/admin/AdminGuard";
-import { useProjects, useDeleteProject } from "@/hooks/use-projects";
-import { clearAdminToken } from "@/hooks/use-auth";
-import { toast } from "@/lib/toast";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import {
+  FolderKanban,
+  MessageSquare,
+  Star,
+  Sparkles,
+  ArrowRight,
+  Plus,
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useProjects } from "@/hooks/use-projects";
+import { useFeedbackList } from "@/hooks/api/use-feedback";
+import { cn } from "@/lib/utils";
 
-export default function AdminDashboardPage() {
+interface StatCardProps {
+  label: string;
+  value: string | number;
+  hint?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  loading?: boolean;
+}
+
+function StatCard({ label, value, hint, icon: Icon, loading }: StatCardProps) {
   return (
-    <AdminGuard>
-      <Dashboard />
-    </AdminGuard>
+    <Card>
+      <CardContent className="flex items-start justify-between gap-3 p-5">
+        <div className="space-y-1">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            {label}
+          </p>
+          {loading ? (
+            <Skeleton className="h-8 w-16" />
+          ) : (
+            <p className="text-3xl font-semibold tracking-tight">{value}</p>
+          )}
+          {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
+        </div>
+        <span className="rounded-lg bg-blue-500/10 p-2 text-blue-500">
+          <Icon className="h-4 w-4" />
+        </span>
+      </CardContent>
+    </Card>
   );
 }
 
-function Dashboard() {
-  const router = useRouter();
-  const { data: projects, isLoading, isError, refetch } = useProjects();
-  const deleteProject = useDeleteProject();
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [confirmId, setConfirmId] = useState<string | null>(null);
+export default function AdminOverviewPage() {
+  const { data: projects, isLoading: pLoading } = useProjects();
+  const { data: feedback, isLoading: fLoading } = useFeedbackList();
 
-  function handleLogout() {
-    clearAdminToken();
-    router.replace("/admin/login");
-  }
+  const total = projects?.length ?? 0;
+  const featured = projects?.filter((p) => p.isShowcased).length ?? 0;
+  const totalFeedback = feedback?.length ?? 0;
+  const ratings = feedback?.map((f) => f.rating).filter((r): r is number => typeof r === "number") ?? [];
+  const avgRating =
+    ratings.length > 0
+      ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
+      : "—";
 
-  async function handleDelete(id: string) {
-    setDeletingId(id);
-    try {
-      await deleteProject.mutateAsync(id);
-      toast.success("Project deleted");
-      setConfirmId(null);
-    } catch {
-      toast.error("Delete failed", "Could not delete project.");
-    } finally {
-      setDeletingId(null);
-    }
-  }
+  const recentProjects = projects
+    ?.slice()
+    .sort(
+      (a, b) =>
+        new Date(b.updatedDate || b.publishDate).getTime() -
+        new Date(a.updatedDate || a.publishDate).getTime(),
+    )
+    .slice(0, 5);
+
+  const recentFeedback = feedback?.slice(0, 5);
 
   return (
-    <div className="space-y-6">
-      {/* Page header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Projects</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            Manage your portfolio projects
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleLogout}
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            Logout
-          </button>
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight">Overview</h2>
+        <p className="text-sm text-muted-foreground">
+          Snapshot of your portfolio activity.
+        </p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          label="Projects"
+          value={total}
+          hint={total === 1 ? "1 published" : `${total} published`}
+          icon={FolderKanban}
+          loading={pLoading}
+        />
+        <StatCard
+          label="Featured"
+          value={featured}
+          hint="Showcased on home"
+          icon={Sparkles}
+          loading={pLoading}
+        />
+        <StatCard
+          label="Feedback"
+          value={totalFeedback}
+          hint={totalFeedback === 1 ? "1 entry" : `${totalFeedback} entries`}
+          icon={MessageSquare}
+          loading={fLoading}
+        />
+        <StatCard
+          label="Avg rating"
+          value={avgRating}
+          hint={ratings.length ? `${ratings.length} rated` : "No ratings yet"}
+          icon={Star}
+          loading={fLoading}
+        />
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader className="flex flex-row items-center justify-between gap-4 space-y-0">
+            <div>
+              <CardTitle>Recent projects</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Latest 5 by update date.
+              </p>
+            </div>
+            <Link
+              href="/admin/projects"
+              className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-1")}
+            >
+              View all
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {pLoading && (
+              <div className="space-y-2">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <Skeleton key={i} className="h-12 w-full" />
+                ))}
+              </div>
+            )}
+            {!pLoading && recentProjects && recentProjects.length === 0 && (
+              <div className="rounded-lg border border-dashed border-border p-8 text-center">
+                <p className="text-sm text-muted-foreground">
+                  No projects yet. Create your first one.
+                </p>
+                <Link
+                  href="/admin/projects/new"
+                  className={cn(buttonVariants({ size: "sm" }), "mt-4 gap-2")}
+                >
+                  <Plus className="h-4 w-4" />
+                  New project
+                </Link>
+              </div>
+            )}
+            {!pLoading &&
+              recentProjects?.map((project) => (
+                <Link
+                  key={project._id}
+                  href={`/admin/projects/${project._id}/edit`}
+                  className="flex items-center gap-3 rounded-lg border border-transparent p-2 transition-colors hover:border-border hover:bg-muted/40"
+                >
+                  {project.imageUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={project.imageUrl}
+                      alt=""
+                      className="h-10 w-10 rounded-md border border-border object-cover"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 rounded-md bg-muted" />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">{project.title}</p>
+                    <p className="line-clamp-1 text-xs text-muted-foreground">
+                      {project.shortDescription}
+                    </p>
+                  </div>
+                  {project.isShowcased && (
+                    <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
+                  )}
+                </Link>
+              ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between gap-4 space-y-0">
+            <div>
+              <CardTitle>Recent feedback</CardTitle>
+              <p className="text-sm text-muted-foreground">Latest visitor notes.</p>
+            </div>
+            <Link
+              href="/admin/feedback"
+              className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-1")}
+            >
+              View all
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {fLoading && (
+              <div className="space-y-2">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <Skeleton key={i} className="h-16 w-full" />
+                ))}
+              </div>
+            )}
+            {!fLoading && recentFeedback && recentFeedback.length === 0 && (
+              <p className="rounded-lg border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
+                No feedback yet.
+              </p>
+            )}
+            {!fLoading &&
+              recentFeedback?.map((entry) => (
+                <div
+                  key={entry._id}
+                  className="rounded-lg border border-border bg-card/40 p-3"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="truncate text-sm font-medium">
+                      {entry.name || "Anonymous"}
+                    </p>
+                    {typeof entry.rating === "number" && (
+                      <Badge variant="secondary" className="gap-1 text-xs">
+                        <Star className="h-3 w-3 fill-yellow-500 text-yellow-500" />
+                        {entry.rating}
+                      </Badge>
+                    )}
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                    {entry.message}
+                  </p>
+                </div>
+              ))}
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick actions</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-2">
           <Link
             href="/admin/projects/new"
             className={cn(buttonVariants({ size: "sm" }), "gap-2")}
           >
-            <Plus className="w-4 h-4" />
-            New Project
+            <Plus className="h-4 w-4" />
+            New project
           </Link>
-        </div>
-      </div>
-
-      {/* Table */}
-      {isLoading && (
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
-        </div>
-      )}
-
-      {isError && (
-        <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-6 text-center">
-          <p className="text-sm text-muted-foreground mb-3">
-            Could not load projects. Is the backend running?
-          </p>
-          <button
-            onClick={() => refetch()}
+          <Link
+            href="/admin/projects"
             className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
           >
-            Retry
-          </button>
-        </div>
-      )}
-
-      {!isLoading && !isError && (
-        <div className="rounded-2xl border border-border bg-card overflow-hidden">
-          {projects && projects.length === 0 ? (
-            <div className="text-center py-16 text-muted-foreground">
-              <p className="text-sm mb-4">No projects yet.</p>
-              <Link
-                href="/admin/projects/new"
-                className={cn(buttonVariants({ size: "sm" }), "gap-2")}
-              >
-                <Plus className="w-4 h-4" />
-                Add Your First Project
-              </Link>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border bg-muted/40">
-                    <th className="text-left px-5 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
-                      Title
-                    </th>
-                    <th className="text-left px-5 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider hidden sm:table-cell">
-                      Categories
-                    </th>
-                    <th className="text-left px-5 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider hidden md:table-cell">
-                      Featured
-                    </th>
-                    <th className="text-left px-5 py-3 font-semibold text-muted-foreground text-xs uppercase tracking-wider hidden lg:table-cell">
-                      Date
-                    </th>
-                    <th className="px-5 py-3" />
-                  </tr>
-                </thead>
-                <tbody>
-                  {projects?.map((project) => (
-                    <tr
-                      key={project._id}
-                      className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors"
-                    >
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-2">
-                          {project.imageUrl && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={project.imageUrl}
-                              alt=""
-                              className="w-8 h-8 rounded-lg object-cover border border-border shrink-0"
-                            />
-                          )}
-                          <div>
-                            <p className="font-medium leading-snug">
-                              {project.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground line-clamp-1 max-w-[200px]">
-                              {project.shortDescription}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td className="px-5 py-4 hidden sm:table-cell">
-                        <div className="flex flex-wrap gap-1">
-                          {project.categories.slice(0, 2).map((cat) => (
-                            <Badge
-                              key={cat}
-                              variant="secondary"
-                              className="text-xs px-2 py-0"
-                            >
-                              {cat}
-                            </Badge>
-                          ))}
-                        </div>
-                      </td>
-
-                      <td className="px-5 py-4 hidden md:table-cell">
-                        {project.isShowcased ? (
-                          <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                        ) : (
-                          <span className="text-muted-foreground/40">—</span>
-                        )}
-                      </td>
-
-                      <td className="px-5 py-4 hidden lg:table-cell text-muted-foreground text-xs">
-                        {new Date(project.publishDate).toLocaleDateString(
-                          "en-GB",
-                          { day: "numeric", month: "short", year: "numeric" }
-                        )}
-                      </td>
-
-                      <td className="px-5 py-4">
-                        <div className="flex items-center justify-end gap-1">
-                          {project.demoLink && (
-                            <a
-                              href={project.demoLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                            >
-                              <ExternalLink className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                          <Link
-                            href={`/admin/projects/${project._id}/edit`}
-                            className="p-1.5 rounded-lg text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 transition-colors"
-                          >
-                            <Pencil className="w-3.5 h-3.5" />
-                          </Link>
-
-                          {confirmId === project._id ? (
-                            <div className="flex items-center gap-1">
-                              <button
-                                onClick={() => handleDelete(project._id)}
-                                disabled={deletingId === project._id}
-                                className="px-2 py-1 rounded-lg text-xs bg-destructive text-destructive-foreground hover:bg-destructive/80 transition-colors"
-                              >
-                                {deletingId === project._id ? (
-                                  <Loader2 className="w-3 h-3 animate-spin" />
-                                ) : (
-                                  "Confirm"
-                                )}
-                              </button>
-                              <button
-                                onClick={() => setConfirmId(null)}
-                                className="px-2 py-1 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                              >
-                                Cancel
-                              </button>
-                            </div>
-                          ) : (
-                            <button
-                              onClick={() => setConfirmId(project._id)}
-                              className="p-1.5 rounded-lg text-muted-foreground hover:text-red-500 hover:bg-red-500/10 transition-colors"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      )}
-
-      {!isLoading && !isError && projects && (
-        <p className="text-xs text-muted-foreground">
-          {projects.length} project{projects.length !== 1 ? "s" : ""} total
-        </p>
-      )}
+            Manage projects
+          </Link>
+          <Link
+            href="/admin/feedback"
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+          >
+            Read feedback
+          </Link>
+          <Link
+            href="/free-tools"
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+          >
+            View public tools
+          </Link>
+        </CardContent>
+      </Card>
     </div>
   );
 }

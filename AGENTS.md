@@ -30,7 +30,11 @@ metadata, server actions, or image optimization.
 ## Data Fetching Rules
 
 - Client-side data → TanStack Query (`useQuery`, `useMutation`) in `"use client"` hooks
-- API calls → `api.get/post/put/patch/del` from `lib/api.ts` (typed fetch wrapper, no axios)
+- **Prefer typed hooks** from `hooks/api/` (e.g. `useProjects`, `useSubmitContact`) over raw `api.*` calls
+- Low-level escape hatch → `api.get/post/put/patch/del/postForm` from `lib/api/client.ts` (axios-based, returns `res.data`)
+- All resource API modules live in `lib/api/<resource>.ts` (auth, projects, contact, feedback, meta, qr-code, remove-bg, resume, media, generate-post)
+- Errors are normalized to `ApiError` (`status`, `message`, `data`) from `lib/api/client.ts`
+- Bearer token auth: stored in `localStorage.admin_token`; injected automatically by axios request interceptor
 - Toast after mutations → `import { toast } from "@/lib/toast"`
 <!-- END:nextjs-agent-rules -->
 
@@ -54,10 +58,11 @@ metadata, server actions, or image optimization.
 
 ### API Integration Checklist
 
-- [ ] Using `api` wrapper from `lib/api.ts` (not raw fetch, not axios)?
-- [ ] Wrapped in React Query hook (`useQuery`, `useMutation`)?
-- [ ] Error handling in place (toast on failure)?
-- [ ] Loading/pending states handled?
+- [ ] Using a hook from `hooks/api/` (e.g., `useProjects`, `useSubmitContact`)?
+- [ ] If a new endpoint, added a typed function to the matching `lib/api/<resource>.ts` and a hook to `hooks/api/use-<resource>.ts`?
+- [ ] Query keys come from `lib/api/query-keys.ts` (don't inline string keys)?
+- [ ] Error handling in place (toast on failure, `ApiError` for branching)?
+- [ ] Loading/pending states handled (`isPending`, `isLoading`, `isError`)?
 
 ### Styling Guidelines
 
@@ -81,7 +86,7 @@ metadata, server actions, or image optimization.
 
 - Components: `PascalCase.tsx` (e.g., `HeroSection.tsx`)
 - Utilities: `kebab-case.ts` (e.g., `format-date.ts`)
-- Hooks: `useCamelCase.ts` (e.g., `useProjects.ts`)
+- Hooks: `use-kebab-case.ts` exporting `useCamelCase` (e.g., `use-projects.ts` → `useProjects`)
 - Data files: Match feature name (e.g., `home.ts`, `site.ts`)
 
 ### Git Commits

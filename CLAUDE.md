@@ -165,12 +165,35 @@ components/
 
 lib/
 ├── utils.ts                    ← cn() utility (clsx + tailwind-merge)
-├── api.ts                      ← typed fetch wrapper for backend API
+├── api/                        ← axios-based API layer (split per resource)
+│   ├── client.ts               ←   axios instance, interceptors, ApiError
+│   ├── query-keys.ts           ←   centralized React Query keys
+│   ├── auth.ts                 ←   login + token storage helpers
+│   ├── projects.ts             ←   CRUD + image upload
+│   ├── contact.ts              ←   contact form, CV download
+│   ├── feedback.ts             ←   submit/list
+│   ├── meta.ts                 ←   tags, SEO analyze, reports
+│   ├── qr-code.ts              ←   QR generation (json + blob)
+│   ├── remove-bg.ts            ←   remove bg, compress (single + bulk)
+│   ├── resume.ts               ←   resume analyzer
+│   ├── media.ts                ←   LinkedIn media download
+│   ├── generate-post.ts        ←   AI post generation
+│   └── index.ts                ←   barrel re-exports
 ├── query-client.ts             ← QueryClient factory with default config
 └── toast.ts                    ← typed Sonner toast helper
 
 hooks/
-└── use-toast.ts                ← re-exports toast from lib/toast
+├── use-toast.ts                ← re-exports toast from lib/toast
+├── use-auth.ts                 ← thin re-export of hooks/api/use-auth + token helpers
+├── use-projects.ts             ← thin re-export of hooks/api/use-projects
+└── api/                        ← React Query hooks (one file per resource)
+    ├── use-auth.ts
+    ├── use-projects.ts
+    ├── use-contact.ts
+    ├── use-feedback.ts
+    ├── use-meta.ts
+    ├── use-tools.ts
+    └── index.ts
 
 types/
 └── index.ts                    ← global interfaces (Tool, Project, ContactFormData, etc.)
@@ -184,59 +207,87 @@ data/
 
 ---
 
-## API Layer (`lib/api.ts`)
+## API Layer (`lib/api/`)
 
-Native fetch wrapper — no axios dependency:
+Axios-based, split per resource. Returns `res.data` directly so calls feel like fetch wrappers.
 
 ```typescript
-import { api } from "@/lib/api";
+// Preferred: typed hooks
+import { useProjects, useSubmitContact } from "@/hooks/api";
 
-// All methods are fully typed
-const tools = await api.get<Tool[]>("/tools");
-const result = await api.post<Tool>("/tools", { name: "...", slug: "..." });
+// Escape hatch: direct API call (rare — wrap in a hook instead)
+import { api, ApiError, projectsApi } from "@/lib/api";
+
+const projects = await projectsApi.list();              // typed module
+const tool     = await api.get<Tool>("/tools/:slug");   // raw axios call
 ```
+
+**Resource modules** (`lib/api/<resource>.ts`):
+- `authApi` — `login`, `getAdminToken`, `setAdminToken`, `clearAdminToken`
+- `projectsApi` — `list`, `byId`, `byTitle`, `create`, `replace`, `update`, `remove`, `uploadImage`
+- `contactApi` — `submit`, `cvDownload`
+- `feedbackApi` — `submit`, `list`
+- `metaApi` — `getTags`, `analyzeSeo`, `listSeoReports`
+- `qrCodeApi` — `generate`, `generateImage` (Blob)
+- `removeBgApi` — `removeBackground`, `compressImage`, `compressBulk`
+- `resumeApi`, `mediaApi`, `generatePostApi`
 
 **Error handling:**
 ```typescript
-import { api, ApiError } from "@/lib/api";
+import { ApiError } from "@/lib/api";
 
 try {
-  await api.post("/contact", formData);
+  await contactApi.submit(formData);
 } catch (err) {
   if (err instanceof ApiError && err.status === 422) {
-    // validation error
+    // validation error — err.data has details
   }
 }
 ```
 
-**Base URL:** `NEXT_PUBLIC_API_URL` env var (defaults to `http://localhost:3001`)
+**Auth:** axios request interceptor injects `Authorization: Bearer <token>` from `localStorage.admin_token`.
+Login flow: `useLogin()` mutation → on success `setAdminToken(token)` → guarded routes via `<AdminGuard>`.
+
+**Base URL:** `NEXT_PUBLIC_API_URL` env var (defaults to `http://localhost:5000/api`).
 
 ---
 
 ## React Query Patterns
 
-**Custom hook structure:**
+**Always use the hooks in `hooks/api/`. Add a new hook there for any new endpoint.**
+
 ```typescript
-// hooks/use-tools.ts
+// hooks/api/use-projects.ts
 "use client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "@/lib/api";
-import type { Tool } from "@/types";
+import { projectsApi } from "@/lib/api";
+import { queryKeys } from "@/lib/api/query-keys";
 
-export function useTools() {
+export function useProjects() {
   return useQuery({
-    queryKey: ["tools"],
-    queryFn: () => api.get<Tool[]>("/tools"),
+    queryKey: queryKeys.projects.all,
+    queryFn: () => projectsApi.list(),
   });
 }
 
-export function useContactForm() {
+export function useDeleteProject() {
+  const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: ContactFormData) => api.post("/contact", data),
-    onSuccess: () => toast.success("Message sent!"),
-    onError: () => toast.error("Failed to send"),
+    mutationFn: (id: string) => projectsApi.remove(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.projects.all }),
   });
 }
+```
+
+**Consuming a hook in a component:**
+```tsx
+"use client";
+import { useProjects, useDeleteProject } from "@/hooks/api";
+
+const { data: projects, isLoading, isError } = useProjects();
+const deleteProject = useDeleteProject();
+
+await deleteProject.mutateAsync(id);  // throws ApiError on failure
 ```
 
 **Default query config** (in `lib/query-client.ts`):
@@ -292,9 +343,10 @@ Animation keyframes (`aurora-float`) are defined in `app/globals.css`.
 
 ## Environment Variables
 
-| Variable              | Default                 | Description         |
-| --------------------- | ----------------------- | ------------------- |
-| `NEXT_PUBLIC_API_URL` | `http://localhost:3001` | Backend API base URL |
+| Variable                     | Default                       | Description                        |
+| ---------------------------- | ----------------------------- | ---------------------------------- |
+| `NEXT_PUBLIC_API_URL`        | `http://localhost:5000/api`   | Node/Express backend base URL      |
+| `NEXT_PUBLIC_PYTHON_API_URL` | _(unset, optional)_           | Python tools service (rembg, etc.) |
 
 ---
 
@@ -308,5 +360,6 @@ pnpm lint     # ESLint
 
 ## Related
 
-- **Backend:** `../backend` — NestJS/Express API server
-- **Old frontend:** `../front-end` — Legacy React SPA (reference only)
+- **Backend:** `../backend` — Express + MongoDB API (winston logger, kebab-case files)
+- **Python tools:** `../python-tools` — FastAPI + rembg (background removal etc.), deployed to Hugging Face Docker Space
+- **Old frontend:** `../front-end` — Legacy Vite React SPA (reference only)
