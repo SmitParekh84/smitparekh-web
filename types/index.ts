@@ -42,3 +42,40 @@ export interface ContactFormData {
   subject: string;
   message: string;
 }
+
+export interface BackendProject {
+  _id: string;
+  title: string;
+  categories: string[];
+  shortDescription: string;
+  detailMarkdown: string;
+  imageUrl: string;
+  repoLink: string;
+  demoLink: string;
+  demoBtn: string;
+  isShowcased: boolean;
+  publishDate: string;
+  updatedDate: string;
+}
+
+export type BackendProjectInput = Omit<
+  BackendProject,
+  "_id" | "publishDate" | "updatedDate"
+>;
+
+export interface BackendListResponse<T> {
+  success: boolean;
+  count: number;
+  data: T[];
+}
+
+export interface BackendOneResponse<T> {
+  success: boolean;
+  data: T;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  message: string;
+  token: string;
+}

@@ -6,12 +6,12 @@ import Footer from "./Footer";
 
 export function ConditionalNavbar() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  if (pathname.startsWith("/admin")) return null;
   return <Navbar />;
 }
 
 export function ConditionalFooter() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  if (pathname.startsWith("/admin")) return null;
   return <Footer />;
 }

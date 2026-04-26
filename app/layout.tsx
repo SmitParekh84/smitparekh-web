@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import {
+  ConditionalNavbar,
+  ConditionalFooter,
+} from "@/components/layout/ConditionalNav";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
@@ -76,9 +78,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
+            <ConditionalNavbar />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <ConditionalFooter />
             <ThemeAwareToaster />
           </ThemeProvider>
         </QueryProvider>
