@@ -57,47 +57,5 @@ export default function PortfolioLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const collectionPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Portfolio — Production Web Apps by Smit Parekh",
-    description:
-      "Web applications built by Smit Parekh for FinTech, SaaS, LegalTech, and enterprise clients.",
-    url: `${siteConfig.url}/portfolio`,
-    author: {
-      "@type": "Person",
-      name: "Smit Parekh",
-      url: siteConfig.url,
-    },
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Portfolio",
-        item: `${siteConfig.url}/portfolio`,
-      },
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionPageSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

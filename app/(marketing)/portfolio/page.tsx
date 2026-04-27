@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Loader2 } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { GitHubIcon } from "@/components/icons/SocialIcons";
 import { useProjects } from "@/hooks/use-projects";
 import { featuredProjects } from "@/data/portfolio";
+import { siteConfig } from "@/data/site";
 import type { BackendProject } from "@/types";
 
 function CategoryFilter({
@@ -135,6 +136,36 @@ export default function PortfolioPage() {
 
   const visibleProjects = projects?.filter((p) => p.isVisible !== false) ?? [];
 
+  // Case studies: API entries with slug + summary, dedup by slug, fall back to static
+  const apiCaseStudies = visibleProjects
+    .filter((p) => p.slug && (p.summary || p.subtitle))
+    .map((p) => ({
+      slug: p.slug as string,
+      title: p.title,
+      subtitle: p.subtitle ?? "",
+      description: p.shortDescription,
+      category: p.categories?.[0] ?? "Project",
+      gradient: p.gradient ?? "from-blue-600 via-blue-500 to-sky-500",
+      tags: (p.tags?.length ? p.tags : p.categories) ?? [],
+    }));
+
+  const apiSlugs = new Set(apiCaseStudies.map((p) => p.slug));
+  const fallbackCaseStudies = featuredProjects
+    .filter((p) => !apiSlugs.has(p.slug))
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      subtitle: p.subtitle,
+      description: p.description,
+      category: p.category,
+      gradient: p.gradient,
+      tags: p.tags,
+    }));
+
+  const caseStudyCards = apiCaseStudies.length
+    ? [...apiCaseStudies, ...fallbackCaseStudies]
+    : fallbackCaseStudies;
+
   const allCategories = [...new Set(visibleProjects.flatMap((p) => p.categories))];
 
   const filtered =
@@ -142,8 +173,50 @@ export default function PortfolioPage() {
       ? visibleProjects
       : visibleProjects.filter((p) => p.categories.includes(selectedCategory));
 
+  const collectionPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Portfolio — Production Web Apps by Smit Parekh",
+    description:
+      "Web applications built by Smit Parekh for FinTech, SaaS, LegalTech, and enterprise clients.",
+    url: `${siteConfig.url}/portfolio`,
+    author: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: caseStudyCards.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${siteConfig.url}/portfolio/${p.slug}`,
+        name: `${p.title} — ${p.subtitle}`,
+      })),
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Portfolio",
+        item: `${siteConfig.url}/portfolio`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Header */}
       <section className="page-section pt-24 sm:pt-28 pb-0 bg-muted/20">
         <div className="page-container text-center max-w-2xl mx-auto">
@@ -160,9 +233,75 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Projects */}
+      {/* Featured Case Studies (always shown — static, SEO-tuned) */}
       <section className="page-section">
         <div className="page-container">
+          <SectionHeader
+            label="Featured Case Studies"
+            title="Deep dives into real projects"
+            description="Each case study walks through the problem, the approach, the stack, and the outcomes — the kind of detail you'd want before hiring."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {caseStudyCards.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/portfolio/${project.slug}`}
+                className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5"
+              >
+                <div
+                  className={cn(
+                    "h-40 bg-gradient-to-br flex items-end p-5",
+                    project.gradient
+                  )}
+                >
+                  <Badge
+                    variant="secondary"
+                    className="bg-white/20 text-white border-white/30 backdrop-blur-sm text-xs"
+                  >
+                    {project.category}
+                  </Badge>
+                </div>
+                <div className="flex flex-col flex-1 p-6 gap-3">
+                  <div>
+                    <h3 className="text-lg font-bold">{project.title}</h3>
+                    <p className="text-sm text-blue-500 font-medium mt-0.5">
+                      {project.subtitle}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 5).map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="text-xs px-2 py-0.5"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-sm text-blue-500 font-medium mt-auto group-hover:gap-2 transition-all">
+                    Read case study
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live Projects (from API) */}
+      <section className="page-section bg-muted/20">
+        <div className="page-container">
+          <SectionHeader
+            label="More Projects"
+            title="Latest work & live projects"
+            description="A live feed of additional projects — kept up to date alongside the in-depth case studies above."
+          />
+
           {isLoading && (
             <>
               <div className="flex justify-center mb-10">
@@ -177,55 +316,10 @@ export default function PortfolioPage() {
           )}
 
           {isError && (
-            <>
-              <p className="text-center text-sm text-muted-foreground mb-8">
-                Showing featured projects (live API unavailable)
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {featuredProjects.map((project) => (
-                  <div
-                    key={project.id}
-                    className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5"
-                  >
-                    <div
-                      className={cn(
-                        "h-40 bg-gradient-to-br flex items-end p-5",
-                        project.gradient
-                      )}
-                    >
-                      <Badge
-                        variant="secondary"
-                        className="bg-white/20 text-white border-white/30 backdrop-blur-sm text-xs"
-                      >
-                        {project.category}
-                      </Badge>
-                    </div>
-                    <div className="flex flex-col flex-1 p-6 gap-3">
-                      <div>
-                        <h3 className="text-lg font-bold">{project.title}</h3>
-                        <p className="text-sm text-blue-500 font-medium mt-0.5">
-                          {project.subtitle}
-                        </p>
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tags.slice(0, 5).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs px-2 py-0.5"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
+            <p className="text-center text-sm text-muted-foreground">
+              Live project feed unavailable right now — the case studies above
+              cover the highlights.
+            </p>
           )}
 
           {!isLoading && !isError && (
@@ -255,7 +349,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section">
         <div className="page-container text-center max-w-xl mx-auto">
           <h2 className="text-2xl font-bold mb-3">Interested in Working Together?</h2>
           <p className="text-sm text-muted-foreground mb-6 leading-relaxed">

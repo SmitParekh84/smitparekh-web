@@ -15,6 +15,8 @@ export const projectsApi = {
   byId: (id: string) => api.get<BackendOneResponse<BackendProject>>(`/projects/${id}`),
   byTitle: (title: string) =>
     api.get<BackendOneResponse<BackendProject>>(`/projects/title/${encodeURIComponent(title)}`),
+  bySlug: (slug: string) =>
+    api.get<BackendOneResponse<BackendProject>>(`/projects/slug/${encodeURIComponent(slug)}`),
   create: (data: BackendProjectInput) =>
     api.post<BackendOneResponse<BackendProject>>("/projects", data),
   replace: (id: string, data: BackendProjectInput) =>

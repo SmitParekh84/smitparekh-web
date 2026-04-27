@@ -27,6 +27,14 @@ export function useProjectByTitle(title: string) {
   });
 }
 
+export function useProjectBySlug(slug: string) {
+  return useQuery({
+    queryKey: queryKeys.projects.bySlug(slug),
+    queryFn: () => projectsApi.bySlug(slug).then((r) => r.data),
+    enabled: Boolean(slug),
+  });
+}
+
 export function useCreateProject() {
   const qc = useQueryClient();
   return useMutation({

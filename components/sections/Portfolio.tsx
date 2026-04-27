@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -64,15 +64,13 @@ export default function Portfolio() {
                     )}
                   </div>
 
-                  <a
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/portfolio/${project.slug}`}
                     className="inline-flex items-center gap-1.5 text-sm text-blue-500 hover:text-blue-400 font-medium transition-colors mt-auto"
                   >
                     View Case Study
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               </div>
             </StaggerItem>

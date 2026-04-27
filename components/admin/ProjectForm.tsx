@@ -7,6 +7,15 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
 import { useUploadProjectImage } from "@/hooks/use-projects";
+import {
+  StringListEditor,
+  KVListEditor,
+  OutcomeListEditor,
+  TechStackEditor,
+  type KVItem,
+  type OutcomeItem,
+  type TechStackGroups,
+} from "./CaseStudyFields";
 import type { BackendProject, BackendProjectInput } from "@/types";
 
 const CATEGORY_OPTIONS = [
@@ -29,6 +38,25 @@ interface ProjectFormProps {
   isPending: boolean;
 }
 
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[–—]/g, "-")
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+const DEFAULT_TECH_STACK: TechStackGroups = {
+  Frontend: [],
+  Backend: [],
+  Database: [],
+  Infrastructure: [],
+  Tooling: [],
+};
+
 export function ProjectForm({
   initialData,
   onSubmit,
@@ -41,9 +69,27 @@ export function ProjectForm({
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
+    slug: initialData?.slug ?? "",
+    subtitle: initialData?.subtitle ?? "",
     categories: initialData?.categories ?? [],
+    industry: initialData?.industry ?? "",
+    role: initialData?.role ?? "Full Stack Developer",
+    year: initialData?.year ?? "",
+    duration: initialData?.duration ?? "",
+    gradient: initialData?.gradient ?? "from-blue-600 via-blue-500 to-sky-500",
+    tags: (initialData?.tags ?? []) as string[],
     shortDescription: initialData?.shortDescription ?? "",
+    summary: initialData?.summary ?? "",
     detailMarkdown: initialData?.detailMarkdown ?? "",
+    problem: initialData?.problem ?? "",
+    approach: (initialData?.approach ?? []) as string[],
+    outcomes: (initialData?.outcomes ?? []) as OutcomeItem[],
+    highlights: (initialData?.highlights ?? []) as KVItem[],
+    techStack: {
+      ...DEFAULT_TECH_STACK,
+      ...(initialData?.techStack ?? {}),
+    } as TechStackGroups,
+    lessons: (initialData?.lessons ?? []) as string[],
     imageUrl: initialData?.imageUrl ?? "",
     repoLink: initialData?.repoLink ?? "",
     demoLink: initialData?.demoLink ?? "",
@@ -87,11 +133,14 @@ export function ProjectForm({
       toast.error("Missing category", "Select at least one category.");
       return;
     }
-    await onSubmit(form);
+    await onSubmit({
+      ...form,
+      slug: form.slug ? slugify(form.slug) : slugify(form.title),
+    });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6">
+    <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
       {/* Title */}
       <Field label="Title" required>
         <input
@@ -103,6 +152,109 @@ export function ProjectForm({
           className={inputClass}
         />
       </Field>
+
+      {/* Slug + Subtitle */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="URL Slug">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={form.slug}
+              onChange={(e) => setField("slug", e.target.value)}
+              placeholder="liquidity-io"
+              className={inputClass}
+            />
+            <button
+              type="button"
+              onClick={() => setField("slug", slugify(form.title))}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "shrink-0 text-xs"
+              )}
+            >
+              From title
+            </button>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Used in /portfolio/&lt;slug&gt;. Auto-generated from title if blank.
+          </p>
+        </Field>
+        <Field label="Subtitle">
+          <input
+            type="text"
+            value={form.subtitle}
+            onChange={(e) => setField("subtitle", e.target.value)}
+            placeholder="Cap Table Management Platform"
+            className={inputClass}
+          />
+        </Field>
+      </div>
+
+      {/* Meta row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field label="Industry">
+          <input
+            type="text"
+            value={form.industry}
+            onChange={(e) => setField("industry", e.target.value)}
+            placeholder="Equity & Cap Table Management"
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Role">
+          <input
+            type="text"
+            value={form.role}
+            onChange={(e) => setField("role", e.target.value)}
+            placeholder="Full Stack Developer"
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Year">
+          <input
+            type="text"
+            value={form.year}
+            onChange={(e) => setField("year", e.target.value)}
+            placeholder="2023–2025"
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Duration">
+          <input
+            type="text"
+            value={form.duration}
+            onChange={(e) => setField("duration", e.target.value)}
+            placeholder="20+ months"
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Hero Gradient (Tailwind classes)">
+          <input
+            type="text"
+            value={form.gradient}
+            onChange={(e) => setField("gradient", e.target.value)}
+            placeholder="from-blue-600 via-blue-500 to-sky-500"
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Tags (comma-separated)">
+          <input
+            type="text"
+            value={form.tags.join(", ")}
+            onChange={(e) =>
+              setField(
+                "tags",
+                e.target.value
+                  .split(",")
+                  .map((s) => s.trim())
+                  .filter(Boolean)
+              )
+            }
+            placeholder="React, Next.js, TypeScript, Node.js"
+            className={inputClass}
+          />
+        </Field>
+      </div>
 
       {/* Categories */}
       <Field label="Categories" required>
@@ -153,6 +305,83 @@ export function ProjectForm({
           className={cn(inputClass, "resize-y font-mono text-xs")}
         />
       </Field>
+
+      {/* === Case Study Sections === */}
+      <div className="rounded-2xl border border-dashed border-blue-500/30 bg-blue-500/5 p-5 sm:p-6 space-y-6">
+        <div>
+          <h3 className="text-sm font-semibold text-blue-500 uppercase tracking-wider">
+            Case Study Content
+          </h3>
+          <p className="text-xs text-muted-foreground mt-1">
+            Powers the rich /portfolio/&lt;slug&gt; case study page. Optional but
+            strongly recommended.
+          </p>
+        </div>
+
+        <Field label="Summary">
+          <textarea
+            rows={3}
+            value={form.summary}
+            onChange={(e) => setField("summary", e.target.value)}
+            placeholder="2-3 sentence overview shown in the case study hero."
+            className={cn(inputClass, "resize-y")}
+          />
+        </Field>
+
+        <Field label="The Problem">
+          <textarea
+            rows={4}
+            value={form.problem}
+            onChange={(e) => setField("problem", e.target.value)}
+            placeholder="What needed solving — the business and technical context."
+            className={cn(inputClass, "resize-y")}
+          />
+        </Field>
+
+        <StringListEditor
+          label="Approach"
+          hint="Each item is a bullet describing how you solved a specific aspect."
+          values={form.approach}
+          onChange={(v) => setField("approach", v)}
+          placeholder="Architected the React frontend around feature-scoped Redux slices..."
+          multiline
+        />
+
+        <KVListEditor
+          label="Highlights"
+          hint='Stat cards shown "At a Glance" — e.g. "API Requests / Day" → "10,000+".'
+          values={form.highlights}
+          onChange={(v) => setField("highlights", v)}
+          labelPlaceholder="API Requests / Day"
+          valuePlaceholder="10,000+"
+        />
+
+        <OutcomeListEditor
+          label="Outcomes"
+          hint="Big wins from shipping the project — label, value, and a short detail."
+          values={form.outcomes}
+          onChange={(v) => setField("outcomes", v)}
+        />
+
+        <div className="space-y-1.5">
+          <label className="text-sm font-medium text-foreground">
+            Tech Stack
+          </label>
+          <TechStackEditor
+            value={form.techStack}
+            onChange={(v) => setField("techStack", v)}
+          />
+        </div>
+
+        <StringListEditor
+          label="Lessons"
+          hint="Optional — short reflections or takeaways."
+          values={form.lessons}
+          onChange={(v) => setField("lessons", v)}
+          placeholder="Treat money-touching writes as transactional first..."
+          multiline
+        />
+      </div>
 
       {/* Image */}
       <Field label="Project Image" required>

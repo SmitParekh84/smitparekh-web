@@ -43,12 +43,46 @@ export interface ContactFormData {
   message: string;
 }
 
+export interface BackendProjectOutcome {
+  label: string;
+  value: string;
+  detail?: string;
+}
+
+export interface BackendProjectHighlight {
+  label: string;
+  value: string;
+}
+
+export interface BackendProjectTechStack {
+  Frontend?: string[];
+  Backend?: string[];
+  Database?: string[];
+  Infrastructure?: string[];
+  Tooling?: string[];
+}
+
 export interface BackendProject {
   _id: string;
   title: string;
+  slug?: string;
+  subtitle?: string;
   categories: string[];
+  industry?: string;
+  role?: string;
+  year?: string;
+  duration?: string;
+  gradient?: string;
+  tags?: string[];
   shortDescription: string;
+  summary?: string;
   detailMarkdown: string;
+  problem?: string;
+  approach?: string[];
+  outcomes?: BackendProjectOutcome[];
+  highlights?: BackendProjectHighlight[];
+  techStack?: BackendProjectTechStack;
+  lessons?: string[];
   imageUrl: string;
   repoLink: string;
   demoLink: string;

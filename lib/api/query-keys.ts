@@ -4,6 +4,7 @@ export const queryKeys = {
     list: () => [...queryKeys.projects.all, "list"] as const,
     byId: (id: string) => [...queryKeys.projects.all, "id", id] as const,
     byTitle: (title: string) => [...queryKeys.projects.all, "title", title] as const,
+    bySlug: (slug: string) => [...queryKeys.projects.all, "slug", slug] as const,
   },
   feedback: {
     all: ["feedback"] as const,
