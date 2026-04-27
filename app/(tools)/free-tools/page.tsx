@@ -14,16 +14,16 @@ import FreeToolsFAQ from "@/components/tools/FreeToolsFAQ";
 export const metadata: Metadata = {
   title: "Free Online Tools — Background Remover, Resume Checker, QR Code Generator & More",
   description:
-    "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost.",
+    "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost. Available worldwide.",
   alternates: { canonical: `${siteConfig.url}/free-tools` },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/free-tools`,
-    title: "Free Online Tools by Smit Parekh",
+    title: "Free Online Tools by Smit Parekh — No Signup Required",
     description:
-      "11 free browser-based tools — background remover, resume checker, LinkedIn generator, QR codes & more. No signup required.",
+      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR code maker, word counter, SEO analyzer & more. No signup, no cost. Used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Free Online Tools by Smit Parekh",
+    title: "Free Online Tools by Smit Parekh — No Signup Required",
     description:
-      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup required.",
+      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup, used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
@@ -51,10 +51,41 @@ export const metadata: Metadata = {
     ],
   },
   keywords: [
-    "free online tools", "free web tools no signup", "free developer tools",
-    "free productivity tools", "AI tools free", "background remover free",
-    "ATS resume checker free", "LinkedIn post generator", "QR code generator free",
-    "word counter online", "SEO analyzer free", "free image tools", "free career tools",
+    // Core intent
+    "free online tools",
+    "free web tools no signup",
+    "free developer tools",
+    "free productivity tools",
+    "AI tools free",
+    "free browser based tools",
+    "free tools no registration",
+    "100% free online tools",
+    // Tools
+    "background remover free",
+    "ATS resume checker free",
+    "LinkedIn post generator free",
+    "QR code generator free",
+    "word counter online",
+    "SEO analyzer free",
+    "free image tools",
+    "free career tools",
+    "image compressor free",
+    "password generator free",
+    "LinkedIn video downloader free",
+    "meta tag checker free",
+    // Geo — India
+    "free online tools India",
+    "best free web tools India",
+    "free AI tools India",
+    // Geo — US
+    "free online tools USA",
+    "free tools no signup United States",
+    // Geo — France
+    "outils gratuits en ligne",
+    "outils SEO gratuits",
+    "outils développeur gratuits",
+    // Global
+    "free tools online 2025",
   ],
 };
 
@@ -104,11 +135,37 @@ const steps = [
   { step: "03", title: "Get Instant Results", description: "Download your processed image, copy your generated text, or read your detailed analysis — in seconds." },
 ];
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Free Online Tools — No Signup Required",
+  description: "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Available globally, no account needed.",
+  url: `${siteConfig.url}/free-tools`,
+  inLanguage: "en",
+  author: {
+    "@type": "Person",
+    name: "Smit Parekh",
+    url: siteConfig.url,
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Smit Parekh",
+    url: siteConfig.url,
+  },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Free Tools", item: `${siteConfig.url}/free-tools` },
+    ],
+  },
+};
+
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Free Online Tools by Smit Parekh",
-  description: "Free browser-based tools with no signup required — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more.",
+  description: "Free browser-based tools with no signup required — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Used in India, US, France, and worldwide.",
   url: `${siteConfig.url}/free-tools`,
   numberOfItems: toolsSEO.length,
   itemListElement: toolsSEO.map((tool, i) => ({
@@ -121,7 +178,19 @@ const itemListSchema = {
       url: `${siteConfig.url}/free-tools/${tool.slug}`,
       applicationCategory: "WebApplication",
       operatingSystem: "Web Browser",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      inLanguage: "en",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        eligibleRegion: [
+          { "@type": "Country", name: "IN" },
+          { "@type": "Country", name: "US" },
+          { "@type": "Country", name: "FR" },
+          { "@type": "Country", name: "Worldwide" },
+        ],
+      },
     },
   })),
 };
@@ -147,12 +216,27 @@ const breadcrumbSchema = {
   ],
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Smit Parekh",
+  url: siteConfig.url,
+  sameAs: [
+    siteConfig.social.linkedin,
+    siteConfig.social.github,
+    siteConfig.social.x,
+  ],
+  knowsAbout: ["React", "Next.js", "Node.js", "TypeScript", "Full Stack Development", "Free Web Tools"],
+};
+
 export default function FreeToolsPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
       {/* Hero */}
       <section className="page-section pt-24 sm:pt-28 pb-0">

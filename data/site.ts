@@ -70,5 +70,28 @@ export const siteConfig = {
     "LinkedIn post generator free",
     "free SEO tools",
     "free productivity tools",
+
+    // Geo — India
+    "free online tools India",
+    "best free web tools India",
+    "free AI tools India",
+    "free developer tools India",
+    "free tools no signup India",
+
+    // Geo — US
+    "free online tools USA",
+    "free web tools United States",
+    "best free browser tools",
+
+    // Geo — France
+    "outils gratuits en ligne",
+    "outils SEO gratuits",
+    "outils développeur gratuits en ligne",
+
+    // Global / intent
+    "free tools online 2025",
+    "100% free online tools no signup",
+    "free browser based tools",
+    "free tools no registration",
   ],
 } as const;
