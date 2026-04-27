@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "hire web developer India",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
     url: `${siteConfig.url}/contact`,
     title: "Contact Smit Parekh — Hire a Full Stack Developer",
     description:
@@ -23,6 +26,25 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Contact Smit Parekh — Hire a Full Stack Developer",
+    description:
+      "Discuss your web development project — React, Next.js, Node.js. Reply within 24 hours.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
         alt: "Smit Parekh — Full Stack Developer",
       },
     ],

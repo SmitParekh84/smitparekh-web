@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     "Node.js projects portfolio",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
     url: `${siteConfig.url}/portfolio`,
     title: "Portfolio — Production Web Apps by Smit Parekh",
     description:
@@ -24,6 +27,25 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer Portfolio",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Portfolio — Production Web Apps by Smit Parekh",
+    description:
+      "Web applications built by Smit Parekh — React, Next.js, Node.js for FinTech, SaaS, and enterprise.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
         alt: "Smit Parekh — Full Stack Developer Portfolio",
       },
     ],

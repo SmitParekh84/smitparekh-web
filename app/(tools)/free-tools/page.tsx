@@ -17,11 +17,38 @@ export const metadata: Metadata = {
     "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost.",
   alternates: { canonical: `${siteConfig.url}/free-tools` },
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
     url: `${siteConfig.url}/free-tools`,
     title: "Free Online Tools by Smit Parekh",
     description:
       "11 free browser-based tools — background remover, resume checker, LinkedIn generator, QR codes & more. No signup required.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, alt: "Free Online Tools by Smit Parekh" }],
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Free Online Tools by Smit Parekh",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Free Online Tools by Smit Parekh",
+    description:
+      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup required.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Free Online Tools by Smit Parekh",
+      },
+    ],
   },
   keywords: [
     "free online tools", "free web tools no signup", "free developer tools",

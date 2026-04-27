@@ -19,7 +19,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://res.cloudinary.com https://placehold.co",
-      "connect-src 'self' https://www.smitparekh.co.in http://localhost:5000",
+      "connect-src 'self' https://www.smitparekh.co.in https://api.smitparekh.co.in https://*.supabase.co wss://*.supabase.co http://localhost:5000",
       "frame-ancestors 'none'",
     ].join("; "),
   },

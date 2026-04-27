@@ -35,7 +35,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
         alt: "Smit Parekh — Full Stack Developer",
+        type: "image/png",
       },
     ],
   },
@@ -45,7 +48,14 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Smit Parekh — Full Stack Developer & Free Web Tools",
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home.png`],
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -61,6 +71,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
+  manifest: "/manifest.webmanifest",
+  applicationName: siteConfig.name,
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: { telephone: false, email: false, address: false },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -80,7 +108,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <QueryProvider>
           <ThemeProvider
             attribute="class"

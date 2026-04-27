@@ -16,7 +16,40 @@ export const metadata: Metadata = {
   description:
     "Hire Smit Parekh — Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
   alternates: { canonical: siteConfig.url },
-  openGraph: { url: siteConfig.url },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: "Smit Parekh — Full Stack Developer for Hire | React, Next.js & Node.js",
+    description:
+      "Hire Smit Parekh — Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Smit Parekh — Full Stack Developer for Hire | React, Next.js & Node.js",
+    description:
+      "Hire Smit Parekh — Full Stack Developer with 4+ years building production web apps. React, Next.js, Node.js, TypeScript, AWS.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer",
+      },
+    ],
+  },
   keywords: [
     "hire full stack developer",
     "React developer for hire",

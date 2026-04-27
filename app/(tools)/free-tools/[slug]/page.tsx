@@ -29,15 +29,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: tool.keywords,
       alternates: { canonical: `${siteConfig.url}/free-tools/${slug}` },
       openGraph: {
+        type: "website",
+        locale: "en_US",
+        siteName: siteConfig.name,
         title: tool.title,
         description: tool.description,
         url: `${siteConfig.url}/free-tools/${slug}`,
-        images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, alt: tool.title.split(" — ")[0] }],
+        images: [
+          {
+            url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+            width: 800,
+            height: 800,
+            alt: tool.title.split(" — ")[0],
+            type: "image/png",
+          },
+        ],
       },
       twitter: {
         card: "summary_large_image",
+        site: siteConfig.twitterHandle,
+        creator: siteConfig.twitterHandle,
         title: tool.title,
         description: tool.description,
+        images: [
+          {
+            url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+            width: 800,
+            height: 800,
+            alt: tool.title.split(" — ")[0],
+          },
+        ],
       },
     };
   }

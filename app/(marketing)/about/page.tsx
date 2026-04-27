@@ -21,11 +21,48 @@ export const metadata: Metadata = {
   description:
     "Meet Smit Parekh — Full Stack Developer with 4+ years building production web applications across FinTech, AI/ML, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
   alternates: { canonical: `${siteConfig.url}/about` },
+  keywords: [
+    "about Smit Parekh",
+    "Smit Parekh biography",
+    "Full Stack Developer profile",
+    "React developer India",
+    "Next.js developer India",
+    "Node.js developer experience",
+    "freelance full stack developer",
+    "FinTech developer",
+    "SaaS developer",
+    "enterprise web developer",
+  ],
   openGraph: {
+    type: "profile",
+    locale: "en_US",
     url: `${siteConfig.url}/about`,
+    siteName: siteConfig.name,
+    title: "About Smit Parekh — Full Stack Developer",
+    description:
+      "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js, TypeScript, AWS.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh — Full Stack Developer",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "About Smit Parekh — Full Stack Developer",
+    description:
+      "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
         alt: "Smit Parekh — Full Stack Developer",
       },
     ],

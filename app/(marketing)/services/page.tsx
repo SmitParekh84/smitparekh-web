@@ -55,7 +55,51 @@ export const metadata: Metadata = {
   description:
     "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO. One partner for the full product lifecycle.",
   alternates: { canonical: `${siteConfig.url}/services` },
-  openGraph: { url: `${siteConfig.url}/services` },
+  keywords: [
+    "full stack web development services",
+    "React development services",
+    "Next.js development services",
+    "Node.js API development",
+    "AWS deployment services",
+    "technical SEO services",
+    "MVP development",
+    "freelance web developer services",
+    "hire full stack developer",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: `${siteConfig.url}/services`,
+    siteName: siteConfig.name,
+    title: "Services — Full-Stack Web Development by Smit Parekh",
+    description:
+      "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Web Development Services by Smit Parekh",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Services — Full-Stack Web Development by Smit Parekh",
+    description:
+      "End-to-end web development services: React, Node.js, AWS, technical SEO.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Web Development Services by Smit Parekh",
+      },
+    ],
+  },
 };
 
 const iconMap = {
