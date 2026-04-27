@@ -28,6 +28,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: tool.description,
       keywords: tool.keywords,
       alternates: { canonical: `${siteConfig.url}/free-tools/${slug}` },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-snippet": -1,
+          "max-image-preview": "large",
+        },
+      },
       openGraph: {
         type: "website",
         locale: "en_US",
@@ -93,13 +103,34 @@ export default async function ToolPage({ params }: Props) {
         url: `${siteConfig.url}/free-tools/${slug}`,
         applicationCategory: "WebApplication",
         operatingSystem: "Web Browser",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        inLanguage: "en",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          eligibleRegion: [
+            { "@type": "Country", name: "IN" },
+            { "@type": "Country", name: "US" },
+            { "@type": "Country", name: "FR" },
+            { "@type": "Country", name: "GB" },
+            { "@type": "Country", name: "CA" },
+            { "@type": "Country", name: "AU" },
+          ],
+        },
         author: {
           "@type": "Person",
           name: "Smit Parekh",
           url: siteConfig.url,
         },
+        publisher: {
+          "@type": "Person",
+          name: "Smit Parekh",
+          url: siteConfig.url,
+        },
         keywords: tool.keywords.join(", "),
+        isAccessibleForFree: true,
+        featureList: tool.keywords.slice(0, 5).join(", "),
       }
     : null;
 
