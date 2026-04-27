@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   FolderKanban,
   MessageSquare,
@@ -9,20 +8,16 @@ import {
   Sparkles,
   ArrowRight,
   Plus,
-  LogOut,
-  UserRound,
   TrendingUp,
   Eye,
   Zap,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { useProjects } from "@/hooks/use-projects";
 import { useFeedbackList } from "@/hooks/api/use-feedback";
-import { clearAdminToken } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 interface StatCardProps {
@@ -65,7 +60,6 @@ function StatCard({ label, value, hint, icon: Icon, color, loading }: StatCardPr
 }
 
 export default function AdminOverviewPage() {
-  const router = useRouter();
   const { data: projects, isLoading: pLoading } = useProjects();
   const { data: feedback, isLoading: fLoading } = useFeedbackList();
 
@@ -90,11 +84,6 @@ export default function AdminOverviewPage() {
 
   const recentFeedback = feedback?.slice(0, 5);
 
-  async function handleSwitchUser() {
-    await clearAdminToken();
-    router.replace("/admin/login");
-  }
-
   const now = new Date();
   const greeting =
     now.getHours() < 12 ? "Good morning" : now.getHours() < 18 ? "Good afternoon" : "Good evening";
@@ -117,35 +106,6 @@ export default function AdminOverviewPage() {
           <p className="text-sm text-muted-foreground">{dateStr}</p>
         </div>
 
-        {/* User card */}
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/15 text-sm font-bold text-blue-500 shrink-0">
-            SP
-          </div>
-          <div className="text-left">
-            <p className="text-sm font-medium leading-tight">Smit Parekh</p>
-            <p className="text-xs text-muted-foreground">Signed in as admin</p>
-          </div>
-          <Separator orientation="vertical" className="h-8 mx-1" />
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1.5 text-muted-foreground hover:text-foreground"
-            onClick={handleSwitchUser}
-          >
-            <UserRound className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Switch user</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1.5 text-destructive hover:text-destructive"
-            onClick={handleSwitchUser}
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Log out</span>
-          </Button>
-        </div>
       </div>
 
       {/* Stats */}
