@@ -2,11 +2,11 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Upload, X, Star, Eye, EyeOff } from "lucide-react";
+import { Loader2, Upload, X, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
-import { useUploadBlogImage } from "@/hooks/use-blogs";
+import { useUploadBlogImage, useGenerateBlog } from "@/hooks/use-blogs";
 import type { BackendBlog, BackendBlogInput } from "@/types";
 
 const CATEGORY_OPTIONS = [
@@ -50,6 +50,9 @@ export function BlogForm({
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
   const uploadImage = useUploadBlogImage();
+  const generateBlog = useGenerateBlog();
+  const [aiOpen, setAiOpen] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState("");
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -84,6 +87,36 @@ export function BlogForm({
     }
   }
 
+  async function handleGenerate() {
+    const prompt = aiPrompt.trim();
+    if (!prompt) {
+      toast.error("Enter a topic", "Type a title or short prompt for the AI.");
+      return;
+    }
+    try {
+      const res = await generateBlog.mutateAsync(prompt);
+      const ai = res.data;
+      setForm((prev) => ({
+        ...prev,
+        title: ai.title || prev.title,
+        slug: prev.slug || slugify(ai.title || prev.title),
+        excerpt: ai.excerpt || prev.excerpt,
+        content: ai.content || prev.content,
+        category: ai.category || prev.category,
+        tagsCsv: Array.isArray(ai.tags) && ai.tags.length ? ai.tags.join(", ") : prev.tagsCsv,
+        readMinutes: ai.readMinutes || prev.readMinutes,
+      }));
+      toast.success("Draft generated", "Review and edit before saving.");
+      setAiOpen(false);
+      setAiPrompt("");
+    } catch (err) {
+      const msg =
+        (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||
+        "Try again in a moment.";
+      toast.error("AI generation failed", msg);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.title || !form.excerpt || !form.content || !form.coverImage) {
@@ -113,6 +146,115 @@ export function BlogForm({
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
+      {/* AI Generate */}
+      <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-3">
+            <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white shadow-sm">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="text-sm font-medium">Generate with AI</p>
+              <p className="text-xs text-muted-foreground">
+                Type a topic or title — AI fills the form. You can edit before saving.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setAiOpen(true)}
+            className={cn(
+              buttonVariants({ size: "sm" }),
+              "gap-1.5 self-start sm:self-auto"
+            )}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            {form.title ? "Regenerate" : "Generate draft"}
+          </button>
+        </div>
+      </div>
+
+      {aiOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+          onClick={() => !generateBlog.isPending && setAiOpen(false)}
+        >
+          <div
+            className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex items-start gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-semibold">Generate blog draft</h3>
+                <p className="text-xs text-muted-foreground">
+                  Be specific. Mention audience, angle, or keywords for better output.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAiOpen(false)}
+                disabled={generateBlog.isPending}
+                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <textarea
+              autoFocus
+              rows={4}
+              maxLength={600}
+              value={aiPrompt}
+              onChange={(e) => setAiPrompt(e.target.value)}
+              disabled={generateBlog.isPending}
+              placeholder="e.g. How to deploy Next.js 16 on Vercel with ISR, written for junior developers"
+              className={cn(inputClass, "resize-y")}
+            />
+            <p className="mt-1 text-right text-xs text-muted-foreground">
+              {aiPrompt.length}/600
+            </p>
+
+            {form.title && (
+              <p className="mt-2 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-600 dark:text-yellow-400">
+                This will overwrite Title, Excerpt, Content, Category, Tags & Read time.
+              </p>
+            )}
+
+            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setAiOpen(false)}
+                disabled={generateBlog.isPending}
+                className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleGenerate}
+                disabled={generateBlog.isPending || !aiPrompt.trim()}
+                className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+              >
+                {generateBlog.isPending ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Generate
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Title */}
       <Field label="Title" required>
         <input

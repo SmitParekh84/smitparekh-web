@@ -10,6 +10,18 @@ export interface UploadBlogImageResponse {
   url: string;
 }
 
+export interface GenerateBlogResponse {
+  success: boolean;
+  data: {
+    title: string;
+    excerpt: string;
+    content: string;
+    category: string;
+    tags: string[];
+    readMinutes: number;
+  };
+}
+
 export const blogsApi = {
   list: () => api.get<BackendListResponse<BackendBlog>>("/blogs"),
   byId: (id: string) => api.get<BackendOneResponse<BackendBlog>>(`/blogs/${id}`),
@@ -28,4 +40,6 @@ export const blogsApi = {
     form.append("image", file);
     return api.postForm<UploadBlogImageResponse>("/blogs/upload", form);
   },
+  generate: (prompt: string) =>
+    api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
 };

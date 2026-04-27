@@ -57,3 +57,9 @@ export function useUploadBlogImage() {
     mutationFn: (file: File) => blogsApi.uploadImage(file),
   });
 }
+
+export function useGenerateBlog() {
+  return useMutation({
+    mutationFn: (prompt: string) => blogsApi.generate(prompt),
+  });
+}
