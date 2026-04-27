@@ -13,6 +13,7 @@ import {
   LogOut,
   ChevronsUpDown,
   Sparkles,
+  UserRound,
 } from "lucide-react";
 import {
   Sidebar,
@@ -173,8 +174,12 @@ export function AdminSidebar() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout} className="text-destructive">
-                  <LogOut className="mr-2 size-4" />
+                <DropdownMenuItem onClick={handleLogout} className="gap-2">
+                  <UserRound className="size-4" />
+                  Switch user
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout} className="text-destructive gap-2">
+                  <LogOut className="size-4" />
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>

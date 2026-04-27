@@ -26,7 +26,7 @@ function resolveTitle(pathname: string): string {
 
 export function AdminTopbar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const title = resolveTitle(pathname);
 
   return (
@@ -43,7 +43,7 @@ export function AdminTopbar() {
           variant="ghost"
           size="icon"
           aria-label="Toggle theme"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           className="relative"
         >
           <Sun className="absolute h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FolderKanban,
   MessageSquare,
@@ -8,13 +9,20 @@ import {
   Sparkles,
   ArrowRight,
   Plus,
+  LogOut,
+  UserRound,
+  TrendingUp,
+  Eye,
+  Zap,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { useProjects } from "@/hooks/use-projects";
 import { useFeedbackList } from "@/hooks/api/use-feedback";
+import { clearAdminToken } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 interface StatCardProps {
@@ -22,12 +30,20 @@ interface StatCardProps {
   value: string | number;
   hint?: string;
   icon: React.ComponentType<{ className?: string }>;
+  color: "blue" | "purple" | "green" | "amber";
   loading?: boolean;
 }
 
-function StatCard({ label, value, hint, icon: Icon, loading }: StatCardProps) {
+const colorMap = {
+  blue: "bg-blue-500/10 text-blue-500",
+  purple: "bg-purple-500/10 text-purple-500",
+  green: "bg-emerald-500/10 text-emerald-500",
+  amber: "bg-amber-500/10 text-amber-500",
+};
+
+function StatCard({ label, value, hint, icon: Icon, color, loading }: StatCardProps) {
   return (
-    <Card>
+    <Card className="relative overflow-hidden">
       <CardContent className="flex items-start justify-between gap-3 p-5">
         <div className="space-y-1">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -40,7 +56,7 @@ function StatCard({ label, value, hint, icon: Icon, loading }: StatCardProps) {
           )}
           {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
         </div>
-        <span className="rounded-lg bg-blue-500/10 p-2 text-blue-500">
+        <span className={cn("rounded-lg p-2 shrink-0", colorMap[color])}>
           <Icon className="h-4 w-4" />
         </span>
       </CardContent>
@@ -49,13 +65,15 @@ function StatCard({ label, value, hint, icon: Icon, loading }: StatCardProps) {
 }
 
 export default function AdminOverviewPage() {
+  const router = useRouter();
   const { data: projects, isLoading: pLoading } = useProjects();
   const { data: feedback, isLoading: fLoading } = useFeedbackList();
 
   const total = projects?.length ?? 0;
   const featured = projects?.filter((p) => p.isShowcased).length ?? 0;
   const totalFeedback = feedback?.length ?? 0;
-  const ratings = feedback?.map((f) => f.rating).filter((r): r is number => typeof r === "number") ?? [];
+  const ratings =
+    feedback?.map((f) => f.rating).filter((r): r is number => typeof r === "number") ?? [];
   const avgRating =
     ratings.length > 0
       ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
@@ -72,28 +90,80 @@ export default function AdminOverviewPage() {
 
   const recentFeedback = feedback?.slice(0, 5);
 
+  async function handleSwitchUser() {
+    await clearAdminToken();
+    router.replace("/admin/login");
+  }
+
+  const now = new Date();
+  const greeting =
+    now.getHours() < 12 ? "Good morning" : now.getHours() < 18 ? "Good afternoon" : "Good evening";
+  const dateStr = now.toLocaleDateString("en-IN", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Overview</h2>
-        <p className="text-sm text-muted-foreground">
-          Snapshot of your portfolio activity.
-        </p>
+      {/* Welcome banner */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-1">
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500">
+            {greeting}
+          </p>
+          <h2 className="text-2xl font-semibold tracking-tight">Smit Parekh</h2>
+          <p className="text-sm text-muted-foreground">{dateStr}</p>
+        </div>
+
+        {/* User card */}
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/15 text-sm font-bold text-blue-500 shrink-0">
+            SP
+          </div>
+          <div className="text-left">
+            <p className="text-sm font-medium leading-tight">Smit Parekh</p>
+            <p className="text-xs text-muted-foreground">Signed in as admin</p>
+          </div>
+          <Separator orientation="vertical" className="h-8 mx-1" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="gap-1.5 text-muted-foreground hover:text-foreground"
+            onClick={handleSwitchUser}
+          >
+            <UserRound className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Switch user</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="gap-1.5 text-destructive hover:text-destructive"
+            onClick={handleSwitchUser}
+          >
+            <LogOut className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Log out</span>
+          </Button>
+        </div>
       </div>
 
+      {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           label="Projects"
           value={total}
           hint={total === 1 ? "1 published" : `${total} published`}
           icon={FolderKanban}
+          color="blue"
           loading={pLoading}
         />
         <StatCard
           label="Featured"
           value={featured}
-          hint="Showcased on home"
+          hint="Showcased on portfolio"
           icon={Sparkles}
+          color="purple"
           loading={pLoading}
         />
         <StatCard
@@ -101,6 +171,7 @@ export default function AdminOverviewPage() {
           value={totalFeedback}
           hint={totalFeedback === 1 ? "1 entry" : `${totalFeedback} entries`}
           icon={MessageSquare}
+          color="green"
           loading={fLoading}
         />
         <StatCard
@@ -108,18 +179,18 @@ export default function AdminOverviewPage() {
           value={avgRating}
           hint={ratings.length ? `${ratings.length} rated` : "No ratings yet"}
           icon={Star}
+          color="amber"
           loading={fLoading}
         />
       </div>
 
+      {/* Recent content */}
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader className="flex flex-row items-center justify-between gap-4 space-y-0">
             <div>
               <CardTitle>Recent projects</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Latest 5 by update date.
-              </p>
+              <p className="text-sm text-muted-foreground">Latest 5 by update date.</p>
             </div>
             <Link
               href="/admin/projects"
@@ -163,10 +234,10 @@ export default function AdminOverviewPage() {
                     <img
                       src={project.imageUrl}
                       alt=""
-                      className="h-10 w-10 rounded-md border border-border object-cover"
+                      className="h-10 w-10 rounded-md border border-border object-cover shrink-0"
                     />
                   ) : (
-                    <div className="h-10 w-10 rounded-md bg-muted" />
+                    <div className="h-10 w-10 rounded-md bg-gradient-to-br from-blue-500/20 to-cyan-400/20 shrink-0" />
                   )}
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{project.title}</p>
@@ -175,7 +246,13 @@ export default function AdminOverviewPage() {
                     </p>
                   </div>
                   {project.isShowcased && (
-                    <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
+                    <Badge
+                      variant="secondary"
+                      className="gap-1 text-xs shrink-0 bg-amber-500/10 text-amber-600 border-amber-500/20"
+                    >
+                      <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
+                      Featured
+                    </Badge>
                   )}
                 </Link>
               ))}
@@ -220,7 +297,7 @@ export default function AdminOverviewPage() {
                       {entry.name || "Anonymous"}
                     </p>
                     {typeof entry.rating === "number" && (
-                      <Badge variant="secondary" className="gap-1 text-xs">
+                      <Badge variant="secondary" className="gap-1 text-xs shrink-0">
                         <Star className="h-3 w-3 fill-yellow-500 text-yellow-500" />
                         {entry.rating}
                       </Badge>
@@ -235,38 +312,73 @@ export default function AdminOverviewPage() {
         </Card>
       </div>
 
+      {/* Quick actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick actions</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Zap className="h-4 w-4 text-blue-500" />
+            Quick actions
+          </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
-          <Link
-            href="/admin/projects/new"
-            className={cn(buttonVariants({ size: "sm" }), "gap-2")}
-          >
-            <Plus className="h-4 w-4" />
-            New project
-          </Link>
-          <Link
-            href="/admin/projects"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            Manage projects
-          </Link>
-          <Link
-            href="/admin/feedback"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            Read feedback
-          </Link>
-          <Link
-            href="/free-tools"
-            target="_blank"
-            rel="noreferrer"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            View public tools
-          </Link>
+        <CardContent>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Link
+              href="/admin/projects/new"
+              className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-4 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
+                <Plus className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">New project</p>
+                <p className="text-xs text-muted-foreground">Add to portfolio</p>
+              </div>
+            </Link>
+
+            <Link
+              href="/admin/projects"
+              className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-4 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/10 text-purple-500">
+                <FolderKanban className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Manage projects</p>
+                <p className="text-xs text-muted-foreground">Edit or delete</p>
+              </div>
+            </Link>
+
+            <Link
+              href="/admin/feedback"
+              className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-4 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
+                <MessageSquare className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Read feedback</p>
+                <p className="text-xs text-muted-foreground">Visitor notes</p>
+              </div>
+            </Link>
+
+            <Link
+              href="/free-tools"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-4 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-500">
+                <Eye className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">View public tools</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  Open in new tab
+                  <TrendingUp className="h-3 w-3" />
+                </p>
+              </div>
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>

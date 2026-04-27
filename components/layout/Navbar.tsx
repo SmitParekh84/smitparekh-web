@@ -51,15 +51,23 @@ export default function Navbar() {
   return (
     <>
       {/*
-        pointer-events-none on header so clicks pass through the gap between
-        the pill and the viewport edge. pointer-events-auto restores it on <nav>.
+        At the top: floating pill with transparent gap above it (pointer-events-none
+        lets clicks pass through that gap). When scrolled: header fills from the
+        viewport top with a solid blur so no white gap shows through.
       */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 pointer-events-none">
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300",
+          scrolled
+            ? "pt-2 bg-background/95 backdrop-blur-2xl border-b border-border"
+            : "pt-4"
+        )}
+      >
         <nav
           className={cn(
             "pointer-events-auto flex items-center justify-between gap-2 rounded-2xl px-3 h-12 w-full max-w-4xl transition-all duration-300",
             scrolled
-              ? "bg-background/95 backdrop-blur-2xl border border-border shadow-xl shadow-black/10"
+              ? "border border-transparent shadow-none"
               : "bg-card/80 backdrop-blur-xl border border-border/70 shadow-md shadow-black/5"
           )}
         >

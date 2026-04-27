@@ -134,7 +134,7 @@ export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { data: projects, isLoading, isError } = useProjects();
 
-  const visibleProjects = projects?.filter((p) => p.isVisible !== false) ?? [];
+  const visibleProjects = projects?.filter((p) => p.isVisible !== false && p.isShowcased) ?? [];
 
   // Case studies: API entries with slug + summary, dedup by slug, fall back to static
   const apiCaseStudies = visibleProjects
