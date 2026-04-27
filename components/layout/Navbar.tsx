@@ -21,7 +21,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const toolsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
@@ -183,14 +183,14 @@ export default function Navbar() {
           <div className="flex items-center gap-1 shrink-0">
             {/* Theme toggle */}
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "h-8 w-8 rounded-xl"
               )}
               aria-label="Toggle theme"
             >
-              {mounted && theme === "dark" ? (
+              {mounted && resolvedTheme === "dark" ? (
                 <Sun className="w-3.5 h-3.5" />
               ) : (
                 <Moon className="w-3.5 h-3.5" />
