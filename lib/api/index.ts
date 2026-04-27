@@ -9,6 +9,7 @@ export {
   type LoginPayload,
 } from "./auth";
 export { projectsApi, type UploadImageResponse } from "./projects";
+export { blogsApi, type UploadBlogImageResponse } from "./blogs";
 export {
   contactApi,
   type ContactPayload,

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
+import { fetchAllBlogs } from "@/lib/server/blogs";
 
 export const revalidate = 300;
 
@@ -14,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/portfolio`, priority: 0.8, changeFrequency: "weekly", lastModified: new Date() },
     { url: `${base}/services`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date() },
     { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date() },
+    { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified: new Date() },
     { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date() },
   ];
 
@@ -25,6 +27,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
+  const blogs = await fetchAllBlogs();
+  const blogRoutes: MetadataRoute.Sitemap = blogs.map((b) => ({
+    url: `${base}/blog/${b.slug}`,
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+    lastModified: b.updatedAt ? new Date(b.updatedAt) : new Date(),
+  }));
+
   const toolRoutes: MetadataRoute.Sitemap = toolsSEO.map(({ slug }) => ({
     url: `${base}/free-tools/${slug}`,
     priority: 0.8,
@@ -32,5 +42,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  return [...staticRoutes, ...caseStudyRoutes, ...toolRoutes];
+  return [...staticRoutes, ...caseStudyRoutes, ...blogRoutes, ...toolRoutes];
 }

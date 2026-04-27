@@ -110,6 +110,7 @@ export const navItems: NavItem[] = [
     },
   },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -119,6 +120,7 @@ export const mobileNavItems: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/blog", label: "Blog" },
   { href: "/free-tools", label: "Free Tools" },
   { href: "/contact", label: "Contact" },
 ];

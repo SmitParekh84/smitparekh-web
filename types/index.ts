@@ -98,6 +98,29 @@ export type BackendProjectInput = Omit<
   "_id" | "publishDate" | "updatedDate"
 >;
 
+export interface BackendBlog {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  category: string;
+  tags: string[];
+  readMinutes: number;
+  author: string;
+  isPublished: boolean;
+  isFeatured: boolean;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type BackendBlogInput = Omit<
+  BackendBlog,
+  "_id" | "createdAt" | "updatedAt"
+>;
+
 export interface BackendListResponse<T> {
   success: boolean;
   count: number;

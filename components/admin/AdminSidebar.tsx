@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   FolderKanban,
+  FileText,
   MessageSquare,
   Wrench,
   Settings2,
@@ -41,6 +42,7 @@ import { siteConfig } from "@/data/site";
 const NAV_MAIN = [
   { title: "Overview", href: "/admin", icon: LayoutDashboard },
   { title: "Projects", href: "/admin/projects", icon: FolderKanban },
+  { title: "Blog", href: "/admin/blogs", icon: FileText },
   { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
   { title: "Tools", href: "/admin/tools", icon: Wrench },
 ];
