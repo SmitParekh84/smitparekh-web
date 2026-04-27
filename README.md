@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smit Parekh — Portfolio (frontend)
 
-## Getting Started
+Next.js 16 app for the public portfolio + admin dashboard. The frontend talks to a sibling Express API ([`smitparekh-api`](../smitparekh-api)).
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Local development (one command for both web + api)
+
+The two repos live as **siblings** on disk:
+
+```
+your-workspace/
+├── smitparekh-web/   ← this repo
+└── smitparekh-api/   ← Express backend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Clone both repos side-by-side
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+mkdir SmitParekh-Portfolio && cd SmitParekh-Portfolio
+git clone <web-repo-url>  smitparekh-web
+git clone <api-repo-url>  smitparekh-api
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> ⚠️  The folder names **must** be `smitparekh-web` and `smitparekh-api` — the dev script resolves the API via `../smitparekh-api`.
 
-## Learn More
+### 2. Configure environment variables
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp smitparekh-web/.env.example smitparekh-web/.env.local
+cp smitparekh-api/.env.example smitparekh-api/.env
+# fill in the values in each file
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Install deps for both repos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cd smitparekh-web
+pnpm setup        # installs web deps + api deps in one go
+```
 
-## Deploy on Vercel
+### 4. Run web + api together
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This boots:
+- `web` → Next.js on `http://localhost:3000`
+- `api` → Express on `http://localhost:5000`
+
+Logs are interleaved with colored prefixes. Press `Ctrl+C` once to stop both.
+
+### Other scripts
+
+| Command          | What it does                                        |
+| ---------------- | --------------------------------------------------- |
+| `pnpm dev`       | Run **web + api** together (default)                |
+| `pnpm dev:solo`  | Run only the Next.js web app                        |
+| `pnpm dev:web`   | Same as `dev:solo` (used internally by `dev`)       |
+| `pnpm dev:api`   | Run only the API (proxies to `../smitparekh-api`)   |
+| `pnpm setup`     | `pnpm install` in both repos                        |
+| `pnpm build`     | Production build of the Next.js app                 |
+| `pnpm lint`      | ESLint                                              |
+
+### Requirements
+
+- Node.js **≥ 22** (the API uses `node --watch`)
+- pnpm **≥ 9**
+
+---
+
+## Deployment
+
+The web app deploys to Vercel; the API deploys separately (see `smitparekh-api/vercel.json`). Production builds use `pnpm build` / `pnpm start` in each repo independently — the combined `dev` script is local-only.
+

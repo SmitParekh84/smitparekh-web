@@ -54,6 +54,7 @@ export interface BackendProject {
   demoLink: string;
   demoBtn: string;
   isShowcased: boolean;
+  isVisible: boolean;
   publishDate: string;
   updatedDate: string;
 }

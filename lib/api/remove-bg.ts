@@ -24,11 +24,25 @@ export const removeBgApi = {
     }
     const form = new FormData();
     form.append("image", image);
-    const res = await apiClient.post<Blob>("/remove-background", form, {
+    const res = await apiClient.post("/remove-background", form, {
       responseType: "blob",
       headers: { "Content-Type": "multipart/form-data" },
     });
-    return res.data;
+
+    const blob = res.data as Blob;
+
+    // Older server versions return JSON { imageUrl: "..." } — fetch the real image
+    if (blob.type.includes("json") || blob.type.includes("text")) {
+      const text = await blob.text();
+      const json = JSON.parse(text) as { imageUrl?: string };
+      if (json.imageUrl) {
+        const imgRes = await fetch(json.imageUrl);
+        if (!imgRes.ok) throw new Error("Failed to fetch processed image");
+        return imgRes.blob();
+      }
+    }
+
+    return blob;
   },
   compressImage: async (image: File, options?: CompressOptions): Promise<Blob> => {
     const form = new FormData();

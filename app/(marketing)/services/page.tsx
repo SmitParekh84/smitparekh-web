@@ -19,6 +19,37 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Web Development Services by Smit Parekh",
+  url: `${siteConfig.url}/services`,
+  itemListElement: services.map((service, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      name: service.title,
+      description: service.shortDescription,
+      provider: {
+        "@type": "Person",
+        name: "Smit Parekh",
+        url: siteConfig.url,
+      },
+      areaServed: "Worldwide",
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${siteConfig.url}/services` },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Services — Full-Stack Web Development by Smit Parekh",
   description:
@@ -115,6 +146,14 @@ const techStack = [
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header */}
       <section className="page-section pt-24 sm:pt-28 bg-muted/20">
         <div className="page-container text-center max-w-3xl mx-auto">

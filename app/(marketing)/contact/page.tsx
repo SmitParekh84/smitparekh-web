@@ -23,13 +23,6 @@ const SUBJECTS = [
   "Other",
 ];
 
-interface ContactPayload {
-  name: string;
-  email: string;
-  subject: string;
-  description: string;
-}
-
 export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
@@ -40,18 +33,6 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
   const mutation = useSubmitContact();
-
-  function submit(payload: ContactPayload) {
-    mutation.mutate(payload, {
-      onSuccess: () => {
-        setSubmitted(true);
-        setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
-      },
-      onError: () => {
-        toast.error("Something went wrong", "Please try again or email me directly.");
-      },
-    });
-  }
 
   function handleChange(
     e: React.ChangeEvent<
@@ -67,12 +48,24 @@ export default function ContactPage() {
       toast.error("Missing fields", "Please fill in all required fields.");
       return;
     }
-    mutation.mutate({
-      name: form.name,
-      email: form.email,
-      subject: form.subject,
-      description: form.description,
-    });
+    mutation.mutate(
+      {
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        description: form.description,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Message sent!", "I'll get back to you within 24 hours.");
+          setSubmitted(true);
+          setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
+        },
+        onError: () => {
+          toast.error("Something went wrong", "Please try again or email me directly.");
+        },
+      }
+    );
   }
 
   return (

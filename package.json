@@ -8,10 +8,14 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently -n web,api -c blue,magenta \"pnpm run dev:web\" \"pnpm run dev:api\"",
+    "dev:web": "next dev",
+    "dev:api": "pnpm -C ../smitparekh-api dev",
+    "dev:solo": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "setup": "pnpm install && pnpm -C ../smitparekh-api install"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -24,6 +28,7 @@
     "axios": "^1.15.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
     "lucide-react": "^1.11.0",
     "next": "16.2.4",
     "next-themes": "^0.4.6",
@@ -40,6 +45,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4",

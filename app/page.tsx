@@ -14,7 +14,7 @@ import { faqData } from "@/data/faq";
 export const metadata: Metadata = {
   title: "Smit Parekh — Full Stack Developer for Hire | React, Next.js & Node.js",
   description:
-    "Hire Smit Parekh — Full Stack Developer with 3.5+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
+    "Hire Smit Parekh — Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
   alternates: { canonical: siteConfig.url },
   openGraph: { url: siteConfig.url },
   keywords: [
@@ -39,12 +39,25 @@ const personSchema = {
   url: siteConfig.url,
   jobTitle: "Full-Stack Web Developer",
   description:
-    "Full-Stack Web Developer with 3.5+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
+    "Full-Stack Web Developer with 4+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
   email: siteConfig.email,
+  image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
+    "PostgreSQL",
+    "MongoDB",
+    "AWS",
+    "Docker",
+    "NestJS",
+  ],
   sameAs: [
     siteConfig.social.linkedin,
     siteConfig.social.github,
     siteConfig.social.x,
+    siteConfig.social.instagram,
   ],
 };
 
@@ -79,6 +92,14 @@ const serviceSchema = {
   url: `${siteConfig.url}/services`,
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+  ],
+};
+
 export default function HomePage() {
   return (
     <>
@@ -97,6 +118,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <Hero />

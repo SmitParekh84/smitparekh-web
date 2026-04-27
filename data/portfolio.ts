@@ -15,8 +15,8 @@ export const featuredProjects: Project[] = [
     title: "Liquidity.io",
     subtitle: "Cap Table Management Platform",
     description:
-      "Enterprise FinTech platform for equity management, shareholder tracking, and financial reporting. Handles 10,000+ daily API requests across 100+ Redux components.",
-    tags: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"],
+      "Enterprise FinTech platform for equity management, shareholder tracking, and financial reporting. Built for the Satchel Inc suite — handles 10,000+ daily API requests across 50+ Redux Toolkit components with 99.9% uptime.",
+    tags: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Redux", "AWS", "Docker"],
     category: "FinTech",
     demoLink: "https://www.smitparekh.co.in/contact",
     gradient: "from-blue-600 via-blue-500 to-sky-500",
@@ -26,8 +26,8 @@ export const featuredProjects: Project[] = [
     title: "Insightifi",
     subtitle: "SaaS Analytics Platform",
     description:
-      "Real-time data visualisation dashboards with business intelligence analytics. Optimised PostgreSQL queries reducing API response times by 65%.",
-    tags: ["React", "TypeScript", "Chart.js", "Node.js", "PostgreSQL", "Redux"],
+      "Real-time data visualisation dashboards with business intelligence analytics for enterprise clients. Optimised PostgreSQL queries with indexing and caching strategies — reduced API response times by 65%.",
+    tags: ["React", "TypeScript", "Chart.js", "Node.js", "PostgreSQL", "Redux", "AWS"],
     category: "SaaS",
     demoLink: "https://www.smitparekh.co.in/contact",
     gradient: "from-sky-500 via-cyan-400 to-blue-400",
@@ -35,10 +35,10 @@ export const featuredProjects: Project[] = [
   {
     id: 3,
     title: "SimplCase",
-    subtitle: "Legal Tech Real-time Platform",
+    subtitle: "LegalTech Real-time Platform",
     description:
-      "Real-time legal collaboration with live chat, document sharing, and WebSocket notifications. Features optimistic UI updates and bidirectional communication.",
-    tags: ["React", "Socket.io", "Node.js", "TypeScript", "PostgreSQL"],
+      "Real-time legal collaboration platform with live chat, document sharing, and WebSocket notifications. Features optimistic UI updates, bidirectional Socket.io communication, and Redux-managed concurrent user state.",
+    tags: ["React", "Socket.io", "Node.js", "TypeScript", "PostgreSQL", "Redux"],
     category: "LegalTech",
     demoLink: "https://www.smitparekh.co.in/contact",
     gradient: "from-blue-500 via-sky-500 to-cyan-500",
@@ -48,10 +48,32 @@ export const featuredProjects: Project[] = [
     title: "HRMS",
     subtitle: "Employee Management System",
     description:
-      "Full-stack HR system with role-based access, leave management, payroll processing, and complex relational schema migrated from MongoDB to PostgreSQL.",
-    tags: ["React", "Node.js", "TypeScript", "PostgreSQL", "Express"],
+      "Full-stack HR system with role-based access control, leave management, payroll processing, and employee records. Schema migrated from MongoDB to PostgreSQL — 65% faster query performance.",
+    tags: ["React", "Node.js", "TypeScript", "PostgreSQL", "Express", "Redux"],
     category: "Enterprise",
     demoLink: "https://www.smitparekh.co.in/contact",
     gradient: "from-cyan-400 via-sky-400 to-blue-500",
+  },
+  {
+    id: 5,
+    title: "MarketiXpert",
+    subtitle: "Full-Stack Digital Marketing Platform",
+    description:
+      "End-to-end digital marketing platform (marketixpert.tech) with Next.js frontend and Node.js backend. REST API for content management, user auth, and analytics tracking. 95+ Lighthouse score, automated CI/CD on Vercel.",
+    tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Express", "Vercel"],
+    category: "SaaS",
+    demoLink: "https://marketixpert.tech",
+    gradient: "from-blue-600 via-cyan-500 to-sky-400",
+  },
+  {
+    id: 6,
+    title: "equitytable.io",
+    subtitle: "Equity Table Management",
+    description:
+      "Equity table management tool from the Satchel Inc FinTech suite. Built with React, TypeScript, and Node.js — enables founders and investors to manage cap structures, vesting schedules, and ownership stakes in real time.",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Redux", "AWS"],
+    category: "FinTech",
+    demoLink: "https://www.smitparekh.co.in/contact",
+    gradient: "from-blue-500 via-blue-400 to-cyan-400",
   },
 ];

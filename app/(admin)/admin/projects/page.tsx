@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Plus, Pencil, Trash2, ExternalLink, Star, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, ExternalLink, Star, Loader2, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -45,14 +45,17 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
           <p className="text-sm text-muted-foreground">
             Manage your portfolio projects.
           </p>
         </div>
-        <Link href="/admin/projects/new" className={cn(buttonVariants({ size: "sm" }), "gap-2")}>
+        <Link
+          href="/admin/projects/new"
+          className={cn(buttonVariants({ size: "sm" }), "gap-2 self-start sm:self-auto")}
+        >
           <Plus className="h-4 w-4" />
           New project
         </Link>
@@ -102,7 +105,8 @@ export default function ProjectsPage() {
                 <TableRow>
                   <TableHead>Title</TableHead>
                   <TableHead className="hidden sm:table-cell">Categories</TableHead>
-                  <TableHead className="hidden md:table-cell">Featured</TableHead>
+                  <TableHead className="hidden md:table-cell">Visible</TableHead>
+                  <TableHead className="hidden lg:table-cell">Featured</TableHead>
                   <TableHead className="hidden lg:table-cell">Date</TableHead>
                   <TableHead className="w-[1%] text-right">Actions</TableHead>
                 </TableRow>
@@ -138,6 +142,13 @@ export default function ProjectsPage() {
                       </div>
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
+                      {project.isVisible !== false ? (
+                        <Eye className="h-4 w-4 text-green-500" />
+                      ) : (
+                        <EyeOff className="h-4 w-4 text-muted-foreground/50" />
+                      )}
+                    </TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       {project.isShowcased ? (
                         <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
                       ) : (

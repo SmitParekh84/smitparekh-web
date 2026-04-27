@@ -133,16 +133,14 @@ export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { data: projects, isLoading, isError } = useProjects();
 
-  const allCategories = projects
-    ? [...new Set(projects.flatMap((p) => p.categories))]
-    : [];
+  const visibleProjects = projects?.filter((p) => p.isVisible !== false) ?? [];
+
+  const allCategories = [...new Set(visibleProjects.flatMap((p) => p.categories))];
 
   const filtered =
     selectedCategory === "All"
-      ? (projects ?? [])
-      : (projects ?? []).filter((p) =>
-          p.categories.includes(selectedCategory)
-        );
+      ? visibleProjects
+      : visibleProjects.filter((p) => p.categories.includes(selectedCategory));
 
   return (
     <>

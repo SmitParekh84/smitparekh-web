@@ -1,0 +1,48 @@
+# Smit Parekh — Full Stack Web Developer
+
+> Full-Stack Web Developer with 3.5+ years building production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. Also offers free browser-based tools with no signup required.
+
+## About
+
+Smit Parekh is a Full-Stack Web Developer based in India, available for projects worldwide. He delivers end-to-end web applications — from architecture to AWS deployment — for startups and enterprise clients across FinTech, SaaS, and LegalTech.
+
+## Services
+
+- Full-Stack Web Development (React + Node.js + TypeScript)
+- React.js Frontend Development
+- Node.js Backend & REST API Development
+- Database Design (PostgreSQL, MongoDB)
+- Cloud & DevOps (AWS: EC2, RDS, S3, Docker)
+- TypeScript & Code Quality
+- Technical SEO
+- Digital Marketing Strategy
+
+## Pages
+
+- Home: https://www.smitparekh.co.in
+- About: https://www.smitparekh.co.in/about
+- Services: https://www.smitparekh.co.in/services
+- Portfolio: https://www.smitparekh.co.in/portfolio
+- Contact: https://www.smitparekh.co.in/contact
+- Free Tools: https://www.smitparekh.co.in/free-tools
+
+## Free Tools (no signup, no cost)
+
+- Background Remover: https://www.smitparekh.co.in/free-tools/background-remover
+- LinkedIn Post Generator: https://www.smitparekh.co.in/free-tools/viral-linkedin-post-generator
+- ATS Resume Checker: https://www.smitparekh.co.in/free-tools/ats-resume-checker
+- Meta Tag Checker: https://www.smitparekh.co.in/free-tools/meta-tag-checker
+- QR Code Generator: https://www.smitparekh.co.in/free-tools/qr-code-generator
+- Word Counter: https://www.smitparekh.co.in/free-tools/word-counter
+- Image Compressor: https://www.smitparekh.co.in/free-tools/image-compressor
+- Image Converter: https://www.smitparekh.co.in/free-tools/image-converter
+- LinkedIn Media Downloader: https://www.smitparekh.co.in/free-tools/linkedin-media-downloader
+- SEO Analyzer: https://www.smitparekh.co.in/free-tools/seo-analyzer
+- Password Generator: https://www.smitparekh.co.in/free-tools/password-generator
+
+## Contact
+
+- Email: smitparekh02@gmail.com
+- LinkedIn: https://www.linkedin.com/in/smit-parekh-n/
+- GitHub: https://github.com/SmitParekh84
+- X (Twitter): https://x.com/smit_parekh84

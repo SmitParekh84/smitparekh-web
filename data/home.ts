@@ -41,9 +41,9 @@ export const homeData: HomeData = {
 };
 
 export const aboutStats = {
-  years: "3.5+",
+  years: "4+",
   certifications: "4+",
-  companies: "3+",
+  companies: "4+",
 };
 
 export const cvLink = "https://www.smitparekh.co.in/Smit-parekh.pdf";

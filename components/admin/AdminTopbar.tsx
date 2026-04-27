@@ -33,9 +33,9 @@ export function AdminTopbar() {
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur-sm sm:px-6">
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="h-5" />
-      <div className="flex flex-col leading-tight">
+      <div className="flex min-w-0 flex-col leading-tight">
         <span className="text-xs text-muted-foreground">Admin</span>
-        <h1 className="text-sm font-semibold">{title}</h1>
+        <h1 className="truncate text-sm font-semibold">{title}</h1>
       </div>
 
       <div className="ml-auto flex items-center gap-1">
@@ -44,14 +44,17 @@ export function AdminTopbar() {
           size="icon"
           aria-label="Toggle theme"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="relative"
         >
-          <Sun className="h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <Sun className="absolute h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
           <Moon className="absolute h-4 w-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
         <Link
           href="/"
           target="_blank"
           rel="noreferrer"
+          aria-label="View site"
           className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-1.5")}
         >
           <ExternalLinkIcon className="h-3.5 w-3.5" />

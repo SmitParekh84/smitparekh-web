@@ -19,9 +19,72 @@ import {
 export const metadata: Metadata = {
   title: "About Smit Parekh — Full Stack Developer | React & Node.js Expert",
   description:
-    "Meet Smit Parekh — Full Stack Developer with 3.5+ years building production web applications across FinTech, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
+    "Meet Smit Parekh — Full Stack Developer with 4+ years building production web applications across FinTech, AI/ML, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
   alternates: { canonical: `${siteConfig.url}/about` },
-  openGraph: { url: `${siteConfig.url}/about` },
+  openGraph: {
+    url: `${siteConfig.url}/about`,
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        alt: "Smit Parekh — Full Stack Developer",
+      },
+    ],
+  },
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: "About Smit Parekh — Full Stack Developer",
+  url: `${siteConfig.url}/about`,
+  mainEntity: {
+    "@type": "Person",
+    name: "Smit Parekh",
+    url: siteConfig.url,
+    jobTitle: "Full-Stack Web Developer",
+    description: aboutBio,
+    email: siteConfig.email,
+    image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    knowsAbout: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "MongoDB",
+      "AWS",
+      "Docker",
+      "NestJS",
+      "Redux",
+      "GraphQL",
+    ],
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.github,
+      siteConfig.social.x,
+      siteConfig.social.instagram,
+    ],
+    hasCredential: certifications.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: cert.name,
+      credentialCategory: "Certificate",
+      recognizedBy: { "@type": "Organization", name: cert.issuer },
+    })),
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "About",
+      item: `${siteConfig.url}/about`,
+    },
+  ],
 };
 
 const socialIcons = {
@@ -41,6 +104,15 @@ const stats = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Hero */}
       <section className="page-section pt-24 sm:pt-28">
         <div className="page-container">
@@ -181,7 +253,11 @@ export default function AboutPage() {
 
                   <div className="flex flex-wrap gap-1.5">
                     {exp.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs px-2 py-0.5">
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="text-xs px-2 py-0.5"
+                      >
                         {tag}
                       </Badge>
                     ))}

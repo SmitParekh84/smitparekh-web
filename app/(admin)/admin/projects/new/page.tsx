@@ -27,18 +27,18 @@ export default function NewProjectPage() {
       <div>
         <Link
           href="/admin/projects"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+          className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
           Back to Projects
         </Link>
-        <h1 className="text-2xl font-bold">New Project</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">
-          Add a new project to your portfolio
+        <h1 className="text-2xl font-semibold tracking-tight">New project</h1>
+        <p className="mt-0.5 text-sm text-muted-foreground">
+          Add a new project to your portfolio.
         </p>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-7 sm:p-9">
+      <div className="rounded-2xl border border-border bg-card p-5 sm:p-7 lg:p-9">
         <ProjectForm
           onSubmit={handleSubmit}
           submitLabel="Create Project"

@@ -9,7 +9,10 @@ export function ThemeAwareToaster() {
     <Toaster
       theme={resolvedTheme as "light" | "dark"}
       richColors
-      position="bottom-right"
+      position="top-right"
+      closeButton
+      expand
+      duration={4000}
     />
   );
 }

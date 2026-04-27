@@ -32,6 +32,12 @@ export const metadata: Metadata = {
     title: "Smit Parekh — Full Stack Developer & Free Web Tools",
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        alt: "Smit Parekh — Full Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -39,6 +45,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Smit Parekh — Full Stack Developer & Free Web Tools",
     description: siteConfig.description,
+    images: [`${siteConfig.url}/images/Smit-Parekh-Home.png`],
   },
   robots: {
     index: true,

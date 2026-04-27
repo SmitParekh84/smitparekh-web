@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Upload, X, Star } from "lucide-react";
+import { Loader2, Upload, X, Star, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
@@ -49,6 +49,7 @@ export function ProjectForm({
     demoLink: initialData?.demoLink ?? "",
     demoBtn: initialData?.demoBtn ?? "View Live Demo",
     isShowcased: initialData?.isShowcased ?? false,
+    isVisible: initialData?.isVisible ?? true,
   });
 
   function setField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
@@ -90,7 +91,7 @@ export function ProjectForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6">
       {/* Title */}
       <Field label="Title" required>
         <input
@@ -240,51 +241,87 @@ export function ProjectForm({
         </Field>
       </div>
 
-      {/* Showcased */}
-      <label className="flex items-center gap-3 cursor-pointer select-none">
-        <div
-          onClick={() => setField("isShowcased", !form.isShowcased)}
-          className={cn(
-            "relative w-10 h-5 rounded-full transition-colors",
-            form.isShowcased ? "bg-blue-500" : "bg-muted border border-border"
-          )}
-        >
-          <span
+      {/* Visibility + Showcased */}
+      <div className="space-y-3">
+        {/* Visible toggle */}
+        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
+          <div
+            onClick={() => setField("isVisible", !form.isVisible)}
             className={cn(
-              "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
-              form.isShowcased ? "translate-x-5" : "translate-x-0.5"
+              "relative w-10 h-5 rounded-full transition-colors shrink-0",
+              form.isVisible ? "bg-green-500" : "bg-muted border border-border"
             )}
-          />
-        </div>
-        <div>
-          <div className="flex items-center gap-1.5 text-sm font-medium">
-            <Star className="w-3.5 h-3.5 text-yellow-500" />
-            Feature on homepage
+          >
+            <span
+              className={cn(
+                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
+                form.isVisible ? "translate-x-5" : "translate-x-0.5"
+              )}
+            />
           </div>
-          <p className="text-xs text-muted-foreground">
-            Show this project in the featured section
-          </p>
-        </div>
-      </label>
+          <div>
+            <div className="flex items-center gap-1.5 text-sm font-medium">
+              {form.isVisible ? (
+                <Eye className="w-3.5 h-3.5 text-green-500" />
+              ) : (
+                <EyeOff className="w-3.5 h-3.5 text-muted-foreground" />
+              )}
+              {form.isVisible ? "Visible on site" : "Hidden from site"}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {form.isVisible
+                ? "Project appears on portfolio and homepage"
+                : "Project is hidden from all public pages"}
+            </p>
+          </div>
+        </label>
+
+        {/* Showcased toggle */}
+        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
+          <div
+            onClick={() => setField("isShowcased", !form.isShowcased)}
+            className={cn(
+              "relative w-10 h-5 rounded-full transition-colors shrink-0",
+              form.isShowcased ? "bg-blue-500" : "bg-muted border border-border"
+            )}
+          >
+            <span
+              className={cn(
+                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
+                form.isShowcased ? "translate-x-5" : "translate-x-0.5"
+              )}
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5 text-sm font-medium">
+              <Star className="w-3.5 h-3.5 text-yellow-500" />
+              Feature on homepage
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Show this project in the homepage featured section
+            </p>
+          </div>
+        </label>
+      </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-3 pt-2">
+      <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center">
         <button
           type="submit"
           disabled={isPending}
           className={cn(
             buttonVariants({ size: "lg" }),
-            "gap-2",
-            isPending && "opacity-70 cursor-not-allowed"
+            "w-full gap-2 sm:w-auto",
+            isPending && "cursor-not-allowed opacity-70"
           )}
         >
-          {isPending && <Loader2 className="w-4 h-4 animate-spin" />}
+          {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
           {submitLabel}
         </button>
         <button
           type="button"
           onClick={() => router.push("/admin")}
-          className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+          className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full sm:w-auto")}
         >
           Cancel
         </button>

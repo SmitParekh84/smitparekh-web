@@ -6,7 +6,7 @@ import { metaApi, queryKeys, type SeoAnalyzePayload } from "@/lib/api";
 export function useMetaTags(url: string) {
   return useQuery({
     queryKey: queryKeys.meta.tags(url),
-    queryFn: () => metaApi.getTags(url).then((r) => r.data),
+    queryFn: () => metaApi.getTags(url),
     enabled: Boolean(url),
   });
 }
@@ -14,7 +14,7 @@ export function useMetaTags(url: string) {
 export function useSeoReports() {
   return useQuery({
     queryKey: queryKeys.meta.seoReports(),
-    queryFn: () => metaApi.listSeoReports().then((r) => r.data),
+    queryFn: () => metaApi.listSeoReports(),
   });
 }
 
