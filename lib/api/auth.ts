@@ -55,6 +55,25 @@ export const authApi = {
       return null;
     }
   },
+
+  async updateProfile(data: { name?: string; avatarUrl?: string }): Promise<void> {
+    const supabase = createClient();
+    await supabase.auth.updateUser({
+      data: { full_name: data.name, avatar_url: data.avatarUrl },
+    });
+    try {
+      await api.patch("/auth/me", data);
+    } catch {
+      // Backend endpoint may not exist yet — Supabase metadata is the source of truth.
+    }
+  },
+
+  async uploadAvatar(file: File): Promise<string> {
+    const form = new FormData();
+    form.append("image", file);
+    const res = await api.postForm<{ url: string }>("/upload", form);
+    return res.url;
+  },
 };
 
 /**

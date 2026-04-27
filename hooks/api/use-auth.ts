@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { authApi, type LoginPayload } from "@/lib/api";
 import { createClient } from "@/lib/supabase/client";
 import type { Session } from "@supabase/supabase-js";
@@ -18,6 +18,29 @@ export function useLogout() {
     await authApi.logout();
     qc.clear();
   };
+}
+
+export function useMe() {
+  return useQuery({
+    queryKey: ["auth", "me"],
+    queryFn: () => authApi.me(),
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+export function useUpdateProfile() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { name?: string; avatarUrl?: string }) =>
+      authApi.updateProfile(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["auth", "me"] }),
+  });
+}
+
+export function useUploadAvatar() {
+  return useMutation({
+    mutationFn: (file: File) => authApi.uploadAvatar(file),
+  });
 }
 
 /**
