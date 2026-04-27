@@ -49,19 +49,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${project.title} — ${project.subtitle} | Case Study`;
   const description = project.summary;
 
+  // Pull every tech across all stack groups for richer keyword coverage.
+  const techKeywords = Object.values(project.techStack ?? {})
+    .flat()
+    .filter((t): t is string => Boolean(t))
+    .slice(0, 20);
+
+  const keywords = [
+    `${project.title} case study`,
+    `${project.title} project`,
+    project.subtitle,
+    project.industry,
+    `${project.category} case study`,
+    "Smit Parekh portfolio",
+    ...project.tags.map((t) => `${t} project`),
+    ...techKeywords,
+  ].filter(Boolean) as string[];
+
   return {
     title,
     description,
     alternates: { canonical: url },
-    keywords: [
-      `${project.title} case study`,
-      `${project.title} project`,
-      project.subtitle,
-      project.industry,
-      `${project.category} case study`,
-      "Smit Parekh portfolio",
-      ...project.tags.map((t) => `${t} project`),
-    ],
+    keywords,
     openGraph: {
       type: "article",
       locale: "en_US",
@@ -69,15 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title,
       description,
-      images: [
-        {
-          url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-          width: 800,
-          height: 800,
-          alt: `${project.title} — ${project.subtitle}`,
-          type: "image/png",
-        },
-      ],
+      // images are auto-injected from ./opengraph-image.tsx (dynamic, per-project)
     },
     twitter: {
       card: "summary_large_image",
@@ -85,14 +86,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       creator: siteConfig.twitterHandle,
       title,
       description,
-      images: [
-        {
-          url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-          width: 800,
-          height: 800,
-          alt: `${project.title} — ${project.subtitle}`,
-        },
-      ],
+      // twitter image inherits from openGraph (also dynamic)
     },
   };
 }

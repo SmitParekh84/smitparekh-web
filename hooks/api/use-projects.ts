@@ -74,3 +74,10 @@ export function useUploadProjectImage() {
     mutationFn: (file: File) => projectsApi.uploadImage(file),
   });
 }
+
+export function useGenerateProject() {
+  return useMutation({
+    mutationFn: (params: { mode: "rewrite" | "idea"; prompt: string }) =>
+      projectsApi.generate(params),
+  });
+}

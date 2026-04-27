@@ -4,9 +4,10 @@ import {
   Eraser, PenLine, FileText, Globe, QrCode, Hash,
   Minimize2, ArrowLeftRight, Download, Search, Lock,
   ArrowRight, Zap, ShieldCheck, Brain, RefreshCw,
-  CheckCircle, Users,
+  CheckCircle, Users, Wrench,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import FreeToolsFAQ from "@/components/tools/FreeToolsFAQ";
@@ -239,24 +240,18 @@ export default function FreeToolsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
       {/* Hero */}
-      <section className="page-section pt-24 sm:pt-28 pb-0">
-        <div className="page-container text-center max-w-2xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">Free Tools</p>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            Free Online Tools
-          </h1>
-          <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-            {toolsSEO.length} browser-based tools — no signup, no account, no cost.
-            Built for developers, marketers, and professionals.
-          </p>
-          {/* Trust bar */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-500" /> No account required</span>
-            <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-500" /> No data stored</span>
-            <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-500" /> 100% free forever</span>
-          </div>
+      <PageHero
+        eyebrow="Free Tools"
+        icon={Wrench}
+        title="Free Online Tools"
+        description={`${toolsSEO.length} browser-based tools — no signup, no account, no cost. Built for developers, marketers, and professionals.`}
+      >
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/85">
+          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No account required</span>
+          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No data stored</span>
+          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> 100% free forever</span>
         </div>
-      </section>
+      </PageHero>
 
       {/* Tools Grid */}
       <section className="page-section" id="tools">

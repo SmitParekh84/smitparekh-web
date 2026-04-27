@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Upload, X, Star, Eye, EyeOff } from "lucide-react";
+import { Loader2, Upload, X, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
-import { useUploadProjectImage } from "@/hooks/use-projects";
+import { useUploadProjectImage, useGenerateProject } from "@/hooks/use-projects";
 import {
   StringListEditor,
   KVListEditor,
@@ -66,6 +66,10 @@ export function ProjectForm({
   const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
   const uploadImage = useUploadProjectImage();
+  const generateProject = useGenerateProject();
+  const [aiOpen, setAiOpen] = useState(false);
+  const [aiMode, setAiMode] = useState<"idea" | "rewrite">("idea");
+  const [aiPrompt, setAiPrompt] = useState("");
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -100,6 +104,86 @@ export function ProjectForm({
 
   function setField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function applyAiData(ai: Partial<typeof form> & { categories?: string[] }) {
+    setForm((prev) => ({
+      ...prev,
+      title: ai.title || prev.title,
+      slug: prev.slug || (ai.title ? slugify(ai.title) : prev.slug),
+      subtitle: ai.subtitle ?? prev.subtitle,
+      categories:
+        Array.isArray(ai.categories) && ai.categories.length
+          ? ai.categories.filter((c) => CATEGORY_OPTIONS.includes(c))
+          : prev.categories,
+      industry: ai.industry ?? prev.industry,
+      role: ai.role ?? prev.role,
+      year: ai.year ?? prev.year,
+      duration: ai.duration ?? prev.duration,
+      gradient: ai.gradient ?? prev.gradient,
+      tags: Array.isArray(ai.tags) && ai.tags.length ? ai.tags : prev.tags,
+      shortDescription: ai.shortDescription ?? prev.shortDescription,
+      summary: ai.summary ?? prev.summary,
+      detailMarkdown: ai.detailMarkdown ?? prev.detailMarkdown,
+      problem: ai.problem ?? prev.problem,
+      approach:
+        Array.isArray(ai.approach) && ai.approach.length
+          ? ai.approach
+          : prev.approach,
+      outcomes:
+        Array.isArray(ai.outcomes) && ai.outcomes.length
+          ? (ai.outcomes as OutcomeItem[])
+          : prev.outcomes,
+      highlights:
+        Array.isArray(ai.highlights) && ai.highlights.length
+          ? (ai.highlights as KVItem[])
+          : prev.highlights,
+      techStack: ai.techStack
+        ? ({ ...DEFAULT_TECH_STACK, ...ai.techStack } as TechStackGroups)
+        : prev.techStack,
+      lessons:
+        Array.isArray(ai.lessons) && ai.lessons.length ? ai.lessons : prev.lessons,
+    }));
+  }
+
+  // Hydrate from session-storage AI draft generated on the listing page
+  // (admin/projects?ai=1 → POST /generate → sessionStorage → navigate here).
+  useEffect(() => {
+    if (initialData?._id) return;
+    if (typeof window === "undefined") return;
+    if (!new URLSearchParams(window.location.search).has("ai")) return;
+    const raw = sessionStorage.getItem("project-ai-draft");
+    if (!raw) return;
+    try {
+      const ai = JSON.parse(raw);
+      applyAiData(ai);
+      toast.success("AI draft loaded", "Add an image, review, and save.");
+    } catch {
+      // ignore
+    } finally {
+      sessionStorage.removeItem("project-ai-draft");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function handleAiGenerate() {
+    const prompt = aiPrompt.trim();
+    if (!prompt) {
+      toast.error("Enter details", "Type your project notes or idea.");
+      return;
+    }
+    try {
+      const res = await generateProject.mutateAsync({ mode: aiMode, prompt });
+      applyAiData(res.data as unknown as Partial<typeof form>);
+      toast.success("Draft generated", "Review and edit before saving.");
+      setAiOpen(false);
+      setAiPrompt("");
+    } catch (err) {
+      const msg =
+        (err as { response?: { data?: { message?: string } } })?.response?.data
+          ?.message || "Try again in a moment.";
+      toast.error("AI generation failed", msg);
+    }
   }
 
   function toggleCategory(cat: string) {
@@ -141,6 +225,156 @@ export function ProjectForm({
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
+      {/* AI Generate */}
+      <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-3">
+            <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white shadow-sm">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="text-sm font-medium">Generate with AI</p>
+              <p className="text-xs text-muted-foreground">
+                Paste rough notes (with product names — they&apos;ll be removed)
+                or describe a new idea. AI fills the entire case study.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setAiOpen(true)}
+            className={cn(
+              buttonVariants({ size: "sm" }),
+              "gap-1.5 self-start sm:self-auto"
+            )}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            {form.title ? "Regenerate" : "Generate draft"}
+          </button>
+        </div>
+      </div>
+
+      {aiOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+          onClick={() => !generateProject.isPending && setAiOpen(false)}
+        >
+          <div
+            className="w-full max-w-xl rounded-2xl border border-border bg-card p-6 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex items-start gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-semibold">Generate project draft</h3>
+                <p className="text-xs text-muted-foreground">
+                  Pick a mode, then describe the project. AI returns a full
+                  structured case study.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAiOpen(false)}
+                disabled={generateProject.isPending}
+                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="mb-3 grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => setAiMode("idea")}
+                disabled={generateProject.isPending}
+                className={cn(
+                  "rounded-xl border p-3 text-left text-xs transition-colors",
+                  aiMode === "idea"
+                    ? "border-blue-500 bg-blue-500/5"
+                    : "border-border hover:border-blue-500/40"
+                )}
+              >
+                <p className="text-sm font-medium">From an idea</p>
+                <p className="mt-0.5 text-muted-foreground">
+                  Describe a project concept — AI generates the whole thing.
+                </p>
+              </button>
+              <button
+                type="button"
+                onClick={() => setAiMode("rewrite")}
+                disabled={generateProject.isPending}
+                className={cn(
+                  "rounded-xl border p-3 text-left text-xs transition-colors",
+                  aiMode === "rewrite"
+                    ? "border-blue-500 bg-blue-500/5"
+                    : "border-border hover:border-blue-500/40"
+                )}
+              >
+                <p className="text-sm font-medium">Rewrite my notes</p>
+                <p className="mt-0.5 text-muted-foreground">
+                  Paste real notes — AI strips product/client names.
+                </p>
+              </button>
+            </div>
+
+            <textarea
+              autoFocus
+              rows={aiMode === "rewrite" ? 8 : 5}
+              maxLength={4000}
+              value={aiPrompt}
+              onChange={(e) => setAiPrompt(e.target.value)}
+              disabled={generateProject.isPending}
+              placeholder={
+                aiMode === "rewrite"
+                  ? "Paste raw notes, bullet points, README, or a draft. Include real metrics, tech stack, and details — they'll be kept; brand names will be removed."
+                  : "Describe the project. e.g. 'A real-time fintech dashboard that lets traders track positions across 5 brokers, with sub-second updates and risk alerts.'"
+              }
+              className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
+            />
+            <p className="mt-1 text-right text-xs text-muted-foreground">
+              {aiPrompt.length}/4000
+            </p>
+
+            {form.title && (
+              <p className="mt-2 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-600 dark:text-yellow-400">
+                This will overwrite all case-study fields below.
+              </p>
+            )}
+
+            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setAiOpen(false)}
+                disabled={generateProject.isPending}
+                className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleAiGenerate}
+                disabled={generateProject.isPending || !aiPrompt.trim()}
+                className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+              >
+                {generateProject.isPending ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Generate
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Title */}
       <Field label="Title" required>
         <input

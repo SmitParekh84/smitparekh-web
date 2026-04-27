@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, MapPin, Briefcase, Award } from "lucide-react";
+import { ArrowRight, Download, MapPin, Briefcase, Award, User } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aboutBio, experiences, certifications } from "@/data/about";
@@ -41,15 +42,7 @@ export const metadata: Metadata = {
     title: "About Smit Parekh — Full Stack Developer",
     description:
       "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js, TypeScript, AWS.",
-    images: [
-      {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
-        type: "image/png",
-      },
-    ],
+    // images auto-injected from ./opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
@@ -58,14 +51,6 @@ export const metadata: Metadata = {
     title: "About Smit Parekh — Full Stack Developer",
     description:
       "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js.",
-    images: [
-      {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
-      },
-    ],
   },
 };
 
@@ -150,8 +135,16 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Hero */}
-      <section className="page-section pt-24 sm:pt-28">
+      {/* Hero banner — matches /blog style */}
+      <PageHero
+        eyebrow="About Me"
+        icon={User}
+        title={<>Smit Parekh — Full-Stack Web Developer</>}
+        description="4+ years building production web apps for FinTech, AI/ML, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, AWS — based in India, available worldwide."
+      />
+
+      {/* Profile */}
+      <section className="page-section">
         <div className="page-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text */}
@@ -159,18 +152,6 @@ export default function AboutPage() {
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-blue-500" />
                 <span>India · Available Worldwide</span>
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">
-                  About Me
-                </p>
-                <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-                  Smit Parekh
-                </h1>
-                <p className="text-lg text-muted-foreground mt-2 font-medium">
-                  Full-Stack Web Developer
-                </p>
               </div>
 
               <p className="text-base text-muted-foreground leading-relaxed max-w-lg">

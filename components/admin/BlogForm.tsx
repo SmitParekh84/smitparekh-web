@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Upload, X, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -70,6 +70,45 @@ export function BlogForm({
       ? new Date(initialData.publishedAt).toISOString().slice(0, 16)
       : new Date().toISOString().slice(0, 16),
   });
+
+  // Hydrate from session-storage AI draft generated on the listing page
+  // (admin/blogs?ai=1 → POST /generate → sessionStorage → navigate here).
+  useEffect(() => {
+    if (initialData?._id) return; // editing an existing post — never overwrite
+    if (typeof window === "undefined") return;
+    if (!new URLSearchParams(window.location.search).has("ai")) return;
+    const raw = sessionStorage.getItem("blog-ai-draft");
+    if (!raw) return;
+    try {
+      const ai = JSON.parse(raw) as {
+        title?: string;
+        excerpt?: string;
+        content?: string;
+        category?: string;
+        tags?: string[];
+        readMinutes?: number;
+      };
+      setForm((prev) => ({
+        ...prev,
+        title: ai.title || prev.title,
+        slug: prev.slug || slugify(ai.title || ""),
+        excerpt: ai.excerpt || prev.excerpt,
+        content: ai.content || prev.content,
+        category: ai.category || prev.category,
+        tagsCsv:
+          Array.isArray(ai.tags) && ai.tags.length
+            ? ai.tags.join(", ")
+            : prev.tagsCsv,
+        readMinutes: ai.readMinutes || prev.readMinutes,
+      }));
+      toast.success("AI draft loaded", "Add a cover image, review, and save.");
+    } catch {
+      // ignore — corrupted draft
+    } finally {
+      sessionStorage.removeItem("blog-ai-draft");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function setField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));

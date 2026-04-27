@@ -15,6 +15,7 @@ import {
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { services } from "@/data/services";
@@ -74,15 +75,7 @@ export const metadata: Metadata = {
     title: "Services — Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO.",
-    images: [
-      {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Web Development Services by Smit Parekh",
-        type: "image/png",
-      },
-    ],
+    // images auto-injected from ./opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
@@ -91,14 +84,6 @@ export const metadata: Metadata = {
     title: "Services — Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React, Node.js, AWS, technical SEO.",
-    images: [
-      {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Web Development Services by Smit Parekh",
-      },
-    ],
   },
 };
 
@@ -199,38 +184,34 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Header */}
-      <section className="page-section pt-24 sm:pt-28 bg-muted/20">
-        <div className="page-container text-center max-w-3xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">
-            What I Offer
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-            End-to-End Web Development
-          </h1>
-          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            One partner for the full product lifecycle — from architecture to
-            deployment. No juggling multiple vendors, no gaps in ownership.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
-            <Link
-              href="/contact"
-              className={cn(buttonVariants({ size: "lg" }), "gap-2")}
-            >
-              Discuss Your Project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/portfolio"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "gap-2"
-              )}
-            >
-              View My Work
-            </Link>
-          </div>
+      <PageHero
+        eyebrow="What I Offer"
+        icon={Code2}
+        title="End-to-End Web Development"
+        description="One partner for the full product lifecycle — from architecture to deployment. No juggling multiple vendors, no gaps in ownership."
+      >
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/contact"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "gap-2 bg-white text-blue-600 hover:bg-white/90"
+            )}
+          >
+            Discuss Your Project
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/portfolio"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+            )}
+          >
+            View My Work
+          </Link>
         </div>
-      </section>
+      </PageHero>
 
       {/* Services Grid */}
       <section className="page-section">

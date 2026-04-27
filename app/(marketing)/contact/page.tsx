@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, Clock, MapPin, Send } from "lucide-react";
+import { ArrowRight, Mail, Clock, MapPin, Send, MessageSquare, MessageCircle, ClipboardCheck, Hammer, Rocket } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { useSubmitContact } from "@/hooks/api/use-contact";
 import { toast } from "@/lib/toast";
@@ -71,20 +72,12 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="page-section pt-24 sm:pt-28 pb-0">
-        <div className="page-container text-center max-w-2xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">
-            Get in Touch
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            Let&apos;s Work Together
-          </h1>
-          <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-            Tell me about your project. I respond to every enquiry within 24 hours
-            and deliver a scoped proposal within 48.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Get in Touch"
+        icon={MessageSquare}
+        title={<>Let&apos;s Work Together</>}
+        description="Tell me about your project. I respond to every enquiry within 24 hours and deliver a scoped proposal within 48."
+      />
 
       {/* Content */}
       <section className="page-section">
@@ -302,6 +295,123 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What happens next */}
+      <section className="page-section pt-0">
+        <div className="page-container">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-wider text-blue-500 font-semibold mb-2">
+              What Happens Next
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              From first message to first commit
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+              I keep the start of every project deliberately simple. No long
+              sales calls, no lock-in contracts before we&apos;ve agreed the
+              scope makes sense for both sides.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: MessageCircle,
+                title: "1 — Reply within 24h",
+                description:
+                  "I read every message personally and reply with clarifying questions, a rough timeline estimate, and next steps.",
+              },
+              {
+                icon: ClipboardCheck,
+                title: "2 — Free scoping call",
+                description:
+                  "30–45 minutes to walk through the goal, constraints, and tech. You leave with a written scope and fixed-price proposal.",
+              },
+              {
+                icon: Hammer,
+                title: "3 — Build in the open",
+                description:
+                  "Weekly demos, async Loom updates, and a shared Linear board. You always know what's shipped and what's next.",
+              },
+              {
+                icon: Rocket,
+                title: "4 — Launch & support",
+                description:
+                  "Production deploy, monitoring, and docs handover. Optional retainer for ongoing iteration after launch.",
+              },
+            ].map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.title}
+                  className="rounded-2xl border border-border bg-card p-6 hover:border-blue-500/40 transition-colors"
+                >
+                  <div className="rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/15 p-2.5 text-blue-500 inline-flex">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-semibold mt-4">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="page-section pt-0">
+        <div className="page-container">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-wider text-blue-500 font-semibold mb-2">
+              Common Questions
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              Before you reach out
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                q: "What kind of projects do you take on?",
+                a: "Production web apps and SaaS products — typically Next.js + Node/Express + Postgres or MongoDB. From MVPs through to scaling existing codebases. I don't take pure WordPress, Shopify customisation, or marketing-only sites.",
+              },
+              {
+                q: "How are you priced?",
+                a: "Fixed-price for clearly scoped projects, hourly for ongoing work. After our scoping call you get a written proposal — no hidden fees.",
+              },
+              {
+                q: "How soon can we start?",
+                a: "Usually within 1–2 weeks of agreeing the scope. For urgent fixes on existing projects I can often start the same week.",
+              },
+              {
+                q: "Do you work with teams?",
+                a: "Yes — I integrate with your existing engineering team, your tooling (Linear/Jira/GitHub), and your deployment pipelines. I'm comfortable as the only engineer or as a senior on a larger team.",
+              },
+              {
+                q: "Can you help us pick the right stack?",
+                a: "Absolutely. The free scoping call covers tech recommendations, hosting options, and pragmatic tradeoffs based on your team size, budget, and growth plans.",
+              },
+              {
+                q: "Where are you based?",
+                a: "India. I work async with clients across the US, EU, and APAC — overlapping a few hours daily for sync work and demos.",
+              },
+            ].map((item) => (
+              <div
+                key={item.q}
+                className="rounded-2xl border border-border bg-card p-5"
+              >
+                <h3 className="text-sm font-semibold">{item.q}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {item.a}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

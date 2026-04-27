@@ -10,6 +10,11 @@ export interface UploadImageResponse {
   url: string;
 }
 
+export interface GenerateProjectResponse {
+  success: boolean;
+  data: BackendProjectInput & { detailMarkdown: string };
+}
+
 export const projectsApi = {
   list: () => api.get<BackendListResponse<BackendProject>>("/projects"),
   byId: (id: string) => api.get<BackendOneResponse<BackendProject>>(`/projects/${id}`),
@@ -30,4 +35,6 @@ export const projectsApi = {
     form.append("image", file);
     return api.postForm<UploadImageResponse>("/upload", form);
   },
+  generate: (params: { mode: "rewrite" | "idea"; prompt: string }) =>
+    api.post<GenerateProjectResponse>("/projects/generate", params),
 };

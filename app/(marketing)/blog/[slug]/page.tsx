@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -17,6 +18,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -66,14 +68,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: blog.updatedAt,
       authors: [blog.author],
       tags: blog.tags,
-      images: [
-        {
-          url: blog.coverImage,
-          width: 1200,
-          height: 630,
-          alt: blog.title,
-        },
-      ],
+      // If a real coverImage exists, prefer it; otherwise fall back to the
+      // dynamically generated branded card from ./opengraph-image.tsx.
+      ...(blog.coverImage
+        ? {
+            images: [
+              {
+                url: blog.coverImage,
+                width: 1200,
+                height: 630,
+                alt: blog.title,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -81,14 +89,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       creator: siteConfig.twitterHandle,
       title,
       description: blog.excerpt,
-      images: [
-        {
-          url: blog.coverImage,
-          width: 1200,
-          height: 630,
-          alt: blog.title,
-        },
-      ],
+      ...(blog.coverImage
+        ? {
+            images: [
+              {
+                url: blog.coverImage,
+                width: 1200,
+                height: 630,
+                alt: blog.title,
+              },
+            ],
+          }
+        : {}),
     },
   };
 }
@@ -221,10 +233,13 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Cover */}
       <section className="page-container max-w-4xl -mt-8 sm:-mt-10 relative z-10">
         <div className="rounded-2xl overflow-hidden border border-border shadow-lg bg-card">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={blog.coverImage}
+          <Image
+            src={optimizeImageUrl(blog.coverImage)}
             alt={blog.title}
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
             className="w-full aspect-[16/9] object-cover"
           />
         </div>
@@ -272,10 +287,12 @@ export default async function BlogPostPage({ params }: Props) {
                   className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/5 transition-all"
                 >
                   <div className="aspect-[16/9] overflow-hidden bg-muted">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={b.coverImage}
+                    <Image
+                      src={optimizeImageUrl(b.coverImage)}
                       alt={b.title}
+                      width={800}
+                      height={450}
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                   </div>

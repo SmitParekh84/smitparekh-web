@@ -45,15 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: tool.title,
         description: tool.description,
         url: `${siteConfig.url}/free-tools/${slug}`,
-        images: [
-          {
-            url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-            width: 800,
-            height: 800,
-            alt: tool.title.split(" — ")[0],
-            type: "image/png",
-          },
-        ],
+        // images auto-injected from ./opengraph-image.tsx (per-tool, branded)
       },
       twitter: {
         card: "summary_large_image",
@@ -61,14 +53,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         creator: siteConfig.twitterHandle,
         title: tool.title,
         description: tool.description,
-        images: [
-          {
-            url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-            width: 800,
-            height: 800,
-            alt: tool.title.split(" — ")[0],
-          },
-        ],
       },
     };
   }

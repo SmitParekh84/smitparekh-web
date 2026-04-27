@@ -19,9 +19,12 @@ const API_BASE = (
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, "") ?? "http://localhost:5000/api"
 );
 
-const FETCH_TIMEOUT_MS = 5000;
+const FETCH_TIMEOUT_MS = 8000;
 
-async function safeFetch<T>(url: string): Promise<T | null> {
+async function safeFetch<T>(
+  url: string,
+  attempt = 0
+): Promise<{ data: T | null; transient: boolean }> {
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -31,10 +34,21 @@ async function safeFetch<T>(url: string): Promise<T | null> {
       headers: { Accept: "application/json" },
     });
     clearTimeout(timer);
-    if (!res.ok) return null;
-    return (await res.json()) as T;
+    if (res.status === 404) return { data: null, transient: false };
+    if (!res.ok) {
+      if (attempt < 1) {
+        await new Promise((r) => setTimeout(r, 400));
+        return safeFetch<T>(url, attempt + 1);
+      }
+      return { data: null, transient: true };
+    }
+    return { data: (await res.json()) as T, transient: false };
   } catch {
-    return null;
+    if (attempt < 1) {
+      await new Promise((r) => setTimeout(r, 400));
+      return safeFetch<T>(url, attempt + 1);
+    }
+    return { data: null, transient: true };
   }
 }
 
@@ -82,7 +96,7 @@ function normalize(b: BackendProject, fallbackIdx = 0): Project {
 }
 
 export async function fetchAllCaseStudies(): Promise<Project[]> {
-  const data = await safeFetch<BackendListResponse<BackendProject>>(
+  const { data } = await safeFetch<BackendListResponse<BackendProject>>(
     `${API_BASE}/projects`
   );
 
@@ -103,7 +117,7 @@ export async function fetchAllCaseStudies(): Promise<Project[]> {
 export async function fetchCaseStudyBySlug(
   slug: string
 ): Promise<Project | null> {
-  const data = await safeFetch<BackendOneResponse<BackendProject>>(
+  const { data, transient } = await safeFetch<BackendOneResponse<BackendProject>>(
     `${API_BASE}/projects/slug/${encodeURIComponent(slug)}`
   );
 
@@ -112,5 +126,16 @@ export async function fetchCaseStudyBySlug(
     return normalize(data.data);
   }
 
-  return featuredProjects.find((p) => p.slug === slug) ?? null;
+  // If the API was unreachable, surface the static fallback when possible —
+  // never let a transient backend hiccup cache a 404 for a real project.
+  const staticMatch = featuredProjects.find((p) => p.slug === slug);
+  if (staticMatch) return staticMatch;
+
+  // Genuine not-found from the API: bubble up null so the page can 404 cleanly.
+  // For transient errors with no static fallback, throw so Next renders an
+  // error page instead of caching a 404 for a slug that may exist.
+  if (transient) {
+    throw new Error("Upstream project API unreachable. Please retry.");
+  }
+  return null;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Plus,
   Pencil,
@@ -10,6 +11,8 @@ import {
   Loader2,
   Eye,
   EyeOff,
+  Sparkles,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -29,15 +32,76 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useBlogs, useDeleteBlog } from "@/hooks/use-blogs";
+import {
+  useBlogs,
+  useDeleteBlog,
+  useUpdateBlog,
+  useGenerateBlog,
+} from "@/hooks/use-blogs";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
 export default function AdminBlogsPage() {
+  const router = useRouter();
   const { data: blogs, isLoading, isError, refetch } = useBlogs();
   const deleteBlog = useDeleteBlog();
+  const updateBlog = useUpdateBlog();
+  const generateBlog = useGenerateBlog();
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [confirmId, setConfirmId] = useState<string | null>(null);
+  const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [aiOpen, setAiOpen] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState("");
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [bulkBusy, setBulkBusy] = useState(false);
+
+  const visibleIds = (blogs ?? []).map((b) => b._id);
+  const allChecked =
+    visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
+  const someChecked =
+    !allChecked && visibleIds.some((id) => selectedIds.has(id));
+
+  function toggleOne(id: string) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+  function toggleAll() {
+    setSelectedIds((prev) => {
+      if (visibleIds.every((id) => prev.has(id))) return new Set();
+      return new Set(visibleIds);
+    });
+  }
+  function clearSelection() {
+    setSelectedIds(new Set());
+  }
+
+  async function handleBulkUpdate(
+    field: "isPublished" | "isFeatured",
+    value: boolean
+  ) {
+    const ids = Array.from(selectedIds);
+    if (!ids.length) return;
+    setBulkBusy(true);
+    try {
+      await Promise.all(
+        ids.map((id) =>
+          updateBlog.mutateAsync({ id, data: { [field]: value } })
+        )
+      );
+      toast.success(
+        `Updated ${ids.length} ${ids.length === 1 ? "post" : "posts"}`
+      );
+      clearSelection();
+    } catch {
+      toast.error("Bulk update failed", "Some posts may not have updated.");
+    } finally {
+      setBulkBusy(false);
+    }
+  }
 
   async function handleDelete(id: string) {
     setDeletingId(id);
@@ -52,6 +116,42 @@ export default function AdminBlogsPage() {
     }
   }
 
+  async function handleToggle(
+    id: string,
+    field: "isPublished" | "isFeatured",
+    next: boolean
+  ) {
+    setTogglingId(id + ":" + field);
+    try {
+      await updateBlog.mutateAsync({ id, data: { [field]: next } });
+    } catch {
+      toast.error("Update failed", "Could not update post.");
+    } finally {
+      setTogglingId(null);
+    }
+  }
+
+  async function handleAiGenerate() {
+    const prompt = aiPrompt.trim();
+    if (!prompt) {
+      toast.error("Enter a topic", "Type a title or short prompt for the AI.");
+      return;
+    }
+    try {
+      const res = await generateBlog.mutateAsync(prompt);
+      sessionStorage.setItem("blog-ai-draft", JSON.stringify(res.data));
+      toast.success("Draft generated", "Review and edit before saving.");
+      setAiOpen(false);
+      setAiPrompt("");
+      router.push("/admin/blogs/new?ai=1");
+    } catch (err) {
+      const msg =
+        (err as { response?: { data?: { message?: string } } })?.response?.data
+          ?.message || "Try again in a moment.";
+      toast.error("AI generation failed", msg);
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -61,17 +161,104 @@ export default function AdminBlogsPage() {
             Manage articles, drafts and featured posts.
           </p>
         </div>
-        <Link
-          href="/admin/blogs/new"
-          className={cn(
-            buttonVariants({ size: "sm" }),
-            "gap-2 self-start sm:self-auto"
-          )}
-        >
-          <Plus className="h-4 w-4" />
-          New post
-        </Link>
+        <div className="flex gap-2 self-start sm:self-auto">
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            onClick={() => setAiOpen(true)}
+            className="gap-2"
+          >
+            <Sparkles className="h-4 w-4 text-blue-500" />
+            Generate with AI
+          </Button>
+          <Link
+            href="/admin/blogs/new"
+            className={cn(buttonVariants({ size: "sm" }), "gap-2")}
+          >
+            <Plus className="h-4 w-4" />
+            New post
+          </Link>
+        </div>
       </div>
+
+      {aiOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+          onClick={() => !generateBlog.isPending && setAiOpen(false)}
+        >
+          <div
+            className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex items-start gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-semibold">Generate blog draft</h3>
+                <p className="text-xs text-muted-foreground">
+                  Describe the topic. The AI fills the new post — you review &
+                  edit before saving.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAiOpen(false)}
+                disabled={generateBlog.isPending}
+                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <textarea
+              autoFocus
+              rows={4}
+              maxLength={600}
+              value={aiPrompt}
+              onChange={(e) => setAiPrompt(e.target.value)}
+              disabled={generateBlog.isPending}
+              placeholder="e.g. How I use ISR in Next.js 16 to ship a fast blog with editor previews"
+              className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
+            />
+            <p className="mt-1 text-right text-xs text-muted-foreground">
+              {aiPrompt.length}/600
+            </p>
+
+            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setAiOpen(false)}
+                disabled={generateBlog.isPending}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                onClick={handleAiGenerate}
+                disabled={generateBlog.isPending || !aiPrompt.trim()}
+                className="gap-1.5"
+              >
+                {generateBlog.isPending ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Generate
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Card>
         <CardHeader>
@@ -114,9 +301,89 @@ export default function AdminBlogsPage() {
           )}
 
           {!isLoading && !isError && blogs && blogs.length > 0 && (
-            <Table>
+            <>
+              {selectedIds.size > 0 && (
+                <div className="flex flex-wrap items-center gap-2 border-b border-border bg-muted/40 px-4 py-2">
+                  <span className="text-xs font-medium">
+                    {selectedIds.size} selected
+                  </span>
+                  <span className="ml-1 hidden text-xs text-muted-foreground sm:inline">
+                    Apply to all:
+                  </span>
+                  <div className="ml-auto flex flex-wrap items-center gap-1.5">
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className="h-7 gap-1 text-xs"
+                      disabled={bulkBusy}
+                      onClick={() => handleBulkUpdate("isPublished", true)}
+                    >
+                      <Eye className="h-3.5 w-3.5" /> Publish
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className="h-7 gap-1 text-xs"
+                      disabled={bulkBusy}
+                      onClick={() => handleBulkUpdate("isPublished", false)}
+                    >
+                      <EyeOff className="h-3.5 w-3.5" /> Unpublish
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className="h-7 gap-1 text-xs"
+                      disabled={bulkBusy}
+                      onClick={() => handleBulkUpdate("isFeatured", true)}
+                    >
+                      <Star className="h-3.5 w-3.5" /> Feature
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className="h-7 gap-1 text-xs"
+                      disabled={bulkBusy}
+                      onClick={() => handleBulkUpdate("isFeatured", false)}
+                    >
+                      <Star className="h-3.5 w-3.5 opacity-40" /> Unfeature
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      className="h-7 gap-1 text-xs"
+                      disabled={bulkBusy}
+                      onClick={clearSelection}
+                    >
+                      {bulkBusy ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      ) : (
+                        <X className="h-3.5 w-3.5" />
+                      )}
+                      Clear
+                    </Button>
+                  </div>
+                </div>
+              )}
+              <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-[1%] pr-0">
+                    <input
+                      type="checkbox"
+                      aria-label="Select all"
+                      checked={allChecked}
+                      ref={(el) => {
+                        if (el) el.indeterminate = someChecked;
+                      }}
+                      onChange={toggleAll}
+                      className="h-4 w-4 cursor-pointer rounded border-border accent-blue-500"
+                    />
+                  </TableHead>
                   <TableHead>Title</TableHead>
                   <TableHead className="hidden sm:table-cell">Category</TableHead>
                   <TableHead className="hidden md:table-cell">Status</TableHead>
@@ -127,7 +394,19 @@ export default function AdminBlogsPage() {
               </TableHeader>
               <TableBody>
                 {blogs.map((blog) => (
-                  <TableRow key={blog._id}>
+                  <TableRow
+                    key={blog._id}
+                    data-state={selectedIds.has(blog._id) ? "selected" : undefined}
+                  >
+                    <TableCell className="pr-0">
+                      <input
+                        type="checkbox"
+                        aria-label={`Select ${blog.title}`}
+                        checked={selectedIds.has(blog._id)}
+                        onChange={() => toggleOne(blog._id)}
+                        className="h-4 w-4 cursor-pointer rounded border-border accent-blue-500"
+                      />
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-3">
                         {blog.coverImage && (
@@ -152,22 +431,50 @@ export default function AdminBlogsPage() {
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
-                      {blog.isPublished !== false ? (
-                        <span className="inline-flex items-center gap-1 text-xs text-green-500">
-                          <Eye className="h-3.5 w-3.5" /> Published
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                          <EyeOff className="h-3.5 w-3.5" /> Draft
-                        </span>
-                      )}
+                      <button
+                        type="button"
+                        title={blog.isPublished !== false ? "Click to unpublish" : "Click to publish"}
+                        disabled={togglingId === blog._id + ":isPublished"}
+                        onClick={() =>
+                          handleToggle(
+                            blog._id,
+                            "isPublished",
+                            blog.isPublished === false
+                          )
+                        }
+                        className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs transition-colors hover:bg-muted disabled:opacity-50"
+                      >
+                        {togglingId === blog._id + ":isPublished" ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : blog.isPublished !== false ? (
+                          <span className="inline-flex items-center gap-1 text-green-500">
+                            <Eye className="h-3.5 w-3.5" /> Published
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-muted-foreground">
+                            <EyeOff className="h-3.5 w-3.5" /> Draft
+                          </span>
+                        )}
+                      </button>
                     </TableCell>
                     <TableCell className="hidden lg:table-cell">
-                      {blog.isFeatured ? (
-                        <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-                      ) : (
-                        <span className="text-muted-foreground/40">—</span>
-                      )}
+                      <button
+                        type="button"
+                        title={blog.isFeatured ? "Click to unfeature" : "Click to feature"}
+                        disabled={togglingId === blog._id + ":isFeatured"}
+                        onClick={() =>
+                          handleToggle(blog._id, "isFeatured", !blog.isFeatured)
+                        }
+                        className="rounded-md p-1 transition-colors hover:bg-muted disabled:opacity-50"
+                      >
+                        {togglingId === blog._id + ":isFeatured" ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : blog.isFeatured ? (
+                          <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                        ) : (
+                          <Star className="h-4 w-4 text-muted-foreground/40" />
+                        )}
+                      </button>
                     </TableCell>
                     <TableCell className="hidden lg:table-cell text-xs text-muted-foreground">
                       {new Date(blog.publishedAt).toLocaleDateString("en-GB", {
@@ -241,6 +548,7 @@ export default function AdminBlogsPage() {
                 ))}
               </TableBody>
             </Table>
+            </>
           )}
         </CardContent>
       </Card>

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar, Clock, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { PageHero } from "@/components/layout/PageHero";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { siteConfig } from "@/data/site";
 
@@ -47,25 +48,12 @@ export default async function BlogIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
       />
 
-      {/* Hero */}
-      <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20" aria-hidden />
-        <div className="page-container relative">
-          <Badge
-            variant="secondary"
-            className="bg-white/15 text-white border-white/30 backdrop-blur-sm mb-4"
-          >
-            <Sparkles className="w-3 h-3 mr-1" /> Blog
-          </Badge>
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight max-w-3xl">
-            Notes on web development, engineering &amp; building products
-          </h1>
-          <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/85 leading-relaxed">
-            Articles and field-notes on React, Next.js, Node.js, TypeScript, and
-            shipping production-grade web apps.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Blog"
+        icon={BookOpen}
+        title={<>Notes on web development, engineering &amp; building products</>}
+        description="Articles and field-notes on React, Next.js, Node.js, TypeScript, and shipping production-grade web apps."
+      />
 
       {/* Empty state */}
       {blogs.length === 0 && (

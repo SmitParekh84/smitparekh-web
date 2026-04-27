@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight, MapPin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { footerData, type SocialPlatform } from "@/data/footer";
 import { siteConfig } from "@/data/site";
@@ -20,20 +22,65 @@ const socialIcons: Record<
 };
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-border bg-background/50">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="relative border-t border-border bg-background overflow-hidden">
+      {/* Top accent bar matching the page hero gradient */}
+      <div className="h-1 w-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500" />
+
+      {/* Soft glow */}
+      <div
+        className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[60rem] h-[20rem] rounded-full bg-blue-500/5 blur-3xl"
+        aria-hidden
+      />
+
+      <div className="container mx-auto px-4 py-14 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10">
           {/* Brand */}
-          <div className="sm:col-span-2 space-y-3">
-            <h3 className="font-bold text-lg">{footerData.title}</h3>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              {footerData.subtitle}
+          <div className="sm:col-span-2 md:col-span-5 space-y-4">
+            <Link href="/" className="inline-flex items-center gap-2 group">
+              <Image
+                src="/Smit-Logo.svg"
+                alt="Smit Parekh"
+                width={32}
+                height={32}
+                className="transition-transform duration-200 group-hover:scale-110"
+              />
+              <span className="font-bold text-lg tracking-tight group-hover:text-blue-500 transition-colors">
+                {footerData.title}
+              </span>
+            </Link>
+
+            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+              {footerData.subtitle}. Building production-grade web apps with
+              React, Next.js, Node.js &amp; TypeScript.
             </p>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              {siteConfig.description.split("|")[0].trim()}
-            </p>
-            <div className="flex gap-3 pt-1">
+
+            <div className="flex flex-col gap-2 pt-1 text-sm text-muted-foreground">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="inline-flex items-center gap-2 hover:text-foreground transition-colors w-fit"
+              >
+                <Mail className="w-4 h-4 text-blue-500" />
+                {siteConfig.email}
+              </a>
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-blue-500" />
+                Available worldwide — remote
+              </span>
+            </div>
+
+            {/* Status pill */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-xs font-medium text-green-600 dark:text-green-400">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              Available for new projects
+            </div>
+
+            <div className="flex gap-2 pt-1">
               {footerData.socialLinks.map((social) => {
                 const Icon = socialIcons[social.platform];
                 const isEmail = social.href.startsWith("mailto:");
@@ -44,9 +91,9 @@ export default function Footer() {
                     target={isEmail ? undefined : "_blank"}
                     rel={isEmail ? undefined : "noopener noreferrer"}
                     aria-label={social.label}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="grid place-items-center w-9 h-9 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-blue-500/40 hover:bg-blue-500/5 transition-all"
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4" />
                   </a>
                 );
               })}
@@ -54,35 +101,16 @@ export default function Footer() {
           </div>
 
           {/* Pages */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">
-              Pages
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
+              Explore
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {footerData.pageLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Free Tools */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">
-              Free Tools
-            </h4>
-            <ul className="space-y-2">
-              {footerData.toolLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
                   >
                     {link.label}
                   </Link>
@@ -90,21 +118,51 @@ export default function Footer() {
               ))}
               <li>
                 <Link
-                  href="/free-tools"
-                  className="text-sm text-primary hover:underline font-medium"
+                  href="/blog"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
                 >
-                  View all tools →
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Free Tools */}
+          <div className="md:col-span-4 space-y-4">
+            <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
+              Free Tools
+            </h4>
+            <ul className="space-y-2.5">
+              {footerData.toolLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  href="/free-tools"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-blue-500 hover:underline"
+                >
+                  View all tools
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <Separator className="my-8" />
+        <Separator className="my-10" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-muted-foreground">{footerData.copyright}</p>
-          <div className="flex gap-5">
+          <p className="text-sm text-muted-foreground">
+            © {year} {siteConfig.name}. All rights reserved.
+          </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 items-center">
             {footerData.legalLinks.map((link) => (
               <Link
                 key={link.href}
@@ -120,3 +178,4 @@ export default function Footer() {
     </footer>
   );
 }
+
