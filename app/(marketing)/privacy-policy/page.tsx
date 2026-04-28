@@ -12,6 +12,40 @@ export const metadata: Metadata = {
     "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
   alternates: { canonical: `${siteConfig.url}/privacy-policy` },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
+    url: `${siteConfig.url}/privacy-policy`,
+    title: "Privacy Policy - Smit Parekh",
+    description:
+      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh - Full Stack Developer",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Privacy Policy - Smit Parekh",
+    description:
+      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh - Full Stack Developer",
+      },
+    ],
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -56,7 +56,7 @@ export const footerData: FooterData = {
       label: "Email",
     },
     {
-      href: "https://www.linkedin.com/in/smit-parekh-n",
+      href: "https://www.linkedin.com/in/smitparekh84",
       platform: "linkedin",
       label: "LinkedIn",
     },

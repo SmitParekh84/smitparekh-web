@@ -2,12 +2,12 @@ export const siteConfig = {
   name: "Smit Parekh",
   url: "https://www.smitparekh.co.in",
   description:
-    "Smit Parekh - Full-Stack Web Developer specialising in React, Next.js, Node.js, and TypeScript. 4+ years building production apps for FinTech, AI/ML, SaaS, and enterprise clients. Also offering free online tools - no signup required.",
+    "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
   author: "Smit Parekh",
   email: "smitparekh02@gmail.com",
   twitterHandle: "@smit_parekh84",
   social: {
-    linkedin: "https://www.linkedin.com/in/smit-parekh-n/",
+    linkedin: "https://www.linkedin.com/in/smitparekh84/",
     github: "https://github.com/SmitParekh84",
     instagram: "https://www.instagram.com/smit_8_4/",
     x: "https://x.com/smit_parekh84",

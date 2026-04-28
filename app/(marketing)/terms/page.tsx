@@ -12,6 +12,40 @@ export const metadata: Metadata = {
     "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
   alternates: { canonical: `${siteConfig.url}/terms` },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
+    url: `${siteConfig.url}/terms`,
+    title: "Terms of Service - Smit Parekh",
+    description:
+      "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh - Full Stack Developer",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Terms of Service - Smit Parekh",
+    description:
+      "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        width: 800,
+        height: 800,
+        alt: "Smit Parekh - Full Stack Developer",
+      },
+    ],
+  },
 };
 
 export default function TermsPage() {
