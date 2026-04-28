@@ -44,10 +44,33 @@ export function useUpdateBlog() {
   });
 }
 
+export function useDeletedBlogs() {
+  return useQuery({
+    queryKey: queryKeys.blogs.deleted(),
+    queryFn: () => blogsApi.listDeleted().then((r) => r.data),
+  });
+}
+
 export function useDeleteBlog() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => blogsApi.remove(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+  });
+}
+
+export function useRestoreBlog() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => blogsApi.restore(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+  });
+}
+
+export function usePermanentDeleteBlog() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => blogsApi.removePermanent(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
   });
 }

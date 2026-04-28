@@ -35,6 +35,12 @@ export const blogsApi = {
     api.patch<BackendOneResponse<BackendBlog>>(`/blogs/${id}`, data),
   remove: (id: string) =>
     api.del<{ success: boolean; message: string }>(`/blogs/${id}`),
+  listDeleted: () =>
+    api.get<BackendListResponse<BackendBlog>>("/blogs/deleted"),
+  restore: (id: string) =>
+    api.post<BackendOneResponse<BackendBlog>>(`/blogs/${id}/restore`),
+  removePermanent: (id: string) =>
+    api.del<{ success: boolean; message: string }>(`/blogs/${id}/permanent`),
   uploadImage: (file: File) => {
     const form = new FormData();
     form.append("image", file);

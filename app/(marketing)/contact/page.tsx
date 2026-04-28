@@ -58,8 +58,11 @@ export default function ContactPage() {
         description: form.description,
       },
       {
-        onSuccess: () => {
-          toast.success("Message sent!", "I'll get back to you within 24 hours.");
+        onSuccess: (res) => {
+          toast.success(
+            "Message sent!",
+            res?.message || "I'll get back to you within 24 hours.",
+          );
           setSubmitted(true);
           setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
         },

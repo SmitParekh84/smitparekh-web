@@ -1,17 +1,23 @@
 import { toast as sonner } from "sonner";
 
+interface ToastOptions {
+  description?: string;
+  action?: { label: string; onClick: () => void };
+  duration?: number;
+}
+
 export const toast = {
-  success: (message: string, description?: string) =>
-    sonner.success(message, { description }),
+  success: (message: string, descriptionOrOptions?: string | ToastOptions) =>
+    sonner.success(message, normalize(descriptionOrOptions)),
 
-  error: (message: string, description?: string) =>
-    sonner.error(message, { description }),
+  error: (message: string, descriptionOrOptions?: string | ToastOptions) =>
+    sonner.error(message, normalize(descriptionOrOptions)),
 
-  info: (message: string, description?: string) =>
-    sonner.info(message, { description }),
+  info: (message: string, descriptionOrOptions?: string | ToastOptions) =>
+    sonner.info(message, normalize(descriptionOrOptions)),
 
-  warning: (message: string, description?: string) =>
-    sonner.warning(message, { description }),
+  warning: (message: string, descriptionOrOptions?: string | ToastOptions) =>
+    sonner.warning(message, normalize(descriptionOrOptions)),
 
   loading: (message: string) => sonner.loading(message),
 
@@ -19,3 +25,10 @@ export const toast = {
 
   dismiss: (id?: string | number) => sonner.dismiss(id),
 };
+
+function normalize(arg?: string | ToastOptions) {
+  if (!arg) return undefined;
+  if (typeof arg === "string") return { description: arg };
+  return arg;
+}
+

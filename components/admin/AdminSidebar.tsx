@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   FolderKanban,
   FileText,
+  Mail,
   MessageSquare,
   MessagesSquare,
   Wrench,
@@ -15,6 +16,7 @@ import {
   ChevronsUpDown,
   Sparkles,
   UserRound,
+  Users,
 } from "lucide-react";
 import {
   Sidebar,
@@ -41,6 +43,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { clearAdminToken } from "@/lib/api";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
+import { useAdminContactsUnreadCount } from "@/hooks/api/use-admin-contacts";
 import { toast } from "@/lib/toast";
 import { siteConfig } from "@/data/site";
 
@@ -48,9 +51,11 @@ const NAV_MAIN = [
   { title: "Overview", href: "/admin", icon: LayoutDashboard },
   { title: "Projects", href: "/admin/projects", icon: FolderKanban },
   { title: "Blog", href: "/admin/blogs", icon: FileText },
+  { title: "Contacts", href: "/admin/contacts", icon: Mail },
   { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
   { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
   { title: "Tools", href: "/admin/tools", icon: Wrench },
+  { title: "Users", href: "/admin/users", icon: Users },
 ];
 
 const NAV_SECONDARY = [
@@ -67,6 +72,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { session } = useSupabaseSession();
+  const { data: unreadContacts = 0 } = useAdminContactsUnreadCount();
 
   const meta = session?.user?.user_metadata ?? {};
   const displayName: string = meta.full_name ?? meta.name ?? "Smit Parekh";
@@ -113,18 +119,27 @@ export function AdminSidebar() {
           <SidebarGroupLabel>Workspace</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {NAV_MAIN.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    render={<Link href={item.href} />}
-                    tooltip={item.title}
-                    isActive={isActive(pathname, item.href)}
-                  >
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {NAV_MAIN.map((item) => {
+                const showContactsPill =
+                  item.href === "/admin/contacts" && unreadContacts > 0;
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      render={<Link href={item.href} />}
+                      tooltip={item.title}
+                      isActive={isActive(pathname, item.href)}
+                    >
+                      <item.icon />
+                      <span>{item.title}</span>
+                      {showContactsPill && (
+                        <Badge className="ml-auto h-5 min-w-5 rounded-full bg-blue-500 px-1.5 text-[10px] font-semibold text-white hover:bg-blue-500">
+                          {unreadContacts > 99 ? "99+" : unreadContacts}
+                        </Badge>
+                      )}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

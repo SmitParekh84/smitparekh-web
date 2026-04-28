@@ -37,14 +37,27 @@ import {
   useDeleteBlog,
   useUpdateBlog,
   useGenerateBlog,
+  useDeletedBlogs,
+  useRestoreBlog,
+  usePermanentDeleteBlog,
 } from "@/hooks/use-blogs";
+import { TrashTable } from "@/components/admin/TrashTable";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
 export default function AdminBlogsPage() {
   const router = useRouter();
+  const [tab, setTab] = useState<"active" | "trash">("active");
   const { data: blogs, isLoading, isError, refetch } = useBlogs();
+  const {
+    data: deletedBlogs,
+    isLoading: isLoadingTrash,
+    isError: isErrorTrash,
+    refetch: refetchTrash,
+  } = useDeletedBlogs();
   const deleteBlog = useDeleteBlog();
+  const restoreBlog = useRestoreBlog();
+  const permanentDeleteBlog = usePermanentDeleteBlog();
   const updateBlog = useUpdateBlog();
   const generateBlog = useGenerateBlog();
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -107,7 +120,18 @@ export default function AdminBlogsPage() {
     setDeletingId(id);
     try {
       await deleteBlog.mutateAsync(id);
-      toast.success("Post deleted");
+      toast.success("Moved to trash", {
+        action: {
+          label: "Undo",
+          onClick: () => {
+            restoreBlog.mutate(id, {
+              onSuccess: () => toast.success("Post restored"),
+              onError: () =>
+                toast.error("Restore failed", "Could not restore post."),
+            });
+          },
+        },
+      });
       setConfirmId(null);
     } catch {
       toast.error("Delete failed", "Could not delete post.");
@@ -260,6 +284,73 @@ export default function AdminBlogsPage() {
         </div>
       )}
 
+      <div className="flex items-center gap-1 border-b border-border">
+        <button
+          type="button"
+          onClick={() => setTab("active")}
+          className={cn(
+            "relative px-4 py-2 text-sm font-medium transition-colors",
+            tab === "active"
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          Active
+          {tab === "active" && (
+            <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab("trash")}
+          className={cn(
+            "relative px-4 py-2 text-sm font-medium transition-colors",
+            tab === "trash"
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          Trash
+          {deletedBlogs && deletedBlogs.length > 0 && (
+            <span className="ml-1.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-muted px-1 text-[10px] font-semibold text-muted-foreground">
+              {deletedBlogs.length}
+            </span>
+          )}
+          {tab === "trash" && (
+            <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
+          )}
+        </button>
+      </div>
+
+      {tab === "trash" ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Trash</CardTitle>
+            <CardDescription>
+              Soft-deleted posts. Restore or permanently delete.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <TrashTable
+              data={deletedBlogs?.map((b) => ({
+                _id: b._id,
+                title: b.title,
+                imageUrl: b.coverImage,
+                subtitle: b.excerpt,
+                deletedAt: b.deletedAt,
+              }))}
+              isLoading={isLoadingTrash}
+              isError={isErrorTrash}
+              onRefetch={() => refetchTrash()}
+              onRestore={(id) => restoreBlog.mutateAsync(id)}
+              onPermanentDelete={(id) =>
+                permanentDeleteBlog.mutateAsync(id)
+              }
+              noun="post"
+            />
+          </CardContent>
+        </Card>
+      ) : (
       <Card>
         <CardHeader>
           <CardTitle>All posts</CardTitle>
@@ -552,6 +643,7 @@ export default function AdminBlogsPage() {
           )}
         </CardContent>
       </Card>
+      )}
     </div>
   );
 }

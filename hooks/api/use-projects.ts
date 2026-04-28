@@ -61,10 +61,33 @@ export function useReplaceProject() {
   });
 }
 
+export function useDeletedProjects() {
+  return useQuery({
+    queryKey: queryKeys.projects.deleted(),
+    queryFn: () => projectsApi.listDeleted().then((r) => r.data),
+  });
+}
+
 export function useDeleteProject() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => projectsApi.remove(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.projects.all }),
+  });
+}
+
+export function useRestoreProject() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => projectsApi.restore(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.projects.all }),
+  });
+}
+
+export function usePermanentDeleteProject() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => projectsApi.removePermanent(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.projects.all }),
   });
 }
