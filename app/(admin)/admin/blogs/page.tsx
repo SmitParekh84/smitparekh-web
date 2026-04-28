@@ -337,8 +337,7 @@ export default function AdminBlogsPage() {
                 title: b.title,
                 imageUrl: b.coverImage,
                 subtitle: b.excerpt,
-                deletedAt: (b as unknown as { deletedAt?: string | null })
-                  .deletedAt,
+                deletedAt: b.deletedAt,
               }))}
               isLoading={isLoadingTrash}
               isError={isErrorTrash}

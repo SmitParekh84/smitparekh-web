@@ -376,8 +376,7 @@ export default function ProjectsPage() {
                 title: p.title,
                 imageUrl: p.imageUrl,
                 subtitle: p.shortDescription,
-                deletedAt: (p as unknown as { deletedAt?: string | null })
-                  .deletedAt,
+                deletedAt: p.deletedAt,
               }))}
               isLoading={isLoadingTrash}
               isError={isErrorTrash}

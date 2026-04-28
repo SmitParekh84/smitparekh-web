@@ -84,9 +84,7 @@ export function useSetContactRead() {
             data: {
               ...previous.detail.data,
               isRead,
-              readAt: isRead
-                ? new Date().toISOString()
-                : previous.detail.data.readAt,
+              readAt: isRead ? new Date().toISOString() : null,
             },
           },
         );

@@ -91,6 +91,8 @@ export interface BackendProject {
   isVisible: boolean;
   publishDate: string;
   updatedDate: string;
+  isDeleted?: boolean;
+  deletedAt?: string | null;
 }
 
 export type BackendProjectInput = Omit<
@@ -114,6 +116,8 @@ export interface BackendBlog {
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
+  isDeleted?: boolean;
+  deletedAt?: string | null;
 }
 
 export type BackendBlogInput = Omit<
