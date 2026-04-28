@@ -9,6 +9,7 @@ import { ConditionalChat } from "@/components/chat/ConditionalChat";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
+import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/data/site";
 
 const geistMono = Geist_Mono({
@@ -124,6 +125,7 @@ export default function RootLayout({
             <ThemeAwareToaster />
           </ThemeProvider>
         </QueryProvider>
+        <Analytics />
       </body>
     </html>
   );
