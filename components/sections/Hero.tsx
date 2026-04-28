@@ -216,7 +216,28 @@ export default function Hero() {
               visible: { transition: { staggerChildren: 0.05, delayChildren: 1.0 } },
             }}
           >
-            {["React", "Node.js", "TypeScript", "PostgreSQL", "AWS", "Docker", "Next.js", "NestJS"].map(
+            {[
+              "React",
+              "Next.js",
+              "TypeScript",
+              "JavaScript",
+              "Node.js",
+              "NestJS",
+              "Express",
+              "Python",
+              "PostgreSQL",
+              "MongoDB",
+              "Redis",
+              "GraphQL",
+              "REST APIs",
+              "Socket.io",
+              "Tailwind CSS",
+              "AWS",
+              "Docker",
+              "Kubernetes",
+              "Git",
+              "CI/CD",
+            ].map(
               (tech) => (
                 <motion.div
                   key={tech}
