@@ -17,13 +17,30 @@
  * still keeping the match scoped to a single logical run.
  */
 
+// Trim allowed around the inner: non-newline whitespace + optional single newline + non-newline whitespace.
+// (Allowing one newline lets us normalize content where the closing delimiter is on the next line,
+// but blocking double newlines prevents matching across paragraph breaks.)
+const T = "(?:[^\\S\\n]*\\n)?[^\\S\\n]*";
+
 // Strong: ** ... **  and  __ ... __
-const STRONG_DOUBLE_STAR = /\*\*[^\S\n]*([^\s*][^*]*?[^\s*]|[^\s*])[^\S\n]*\*\*/g;
-const STRONG_DOUBLE_UNDERSCORE = /__[^\S\n]*([^\s_][^_]*?[^\s_]|[^\s_])[^\S\n]*__/g;
+const STRONG_DOUBLE_STAR = new RegExp(
+  `\\*\\*${T}([^\\s*][^*]*?[^\\s*]|[^\\s*])${T}\\*\\*`,
+  "g"
+);
+const STRONG_DOUBLE_UNDERSCORE = new RegExp(
+  `__${T}([^\\s_][^_]*?[^\\s_]|[^\\s_])${T}__`,
+  "g"
+);
 
 // Emphasis: single * ... * (avoid matching ** by requiring non-* on either side)
-const EMPHASIS_SINGLE_STAR = /(^|[^*])\*[^\S\n]+([^\s*][^*\n]*?[^\s*]|[^\s*])[^\S\n]*\*(?!\*)/g;
-const EMPHASIS_SINGLE_STAR_TRAIL = /(^|[^*])\*([^\s*][^*\n]*?[^\s*]|[^\s*])[^\S\n]+\*(?!\*)/g;
+const EMPHASIS_SINGLE_STAR = new RegExp(
+  `(^|[^*])\\*[^\\S\\n]+([^\\s*][^*\\n]*?[^\\s*]|[^\\s*])[^\\S\\n]*\\*(?!\\*)`,
+  "g"
+);
+const EMPHASIS_SINGLE_STAR_TRAIL = new RegExp(
+  `(^|[^*])\\*([^\\s*][^*\\n]*?[^\\s*]|[^\\s*])[^\\S\\n]+\\*(?!\\*)`,
+  "g"
+);
 
 export function normalizeMarkdown(input: string): string {
   if (!input) return input;
