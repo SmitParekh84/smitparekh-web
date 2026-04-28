@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
+import { usePortfolioFilter } from "@/lib/stores";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -221,7 +222,7 @@ const PROCESS_STEPS = [
 ];
 
 export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const { selectedCategory, setSelectedCategory } = usePortfolioFilter();
   const { data: projects, isLoading, isError } = useProjects();
 
   const cards = useMemo<UnifiedCard[]>(() => {
