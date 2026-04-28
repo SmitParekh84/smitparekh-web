@@ -23,7 +23,7 @@ export const homeData: HomeData = {
       platform: "email",
     },
     {
-      href: "https://www.linkedin.com/in/smit-parekh-n/",
+      href: "https://www.linkedin.com/in/smitparekh84/",
       label: "LinkedIn profile",
       platform: "linkedin",
     },

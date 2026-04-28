@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Smit Parekh - Full Stack Developer & Free Web Tools",
+    default: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
     template: `%s | Smit Parekh`,
   },
   description: siteConfig.description,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "Smit Parekh - Full Stack Developer & Free Web Tools",
+    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Smit Parekh - Full Stack Developer & Free Web Tools",
+    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
     description: siteConfig.description,
     images: [
       {
