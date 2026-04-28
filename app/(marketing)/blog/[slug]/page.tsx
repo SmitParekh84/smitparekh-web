@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
+import { normalizeMarkdown } from "@/lib/markdown";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -250,7 +251,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="page-container max-w-3xl">
           <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-headings:font-bold prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-code:text-blue-500 prose-code:before:content-none prose-code:after:content-none prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-card prose-pre:border prose-pre:border-border prose-img:rounded-xl prose-blockquote:border-l-blue-500 prose-blockquote:text-foreground">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {blog.content}
+              {normalizeMarkdown(blog.content)}
             </ReactMarkdown>
           </div>
 
