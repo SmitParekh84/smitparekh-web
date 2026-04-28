@@ -2,7 +2,7 @@
 
 import { PackageCheck, Layers, MessageSquare } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
-import { FadeInSection, StaggerGrid, StaggerItem, motion } from "@/components/ui/motion";
+import { FadeInSection, StaggerGrid, StaggerItem } from "@/components/ui/motion";
 
 const values = [
   {
@@ -30,6 +30,10 @@ const techStack = [
   "PostgreSQL", "MongoDB", "AWS", "Docker", "Redis",
   "Socket.io", "Tailwind CSS", "GraphQL", "REST APIs",
 ];
+
+// Split into two rows for opposite-direction marquees
+const row1 = techStack.slice(0, Math.ceil(techStack.length / 2));
+const row2 = techStack.slice(Math.ceil(techStack.length / 2));
 
 export default function Skills() {
   return (
@@ -65,29 +69,45 @@ export default function Skills() {
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-5">
             Technologies I Work With
           </p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-2"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.04, delayChildren: 0.1 } },
+
+          {/* Marquee wrapper — overflow hidden + edge fade masks */}
+          <div
+            className="relative overflow-hidden"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             }}
           >
-            {techStack.map((tech) => (
-              <motion.span
-                key={tech}
-                className="px-3 py-1.5 rounded-full border border-border bg-card text-sm text-foreground/80 font-medium"
-                variants={{
-                  hidden: { opacity: 0, scale: 0.85 },
-                  visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-                }}
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </motion.div>
+            {/* Row 1 — scrolls left */}
+            <div className="flex mb-3">
+              <div className="flex shrink-0 gap-3 animate-marquee hover:[animation-play-state:paused]">
+                {[...row1, ...row1].map((tech, i) => (
+                  <span
+                    key={`r1-${i}`}
+                    className="whitespace-nowrap px-4 py-1.5 rounded-full border border-border bg-card text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2 — scrolls right */}
+            <div className="flex">
+              <div className="flex shrink-0 gap-3 animate-marquee-reverse hover:[animation-play-state:paused]">
+                {[...row2, ...row2].map((tech, i) => (
+                  <span
+                    key={`r2-${i}`}
+                    className="whitespace-nowrap px-4 py-1.5 rounded-full border border-border bg-card text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </FadeInSection>
       </div>
     </section>
