@@ -98,9 +98,21 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: siteConfig.name,
+  alternateName: ["smitparekh.co.in", "Smit Parekh Portfolio"],
   url: siteConfig.url,
   description: siteConfig.description,
-  author: { "@type": "Person", name: "Smit Parekh" },
+  inLanguage: "en",
+  author: {
+    "@type": "Person",
+    name: "Smit Parekh",
+    url: siteConfig.url,
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Smit Parekh",
+    url: siteConfig.url,
+    image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  },
 };
 
 const faqSchema = {
