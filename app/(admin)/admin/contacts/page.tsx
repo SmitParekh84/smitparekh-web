@@ -1,0 +1,660 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import {
+  AlertTriangle,
+  Copy,
+  Inbox,
+  Loader2,
+  Mail,
+  MailOpen,
+  RotateCcw,
+  Trash2,
+  X,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  useAdminContacts,
+  useAdminContact,
+  useDeletedAdminContacts,
+  useDeleteAdminContact,
+  useRestoreAdminContact,
+  useSetContactRead,
+} from "@/hooks/api/use-admin-contacts";
+import { toast } from "@/lib/toast";
+import { cn } from "@/lib/utils";
+import type { AdminContact } from "@/types";
+
+type Tab = "inbox" | "trash";
+
+export default function AdminContactsPage() {
+  const [tab, setTab] = useState<Tab>("inbox");
+  const [unreadOnly, setUnreadOnly] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const inboxQuery = useAdminContacts({ limit: 50, unread: unreadOnly });
+  const trashQuery = useDeletedAdminContacts();
+
+  const setRead = useSetContactRead();
+  const deleteContact = useDeleteAdminContact();
+  const restoreContact = useRestoreAdminContact();
+
+  const inbox = inboxQuery.data?.data ?? [];
+  const total = inboxQuery.data?.total ?? 0;
+  const unreadCount = inboxQuery.data?.unreadCount ?? 0;
+  const deleted = trashQuery.data ?? [];
+
+  // Auto-mark read when opening unread contact
+  const detailQuery = useAdminContact(openId);
+  useEffect(() => {
+    const c = detailQuery.data;
+    if (!c) return;
+    if (!c.isDeleted && !c.isRead) {
+      setRead.mutate({ id: c._id, isRead: true });
+    }
+    // Only fire when the opened id changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detailQuery.data?._id]);
+
+  function closeDetail() {
+    setOpenId(null);
+  }
+
+  async function handleSoftDelete(id: string) {
+    try {
+      await deleteContact.mutateAsync(id);
+      toast.success("Moved to trash");
+      if (openId === id) closeDetail();
+    } catch {
+      toast.error("Delete failed", "Could not move contact to trash.");
+    }
+  }
+
+  async function handleRestore(id: string) {
+    try {
+      await restoreContact.mutateAsync(id);
+      toast.success("Contact restored");
+    } catch {
+      toast.error("Restore failed", "Could not restore contact.");
+    }
+  }
+
+  function handleToggleRead(c: AdminContact) {
+    setRead.mutate({ id: c._id, isRead: !c.isRead });
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 p-[1px]">
+        <div className="rounded-2xl bg-card px-5 py-5 sm:px-6 sm:py-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 p-2 text-white shadow-sm">
+                <Inbox className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  Contacts
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Submissions from the public contact form.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:self-center">
+              <Badge variant="secondary" className="gap-1.5">
+                <Mail className="h-3 w-3" />
+                {total} total
+              </Badge>
+              {unreadCount > 0 && (
+                <Badge className="gap-1.5 bg-blue-500 text-white hover:bg-blue-500">
+                  {unreadCount} unread
+                </Badge>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3 border-b border-border">
+        <TabButton
+          active={tab === "inbox"}
+          onClick={() => setTab("inbox")}
+          label="Inbox"
+        />
+        <TabButton
+          active={tab === "trash"}
+          onClick={() => setTab("trash")}
+          label="Trash"
+          count={deleted.length}
+        />
+        {tab === "inbox" && (
+          <button
+            type="button"
+            onClick={() => setUnreadOnly((v) => !v)}
+            className={cn(
+              "ml-auto rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+              unreadOnly
+                ? "border-blue-500 bg-blue-500/10 text-blue-500"
+                : "border-border bg-card text-muted-foreground hover:text-foreground",
+            )}
+          >
+            Unread only
+          </button>
+        )}
+      </div>
+
+      {tab === "inbox" ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Inbox</CardTitle>
+            <CardDescription>
+              {inboxQuery.isLoading
+                ? "Loading..."
+                : `${inbox.length} of ${total} shown`}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <ContactList
+              isLoading={inboxQuery.isLoading}
+              isError={inboxQuery.isError}
+              onRefetch={() => inboxQuery.refetch()}
+              items={inbox}
+              onOpen={(id) => setOpenId(id)}
+              emptyText={
+                unreadOnly ? "No unread messages." : "No messages yet."
+              }
+            />
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Trash</CardTitle>
+            <CardDescription>
+              Soft-deleted submissions. Restore to send back to the inbox.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <DeletedList
+              isLoading={trashQuery.isLoading}
+              isError={trashQuery.isError}
+              onRefetch={() => trashQuery.refetch()}
+              items={deleted}
+              onRestore={handleRestore}
+              restoringId={
+                restoreContact.isPending
+                  ? (restoreContact.variables as string | undefined) ?? null
+                  : null
+              }
+            />
+          </CardContent>
+        </Card>
+      )}
+
+      {openId && (
+        <ContactDetailDrawer
+          id={openId}
+          onClose={closeDetail}
+          onToggleRead={handleToggleRead}
+          onSoftDelete={handleSoftDelete}
+        />
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------- subviews -------------------------------- */
+
+function TabButton({
+  active,
+  onClick,
+  label,
+  count,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+  count?: number;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "relative px-4 py-2 text-sm font-medium transition-colors",
+        active
+          ? "text-foreground"
+          : "text-muted-foreground hover:text-foreground",
+      )}
+    >
+      {label}
+      {typeof count === "number" && count > 0 && (
+        <span className="ml-1.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-muted px-1 text-[10px] font-semibold text-muted-foreground">
+          {count}
+        </span>
+      )}
+      {active && (
+        <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
+      )}
+    </button>
+  );
+}
+
+function ContactList({
+  items,
+  isLoading,
+  isError,
+  onRefetch,
+  onOpen,
+  emptyText,
+}: {
+  items: AdminContact[];
+  isLoading: boolean;
+  isError: boolean;
+  onRefetch: () => void;
+  onOpen: (id: string) => void;
+  emptyText: string;
+}) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="px-6 py-12 text-center">
+        <p className="mb-3 text-sm text-muted-foreground">
+          Could not load contacts. Is the backend running?
+        </p>
+        <Button variant="outline" size="sm" onClick={onRefetch}>
+          Retry
+        </Button>
+      </div>
+    );
+  }
+  if (items.length === 0) {
+    return (
+      <p className="py-12 text-center text-sm text-muted-foreground">
+        {emptyText}
+      </p>
+    );
+  }
+  return (
+    <ul className="divide-y divide-border">
+      {items.map((c) => (
+        <li key={c._id}>
+          <button
+            type="button"
+            onClick={() => onOpen(c._id)}
+            className={cn(
+              "flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-muted/50 sm:px-6",
+              !c.isRead && "bg-blue-500/[0.04]",
+            )}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-2">
+                {!c.isRead && (
+                  <span
+                    aria-label="Unread"
+                    className="size-2 shrink-0 rounded-full bg-blue-500"
+                  />
+                )}
+                <span
+                  className={cn(
+                    "truncate",
+                    c.isRead ? "font-medium" : "font-semibold",
+                  )}
+                >
+                  {c.name}
+                </span>
+                <span className="hidden truncate text-xs text-muted-foreground sm:inline">
+                  {c.email}
+                </span>
+                {!c.emailSent && (
+                  <Badge
+                    variant="secondary"
+                    className="shrink-0 gap-1 border-amber-500/30 bg-amber-500/10 text-amber-600 hover:bg-amber-500/10"
+                  >
+                    <AlertTriangle className="h-3 w-3" />
+                    Email failed
+                  </Badge>
+                )}
+              </div>
+              <time className="shrink-0 text-xs text-muted-foreground">
+                {formatRelative(c.createdAt)}
+              </time>
+            </div>
+            <p className="line-clamp-1 pl-4 text-sm text-foreground/90">
+              <span className="font-medium">{c.subject}</span>
+              <span className="mx-1.5 text-muted-foreground">&middot;</span>
+              <span className="text-muted-foreground">{c.description}</span>
+            </p>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function DeletedList({
+  items,
+  isLoading,
+  isError,
+  onRefetch,
+  onRestore,
+  restoringId,
+}: {
+  items: AdminContact[];
+  isLoading: boolean;
+  isError: boolean;
+  onRefetch: () => void;
+  onRestore: (id: string) => Promise<void>;
+  restoringId: string | null;
+}) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="px-6 py-12 text-center">
+        <p className="mb-3 text-sm text-muted-foreground">
+          Could not load trash.
+        </p>
+        <Button variant="outline" size="sm" onClick={onRefetch}>
+          Retry
+        </Button>
+      </div>
+    );
+  }
+  if (items.length === 0) {
+    return (
+      <p className="py-12 text-center text-sm text-muted-foreground">
+        Trash is empty.
+      </p>
+    );
+  }
+  return (
+    <ul className="divide-y divide-border">
+      {items.map((c) => (
+        <li
+          key={c._id}
+          className="flex items-start justify-between gap-3 px-4 py-3 sm:px-6"
+        >
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="truncate font-medium">{c.name}</span>
+              <span className="truncate text-xs text-muted-foreground">
+                {c.email}
+              </span>
+              {c.deletedAt && (
+                <span className="text-xs text-muted-foreground">
+                  &middot; deleted {formatRelative(c.deletedAt)}
+                </span>
+              )}
+            </div>
+            <p className="line-clamp-1 text-sm text-muted-foreground">
+              <span className="font-medium text-foreground/80">
+                {c.subject}
+              </span>
+              <span className="mx-1.5">&middot;</span>
+              {c.description}
+            </p>
+          </div>
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            className="h-7 gap-1 text-xs"
+            disabled={restoringId === c._id}
+            onClick={() => onRestore(c._id)}
+          >
+            {restoringId === c._id ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              <RotateCcw className="h-3 w-3" />
+            )}
+            Restore
+          </Button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ContactDetailDrawer({
+  id,
+  onClose,
+  onToggleRead,
+  onSoftDelete,
+}: {
+  id: string;
+  onClose: () => void;
+  onToggleRead: (c: AdminContact) => void;
+  onSoftDelete: (id: string) => Promise<void>;
+}) {
+  const { data: contact, isLoading, isError, refetch } = useAdminContact(id);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  const replyHref = useMemo(() => {
+    if (!contact) return "#";
+    const subject = encodeURIComponent(`Re: ${contact.subject}`);
+    return `mailto:${contact.email}?subject=${subject}`;
+  }, [contact]);
+
+  async function handleCopyEmail() {
+    if (!contact) return;
+    try {
+      await navigator.clipboard.writeText(contact.email);
+      toast.success("Email copied");
+    } catch {
+      toast.error("Could not copy email");
+    }
+  }
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <aside
+        className="flex h-full w-full max-w-xl flex-col border-l border-border bg-card shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 className="text-base font-semibold">Message</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="rounded-lg p-1 text-muted-foreground hover:bg-muted"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-5 py-5">
+          {isLoading && (
+            <div className="flex items-center justify-center py-16">
+              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+            </div>
+          )}
+          {isError && (
+            <div className="py-12 text-center">
+              <p className="mb-3 text-sm text-muted-foreground">
+                Could not load contact.
+              </p>
+              <Button variant="outline" size="sm" onClick={() => refetch()}>
+                Retry
+              </Button>
+            </div>
+          )}
+          {contact && (
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                  From
+                </p>
+                <p className="mt-1 font-medium">{contact.name}</p>
+                <div className="mt-1 flex flex-wrap items-center gap-2">
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="text-sm text-blue-500 hover:underline"
+                  >
+                    {contact.email}
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="inline-flex items-center gap-1 rounded-md border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    <Copy className="h-3 w-3" />
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                  Subject
+                </p>
+                <p className="mt-1 font-medium">{contact.subject}</p>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                  Message
+                </p>
+                <p className="mt-1 whitespace-pre-line text-sm text-foreground/90">
+                  {contact.description}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 rounded-xl border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
+                <div>
+                  <p className="font-medium text-foreground">Received</p>
+                  <p>{new Date(contact.createdAt).toLocaleString()}</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Status</p>
+                  <p>
+                    {contact.isRead
+                      ? `Read${contact.readAt ? ` ${formatRelative(contact.readAt)}` : ""}`
+                      : "Unread"}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Notification email</p>
+                  <p
+                    className={cn(
+                      contact.emailSent
+                        ? "text-emerald-600"
+                        : "text-amber-600",
+                    )}
+                  >
+                    {contact.emailSent ? "Delivered" : "Failed"}
+                  </p>
+                  {!contact.emailSent && contact.emailError && (
+                    <p className="mt-0.5 text-[11px]">{contact.emailError}</p>
+                  )}
+                </div>
+                {contact.ipAddress && (
+                  <div>
+                    <p className="font-medium text-foreground">IP</p>
+                    <p className="font-mono">{contact.ipAddress}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {contact && (
+          <div className="flex flex-wrap items-center gap-2 border-t border-border bg-muted/20 px-5 py-3">
+            <a
+              href={replyHref}
+              className="inline-flex items-center gap-1.5 rounded-md bg-blue-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-600"
+            >
+              <Mail className="h-3.5 w-3.5" />
+              Reply
+            </a>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="h-8 gap-1.5 text-xs"
+              onClick={() => onToggleRead(contact)}
+            >
+              {contact.isRead ? (
+                <>
+                  <Mail className="h-3.5 w-3.5" />
+                  Mark unread
+                </>
+              ) : (
+                <>
+                  <MailOpen className="h-3.5 w-3.5" />
+                  Mark read
+                </>
+              )}
+            </Button>
+            <div className="ml-auto">
+              <Button
+                type="button"
+                size="sm"
+                variant="ghost"
+                className="h-8 gap-1.5 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive"
+                onClick={() => onSoftDelete(contact._id)}
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+                Delete
+              </Button>
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
+  );
+}
+
+/* -------------------------------- helpers -------------------------------- */
+
+function formatRelative(iso: string | Date): string {
+  const date = typeof iso === "string" ? new Date(iso) : iso;
+  const diffMs = Date.now() - date.getTime();
+  const sec = Math.round(diffMs / 1000);
+  if (sec < 60) return "just now";
+  const min = Math.round(sec / 60);
+  if (min < 60) return `${min}m ago`;
+  const hr = Math.round(min / 60);
+  if (hr < 24) return `${hr}h ago`;
+  const day = Math.round(hr / 24);
+  if (day < 7) return `${day}d ago`;
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}

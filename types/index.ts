@@ -132,6 +132,50 @@ export interface BackendOneResponse<T> {
   data: T;
 }
 
+/* Admin: Contact submissions */
+export interface AdminContact {
+  _id: string;
+  name: string;
+  email: string;
+  subject: string;
+  description: string;
+  isRead: boolean;
+  readAt?: string | null;
+  emailSent: boolean;
+  emailError?: string | null;
+  ipAddress?: string;
+  userAgent?: string;
+  isDeleted: boolean;
+  deletedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AdminContactsListResponse {
+  success: boolean;
+  page: number;
+  limit: number;
+  total: number;
+  unreadCount: number;
+  data: AdminContact[];
+}
+
+/* Admin: Users */
+export interface AdminUser {
+  _id: string;
+  name?: string;
+  email: string;
+  role: string;
+  provider?: string;
+  avatarUrl?: string;
+  lastLoginAt?: string | null;
+  loginCount?: number;
+  isDeleted?: boolean;
+  deletedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AuthUser {
   id: string;
   email: string;

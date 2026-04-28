@@ -37,14 +37,27 @@ import {
   useDeleteProject,
   useUpdateProject,
   useGenerateProject,
+  useDeletedProjects,
+  useRestoreProject,
+  usePermanentDeleteProject,
 } from "@/hooks/use-projects";
+import { TrashTable } from "@/components/admin/TrashTable";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
 export default function ProjectsPage() {
   const router = useRouter();
+  const [tab, setTab] = useState<"active" | "trash">("active");
   const { data: projects, isLoading, isError, refetch } = useProjects();
+  const {
+    data: deletedProjects,
+    isLoading: isLoadingTrash,
+    isError: isErrorTrash,
+    refetch: refetchTrash,
+  } = useDeletedProjects();
   const deleteProject = useDeleteProject();
+  const restoreProject = useRestoreProject();
+  const permanentDeleteProject = usePermanentDeleteProject();
   const updateProject = useUpdateProject();
   const generateProject = useGenerateProject();
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -108,7 +121,18 @@ export default function ProjectsPage() {
     setDeletingId(id);
     try {
       await deleteProject.mutateAsync(id);
-      toast.success("Project deleted");
+      toast.success("Moved to trash", {
+        action: {
+          label: "Undo",
+          onClick: () => {
+            restoreProject.mutate(id, {
+              onSuccess: () => toast.success("Project restored"),
+              onError: () =>
+                toast.error("Restore failed", "Could not restore project."),
+            });
+          },
+        },
+      });
       setConfirmId(null);
     } catch {
       toast.error("Delete failed", "Could not delete project.");
@@ -299,7 +323,75 @@ export default function ProjectsPage() {
         </div>
       )}
 
-      <Card>
+      <div className="flex items-center gap-1 border-b border-border">
+        <button
+          type="button"
+          onClick={() => setTab("active")}
+          className={cn(
+            "relative px-4 py-2 text-sm font-medium transition-colors",
+            tab === "active"
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          Active
+          {tab === "active" && (
+            <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab("trash")}
+          className={cn(
+            "relative px-4 py-2 text-sm font-medium transition-colors",
+            tab === "trash"
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          Trash
+          {deletedProjects && deletedProjects.length > 0 && (
+            <span className="ml-1.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-muted px-1 text-[10px] font-semibold text-muted-foreground">
+              {deletedProjects.length}
+            </span>
+          )}
+          {tab === "trash" && (
+            <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
+          )}
+        </button>
+      </div>
+
+      {tab === "trash" ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Trash</CardTitle>
+            <CardDescription>
+              Soft-deleted projects. Restore or permanently delete.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <TrashTable
+              data={deletedProjects?.map((p) => ({
+                _id: p._id,
+                title: p.title,
+                imageUrl: p.imageUrl,
+                subtitle: p.shortDescription,
+                deletedAt: (p as unknown as { deletedAt?: string | null })
+                  .deletedAt,
+              }))}
+              isLoading={isLoadingTrash}
+              isError={isErrorTrash}
+              onRefetch={() => refetchTrash()}
+              onRestore={(id) => restoreProject.mutateAsync(id)}
+              onPermanentDelete={(id) =>
+                permanentDeleteProject.mutateAsync(id)
+              }
+              noun="project"
+            />
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
         <CardHeader>
           <CardTitle>All projects</CardTitle>
           <CardDescription>
@@ -593,6 +685,7 @@ export default function ProjectsPage() {
           )}
         </CardContent>
       </Card>
+      )}
     </div>
   );
 }

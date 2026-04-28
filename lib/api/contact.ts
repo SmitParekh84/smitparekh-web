@@ -10,6 +10,13 @@ export interface ContactPayload {
 export interface ContactResponse {
   success?: boolean;
   message: string;
+  data?: {
+    id: string;
+    name: string;
+    email: string;
+    subject: string;
+    createdAt: string;
+  };
 }
 
 export interface CvDownloadPayload {

@@ -46,3 +46,8 @@ export {
 export { qrCodeApi, type QrCodePayload, type QrCodeResponse } from "./qr-code";
 export { removeBgApi, type CompressOptions } from "./remove-bg";
 export { resumeApi, type ResumeAnalysisResponse } from "./resume";
+export {
+  adminContactsApi,
+  type AdminContactsListParams,
+} from "./admin-contacts";
+export { adminUsersApi } from "./admin-users";

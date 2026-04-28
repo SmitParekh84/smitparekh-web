@@ -30,6 +30,12 @@ export const projectsApi = {
     api.patch<BackendOneResponse<BackendProject>>(`/projects/${id}`, data),
   remove: (id: string) =>
     api.del<{ success: boolean; message: string }>(`/projects/${id}`),
+  listDeleted: () =>
+    api.get<BackendListResponse<BackendProject>>("/projects/deleted"),
+  restore: (id: string) =>
+    api.post<BackendOneResponse<BackendProject>>(`/projects/${id}/restore`),
+  removePermanent: (id: string) =>
+    api.del<{ success: boolean; message: string }>(`/projects/${id}/permanent`),
   uploadImage: (file: File) => {
     const form = new FormData();
     form.append("image", file);
