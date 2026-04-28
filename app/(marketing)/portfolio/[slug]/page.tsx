@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -453,16 +454,38 @@ export default async function CaseStudyPage({ params }: Props) {
                 >
                   <div
                     className={cn(
-                      "h-28 bg-gradient-to-br flex items-end p-4",
-                      p.gradient
+                      "relative h-28 overflow-hidden",
+                      !p.imageUrl && "bg-gradient-to-br flex items-end p-4",
+                      !p.imageUrl && p.gradient
                     )}
                   >
-                    <Badge
-                      variant="secondary"
-                      className="bg-white/20 text-white border-white/30 backdrop-blur-sm text-xs"
-                    >
-                      {p.category}
-                    </Badge>
+                    {p.imageUrl ? (
+                      <>
+                        <Image
+                          src={p.imageUrl}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        <div className="absolute bottom-3 left-3">
+                          <Badge
+                            variant="secondary"
+                            className="bg-black/60 text-white border-white/20 backdrop-blur-sm text-xs"
+                          >
+                            {p.category}
+                          </Badge>
+                        </div>
+                      </>
+                    ) : (
+                      <Badge
+                        variant="secondary"
+                        className="bg-white/20 text-white border-white/30 backdrop-blur-sm text-xs"
+                      >
+                        {p.category}
+                      </Badge>
+                    )}
                   </div>
                   <div className="p-5 flex flex-col gap-2 flex-1">
                     <h4 className="font-bold leading-snug">{p.title}</h4>
