@@ -5,6 +5,7 @@ import {
   ConditionalNavbar,
   ConditionalFooter,
 } from "@/components/layout/ConditionalNav";
+import { ConditionalChat } from "@/components/chat/ConditionalChat";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
@@ -119,6 +120,7 @@ export default function RootLayout({
             <ConditionalNavbar />
             <main className="flex-1">{children}</main>
             <ConditionalFooter />
+            <ConditionalChat />
             <ThemeAwareToaster />
           </ThemeProvider>
         </QueryProvider>

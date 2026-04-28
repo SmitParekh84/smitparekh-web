@@ -5,3 +5,4 @@ export * from "./use-contact";
 export * from "./use-feedback";
 export * from "./use-meta";
 export * from "./use-tools";
+export * from "./use-chat";

@@ -18,6 +18,15 @@ export {
 } from "./contact";
 export { feedbackApi, type FeedbackPayload, type FeedbackEntry } from "./feedback";
 export {
+  sendChatMessage,
+  listChatSessions,
+  getChatSession,
+  type ChatReplySource,
+  type ChatSessionListItem,
+  type ChatSessionDetail,
+  type ChatSessionMessage,
+} from "./chat";
+export {
   generatePostApi,
   type GeneratePostPayload,
   type GeneratePostResponse,

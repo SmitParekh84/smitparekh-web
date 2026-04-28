@@ -16,6 +16,12 @@ export const queryKeys = {
     all: ["feedback"] as const,
     list: () => [...queryKeys.feedback.all, "list"] as const,
   },
+  chat: {
+    all: ["chat"] as const,
+    sessions: (params?: { page?: number; limit?: number; search?: string }) =>
+      [...queryKeys.chat.all, "sessions", params ?? {}] as const,
+    session: (id: string) => [...queryKeys.chat.all, "session", id] as const,
+  },
   meta: {
     all: ["meta"] as const,
     tags: (url: string) => [...queryKeys.meta.all, "tags", url] as const,

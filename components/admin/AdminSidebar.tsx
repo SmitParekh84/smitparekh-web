@@ -7,6 +7,7 @@ import {
   FolderKanban,
   FileText,
   MessageSquare,
+  MessagesSquare,
   Wrench,
   Settings2,
   ExternalLink,
@@ -48,6 +49,7 @@ const NAV_MAIN = [
   { title: "Projects", href: "/admin/projects", icon: FolderKanban },
   { title: "Blog", href: "/admin/blogs", icon: FileText },
   { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
+  { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
   { title: "Tools", href: "/admin/tools", icon: Wrench },
 ];
 
