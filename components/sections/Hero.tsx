@@ -217,25 +217,44 @@ export default function Hero() {
             }}
           >
             {[
+              // Frontend
               "React",
               "Next.js",
               "TypeScript",
-              "JavaScript",
+              "Tailwind CSS",
+              // Backend
               "Node.js",
               "NestJS",
               "Express",
               "Python",
+              "GraphQL",
+              "REST APIs",
+              "Microservices",
+              "Event-Driven Architecture",
+              // Data
               "PostgreSQL",
               "MongoDB",
               "Redis",
-              "GraphQL",
-              "REST APIs",
-              "Socket.io",
-              "Tailwind CSS",
-              "AWS",
+              "Elasticsearch",
+              "Kafka",
+              "RabbitMQ",
+              // AWS
+              "AWS EC2",
+              "AWS S3",
+              "AWS Lambda",
+              "AWS RDS",
+              "AWS ECS",
+              "AWS CloudFront",
+              "AWS API Gateway",
+              "AWS SQS",
+              "AWS SNS",
+              "AWS CloudWatch",
+              "AWS IAM",
+              // DevOps
               "Docker",
               "Kubernetes",
-              "Git",
+              "Terraform",
+              "GitHub Actions",
               "CI/CD",
             ].map(
               (tech) => (
