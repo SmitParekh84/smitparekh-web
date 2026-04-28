@@ -245,7 +245,7 @@ export function BlogForm({
             <textarea
               autoFocus
               rows={4}
-              maxLength={600}
+              maxLength={4000}
               value={aiPrompt}
               onChange={(e) => setAiPrompt(e.target.value)}
               disabled={generateBlog.isPending}
@@ -253,7 +253,7 @@ export function BlogForm({
               className={cn(inputClass, "resize-y")}
             />
             <p className="mt-1 text-right text-xs text-muted-foreground">
-              {aiPrompt.length}/600
+              {aiPrompt.length}/4000
             </p>
 
             {form.title && (

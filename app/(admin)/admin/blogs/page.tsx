@@ -239,7 +239,7 @@ export default function AdminBlogsPage() {
             <textarea
               autoFocus
               rows={4}
-              maxLength={600}
+              maxLength={4000}
               value={aiPrompt}
               onChange={(e) => setAiPrompt(e.target.value)}
               disabled={generateBlog.isPending}
@@ -247,7 +247,7 @@ export default function AdminBlogsPage() {
               className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
             />
             <p className="mt-1 text-right text-xs text-muted-foreground">
-              {aiPrompt.length}/600
+              {aiPrompt.length}/4000
             </p>
 
             <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
