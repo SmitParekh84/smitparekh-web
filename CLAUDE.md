@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# Smit Parekh Portfolio — Next.js 16 Frontend
+# Smit Parekh Portfolio - Next.js 16 Frontend
 
 ## What This Is
 
@@ -11,22 +11,22 @@ Built with Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS v4, 
 
 | Package               | Version  | Notes                                         |
 | --------------------- | -------- | --------------------------------------------- |
-| next                  | 16.2.4   | App Router only — no Pages Router             |
+| next                  | 16.2.4   | App Router only - no Pages Router             |
 | react / react-dom     | 19.2.4   | Server Components by default                  |
 | typescript            | ^5       | `"strict": true` in tsconfig                  |
-| tailwindcss           | ^4       | Config-less — CSS-only setup                  |
+| tailwindcss           | ^4       | Config-less - CSS-only setup                  |
 | @base-ui/react        | ^1.4.1   | Powers shadcn `base-nova` style               |
-| @tanstack/react-query | ^5       | Server state — all API calls go through this  |
+| @tanstack/react-query | ^5       | Server state - all API calls go through this  |
 | sonner                | ^2.0.7   | Toast notifications                           |
 | next-themes           | ^0.4.6   | Class-based dark/light mode                   |
-| lucide-react          | ^1.11.0  | Icons — brand icons removed in v1             |
-| pnpm                  | any      | ONLY package manager — never npm/yarn         |
+| lucide-react          | ^1.11.0  | Icons - brand icons removed in v1             |
+| pnpm                  | any      | ONLY package manager - never npm/yarn         |
 
 ---
 
-## Critical Patterns — Read Before Touching Anything
+## Critical Patterns - Read Before Touching Anything
 
-### 1. shadcn `base-nova` — No `asChild`
+### 1. shadcn `base-nova` - No `asChild`
 Uses `@base-ui/react/button` which has **no `asChild` prop**. For link-styled buttons:
 
 ```tsx
@@ -35,15 +35,15 @@ Uses `@base-ui/react/button` which has **no `asChild` prop**. For link-styled bu
   Contact
 </Link>
 
-// WRONG — throws at runtime
+// WRONG - throws at runtime
 <Button asChild><Link href="/contact">Contact</Link></Button>
 ```
 
-### 2. Tailwind v4 — CSS-only config
+### 2. Tailwind v4 - CSS-only config
 No `tailwind.config.js`. Tokens live in `app/globals.css` inside `@theme inline`.
 Never create `tailwind.config.js` or use `theme.extend`.
 
-### 3. Lucide v1 — Brand icons removed
+### 3. Lucide v1 - Brand icons removed
 `lucide-react@1.x` removed `Github`, `Linkedin`, `Instagram`.
 Use `components/icons/SocialIcons.tsx` which has hand-written inline SVGs.
 
@@ -66,7 +66,7 @@ Default is Server. Only add `"use client"` when you need:
 
 Two-layer architecture:
 
-**Layer 1 — Primitive palette** (`@theme inline`, static values)
+**Layer 1 - Primitive palette** (`@theme inline`, static values)
 These generate Tailwind utilities (`bg-blue-500`, `text-cyan-400`, etc.):
 
 | Token           | Hex       | Use                         |
@@ -76,9 +76,9 @@ These generate Tailwind utilities (`bg-blue-500`, `text-cyan-400`, etc.):
 | `cyan-400`      | `#00C5EC` | Accent, ring, gradient end  |
 | `sky-500`       | `#2196F3` | Gradient midpoint           |
 | `cream-100`     | `#FFFDE7` | Light mode warm surface     |
-| `neutral-0–950` | —         | Blue-tinted surface + text  |
+| `neutral-0–950` | -         | Blue-tinted surface + text  |
 
-**Layer 2 — Semantic aliases** (`:root` / `.dark`, reference primitives)
+**Layer 2 - Semantic aliases** (`:root` / `.dark`, reference primitives)
 These are what shadcn components consume:
 `--primary`, `--background`, `--foreground`, `--muted`, `--accent`, `--ring`, etc.
 
@@ -215,7 +215,7 @@ Axios-based, split per resource. Returns `res.data` directly so calls feel like 
 // Preferred: typed hooks
 import { useProjects, useSubmitContact } from "@/hooks/api";
 
-// Escape hatch: direct API call (rare — wrap in a hook instead)
+// Escape hatch: direct API call (rare - wrap in a hook instead)
 import { api, ApiError, projectsApi } from "@/lib/api";
 
 const projects = await projectsApi.list();              // typed module
@@ -223,13 +223,13 @@ const tool     = await api.get<Tool>("/tools/:slug");   // raw axios call
 ```
 
 **Resource modules** (`lib/api/<resource>.ts`):
-- `authApi` — `login`, `getAdminToken`, `setAdminToken`, `clearAdminToken`
-- `projectsApi` — `list`, `byId`, `byTitle`, `create`, `replace`, `update`, `remove`, `uploadImage`
-- `contactApi` — `submit`, `cvDownload`
-- `feedbackApi` — `submit`, `list`
-- `metaApi` — `getTags`, `analyzeSeo`, `listSeoReports`
-- `qrCodeApi` — `generate`, `generateImage` (Blob)
-- `removeBgApi` — `removeBackground`, `compressImage`, `compressBulk`
+- `authApi` - `login`, `getAdminToken`, `setAdminToken`, `clearAdminToken`
+- `projectsApi` - `list`, `byId`, `byTitle`, `create`, `replace`, `update`, `remove`, `uploadImage`
+- `contactApi` - `submit`, `cvDownload`
+- `feedbackApi` - `submit`, `list`
+- `metaApi` - `getTags`, `analyzeSeo`, `listSeoReports`
+- `qrCodeApi` - `generate`, `generateImage` (Blob)
+- `removeBgApi` - `removeBackground`, `compressImage`, `compressBulk`
 - `resumeApi`, `mediaApi`, `generatePostApi`
 
 **Error handling:**
@@ -240,7 +240,7 @@ try {
   await contactApi.submit(formData);
 } catch (err) {
   if (err instanceof ApiError && err.status === 422) {
-    // validation error — err.data has details
+    // validation error - err.data has details
   }
 }
 ```
@@ -353,13 +353,13 @@ Animation keyframes (`aurora-float`) are defined in `app/globals.css`.
 ## Commands
 
 ```bash
-pnpm dev      # Dev server — runs on :3001 if :3000 is taken
+pnpm dev      # Dev server - runs on :3001 if :3000 is taken
 pnpm build    # Production build + type check
 pnpm lint     # ESLint
 ```
 
 ## Related
 
-- **Backend:** `../backend` — Express + MongoDB API (winston logger, kebab-case files)
-- **Python tools:** `../python-tools` — FastAPI + rembg (background removal etc.), deployed to Hugging Face Docker Space
-- **Old frontend:** `../front-end` — Legacy Vite React SPA (reference only)
+- **Backend:** `../backend` - Express + MongoDB API (winston logger, kebab-case files)
+- **Python tools:** `../python-tools` - FastAPI + rembg (background removal etc.), deployed to Hugging Face Docker Space
+- **Old frontend:** `../front-end` - Legacy Vite React SPA (reference only)

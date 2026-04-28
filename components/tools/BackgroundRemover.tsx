@@ -92,7 +92,7 @@ export default function BackgroundRemover() {
             <Upload className="w-6 h-6 text-blue-500" />
           </div>
           <p className="text-sm font-medium">Drop your image here or click to upload</p>
-          <p className="text-xs text-muted-foreground mt-1">JPEG, PNG, WebP — max 10 MB</p>
+          <p className="text-xs text-muted-foreground mt-1">JPEG, PNG, WebP - max 10 MB</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -141,7 +141,7 @@ export default function BackgroundRemover() {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            {file.name} — {formatBytes(file.size)}
+            {file.name} - {formatBytes(file.size)}
           </p>
         </div>
       )}
@@ -170,7 +170,7 @@ export default function BackgroundRemover() {
 
       <div className="rounded-xl border border-border bg-muted/20 p-4">
         <p className="text-xs text-muted-foreground leading-relaxed">
-          <strong className="text-foreground">Tip:</strong> Works best on photos with clear subjects — portraits, products, animals. AI-powered via rembg — transparent PNG output.
+          <strong className="text-foreground">Tip:</strong> Works best on photos with clear subjects - portraits, products, animals. AI-powered via rembg - transparent PNG output.
         </p>
       </div>
     </div>

@@ -67,7 +67,7 @@ export default function Footer() {
               </a>
               <span className="inline-flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-blue-500" />
-                Available worldwide — remote
+                Available worldwide - remote
               </span>
             </div>
 

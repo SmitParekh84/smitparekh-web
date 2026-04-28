@@ -32,7 +32,7 @@ export default function GlobalError({
             We hit an unexpected snag
           </h1>
           <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-            This is on our end — usually a temporary hiccup. Try again, or
+            This is on our end - usually a temporary hiccup. Try again, or
             head somewhere else for now.
           </p>
 

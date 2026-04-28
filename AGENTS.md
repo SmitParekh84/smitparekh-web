@@ -1,5 +1,5 @@
 <!-- BEGIN:nextjs-agent-rules -->
-# Next.js 16 App Router — Agent Rules
+# Next.js 16 App Router - Agent Rules
 
 This project uses **Next.js 16.2.4** with App Router. Many patterns differ from earlier versions.
 Read the relevant docs in `node_modules/next/dist/docs/` before writing code involving routing,
@@ -7,23 +7,23 @@ metadata, server actions, or image optimization.
 
 ## Critical Next.js 16 Rules
 
-- `params` in route components is a **Promise** — always `await params` before accessing properties
-- Use the `Metadata` API (not `Head` component) for SEO — see `app/layout.tsx` for reference
-- No `getServerSideProps` / `getStaticProps` — use async Server Components or Route Handlers
+- `params` in route components is a **Promise** - always `await params` before accessing properties
+- Use the `Metadata` API (not `Head` component) for SEO - see `app/layout.tsx` for reference
+- No `getServerSideProps` / `getStaticProps` - use async Server Components or Route Handlers
 - `next/image` requires explicit `sizes` prop when using `fill` layout
 
 ## Styling Rules
 
-- Tailwind v4: no `tailwind.config.js` — all tokens in `app/globals.css` `@theme inline`
+- Tailwind v4: no `tailwind.config.js` - all tokens in `app/globals.css` `@theme inline`
 - Use `.page-container` instead of `container mx-auto px-4`
 - Use `.page-section` for vertical rhythm
 - Color tokens: `blue-500` (primary), `cyan-400` (accent), `sky-500` (gradient mid)
-- Never use `brand-*` class names — they no longer exist
+- Never use `brand-*` class names - they no longer exist
 
 ## Component Rules
 
-- Server Component by default — only add `"use client"` when genuinely needed
-- `Button` has NO `asChild` — use `buttonVariants()` on `<Link>` elements instead
+- Server Component by default - only add `"use client"` when genuinely needed
+- `Button` has NO `asChild` - use `buttonVariants()` on `<Link>` elements instead
 - Brand icons (GitHub, LinkedIn) → `components/icons/SocialIcons.tsx` (Lucide v1 removed them)
 - Aurora hero backgrounds → `AuroraBackground` from `components/ui/aurora-background.tsx`
 
@@ -44,9 +44,9 @@ metadata, server actions, or image optimization.
 
 ### Before Writing Code
 
-1. **Read CLAUDE.md** — Architecture, design tokens, API patterns
-2. **Check existing components** — Don't duplicate; extend or reuse
-3. **Verify data requirements** — Server vs client data fetching
+1. **Read CLAUDE.md** - Architecture, design tokens, API patterns
+2. **Check existing components** - Don't duplicate; extend or reuse
+3. **Verify data requirements** - Server vs client data fetching
 
 ### Component Creation Checklist
 

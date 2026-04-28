@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Contact Smit Parekh — Hire a Full Stack Developer",
+  title: "Contact Smit Parekh - Hire a Full Stack Developer",
   description:
-    "Get in touch with Smit Parekh for full-stack web development. Discuss your project — React, Next.js, Node.js, TypeScript. Reply within 24 hours, proposal within 48.",
+    "Get in touch with Smit Parekh for full-stack web development. Discuss your project - React, Next.js, Node.js, TypeScript. Reply within 24 hours, proposal within 48.",
   alternates: { canonical: `${siteConfig.url}/contact` },
   keywords: [
     "contact Smit Parekh",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/contact`,
-    title: "Contact Smit Parekh — Hire a Full Stack Developer",
+    title: "Contact Smit Parekh - Hire a Full Stack Developer",
     description:
       "Discuss your web development project with Smit Parekh. Reply within 24 hours, scoped proposal within 48.",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
+        alt: "Smit Parekh - Full Stack Developer",
         type: "image/png",
       },
     ],
@@ -37,15 +37,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Contact Smit Parekh — Hire a Full Stack Developer",
+    title: "Contact Smit Parekh - Hire a Full Stack Developer",
     description:
-      "Discuss your web development project — React, Next.js, Node.js. Reply within 24 hours.",
+      "Discuss your web development project - React, Next.js, Node.js. Reply within 24 hours.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
+        alt: "Smit Parekh - Full Stack Developer",
       },
     ],
   },
@@ -61,7 +61,7 @@ export default function ContactLayout({
     "@type": "ContactPage",
     name: "Contact Smit Parekh",
     description:
-      "Contact page for Smit Parekh — Full Stack Web Developer available for new projects.",
+      "Contact page for Smit Parekh - Full Stack Web Developer available for new projects.",
     url: `${siteConfig.url}/contact`,
     mainEntity: {
       "@type": "Person",

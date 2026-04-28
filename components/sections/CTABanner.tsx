@@ -25,7 +25,7 @@ export default function CTABanner() {
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
                 Most clients go from first message to scoped proposal within 48 hours.
-                Tell me what you&apos;re building — let&apos;s see if we&apos;re a fit.
+                Tell me what you&apos;re building - let&apos;s see if we&apos;re a fit.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">

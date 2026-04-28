@@ -199,7 +199,7 @@ export default function ProjectsPage() {
               <div className="flex-1">
                 <h3 className="text-base font-semibold">Generate project draft</h3>
                 <p className="text-xs text-muted-foreground">
-                  Pick a mode and describe the project — AI fills the new entry.
+                  Pick a mode and describe the project - AI fills the new entry.
                 </p>
               </div>
               <button
@@ -226,7 +226,7 @@ export default function ProjectsPage() {
               >
                 <p className="text-sm font-medium">From an idea</p>
                 <p className="mt-0.5 text-muted-foreground">
-                  Describe a concept — AI generates the whole case study.
+                  Describe a concept - AI generates the whole case study.
                 </p>
               </button>
               <button
@@ -242,7 +242,7 @@ export default function ProjectsPage() {
               >
                 <p className="text-sm font-medium">Rewrite my notes</p>
                 <p className="mt-0.5 text-muted-foreground">
-                  Paste real notes — product/client names get stripped.
+                  Paste real notes - product/client names get stripped.
                 </p>
               </button>
             </div>
@@ -256,7 +256,7 @@ export default function ProjectsPage() {
               disabled={generateProject.isPending}
               placeholder={
                 aiMode === "rewrite"
-                  ? "Paste raw notes, README excerpts, or a draft. Real metrics & tech are kept — brand names removed."
+                  ? "Paste raw notes, README excerpts, or a draft. Real metrics & tech are kept - brand names removed."
                   : "Describe the project. e.g. 'A real-time fintech dashboard that lets traders track positions across 5 brokers, with sub-second updates and risk alerts.'"
               }
               className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
@@ -303,7 +303,7 @@ export default function ProjectsPage() {
         <CardHeader>
           <CardTitle>All projects</CardTitle>
           <CardDescription>
-            {projects ? `${projects.length} total` : "—"}
+            {projects ? `${projects.length} total` : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">

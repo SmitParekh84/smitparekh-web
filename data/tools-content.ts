@@ -18,11 +18,11 @@ export const toolContent: Record<string, ToolContent> = {
   "password-generator": {
     howItWorks: [
       { title: "Choose Your Settings", description: "Set the desired length (4–64 characters) and toggle uppercase, lowercase, numbers, and symbols on or off." },
-      { title: "Generate Instantly", description: "A cryptographically secure password is created immediately in your browser using the Web Crypto API — nothing is sent to any server." },
+      { title: "Generate Instantly", description: "A cryptographically secure password is created immediately in your browser using the Web Crypto API - nothing is sent to any server." },
       { title: "Copy and Secure", description: "Click the copy icon to grab the password and store it in a password manager like Bitwarden, 1Password, or KeePass." },
     ],
     useCases: [
-      { title: "Account Security", description: "Create unique, strong passwords for every online account — banking, email, social media — and eliminate reuse across sites." },
+      { title: "Account Security", description: "Create unique, strong passwords for every online account - banking, email, social media - and eliminate reuse across sites." },
       { title: "Developer Secrets", description: "Generate random API keys, secret tokens, and environment variables for development and production systems." },
       { title: "IT Administration", description: "Quickly provision strong default passwords for new users or reset credentials without manual guessing." },
     ],
@@ -31,12 +31,12 @@ export const toolContent: Record<string, ToolContent> = {
 
   "word-counter": {
     howItWorks: [
-      { title: "Paste or Type Your Text", description: "Click in the textarea and type directly, or paste from any document. Results update in real time — no button needed." },
+      { title: "Paste or Type Your Text", description: "Click in the textarea and type directly, or paste from any document. Results update in real time - no button needed." },
       { title: "Read Your Stats", description: "Words, characters, sentences, paragraphs, and estimated reading time appear instantly in the stat cards above." },
-      { title: "Check Keyword Density", description: "Scroll to the keyword table to see your most-used words and their density percentages — essential for SEO content checks." },
+      { title: "Check Keyword Density", description: "Scroll to the keyword table to see your most-used words and their density percentages - essential for SEO content checks." },
     ],
     useCases: [
-      { title: "Blog & Content Writers", description: "Hit your target word count for SEO articles or check reading time before publishing — no more guessing if 1,500 words is enough." },
+      { title: "Blog & Content Writers", description: "Hit your target word count for SEO articles or check reading time before publishing - no more guessing if 1,500 words is enough." },
       { title: "Social Media Managers", description: "Stay within Twitter's 280-character limit, LinkedIn's 3,000-character cap, and Instagram's 2,200-character ceiling in real time." },
       { title: "Students & Academics", description: "Verify your essay or assignment meets word count requirements instantly, with sentence and paragraph counts for formatting checks." },
     ],
@@ -47,12 +47,12 @@ export const toolContent: Record<string, ToolContent> = {
     howItWorks: [
       { title: "Upload Your Image", description: "Drag and drop or click to upload any JPEG, PNG, or WebP image. Preview appears immediately." },
       { title: "Choose Format and Quality", description: "Select the output format (JPEG, PNG, WebP) and adjust the quality slider to balance file size vs visual fidelity." },
-      { title: "Convert and Download", description: "Click Convert — the browser processes the image entirely locally using the Canvas API — then download your file instantly." },
+      { title: "Convert and Download", description: "Click Convert - the browser processes the image entirely locally using the Canvas API - then download your file instantly." },
     ],
     useCases: [
       { title: "Web Developers", description: "Convert legacy JPEG images to WebP for 25–35% smaller file sizes and faster Core Web Vitals scores without losing visible quality." },
       { title: "Content Creators", description: "Convert screenshots and design assets between formats to meet platform-specific upload requirements in seconds." },
-      { title: "E-commerce Teams", description: "Batch-prepare product images in the right format before uploading to Shopify, WooCommerce, or Amazon — no Photoshop needed." },
+      { title: "E-commerce Teams", description: "Batch-prepare product images in the right format before uploading to Shopify, WooCommerce, or Amazon - no Photoshop needed." },
     ],
     relatedSlugs: ["background-remover", "image-compressor", "qr-code-generator"],
   },
@@ -64,8 +64,8 @@ export const toolContent: Record<string, ToolContent> = {
       { title: "Download and Use", description: "Download the high-resolution PNG and place it on your website, business card, packaging, or marketing materials." },
     ],
     useCases: [
-      { title: "Marketing Campaigns", description: "Add QR codes to printed flyers, posters, and business cards to bridge offline and online — track scans via your destination URL." },
-      { title: "Restaurant Menus", description: "Generate QR codes for digital menus so guests can scan instead of touching physical menus — update the menu URL anytime without reprinting." },
+      { title: "Marketing Campaigns", description: "Add QR codes to printed flyers, posters, and business cards to bridge offline and online - track scans via your destination URL." },
+      { title: "Restaurant Menus", description: "Generate QR codes for digital menus so guests can scan instead of touching physical menus - update the menu URL anytime without reprinting." },
       { title: "Events and Networking", description: "Encode your LinkedIn profile URL or vCard in a QR code and add it to your name badge or presentation slides for instant contact sharing." },
     ],
     relatedSlugs: ["image-converter", "password-generator", "meta-tag-checker"],
@@ -74,7 +74,7 @@ export const toolContent: Record<string, ToolContent> = {
   "background-remover": {
     howItWorks: [
       { title: "Upload Your Image", description: "Drag and drop your photo or click to upload. JPEG, PNG, and WebP are supported. The image is sent securely to the AI processor." },
-      { title: "AI Removes the Background", description: "The AI model (rembg) analyses the image and precisely separates the subject from the background — typically in under 10 seconds." },
+      { title: "AI Removes the Background", description: "The AI model (rembg) analyses the image and precisely separates the subject from the background - typically in under 10 seconds." },
       { title: "Download Transparent PNG", description: "Preview the before and after, then download your transparent PNG ready for use in design software, presentations, or e-commerce." },
     ],
     useCases: [
@@ -88,11 +88,11 @@ export const toolContent: Record<string, ToolContent> = {
   "image-compressor": {
     howItWorks: [
       { title: "Upload Your Image", description: "Drag and drop or click to select a JPEG, PNG, or WebP image. A preview of the original appears immediately." },
-      { title: "Set Quality and Format", description: "Choose your output format and drag the quality slider — 75–80% is the sweet spot for most web images." },
+      { title: "Set Quality and Format", description: "Choose your output format and drag the quality slider - 75–80% is the sweet spot for most web images." },
       { title: "Compress and Download", description: "Click Compress Image, see the exact size reduction percentage, and download your optimised file in one click." },
     ],
     useCases: [
-      { title: "Web Performance", description: "Reduce image file sizes before uploading to your website and cut page load time — one of the biggest factors in Core Web Vitals scores." },
+      { title: "Web Performance", description: "Reduce image file sizes before uploading to your website and cut page load time - one of the biggest factors in Core Web Vitals scores." },
       { title: "Email Campaigns", description: "Keep email attachment sizes under 1 MB to improve deliverability and ensure images load fast for recipients on mobile data." },
       { title: "Social Media Posts", description: "Compress images before uploading to Instagram, LinkedIn, and Twitter to prevent the platform's own aggressive compression from degrading quality." },
     ],
@@ -101,14 +101,14 @@ export const toolContent: Record<string, ToolContent> = {
 
   "viral-linkedin-post-generator": {
     howItWorks: [
-      { title: "Enter Your Topic", description: "Describe what you want to post about — a lesson learned, a project update, a professional insight, or a story from your experience." },
+      { title: "Enter Your Topic", description: "Describe what you want to post about - a lesson learned, a project update, a professional insight, or a story from your experience." },
       { title: "Select Tone and Length", description: "Choose from Professional, Casual, Inspirational, Story, or Educational. Set length (Short, Medium, Long) and optionally specify your target audience." },
       { title: "Generate, Refine, and Post", description: "Click Generate. Read the AI-crafted post, personalise with your own data points or anecdotes, copy it, and post directly to LinkedIn." },
     ],
     useCases: [
       { title: "Founders and CEOs", description: "Share lessons from building your company, product launches, or industry observations in a format proven to build authority and inbound leads." },
       { title: "Job Seekers", description: "Create posts about your skills, recent projects, or career milestones that attract recruiters and hiring managers in your target field." },
-      { title: "Content Marketers", description: "Maintain a consistent LinkedIn posting schedule without spending hours writing each post — generate 5 posts in the time it used to take to write one." },
+      { title: "Content Marketers", description: "Maintain a consistent LinkedIn posting schedule without spending hours writing each post - generate 5 posts in the time it used to take to write one." },
     ],
     relatedSlugs: ["word-counter", "ats-resume-checker", "linkedin-media-downloader"],
   },
@@ -116,13 +116,13 @@ export const toolContent: Record<string, ToolContent> = {
   "ats-resume-checker": {
     howItWorks: [
       { title: "Upload Your Resume", description: "Drag and drop or click to upload your resume as a PDF or DOCX file. The file is sent securely for AI analysis." },
-      { title: "Get Your ATS Score", description: "The AI evaluates your resume against ATS best practices — formatting, keyword usage, section structure, and common ATS pitfalls." },
+      { title: "Get Your ATS Score", description: "The AI evaluates your resume against ATS best practices - formatting, keyword usage, section structure, and common ATS pitfalls." },
       { title: "Review and Improve", description: "Read the detailed analysis and implement the recommendations to increase your score and improve your chances of passing ATS filters." },
     ],
     useCases: [
-      { title: "Active Job Seekers", description: "Check your resume before applying to roles with large applicant pools where ATS filters are used — typically any company with 50+ employees." },
+      { title: "Active Job Seekers", description: "Check your resume before applying to roles with large applicant pools where ATS filters are used - typically any company with 50+ employees." },
       { title: "Career Changers", description: "Ensure your resume translates your experience into the new industry's keywords and formats that ATS systems expect." },
-      { title: "Fresh Graduates", description: "Avoid the most common formatting mistakes that cause ATS systems to misparse or reject graduate resumes — even strong candidates fail due to formatting issues." },
+      { title: "Fresh Graduates", description: "Avoid the most common formatting mistakes that cause ATS systems to misparse or reject graduate resumes - even strong candidates fail due to formatting issues." },
     ],
     relatedSlugs: ["viral-linkedin-post-generator", "word-counter", "linkedin-media-downloader"],
   },
@@ -130,11 +130,11 @@ export const toolContent: Record<string, ToolContent> = {
   "meta-tag-checker": {
     howItWorks: [
       { title: "Enter the URL", description: "Type or paste the full website URL you want to check. The tool fetches the live page and extracts all meta tags from the HTML." },
-      { title: "Review the Analysis", description: "See a colour-coded breakdown — green for correct, yellow for warnings (e.g. title too long), red for missing critical tags." },
+      { title: "Review the Analysis", description: "See a colour-coded breakdown - green for correct, yellow for warnings (e.g. title too long), red for missing critical tags." },
       { title: "Fix and Recheck", description: "Address the flagged issues in your CMS or code, then re-run the check to confirm all tags are now correct before publishing." },
     ],
     useCases: [
-      { title: "SEO Audits", description: "Quickly verify meta tags on any page as part of a technical SEO audit — especially useful when inheriting a new client site." },
+      { title: "SEO Audits", description: "Quickly verify meta tags on any page as part of a technical SEO audit - especially useful when inheriting a new client site." },
       { title: "Social Media Previews", description: "Check Open Graph tags to ensure your pages display the right image, title, and description when shared on LinkedIn, Facebook, and WhatsApp." },
       { title: "Pre-Launch Checks", description: "Run the checker on every important page before launch to catch missing meta descriptions, incorrect canonical tags, or forgotten noindex directives." },
     ],
@@ -145,10 +145,10 @@ export const toolContent: Record<string, ToolContent> = {
     howItWorks: [
       { title: "Enter Your URL", description: "Type or paste the full URL of the page you want to analyse. Optionally add your email to receive the report by email." },
       { title: "Run the Audit", description: "The tool fetches the live page and evaluates it against 50+ on-page SEO factors including headings, meta tags, links, and structured data." },
-      { title: "Implement the Recommendations", description: "Work through the prioritised recommendations — critical issues first — and re-run the audit after each batch of fixes." },
+      { title: "Implement the Recommendations", description: "Work through the prioritised recommendations - critical issues first - and re-run the audit after each batch of fixes." },
     ],
     useCases: [
-      { title: "Website Owners", description: "Find and fix on-page SEO issues that are preventing your pages from ranking — without needing an expensive SEO consultant." },
+      { title: "Website Owners", description: "Find and fix on-page SEO issues that are preventing your pages from ranking - without needing an expensive SEO consultant." },
       { title: "SEO Professionals", description: "Use as a quick-check tool during client audits or monthly reporting to spot regressions before they impact rankings." },
       { title: "Freelancers and Agencies", description: "Deliver a professional SEO audit report to clients showing exactly what needs fixing and in what priority order." },
     ],
@@ -163,7 +163,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     useCases: [
       { title: "Content Repurposing", description: "Save your own LinkedIn videos and repurpose them on YouTube, Instagram, or your website without re-uploading the original file." },
-      { title: "Market Research", description: "Download competitor or industry leader content for offline analysis, reference, and inspiration — for personal use only." },
+      { title: "Market Research", description: "Download competitor or industry leader content for offline analysis, reference, and inspiration - for personal use only." },
       { title: "Archiving", description: "Keep a local copy of important LinkedIn posts and videos from your network before they are deleted or updated." },
     ],
     relatedSlugs: ["viral-linkedin-post-generator", "ats-resume-checker", "word-counter"],

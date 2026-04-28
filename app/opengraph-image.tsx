@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/site";
 
-export const alt = "Smit Parekh — Full Stack Developer & Free Web Tools";
+export const alt = "Smit Parekh - Full Stack Developer & Free Web Tools";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

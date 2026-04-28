@@ -45,7 +45,7 @@ export default function GlobalRootError({
             The site couldn&apos;t load
           </h1>
           <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, margin: "0 0 24px" }}>
-            Something broke at the root level. Try refreshing — if this keeps
+            Something broke at the root level. Try refreshing - if this keeps
             happening, please let us know at{" "}
             <a href="mailto:smitparekh02@gmail.com" style={{ color: "#fafafa" }}>
               smitparekh02@gmail.com

@@ -31,7 +31,7 @@ export const removeBgApi = {
 
     const blob = res.data as Blob;
 
-    // Older server versions return JSON { imageUrl: "..." } — fetch the real image
+    // Older server versions return JSON { imageUrl: "..." } - fetch the real image
     if (blob.type.includes("json") || blob.type.includes("text")) {
       const text = await blob.text();
       const json = JSON.parse(text) as { imageUrl?: string };

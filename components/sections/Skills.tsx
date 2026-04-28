@@ -9,13 +9,13 @@ const values = [
     icon: PackageCheck,
     title: "Production-Grade Delivery",
     description:
-      "Every application is built to the standard of enterprise software — tested, documented, and architected to scale. Not a proof of concept. A product.",
+      "Every application is built to the standard of enterprise software - tested, documented, and architected to scale. Not a proof of concept. A product.",
   },
   {
     icon: Layers,
     title: "Full Ownership, Zero Hand-offs",
     description:
-      "One point of contact from brief to deployment. Design, development, infrastructure, and support — handled end-to-end so nothing falls through the gaps.",
+      "One point of contact from brief to deployment. Design, development, infrastructure, and support - handled end-to-end so nothing falls through the gaps.",
   },
   {
     icon: MessageSquare,

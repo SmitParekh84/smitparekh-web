@@ -1,10 +1,10 @@
-# Smit Parekh — Full Stack Web Developer
+# Smit Parekh - Full Stack Web Developer
 
 > Full-Stack Web Developer with 3.5+ years building production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. Also offers free browser-based tools with no signup required.
 
 ## About
 
-Smit Parekh is a Full-Stack Web Developer based in India, available for projects worldwide. He delivers end-to-end web applications — from architecture to AWS deployment — for startups and enterprise clients across FinTech, SaaS, and LegalTech.
+Smit Parekh is a Full-Stack Web Developer based in India, available for projects worldwide. He delivers end-to-end web applications - from architecture to AWS deployment - for startups and enterprise clients across FinTech, SaaS, and LegalTech.
 
 ## Services
 

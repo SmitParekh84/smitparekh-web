@@ -246,7 +246,7 @@ export function OutcomeListEditor({
               rows={2}
               value={item.detail}
               onChange={(e) => update(i, "detail", e.target.value)}
-              placeholder="Detail — one or two sentences explaining the outcome"
+              placeholder="Detail - one or two sentences explaining the outcome"
               className={cn(inputClass, "resize-y text-sm")}
             />
           </div>

@@ -86,7 +86,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop links — centered */}
+          {/* Desktop links - centered */}
           <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
             {linkItems.map((item) => (
               <Link
@@ -103,7 +103,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Free Tools — click-to-open dropdown */}
+            {/* Free Tools - click-to-open dropdown */}
             {toolsItem && (
               <div ref={toolsRef} className="relative">
                 <button
@@ -205,7 +205,7 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Hire Me — desktop only */}
+            {/* Hire Me - desktop only */}
             <Link
               href="/contact"
               className={cn(
@@ -238,7 +238,7 @@ export default function Navbar() {
       {/* Mobile full-screen overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          {/* Backdrop — click to close */}
+          {/* Backdrop - click to close */}
           <div
             className="absolute inset-0 bg-background/92 backdrop-blur-2xl"
             onClick={() => setMobileOpen(false)}

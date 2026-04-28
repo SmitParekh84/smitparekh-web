@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Smit Parekh",
   url: "https://www.smitparekh.co.in",
   description:
-    "Smit Parekh — Full-Stack Web Developer specialising in React, Next.js, Node.js, and TypeScript. 4+ years building production apps for FinTech, AI/ML, SaaS, and enterprise clients. Also offering free online tools — no signup required.",
+    "Smit Parekh - Full-Stack Web Developer specialising in React, Next.js, Node.js, and TypeScript. 4+ years building production apps for FinTech, AI/ML, SaaS, and enterprise clients. Also offering free online tools - no signup required.",
   author: "Smit Parekh",
   email: "smitparekh02@gmail.com",
   twitterHandle: "@smit_parekh84",
@@ -71,19 +71,19 @@ export const siteConfig = {
     "free SEO tools",
     "free productivity tools",
 
-    // Geo — India
+    // Geo - India
     "free online tools India",
     "best free web tools India",
     "free AI tools India",
     "free developer tools India",
     "free tools no signup India",
 
-    // Geo — US
+    // Geo - US
     "free online tools USA",
     "free web tools United States",
     "best free browser tools",
 
-    // Geo — France
+    // Geo - France
     "outils gratuits en ligne",
     "outils SEO gratuits",
     "outils développeur gratuits en ligne",

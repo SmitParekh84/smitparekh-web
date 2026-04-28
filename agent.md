@@ -6,7 +6,7 @@ TypeScript strict, Tailwind v4, shadcn/ui (`base-nova` style). Below is what ten
 to bite people who jump in cold.
 
 > Style note: keep diffs small, write plain code, no fancy commentary, and please
-> use normal hyphens `-` instead of em-dashes `—` in any docs or comments you add.
+> use normal hyphens `-` instead of em-dashes `-` in any docs or comments you add.
 
 ---
 

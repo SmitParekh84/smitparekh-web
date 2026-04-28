@@ -8,7 +8,7 @@ export interface ToolSEO {
 export const toolsSEO: ToolSEO[] = [
   {
     slug: "background-remover",
-    title: "Background Remover — Free AI Image Background Removal",
+    title: "Background Remover - Free AI Image Background Removal",
     description:
       "Remove image backgrounds instantly with AI. 100% free, no signup, no watermark. Works on photos, logos, and product images in seconds.",
     keywords: [
@@ -36,9 +36,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "viral-linkedin-post-generator",
-    title: "LinkedIn Post Generator — Free AI Viral Post Writer",
+    title: "LinkedIn Post Generator - Free AI Viral Post Writer",
     description:
-      "Generate high-engagement LinkedIn posts with AI. Create hooks, structure, and formatting that drives impressions — free, no account needed.",
+      "Generate high-engagement LinkedIn posts with AI. Create hooks, structure, and formatting that drives impressions - free, no account needed.",
     keywords: [
       "LinkedIn post generator free",
       "AI LinkedIn post writer",
@@ -62,9 +62,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ats-resume-checker",
-    title: "ATS Resume Checker — Free Resume Scanner & Score",
+    title: "ATS Resume Checker - Free Resume Scanner & Score",
     description:
-      "Check your ATS resume score instantly. Get AI-powered suggestions to pass applicant tracking systems and land more interviews — free.",
+      "Check your ATS resume score instantly. Get AI-powered suggestions to pass applicant tracking systems and land more interviews - free.",
     keywords: [
       "ATS resume checker free",
       "resume ATS scanner",
@@ -88,9 +88,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "meta-tag-checker",
-    title: "Meta Tag Checker — Free SEO Meta Tag Analyzer",
+    title: "Meta Tag Checker - Free SEO Meta Tag Analyzer",
     description:
-      "Analyse your website's meta tags instantly. Check title, description, OG tags, and Twitter cards for SEO issues — free online tool.",
+      "Analyse your website's meta tags instantly. Check title, description, OG tags, and Twitter cards for SEO issues - free online tool.",
     keywords: [
       "meta tag checker free",
       "SEO meta tag analyzer",
@@ -114,9 +114,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "qr-code-generator",
-    title: "QR Code Generator — Free Custom QR Code Maker",
+    title: "QR Code Generator - Free Custom QR Code Maker",
     description:
-      "Generate custom QR codes for URLs, text, email, or contact info. Download in high resolution — free, no account required.",
+      "Generate custom QR codes for URLs, text, email, or contact info. Download in high resolution - free, no account required.",
     keywords: [
       "QR code generator free",
       "custom QR code maker",
@@ -140,9 +140,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "word-counter",
-    title: "Word Counter — Free Online Word & Character Count Tool",
+    title: "Word Counter - Free Online Word & Character Count Tool",
     description:
-      "Count words, characters, sentences, and reading time instantly. Track keyword density for SEO — free, works in your browser.",
+      "Count words, characters, sentences, and reading time instantly. Track keyword density for SEO - free, works in your browser.",
     keywords: [
       "word counter free",
       "online word counter",
@@ -166,9 +166,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "image-compressor",
-    title: "Image Compressor — Free Online Image Size Reducer",
+    title: "Image Compressor - Free Online Image Size Reducer",
     description:
-      "Compress images without losing quality. Reduce JPEG, PNG, and WebP file sizes instantly — free, no upload limit, no account.",
+      "Compress images without losing quality. Reduce JPEG, PNG, and WebP file sizes instantly - free, no upload limit, no account.",
     keywords: [
       "image compressor free",
       "compress image online",
@@ -192,9 +192,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "image-converter",
-    title: "Image Converter — Free Online Image Format Converter",
+    title: "Image Converter - Free Online Image Format Converter",
     description:
-      "Convert images between JPEG, PNG, WebP, and more. Fast, free, browser-based — no software to install, no account required.",
+      "Convert images between JPEG, PNG, WebP, and more. Fast, free, browser-based - no software to install, no account required.",
     keywords: [
       "image converter free",
       "convert image format online",
@@ -218,7 +218,7 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "linkedin-media-downloader",
-    title: "LinkedIn Media Downloader — Free LinkedIn Video & Image Downloader",
+    title: "LinkedIn Media Downloader - Free LinkedIn Video & Image Downloader",
     description:
       "Download videos and images from LinkedIn posts for free. Fast, no login, works directly in your browser.",
     keywords: [
@@ -244,9 +244,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "seo-analyzer",
-    title: "SEO Analyzer — Free Website SEO Audit Tool",
+    title: "SEO Analyzer - Free Website SEO Audit Tool",
     description:
-      "Run a free SEO audit on any webpage. Check title tags, headings, meta description, links, and Core Web Vitals — instant results.",
+      "Run a free SEO audit on any webpage. Check title tags, headings, meta description, links, and Core Web Vitals - instant results.",
     keywords: [
       "SEO analyzer free",
       "website SEO audit",
@@ -270,9 +270,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "password-generator",
-    title: "Password Generator — Free Strong Random Password Maker",
+    title: "Password Generator - Free Strong Random Password Maker",
     description:
-      "Generate strong, secure, random passwords instantly. Customise length and character types — free, runs in your browser, nothing stored.",
+      "Generate strong, secure, random passwords instantly. Customise length and character types - free, runs in your browser, nothing stored.",
     keywords: [
       "password generator free",
       "strong password generator",

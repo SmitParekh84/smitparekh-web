@@ -157,7 +157,7 @@ export default function ChatWidget() {
       const msg =
         err instanceof Error ? err.message : "Something went wrong.";
       const fallback =
-        "Sorry — I couldn't reach the assistant just now. Please try again, or use the [contact page](/contact).";
+        "Sorry - I couldn't reach the assistant just now. Please try again, or use the [contact page](/contact).";
       useChatStore.getState().patchLastAssistant(fallback);
       useChatStore.getState().setError(msg);
     } finally {
@@ -409,7 +409,7 @@ export default function ChatWidget() {
                 </button>
               </div>
               <p className="mt-1.5 text-center text-[10px] text-muted-foreground">
-                Powered by AI · Answers may be imprecise — verify important info
+                Powered by AI · Answers may be imprecise - verify important info
               </p>
             </form>
 

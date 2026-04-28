@@ -198,7 +198,7 @@ export default function AdminBlogsPage() {
               <div className="flex-1">
                 <h3 className="text-base font-semibold">Generate blog draft</h3>
                 <p className="text-xs text-muted-foreground">
-                  Describe the topic. The AI fills the new post — you review &
+                  Describe the topic. The AI fills the new post - you review &
                   edit before saving.
                 </p>
               </div>
@@ -264,7 +264,7 @@ export default function AdminBlogsPage() {
         <CardHeader>
           <CardTitle>All posts</CardTitle>
           <CardDescription>
-            {blogs ? `${blogs.length} total` : "—"}
+            {blogs ? `${blogs.length} total` : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">

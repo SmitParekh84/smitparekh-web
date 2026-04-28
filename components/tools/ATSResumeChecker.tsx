@@ -98,7 +98,7 @@ export default function ATSResumeChecker() {
             <FileText className="w-6 h-6 text-blue-500" />
           </div>
           <p className="text-sm font-medium">Drop your resume here or click to upload</p>
-          <p className="text-xs text-muted-foreground mt-1">PDF or DOCX — max 5 MB</p>
+          <p className="text-xs text-muted-foreground mt-1">PDF or DOCX - max 5 MB</p>
         </div>
       ) : (
         <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">

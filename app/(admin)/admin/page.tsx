@@ -71,7 +71,7 @@ export default function AdminOverviewPage() {
   const avgRating =
     ratings.length > 0
       ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
-      : "—";
+      : "-";
 
   const recentProjects = projects
     ?.slice()

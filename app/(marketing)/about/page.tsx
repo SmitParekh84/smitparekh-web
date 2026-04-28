@@ -18,9 +18,9 @@ import {
 } from "@/components/icons/SocialIcons";
 
 export const metadata: Metadata = {
-  title: "About Smit Parekh — Full Stack Developer | React & Node.js Expert",
+  title: "About Smit Parekh - Full Stack Developer | React & Node.js Expert",
   description:
-    "Meet Smit Parekh — Full Stack Developer with 4+ years building production web applications across FinTech, AI/ML, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
+    "Meet Smit Parekh - Full Stack Developer with 4+ years building production web applications across FinTech, AI/ML, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
   alternates: { canonical: `${siteConfig.url}/about` },
   keywords: [
     "about Smit Parekh",
@@ -39,25 +39,25 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
-    title: "About Smit Parekh — Full Stack Developer",
+    title: "About Smit Parekh - Full Stack Developer",
     description:
-      "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js, TypeScript, AWS.",
+      "4+ years building production web apps for FinTech, SaaS, and enterprise - React, Next.js, Node.js, TypeScript, AWS.",
     // images auto-injected from ./opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "About Smit Parekh — Full Stack Developer",
+    title: "About Smit Parekh - Full Stack Developer",
     description:
-      "4+ years building production web apps for FinTech, SaaS, and enterprise — React, Next.js, Node.js.",
+      "4+ years building production web apps for FinTech, SaaS, and enterprise - React, Next.js, Node.js.",
   },
 };
 
 const profilePageSchema = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  name: "About Smit Parekh — Full Stack Developer",
+  name: "About Smit Parekh - Full Stack Developer",
   url: `${siteConfig.url}/about`,
   mainEntity: {
     "@type": "Person",
@@ -135,12 +135,12 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Hero banner — matches /blog style */}
+      {/* Hero banner - matches /blog style */}
       <PageHero
         eyebrow="About Me"
         icon={User}
-        title={<>Smit Parekh — Full-Stack Web Developer</>}
-        description="4+ years building production web apps for FinTech, AI/ML, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, AWS — based in India, available worldwide."
+        title={<>Smit Parekh - Full-Stack Web Developer</>}
+        description="4+ years building production web apps for FinTech, AI/ML, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, AWS - based in India, available worldwide."
       />
 
       {/* Profile */}
@@ -205,7 +205,7 @@ export default function AboutPage() {
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl overflow-hidden border border-border bg-muted shadow-2xl">
                 <Image
                   src={homeData.imageSrc}
-                  alt="Smit Parekh — Full Stack Developer"
+                  alt="Smit Parekh - Full Stack Developer"
                   fill
                   sizes="(max-width: 640px) 256px, 288px"
                   className="object-cover"

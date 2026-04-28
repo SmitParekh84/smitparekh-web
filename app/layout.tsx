@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Smit Parekh — Full Stack Developer & Free Web Tools",
+    default: "Smit Parekh - Full Stack Developer & Free Web Tools",
     template: `%s | Smit Parekh`,
   },
   description: siteConfig.description,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "Smit Parekh — Full Stack Developer & Free Web Tools",
+    title: "Smit Parekh - Full Stack Developer & Free Web Tools",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
+        alt: "Smit Parekh - Full Stack Developer",
         type: "image/png",
       },
     ],
@@ -47,14 +47,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Smit Parekh — Full Stack Developer & Free Web Tools",
+    title: "Smit Parekh - Full Stack Developer & Free Web Tools",
     description: siteConfig.description,
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Full Stack Developer",
+        alt: "Smit Parekh - Full Stack Developer",
       },
     ],
   },

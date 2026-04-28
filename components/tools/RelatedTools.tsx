@@ -25,7 +25,7 @@ export default function RelatedTools({ relatedSlugs }: Props) {
 
         <div className="grid sm:grid-cols-3 gap-4">
           {tools.map((tool) => {
-            const shortTitle = tool.title.split(" — ")[0];
+            const shortTitle = tool.title.split(" - ")[0];
             const shortDesc = tool.description.split(". ")[0] + ".";
             return (
               <Link

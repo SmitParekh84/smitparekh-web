@@ -199,7 +199,7 @@ const PROCESS_STEPS = [
     icon: Compass,
     title: "Discover",
     description:
-      "Get into the business problem first — users, constraints, success metrics. No code until the goal is clear.",
+      "Get into the business problem first - users, constraints, success metrics. No code until the goal is clear.",
   },
   {
     icon: PenTool,
@@ -250,7 +250,7 @@ export default function PortfolioPage() {
   const collectionPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Portfolio — Production Web Apps by Smit Parekh",
+    name: "Portfolio - Production Web Apps by Smit Parekh",
     description:
       "Web applications built by Smit Parekh for FinTech, SaaS, LegalTech, and enterprise clients.",
     url: `${siteConfig.url}/portfolio`,
@@ -261,7 +261,7 @@ export default function PortfolioPage() {
         "@type": "ListItem",
         position: i + 1,
         url: `${siteConfig.url}/portfolio/${p.slug}`,
-        name: `${p.title}${p.subtitle ? " — " + p.subtitle : ""}`,
+        name: `${p.title}${p.subtitle ? " - " + p.subtitle : ""}`,
       })),
     },
   };
@@ -295,7 +295,7 @@ export default function PortfolioPage() {
         eyebrow="My Work"
         icon={Briefcase}
         title="Projects & Case Studies"
-        description="Production applications built for FinTech, SaaS, LegalTech, and enterprise clients — each solving a real business problem at scale. Click any card for the full case study."
+        description="Production applications built for FinTech, SaaS, LegalTech, and enterprise clients - each solving a real business problem at scale. Click any card for the full case study."
       />
 
       {/* Unified projects grid */}
@@ -330,7 +330,7 @@ export default function PortfolioPage() {
               <h3 className="text-lg font-semibold">No portfolio available yet</h3>
               <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground leading-relaxed">
                 New case studies are being prepared. In the meantime, take a look
-                at how I approach every project below — or get in touch directly.
+                at how I approach every project below - or get in touch directly.
               </p>
               <Link
                 href="/contact"
@@ -365,7 +365,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* How I Work — always shown; doubles as filler when empty */}
+      {/* How I Work - always shown; doubles as filler when empty */}
       <section
         className={cn(
           "page-section",
@@ -381,7 +381,7 @@ export default function PortfolioPage() {
               The process behind every project
             </h2>
             <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-              Every case study above followed roughly the same path — a tight
+              Every case study above followed roughly the same path - a tight
               loop of discovery, design, building, and shipping with real users
               in the loop.
             </p>

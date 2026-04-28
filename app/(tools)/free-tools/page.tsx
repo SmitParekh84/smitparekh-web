@@ -13,18 +13,18 @@ import { toolsSEO } from "@/data/tools-seo";
 import FreeToolsFAQ from "@/components/tools/FreeToolsFAQ";
 
 export const metadata: Metadata = {
-  title: "Free Online Tools — Background Remover, Resume Checker, QR Code Generator & More",
+  title: "Free Online Tools - Background Remover, Resume Checker, QR Code Generator & More",
   description:
-    "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost. Available worldwide.",
+    "11 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost. Available worldwide.",
   alternates: { canonical: `${siteConfig.url}/free-tools` },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/free-tools`,
-    title: "Free Online Tools by Smit Parekh — No Signup Required",
+    title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR code maker, word counter, SEO analyzer & more. No signup, no cost. Used globally.",
+      "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, word counter, SEO analyzer & more. No signup, no cost. Used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Free Online Tools by Smit Parekh — No Signup Required",
+    title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "11 free browser-based tools — background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup, used globally.",
+      "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup, used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
@@ -74,14 +74,14 @@ export const metadata: Metadata = {
     "password generator free",
     "LinkedIn video downloader free",
     "meta tag checker free",
-    // Geo — India
+    // Geo - India
     "free online tools India",
     "best free web tools India",
     "free AI tools India",
-    // Geo — US
+    // Geo - US
     "free online tools USA",
     "free tools no signup United States",
-    // Geo — France
+    // Geo - France
     "outils gratuits en ligne",
     "outils SEO gratuits",
     "outils développeur gratuits",
@@ -124,23 +124,23 @@ const newSlugs = new Set(["ats-resume-checker"]);
 const features = [
   { icon: CheckCircle, title: "100% Free Forever", description: "Every tool is free with no hidden costs, trials, or subscription tiers. Use them as much as you need." },
   { icon: Zap, title: "Lightning Fast", description: "Results in seconds. Browser-based tools run locally; AI tools use optimised server pipelines." },
-  { icon: ShieldCheck, title: "Private & Secure", description: "Uploaded files are processed and deleted immediately — never stored, never shared, never used for training." },
+  { icon: ShieldCheck, title: "Private & Secure", description: "Uploaded files are processed and deleted immediately - never stored, never shared, never used for training." },
   { icon: Brain, title: "AI-Powered", description: "Background removal, post generation, ATS scoring, and SEO analysis all use production-grade AI models." },
-  { icon: Users, title: "No Account Required", description: "No signup, no email, no OAuth. Open a tool and use it — every single time." },
+  { icon: Users, title: "No Account Required", description: "No signup, no email, no OAuth. Open a tool and use it - every single time." },
   { icon: RefreshCw, title: "Continuously Improved", description: "New tools and improvements ship regularly based on real feedback from developers and marketers." },
 ];
 
 const steps = [
-  { step: "01", title: "Pick a Tool", description: "Browse the collection below and choose the tool that fits your task — image, content, SEO, or career." },
+  { step: "01", title: "Pick a Tool", description: "Browse the collection below and choose the tool that fits your task - image, content, SEO, or career." },
   { step: "02", title: "Input Your Data", description: "Upload a file, paste a URL, or type your content. The interface tells you exactly what it needs." },
-  { step: "03", title: "Get Instant Results", description: "Download your processed image, copy your generated text, or read your detailed analysis — in seconds." },
+  { step: "03", title: "Get Instant Results", description: "Download your processed image, copy your generated text, or read your detailed analysis - in seconds." },
 ];
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Free Online Tools — No Signup Required",
-  description: "11 free browser-based tools — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Available globally, no account needed.",
+  name: "Free Online Tools - No Signup Required",
+  description: "11 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Available globally, no account needed.",
   url: `${siteConfig.url}/free-tools`,
   inLanguage: "en",
   author: {
@@ -166,7 +166,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Free Online Tools by Smit Parekh",
-  description: "Free browser-based tools with no signup required — AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Used in India, US, France, and worldwide.",
+  description: "Free browser-based tools with no signup required - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Used in India, US, France, and worldwide.",
   url: `${siteConfig.url}/free-tools`,
   numberOfItems: toolsSEO.length,
   itemListElement: toolsSEO.map((tool, i) => ({
@@ -174,7 +174,7 @@ const itemListSchema = {
     position: i + 1,
     item: {
       "@type": "SoftwareApplication",
-      name: tool.title.split(" — ")[0],
+      name: tool.title.split(" - ")[0],
       description: tool.description,
       url: `${siteConfig.url}/free-tools/${tool.slug}`,
       applicationCategory: "WebApplication",
@@ -200,7 +200,7 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Are all these tools really free?", acceptedAnswer: { "@type": "Answer", text: "Yes — every tool is completely free, forever. No hidden fees, no trial periods, no credit card required." } },
+    { "@type": "Question", name: "Are all these tools really free?", acceptedAnswer: { "@type": "Answer", text: "Yes - every tool is completely free, forever. No hidden fees, no trial periods, no credit card required." } },
     { "@type": "Question", name: "Do I need to create an account?", acceptedAnswer: { "@type": "Answer", text: "No account, no signup, no email. Just open a tool and use it immediately." } },
     { "@type": "Question", name: "What happens to my uploaded files?", acceptedAnswer: { "@type": "Answer", text: "Files uploaded for processing are used only to generate the result and are deleted immediately after. Nothing is stored." } },
     { "@type": "Question", name: "Can I use the results commercially?", acceptedAnswer: { "@type": "Answer", text: "Yes. All outputs can be used in personal and commercial projects without attribution." } },
@@ -244,7 +244,7 @@ export default function FreeToolsPage() {
         eyebrow="Free Tools"
         icon={Wrench}
         title="Free Online Tools"
-        description={`${toolsSEO.length} browser-based tools — no signup, no account, no cost. Built for developers, marketers, and professionals.`}
+        description={`${toolsSEO.length} browser-based tools - no signup, no account, no cost. Built for developers, marketers, and professionals.`}
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/85">
           <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No account required</span>
@@ -262,7 +262,7 @@ export default function FreeToolsPage() {
               const category = toolCategoryMap[tool.slug] ?? "Tool";
               const isPopular = popularSlugs.has(tool.slug);
               const isNew = newSlugs.has(tool.slug);
-              const shortTitle = tool.title.split(" — ")[0];
+              const shortTitle = tool.title.split(" - ")[0];
 
               return (
                 <Link
@@ -303,7 +303,7 @@ export default function FreeToolsPage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">Why Use These Tools</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Built for professionals who value their time</h2>
             <p className="text-muted-foreground mt-3 text-sm max-w-xl mx-auto">
-              Every tool is designed to solve a real problem fast — no friction, no paywalls.
+              Every tool is designed to solve a real problem fast - no friction, no paywalls.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -325,7 +325,7 @@ export default function FreeToolsPage() {
         <div className="page-container">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">How It Works</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Three steps — that's it</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Three steps - that's it</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
             {steps.map(({ step, title, description }) => (
@@ -357,7 +357,7 @@ export default function FreeToolsPage() {
         <div className="page-container text-center">
           <h2 className="text-2xl font-bold tracking-tight mb-3">Ready to get started?</h2>
           <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
-            Pick any tool above — no signup, no download, no waiting. Just results.
+            Pick any tool above - no signup, no download, no waiting. Just results.
           </p>
           <Link
             href="#tools"

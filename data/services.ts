@@ -11,7 +11,7 @@ export const services: Service[] = [
     shortDescription: "End-to-end applications built to scale",
     bullets: [
       "React + Node.js with TypeScript",
-      "Scalable REST APIs — Express & NestJS",
+      "Scalable REST APIs - Express & NestJS",
       "FinTech, SaaS & enterprise delivery",
     ],
     iconName: "Code2",

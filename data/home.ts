@@ -14,7 +14,7 @@ export const homeData: HomeData = {
   title: "Hi, I'm Smit Parekh",
   subtitle: "Full-Stack Web Development for Startups & Growing Businesses",
   description:
-    "I build fast, scalable web applications that drive real business results — from early-stage MVPs to enterprise platforms handling thousands of daily users. React · Node.js · TypeScript · AWS.",
+    "I build fast, scalable web applications that drive real business results - from early-stage MVPs to enterprise platforms handling thousands of daily users. React · Node.js · TypeScript · AWS.",
   imageSrc: "/images/Smit-Parekh-Home.png",
   socialLinks: [
     {

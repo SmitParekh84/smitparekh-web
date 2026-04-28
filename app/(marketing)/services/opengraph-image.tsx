@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Services — Full-Stack Web Development by Smit Parekh";
+export const alt = "Services - Full-Stack Web Development by Smit Parekh";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -86,7 +86,7 @@ export default async function ServicesOgImage() {
             color: "#7dd3fc",
           }}
         >
-          <span>From MVP to scale — built right the first time.</span>
+          <span>From MVP to scale - built right the first time.</span>
           <span>smitparekh.co.in/services</span>
         </div>
       </div>

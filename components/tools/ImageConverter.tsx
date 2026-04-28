@@ -96,7 +96,7 @@ export default function ImageConverter() {
           <div className="flex flex-col items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={preview} alt="Preview" className="max-h-40 max-w-full rounded-lg object-contain" />
-            <p className="text-sm text-muted-foreground">{file?.name} — {formatBytes(file?.size ?? 0)}</p>
+            <p className="text-sm text-muted-foreground">{file?.name} - {formatBytes(file?.size ?? 0)}</p>
           </div>
         ) : (
           <>

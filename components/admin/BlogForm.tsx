@@ -34,7 +34,7 @@ function slugify(value: string) {
   return value
     .toLowerCase()
     .replace(/&/g, "and")
-    .replace(/[–—]/g, "-")
+    .replace(/[–-]/g, "-")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
@@ -74,7 +74,7 @@ export function BlogForm({
   // Hydrate from session-storage AI draft generated on the listing page
   // (admin/blogs?ai=1 → POST /generate → sessionStorage → navigate here).
   useEffect(() => {
-    if (initialData?._id) return; // editing an existing post — never overwrite
+    if (initialData?._id) return; // editing an existing post - never overwrite
     if (typeof window === "undefined") return;
     if (!new URLSearchParams(window.location.search).has("ai")) return;
     const raw = sessionStorage.getItem("blog-ai-draft");
@@ -103,7 +103,7 @@ export function BlogForm({
       }));
       toast.success("AI draft loaded", "Add a cover image, review, and save.");
     } catch {
-      // ignore — corrupted draft
+      // ignore - corrupted draft
     } finally {
       sessionStorage.removeItem("blog-ai-draft");
     }
@@ -195,7 +195,7 @@ export function BlogForm({
             <div>
               <p className="text-sm font-medium">Generate with AI</p>
               <p className="text-xs text-muted-foreground">
-                Type a topic or title — AI fills the form. You can edit before saving.
+                Type a topic or title - AI fills the form. You can edit before saving.
               </p>
             </div>
           </div>
@@ -422,7 +422,7 @@ export function BlogForm({
           rows={20}
           value={form.content}
           onChange={(e) => setField("content", e.target.value)}
-          placeholder={`# Heading\n\nWrite your blog post in **Markdown**.\n\n- Lists\n- Code blocks\n- Links, images, tables — all supported.`}
+          placeholder={`# Heading\n\nWrite your blog post in **Markdown**.\n\n- Lists\n- Code blocks\n- Links, images, tables - all supported.`}
           className={cn(inputClass, "resize-y font-mono text-xs leading-relaxed")}
         />
         <p className="text-xs text-muted-foreground mt-1">

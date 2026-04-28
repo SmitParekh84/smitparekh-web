@@ -7,7 +7,7 @@ import { siteConfig } from "@/data/site";
 const LAST_UPDATED = "April 28, 2026";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Smit Parekh",
+  title: "Terms of Service - Smit Parekh",
   description:
     "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
   alternates: { canonical: `${siteConfig.url}/terms` },
@@ -67,8 +67,8 @@ export default function TermsPage() {
 
             <h2>3. Content &amp; Intellectual Property</h2>
             <p>
-              All original content on the Site — including blog articles,
-              copy, graphics, code samples, and tool interfaces — is owned by
+              All original content on the Site - including blog articles,
+              copy, graphics, code samples, and tool interfaces - is owned by
               Smit Parekh and protected by copyright and other intellectual
               property laws.
             </p>
@@ -89,7 +89,7 @@ export default function TermsPage() {
             <h2>5. Third-Party Links</h2>
             <p>
               The Site may contain links to third-party websites or services.
-              These are provided for convenience only — I do not control and am
+              These are provided for convenience only - I do not control and am
               not responsible for the content, policies, or practices of those
               third parties.
             </p>
@@ -164,7 +164,7 @@ export default function TermsPage() {
               <div>
                 <p className="font-semibold text-sm">Have a legal question?</p>
                 <p className="text-xs text-muted-foreground">
-                  Drop me a line — I usually reply within 24 hours.
+                  Drop me a line - I usually reply within 24 hours.
                 </p>
               </div>
             </div>

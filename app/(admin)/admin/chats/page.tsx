@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 import { useChatSessions, useChatSession } from "@/hooks/api/use-chat";
 
 function formatRelative(iso: string) {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso);
   const diff = (Date.now() - d.getTime()) / 1000;
   if (diff < 60) return "just now";
@@ -113,7 +113,7 @@ export default function AdminChatsPage() {
           <CardHeader className="pb-3">
             <CardTitle className="text-base">All sessions</CardTitle>
             <CardDescription>
-              {list.data ? `${list.data.total} total` : "—"}
+              {list.data ? `${list.data.total} total` : "-"}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -258,11 +258,11 @@ export default function AdminChatsPage() {
                 <div className="grid grid-cols-2 gap-3 rounded-lg border bg-muted/30 p-3 text-xs">
                   <div>
                     <p className="text-muted-foreground">First page</p>
-                    <p className="font-medium">{detail.data.firstPagePath || "—"}</p>
+                    <p className="font-medium">{detail.data.firstPagePath || "-"}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Last page</p>
-                    <p className="font-medium">{detail.data.lastPagePath || "—"}</p>
+                    <p className="font-medium">{detail.data.lastPagePath || "-"}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Started</p>
