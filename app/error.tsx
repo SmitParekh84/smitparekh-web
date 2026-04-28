@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { ArrowLeft, RefreshCcw, AlertTriangle, Home } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
@@ -13,6 +14,11 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
+  const homeHref = isAdmin ? "/admin" : "/";
+  const homeLabel = isAdmin ? "Back to admin home" : "Back to home";
+
   useEffect(() => {
     console.error("App error boundary:", error);
   }, [error]);
@@ -51,14 +57,14 @@ export default function GlobalError({
               Try again
             </button>
             <Link
-              href="/"
+              href={homeHref}
               className={cn(
                 buttonVariants({ variant: "outline", size: "sm" }),
                 "gap-1.5"
               )}
             >
               <Home className="h-3.5 w-3.5" />
-              Back to home
+              {homeLabel}
             </Link>
             <Link
               href="/contact"
