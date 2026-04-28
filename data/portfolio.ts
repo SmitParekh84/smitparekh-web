@@ -33,6 +33,7 @@ export interface Project {
   demoLink: string;
   repoLink?: string;
   gradient: string;
+  imageUrl?: string;
   highlights: ProjectHighlight[];
   problem: string;
   approach: string[];

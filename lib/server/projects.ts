@@ -73,6 +73,7 @@ function normalize(b: BackendProject, fallbackIdx = 0): Project {
       b.gradient ||
       fallback?.gradient ||
       "from-blue-600 via-blue-500 to-sky-500",
+    imageUrl: b.imageUrl || fallback?.imageUrl,
     highlights: b.highlights?.length
       ? b.highlights
       : fallback?.highlights ?? [],
