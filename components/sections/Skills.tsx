@@ -32,8 +32,8 @@ const techStack = [
 ];
 
 // Split into two rows for opposite-direction marquees
-const row1 = techStack.slice(0, 7);
-const row2 = techStack.slice(7);
+const row1 = techStack.slice(0, Math.ceil(techStack.length / 2));
+const row2 = techStack.slice(Math.ceil(techStack.length / 2));
 
 export default function Skills() {
   return (
@@ -81,7 +81,7 @@ export default function Skills() {
             }}
           >
             {/* Row 1 — scrolls left */}
-            <div className="flex mb-3 [&:hover>*]:pause-animation">
+            <div className="flex mb-3">
               <div className="flex shrink-0 gap-3 animate-marquee hover:[animation-play-state:paused]">
                 {[...row1, ...row1].map((tech, i) => (
                   <span
@@ -95,7 +95,7 @@ export default function Skills() {
             </div>
 
             {/* Row 2 — scrolls right */}
-            <div className="flex [&:hover>*]:pause-animation">
+            <div className="flex">
               <div className="flex shrink-0 gap-3 animate-marquee-reverse hover:[animation-play-state:paused]">
                 {[...row2, ...row2].map((tech, i) => (
                   <span
