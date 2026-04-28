@@ -6,6 +6,7 @@ export const queryKeys = {
     byId: (id: string) => [...queryKeys.projects.all, "id", id] as const,
     byTitle: (title: string) => [...queryKeys.projects.all, "title", title] as const,
     bySlug: (slug: string) => [...queryKeys.projects.all, "slug", slug] as const,
+    images: () => [...queryKeys.projects.all, "images"] as const,
   },
   blogs: {
     all: ["blogs"] as const,
@@ -13,6 +14,7 @@ export const queryKeys = {
     deleted: () => [...queryKeys.blogs.all, "deleted"] as const,
     byId: (id: string) => [...queryKeys.blogs.all, "id", id] as const,
     bySlug: (slug: string) => [...queryKeys.blogs.all, "slug", slug] as const,
+    images: () => [...queryKeys.blogs.all, "images"] as const,
   },
   feedback: {
     all: ["feedback"] as const,

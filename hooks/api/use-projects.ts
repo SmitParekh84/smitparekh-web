@@ -98,6 +98,23 @@ export function useUploadProjectImage() {
   });
 }
 
+export function useProjectImages(enabled = true) {
+  return useQuery({
+    queryKey: queryKeys.projects.images(),
+    queryFn: () => projectsApi.listImages(),
+    enabled,
+    staleTime: 30_000,
+  });
+}
+
+export function useDeleteProjectImage() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (publicId: string) => projectsApi.deleteImage(publicId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.projects.images() }),
+  });
+}
+
 export function useGenerateProject() {
   return useMutation({
     mutationFn: (params: { mode: "rewrite" | "idea"; prompt: string }) =>

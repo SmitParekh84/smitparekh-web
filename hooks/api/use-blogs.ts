@@ -81,6 +81,23 @@ export function useUploadBlogImage() {
   });
 }
 
+export function useBlogImages(enabled = true) {
+  return useQuery({
+    queryKey: queryKeys.blogs.images(),
+    queryFn: () => blogsApi.listImages(),
+    enabled,
+    staleTime: 30_000,
+  });
+}
+
+export function useDeleteBlogImage() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (publicId: string) => blogsApi.deleteImage(publicId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.images() }),
+  });
+}
+
 export function useGenerateBlog() {
   return useMutation({
     mutationFn: (prompt: string) => blogsApi.generate(prompt),

@@ -10,6 +10,22 @@ export interface UploadBlogImageResponse {
   url: string;
 }
 
+export interface CloudinaryImage {
+  publicId: string;
+  secureUrl: string;
+  width: number;
+  height: number;
+  bytes: number;
+  format: string;
+  createdAt: string;
+}
+
+export interface ListImagesResponse {
+  success: boolean;
+  images: CloudinaryImage[];
+  nextCursor: string | null;
+}
+
 export interface GenerateBlogResponse {
   success: boolean;
   data: {
@@ -46,6 +62,9 @@ export const blogsApi = {
     form.append("image", file);
     return api.postForm<UploadBlogImageResponse>("/blogs/upload", form);
   },
+  listImages: () => api.get<ListImagesResponse>("/blogs/images"),
+  deleteImage: (publicId: string) =>
+    api.post<{ success: boolean }>("/blogs/images/delete", { publicId }),
   generate: (prompt: string) =>
     api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
 };

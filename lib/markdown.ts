@@ -10,10 +10,20 @@
  *
  * `normalizeMarkdown` rewrites those near-miss runs by trimming the inner
  * whitespace so the parser can recognize them as emphasis again.
+ *
+ * Whitespace class `[^\S\n]` = any whitespace except newline. This catches
+ * regular space, tab, non-breaking space (U+00A0), zero-width spaces, and
+ * other Unicode invisibles that often sneak in from pasted content, while
+ * still keeping the match scoped to a single logical run.
  */
 
-const STRONG_DOUBLE_STAR = /\*\*[ \t]*([^\s*][^*]*?[^\s*]|[^\s*])[ \t]*\*\*/g;
-const STRONG_DOUBLE_UNDERSCORE = /__[ \t]*([^\s_][^_]*?[^\s_]|[^\s_])[ \t]*__/g;
+// Strong: ** ... **  and  __ ... __
+const STRONG_DOUBLE_STAR = /\*\*[^\S\n]*([^\s*][^*]*?[^\s*]|[^\s*])[^\S\n]*\*\*/g;
+const STRONG_DOUBLE_UNDERSCORE = /__[^\S\n]*([^\s_][^_]*?[^\s_]|[^\s_])[^\S\n]*__/g;
+
+// Emphasis: single * ... * (avoid matching ** by requiring non-* on either side)
+const EMPHASIS_SINGLE_STAR = /(^|[^*])\*[^\S\n]+([^\s*][^*\n]*?[^\s*]|[^\s*])[^\S\n]*\*(?!\*)/g;
+const EMPHASIS_SINGLE_STAR_TRAIL = /(^|[^*])\*([^\s*][^*\n]*?[^\s*]|[^\s*])[^\S\n]+\*(?!\*)/g;
 
 export function normalizeMarkdown(input: string): string {
   if (!input) return input;
@@ -22,5 +32,13 @@ export function normalizeMarkdown(input: string): string {
     .replace(
       STRONG_DOUBLE_UNDERSCORE,
       (_match, inner: string) => `__${inner}__`
+    )
+    .replace(
+      EMPHASIS_SINGLE_STAR,
+      (_match, lead: string, inner: string) => `${lead}*${inner}*`
+    )
+    .replace(
+      EMPHASIS_SINGLE_STAR_TRAIL,
+      (_match, lead: string, inner: string) => `${lead}*${inner}*`
     );
 }

@@ -1,12 +1,21 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Upload, X, Star, Eye, EyeOff, Sparkles } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
-import { useUploadProjectImage, useGenerateProject } from "@/hooks/use-projects";
+import { useGenerateProject } from "@/hooks/use-projects";
+import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import {
   StringListEditor,
   KVListEditor,
@@ -64,8 +73,6 @@ export function ProjectForm({
   isPending,
 }: ProjectFormProps) {
   const router = useRouter();
-  const fileRef = useRef<HTMLInputElement>(null);
-  const uploadImage = useUploadProjectImage();
   const generateProject = useGenerateProject();
   const [aiOpen, setAiOpen] = useState(false);
   const [aiMode, setAiMode] = useState<"idea" | "rewrite">("idea");
@@ -195,18 +202,6 @@ export function ProjectForm({
     }));
   }
 
-  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    try {
-      const result = await uploadImage.mutateAsync(file);
-      setField("imageUrl", result.url);
-      toast.success("Image uploaded");
-    } catch {
-      toast.error("Upload failed", "Could not upload image.");
-    }
-  }
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.title || !form.shortDescription || !form.detailMarkdown || !form.imageUrl) {
@@ -254,36 +249,29 @@ export function ProjectForm({
         </div>
       </div>
 
-      {aiOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
-          onClick={() => !generateProject.isPending && setAiOpen(false)}
-        >
-          <div
-            className="w-full max-w-xl rounded-2xl border border-border bg-card p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-4 flex items-start gap-3">
+      <Dialog
+        open={aiOpen}
+        onOpenChange={(o) => {
+          if (!generateProject.isPending) setAiOpen(o);
+        }}
+      >
+        <DialogContent className="max-w-xl">
+          <DialogHeader>
+            <div className="flex items-start gap-3">
               <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
                 <Sparkles className="h-4 w-4" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-semibold">Generate project draft</h3>
-                <p className="text-xs text-muted-foreground">
+                <DialogTitle>Generate project draft</DialogTitle>
+                <DialogDescription>
                   Pick a mode, then describe the project. AI returns a full
                   structured case study.
-                </p>
+                </DialogDescription>
               </div>
-              <button
-                type="button"
-                onClick={() => setAiOpen(false)}
-                disabled={generateProject.isPending}
-                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
+          </DialogHeader>
 
+          <div>
             <div className="mb-3 grid grid-cols-2 gap-2">
               <button
                 type="button"
@@ -342,38 +330,38 @@ export function ProjectForm({
                 This will overwrite all case-study fields below.
               </p>
             )}
-
-            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={() => setAiOpen(false)}
-                disabled={generateProject.isPending}
-                className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleAiGenerate}
-                disabled={generateProject.isPending || !aiPrompt.trim()}
-                className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
-              >
-                {generateProject.isPending ? (
-                  <>
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Generate
-                  </>
-                )}
-              </button>
-            </div>
           </div>
-        </div>
-      )}
+
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setAiOpen(false)}
+              disabled={generateProject.isPending}
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleAiGenerate}
+              disabled={generateProject.isPending || !aiPrompt.trim()}
+              className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+            >
+              {generateProject.isPending ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Generate
+                </>
+              )}
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Title */}
       <Field label="Title" required>
@@ -619,58 +607,12 @@ export function ProjectForm({
 
       {/* Image */}
       <Field label="Project Image" required>
-        <div className="space-y-2">
-          <input
-            type="text"
-            value={form.imageUrl}
-            onChange={(e) => setField("imageUrl", e.target.value)}
-            placeholder="https://res.cloudinary.com/... or paste a URL"
-            className={inputClass}
-          />
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">or</span>
-            <button
-              type="button"
-              onClick={() => fileRef.current?.click()}
-              disabled={uploadImage.isPending}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "gap-2 text-xs"
-              )}
-            >
-              {uploadImage.isPending ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <Upload className="w-3.5 h-3.5" />
-              )}
-              Upload Image
-            </button>
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageUpload}
-            />
-          </div>
-          {form.imageUrl && (
-            <div className="relative w-32 h-20 rounded-xl overflow-hidden border border-border">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={form.imageUrl}
-                alt="Preview"
-                className="w-full h-full object-cover"
-              />
-              <button
-                type="button"
-                onClick={() => setField("imageUrl", "")}
-                className="absolute top-1 right-1 p-0.5 rounded-full bg-black/60 text-white hover:bg-black/80"
-              >
-                <X className="w-3 h-3" />
-              </button>
-            </div>
-          )}
-        </div>
+        <CloudinaryImagePicker
+          kind="project"
+          value={form.imageUrl}
+          onChange={(url) => setField("imageUrl", url)}
+          previewAspect="aspect-[16/10]"
+        />
       </Field>
 
       {/* Links */}

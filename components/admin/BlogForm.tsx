@@ -1,12 +1,21 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Upload, X, Star, Eye, EyeOff, Sparkles } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
-import { useUploadBlogImage, useGenerateBlog } from "@/hooks/use-blogs";
+import { useGenerateBlog } from "@/hooks/use-blogs";
+import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import type { BackendBlog, BackendBlogInput } from "@/types";
 
 const CATEGORY_OPTIONS = [
@@ -48,8 +57,6 @@ export function BlogForm({
   isPending,
 }: BlogFormProps) {
   const router = useRouter();
-  const fileRef = useRef<HTMLInputElement>(null);
-  const uploadImage = useUploadBlogImage();
   const generateBlog = useGenerateBlog();
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState("");
@@ -112,18 +119,6 @@ export function BlogForm({
 
   function setField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
-  }
-
-  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    try {
-      const result = await uploadImage.mutateAsync(file);
-      setField("coverImage", result.url);
-      toast.success("Cover image uploaded");
-    } catch {
-      toast.error("Upload failed", "Could not upload image.");
-    }
   }
 
   async function handleGenerate() {
@@ -213,35 +208,28 @@ export function BlogForm({
         </div>
       </div>
 
-      {aiOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
-          onClick={() => !generateBlog.isPending && setAiOpen(false)}
-        >
-          <div
-            className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-4 flex items-start gap-3">
+      <Dialog
+        open={aiOpen}
+        onOpenChange={(o) => {
+          if (!generateBlog.isPending) setAiOpen(o);
+        }}
+      >
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <div className="flex items-start gap-3">
               <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
                 <Sparkles className="h-4 w-4" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-semibold">Generate blog draft</h3>
-                <p className="text-xs text-muted-foreground">
+                <DialogTitle>Generate blog draft</DialogTitle>
+                <DialogDescription>
                   Be specific. Mention audience, angle, or keywords for better output.
-                </p>
+                </DialogDescription>
               </div>
-              <button
-                type="button"
-                onClick={() => setAiOpen(false)}
-                disabled={generateBlog.isPending}
-                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
+          </DialogHeader>
 
+          <div>
             <textarea
               autoFocus
               rows={4}
@@ -261,38 +249,38 @@ export function BlogForm({
                 This will overwrite Title, Excerpt, Content, Category, Tags & Read time.
               </p>
             )}
-
-            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={() => setAiOpen(false)}
-                disabled={generateBlog.isPending}
-                className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleGenerate}
-                disabled={generateBlog.isPending || !aiPrompt.trim()}
-                className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
-              >
-                {generateBlog.isPending ? (
-                  <>
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Generate
-                  </>
-                )}
-              </button>
-            </div>
           </div>
-        </div>
-      )}
+
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setAiOpen(false)}
+              disabled={generateBlog.isPending}
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleGenerate}
+              disabled={generateBlog.isPending || !aiPrompt.trim()}
+              className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+            >
+              {generateBlog.isPending ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Generate
+                </>
+              )}
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Title */}
       <Field label="Title" required>
@@ -365,53 +353,10 @@ export function BlogForm({
 
       {/* Cover image */}
       <Field label="Cover Image" required>
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="hidden"
-        />
-        {form.coverImage ? (
-          <div className="relative rounded-xl overflow-hidden border border-border">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={form.coverImage}
-              alt="Cover"
-              className="w-full aspect-[16/9] object-cover"
-            />
-            <button
-              type="button"
-              onClick={() => setField("coverImage", "")}
-              className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/60 text-white hover:bg-black/80 transition-colors"
-            >
-              <X className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            disabled={uploadImage.isPending}
-            className="flex flex-col items-center justify-center gap-2 w-full aspect-[16/9] rounded-xl border-2 border-dashed border-border hover:border-blue-500/50 hover:bg-muted/40 transition-colors text-sm text-muted-foreground"
-          >
-            {uploadImage.isPending ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <>
-                <Upload className="h-5 w-5" />
-                <span>Click to upload cover image</span>
-                <span className="text-xs">Recommended: 1600 × 900</span>
-              </>
-            )}
-          </button>
-        )}
-        <input
-          type="url"
+        <CloudinaryImagePicker
+          kind="blog"
           value={form.coverImage}
-          onChange={(e) => setField("coverImage", e.target.value)}
-          placeholder="...or paste an image URL"
-          className={cn(inputClass, "mt-2")}
+          onChange={(url) => setField("coverImage", url)}
         />
       </Field>
 

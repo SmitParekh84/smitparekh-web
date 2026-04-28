@@ -10,6 +10,12 @@ export interface UploadImageResponse {
   url: string;
 }
 
+export interface ListProjectImagesResponse {
+  success: boolean;
+  images: import("./blogs").CloudinaryImage[];
+  nextCursor: string | null;
+}
+
 export interface GenerateProjectResponse {
   success: boolean;
   data: BackendProjectInput & { detailMarkdown: string };
@@ -41,6 +47,9 @@ export const projectsApi = {
     form.append("image", file);
     return api.postForm<UploadImageResponse>("/upload", form);
   },
+  listImages: () => api.get<ListProjectImagesResponse>("/projects/images"),
+  deleteImage: (publicId: string) =>
+    api.post<{ success: boolean }>("/projects/images/delete", { publicId }),
   generate: (params: { mode: "rewrite" | "idea"; prompt: string }) =>
     api.post<GenerateProjectResponse>("/projects/generate", params),
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -14,7 +15,6 @@ import {
   ExternalLink,
   LogOut,
   ChevronsUpDown,
-  Sparkles,
   UserRound,
   Users,
 } from "lucide-react";
@@ -101,7 +101,13 @@ export function AdminSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" render={<Link href="/admin" />}>
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400 text-primary-foreground shadow-sm">
-                <Sparkles className="size-4" />
+                <Image
+                  src="/Smit-Logo.svg"
+                  alt="Smit Parekh"
+                  width={20}
+                  height={20}
+                  className="size-5"
+                />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">Admin</span>
