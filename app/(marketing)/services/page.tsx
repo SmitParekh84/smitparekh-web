@@ -13,7 +13,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
@@ -195,7 +194,7 @@ export default function ServicesPage() {
             href="/contact"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "gap-2 bg-white text-blue-600 hover:bg-white/90"
+              "gap-2 bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700"
             )}
           >
             Discuss Your Project
@@ -333,12 +332,40 @@ export default function ServicesPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-6">
             Technologies I Work With
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {techStack.map((tech) => (
-              <Badge key={tech} variant="secondary" className="text-xs px-3 py-1.5">
-                {tech}
-              </Badge>
-            ))}
+          <div
+            className="relative overflow-hidden"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            }}
+          >
+            <div className="flex w-max animate-marquee">
+              <ul className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0">
+                {techStack.map((tech, i) => (
+                  <li
+                    key={`svc-tech-a-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+              <ul
+                aria-hidden="true"
+                className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0"
+              >
+                {techStack.map((tech, i) => (
+                  <li
+                    key={`svc-tech-b-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -364,7 +391,7 @@ export default function ServicesPage() {
                 href="/contact"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "bg-white text-blue-600 hover:bg-white/90 gap-2 font-semibold mt-2"
+                  "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold mt-2"
                 )}
               >
                 Start the Conversation

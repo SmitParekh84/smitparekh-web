@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Workflow, Boxes, Network, GitBranch } from "lucide-react";
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
+  SiNodedotjs, SiNestjs, SiExpress, SiPython, SiGraphql,
+  SiPostgresql, SiMongodb, SiSupabase, SiRedis, SiElasticsearch,
+  SiApachekafka, SiRabbitmq, SiDocker,
+} from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { homeData, aboutStats, cvLink } from "@/data/home";
 import {
@@ -207,71 +213,67 @@ export default function Hero() {
           <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider font-medium">
             Tech Stack
           </p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-2"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.05, delayChildren: 1.0 } },
+          <div
+            className="relative overflow-hidden"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             }}
           >
-            {[
-              // Frontend
-              "React",
-              "Next.js",
-              "TypeScript",
-              "Tailwind CSS",
-              // Backend
-              "Node.js",
-              "NestJS",
-              "Express",
-              "Python",
-              "GraphQL",
-              "REST APIs",
-              "Microservices",
-              "Event-Driven Architecture",
-              // Data
-              "PostgreSQL",
-              "MongoDB",
-              "Redis",
-              "Elasticsearch",
-              "Kafka",
-              "RabbitMQ",
-              // AWS
-              "AWS EC2",
-              "AWS S3",
-              "AWS Lambda",
-              "AWS RDS",
-              "AWS ECS",
-              "AWS CloudFront",
-              "AWS API Gateway",
-              "AWS SQS",
-              "AWS SNS",
-              "AWS CloudWatch",
-              "AWS IAM",
-              // DevOps
-              "Docker",
-              "Kubernetes",
-              "Terraform",
-              "GitHub Actions",
-              "CI/CD",
-            ].map(
-              (tech) => (
-                <motion.div
-                  key={tech}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.8 },
-                    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-                  }}
-                >
-                  <Badge variant="secondary" className="text-xs px-3 py-1">
-                    {tech}
-                  </Badge>
-                </motion.div>
-              )
-            )}
-          </motion.div>
+            {(() => {
+              const heroTech: { name: string; Icon: React.ComponentType<{ className?: string }> }[] = [
+                { name: "React", Icon: SiReact },
+                { name: "Next.js", Icon: SiNextdotjs },
+                { name: "TypeScript", Icon: SiTypescript },
+                { name: "Tailwind CSS", Icon: SiTailwindcss },
+                { name: "Node.js", Icon: SiNodedotjs },
+                { name: "NestJS", Icon: SiNestjs },
+                { name: "Express", Icon: SiExpress },
+                { name: "Python", Icon: SiPython },
+                { name: "GraphQL", Icon: SiGraphql },
+                { name: "REST APIs", Icon: Network },
+                { name: "Microservices", Icon: Boxes },
+                { name: "Event-Driven Architecture", Icon: Workflow },
+                { name: "PostgreSQL", Icon: SiPostgresql },
+                { name: "MongoDB", Icon: SiMongodb },
+                { name: "Supabase", Icon: SiSupabase },
+                { name: "Redis", Icon: SiRedis },
+                { name: "Elasticsearch", Icon: SiElasticsearch },
+                { name: "Kafka", Icon: SiApachekafka },
+                { name: "RabbitMQ", Icon: SiRabbitmq },
+                { name: "AWS", Icon: FaAws },
+                { name: "Docker", Icon: SiDocker },
+                { name: "CI/CD", Icon: GitBranch },
+              ];
+              const chipClass =
+                "inline-flex items-center gap-1.5 sm:gap-2 whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium";
+              return (
+                <div className="flex w-max animate-marquee">
+                  <ul className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0">
+                    {heroTech.map(({ name, Icon }, i) => (
+                      <li key={`hero-tech-a-${i}`} className={chipClass}>
+                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500/90 shrink-0" />
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                  <ul
+                    aria-hidden="true"
+                    className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0"
+                  >
+                    {heroTech.map(({ name, Icon }, i) => (
+                      <li key={`hero-tech-b-${i}`} className={chipClass}>
+                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500/90 shrink-0" />
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })()}
+          </div>
         </motion.div>
       </div>
     </AuroraBackground>

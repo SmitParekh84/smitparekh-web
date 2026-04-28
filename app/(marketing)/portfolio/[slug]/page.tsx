@@ -249,7 +249,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 rel="noopener noreferrer"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "bg-white text-blue-600 hover:bg-white/90 gap-2"
+                  "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2"
                 )}
               >
                 Visit Live Site

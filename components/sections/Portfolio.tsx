@@ -81,7 +81,7 @@ export default function Portfolio() {
               <StaggerItem key={project.slug}>
                 <Link
                   href={`/portfolio/${project.slug}`}
-                  className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5 h-full"
+                  className="group relative flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5 h-full"
                 >
                   {/* Featured ribbon */}
                   {project.isFeatured && (

@@ -345,7 +345,7 @@ export default function AboutPage() {
                   href="/contact"
                   className={cn(
                     buttonVariants({ size: "lg" }),
-                    "bg-white text-blue-600 hover:bg-white/90 gap-2 font-semibold"
+                    "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold"
                   )}
                 >
                   Get in Touch
@@ -355,7 +355,7 @@ export default function AboutPage() {
                   href="/portfolio"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "border-white/40 text-white hover:bg-white/10 hover:text-white gap-2"
+                    "bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white gap-2"
                   )}
                 >
                   View My Work

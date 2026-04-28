@@ -207,11 +207,11 @@
 ───────────────────────────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(calc(-100% - var(--marquee-gap, 0.75rem))); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes marquee-reverse {
-  from { transform: translateX(calc(-100% - var(--marquee-gap, 0.75rem))); }
+  from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
 
@@ -263,12 +263,12 @@
   }
   .animate-marquee {
     --marquee-gap: 0.5rem;
-    animation: marquee 28s linear infinite;
+    animation: marquee 60s linear infinite;
     will-change: transform;
   }
   .animate-marquee-reverse {
     --marquee-gap: 0.5rem;
-    animation: marquee-reverse 22s linear infinite;
+    animation: marquee-reverse 50s linear infinite;
     will-change: transform;
   }
   @media (min-width: 640px) {
