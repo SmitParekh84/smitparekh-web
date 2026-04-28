@@ -207,11 +207,11 @@
 ───────────────────────────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(calc(-100% - var(--marquee-gap, 0.75rem))); }
 }
 
 @keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
+  from { transform: translateX(calc(-100% - var(--marquee-gap, 0.75rem))); }
   to   { transform: translateX(0); }
 }
 
@@ -262,9 +262,32 @@
     @apply py-16 sm:py-20 lg:py-24;
   }
   .animate-marquee {
+    --marquee-gap: 0.5rem;
     animation: marquee 28s linear infinite;
+    will-change: transform;
   }
   .animate-marquee-reverse {
+    --marquee-gap: 0.5rem;
     animation: marquee-reverse 22s linear infinite;
+    will-change: transform;
+  }
+  @media (min-width: 640px) {
+    .animate-marquee,
+    .animate-marquee-reverse {
+      --marquee-gap: 0.75rem;
+    }
+  }
+  /* Only pause on hover-capable pointers so taps don't freeze it on mobile */
+  @media (hover: hover) {
+    .animate-marquee:hover,
+    .animate-marquee-reverse:hover {
+      animation-play-state: paused;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-marquee-reverse {
+      animation: none;
+    }
   }
 }

@@ -81,31 +81,57 @@ export default function Skills() {
             }}
           >
             {/* Row 1 — scrolls left */}
-            <div className="flex mb-3">
-              <div className="flex shrink-0 gap-3 animate-marquee hover:[animation-play-state:paused]">
-                {[...row1, ...row1].map((tech, i) => (
-                  <span
-                    key={`r1-${i}`}
-                    className="whitespace-nowrap px-4 py-1.5 rounded-full border border-border bg-card text-sm text-foreground/80 font-medium"
+            <div className="flex w-max gap-2 sm:gap-3 mb-2 sm:mb-3 animate-marquee">
+              <ul className="flex shrink-0 gap-2 sm:gap-3 list-none m-0 p-0">
+                {row1.map((tech, i) => (
+                  <li
+                    key={`r1-a-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
                   >
                     {tech}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <ul
+                aria-hidden="true"
+                className="flex shrink-0 gap-2 sm:gap-3 list-none m-0 p-0"
+              >
+                {row1.map((tech, i) => (
+                  <li
+                    key={`r1-b-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Row 2 — scrolls right */}
-            <div className="flex">
-              <div className="flex shrink-0 gap-3 animate-marquee-reverse hover:[animation-play-state:paused]">
-                {[...row2, ...row2].map((tech, i) => (
-                  <span
-                    key={`r2-${i}`}
-                    className="whitespace-nowrap px-4 py-1.5 rounded-full border border-border bg-card text-sm text-foreground/80 font-medium"
+            <div className="flex w-max gap-2 sm:gap-3 animate-marquee-reverse">
+              <ul className="flex shrink-0 gap-2 sm:gap-3 list-none m-0 p-0">
+                {row2.map((tech, i) => (
+                  <li
+                    key={`r2-a-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
                   >
                     {tech}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <ul
+                aria-hidden="true"
+                className="flex shrink-0 gap-2 sm:gap-3 list-none m-0 p-0"
+              >
+                {row2.map((tech, i) => (
+                  <li
+                    key={`r2-b-${i}`}
+                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </FadeInSection>
