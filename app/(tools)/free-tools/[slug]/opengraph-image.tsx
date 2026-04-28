@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getToolSEO } from "@/data/tools-seo";
 
-export const alt = "Free Online Tool — Smit Parekh";
+export const alt = "Free Online Tool - Smit Parekh";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,10 +13,10 @@ export default async function ToolOgImage({
   const { slug } = await params;
   const tool = getToolSEO(slug);
 
-  const heading = tool ? tool.title.split(" — ")[0] : prettify(slug);
+  const heading = tool ? tool.title.split(" - ")[0] : prettify(slug);
   const subline = tool
-    ? tool.title.split(" — ").slice(1).join(" — ") || tool.description
-    : "Free online tool — no signup required.";
+    ? tool.title.split(" - ").slice(1).join(" - ") || tool.description
+    : "Free online tool - no signup required.";
   const description = tool?.description ?? "";
 
   return new ImageResponse(

@@ -45,7 +45,7 @@ export default function FeedbackPage() {
         <CardHeader>
           <CardTitle>All entries</CardTitle>
           <CardDescription>
-            {feedback ? `${feedback.length} total` : "—"}
+            {feedback ? `${feedback.length} total` : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent>

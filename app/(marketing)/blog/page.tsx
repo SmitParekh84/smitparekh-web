@@ -25,7 +25,7 @@ export default async function BlogIndexPage() {
   const blogListSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: `${siteConfig.name} — Blog`,
+    name: `${siteConfig.name} - Blog`,
     url: `${siteConfig.url}/blog`,
     description:
       "Articles and engineering notes by Smit Parekh on web development, React, Next.js, Node.js and TypeScript.",
@@ -63,7 +63,7 @@ export default async function BlogIndexPage() {
               No posts yet
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              I&apos;m drafting the first batch — check back soon, or follow me
+              I&apos;m drafting the first batch - check back soon, or follow me
               on socials for updates.
             </p>
             <Link

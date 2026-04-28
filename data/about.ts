@@ -13,7 +13,7 @@ export interface Certification {
 }
 
 export const aboutBio =
-  "Full-Stack Developer with 4+ years delivering production web applications across FinTech, AI/ML, SaaS, and enterprise domains. Expert in React, Next.js, Node.js, TypeScript, and PostgreSQL — with deep experience in Redux state management, RESTful API architecture, and AWS cloud infrastructure. Proven track record cutting query response times by 65%, improving performance by 40%, and shipping APIs handling 10,000+ daily requests. One engineering partner for the full product lifecycle — architecture, build, deployment, and handover.";
+  "Full-Stack Developer with 4+ years delivering production web applications across FinTech, AI/ML, SaaS, and enterprise domains. Expert in React, Next.js, Node.js, TypeScript, and PostgreSQL - with deep experience in Redux state management, RESTful API architecture, and AWS cloud infrastructure. Proven track record cutting query response times by 65%, improving performance by 40%, and shipping APIs handling 10,000+ daily requests. One engineering partner for the full product lifecycle - architecture, build, deployment, and handover.";
 
 export const experiences: Experience[] = [
   {
@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
     role: "Digital Marketer & Video Editor",
     period: "Apr 2023 – Jan 2024",
     description:
-      "Developed creative content and managed digital campaigns, building strong communication skills and a deep understanding of user-centric design principles. This role sharpened the ability to bridge engineering and marketing — a perspective that now informs every product built.",
+      "Developed creative content and managed digital campaigns, building strong communication skills and a deep understanding of user-centric design principles. This role sharpened the ability to bridge engineering and marketing - a perspective that now informs every product built.",
     tags: ["Digital Marketing", "Content Strategy", "SEO", "Analytics"],
   },
 ];

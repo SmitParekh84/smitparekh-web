@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const url = `${siteConfig.url}/portfolio/${project.slug}`;
-  const title = `${project.title} — ${project.subtitle} | Case Study`;
+  const title = `${project.title} - ${project.subtitle} | Case Study`;
   const description = project.summary;
 
   // Pull every tech across all stack groups for richer keyword coverage.
@@ -133,7 +133,7 @@ function buildSchemas(project: Project) {
   const creativeWork = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: `${project.title} — ${project.subtitle}`,
+    name: `${project.title} - ${project.subtitle}`,
     headline: `${project.title} Case Study`,
     description: project.summary,
     url,
@@ -491,7 +491,7 @@ export default async function CaseStudyPage({ params }: Props) {
             Have a similar project in mind?
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
-            I&apos;m available for full-stack engagements — React, Next.js, Node.js,
+            I&apos;m available for full-stack engagements - React, Next.js, Node.js,
             PostgreSQL, AWS. Let&apos;s talk through what you&apos;re building.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">

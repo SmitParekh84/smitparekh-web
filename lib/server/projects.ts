@@ -4,7 +4,7 @@
  * The marketing case study pages call these helpers from server components
  * (and generateStaticParams). They always fetch from the public REST API at
  * build/request time, but gracefully fall back to the bundled
- * `data/portfolio.ts` content when the API is unreachable — so SSG and
+ * `data/portfolio.ts` content when the API is unreachable - so SSG and
  * production builds never fail because the backend is offline.
  */
 
@@ -126,7 +126,7 @@ export async function fetchCaseStudyBySlug(
     return normalize(data.data);
   }
 
-  // If the API was unreachable, surface the static fallback when possible —
+  // If the API was unreachable, surface the static fallback when possible -
   // never let a transient backend hiccup cache a 404 for a real project.
   const staticMatch = featuredProjects.find((p) => p.slug === slug);
   if (staticMatch) return staticMatch;

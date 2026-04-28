@@ -49,9 +49,9 @@ export const featuredProjects: Project[] = [
     title: "Liquidity.io",
     subtitle: "Cap Table Management Platform",
     description:
-      "Enterprise FinTech platform for equity management, shareholder tracking, and financial reporting. Built for the Satchel Inc suite — handles 10,000+ daily API requests across 50+ Redux Toolkit components with 99.9% uptime.",
+      "Enterprise FinTech platform for equity management, shareholder tracking, and financial reporting. Built for the Satchel Inc suite - handles 10,000+ daily API requests across 50+ Redux Toolkit components with 99.9% uptime.",
     summary:
-      "Liquidity.io is the cap table and equity-management product in the Satchel Inc FinTech suite. Founders, CFOs, and investors use it as the single source of truth for ownership — modeling rounds, issuing shares, tracking vesting, and producing audit-ready financial reports. I worked on the platform end-to-end across React, Redux Toolkit, and Node.js services.",
+      "Liquidity.io is the cap table and equity-management product in the Satchel Inc FinTech suite. Founders, CFOs, and investors use it as the single source of truth for ownership - modeling rounds, issuing shares, tracking vesting, and producing audit-ready financial reports. I worked on the platform end-to-end across React, Redux Toolkit, and Node.js services.",
     tags: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Redux", "AWS", "Docker"],
     category: "FinTech",
     industry: "Equity & Cap Table Management",
@@ -67,12 +67,12 @@ export const featuredProjects: Project[] = [
       { label: "Active Tenants", value: "Enterprise" },
     ],
     problem:
-      "Equity management is one of the highest-stakes workflows in any company — every share issuance, vesting event, and ownership change has legal and financial implications. The platform needed to support complex multi-class cap structures, real-time collaboration between founders and finance teams, audit-quality reporting, and strict access controls — without sacrificing the responsive feel of a modern SaaS product.",
+      "Equity management is one of the highest-stakes workflows in any company - every share issuance, vesting event, and ownership change has legal and financial implications. The platform needed to support complex multi-class cap structures, real-time collaboration between founders and finance teams, audit-quality reporting, and strict access controls - without sacrificing the responsive feel of a modern SaaS product.",
     approach: [
       "Architected the React frontend around 50+ feature-scoped Redux Toolkit slices with normalized entities, RTK Query for server state, and selectors that keep large cap tables performant on re-render.",
       "Designed reusable equity primitives (share class, grant, transaction) so issuance, transfer, vesting, and reporting flows compose from the same domain model.",
       "Built Node.js + Express services with PostgreSQL transactions for every ownership-changing operation, ensuring cap tables can never enter an inconsistent state.",
-      "Implemented role-based access control with row-level checks — founders, employees, investors, and auditors each see a tailored, permission-aware view of the same dataset.",
+      "Implemented role-based access control with row-level checks - founders, employees, investors, and auditors each see a tailored, permission-aware view of the same dataset.",
       "Containerized services with Docker and deployed to AWS behind a load balancer, with structured logging and CloudWatch alarms for the high-traffic endpoints.",
     ],
     outcomes: [
@@ -103,7 +103,7 @@ export const featuredProjects: Project[] = [
       Tooling: ["GitHub Actions", "Jest", "ESLint"],
     },
     lessons: [
-      "Treat money-touching writes as transactional first, UX second — every ownership change is a single PostgreSQL transaction.",
+      "Treat money-touching writes as transactional first, UX second - every ownership change is a single PostgreSQL transaction.",
       "Normalised Redux entities are the difference between a snappy cap table and a frozen browser tab.",
     ],
     isShowcased: true,
@@ -114,9 +114,9 @@ export const featuredProjects: Project[] = [
     title: "Insightifi",
     subtitle: "SaaS Analytics Platform",
     description:
-      "Real-time data visualisation dashboards with business intelligence analytics for enterprise clients. Optimised PostgreSQL queries with indexing and caching strategies — reduced API response times by 65%.",
+      "Real-time data visualisation dashboards with business intelligence analytics for enterprise clients. Optimised PostgreSQL queries with indexing and caching strategies - reduced API response times by 65%.",
     summary:
-      "Insightifi is a multi-tenant analytics platform that lets enterprise teams pipe their operational data into shared dashboards. The product spans ingestion, querying, and a Chart.js-powered dashboard layer — I focused on backend query performance and the React/Redux dashboard experience.",
+      "Insightifi is a multi-tenant analytics platform that lets enterprise teams pipe their operational data into shared dashboards. The product spans ingestion, querying, and a Chart.js-powered dashboard layer - I focused on backend query performance and the React/Redux dashboard experience.",
     tags: ["React", "TypeScript", "Chart.js", "Node.js", "PostgreSQL", "Redux", "AWS"],
     category: "SaaS",
     industry: "Business Intelligence & Analytics",
@@ -132,10 +132,10 @@ export const featuredProjects: Project[] = [
       { label: "Charts Rendered", value: "Chart.js" },
     ],
     problem:
-      "The platform's first version did clean visual work but couldn't keep up at enterprise scale — dashboards on large datasets were taking multiple seconds to load, ad-hoc filters were re-issuing expensive queries, and there was no caching strategy. Customers needed sub-second feedback to actually trust the tool for daily decisions.",
+      "The platform's first version did clean visual work but couldn't keep up at enterprise scale - dashboards on large datasets were taking multiple seconds to load, ad-hoc filters were re-issuing expensive queries, and there was no caching strategy. Customers needed sub-second feedback to actually trust the tool for daily decisions.",
     approach: [
       "Profiled the slowest endpoints, identified missing composite indexes, and rewrote N+1 query patterns with explicit JOINs and aggregation pushdowns.",
-      "Introduced a tiered caching strategy — short-lived response caching for repeated dashboard queries plus query-shape memoization in Node.js.",
+      "Introduced a tiered caching strategy - short-lived response caching for repeated dashboard queries plus query-shape memoization in Node.js.",
       "Refactored the Redux dashboard store so filters debounce updates and only re-issue the affected widgets instead of the full board.",
       "Standardized on a Chart.js render layer with consistent themes, lazy-loaded chart bundles, and skeleton states for perceived performance.",
     ],
@@ -175,7 +175,7 @@ export const featuredProjects: Project[] = [
     description:
       "Real-time legal collaboration platform with live chat, document sharing, and WebSocket notifications. Features optimistic UI updates, bidirectional Socket.io communication, and Redux-managed concurrent user state.",
     summary:
-      "SimplCase is a real-time collaboration workspace for legal teams — live chat, document sharing, presence, and a notification bus all running over WebSockets. I built the realtime layer on Socket.io and the Redux state model that keeps multiple users in sync.",
+      "SimplCase is a real-time collaboration workspace for legal teams - live chat, document sharing, presence, and a notification bus all running over WebSockets. I built the realtime layer on Socket.io and the Redux state model that keeps multiple users in sync.",
     tags: ["React", "Socket.io", "Node.js", "TypeScript", "PostgreSQL", "Redux"],
     category: "LegalTech",
     industry: "Legal Collaboration",
@@ -191,10 +191,10 @@ export const featuredProjects: Project[] = [
       { label: "State", value: "Redux" },
     ],
     problem:
-      "Legal collaboration is conversation-heavy and time-sensitive — teams need to see typing, presence, document edits, and chat updates the instant they happen, but also need the app to stay correct when network blips, reconnects, or two people act on the same record.",
+      "Legal collaboration is conversation-heavy and time-sensitive - teams need to see typing, presence, document edits, and chat updates the instant they happen, but also need the app to stay correct when network blips, reconnects, or two people act on the same record.",
     approach: [
       "Designed a bidirectional Socket.io contract with versioned events so the client and server can evolve independently.",
-      "Built optimistic UI patterns in Redux — actions update the local state immediately, then reconcile with the authoritative server response (or roll back on rejection).",
+      "Built optimistic UI patterns in Redux - actions update the local state immediately, then reconcile with the authoritative server response (or roll back on rejection).",
       "Modelled presence and typing indicators as cheap ephemeral events on a separate channel from durable chat/document writes, so high-frequency UI cues don't pressure the persistence layer.",
       "Added reconnect-and-resync logic so a dropped client catches up on missed events without duplicating state.",
     ],
@@ -231,7 +231,7 @@ export const featuredProjects: Project[] = [
     title: "HRMS",
     subtitle: "Employee Management System",
     description:
-      "Full-stack HR system with role-based access control, leave management, payroll processing, and employee records. Schema migrated from MongoDB to PostgreSQL — 65% faster query performance.",
+      "Full-stack HR system with role-based access control, leave management, payroll processing, and employee records. Schema migrated from MongoDB to PostgreSQL - 65% faster query performance.",
     summary:
       "An internal HRMS covering employee records, leave, and payroll for a mid-sized team. The interesting story is the migration: I moved the data layer from MongoDB to PostgreSQL while the system was in production, redesigning the schema around relational integrity instead of document nesting.",
     tags: ["React", "Node.js", "TypeScript", "PostgreSQL", "Express", "Redux"],
@@ -249,7 +249,7 @@ export const featuredProjects: Project[] = [
       { label: "Modules", value: "HR · Leave · Payroll" },
     ],
     problem:
-      "The original MongoDB schema worked early on but couldn't model HR's relational reality — employees, departments, managers, leave balances, payroll runs all reference each other. Reports were slow, integrity was enforced in application code, and analytics were painful.",
+      "The original MongoDB schema worked early on but couldn't model HR's relational reality - employees, departments, managers, leave balances, payroll runs all reference each other. Reports were slow, integrity was enforced in application code, and analytics were painful.",
     approach: [
       "Designed a normalized PostgreSQL schema with foreign keys and check constraints so the database itself protects HR-critical invariants.",
       "Wrote an idempotent migration pipeline with parity checks against the live MongoDB so we could cut over with confidence.",
@@ -291,7 +291,7 @@ export const featuredProjects: Project[] = [
     description:
       "End-to-end digital marketing platform (marketixpert.tech) with Next.js frontend and Node.js backend. REST API for content management, user auth, and analytics tracking. 95+ Lighthouse score, automated CI/CD on Vercel.",
     summary:
-      "MarketiXpert is a public-facing digital marketing platform built on Next.js (App Router) with a Node.js/Express API. I owned the full stack — content APIs, auth, analytics ingestion, and the SEO-tuned marketing site that ships at 95+ Lighthouse.",
+      "MarketiXpert is a public-facing digital marketing platform built on Next.js (App Router) with a Node.js/Express API. I owned the full stack - content APIs, auth, analytics ingestion, and the SEO-tuned marketing site that ships at 95+ Lighthouse.",
     tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Express", "Vercel"],
     category: "SaaS",
     industry: "Digital Marketing",
@@ -307,12 +307,12 @@ export const featuredProjects: Project[] = [
       { label: "API", value: "Node + PG" },
     ],
     problem:
-      "A marketing platform has to do two contradictory things well — be a fast, SEO-friendly public site for prospects, and a real authenticated product behind the login. Most stacks force you to compromise on one side; the goal here was zero compromises.",
+      "A marketing platform has to do two contradictory things well - be a fast, SEO-friendly public site for prospects, and a real authenticated product behind the login. Most stacks force you to compromise on one side; the goal here was zero compromises.",
     approach: [
       "Used the Next.js App Router with server components for the marketing surface (fully static, SEO-tuned) and client components for the authenticated product views.",
       "Built a Node.js + Express REST API with PostgreSQL as the single source of truth for content, users, and analytics events.",
       "Wired automated CI/CD on Vercel so every push runs lint, type-check, and preview deploys before anything reaches production.",
-      "Tuned Core Web Vitals — image optimisation, font preconnect, route-level code splitting — to land a 95+ Lighthouse score.",
+      "Tuned Core Web Vitals - image optimisation, font preconnect, route-level code splitting - to land a 95+ Lighthouse score.",
     ],
     outcomes: [
       {
@@ -348,9 +348,9 @@ export const featuredProjects: Project[] = [
     title: "equitytable.io",
     subtitle: "Equity Table Management",
     description:
-      "Equity table management tool from the Satchel Inc FinTech suite. Built with React, TypeScript, and Node.js — enables founders and investors to manage cap structures, vesting schedules, and ownership stakes in real time.",
+      "Equity table management tool from the Satchel Inc FinTech suite. Built with React, TypeScript, and Node.js - enables founders and investors to manage cap structures, vesting schedules, and ownership stakes in real time.",
     summary:
-      "equitytable.io is the founder-facing slice of the Satchel Inc FinTech suite — a focused tool for managing cap structures, vesting, and ownership in real time. I worked on the React/Redux frontend and the Node.js services that power it.",
+      "equitytable.io is the founder-facing slice of the Satchel Inc FinTech suite - a focused tool for managing cap structures, vesting, and ownership in real time. I worked on the React/Redux frontend and the Node.js services that power it.",
     tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Redux", "AWS"],
     category: "FinTech",
     industry: "Equity & Cap Table Management",
@@ -368,7 +368,7 @@ export const featuredProjects: Project[] = [
     problem:
       "Founders want a clean, fast tool to manage equity without booting up a heavyweight enterprise platform. equitytable.io needed to give them the same correctness guarantees as the enterprise product, but with a lighter UI and faster setup path.",
     approach: [
-      "Designed a focused React + Redux frontend that surfaces only the operations a founder needs — issue, transfer, vest, report.",
+      "Designed a focused React + Redux frontend that surfaces only the operations a founder needs - issue, transfer, vest, report.",
       "Reused the equity domain model from the Satchel suite so equitytable.io and Liquidity.io stay in sync on what 'a share' means.",
       "Built Node.js services with PostgreSQL, deployed on AWS, with the same transactional guarantees as the enterprise product.",
     ],

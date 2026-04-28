@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "About Smit Parekh — Full Stack Developer";
+export const alt = "About Smit Parekh - Full Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -62,7 +62,7 @@ export default async function AboutOgImage() {
               maxWidth: 1050,
             }}
           >
-            Hey, I&apos;m Smit — I build production web apps.
+            Hey, I&apos;m Smit - I build production web apps.
           </h1>
           <p
             style={{

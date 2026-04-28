@@ -37,7 +37,7 @@ export default function Services() {
           <SectionHeader
             label="Services"
             title="End-to-End Web Development"
-            description="One partner for the full product lifecycle — no juggling multiple vendors, no gaps in ownership."
+            description="One partner for the full product lifecycle - no juggling multiple vendors, no gaps in ownership."
           />
         </FadeInSection>
 

@@ -164,7 +164,7 @@ export default function ContactPage() {
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Currently accepting new clients for Q2 2025 start dates. Limited
-                  spots available — get in touch early.
+                  spots available - get in touch early.
                 </p>
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function ContactPage() {
                       rows={6}
                       value={form.description}
                       onChange={handleChange}
-                      placeholder="Tell me about your project — what are you building, what's the timeline, and what kind of help do you need?"
+                      placeholder="Tell me about your project - what are you building, what's the timeline, and what kind of help do you need?"
                       className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors resize-none"
                     />
                   </div>
@@ -320,25 +320,25 @@ export default function ContactPage() {
             {[
               {
                 icon: MessageCircle,
-                title: "1 — Reply within 24h",
+                title: "1 - Reply within 24h",
                 description:
                   "I read every message personally and reply with clarifying questions, a rough timeline estimate, and next steps.",
               },
               {
                 icon: ClipboardCheck,
-                title: "2 — Free scoping call",
+                title: "2 - Free scoping call",
                 description:
                   "30–45 minutes to walk through the goal, constraints, and tech. You leave with a written scope and fixed-price proposal.",
               },
               {
                 icon: Hammer,
-                title: "3 — Build in the open",
+                title: "3 - Build in the open",
                 description:
                   "Weekly demos, async Loom updates, and a shared Linear board. You always know what's shipped and what's next.",
               },
               {
                 icon: Rocket,
-                title: "4 — Launch & support",
+                title: "4 - Launch & support",
                 description:
                   "Production deploy, monitoring, and docs handover. Optional retainer for ongoing iteration after launch.",
               },
@@ -379,11 +379,11 @@ export default function ContactPage() {
             {[
               {
                 q: "What kind of projects do you take on?",
-                a: "Production web apps and SaaS products — typically Next.js + Node/Express + Postgres or MongoDB. From MVPs through to scaling existing codebases. I don't take pure WordPress, Shopify customisation, or marketing-only sites.",
+                a: "Production web apps and SaaS products - typically Next.js + Node/Express + Postgres or MongoDB. From MVPs through to scaling existing codebases. I don't take pure WordPress, Shopify customisation, or marketing-only sites.",
               },
               {
                 q: "How are you priced?",
-                a: "Fixed-price for clearly scoped projects, hourly for ongoing work. After our scoping call you get a written proposal — no hidden fees.",
+                a: "Fixed-price for clearly scoped projects, hourly for ongoing work. After our scoping call you get a written proposal - no hidden fees.",
               },
               {
                 q: "How soon can we start?",
@@ -391,7 +391,7 @@ export default function ContactPage() {
               },
               {
                 q: "Do you work with teams?",
-                a: "Yes — I integrate with your existing engineering team, your tooling (Linear/Jira/GitHub), and your deployment pipelines. I'm comfortable as the only engineer or as a senior on a larger team.",
+                a: "Yes - I integrate with your existing engineering team, your tooling (Linear/Jira/GitHub), and your deployment pipelines. I'm comfortable as the only engineer or as a senior on a larger team.",
               },
               {
                 q: "Can you help us pick the right stack?",
@@ -399,7 +399,7 @@ export default function ContactPage() {
               },
               {
                 q: "Where are you based?",
-                a: "India. I work async with clients across the US, EU, and APAC — overlapping a few hours daily for sync work and demos.",
+                a: "India. I work async with clients across the US, EU, and APAC - overlapping a few hours daily for sync work and demos.",
               },
             ].map((item) => (
               <div

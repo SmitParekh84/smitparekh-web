@@ -23,7 +23,7 @@ export default function BlogPostError({
         <div className="rounded-2xl border border-border bg-card p-10">
           <h1 className="text-2xl font-bold">We couldn&apos;t load this article</h1>
           <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            The server took too long to respond. This is usually temporary —
+            The server took too long to respond. This is usually temporary -
             give it another try in a moment.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">

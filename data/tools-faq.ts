@@ -38,7 +38,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is this password generator free?",
       answer:
-        "Yes — completely free, no account required, no usage limits. The generator runs entirely in your browser so no data is ever sent anywhere.",
+        "Yes - completely free, no account required, no usage limits. The generator runs entirely in your browser so no data is ever sent anywhere.",
     },
   ],
 
@@ -51,7 +51,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "How is reading time calculated?",
       answer:
-        "Reading time is estimated at 238 words per minute — the average adult silent reading speed per research. The estimate always rounds up to the nearest minute.",
+        "Reading time is estimated at 238 words per minute - the average adult silent reading speed per research. The estimate always rounds up to the nearest minute.",
     },
     {
       question: "What is keyword density and why does it matter for SEO?",
@@ -71,12 +71,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is there a character limit?",
       answer:
-        "The tool handles standard document lengths without issue. For very large documents, performance depends on your device — most modern computers handle up to 100,000 characters smoothly.",
+        "The tool handles standard document lengths without issue. For very large documents, performance depends on your device - most modern computers handle up to 100,000 characters smoothly.",
     },
     {
       question: "Is the word counter free?",
       answer:
-        "Yes — 100% free, no sign-up, no usage limits, works entirely in your browser.",
+        "Yes - 100% free, no sign-up, no usage limits, works entirely in your browser.",
     },
   ],
 
@@ -89,7 +89,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Will my image lose quality during conversion?",
       answer:
-        "Converting between lossy formats (e.g., PNG to JPEG) reduces some quality. You control the quality slider — higher values preserve more visual fidelity but produce larger files. WebP at 85% is usually indistinguishable from the original.",
+        "Converting between lossy formats (e.g., PNG to JPEG) reduces some quality. You control the quality slider - higher values preserve more visual fidelity but produce larger files. WebP at 85% is usually indistinguishable from the original.",
     },
     {
       question: "Which format is best for websites?",
@@ -104,7 +104,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is the image converter free to use?",
       answer:
-        "Yes — completely free, no account, no upload limit. Since conversion happens in your browser, there are no server costs and the tool will always be free.",
+        "Yes - completely free, no account, no upload limit. Since conversion happens in your browser, there are no server costs and the tool will always be free.",
     },
     {
       question: "Can I convert multiple images at once?",
@@ -142,12 +142,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "How do I test if my QR code works?",
       answer:
-        "After generating, scan it with your smartphone camera or any QR code app. Most modern smartphones have built-in QR scanning in the native camera app — just point and tap.",
+        "After generating, scan it with your smartphone camera or any QR code app. Most modern smartphones have built-in QR scanning in the native camera app - just point and tap.",
     },
     {
       question: "Is the QR code generator free?",
       answer:
-        "Yes — completely free, unlimited use, no account required.",
+        "Yes - completely free, unlimited use, no account required.",
     },
   ],
 
@@ -155,12 +155,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What is the Free Background Remover?",
       answer:
-        "An AI-powered tool that automatically detects and removes the background from any photo. It outputs a transparent PNG in seconds — ideal for product images, profile photos, logos, and graphic design projects.",
+        "An AI-powered tool that automatically detects and removes the background from any photo. It outputs a transparent PNG in seconds - ideal for product images, profile photos, logos, and graphic design projects.",
     },
     {
       question: "What types of images work best?",
       answer:
-        "The tool works best on photos with clear separation between the subject and background — portraits, product shots, animals, and objects on plain backgrounds. Busy, cluttered backgrounds may require manual touch-up in an editor.",
+        "The tool works best on photos with clear separation between the subject and background - portraits, product shots, animals, and objects on plain backgrounds. Busy, cluttered backgrounds may require manual touch-up in an editor.",
     },
     {
       question: "What image formats are supported?",
@@ -170,7 +170,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Are there limits on how many images I can process?",
       answer:
-        "No hard limits — you can process as many images as you need. Each image is processed and immediately discarded from the server.",
+        "No hard limits - you can process as many images as you need. Each image is processed and immediately discarded from the server.",
     },
     {
       question: "Is my image stored on a server?",
@@ -185,7 +185,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is the background remover free?",
       answer:
-        "Yes — completely free, no sign-up, no watermarks added to your output.",
+        "Yes - completely free, no sign-up, no watermarks added to your output.",
     },
   ],
 
@@ -203,7 +203,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What image formats are supported?",
       answer:
-        "JPEG, PNG, and WebP are supported. Note that compressing a PNG with JPEG output removes transparency — use PNG output to preserve it.",
+        "JPEG, PNG, and WebP are supported. Note that compressing a PNG with JPEG output removes transparency - use PNG output to preserve it.",
     },
     {
       question: "Is my image stored on a server after compression?",
@@ -213,12 +213,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Will the compression add a watermark?",
       answer:
-        "No. Compressed images are returned clean — no watermarks, no branding, no modifications beyond the compression itself.",
+        "No. Compressed images are returned clean - no watermarks, no branding, no modifications beyond the compression itself.",
     },
     {
       question: "Is the image compressor free?",
       answer:
-        "Yes — completely free with no usage limits, no account required.",
+        "Yes - completely free with no usage limits, no account required.",
     },
   ],
 
@@ -231,12 +231,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Will the generated posts actually get engagement?",
       answer:
-        "The AI is trained on high-performing LinkedIn content patterns — strong hooks, concise paragraphs, calls to action, and appropriate length. While no tool guarantees virality, the output follows formats consistently shown to outperform generic posts.",
+        "The AI is trained on high-performing LinkedIn content patterns - strong hooks, concise paragraphs, calls to action, and appropriate length. While no tool guarantees virality, the output follows formats consistently shown to outperform generic posts.",
     },
     {
       question: "Can I edit the generated post before publishing?",
       answer:
-        "Yes — and you should. The generated post is a strong starting point. Personalise it with your own experience, data points, or anecdotes before posting. Authentic personal detail is what makes LinkedIn content resonate.",
+        "Yes - and you should. The generated post is a strong starting point. Personalise it with your own experience, data points, or anecdotes before posting. Authentic personal detail is what makes LinkedIn content resonate.",
     },
     {
       question: "What is the LinkedIn character limit?",
@@ -246,12 +246,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is this tool free to use?",
       answer:
-        "Yes — completely free, no account required, unlimited generations.",
+        "Yes - completely free, no account required, unlimited generations.",
     },
     {
       question: "What tones can I choose from?",
       answer:
-        "You can choose from Professional, Casual, Inspirational, Story, and Educational. Each tone produces a distinctly different structure and voice — experiment to find what resonates with your audience.",
+        "You can choose from Professional, Casual, Inspirational, Story, and Educational. Each tone produces a distinctly different structure and voice - experiment to find what resonates with your audience.",
     },
   ],
 
@@ -264,7 +264,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What file formats are supported?",
       answer:
-        "You can upload PDF or DOCX files. These are the two formats most commonly accepted by ATS systems — using any other format is itself an ATS red flag.",
+        "You can upload PDF or DOCX files. These are the two formats most commonly accepted by ATS systems - using any other format is itself an ATS red flag.",
     },
     {
       question: "Is my resume data stored or shared?",
@@ -274,7 +274,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Do I need to provide a job description?",
       answer:
-        "No — the tool analyses your resume against general ATS best practices without a job description. However, tailoring your resume to a specific job description is the most effective way to improve your score for that role.",
+        "No - the tool analyses your resume against general ATS best practices without a job description. However, tailoring your resume to a specific job description is the most effective way to improve your score for that role.",
     },
     {
       question: "How do I improve a low ATS score?",
@@ -284,7 +284,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is the ATS resume checker free?",
       answer:
-        "Yes — completely free, no account, no sign-up, unlimited analyses.",
+        "Yes - completely free, no account, no sign-up, unlimited analyses.",
     },
   ],
 
@@ -297,7 +297,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What meta tags does the checker analyse?",
       answer:
-        "Title, meta description, canonical URL, Open Graph tags (og:title, og:description, og:image, og:url), Twitter Card tags, robots directives, and viewport tag — all the elements that affect search visibility and social sharing.",
+        "Title, meta description, canonical URL, Open Graph tags (og:title, og:description, og:image, og:url), Twitter Card tags, robots directives, and viewport tag - all the elements that affect search visibility and social sharing.",
     },
     {
       question: "What is the ideal length for title and description tags?",
@@ -307,7 +307,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What are Open Graph tags?",
       answer:
-        "Open Graph tags (og:*) control how your content appears when shared on social media. Without them, platforms pick random text and images from your page — usually resulting in poor-looking shares with low engagement.",
+        "Open Graph tags (og:*) control how your content appears when shared on social media. Without them, platforms pick random text and images from your page - usually resulting in poor-looking shares with low engagement.",
     },
     {
       question: "How often should I check my meta tags?",
@@ -317,7 +317,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is the meta tag checker free?",
       answer:
-        "Yes — completely free, no account required, unlimited URL checks.",
+        "Yes - completely free, no account required, unlimited URL checks.",
     },
   ],
 
@@ -325,7 +325,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What does the SEO Analyzer check?",
       answer:
-        "The tool audits key on-page SEO factors including title tags, meta descriptions, heading structure (H1–H3), image alt text, canonical tags, internal and external links, page load signals, mobile-friendliness indicators, and structured data — all in one report.",
+        "The tool audits key on-page SEO factors including title tags, meta descriptions, heading structure (H1–H3), image alt text, canonical tags, internal and external links, page load signals, mobile-friendliness indicators, and structured data - all in one report.",
     },
     {
       question: "How accurate is the SEO score?",
@@ -340,12 +340,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Will fixing these issues improve my Google rankings?",
       answer:
-        "Yes — implementing the recommendations addresses specific signals Google uses to evaluate pages. Users typically see measurable improvements within 4–12 weeks, depending on the competitiveness of their keywords and how many issues were fixed.",
+        "Yes - implementing the recommendations addresses specific signals Google uses to evaluate pages. Users typically see measurable improvements within 4–12 weeks, depending on the competitiveness of their keywords and how many issues were fixed.",
     },
     {
       question: "Is the SEO Analyzer free?",
       answer:
-        "Yes — 100% free, no account required, no usage limits.",
+        "Yes - 100% free, no account required, no usage limits.",
     },
     {
       question: "Can I get the report sent to my email?",
@@ -383,7 +383,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Is the LinkedIn Media Downloader free?",
       answer:
-        "Yes — completely free, no account, no sign-up required.",
+        "Yes - completely free, no account, no sign-up required.",
     },
   ],
 };

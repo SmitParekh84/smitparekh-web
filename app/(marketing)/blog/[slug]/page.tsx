@@ -324,7 +324,7 @@ export default async function BlogPostPage({ params }: Props) {
             Have a project in mind?
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
-            I&apos;m available for full-stack engagements — React, Next.js,
+            I&apos;m available for full-stack engagements - React, Next.js,
             Node.js, PostgreSQL, AWS. Let&apos;s talk.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">

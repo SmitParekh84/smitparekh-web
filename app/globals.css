@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ─────────────────────────────────────────────────────────────────────────
-   DESIGN TOKENS  —  two-layer architecture
+   DESIGN TOKENS - two-layer architecture
    Layer 1  Primitive scale      @theme inline, static OKLCH values
    Layer 2  Semantic aliases     :root / .dark, consumed by shadcn + Tailwind
    ─────────────────────────────────────────────────────────────────────────
@@ -79,7 +79,7 @@
   --color-neutral-900: oklch(0.170 0.016 264);
   --color-neutral-950: oklch(0.120 0.018 264);
 
-  /* ── Layer 2: Semantic aliases — wire Tailwind utilities to CSS vars ─── */
+  /* ── Layer 2: Semantic aliases - wire Tailwind utilities to CSS vars ─── */
   --color-background:                 var(--background);
   --color-foreground:                 var(--foreground);
   --color-card:                       var(--card);
@@ -237,7 +237,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   LAYOUT UTILITIES  —  use these instead of repeating container + padding
+   LAYOUT UTILITIES - use these instead of repeating container + padding
    .page-container   full-width, max-w-7xl, responsive px
    .page-section     vertical rhythm for page sections
 ───────────────────────────────────────────────────────────────────────── */

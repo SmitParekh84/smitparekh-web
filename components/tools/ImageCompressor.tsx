@@ -99,7 +99,7 @@ export default function ImageCompressor() {
             <Upload className="w-5 h-5 text-blue-500" />
           </div>
           <p className="text-sm font-medium">Drop image here or click to upload</p>
-          <p className="text-xs text-muted-foreground mt-1">JPEG, PNG, WebP — max 20 MB</p>
+          <p className="text-xs text-muted-foreground mt-1">JPEG, PNG, WebP - max 20 MB</p>
         </div>
       ) : (
         <div className="relative rounded-xl border border-border overflow-hidden flex items-center justify-center bg-muted/20 min-h-48 p-4">
@@ -109,7 +109,7 @@ export default function ImageCompressor() {
             <X className="w-3.5 h-3.5" />
           </button>
           <div className="absolute bottom-3 left-3 rounded-lg bg-card/80 backdrop-blur border border-border px-2.5 py-1 text-xs text-muted-foreground">
-            {file.name} — {formatBytes(file.size)}
+            {file.name} - {formatBytes(file.size)}
           </div>
         </div>
       )}

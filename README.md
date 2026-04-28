@@ -1,4 +1,4 @@
-# Smit Parekh — Portfolio (frontend)
+# Smit Parekh - Portfolio (frontend)
 
 Next.js 16 app for the public portfolio + admin dashboard. The frontend talks to a sibling Express API ([`smitparekh-api`](../smitparekh-api)).
 
@@ -22,7 +22,7 @@ git clone <web-repo-url>  smitparekh-web
 git clone <api-repo-url>  smitparekh-api
 ```
 
-> ⚠️  The folder names **must** be `smitparekh-web` and `smitparekh-api` — the dev script resolves the API via `../smitparekh-api`.
+> ⚠️  The folder names **must** be `smitparekh-web` and `smitparekh-api` - the dev script resolves the API via `../smitparekh-api`.
 
 ### 2. Configure environment variables
 
@@ -72,5 +72,5 @@ Logs are interleaved with colored prefixes. Press `Ctrl+C` once to stop both.
 
 ## Deployment
 
-The web app deploys to Vercel; the API deploys separately (see `smitparekh-api/vercel.json`). Production builds use `pnpm build` / `pnpm start` in each repo independently — the combined `dev` script is local-only.
+The web app deploys to Vercel; the API deploys separately (see `smitparekh-api/vercel.json`). Production builds use `pnpm build` / `pnpm start` in each repo independently - the combined `dev` script is local-only.
 

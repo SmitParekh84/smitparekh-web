@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     question: "Are all these tools really free?",
-    answer: "Yes — every tool is completely free, forever. No hidden fees, no trial periods, no credit card required. They're built as a public resource for developers, marketers, and professionals.",
+    answer: "Yes - every tool is completely free, forever. No hidden fees, no trial periods, no credit card required. They're built as a public resource for developers, marketers, and professionals.",
   },
   {
     question: "Do I need to create an account?",
-    answer: "No account, no signup, no email. Just open a tool and use it. Some tools (like the background remover) process your file on a server and return the result — nothing is stored after the request completes.",
+    answer: "No account, no signup, no email. Just open a tool and use it. Some tools (like the background remover) process your file on a server and return the result - nothing is stored after the request completes.",
   },
   {
     question: "What happens to my uploaded files?",
@@ -19,11 +19,11 @@ const faqs = [
   },
   {
     question: "Can I use the results commercially?",
-    answer: "Yes. The outputs — removed backgrounds, generated QR codes, compressed images, AI posts — can be used in personal and commercial projects without attribution.",
+    answer: "Yes. The outputs - removed backgrounds, generated QR codes, compressed images, AI posts - can be used in personal and commercial projects without attribution.",
   },
   {
     question: "How accurate is the AI background remover?",
-    answer: "The background remover uses the rembg model (u2net), which performs well on portraits, products, and objects with clear edges. For complex backgrounds or fine hair detail, results may vary — you can always run it again with a higher-contrast crop.",
+    answer: "The background remover uses the rembg model (u2net), which performs well on portraits, products, and objects with clear edges. For complex backgrounds or fine hair detail, results may vary - you can always run it again with a higher-contrast crop.",
   },
 ];
 

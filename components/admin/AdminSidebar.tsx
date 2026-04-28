@@ -204,7 +204,7 @@ export function AdminSidebar() {
 
                 <DropdownMenuSeparator />
 
-                {/* Dummy second account — future feature */}
+                {/* Dummy second account - future feature */}
                 <DropdownMenuLabel className="text-xs text-muted-foreground px-2 py-1 font-normal">
                   Switch to
                 </DropdownMenuLabel>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Blog — Web Development & Engineering Notes by Smit Parekh",
+  title: "Blog - Web Development & Engineering Notes by Smit Parekh",
   description:
     "Articles, tutorials and engineering notes by Smit Parekh on React, Next.js, Node.js, TypeScript, and full-stack development.",
   alternates: { canonical: `${siteConfig.url}/blog` },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/blog`,
-    title: "Blog — Web Development & Engineering Notes by Smit Parekh",
+    title: "Blog - Web Development & Engineering Notes by Smit Parekh",
     description:
       "Articles and engineering notes on React, Next.js, Node.js and TypeScript by Smit Parekh.",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Blog",
+        alt: "Smit Parekh - Blog",
         type: "image/png",
       },
     ],
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Blog — Smit Parekh",
+    title: "Blog - Smit Parekh",
     description:
       "Articles on React, Next.js, Node.js and full-stack engineering.",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
         width: 800,
         height: 800,
-        alt: "Smit Parekh — Blog",
+        alt: "Smit Parekh - Blog",
       },
     ],
   },

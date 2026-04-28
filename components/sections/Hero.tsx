@@ -156,7 +156,7 @@ export default function Hero() {
               >
                 <Image
                   src={homeData.imageSrc}
-                  alt="Smit Parekh — Full Stack Developer"
+                  alt="Smit Parekh - Full Stack Developer"
                   fill
                   sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
                   className="object-cover"

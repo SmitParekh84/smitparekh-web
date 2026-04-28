@@ -7,9 +7,9 @@ import { siteConfig } from "@/data/site";
 const LAST_UPDATED = "April 28, 2026";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Smit Parekh",
+  title: "Privacy Policy - Smit Parekh",
   description:
-    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in — including contact form submissions, free tools usage, and analytics.",
+    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
   alternates: { canonical: `${siteConfig.url}/privacy-policy` },
   robots: { index: true, follow: true },
 };

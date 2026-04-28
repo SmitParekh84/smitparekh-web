@@ -64,7 +64,7 @@ export default function Portfolio() {
           <SectionHeader
             label="Selected Work"
             title="Real Products. Real Results."
-            description="A sample of production applications built for clients across FinTech, SaaS, and enterprise — each solving a genuine business problem at scale."
+            description="A sample of production applications built for clients across FinTech, SaaS, and enterprise - each solving a genuine business problem at scale."
           />
         </FadeInSection>
 

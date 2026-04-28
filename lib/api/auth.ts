@@ -36,7 +36,7 @@ export const authApi = {
       const me = await api.get<{ user: AuthResponse["user"] }>("/auth/me");
       if (me?.user) user = me.user;
     } catch {
-      // Backend may be unreachable or profile not yet provisioned — keep Supabase identity.
+      // Backend may be unreachable or profile not yet provisioned - keep Supabase identity.
     }
 
     return { token: data.session.access_token, user };
@@ -64,7 +64,7 @@ export const authApi = {
     try {
       await api.patch("/auth/me", data);
     } catch {
-      // Backend endpoint may not exist yet — Supabase metadata is the source of truth.
+      // Backend endpoint may not exist yet - Supabase metadata is the source of truth.
     }
   },
 

@@ -62,8 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
   return {
-    title: `${title} — Free Online Tool`,
-    description: `Use the free ${title} tool — no account required.`,
+    title: `${title} - Free Online Tool`,
+    description: `Use the free ${title} tool - no account required.`,
     alternates: { canonical: `${siteConfig.url}/free-tools/${slug}` },
   };
 }
@@ -75,7 +75,7 @@ export default async function ToolPage({ params }: Props) {
   const content = getToolContent(slug);
 
   const shortTitle = tool
-    ? tool.title.split(" — ")[0]
+    ? tool.title.split(" - ")[0]
     : slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
   const toolSchema = tool

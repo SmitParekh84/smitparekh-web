@@ -3,7 +3,7 @@ import { siteConfig } from "@/data/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Smit Parekh — Full Stack Developer & Free Web Tools",
+    name: "Smit Parekh - Full Stack Developer & Free Web Tools",
     short_name: "Smit Parekh",
     description: siteConfig.description,
     start_url: "/",

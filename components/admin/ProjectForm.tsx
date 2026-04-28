@@ -235,7 +235,7 @@ export function ProjectForm({
             <div>
               <p className="text-sm font-medium">Generate with AI</p>
               <p className="text-xs text-muted-foreground">
-                Paste rough notes (with product names — they&apos;ll be removed)
+                Paste rough notes (with product names - they&apos;ll be removed)
                 or describe a new idea. AI fills the entire case study.
               </p>
             </div>
@@ -298,7 +298,7 @@ export function ProjectForm({
               >
                 <p className="text-sm font-medium">From an idea</p>
                 <p className="mt-0.5 text-muted-foreground">
-                  Describe a project concept — AI generates the whole thing.
+                  Describe a project concept - AI generates the whole thing.
                 </p>
               </button>
               <button
@@ -314,7 +314,7 @@ export function ProjectForm({
               >
                 <p className="text-sm font-medium">Rewrite my notes</p>
                 <p className="mt-0.5 text-muted-foreground">
-                  Paste real notes — AI strips product/client names.
+                  Paste real notes - AI strips product/client names.
                 </p>
               </button>
             </div>
@@ -328,7 +328,7 @@ export function ProjectForm({
               disabled={generateProject.isPending}
               placeholder={
                 aiMode === "rewrite"
-                  ? "Paste raw notes, bullet points, README, or a draft. Include real metrics, tech stack, and details — they'll be kept; brand names will be removed."
+                  ? "Paste raw notes, bullet points, README, or a draft. Include real metrics, tech stack, and details - they'll be kept; brand names will be removed."
                   : "Describe the project. e.g. 'A real-time fintech dashboard that lets traders track positions across 5 brokers, with sub-second updates and risk alerts.'"
               }
               className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
@@ -567,7 +567,7 @@ export function ProjectForm({
             rows={4}
             value={form.problem}
             onChange={(e) => setField("problem", e.target.value)}
-            placeholder="What needed solving — the business and technical context."
+            placeholder="What needed solving - the business and technical context."
             className={cn(inputClass, "resize-y")}
           />
         </Field>
@@ -583,7 +583,7 @@ export function ProjectForm({
 
         <KVListEditor
           label="Highlights"
-          hint='Stat cards shown "At a Glance" — e.g. "API Requests / Day" → "10,000+".'
+          hint='Stat cards shown "At a Glance" - e.g. "API Requests / Day" → "10,000+".'
           values={form.highlights}
           onChange={(v) => setField("highlights", v)}
           labelPlaceholder="API Requests / Day"
@@ -592,7 +592,7 @@ export function ProjectForm({
 
         <OutcomeListEditor
           label="Outcomes"
-          hint="Big wins from shipping the project — label, value, and a short detail."
+          hint="Big wins from shipping the project - label, value, and a short detail."
           values={form.outcomes}
           onChange={(v) => setField("outcomes", v)}
         />
@@ -609,7 +609,7 @@ export function ProjectForm({
 
         <StringListEditor
           label="Lessons"
-          hint="Optional — short reflections or takeaways."
+          hint="Optional - short reflections or takeaways."
           values={form.lessons}
           onChange={(v) => setField("lessons", v)}
           placeholder="Treat money-touching writes as transactional first..."

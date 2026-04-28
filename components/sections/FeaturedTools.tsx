@@ -28,7 +28,7 @@ export default function FeaturedTools() {
           <SectionHeader
             label="Free Tools"
             title="Free Tools Used by Thousands"
-            description="Browser-based utilities that save hours of manual work — no account, no subscription, no catch."
+            description="Browser-based utilities that save hours of manual work - no account, no subscription, no catch."
           />
         </FadeInSection>
 

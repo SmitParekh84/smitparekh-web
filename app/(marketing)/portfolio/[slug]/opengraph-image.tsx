@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { fetchCaseStudyBySlug } from "@/lib/server/projects";
 
-export const alt = "Case Study — Smit Parekh";
+export const alt = "Case Study - Smit Parekh";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -12,7 +12,7 @@ export default async function PortfolioOgImage({
 }) {
   const { slug } = await params;
   let title = "Case Study";
-  let subtitle = "Smit Parekh — Portfolio";
+  let subtitle = "Smit Parekh - Portfolio";
   let category = "Project";
   let tags: string[] = [];
 

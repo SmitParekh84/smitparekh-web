@@ -52,7 +52,7 @@ const breadcrumbSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Services — Full-Stack Web Development by Smit Parekh",
+  title: "Services - Full-Stack Web Development by Smit Parekh",
   description:
     "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO. One partner for the full product lifecycle.",
   alternates: { canonical: `${siteConfig.url}/services` },
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: `${siteConfig.url}/services`,
     siteName: siteConfig.name,
-    title: "Services — Full-Stack Web Development by Smit Parekh",
+    title: "Services - Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO.",
     // images auto-injected from ./opengraph-image.tsx
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Services — Full-Stack Web Development by Smit Parekh",
+    title: "Services - Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React, Node.js, AWS, technical SEO.",
   },
@@ -103,7 +103,7 @@ const process = [
     step: "01",
     title: "Discovery & Scoping",
     description:
-      "We align on goals, constraints, and success criteria. You get a clear scope document and timeline — no surprises.",
+      "We align on goals, constraints, and success criteria. You get a clear scope document and timeline - no surprises.",
   },
   {
     step: "02",
@@ -188,7 +188,7 @@ export default function ServicesPage() {
         eyebrow="What I Offer"
         icon={Code2}
         title="End-to-End Web Development"
-        description="One partner for the full product lifecycle — from architecture to deployment. No juggling multiple vendors, no gaps in ownership."
+        description="One partner for the full product lifecycle - from architecture to deployment. No juggling multiple vendors, no gaps in ownership."
       >
         <div className="flex flex-wrap gap-3">
           <Link
@@ -219,7 +219,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="Services"
             title="Everything You Need to Ship"
-            description="Whether you need a full product build or a specific layer of the stack — I cover it end-to-end."
+            description="Whether you need a full product build or a specific layer of the stack - I cover it end-to-end."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -265,7 +265,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="How I Work"
             title="A Process Built Around Clarity"
-            description="Predictable delivery comes from a structured process — not guesswork."
+            description="Predictable delivery comes from a structured process - not guesswork."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
