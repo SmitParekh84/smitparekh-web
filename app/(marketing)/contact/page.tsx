@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Mail, Clock, MapPin, Send, MessageSquare, MessageCircle, ClipboardCheck, Hammer, Rocket } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/PageHero";
+import { LinkedInBadge } from "@/components/ui/linkedin-badge";
 import { cn } from "@/lib/utils";
 import { useSubmitContact } from "@/hooks/api/use-contact";
 import { toast } from "@/lib/toast";
@@ -166,6 +167,13 @@ export default function ContactPage() {
                   Currently accepting new clients for Q2 2025 start dates. Limited
                   spots available - get in touch early.
                 </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                  LinkedIn
+                </p>
+                <LinkedInBadge className="lg:justify-start" />
               </div>
             </div>
 
