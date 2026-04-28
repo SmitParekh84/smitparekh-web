@@ -216,7 +216,47 @@ export default function Hero() {
               visible: { transition: { staggerChildren: 0.05, delayChildren: 1.0 } },
             }}
           >
-            {["React", "Node.js", "TypeScript", "PostgreSQL", "AWS", "Docker", "Next.js", "NestJS"].map(
+            {[
+              // Frontend
+              "React",
+              "Next.js",
+              "TypeScript",
+              "Tailwind CSS",
+              // Backend
+              "Node.js",
+              "NestJS",
+              "Express",
+              "Python",
+              "GraphQL",
+              "REST APIs",
+              "Microservices",
+              "Event-Driven Architecture",
+              // Data
+              "PostgreSQL",
+              "MongoDB",
+              "Redis",
+              "Elasticsearch",
+              "Kafka",
+              "RabbitMQ",
+              // AWS
+              "AWS EC2",
+              "AWS S3",
+              "AWS Lambda",
+              "AWS RDS",
+              "AWS ECS",
+              "AWS CloudFront",
+              "AWS API Gateway",
+              "AWS SQS",
+              "AWS SNS",
+              "AWS CloudWatch",
+              "AWS IAM",
+              // DevOps
+              "Docker",
+              "Kubernetes",
+              "Terraform",
+              "GitHub Actions",
+              "CI/CD",
+            ].map(
               (tech) => (
                 <motion.div
                   key={tech}
