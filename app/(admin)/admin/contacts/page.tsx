@@ -556,7 +556,7 @@ function ContactDetailDrawer({
               <div className="grid grid-cols-2 gap-3 rounded-xl border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
                 <div>
                   <p className="font-medium text-foreground">Received</p>
-                  <p>{new Date(contact.createdAt).toLocaleString()}</p>
+                  <p>{formatDateTime(contact.createdAt)}</p>
                 </div>
                 <div>
                   <p className="font-medium text-foreground">Status</p>
@@ -641,8 +641,10 @@ function ContactDetailDrawer({
 
 /* -------------------------------- helpers -------------------------------- */
 
-function formatRelative(iso: string | Date): string {
+function formatRelative(iso: string | Date | null | undefined): string {
+  if (iso == null) return "";
   const date = typeof iso === "string" ? new Date(iso) : iso;
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
   const diffMs = Date.now() - date.getTime();
   const sec = Math.round(diffMs / 1000);
   if (sec < 60) return "just now";
@@ -657,4 +659,11 @@ function formatRelative(iso: string | Date): string {
     month: "short",
     year: "numeric",
   });
+}
+
+function formatDateTime(iso: string | Date | null | undefined): string {
+  if (iso == null) return "—";
+  const date = typeof iso === "string" ? new Date(iso) : iso;
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "—";
+  return date.toLocaleString();
 }
