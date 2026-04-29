@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, Workflow, Boxes, Network, GitBranch } from "lucide-react";
+import { ArrowRight, FileText, Workflow, Boxes, Network, GitBranch } from "lucide-react";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
   SiNodedotjs, SiNestjs, SiExpress, SiPython, SiGraphql,
@@ -13,7 +13,7 @@ import { FaAws } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { homeData, aboutStats, cvLink } from "@/data/home";
+import { homeData, aboutStats } from "@/data/home";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -21,6 +21,7 @@ import {
   XIcon,
 } from "@/components/icons/SocialIcons";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { useTrackResumeEvent } from "@/hooks/api/use-resume-events";
 
 const socialIcons = {
   email: MailIcon,
@@ -59,6 +60,8 @@ const floatCard = (delay: number) => ({
 });
 
 export default function Hero() {
+  const trackResumeEvent = useTrackResumeEvent();
+
   return (
     <AuroraBackground as="section" className="min-h-screen flex items-center pt-16">
       <div className="page-container py-20 lg:py-28">
@@ -113,18 +116,17 @@ export default function Hero() {
                 Explore Free Tools
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <a
-                href={cvLink}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/resume"
+                onClick={() => trackResumeEvent.mutate("button_click")}
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
                   "gap-2"
                 )}
               >
-                <Download className="w-4 h-4" />
-                Download CV
-              </a>
+                <FileText className="w-4 h-4" />
+                View Resume
+              </Link>
             </motion.div>
 
             {/* Social links */}

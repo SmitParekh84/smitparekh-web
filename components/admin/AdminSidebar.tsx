@@ -17,6 +17,7 @@ import {
   ChevronsUpDown,
   UserRound,
   Users,
+  FileBadge,
 } from "lucide-react";
 import {
   Sidebar,
@@ -55,6 +56,7 @@ const NAV_MAIN = [
   { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
   { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
   { title: "Tools", href: "/admin/tools", icon: Wrench },
+  { title: "Resume", href: "/admin/resume", icon: FileBadge },
   { title: "Users", href: "/admin/users", icon: Users },
 ];
 
