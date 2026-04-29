@@ -44,4 +44,9 @@ export const queryKeys = {
     list: () => [...queryKeys.adminUsers.all, "list"] as const,
     deleted: () => [...queryKeys.adminUsers.all, "deleted"] as const,
   },
+  resumeEvents: {
+    all: ["resume-events"] as const,
+    stats: (days: number) =>
+      [...queryKeys.resumeEvents.all, "stats", days] as const,
+  },
 } as const;
