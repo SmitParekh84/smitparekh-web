@@ -17,9 +17,9 @@ interface ResumeViewerProps {
 // platforms so we can show a fallback UI instead of a broken viewer.
 const MOBILE_UA_RE = /Android|iPhone|iPad|iPod|Mobile/i;
 
-function subscribeToMobile(callback: () => void) {
-  window.addEventListener("resize", callback);
-  return () => window.removeEventListener("resize", callback);
+function subscribeToMobile() {
+  // User agent doesn't change after page load, so no subscription is needed.
+  return () => {};
 }
 
 function getIsMobileSnapshot() {
