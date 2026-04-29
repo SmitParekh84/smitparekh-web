@@ -56,3 +56,10 @@ export {
   type AdminContactsListParams,
 } from "./admin-contacts";
 export { adminUsersApi } from "./admin-users";
+export {
+  socialApi,
+  type SharePlatform,
+  type ShareKind,
+  type GenerateShareCaptionPayload,
+  type GenerateShareCaptionResponse,
+} from "./social";

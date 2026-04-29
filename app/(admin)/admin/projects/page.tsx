@@ -12,6 +12,7 @@ import {
   Eye,
   EyeOff,
   Sparkles,
+  Share2,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -42,6 +43,7 @@ import {
   usePermanentDeleteProject,
 } from "@/hooks/use-projects";
 import { TrashTable } from "@/components/admin/TrashTable";
+import { SocialShareDialog } from "@/components/admin/SocialShareDialog";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
@@ -66,6 +68,12 @@ export default function ProjectsPage() {
   const [aiOpen, setAiOpen] = useState(false);
   const [aiMode, setAiMode] = useState<"idea" | "rewrite">("idea");
   const [aiPrompt, setAiPrompt] = useState("");
+  const [shareTarget, setShareTarget] = useState<{
+    id: string;
+    title: string;
+    slug?: string;
+    publicUrl?: string;
+  } | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
 
@@ -322,6 +330,16 @@ export default function ProjectsPage() {
           </div>
         </div>
       )}
+
+      <SocialShareDialog
+        open={shareTarget !== null}
+        onClose={() => setShareTarget(null)}
+        kind="project"
+        id={shareTarget?.id ?? ""}
+        title={shareTarget?.title ?? ""}
+        slug={shareTarget?.slug}
+        publicUrl={shareTarget?.publicUrl}
+      />
 
       <div className="flex items-center gap-1 border-b border-border">
         <button
@@ -639,6 +657,23 @@ export default function ProjectsPage() {
                         >
                           <Pencil className="h-3.5 w-3.5" />
                         </Link>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 text-muted-foreground hover:text-sky-500"
+                          title="Share to LinkedIn or X"
+                          onClick={() =>
+                            setShareTarget({
+                              id: project._id,
+                              title: project.title,
+                              slug: project.slug,
+                              publicUrl: project.demoLink || undefined,
+                            })
+                          }
+                        >
+                          <Share2 className="h-3.5 w-3.5" />
+                        </Button>
 
                         {confirmId === project._id ? (
                           <div className="flex items-center gap-1">

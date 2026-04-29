@@ -12,6 +12,7 @@ import {
   Eye,
   EyeOff,
   Sparkles,
+  Share2,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -43,6 +44,7 @@ import {
 } from "@/hooks/use-blogs";
 import { TrashTable } from "@/components/admin/TrashTable";
 import { BlogTopicSuggestions } from "@/components/admin/BlogTopicSuggestions";
+import { SocialShareDialog } from "@/components/admin/SocialShareDialog";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
@@ -66,6 +68,11 @@ export default function AdminBlogsPage() {
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState("");
+  const [shareTarget, setShareTarget] = useState<{
+    id: string;
+    title: string;
+    slug?: string;
+  } | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
 
@@ -289,6 +296,15 @@ export default function AdminBlogsPage() {
           </div>
         </div>
       )}
+
+      <SocialShareDialog
+        open={shareTarget !== null}
+        onClose={() => setShareTarget(null)}
+        kind="blog"
+        id={shareTarget?.id ?? ""}
+        title={shareTarget?.title ?? ""}
+        slug={shareTarget?.slug}
+      />
 
       <div className="flex items-center gap-1 border-b border-border">
         <button
@@ -604,6 +620,22 @@ export default function AdminBlogsPage() {
                         >
                           <Pencil className="h-3.5 w-3.5" />
                         </Link>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 text-muted-foreground hover:text-sky-500"
+                          title="Share to LinkedIn or X"
+                          onClick={() =>
+                            setShareTarget({
+                              id: blog._id,
+                              title: blog.title,
+                              slug: blog.slug,
+                            })
+                          }
+                        >
+                          <Share2 className="h-3.5 w-3.5" />
+                        </Button>
 
                         {confirmId === blog._id ? (
                           <div className="flex items-center gap-1">
