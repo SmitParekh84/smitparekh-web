@@ -116,14 +116,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
-                >
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
 

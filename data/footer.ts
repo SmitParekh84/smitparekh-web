@@ -27,9 +27,9 @@ export const footerData: FooterData = {
   pageLinks: [
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
-    { href: "/project", label: "Projects" },
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/qualification", label: "Experience" },
+    { href: "/blog", label: "Blog" },
+    { href: "/free-tools", label: "Free Tools" },
     { href: "/contact", label: "Contact Me" },
   ],
   toolLinks: [

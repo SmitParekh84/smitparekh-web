@@ -26,10 +26,10 @@ export const metadata: Metadata = {
       "Articles and engineering notes on React, Next.js, Node.js and TypeScript by Smit Parekh.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh - Blog",
+        url: `${siteConfig.url}/images/smit-parekh-blog-web-development.png`,
+        width: 1200,
+        height: 630,
+        alt: "Smit Parekh Blog - Web Development & Engineering Notes",
         type: "image/png",
       },
     ],
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
       "Articles on React, Next.js, Node.js and full-stack engineering.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh - Blog",
+        url: `${siteConfig.url}/images/smit-parekh-blog-web-development.png`,
+        width: 1200,
+        height: 630,
+        alt: "Smit Parekh Blog - Web Development & Engineering Notes",
       },
     ],
   },

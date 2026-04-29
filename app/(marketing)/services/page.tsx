@@ -74,7 +74,15 @@ export const metadata: Metadata = {
     title: "Services - Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React frontends, Node.js APIs, database design, AWS deployment, and technical SEO.",
-    // images auto-injected from ./opengraph-image.tsx
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-web-development-services.png`,
+        width: 1200,
+        height: 630,
+        alt: "Web Development Services by Smit Parekh - React, Next.js, Node.js, AWS",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -83,6 +91,14 @@ export const metadata: Metadata = {
     title: "Services - Full-Stack Web Development by Smit Parekh",
     description:
       "End-to-end web development services: React, Node.js, AWS, technical SEO.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-web-development-services.png`,
+        width: 1200,
+        height: 630,
+        alt: "Web Development Services by Smit Parekh - React, Next.js, Node.js, AWS",
+      },
+    ],
   },
 };
 

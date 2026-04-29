@@ -67,6 +67,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...techKeywords,
   ].filter(Boolean) as string[];
 
+  const fallbackImage = `${siteConfig.url}/images/smit-parekh-portfolio-case-studies.png`;
+  const ogImage = project.imageUrl || fallbackImage;
+
   return {
     title,
     description,
@@ -79,7 +82,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title,
       description,
-      // images are auto-injected from ./opengraph-image.tsx (dynamic, per-project)
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} - ${project.subtitle}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -87,7 +97,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       creator: siteConfig.twitterHandle,
       title,
       description,
-      // twitter image inherits from openGraph (also dynamic)
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} - ${project.subtitle}`,
+        },
+      ],
     },
   };
 }
@@ -129,7 +146,9 @@ function HighlightCard({ label, value }: { label: string; value: string }) {
 
 function buildSchemas(project: Project) {
   const url = `${siteConfig.url}/portfolio/${project.slug}`;
-  const image = `${siteConfig.url}/images/Smit-Parekh-Home.png`;
+  const image =
+    project.imageUrl ||
+    `${siteConfig.url}/images/smit-parekh-portfolio-case-studies.png`;
 
   const creativeWork = {
     "@context": "https://schema.org",

@@ -27,10 +27,10 @@ export const metadata: Metadata = {
       "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, word counter, SEO analyzer & more. No signup, no cost. Used globally.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Free Online Tools by Smit Parekh",
+        url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
+        width: 1200,
+        height: 630,
+        alt: "Free Online Developer Tools by Smit Parekh - No Signup Required",
         type: "image/png",
       },
     ],
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
       "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup, used globally.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Free Online Tools by Smit Parekh",
+        url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
+        width: 1200,
+        height: 630,
+        alt: "Free Online Developer Tools by Smit Parekh - No Signup Required",
       },
     ],
   },

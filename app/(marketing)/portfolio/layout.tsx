@@ -26,10 +26,10 @@ export const metadata: Metadata = {
       "Explore web applications built by Smit Parekh - React, Next.js, Node.js for FinTech, SaaS, and enterprise clients.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh - Full Stack Developer Portfolio",
+        url: `${siteConfig.url}/images/smit-parekh-portfolio-case-studies.png`,
+        width: 1200,
+        height: 630,
+        alt: "Smit Parekh Portfolio - Case Studies of Production Web Apps",
         type: "image/png",
       },
     ],
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
       "Web applications built by Smit Parekh - React, Next.js, Node.js for FinTech, SaaS, and enterprise.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-        width: 800,
-        height: 800,
-        alt: "Smit Parekh - Full Stack Developer Portfolio",
+        url: `${siteConfig.url}/images/smit-parekh-portfolio-case-studies.png`,
+        width: 1200,
+        height: 630,
+        alt: "Smit Parekh Portfolio - Case Studies of Production Web Apps",
       },
     ],
   },
