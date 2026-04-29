@@ -64,6 +64,35 @@ export function CloudinaryImagePicker({
   const [tab, setTab] = useState<string>("library");
   const resolvedAspect = cropAspect ?? parseAspect(previewAspect) ?? 16 / 9;
 
+  // Cropper + upload state lives at the picker level so the crop dialog
+  // is NOT nested inside the library dialog (nested base-ui modals fight
+  // over focus + backdrop, which made the cropper UI never appear and
+  // the file looked like it was being uploaded directly).
+  const cropper = useImageCropper();
+  const uploadBlog = useUploadBlogImage();
+  const uploadProject = useUploadProjectImage();
+  const upload = kind === "blog" ? uploadBlog : uploadProject;
+
+  function handleFileSelected(file: File) {
+    // Close the library dialog so the cropper can take the screen alone.
+    setOpen(false);
+    if (shouldSkipCropping(file)) {
+      void doUpload(file);
+      return;
+    }
+    cropper.openWith(file);
+  }
+
+  async function doUpload(file: File) {
+    try {
+      const result = await upload.mutateAsync(file);
+      toast.success("Image uploaded");
+      onChange(result.url);
+    } catch {
+      toast.error("Upload failed", "Could not upload image.");
+    }
+  }
+
   return (
     <div className="space-y-2">
       {value ? (
@@ -145,16 +174,24 @@ export function CloudinaryImagePicker({
             <TabsPanel value="upload">
               <UploadPanel
                 kind={kind}
-                cropAspect={resolvedAspect}
-                onUploaded={(url) => {
-                  onChange(url);
-                  setOpen(false);
-                }}
+                isUploading={upload.isPending}
+                onFileSelected={handleFileSelected}
               />
             </TabsPanel>
           </Tabs>
         </DialogContent>
       </Dialog>
+
+      {/* Cropper dialog is a SIBLING of the library dialog, never nested.
+          This keeps base-ui's focus traps from colliding. */}
+      <ImageCropperDialog
+        open={cropper.open}
+        onOpenChange={cropper.setOpen}
+        file={cropper.file}
+        aspect={resolvedAspect}
+        onCropped={doUpload}
+        confirmLabel="Upload"
+      />
     </div>
   );
 }
@@ -328,21 +365,15 @@ function LibraryGrid({
 
 function UploadPanel({
   kind,
-  cropAspect,
-  onUploaded,
+  isUploading,
+  onFileSelected,
 }: {
   kind: "blog" | "project";
-  cropAspect: number;
-  onUploaded: (url: string) => void;
+  isUploading: boolean;
+  onFileSelected: (file: File) => void;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [dragOver, setDragOver] = useState(false);
-
-  const uploadBlog = useUploadBlogImage();
-  const uploadProject = useUploadProjectImage();
-  const upload = kind === "blog" ? uploadBlog : uploadProject;
-
-  const cropper = useImageCropper();
 
   function handleFile(file: File | undefined) {
     if (!file) return;
@@ -354,21 +385,7 @@ function UploadPanel({
       toast.error("File too large", "Please choose an image under 5 MB.");
       return;
     }
-    if (shouldSkipCropping(file)) {
-      void doUpload(file);
-      return;
-    }
-    cropper.openWith(file);
-  }
-
-  async function doUpload(file: File) {
-    try {
-      const result = await upload.mutateAsync(file);
-      toast.success("Image uploaded");
-      onUploaded(result.url);
-    } catch {
-      toast.error("Upload failed", "Could not upload image.");
-    }
+    onFileSelected(file);
   }
 
   return (
@@ -386,16 +403,16 @@ function UploadPanel({
           setDragOver(false);
           handleFile(e.dataTransfer.files?.[0]);
         }}
-        disabled={upload.isPending}
+        disabled={isUploading}
         className={cn(
           "flex flex-col items-center justify-center gap-3 w-full rounded-xl border-2 border-dashed transition-colors text-sm text-muted-foreground py-12 px-6",
           dragOver
             ? "border-blue-500 bg-blue-500/5"
             : "border-border hover:border-blue-500/50 hover:bg-muted/40",
-          upload.isPending && "opacity-60 cursor-not-allowed"
+          isUploading && "opacity-60 cursor-not-allowed"
         )}
       >
-        {upload.isPending ? (
+        {isUploading ? (
           <>
             <Loader2 className="h-6 w-6 animate-spin" />
             <span>Uploading…</span>
@@ -428,15 +445,6 @@ function UploadPanel({
         </code>{" "}
         folder and will appear in the Library tab next time.
       </p>
-
-      <ImageCropperDialog
-        open={cropper.open}
-        onOpenChange={cropper.setOpen}
-        file={cropper.file}
-        aspect={cropAspect}
-        onCropped={doUpload}
-        confirmLabel="Upload"
-      />
     </div>
   );
 }

@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Star, Eye, EyeOff, Sparkles } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, Sparkles, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "@/lib/toast";
 import { useGenerateBlog } from "@/hooks/use-blogs";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
+import { BlogTopicSuggestions } from "@/components/admin/BlogTopicSuggestions";
 import {
   Dialog,
   DialogContent,
@@ -60,6 +61,8 @@ export function BlogForm({
   const generateBlog = useGenerateBlog();
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState("");
+
+  const [savingDraft, setSavingDraft] = useState(false);
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -178,6 +181,67 @@ export function BlogForm({
     });
   }
 
+  // Strip markdown so we can auto-derive a draft excerpt from content.
+  function plainExcerptFrom(markdown: string, max = 200): string {
+    const text = markdown
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/`[^`]*`/g, " ")
+      .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
+      .replace(/^#{1,6}\s+/gm, "")
+      .replace(/[*_~>#-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (text.length <= max) return text;
+    return text.slice(0, max - 1).trimEnd() + "…";
+  }
+
+  async function handleSaveDraft() {
+    if (!form.title.trim()) {
+      toast.error("Title required", "Add at least a title before saving a draft.");
+      return;
+    }
+    if (!form.content.trim()) {
+      toast.error("Content required", "Write something - even a rough outline - before saving a draft.");
+      return;
+    }
+    if (!form.coverImage) {
+      toast.error("Cover image required", "Drafts still need a cover image to save.");
+      return;
+    }
+
+    const tags = form.tagsCsv
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+
+    const excerpt =
+      form.excerpt.trim() || plainExcerptFrom(form.content) || form.title.trim();
+
+    setSavingDraft(true);
+    try {
+      await onSubmit({
+        title: form.title,
+        slug: form.slug ? slugify(form.slug) : slugify(form.title),
+        excerpt,
+        content: form.content,
+        coverImage: form.coverImage,
+        category: form.category,
+        tags,
+        readMinutes: Number(form.readMinutes) || 5,
+        author: form.author,
+        isPublished: false,
+        isFeatured: false,
+        publishedAt: new Date(form.publishedAt).toISOString(),
+      });
+      // Reflect draft state in the UI in case the user stays on the page.
+      setForm((prev) => ({ ...prev, isPublished: false, excerpt }));
+      toast.success("Draft saved", "Hidden from /blog. Publish from the toggle when ready.");
+    } finally {
+      setSavingDraft(false);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
       {/* AI Generate */}
@@ -243,6 +307,11 @@ export function BlogForm({
             <p className="mt-1 text-right text-xs text-muted-foreground">
               {aiPrompt.length}/4000
             </p>
+
+            <BlogTopicSuggestions
+              onPick={(t) => setAiPrompt(t)}
+              disabled={generateBlog.isPending}
+            />
 
             {form.title && (
               <p className="mt-2 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-600 dark:text-yellow-400">
@@ -479,19 +548,37 @@ export function BlogForm({
       <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center">
         <button
           type="submit"
-          disabled={isPending}
+          disabled={isPending || savingDraft}
           className={cn(
             buttonVariants({ size: "lg" }),
             "w-full gap-2 sm:w-auto",
-            isPending && "cursor-not-allowed opacity-70"
+            (isPending || savingDraft) && "cursor-not-allowed opacity-70"
           )}
         >
-          {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+          {isPending && !savingDraft && <Loader2 className="h-4 w-4 animate-spin" />}
           {submitLabel}
         </button>
         <button
           type="button"
+          onClick={handleSaveDraft}
+          disabled={isPending || savingDraft}
+          className={cn(
+            buttonVariants({ variant: "secondary", size: "lg" }),
+            "w-full gap-2 sm:w-auto",
+            (isPending || savingDraft) && "cursor-not-allowed opacity-70"
+          )}
+        >
+          {savingDraft ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <FileText className="h-4 w-4" />
+          )}
+          {savingDraft ? "Saving draft..." : "Save draft"}
+        </button>
+        <button
+          type="button"
           onClick={() => router.push("/admin/blogs")}
+          disabled={isPending || savingDraft}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
             "w-full sm:w-auto"

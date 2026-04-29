@@ -103,3 +103,9 @@ export function useGenerateBlog() {
     mutationFn: (prompt: string) => blogsApi.generate(prompt),
   });
 }
+
+export function useGenerateBlogTopics() {
+  return useMutation({
+    mutationFn: (seed?: string) => blogsApi.generateTopics(seed),
+  });
+}

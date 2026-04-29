@@ -42,6 +42,7 @@ import {
   usePermanentDeleteBlog,
 } from "@/hooks/use-blogs";
 import { TrashTable } from "@/components/admin/TrashTable";
+import { BlogTopicSuggestions } from "@/components/admin/BlogTopicSuggestions";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
@@ -249,6 +250,11 @@ export default function AdminBlogsPage() {
             <p className="mt-1 text-right text-xs text-muted-foreground">
               {aiPrompt.length}/4000
             </p>
+
+            <BlogTopicSuggestions
+              onPick={(t) => setAiPrompt(t)}
+              disabled={generateBlog.isPending}
+            />
 
             <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <Button

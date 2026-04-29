@@ -38,6 +38,11 @@ export interface GenerateBlogResponse {
   };
 }
 
+export interface GenerateBlogTopicsResponse {
+  success: boolean;
+  data: { topics: string[] };
+}
+
 export const blogsApi = {
   list: () => api.get<BackendListResponse<BackendBlog>>("/blogs"),
   byId: (id: string) => api.get<BackendOneResponse<BackendBlog>>(`/blogs/${id}`),
@@ -67,4 +72,6 @@ export const blogsApi = {
     api.post<{ success: boolean }>("/blogs/images/delete", { publicId }),
   generate: (prompt: string) =>
     api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
+  generateTopics: (seed?: string) =>
+    api.post<GenerateBlogTopicsResponse>("/blogs/generate-topics", { seed: seed ?? "" }),
 };
