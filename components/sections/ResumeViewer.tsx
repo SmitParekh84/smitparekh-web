@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { Download, ArrowLeft, FileText } from "lucide-react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
+import { Download, ArrowLeft, FileText, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,9 +12,32 @@ interface ResumeViewerProps {
   fileName: string;
 }
 
+// Mobile browsers (Chrome/Safari on Android & iOS) refuse to render PDFs
+// inside an <iframe> and show "This content is blocked". Detect those
+// platforms so we can show a fallback UI instead of a broken viewer.
+const MOBILE_UA_RE = /Android|iPhone|iPad|iPod|Mobile/i;
+
+function subscribeToMobile(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getIsMobileSnapshot() {
+  return MOBILE_UA_RE.test(navigator.userAgent);
+}
+
+function getIsMobileServerSnapshot() {
+  return false;
+}
+
 export default function ResumeViewer({ pdfPath, fileName }: ResumeViewerProps) {
   const trackEvent = useTrackResumeEvent();
   const trackedView = useRef(false);
+  const isMobile = useSyncExternalStore(
+    subscribeToMobile,
+    getIsMobileSnapshot,
+    getIsMobileServerSnapshot
+  );
 
   useEffect(() => {
     // Guard against React StrictMode double-invocation in dev.
@@ -63,11 +86,51 @@ export default function ResumeViewer({ pdfPath, fileName }: ResumeViewerProps) {
         </div>
 
         <div className="overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
-          <iframe
-            src={`${pdfPath}#toolbar=1&navpanes=0&view=FitH`}
-            title="Smit Parekh - Resume"
-            className="h-[80vh] min-h-[600px] w-full"
-          />
+          {isMobile ? (
+            <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-6 py-16 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10">
+                <FileText className="h-8 w-8 text-blue-500" />
+              </div>
+              <div className="space-y-1">
+                <h2 className="text-base font-semibold sm:text-lg">
+                  Preview not available on mobile
+                </h2>
+                <p className="max-w-md text-sm text-muted-foreground">
+                  Mobile browsers don&apos;t support inline PDF previews. Open
+                  the resume in a new tab or download it to view.
+                </p>
+              </div>
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(buttonVariants({ size: "sm" }), "gap-2")}
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Open in new tab
+                </a>
+                <a
+                  href={pdfPath}
+                  download={fileName}
+                  onClick={handleDownloadClick}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "sm" }),
+                    "gap-2"
+                  )}
+                >
+                  <Download className="h-4 w-4" />
+                  Download PDF
+                </a>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              src={`${pdfPath}#toolbar=1&navpanes=0&view=FitH`}
+              title="Smit Parekh - Resume"
+              className="h-[80vh] min-h-[600px] w-full"
+            />
+          )}
         </div>
 
         <p className="mt-4 text-center text-xs text-muted-foreground">
