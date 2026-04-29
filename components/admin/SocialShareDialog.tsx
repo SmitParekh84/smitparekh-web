@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import {
-  Linkedin,
   Loader2,
   RefreshCw,
   Copy,
@@ -17,6 +16,32 @@ import { siteConfig } from "@/data/site";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import type { SharePlatform, ShareKind } from "@/lib/api/social";
+
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
+function XLogoIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
+  );
+}
 
 interface SocialShareDialogProps {
   open: boolean;
@@ -41,8 +66,7 @@ function buildPublicUrl({
   if (publicUrl && /^https?:\/\//i.test(publicUrl)) return publicUrl;
   const base = siteConfig.url.replace(/\/+$/, "");
   if (kind === "blog" && slug) return `${base}/blog/${slug}`;
-  // No public per-project page yet — fall back to the projects list anchor.
-  if (kind === "project") return `${base}/#projects`;
+  if (kind === "project" && slug) return `${base}/portfolio/${slug}`;
   return base;
 }
 
@@ -174,7 +198,7 @@ export function SocialShareDialog({
                 : "border-border hover:border-[#0A66C2]/40 hover:bg-[#0A66C2]/5"
             )}
           >
-            <Linkedin className="h-4 w-4" />
+            <LinkedInIcon className="h-4 w-4" />
             LinkedIn
           </button>
           <button
@@ -284,7 +308,7 @@ export function SocialShareDialog({
               className="gap-1.5"
             >
               {platform === "linkedin" ? (
-                <Linkedin className="h-3.5 w-3.5" />
+                <LinkedInIcon className="h-3.5 w-3.5" />
               ) : (
                 <XIcon className="h-3.5 w-3.5" />
               )}

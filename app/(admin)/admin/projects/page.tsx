@@ -668,7 +668,6 @@ export default function ProjectsPage() {
                               id: project._id,
                               title: project.title,
                               slug: project.slug,
-                              publicUrl: project.demoLink || undefined,
                             })
                           }
                         >
