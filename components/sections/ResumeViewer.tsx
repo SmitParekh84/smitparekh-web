@@ -76,7 +76,6 @@ export default function ResumeViewer({ pdfPath, fileName }: ResumeViewerProps) {
             href={pdfPath}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={handleDownloadClick}
             className="text-blue-500 hover:underline"
           >
             Open the PDF in a new tab
