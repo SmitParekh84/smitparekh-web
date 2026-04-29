@@ -12,6 +12,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  ImageCropperDialog,
+  shouldSkipCropping,
+  useImageCropper,
+} from "@/components/ui/image-cropper";
 import { useSupabaseSession, useUpdateProfile, useUploadAvatar } from "@/hooks/api/use-auth";
 import { clearAdminToken } from "@/lib/api";
 import { toast } from "@/lib/toast";
@@ -30,6 +35,7 @@ export default function SettingsPage() {
   const updateProfile = useUpdateProfile();
   const uploadAvatar = useUploadAvatar();
   const fileRef = useRef<HTMLInputElement>(null);
+  const cropper = useImageCropper();
 
   const meta = session?.user?.user_metadata ?? {};
   const currentName: string = meta.full_name ?? meta.name ?? "";
@@ -51,13 +57,28 @@ export default function SettingsPage() {
     .slice(0, 2)
     .toUpperCase();
 
-  async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
+    // Reset so picking the same file twice still triggers onChange.
+    e.target.value = "";
     if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Invalid file", "Please choose an image.");
+      return;
+    }
     if (file.size > 5 * 1024 * 1024) {
       toast.error("File too large", "Please choose an image under 5 MB.");
       return;
     }
+    if (shouldSkipCropping(file)) {
+      void uploadCroppedAvatar(file);
+      return;
+    }
+    cropper.openWith(file);
+  }
+
+  async function uploadCroppedAvatar(file: File) {
+    const previousAvatar = avatarPreview;
     setAvatarPreview(URL.createObjectURL(file));
     const uploadPromise = uploadAvatar.mutateAsync(file);
     toast.promise(uploadPromise, {
@@ -69,7 +90,7 @@ export default function SettingsPage() {
       const url = await uploadPromise;
       await updateProfile.mutateAsync({ avatarUrl: url });
     } catch {
-      setAvatarPreview(currentAvatar);
+      setAvatarPreview(previousAvatar);
     }
   }
 
@@ -278,6 +299,19 @@ export default function SettingsPage() {
           </div>
         </CardContent>
       </Card>
+
+      <ImageCropperDialog
+        open={cropper.open}
+        onOpenChange={cropper.setOpen}
+        file={cropper.file}
+        aspect={1}
+        cropShape="round"
+        outputType="image/jpeg"
+        onCropped={uploadCroppedAvatar}
+        confirmLabel="Upload"
+        title="Crop profile photo"
+        description="Position your photo inside the circle."
+      />
     </div>
   );
 }

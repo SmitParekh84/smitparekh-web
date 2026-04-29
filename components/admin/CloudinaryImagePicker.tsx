@@ -31,6 +31,11 @@ import {
   useUploadProjectImage,
 } from "@/hooks/use-projects";
 import type { CloudinaryImage } from "@/lib/api/blogs";
+import {
+  ImageCropperDialog,
+  shouldSkipCropping,
+  useImageCropper,
+} from "@/components/ui/image-cropper";
 
 interface CloudinaryImagePickerProps {
   kind: "blog" | "project";
@@ -40,6 +45,11 @@ interface CloudinaryImagePickerProps {
   previewAspect?: string;
   /** Hint shown in the dropzone. */
   hint?: string;
+  /**
+   * Numeric crop aspect ratio (width / height). When omitted, it's derived
+   * from `previewAspect` (e.g. `aspect-[16/9]` → `16/9`). Falls back to 16/9.
+   */
+  cropAspect?: number;
 }
 
 export function CloudinaryImagePicker({
@@ -48,9 +58,11 @@ export function CloudinaryImagePicker({
   onChange,
   previewAspect = "aspect-[16/9]",
   hint = "Recommended: 1600 × 900",
+  cropAspect,
 }: CloudinaryImagePickerProps) {
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState<string>("library");
+  const resolvedAspect = cropAspect ?? parseAspect(previewAspect) ?? 16 / 9;
 
   return (
     <div className="space-y-2">
@@ -133,6 +145,7 @@ export function CloudinaryImagePicker({
             <TabsPanel value="upload">
               <UploadPanel
                 kind={kind}
+                cropAspect={resolvedAspect}
                 onUploaded={(url) => {
                   onChange(url);
                   setOpen(false);
@@ -315,9 +328,11 @@ function LibraryGrid({
 
 function UploadPanel({
   kind,
+  cropAspect,
   onUploaded,
 }: {
   kind: "blog" | "project";
+  cropAspect: number;
   onUploaded: (url: string) => void;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -327,12 +342,26 @@ function UploadPanel({
   const uploadProject = useUploadProjectImage();
   const upload = kind === "blog" ? uploadBlog : uploadProject;
 
-  async function handleFile(file: File | undefined) {
+  const cropper = useImageCropper();
+
+  function handleFile(file: File | undefined) {
     if (!file) return;
     if (!file.type.startsWith("image/")) {
       toast.error("Invalid file", "Please select an image.");
       return;
     }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File too large", "Please choose an image under 5 MB.");
+      return;
+    }
+    if (shouldSkipCropping(file)) {
+      void doUpload(file);
+      return;
+    }
+    cropper.openWith(file);
+  }
+
+  async function doUpload(file: File) {
     try {
       const result = await upload.mutateAsync(file);
       toast.success("Image uploaded");
@@ -386,7 +415,11 @@ function UploadPanel({
         type="file"
         accept="image/*"
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => {
+          handleFile(e.target.files?.[0]);
+          // reset so picking the same file twice still triggers onChange
+          e.target.value = "";
+        }}
       />
       <p className="mt-3 text-xs text-muted-foreground">
         Uploads are saved to your Cloudinary{" "}
@@ -395,6 +428,34 @@ function UploadPanel({
         </code>{" "}
         folder and will appear in the Library tab next time.
       </p>
+
+      <ImageCropperDialog
+        open={cropper.open}
+        onOpenChange={cropper.setOpen}
+        file={cropper.file}
+        aspect={cropAspect}
+        onCropped={doUpload}
+        confirmLabel="Upload"
+      />
     </div>
   );
+}
+
+/* ---------------- Helpers ---------------- */
+
+/**
+ * Best-effort numeric ratio extracted from a Tailwind aspect-ratio class
+ * such as `aspect-[16/9]`, `aspect-square`, `aspect-video`.
+ */
+function parseAspect(cls: string): number | null {
+  if (!cls) return null;
+  if (cls.includes("aspect-square")) return 1;
+  if (cls.includes("aspect-video")) return 16 / 9;
+  const m = cls.match(/aspect-\[(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)\]/);
+  if (m) {
+    const w = Number(m[1]);
+    const h = Number(m[2]);
+    if (w > 0 && h > 0) return w / h;
+  }
+  return null;
 }
