@@ -253,39 +253,29 @@ export default async function BlogPostPage({ params }: Props) {
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                table: ({ node, ...props }) => {
-                  void node;
-                  return (
-                    <div className="not-prose my-6 -mx-4 sm:mx-0 overflow-x-auto rounded-lg border border-border bg-card">
-                      <table
-                        {...props}
-                        className="w-full text-sm border-collapse"
-                      />
-                    </div>
-                  );
-                },
-                thead: ({ node, ...props }) => {
-                  void node;
-                  return <thead {...props} className="bg-muted/40" />;
-                },
-                th: ({ node, ...props }) => {
-                  void node;
-                  return (
-                    <th
+                table: (props) => (
+                  <div className="not-prose my-6 -mx-4 sm:mx-0 overflow-x-auto rounded-lg border border-border bg-card">
+                    <table
                       {...props}
-                      className="px-4 py-2 text-left font-semibold text-foreground border-b border-border whitespace-nowrap"
+                      className="w-full text-sm border-collapse"
                     />
-                  );
-                },
-                td: ({ node, ...props }) => {
-                  void node;
-                  return (
-                    <td
-                      {...props}
-                      className="px-4 py-2 text-muted-foreground border-b border-border align-top"
-                    />
-                  );
-                },
+                  </div>
+                ),
+                thead: (props) => (
+                  <thead {...props} className="bg-muted/40" />
+                ),
+                th: (props) => (
+                  <th
+                    {...props}
+                    className="px-4 py-2 text-left font-semibold text-foreground border-b border-border whitespace-nowrap"
+                  />
+                ),
+                td: (props) => (
+                  <td
+                    {...props}
+                    className="px-4 py-2 text-muted-foreground border-b border-border align-top"
+                  />
+                ),
               }}
             >
               {normalizeMarkdown(blog.content)}
