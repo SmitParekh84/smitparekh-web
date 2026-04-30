@@ -90,8 +90,12 @@ export function SocialShareDialog({
 }: SocialShareDialogProps) {
   const generate = useGenerateShareCaption();
   const [platform, setPlatform] = useState<SharePlatform | null>(null);
-  const [caption, setCaption] = useState("");
+  // Cache captions per platform so switching tabs doesn't re-hit the API.
+  // Only an explicit "Regenerate" click forces a fresh call.
+  const [captions, setCaptions] = useState<Partial<Record<SharePlatform, string>>>({});
   const [copied, setCopied] = useState(false);
+
+  const caption = platform ? captions[platform] ?? "" : "";
 
   const url = buildPublicUrl({ kind, slug, publicUrl });
 
@@ -99,19 +103,26 @@ export function SocialShareDialog({
   useEffect(() => {
     if (open) {
       setPlatform(null);
-      setCaption("");
+      setCaptions({});
       setCopied(false);
       generate.reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  async function loadCaption(p: SharePlatform) {
+  function setCaption(next: string) {
+    if (!platform) return;
+    setCaptions((prev) => ({ ...prev, [platform]: next }));
+  }
+
+  async function loadCaption(p: SharePlatform, { force = false } = {}) {
     setPlatform(p);
     setCopied(false);
+    // Use cached caption when available unless the user asked for a regenerate.
+    if (!force && captions[p]) return;
     try {
       const res = await generate.mutateAsync({ kind, id, platform: p, url });
-      setCaption(res.data.caption);
+      setCaptions((prev) => ({ ...prev, [p]: res.data.caption }));
     } catch (err) {
       const msg =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -271,7 +282,7 @@ export function SocialShareDialog({
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => loadCaption(platform)}
+              onClick={() => loadCaption(platform, { force: true })}
               disabled={generate.isPending}
               className="gap-1.5"
             >
