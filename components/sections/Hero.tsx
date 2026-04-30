@@ -19,6 +19,8 @@ import {
   LinkedInIcon,
   MailIcon,
   XIcon,
+  UpworkIcon,
+  WebsiteIcon,
 } from "@/components/icons/SocialIcons";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { useTrackResumeEvent } from "@/hooks/api/use-resume-events";
@@ -28,6 +30,8 @@ const socialIcons = {
   linkedin: LinkedInIcon,
   github: GitHubIcon,
   x: XIcon,
+  upwork: UpworkIcon,
+  marketixpert: WebsiteIcon,
 } as const;
 
 const container = {
