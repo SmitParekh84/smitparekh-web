@@ -6,7 +6,7 @@ export interface HomeData {
   socialLinks: Array<{
     href: string;
     label: string;
-    platform: "email" | "linkedin" | "github" | "x";
+    platform: "email" | "linkedin" | "github" | "x" | "upwork" | "marketixpert";
   }>;
 }
 
@@ -36,6 +36,16 @@ export const homeData: HomeData = {
       href: "https://x.com/smit_parekh84",
       label: "X profile",
       platform: "x",
+    },
+    {
+      href: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
+      label: "Upwork profile",
+      platform: "upwork",
+    },
+    {
+      href: "https://www.marketixpert.com",
+      label: "Marketixpert - my agency website",
+      platform: "marketixpert",
     },
   ],
 };

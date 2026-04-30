@@ -16,6 +16,8 @@ import {
   LinkedInIcon,
   MailIcon,
   XIcon,
+  UpworkIcon,
+  WebsiteIcon,
 } from "@/components/icons/SocialIcons";
 
 export const metadata: Metadata = {
@@ -115,6 +117,8 @@ const socialIcons = {
   linkedin: LinkedInIcon,
   github: GitHubIcon,
   x: XIcon,
+  upwork: UpworkIcon,
+  marketixpert: WebsiteIcon,
 } as const;
 
 const stats = [
