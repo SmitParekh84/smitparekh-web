@@ -250,7 +250,34 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="page-section pt-10">
         <div className="page-container max-w-3xl">
           <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-headings:font-bold prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-code:text-blue-500 prose-code:before:content-none prose-code:after:content-none prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-card prose-pre:border prose-pre:border-border prose-img:rounded-xl prose-blockquote:border-l-blue-500 prose-blockquote:text-foreground">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                table: (props) => (
+                  <div className="not-prose my-6 -mx-4 sm:mx-0 overflow-x-auto rounded-lg border border-border bg-card">
+                    <table
+                      {...props}
+                      className="w-full text-sm border-collapse"
+                    />
+                  </div>
+                ),
+                thead: (props) => (
+                  <thead {...props} className="bg-muted/40" />
+                ),
+                th: (props) => (
+                  <th
+                    {...props}
+                    className="px-4 py-2 text-left font-semibold text-foreground border-b border-border whitespace-nowrap"
+                  />
+                ),
+                td: (props) => (
+                  <td
+                    {...props}
+                    className="px-4 py-2 text-muted-foreground border-b border-border align-top"
+                  />
+                ),
+              }}
+            >
               {normalizeMarkdown(blog.content)}
             </ReactMarkdown>
           </div>
