@@ -206,13 +206,12 @@ function FaqAccordion({ items, idPrefix }: FaqAccordionProps) {
         >
           <summary
             className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 py-4 text-left"
-            aria-controls={`${idPrefix}-${i}-content`}
           >
             <span className="font-medium text-sm leading-snug pr-2">
               {item.question}
             </span>
             <span
-              aria-hidden
+              aria-hidden="true"
               className="shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-500/10 text-blue-500 transition-transform group-open:rotate-180"
             >
               <ChevronDown className="w-3.5 h-3.5" />
