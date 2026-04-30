@@ -10,7 +10,10 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import { siteConfig } from "@/data/site";
+
+const GA_MEASUREMENT_ID = "G-X9NMSPMQPD";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -126,6 +129,18 @@ export default function RootLayout({
           </ThemeProvider>
         </QueryProvider>
         <Analytics />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );
