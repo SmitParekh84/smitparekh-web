@@ -98,7 +98,12 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: siteConfig.name,
-  alternateName: ["smitparekh.co.in", "Smit Parekh Portfolio"],
+  alternateName: [
+    "Smit Parekh - Full Stack Developer",
+    "Smit Parekh Portfolio",
+    "Smit Parekh Tools",
+    "Smit Parekh Dev",
+  ],
   url: siteConfig.url,
   description: siteConfig.description,
   inLanguage: "en",
