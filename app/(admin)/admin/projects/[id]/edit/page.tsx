@@ -65,7 +65,7 @@ export default function EditProjectPage({
         <p className="mt-0.5 truncate text-sm text-muted-foreground">{project.title}</p>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-5 sm:p-7 lg:p-9">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:p-8">
         <ProjectForm
           initialData={project}
           onSubmit={handleSubmit}

@@ -20,6 +20,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Tabs, TabsList, TabsTab, TabsPanel } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 import {
   useBlogImages,
   useDeleteBlogImage,
@@ -136,12 +137,12 @@ export function CloudinaryImagePicker({
         </button>
       )}
 
-      <input
+      <Input
         type="url"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="...or paste an image URL"
-        className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        className="h-10"
       />
 
       <Dialog open={open} onOpenChange={setOpen}>

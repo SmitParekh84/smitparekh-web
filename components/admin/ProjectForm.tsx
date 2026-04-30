@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Star, Eye, EyeOff, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "@/lib/toast";
 import { useGenerateProject } from "@/hooks/use-projects";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
@@ -109,6 +114,11 @@ export function ProjectForm({
     isVisible: initialData?.isVisible ?? true,
   });
 
+  const imageMissing = !form.imageUrl;
+  // Project equivalent of "publish": isVisible == true. Saving while visible
+  // requires an image; toggling to hidden behaves like a draft.
+  const blockPublish = form.isVisible && imageMissing;
+
   function setField<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
@@ -204,12 +214,19 @@ export function ProjectForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.title || !form.shortDescription || !form.detailMarkdown || !form.imageUrl) {
-      toast.error("Missing fields", "Title, descriptions, and image are required.");
+    if (!form.title || !form.shortDescription || !form.detailMarkdown) {
+      toast.error("Missing fields", "Title and descriptions are required.");
       return;
     }
     if (form.categories.length === 0) {
       toast.error("Missing category", "Select at least one category.");
+      return;
+    }
+    if (form.isVisible && !form.imageUrl) {
+      toast.error(
+        "Cover image is required to publish.",
+        "Add an image or hide the project to save without one."
+      );
       return;
     }
     await onSubmit({
@@ -219,7 +236,7 @@ export function ProjectForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
+    <form onSubmit={handleSubmit} className="w-full space-y-6">
       {/* AI Generate */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -235,17 +252,15 @@ export function ProjectForm({
               </p>
             </div>
           </div>
-          <button
+          <Button
             type="button"
+            size="sm"
             onClick={() => setAiOpen(true)}
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "gap-1.5 self-start sm:self-auto"
-            )}
+            className="gap-1.5 self-start sm:self-auto"
           >
             <Sparkles className="h-3.5 w-3.5" />
             {form.title ? "Regenerate" : "Generate draft"}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -307,7 +322,7 @@ export function ProjectForm({
               </button>
             </div>
 
-            <textarea
+            <Textarea
               autoFocus
               rows={aiMode === "rewrite" ? 8 : 5}
               maxLength={4000}
@@ -319,33 +334,35 @@ export function ProjectForm({
                   ? "Paste raw notes, bullet points, README, or a draft. Include real metrics, tech stack, and details - they'll be kept; brand names will be removed."
                   : "Describe the project. e.g. 'A real-time fintech dashboard that lets traders track positions across 5 brokers, with sub-second updates and risk alerts.'"
               }
-              className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
+              className="resize-y"
             />
             <p className="mt-1 text-right text-xs text-muted-foreground">
               {aiPrompt.length}/4000
             </p>
 
             {form.title && (
-              <p className="mt-2 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-600 dark:text-yellow-400">
+              <p className="mt-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-600 dark:text-amber-400">
                 This will overwrite all case-study fields below.
               </p>
             )}
           </div>
 
           <DialogFooter>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={() => setAiOpen(false)}
               disabled={generateProject.isPending}
-              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              size="sm"
               onClick={handleAiGenerate}
               disabled={generateProject.isPending || !aiPrompt.trim()}
-              className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+              className="gap-1.5"
             >
               {generateProject.isPending ? (
                 <>
@@ -358,109 +375,108 @@ export function ProjectForm({
                   Generate
                 </>
               )}
-            </button>
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* Title */}
       <Field label="Title" required>
-        <input
+        <Input
           type="text"
           required
           value={form.title}
           onChange={(e) => setField("title", e.target.value)}
           placeholder="e.g. Liquidity.io"
-          className={inputClass}
+          className="h-10"
         />
       </Field>
 
       {/* Slug + Subtitle */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Field label="URL Slug">
           <div className="flex gap-2">
-            <input
+            <Input
               type="text"
               value={form.slug}
               onChange={(e) => setField("slug", e.target.value)}
               placeholder="liquidity-io"
-              className={inputClass}
+              className="h-10"
             />
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={() => setField("slug", slugify(form.title))}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "shrink-0 text-xs"
-              )}
+              className="shrink-0 text-xs h-10"
             >
               From title
-            </button>
+            </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
             Used in /portfolio/&lt;slug&gt;. Auto-generated from title if blank.
           </p>
         </Field>
         <Field label="Subtitle">
-          <input
+          <Input
             type="text"
             value={form.subtitle}
             onChange={(e) => setField("subtitle", e.target.value)}
             placeholder="Cap Table Management Platform"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
       </div>
 
       {/* Meta row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <Field label="Industry">
-          <input
+          <Input
             type="text"
             value={form.industry}
             onChange={(e) => setField("industry", e.target.value)}
             placeholder="Equity & Cap Table Management"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Role">
-          <input
+          <Input
             type="text"
             value={form.role}
             onChange={(e) => setField("role", e.target.value)}
             placeholder="Full Stack Developer"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Year">
-          <input
+          <Input
             type="text"
             value={form.year}
             onChange={(e) => setField("year", e.target.value)}
             placeholder="2023–2025"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Duration">
-          <input
+          <Input
             type="text"
             value={form.duration}
             onChange={(e) => setField("duration", e.target.value)}
             placeholder="20+ months"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Hero Gradient (Tailwind classes)">
-          <input
+          <Input
             type="text"
             value={form.gradient}
             onChange={(e) => setField("gradient", e.target.value)}
             placeholder="from-blue-600 via-blue-500 to-sky-500"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Tags (comma-separated)">
-          <input
+          <Input
             type="text"
             value={form.tags.join(", ")}
             onChange={(e) =>
@@ -473,7 +489,7 @@ export function ProjectForm({
               )
             }
             placeholder="React, Next.js, TypeScript, Node.js"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
       </div>
@@ -506,25 +522,25 @@ export function ProjectForm({
 
       {/* Short Description */}
       <Field label="Short Description" required>
-        <textarea
+        <Textarea
           required
           rows={2}
           value={form.shortDescription}
           onChange={(e) => setField("shortDescription", e.target.value)}
           placeholder="One-sentence project summary shown on the portfolio card"
-          className={cn(inputClass, "resize-none")}
+          className="resize-none"
         />
       </Field>
 
       {/* Detail Markdown */}
       <Field label="Detail / Full Description (Markdown)" required>
-        <textarea
+        <Textarea
           required
           rows={8}
           value={form.detailMarkdown}
           onChange={(e) => setField("detailMarkdown", e.target.value)}
           placeholder="Full project description in Markdown format..."
-          className={cn(inputClass, "resize-y font-mono text-xs")}
+          className="resize-y font-mono text-xs"
         />
       </Field>
 
@@ -541,22 +557,22 @@ export function ProjectForm({
         </div>
 
         <Field label="Summary">
-          <textarea
+          <Textarea
             rows={3}
             value={form.summary}
             onChange={(e) => setField("summary", e.target.value)}
             placeholder="2-3 sentence overview shown in the case study hero."
-            className={cn(inputClass, "resize-y")}
+            className="resize-y"
           />
         </Field>
 
         <Field label="The Problem">
-          <textarea
+          <Textarea
             rows={4}
             value={form.problem}
             onChange={(e) => setField("problem", e.target.value)}
             placeholder="What needed solving - the business and technical context."
-            className={cn(inputClass, "resize-y")}
+            className="resize-y"
           />
         </Field>
 
@@ -586,9 +602,7 @@ export function ProjectForm({
         />
 
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">
-            Tech Stack
-          </label>
+          <Label>Tech Stack</Label>
           <TechStackEditor
             value={form.techStack}
             onChange={(v) => setField("techStack", v)}
@@ -606,7 +620,15 @@ export function ProjectForm({
       </div>
 
       {/* Image */}
-      <Field label="Project Image" required>
+      <Field
+        label="Project Image"
+        required={form.isVisible}
+        hint={
+          form.isVisible
+            ? "Required when project is visible on the site."
+            : "Optional while hidden; required to make visible."
+        }
+      >
         <CloudinaryImagePicker
           kind="project"
           value={form.imageUrl}
@@ -616,120 +638,111 @@ export function ProjectForm({
       </Field>
 
       {/* Links */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <Field label="Demo Link">
-          <input
+          <Input
             type="url"
             value={form.demoLink}
             onChange={(e) => setField("demoLink", e.target.value)}
             placeholder="https://..."
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Demo Button Text">
-          <input
+          <Input
             type="text"
             value={form.demoBtn}
             onChange={(e) => setField("demoBtn", e.target.value)}
             placeholder="View Live Demo"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Repository Link">
-          <input
+          <Input
             type="url"
             value={form.repoLink}
             onChange={(e) => setField("repoLink", e.target.value)}
             placeholder="https://github.com/..."
-            className={inputClass}
+            className="h-10"
           />
         </Field>
       </div>
 
       {/* Visibility + Showcased */}
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Visible toggle */}
-        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
-          <div
-            onClick={() => setField("isVisible", !form.isVisible)}
-            className={cn(
-              "relative w-10 h-5 rounded-full transition-colors shrink-0",
-              form.isVisible ? "bg-green-500" : "bg-muted border border-border"
-            )}
-          >
-            <span
-              className={cn(
-                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
-                form.isVisible ? "translate-x-5" : "translate-x-0.5"
-              )}
-            />
-          </div>
-          <div>
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
+          <Switch
+            id="project-is-visible"
+            checked={form.isVisible}
+            onCheckedChange={(checked) => setField("isVisible", checked)}
+            className="data-[state=checked]:bg-emerald-500"
+          />
+          <Label htmlFor="project-is-visible" className="flex-1 cursor-pointer">
             <div className="flex items-center gap-1.5 text-sm font-medium">
               {form.isVisible ? (
-                <Eye className="w-3.5 h-3.5 text-green-500" />
+                <Eye className="w-3.5 h-3.5 text-emerald-500" />
               ) : (
                 <EyeOff className="w-3.5 h-3.5 text-muted-foreground" />
               )}
               {form.isVisible ? "Visible on site" : "Hidden from site"}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-normal text-muted-foreground">
               {form.isVisible
                 ? "Project appears on portfolio and homepage"
                 : "Project is hidden from all public pages"}
             </p>
-          </div>
-        </label>
+          </Label>
+        </div>
 
         {/* Showcased toggle */}
-        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
-          <div
-            onClick={() => setField("isShowcased", !form.isShowcased)}
-            className={cn(
-              "relative w-10 h-5 rounded-full transition-colors shrink-0",
-              form.isShowcased ? "bg-blue-500" : "bg-muted border border-border"
-            )}
-          >
-            <span
-              className={cn(
-                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
-                form.isShowcased ? "translate-x-5" : "translate-x-0.5"
-              )}
-            />
-          </div>
-          <div>
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
+          <Switch
+            id="project-is-showcased"
+            checked={form.isShowcased}
+            onCheckedChange={(checked) => setField("isShowcased", checked)}
+            className="data-[state=checked]:bg-blue-500"
+          />
+          <Label htmlFor="project-is-showcased" className="flex-1 cursor-pointer">
             <div className="flex items-center gap-1.5 text-sm font-medium">
-              <Star className="w-3.5 h-3.5 text-yellow-500" />
+              <Star className="w-3.5 h-3.5 text-amber-500" />
               Feature on homepage
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-normal text-muted-foreground">
               Show this project in the homepage featured section
             </p>
-          </div>
-        </label>
+          </Label>
+        </div>
       </div>
+
+      {blockPublish && (
+        <Alert variant="destructive">
+          <AlertDescription>
+            Add a project image to make this visible, or toggle &ldquo;Hidden from site&rdquo; to save without one.
+          </AlertDescription>
+        </Alert>
+      )}
 
       {/* Actions */}
       <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center">
-        <button
+        <Button
           type="submit"
-          disabled={isPending}
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "w-full gap-2 sm:w-auto",
-            isPending && "cursor-not-allowed opacity-70"
-          )}
+          size="lg"
+          disabled={isPending || blockPublish}
+          className="w-full gap-2 sm:w-auto"
         >
           {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
           {submitLabel}
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="outline"
+          size="lg"
           onClick={() => router.push("/admin")}
-          className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full sm:w-auto")}
+          className="w-full sm:w-auto"
         >
           Cancel
-        </button>
+        </Button>
       </div>
     </form>
   );
@@ -738,22 +751,22 @@ export function ProjectForm({
 function Field({
   label,
   required,
+  hint,
   children,
 }: {
   label: string;
   required?: boolean;
+  hint?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-sm font-medium text-foreground">
+      <Label>
         {label}
-        {required && <span className="text-blue-500 ml-0.5">*</span>}
-      </label>
+        {required && <span className="text-destructive ml-0.5">*</span>}
+      </Label>
       {children}
+      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
     </div>
   );
 }
-
-const inputClass =
-  "w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors";

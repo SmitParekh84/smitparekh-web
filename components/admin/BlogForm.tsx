@@ -3,8 +3,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Star, Eye, EyeOff, Sparkles, FileText } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "@/lib/toast";
 import { useGenerateBlog } from "@/hooks/use-blogs";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
@@ -81,6 +85,9 @@ export function BlogForm({
       : new Date().toISOString().slice(0, 16),
   });
 
+  const imageMissing = !form.coverImage;
+  const blockPublish = form.isPublished && imageMissing;
+
   // Hydrate from session-storage AI draft generated on the listing page
   // (admin/blogs?ai=1 → POST /generate → sessionStorage → navigate here).
   useEffect(() => {
@@ -156,8 +163,15 @@ export function BlogForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.title || !form.excerpt || !form.content || !form.coverImage) {
-      toast.error("Missing fields", "Title, excerpt, content, and cover image are required.");
+    if (!form.title || !form.excerpt || !form.content) {
+      toast.error("Missing fields", "Title, excerpt and content are required.");
+      return;
+    }
+    if (form.isPublished && !form.coverImage) {
+      toast.error(
+        "Cover image is required to publish.",
+        "Add a cover image or save as draft instead."
+      );
       return;
     }
     const tags = form.tagsCsv
@@ -205,10 +219,6 @@ export function BlogForm({
       toast.error("Content required", "Write something - even a rough outline - before saving a draft.");
       return;
     }
-    if (!form.coverImage) {
-      toast.error("Cover image required", "Drafts still need a cover image to save.");
-      return;
-    }
 
     const tags = form.tagsCsv
       .split(",")
@@ -243,7 +253,7 @@ export function BlogForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
+    <form onSubmit={handleSubmit} className="w-full space-y-6">
       {/* AI Generate */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -258,17 +268,15 @@ export function BlogForm({
               </p>
             </div>
           </div>
-          <button
+          <Button
             type="button"
+            size="sm"
             onClick={() => setAiOpen(true)}
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "gap-1.5 self-start sm:self-auto"
-            )}
+            className="gap-1.5 self-start sm:self-auto"
           >
             <Sparkles className="h-3.5 w-3.5" />
             {form.title ? "Regenerate" : "Generate draft"}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -294,7 +302,7 @@ export function BlogForm({
           </DialogHeader>
 
           <div>
-            <textarea
+            <Textarea
               autoFocus
               rows={4}
               maxLength={4000}
@@ -302,7 +310,7 @@ export function BlogForm({
               onChange={(e) => setAiPrompt(e.target.value)}
               disabled={generateBlog.isPending}
               placeholder="e.g. How to deploy Next.js 16 on Vercel with ISR, written for junior developers"
-              className={cn(inputClass, "resize-y")}
+              className="resize-y"
             />
             <p className="mt-1 text-right text-xs text-muted-foreground">
               {aiPrompt.length}/4000
@@ -314,26 +322,28 @@ export function BlogForm({
             />
 
             {form.title && (
-              <p className="mt-2 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-600 dark:text-yellow-400">
+              <p className="mt-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-600 dark:text-amber-400">
                 This will overwrite Title, Excerpt, Content, Category, Tags & Read time.
               </p>
             )}
           </div>
 
           <DialogFooter>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={() => setAiOpen(false)}
               disabled={generateBlog.isPending}
-              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              size="sm"
               onClick={handleGenerate}
               disabled={generateBlog.isPending || !aiPrompt.trim()}
-              className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+              className="gap-1.5"
             >
               {generateBlog.isPending ? (
                 <>
@@ -346,44 +356,43 @@ export function BlogForm({
                   Generate
                 </>
               )}
-            </button>
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* Title */}
       <Field label="Title" required>
-        <input
+        <Input
           type="text"
           required
           value={form.title}
           onChange={(e) => setField("title", e.target.value)}
           placeholder="e.g. Building a real-time dashboard with Next.js 16"
-          className={inputClass}
+          className="h-10"
         />
       </Field>
 
       {/* Slug + Category */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Field label="URL Slug">
           <div className="flex gap-2">
-            <input
+            <Input
               type="text"
               value={form.slug}
               onChange={(e) => setField("slug", e.target.value)}
               placeholder="building-a-real-time-dashboard"
-              className={inputClass}
+              className="h-10"
             />
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={() => setField("slug", slugify(form.title))}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "shrink-0 text-xs"
-              )}
+              className="shrink-0 text-xs h-10"
             >
               From title
-            </button>
+            </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
             Used in /blog/&lt;slug&gt;. Auto-generated from title if blank.
@@ -393,7 +402,7 @@ export function BlogForm({
           <select
             value={form.category}
             onChange={(e) => setField("category", e.target.value)}
-            className={inputClass}
+            className="flex h-10 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
           >
             {CATEGORY_OPTIONS.map((c) => (
               <option key={c} value={c}>
@@ -406,14 +415,14 @@ export function BlogForm({
 
       {/* Excerpt */}
       <Field label="Excerpt" required>
-        <textarea
+        <Textarea
           required
           rows={3}
           maxLength={320}
           value={form.excerpt}
           onChange={(e) => setField("excerpt", e.target.value)}
           placeholder="A short hook (max 320 characters) shown on listing & meta description."
-          className={cn(inputClass, "resize-y")}
+          className="resize-y"
         />
         <p className="text-xs text-muted-foreground mt-1">
           {form.excerpt.length}/320 characters
@@ -421,7 +430,15 @@ export function BlogForm({
       </Field>
 
       {/* Cover image */}
-      <Field label="Cover Image" required>
+      <Field
+        label="Cover Image"
+        required={form.isPublished}
+        hint={
+          form.isPublished
+            ? "Required when publishing."
+            : "Optional for drafts; required to publish."
+        }
+      >
         <CloudinaryImagePicker
           kind="blog"
           value={form.coverImage}
@@ -431,13 +448,13 @@ export function BlogForm({
 
       {/* Content */}
       <Field label="Content (Markdown)" required>
-        <textarea
+        <Textarea
           required
           rows={20}
           value={form.content}
           onChange={(e) => setField("content", e.target.value)}
           placeholder={`# Heading\n\nWrite your blog post in **Markdown**.\n\n- Lists\n- Code blocks\n- Links, images, tables - all supported.`}
-          className={cn(inputClass, "resize-y font-mono text-xs leading-relaxed")}
+          className="resize-y font-mono text-xs leading-relaxed"
         />
         <p className="text-xs text-muted-foreground mt-1">
           GitHub-Flavored Markdown is supported (headings, lists, code blocks, tables, links).
@@ -445,128 +462,115 @@ export function BlogForm({
       </Field>
 
       {/* Meta row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <Field label="Author">
-          <input
+          <Input
             type="text"
             value={form.author}
             onChange={(e) => setField("author", e.target.value)}
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Read time (minutes)">
-          <input
+          <Input
             type="number"
             min={1}
             max={120}
             value={form.readMinutes}
             onChange={(e) => setField("readMinutes", Number(e.target.value))}
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Tags (comma-separated)">
-          <input
+          <Input
             type="text"
             value={form.tagsCsv}
             onChange={(e) => setField("tagsCsv", e.target.value)}
             placeholder="React, Next.js, Performance"
-            className={inputClass}
+            className="h-10"
           />
         </Field>
         <Field label="Publish date">
-          <input
+          <Input
             type="datetime-local"
             value={form.publishedAt}
             onChange={(e) => setField("publishedAt", e.target.value)}
-            className={inputClass}
+            className="h-10"
           />
         </Field>
       </div>
 
       {/* Toggles */}
-      <div className="space-y-3">
-        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
-          <div
-            onClick={() => setField("isPublished", !form.isPublished)}
-            className={cn(
-              "relative w-10 h-5 rounded-full transition-colors shrink-0",
-              form.isPublished ? "bg-green-500" : "bg-muted border border-border"
-            )}
-          >
-            <span
-              className={cn(
-                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
-                form.isPublished ? "translate-x-5" : "translate-x-0.5"
-              )}
-            />
-          </div>
-          <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
+          <Switch
+            id="blog-is-published"
+            checked={form.isPublished}
+            onCheckedChange={(checked) => setField("isPublished", checked)}
+            className="data-[state=checked]:bg-emerald-500"
+          />
+          <Label htmlFor="blog-is-published" className="flex-1 cursor-pointer">
             <div className="flex items-center gap-1.5 text-sm font-medium">
               {form.isPublished ? (
-                <Eye className="w-3.5 h-3.5 text-green-500" />
+                <Eye className="w-3.5 h-3.5 text-emerald-500" />
               ) : (
                 <EyeOff className="w-3.5 h-3.5 text-muted-foreground" />
               )}
               {form.isPublished ? "Published" : "Draft"}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-normal text-muted-foreground">
               {form.isPublished
                 ? "Visible on /blog"
                 : "Hidden from public site"}
             </p>
-          </div>
-        </label>
+          </Label>
+        </div>
 
-        <label className="flex items-center gap-3 cursor-pointer select-none rounded-xl border border-border bg-card px-4 py-3">
-          <div
-            onClick={() => setField("isFeatured", !form.isFeatured)}
-            className={cn(
-              "relative w-10 h-5 rounded-full transition-colors shrink-0",
-              form.isFeatured ? "bg-blue-500" : "bg-muted border border-border"
-            )}
-          >
-            <span
-              className={cn(
-                "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform",
-                form.isFeatured ? "translate-x-5" : "translate-x-0.5"
-              )}
-            />
-          </div>
-          <div>
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
+          <Switch
+            id="blog-is-featured"
+            checked={form.isFeatured}
+            onCheckedChange={(checked) => setField("isFeatured", checked)}
+            className="data-[state=checked]:bg-blue-500"
+          />
+          <Label htmlFor="blog-is-featured" className="flex-1 cursor-pointer">
             <div className="flex items-center gap-1.5 text-sm font-medium">
-              <Star className="w-3.5 h-3.5 text-yellow-500" />
+              <Star className="w-3.5 h-3.5 text-amber-500" />
               Feature on /blog
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs font-normal text-muted-foreground">
               Show this post in the hero featured slot
             </p>
-          </div>
-        </label>
+          </Label>
+        </div>
       </div>
+
+      {blockPublish && (
+        <Alert variant="destructive">
+          <AlertDescription>
+            Add a cover image to publish, or switch the toggle to Draft to save without one.
+          </AlertDescription>
+        </Alert>
+      )}
 
       {/* Actions */}
       <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center">
-        <button
+        <Button
           type="submit"
-          disabled={isPending || savingDraft}
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "w-full gap-2 sm:w-auto",
-            (isPending || savingDraft) && "cursor-not-allowed opacity-70"
-          )}
+          size="lg"
+          disabled={isPending || savingDraft || blockPublish}
+          className="w-full gap-2 sm:w-auto"
         >
           {isPending && !savingDraft && <Loader2 className="h-4 w-4 animate-spin" />}
           {submitLabel}
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="secondary"
+          size="lg"
           onClick={handleSaveDraft}
           disabled={isPending || savingDraft}
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "lg" }),
-            "w-full gap-2 sm:w-auto",
-            (isPending || savingDraft) && "cursor-not-allowed opacity-70"
-          )}
+          className="w-full gap-2 sm:w-auto"
         >
           {savingDraft ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -574,18 +578,17 @@ export function BlogForm({
             <FileText className="h-4 w-4" />
           )}
           {savingDraft ? "Saving draft..." : "Save draft"}
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="outline"
+          size="lg"
           onClick={() => router.push("/admin/blogs")}
           disabled={isPending || savingDraft}
-          className={cn(
-            buttonVariants({ variant: "outline", size: "lg" }),
-            "w-full sm:w-auto"
-          )}
+          className="w-full sm:w-auto"
         >
           Cancel
-        </button>
+        </Button>
       </div>
     </form>
   );
@@ -594,22 +597,22 @@ export function BlogForm({
 function Field({
   label,
   required,
+  hint,
   children,
 }: {
   label: string;
   required?: boolean;
+  hint?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-sm font-medium text-foreground">
+      <Label>
         {label}
-        {required && <span className="text-blue-500 ml-0.5">*</span>}
-      </label>
+        {required && <span className="text-destructive ml-0.5">*</span>}
+      </Label>
       {children}
+      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
     </div>
   );
 }
-
-const inputClass =
-  "w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors";

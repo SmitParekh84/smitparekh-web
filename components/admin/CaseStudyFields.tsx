@@ -1,10 +1,10 @@
 "use client";
 
 import { Plus, X } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const inputClass =
-  "w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 interface StringListEditorProps {
   label: string;
@@ -37,14 +37,16 @@ export function StringListEditor({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-foreground">{label}</label>
-        <button
+        <Label>{label}</Label>
+        <Button
           type="button"
+          variant="ghost"
+          size="xs"
           onClick={add}
-          className="inline-flex items-center gap-1 text-xs text-blue-500 hover:text-blue-400 font-medium"
+          className="text-blue-500 hover:text-blue-500"
         >
           <Plus className="w-3 h-3" /> Add
-        </button>
+        </Button>
       </div>
       {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
       <div className="space-y-2">
@@ -54,30 +56,32 @@ export function StringListEditor({
         {values.map((v, i) => (
           <div key={i} className="flex gap-2 items-start">
             {multiline ? (
-              <textarea
+              <Textarea
                 rows={3}
                 value={v}
                 onChange={(e) => update(i, e.target.value)}
                 placeholder={placeholder}
-                className={cn(inputClass, "resize-y text-sm")}
+                className="resize-y"
               />
             ) : (
-              <input
+              <Input
                 type="text"
                 value={v}
                 onChange={(e) => update(i, e.target.value)}
                 placeholder={placeholder}
-                className={inputClass}
+                className="h-10"
               />
             )}
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="icon-sm"
               onClick={() => remove(i)}
-              className="shrink-0 mt-1.5 p-1.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-red-500/40"
               aria-label="Remove"
+              className="shrink-0 mt-1"
             >
               <X className="w-3.5 h-3.5" />
-            </button>
+            </Button>
           </div>
         ))}
       </div>
@@ -121,14 +125,16 @@ export function KVListEditor({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-foreground">{label}</label>
-        <button
+        <Label>{label}</Label>
+        <Button
           type="button"
+          variant="ghost"
+          size="xs"
           onClick={add}
-          className="inline-flex items-center gap-1 text-xs text-blue-500 hover:text-blue-400 font-medium"
+          className="text-blue-500 hover:text-blue-500"
         >
           <Plus className="w-3 h-3" /> Add
-        </button>
+        </Button>
       </div>
       {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
       <div className="space-y-2">
@@ -137,28 +143,30 @@ export function KVListEditor({
         )}
         {values.map((item, i) => (
           <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
-            <input
+            <Input
               type="text"
               value={item.label}
               onChange={(e) => update(i, "label", e.target.value)}
               placeholder={labelPlaceholder}
-              className={inputClass}
+              className="h-10"
             />
-            <input
+            <Input
               type="text"
               value={item.value}
               onChange={(e) => update(i, "value", e.target.value)}
               placeholder={valuePlaceholder}
-              className={inputClass}
+              className="h-10"
             />
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="icon"
               onClick={() => remove(i)}
-              className="p-2 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-red-500/40"
               aria-label="Remove"
+              className="shrink-0"
             >
               <X className="w-3.5 h-3.5" />
-            </button>
+            </Button>
           </div>
         ))}
       </div>
@@ -199,14 +207,16 @@ export function OutcomeListEditor({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-foreground">{label}</label>
-        <button
+        <Label>{label}</Label>
+        <Button
           type="button"
+          variant="ghost"
+          size="xs"
           onClick={add}
-          className="inline-flex items-center gap-1 text-xs text-blue-500 hover:text-blue-400 font-medium"
+          className="text-blue-500 hover:text-blue-500"
         >
           <Plus className="w-3 h-3" /> Add
-        </button>
+        </Button>
       </div>
       {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
       <div className="space-y-3">
@@ -218,36 +228,38 @@ export function OutcomeListEditor({
             key={i}
             className="rounded-xl border border-border bg-card p-3 space-y-2 relative"
           >
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon-xs"
               onClick={() => remove(i)}
-              className="absolute top-2 right-2 p-1 rounded-md text-muted-foreground hover:text-red-500"
               aria-label="Remove outcome"
+              className="absolute top-2 right-2 text-muted-foreground hover:text-destructive"
             >
               <X className="w-3.5 h-3.5" />
-            </button>
+            </Button>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <input
+              <Input
                 type="text"
                 value={item.label}
                 onChange={(e) => update(i, "label", e.target.value)}
                 placeholder="Label (e.g. 65% faster APIs)"
-                className={inputClass}
+                className="h-10"
               />
-              <input
+              <Input
                 type="text"
                 value={item.value}
                 onChange={(e) => update(i, "value", e.target.value)}
                 placeholder="Value (e.g. Backend optimisation)"
-                className={inputClass}
+                className="h-10"
               />
             </div>
-            <textarea
+            <Textarea
               rows={2}
               value={item.detail}
               onChange={(e) => update(i, "detail", e.target.value)}
               placeholder="Detail - one or two sentences explaining the outcome"
-              className={cn(inputClass, "resize-y text-sm")}
+              className="resize-y"
             />
           </div>
         ))}
@@ -295,10 +307,10 @@ export function TechStackEditor({ value, onChange }: TechStackEditorProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {TECH_GROUPS.map((group) => (
           <div key={group} className="space-y-1.5">
-            <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {group}
-            </label>
-            <input
+            </Label>
+            <Input
               type="text"
               value={(value[group] ?? []).join(", ")}
               onChange={(e) => setGroup(group, e.target.value)}
@@ -313,7 +325,7 @@ export function TechStackEditor({ value, onChange }: TechStackEditorProps) {
                   ? "AWS, Docker"
                   : "GitHub Actions, Jest"
               }
-              className={inputClass}
+              className="h-10"
             />
           </div>
         ))}

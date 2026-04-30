@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Spinner as UiSpinner } from "@/components/ui/spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Table,
@@ -411,7 +412,7 @@ function TabBtn({
 function Spinner() {
   return (
     <div className="flex items-center justify-center py-16">
-      <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+      <UiSpinner className="[&_svg]:h-5 [&_svg]:w-5" />
     </div>
   );
 }
