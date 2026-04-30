@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/contact/opengraph-image`] },
     { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/free-tools/opengraph-image`] },
+    { url: `${base}/faq`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
   ];
 
   const projects = await fetchAllCaseStudies();
