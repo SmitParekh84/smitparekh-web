@@ -11,6 +11,8 @@ export const siteConfig = {
     github: "https://github.com/SmitParekh84",
     instagram: "https://www.instagram.com/smit_8_4/",
     x: "https://x.com/smit_parekh84",
+    upwork: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
+    marketixpert: "https://www.marketixpert.com",
   },
   keywords: [
     // Personal / Brand
