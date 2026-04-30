@@ -30,6 +30,7 @@ export const footerData: FooterData = {
     { href: "/portfolio", label: "Portfolio" },
     { href: "/blog", label: "Blog" },
     { href: "/free-tools", label: "Free Tools" },
+    { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact Me" },
   ],
   toolLinks: [
