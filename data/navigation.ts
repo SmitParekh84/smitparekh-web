@@ -65,6 +65,11 @@ export const navItems: NavItem[] = [
             description: "Download videos and images from LinkedIn",
           },
           {
+            href: "/free-tools/youtube-thumbnail-downloader",
+            label: "YouTube Thumbnail Downloader",
+            description: "Download any YouTube video thumbnail in HD",
+          },
+          {
             href: "/free-tools/meta-tag-checker",
             label: "Meta Tag Checker",
             description: "Analyze and optimize your website's meta tags",
@@ -98,6 +103,16 @@ export const navItems: NavItem[] = [
             href: "/free-tools/password-generator",
             label: "Password Generator",
             description: "Generate strong, secure, random passwords instantly",
+          },
+          {
+            href: "/free-tools/json-formatter",
+            label: "JSON Formatter",
+            description: "Beautify, minify and validate JSON instantly",
+          },
+          {
+            href: "/free-tools/base64-encoder-decoder",
+            label: "Base64 Encoder / Decoder",
+            description: "Encode and decode Base64 strings and files",
           },
         ],
       },

@@ -294,8 +294,97 @@ export const toolsSEO: ToolSEO[] = [
       "free password generator browser based",
     ],
   },
+  {
+    slug: "youtube-thumbnail-downloader",
+    title: "YouTube Thumbnail Downloader - Free HD Thumbnail Saver",
+    description: "Download any YouTube video thumbnail for free in Max Resolution, HD, and standard quality. No signup, no watermark. Works on all YouTube URLs including Shorts.",
+    keywords: [
+      "youtube thumbnail downloader",
+      "download youtube thumbnail",
+      "youtube thumbnail saver",
+      "how to download youtube thumbnail",
+      "youtube thumbnail download hd",
+      "save youtube thumbnail free",
+      "youtube video thumbnail download",
+      "free youtube thumbnail downloader no signup",
+      "youtube shorts thumbnail downloader",
+      "download youtube thumbnail online free",
+      "youtube thumbnail extractor",
+      "get youtube video thumbnail",
+      "youtube thumbnail download 1080p",
+      "youtube thumbnail download 4k",
+      "télécharger miniature youtube gratuit",
+    ],
+  },
+  {
+    slug: "json-formatter",
+    title: "JSON Formatter & Beautifier - Free JSON Validator Online",
+    description: "Format, beautify, and validate JSON online for free. Instantly minify or prettify JSON with syntax error detection. No signup, runs in your browser.",
+    keywords: [
+      "json formatter",
+      "json beautifier",
+      "json formatter online",
+      "format json online free",
+      "json validator",
+      "json pretty print",
+      "json minifier",
+      "json formatter and validator",
+      "online json editor",
+      "json beautifier free",
+      "json formatter no signup",
+      "prettify json online",
+      "json lint",
+      "json formatter India",
+      "formateur json en ligne gratuit",
+    ],
+  },
+  {
+    slug: "base64-encoder-decoder",
+    title: "Base64 Encoder & Decoder - Free Online Base64 Tool",
+    description: "Encode text or files to Base64 and decode Base64 strings back to plain text for free. Instant, runs entirely in your browser. No data sent to servers.",
+    keywords: [
+      "base64 encoder decoder",
+      "base64 encode online",
+      "base64 decode online",
+      "base64 encoder free",
+      "base64 decoder free",
+      "encode text to base64",
+      "decode base64 to text",
+      "base64 converter online",
+      "base64 file encoder",
+      "base64 image encoder",
+      "base64 encoder decoder no signup",
+      "online base64 tool free",
+      "base64 encode decode free",
+      "base64 tool India",
+      "encodeur base64 gratuit en ligne",
+    ],
+  },
 ];
+
+const toolOgImageMap: Record<string, string> = {
+  "background-remover": "/images/tools-og/smit-parekh-background-remover-tool.png",
+  "viral-linkedin-post-generator": "/images/tools-og/smit-parekh-viral-linkedin-post-generator-tool.png",
+  "ats-resume-checker": "/images/tools-og/smit-parekh-ats-resume-checker-tool.png",
+  "meta-tag-checker": "/images/tools-og/smit-parekh-meta-tag-checker-tool.png",
+  "qr-code-generator": "/images/tools-og/smit-parekh-qr-code-generator-tool.png",
+  "word-counter": "/images/tools-og/smit-parekh-word-counter-tool.png",
+  "image-compressor": "/images/tools-og/smit-parekh-image-compressor-tool.png",
+  "image-converter": "/images/tools-og/smit-parekh-image-converter-tool.png",
+  "linkedin-media-downloader": "/images/tools-og/smit-parekh-linkedin-media-downloader-tool.png",
+  "seo-analyzer": "/images/tools-og/smit-parekh-seo-analyzer-tool.png",
+  "password-generator": "/images/tools-og/smit-parekh-password-generator-tool.png",
+  "youtube-thumbnail-downloader": "/images/tools-og/smit-parekh-youtube-thumbnail-downloader-tool.png",
+  "json-formatter": "/images/tools-og/smit-parekh-json-formatter-tool.png",
+  "base64-encoder-decoder": "/images/tools-og/smit-parekh-base64-encoder-decoder-tool.png",
+};
 
 export function getToolSEO(slug: string): ToolSEO | undefined {
   return toolsSEO.find((t) => t.slug === slug);
+}
+
+const FALLBACK_TOOL_OG_IMAGE = "/images/tools-og/smit-parekh-free-developer-tools.png";
+
+export function getToolOgImage(slug: string): string {
+  return toolOgImageMap[slug] ?? FALLBACK_TOOL_OG_IMAGE;
 }

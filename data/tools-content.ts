@@ -168,6 +168,47 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     relatedSlugs: ["viral-linkedin-post-generator", "ats-resume-checker", "word-counter"],
   },
+  "youtube-thumbnail-downloader": {
+    howItWorks: [
+      { title: "Paste the YouTube URL", description: "Copy the link from any YouTube video, Short, or embed and paste it into the input field. Bare 11-character video IDs also work." },
+      { title: "Get All Thumbnail Sizes", description: "Click 'Get Thumbnails' and the tool instantly fetches all available quality levels — from Max Resolution (1280×720) down to Standard — using YouTube's public CDN." },
+      { title: "Download Your Chosen Quality", description: "Click Download next to the quality you need. The image saves to your device as a JPG. Use the external link icon to open the thumbnail in a new tab." },
+    ],
+    useCases: [
+      { title: "Content Creators", description: "Download your own thumbnails for repurposing on other platforms, archiving before reuploading, or recreating a lost thumbnail file without redoing the design." },
+      { title: "Marketers & Researchers", description: "Study competitor thumbnails and high-performing video cover art to improve your own click-through rates and A/B test design styles." },
+      { title: "Developers & Designers", description: "Grab thumbnail images for mockups, UI prototypes, or testing your apps with real YouTube cover art — no manual screenshotting needed." },
+    ],
+    relatedSlugs: ["image-compressor", "background-remover", "image-converter"],
+  },
+
+  "json-formatter": {
+    howItWorks: [
+      { title: "Paste Your JSON", description: "Copy raw JSON from an API response, config file, or database export and paste it into the input area. Formatting updates in real time as you type." },
+      { title: "Choose Beautify or Minify", description: "Switch to Beautify for indented, human-readable JSON — choose 2 or 4-space indent. Switch to Minify to collapse everything into a single line for production or storage." },
+      { title: "Copy the Output", description: "Click Copy next to the output panel to grab the formatted or minified JSON and paste it directly into your code editor, API client, or config file." },
+    ],
+    useCases: [
+      { title: "API Developers", description: "Quickly inspect minified API responses during debugging without setting up a local environment — paste the raw response and read it instantly." },
+      { title: "Frontend Engineers", description: "Validate JSON config files and environment schemas before deploying to catch syntax errors early — misplaced commas and unquoted keys are highlighted immediately." },
+      { title: "DevOps & Backend Teams", description: "Minify JSON payloads before storing in databases or sending over the wire to reduce size, then beautify again when you need to read or edit them." },
+    ],
+    relatedSlugs: ["base64-encoder-decoder", "meta-tag-checker", "password-generator"],
+  },
+
+  "base64-encoder-decoder": {
+    howItWorks: [
+      { title: "Choose Encode or Decode", description: "Select Encode to convert plain text or a file to Base64. Select Decode to convert a Base64 string back to readable text. Switch modes with the toggle buttons." },
+      { title: "Enter Text or Upload a File", description: "Type or paste text into the input area for instant encoding or decoding. To encode a file (image, PDF, binary), click 'Encode File' and select it from your device." },
+      { title: "Copy the Result", description: "The output updates instantly. Click Copy to grab the result, or use the Swap button to flip the output back into the input for chained operations." },
+    ],
+    useCases: [
+      { title: "Web Developers", description: "Encode images and fonts to Base64 data URIs to embed them directly in CSS or HTML — eliminating extra HTTP requests for small assets like icons and loading spinners." },
+      { title: "API & Auth Engineers", description: "Encode credentials for HTTP Basic Authentication headers, decode JWT payload sections for inspection, and encode binary blobs for JSON transmission." },
+      { title: "Security Researchers", description: "Decode Base64-encoded strings found in config files, log files, or network traffic to inspect payloads during security audits and penetration tests." },
+    ],
+    relatedSlugs: ["json-formatter", "password-generator", "meta-tag-checker"],
+  },
 };
 
 export function getToolContent(slug: string): ToolContent | null {

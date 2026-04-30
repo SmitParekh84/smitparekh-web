@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { ToolContent } from "@/data/tools-content";
 
 interface Props {
@@ -23,13 +20,9 @@ export default function ToolHowItWorks({ content, toolName }: Props) {
 
         <div className="space-y-4">
           {content.howItWorks.map((step, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.08 }}
-              className="flex gap-4 rounded-xl border border-border bg-card p-5"
+              className="flex gap-4 rounded-xl border border-border bg-card p-5 hover:border-blue-500/30 transition-colors"
             >
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-500 font-bold text-sm mt-0.5">
                 {i + 1}
@@ -40,7 +33,7 @@ export default function ToolHowItWorks({ content, toolName }: Props) {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -56,19 +49,15 @@ export default function ToolHowItWorks({ content, toolName }: Props) {
 
           <div className="grid sm:grid-cols-3 gap-4">
             {content.useCases.map((uc, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.07 }}
-                className="rounded-xl border border-border bg-card p-5"
+                className="rounded-xl border border-border bg-card p-5 hover:border-blue-500/30 transition-colors"
               >
                 <p className="font-semibold text-sm mb-2">{uc.title}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {uc.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

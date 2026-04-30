@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
-import { toolsSEO } from "@/data/tools-seo";
+import { toolsSEO, getToolOgImage } from "@/data/tools-seo";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
@@ -13,12 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, priority: 1.0, changeFrequency: "weekly", lastModified: new Date(), images: [defaultImage] },
-    { url: `${base}/about`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/about/opengraph-image`] },
-    { url: `${base}/portfolio`, priority: 0.8, changeFrequency: "weekly", lastModified: new Date(), images: [defaultImage] },
-    { url: `${base}/services`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/services/opengraph-image`] },
-    { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/contact/opengraph-image`] },
-    { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified: new Date(), images: [defaultImage] },
-    { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/free-tools/opengraph-image`] },
+    { url: `${base}/about`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
+    { url: `${base}/portfolio`, priority: 0.8, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
+    { url: `${base}/services`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/images/smit-parekh-web-development-services.png`] },
+    { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
+    { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-blog-web-development.png`] },
+    { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/faq`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
   ];
 
@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
     changeFrequency: "monthly" as const,
     lastModified: new Date(),
-    images: [`${base}/free-tools/${slug}/opengraph-image`],
+    images: [`${base}${getToolOgImage(slug)}`],
   }));
 
   return [...staticRoutes, ...caseStudyRoutes, ...blogRoutes, ...toolRoutes];

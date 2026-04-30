@@ -21,6 +21,9 @@ const toolMap: Record<string, React.ComponentType> = {
   "meta-tag-checker": dynamic(() => import("./MetaTagChecker"), { loading: Loading }),
   "seo-analyzer": dynamic(() => import("./SEOAnalyzer"), { loading: Loading }),
   "linkedin-media-downloader": dynamic(() => import("./LinkedInMediaDownloader"), { loading: Loading }),
+  "youtube-thumbnail-downloader": dynamic(() => import("./YouTubeThumbnailDownloader"), { loading: Loading }),
+  "json-formatter": dynamic(() => import("./JsonFormatter"), { loading: Loading }),
+  "base64-encoder-decoder": dynamic(() => import("./Base64Tool"), { loading: Loading }),
 };
 
 interface Props {

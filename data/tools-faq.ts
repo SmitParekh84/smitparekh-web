@@ -386,6 +386,75 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
         "Yes - completely free, no account, no sign-up required.",
     },
   ],
+
+  "youtube-thumbnail-downloader": [
+    {
+      question: "How do I download a YouTube thumbnail?",
+      answer: "Paste the YouTube video URL (or the 11-character video ID) into the input field and click 'Get Thumbnails'. All available quality levels appear instantly. Click Download next to the quality you want.",
+    },
+    {
+      question: "What thumbnail qualities are available?",
+      answer: "Max Resolution (1280×720), High Quality (480×360), Medium Quality (320×180), and Standard (640×480). Max Resolution is available on most videos uploaded after 2013.",
+    },
+    {
+      question: "Does this work for YouTube Shorts?",
+      answer: "Yes. Paste the full Shorts URL (youtube.com/shorts/ID) and the tool extracts the video ID and fetches the thumbnail automatically.",
+    },
+    {
+      question: "Is downloading YouTube thumbnails legal?",
+      answer: "Thumbnails are publicly accessible images. Downloading them for personal use or reference is generally acceptable. Always respect the creator's copyright if you intend to republish or use commercially.",
+    },
+    {
+      question: "Why is the Max Resolution thumbnail missing?",
+      answer: "Older videos may not have a maxresdefault thumbnail. The tool hides quality options that do not exist for a given video — use High Quality as the next best option.",
+    },
+  ],
+
+  "json-formatter": [
+    {
+      question: "How do I format JSON online?",
+      answer: "Paste your JSON into the input box. The formatter validates and beautifies it instantly as you type. If there is a syntax error, the error message shows exactly what is wrong.",
+    },
+    {
+      question: "What is the difference between Beautify and Minify?",
+      answer: "Beautify adds indentation and line breaks to make JSON human-readable. Minify removes all whitespace to produce the smallest possible string — useful for API responses and reducing file size.",
+    },
+    {
+      question: "Does this tool validate JSON?",
+      answer: "Yes. It uses the browser's native JSON.parse(), which catches all standard syntax errors including missing commas, unquoted keys, trailing commas, and mismatched brackets.",
+    },
+    {
+      question: "Is my JSON data sent to a server?",
+      answer: "No. The entire tool runs in your browser. Your JSON never leaves your device — it is not transmitted or stored anywhere.",
+    },
+    {
+      question: "Can I change the indentation level?",
+      answer: "Yes. Switch between 2-space and 4-space indentation using the indent buttons in Beautify mode. 2 spaces is most common for web APIs; 4 spaces is preferred in many enterprise codebases.",
+    },
+  ],
+
+  "base64-encoder-decoder": [
+    {
+      question: "How do I encode text to Base64?",
+      answer: "Select 'Encode' mode, type or paste your text into the input box, and the Base64 output appears instantly. Click Copy to grab the result.",
+    },
+    {
+      question: "How do I decode a Base64 string?",
+      answer: "Select 'Decode' mode, paste your Base64 string into the input, and the decoded plain text appears immediately. Use the Swap button to flip input and output.",
+    },
+    {
+      question: "Can I encode a file to Base64?",
+      answer: "Yes. Click 'Encode File', select any file from your device, and the tool converts it to a Base64 string. This is useful for embedding images or binary files in JSON, HTML, or CSS.",
+    },
+    {
+      question: "What is Base64 used for?",
+      answer: "Base64 is used to safely transmit binary data over text-only channels like JSON APIs, email attachments, data URIs in HTML/CSS, and HTTP Authorization headers.",
+    },
+    {
+      question: "Is Base64 the same as encryption?",
+      answer: "No. Base64 is encoding, not encryption — it is fully reversible by anyone and provides no security. Never use it to protect sensitive data. Use it only to convert binary data into a text-safe format.",
+    },
+  ],
 };
 
 export function getToolFAQ(slug: string): ToolFAQItem[] {
