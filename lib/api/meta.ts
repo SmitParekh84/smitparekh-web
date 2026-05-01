@@ -6,6 +6,7 @@ export type MetaTagsResponse = Record<string, string>;
 export interface SeoAnalyzePayload {
   url: string;
   email?: string;
+  generatePdf?: boolean;
 }
 
 // Backend returns a rich SEO data object directly
