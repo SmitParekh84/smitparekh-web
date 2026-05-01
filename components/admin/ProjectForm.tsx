@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Star, Eye, EyeOff, Sparkles } from "lucide-react";
+import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,8 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "@/lib/toast";
-import { useGenerateProject } from "@/hooks/use-projects";
+import { useGenerateProject, useGenerateProjectLinkedIn } from "@/hooks/use-projects";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
+import { LinkedInArticleModal } from "@/components/admin/LinkedInArticleModal";
 import {
   Dialog,
   DialogContent,
@@ -79,9 +81,12 @@ export function ProjectForm({
 }: ProjectFormProps) {
   const router = useRouter();
   const generateProject = useGenerateProject();
+  const generateLinkedIn = useGenerateProjectLinkedIn();
   const [aiOpen, setAiOpen] = useState(false);
   const [aiMode, setAiMode] = useState<"idea" | "rewrite">("idea");
   const [aiPrompt, setAiPrompt] = useState("");
+  const [liOpen, setLiOpen] = useState(false);
+  const [liData, setLiData] = useState<{ headline: string; body: string; hashtags: string[]; charCount: number } | null>(null);
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -212,6 +217,29 @@ export function ProjectForm({
     }));
   }
 
+  async function handleGenerateLinkedIn() {
+    if (!form.title || !form.summary) {
+      toast.error("Missing content", "Fill in the title and summary first.");
+      return;
+    }
+    try {
+      const res = await generateLinkedIn.mutateAsync({
+        title: form.title,
+        subtitle: form.subtitle,
+        summary: form.summary,
+        problem: form.problem,
+        approach: form.approach,
+        outcomes: form.outcomes,
+        techStack: form.techStack as Record<string, string[]>,
+        tags: form.tags,
+      });
+      setLiData(res.data);
+      setLiOpen(true);
+    } catch {
+      toast.error("Generation failed", "Could not generate LinkedIn article. Try again.");
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.title || !form.shortDescription || !form.detailMarkdown) {
@@ -236,6 +264,7 @@ export function ProjectForm({
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="w-full space-y-6">
       {/* AI Generate */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
@@ -252,15 +281,32 @@ export function ProjectForm({
               </p>
             </div>
           </div>
-          <Button
-            type="button"
-            size="sm"
-            onClick={() => setAiOpen(true)}
-            className="gap-1.5 self-start sm:self-auto"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            {form.title ? "Regenerate" : "Generate draft"}
-          </Button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setAiOpen(true)}
+              className="gap-1.5"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              {form.title ? "Regenerate" : "Generate draft"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleGenerateLinkedIn}
+              disabled={generateLinkedIn.isPending}
+              className="gap-1.5"
+            >
+              {generateLinkedIn.isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <LinkedInIcon className="w-4 h-4 text-blue-600" />
+              )}
+              LinkedIn
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -745,6 +791,8 @@ export function ProjectForm({
         </Button>
       </div>
     </form>
+    <LinkedInArticleModal open={liOpen} onClose={() => setLiOpen(false)} data={liData} />
+    </>
   );
 }
 

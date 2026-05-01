@@ -43,6 +43,16 @@ export interface GenerateBlogTopicsResponse {
   data: { topics: string[] };
 }
 
+export interface GenerateLinkedInResponse {
+  success: boolean;
+  data: {
+    headline: string;
+    body: string;
+    hashtags: string[];
+    charCount: number;
+  };
+}
+
 export const blogsApi = {
   list: () => api.get<BackendListResponse<BackendBlog>>("/blogs"),
   byId: (id: string) => api.get<BackendOneResponse<BackendBlog>>(`/blogs/${id}`),
@@ -74,4 +84,6 @@ export const blogsApi = {
     api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
   generateTopics: (seed?: string) =>
     api.post<GenerateBlogTopicsResponse>("/blogs/generate-topics", { seed: seed ?? "" }),
+  generateLinkedIn: (payload: { title: string; content: string; excerpt?: string; tags?: string[]; category?: string }) =>
+    api.post<GenerateLinkedInResponse>("/blogs/generate-linkedin", payload),
 };

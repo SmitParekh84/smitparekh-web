@@ -121,3 +121,10 @@ export function useGenerateProject() {
       projectsApi.generate(params),
   });
 }
+
+export function useGenerateProjectLinkedIn() {
+  return useMutation({
+    mutationFn: (payload: Parameters<typeof projectsApi.generateLinkedIn>[0]) =>
+      projectsApi.generateLinkedIn(payload),
+  });
+}

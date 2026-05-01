@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Star, Eye, EyeOff, Sparkles, FileText } from "lucide-react";
+import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,8 +11,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "@/lib/toast";
-import { useGenerateBlog } from "@/hooks/use-blogs";
+import { useGenerateBlog, useGenerateBlogLinkedIn } from "@/hooks/use-blogs";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
+import { LinkedInArticleModal } from "@/components/admin/LinkedInArticleModal";
 import { BlogTopicSuggestions } from "@/components/admin/BlogTopicSuggestions";
 import {
   Dialog,
@@ -63,8 +65,11 @@ export function BlogForm({
 }: BlogFormProps) {
   const router = useRouter();
   const generateBlog = useGenerateBlog();
+  const generateLinkedIn = useGenerateBlogLinkedIn();
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState("");
+  const [liOpen, setLiOpen] = useState(false);
+  const [liData, setLiData] = useState<{ headline: string; body: string; hashtags: string[]; charCount: number } | null>(null);
 
   const [savingDraft, setSavingDraft] = useState(false);
 
@@ -158,6 +163,26 @@ export function BlogForm({
         (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||
         "Try again in a moment.";
       toast.error("AI generation failed", msg);
+    }
+  }
+
+  async function handleGenerateLinkedIn() {
+    if (!form.title || !form.content) {
+      toast.error("Missing content", "Fill in the title and content first.");
+      return;
+    }
+    try {
+      const res = await generateLinkedIn.mutateAsync({
+        title: form.title,
+        content: form.content,
+        excerpt: form.excerpt,
+        tags: form.tagsCsv.split(",").map(t => t.trim()).filter(Boolean),
+        category: form.category,
+      });
+      setLiData(res.data);
+      setLiOpen(true);
+    } catch {
+      toast.error("Generation failed", "Could not generate LinkedIn article. Try again.");
     }
   }
 
@@ -268,15 +293,32 @@ export function BlogForm({
               </p>
             </div>
           </div>
-          <Button
-            type="button"
-            size="sm"
-            onClick={() => setAiOpen(true)}
-            className="gap-1.5 self-start sm:self-auto"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            {form.title ? "Regenerate" : "Generate draft"}
-          </Button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setAiOpen(true)}
+              className="gap-1.5"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              {form.title ? "Regenerate" : "Generate draft"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleGenerateLinkedIn}
+              disabled={generateLinkedIn.isPending}
+              className="gap-1.5"
+            >
+              {generateLinkedIn.isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <LinkedInIcon className="w-4 h-4 text-blue-600" />
+              )}
+              LinkedIn
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -591,6 +633,7 @@ export function BlogForm({
         </Button>
       </div>
     </form>
+    <LinkedInArticleModal open={liOpen} onClose={() => setLiOpen(false)} data={liData} />
   );
 }
 

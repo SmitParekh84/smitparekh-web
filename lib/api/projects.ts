@@ -21,6 +21,16 @@ export interface GenerateProjectResponse {
   data: BackendProjectInput & { detailMarkdown: string };
 }
 
+export interface GenerateLinkedInResponse {
+  success: boolean;
+  data: {
+    headline: string;
+    body: string;
+    hashtags: string[];
+    charCount: number;
+  };
+}
+
 export const projectsApi = {
   list: () => api.get<BackendListResponse<BackendProject>>("/projects"),
   byId: (id: string) => api.get<BackendOneResponse<BackendProject>>(`/projects/${id}`),
@@ -52,4 +62,6 @@ export const projectsApi = {
     api.post<{ success: boolean }>("/projects/images/delete", { publicId }),
   generate: (params: { mode: "rewrite" | "idea"; prompt: string }) =>
     api.post<GenerateProjectResponse>("/projects/generate", params),
+  generateLinkedIn: (payload: { title: string; summary: string; subtitle?: string; problem?: string; approach?: string[]; outcomes?: Array<{label:string;value:string;detail:string}>; techStack?: Record<string,string[]>; tags?: string[] }) =>
+    api.post<GenerateLinkedInResponse>("/projects/generate-linkedin", payload),
 };

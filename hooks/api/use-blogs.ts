@@ -109,3 +109,10 @@ export function useGenerateBlogTopics() {
     mutationFn: (seed?: string) => blogsApi.generateTopics(seed),
   });
 }
+
+export function useGenerateBlogLinkedIn() {
+  return useMutation({
+    mutationFn: (payload: Parameters<typeof blogsApi.generateLinkedIn>[0]) =>
+      blogsApi.generateLinkedIn(payload),
+  });
+}
