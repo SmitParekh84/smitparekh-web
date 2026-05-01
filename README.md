@@ -173,7 +173,7 @@ data/                           ← static config (site.ts, navigation.ts, home.
 
 ---
 
-## Deployment
+## Deployment.
 
 The web app deploys to **Vercel**; the API deploys separately (see `smitparekh-api/vercel.json`). The combined `pnpm dev` script is local-only — production builds run `pnpm build` / `pnpm start` in each repo independently.
 
