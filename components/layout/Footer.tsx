@@ -74,12 +74,30 @@ export default function Footer() {
             </div>
 
             {/* Status pill */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-xs font-medium text-green-600 dark:text-green-400">
+            <div
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium ${
+                siteConfig.availability.accepting
+                  ? "border-green-500/30 bg-green-500/10 text-green-600 dark:text-green-400"
+                  : "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+              }`}
+            >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                {siteConfig.availability.accepting && (
+                  <span
+                    className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"
+                  />
+                )}
+                <span
+                  className={`relative inline-flex h-2 w-2 rounded-full ${
+                    siteConfig.availability.accepting
+                      ? "bg-green-500"
+                      : "bg-amber-500"
+                  }`}
+                />
               </span>
-              Available for new projects
+              {siteConfig.availability.accepting
+                ? "Available for new projects"
+                : "Not currently available"}
             </div>
 
             <div className="flex gap-2 pt-1">
@@ -102,22 +120,47 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Pages */}
+          {/* Work With Me */}
           <div className="md:col-span-3 space-y-4">
             <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
-              Explore
+              Work With Me
             </h4>
             <ul className="space-y-2.5">
-              {footerData.pageLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/hire-me"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                >
+                  Hire Me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.upwork}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                >
+                  Upwork
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </li>
             </ul>
           </div>
 

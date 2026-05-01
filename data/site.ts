@@ -14,6 +14,11 @@ export const siteConfig = {
     upwork: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
     marketixpert: "https://www.marketixpert.com",
   },
+  availability: {
+    accepting: true,
+    quarter: "Q3 2026",
+    note: "Limited spots available — get in touch early.",
+  },
   keywords: [
     // Personal / Brand
     "Smit Parekh",

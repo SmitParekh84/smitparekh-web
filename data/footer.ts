@@ -25,14 +25,11 @@ export const footerData: FooterData = {
   title: "Smit Parekh",
   subtitle: "Full Stack Developer & Marketing Manager",
   pageLinks: [
-    { href: "/hire-me", label: "Hire Me" },
-    { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/blog", label: "Blog" },
     { href: "/free-tools", label: "Free Tools" },
     { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact Me" },
   ],
   toolLinks: [
     { href: "/free-tools/background-remover", label: "Bg Remover" },

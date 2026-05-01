@@ -13,6 +13,7 @@ import {
   GitHubIcon,
   LinkedInIcon,
   MailIcon,
+  UpworkIcon,
   XIcon,
 } from "@/components/icons/SocialIcons";
 import { siteConfig } from "@/data/site";
@@ -150,6 +151,15 @@ export default function ContactPage() {
                     <XIcon className="w-4 h-4" />
                   </a>
                   <a
+                    href={siteConfig.social.upwork}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Upwork"
+                    className="flex items-center justify-center w-9 h-9 rounded-xl border border-border bg-card hover:border-blue-500/40 hover:bg-blue-500/5 transition-all text-muted-foreground hover:text-foreground"
+                  >
+                    <UpworkIcon className="w-4 h-4" />
+                  </a>
+                  <a
                     href={`mailto:${siteConfig.email}`}
                     aria-label="Email"
                     className="flex items-center justify-center w-9 h-9 rounded-xl border border-border bg-card hover:border-blue-500/40 hover:bg-blue-500/5 transition-all text-muted-foreground hover:text-foreground"
@@ -161,14 +171,23 @@ export default function ContactPage() {
 
               <div className="rounded-2xl border border-border bg-card p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      siteConfig.availability.accepting
+                        ? "bg-green-500 animate-pulse"
+                        : "bg-amber-500"
+                    }`}
+                  />
                   <span className="text-sm font-semibold">
-                    Available for New Projects
+                    {siteConfig.availability.accepting
+                      ? "Available for New Projects"
+                      : "Currently Unavailable"}
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Currently accepting new clients for Q2 2025 start dates. Limited
-                  spots available - get in touch early.
+                  {siteConfig.availability.accepting
+                    ? `Currently accepting new clients for ${siteConfig.availability.quarter} start dates. ${siteConfig.availability.note}`
+                    : "Not currently taking on new clients. Check back soon or send a message."}
                 </p>
               </div>
 

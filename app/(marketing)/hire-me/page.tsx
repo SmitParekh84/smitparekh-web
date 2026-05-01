@@ -27,6 +27,7 @@ import { FaAws } from "react-icons/fa";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { UpworkIcon } from "@/components/icons/SocialIcons";
 import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
@@ -317,6 +318,18 @@ export default function HireMePage() {
           >
             <Download className="w-4 h-4" />
             Download CV
+          </a>
+          <a
+            href={siteConfig.social.upwork}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+            )}
+          >
+            <UpworkIcon className="w-4 h-4" />
+            Hire on Upwork
           </a>
         </div>
       </PageHero>
@@ -680,6 +693,18 @@ export default function HireMePage() {
                 >
                   View My Work
                 </Link>
+                <a
+                  href={siteConfig.social.upwork}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white gap-2"
+                  )}
+                >
+                  <UpworkIcon className="w-4 h-4" />
+                  Hire on Upwork
+                </a>
               </div>
             </div>
           </div>
