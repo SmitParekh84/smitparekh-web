@@ -15,10 +15,10 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob: https://res.cloudinary.com https://placehold.co https://api.smitparekh.co.in http://localhost:5000 https://img.youtube.com",
+      "img-src 'self' data: blob: https://res.cloudinary.com https://placehold.co https://api.smitparekh.co.in http://localhost:5000 https://img.youtube.com https://media.licdn.com https://platform.linkedin.com",
       "connect-src 'self' https://www.smitparekh.co.in https://api.smitparekh.co.in https://*.supabase.co wss://*.supabase.co https://*.hf.space http://localhost:5000",
       "frame-ancestors 'self'",
     ].join("; "),
