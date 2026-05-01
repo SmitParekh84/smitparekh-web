@@ -230,7 +230,7 @@ export function ProjectForm({
         problem: form.problem,
         approach: form.approach,
         outcomes: form.outcomes,
-        techStack: form.techStack as Record<string, string[]>,
+        techStack: form.techStack as unknown as Record<string, string[]>,
         tags: form.tags,
       });
       setLiData(res.data);
