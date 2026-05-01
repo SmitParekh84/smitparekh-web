@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/PageHero";
-import { LinkedInBadge } from "@/components/ui/linkedin-badge";
+// import { LinkedInBadge } from "@/components/ui/linkedin-badge";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aboutBio, experiences, certifications } from "@/data/about";
@@ -234,7 +234,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <LinkedInBadge className="w-full lg:justify-end" />
+              {/* <LinkedInBadge className="w-full lg:justify-end" /> */}
             </div>
           </div>
         </div>
