@@ -45,7 +45,15 @@ export const metadata: Metadata = {
     title: "About Smit Parekh - Full Stack Developer",
     description:
       "4+ years building production web apps for FinTech, SaaS, and enterprise - React, Next.js, Node.js, TypeScript, AWS.",
-    // images auto-injected from ./opengraph-image.tsx
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-about-full-stack-developer.png`,
+        width: 1200,
+        height: 630,
+        alt: "About Smit Parekh - Full Stack Developer",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

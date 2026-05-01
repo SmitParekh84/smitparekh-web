@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import Link from "next/link";
 import {
   Code2,
@@ -12,6 +13,12 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
+  SiNodedotjs, SiNestjs, SiPostgresql, SiMongodb,
+  SiRedis, SiSocketdotio, SiGraphql, SiDocker,
+} from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import { SectionHeader } from "@/components/ui/section-header";
 import { buttonVariants } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/PageHero";
@@ -167,24 +174,55 @@ const engagementModels = [
   },
 ];
 
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "NestJS",
-  "Express",
-  "PostgreSQL",
-  "MongoDB",
-  "Redis",
-  "AWS",
-  "Docker",
-  "Socket.io",
-  "Tailwind CSS",
-  "GraphQL",
-  "REST APIs",
-  "Jest",
-  "Git",
+type IconType = ComponentType<{ className?: string }>;
+
+const techCategories: {
+  label: string;
+  Icon: IconType;
+  accent: string;
+  items: { name: string; Icon: IconType }[];
+}[] = [
+  {
+    label: "Frontend",
+    Icon: Code2,
+    accent: "from-blue-500/20 to-blue-500/0 text-blue-500",
+    items: [
+      { name: "React", Icon: SiReact },
+      { name: "Next.js", Icon: SiNextdotjs },
+      { name: "TypeScript", Icon: SiTypescript },
+      { name: "Tailwind CSS", Icon: SiTailwindcss },
+    ],
+  },
+  {
+    label: "Backend",
+    Icon: Server,
+    accent: "from-emerald-500/20 to-emerald-500/0 text-emerald-500",
+    items: [
+      { name: "Node.js", Icon: SiNodedotjs },
+      { name: "NestJS", Icon: SiNestjs },
+      { name: "GraphQL", Icon: SiGraphql },
+      { name: "Socket.io", Icon: SiSocketdotio },
+    ],
+  },
+  {
+    label: "Database",
+    Icon: Database,
+    accent: "from-purple-500/20 to-purple-500/0 text-purple-500",
+    items: [
+      { name: "PostgreSQL", Icon: SiPostgresql },
+      { name: "MongoDB", Icon: SiMongodb },
+      { name: "Redis", Icon: SiRedis },
+    ],
+  },
+  {
+    label: "Cloud & DevOps",
+    Icon: Cloud,
+    accent: "from-amber-500/20 to-amber-500/0 text-amber-500",
+    items: [
+      { name: "AWS", Icon: FaAws },
+      { name: "Docker", Icon: SiDocker },
+    ],
+  },
 ];
 
 export default function ServicesPage() {
@@ -344,44 +382,47 @@ export default function ServicesPage() {
 
       {/* Tech Stack */}
       <section className="page-section bg-muted/20">
-        <div className="page-container text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-6">
-            Technologies I Work With
-          </p>
-          <div
-            className="relative overflow-hidden"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-            }}
-          >
-            <div className="flex w-max animate-marquee">
-              <ul className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0">
-                {techStack.map((tech, i) => (
-                  <li
-                    key={`svc-tech-a-${i}`}
-                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-              <ul
-                aria-hidden="true"
-                className="flex shrink-0 gap-2 sm:gap-3 pr-2 sm:pr-3 list-none m-0 p-0"
-              >
-                {techStack.map((tech, i) => (
-                  <li
-                    key={`svc-tech-b-${i}`}
-                    className="whitespace-nowrap px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-border bg-card text-xs sm:text-sm text-foreground/80 font-medium"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className="page-container">
+          <div className="text-center mb-8">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Technologies I Work With
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {techCategories.map(({ label, Icon: CatIcon, accent, items }) => {
+              const parts = accent.split(" ");
+              const gradientCls = parts.slice(0, -1).join(" ");
+              const textCls = parts[parts.length - 1];
+              return (
+                <div
+                  key={label}
+                  className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-5 transition-colors hover:border-foreground/20"
+                >
+                  <div
+                    className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${gradientCls} opacity-60`}
+                  />
+                  <div className="relative flex items-center gap-2.5 mb-4">
+                    <div
+                      className={`flex items-center justify-center w-9 h-9 rounded-lg bg-background/60 border border-border ${textCls}`}
+                    >
+                      <CatIcon className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-semibold text-sm tracking-tight">{label}</h3>
+                  </div>
+                  <ul className="relative flex flex-col gap-1.5 list-none m-0 p-0">
+                    {items.map(({ name, Icon }) => (
+                      <li
+                        key={name}
+                        className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-sm text-foreground/85 transition-colors hover:bg-muted/50`}
+                      >
+                        <Icon className={`w-4 h-4 shrink-0 ${textCls}`} />
+                        <span>{name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

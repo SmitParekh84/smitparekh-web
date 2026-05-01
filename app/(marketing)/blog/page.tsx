@@ -1,9 +1,60 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { PageHero } from "@/components/layout/PageHero";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { siteConfig } from "@/data/site";
+
+export const metadata: Metadata = {
+  title: "Blog - Web Development Insights by Smit Parekh",
+  description:
+    "Articles on React, Next.js, Node.js, TypeScript, PostgreSQL, AWS and full-stack web development. Real lessons from production projects.",
+  alternates: { canonical: `${siteConfig.url}/blog` },
+  keywords: [
+    "web development blog",
+    "React articles",
+    "Next.js tutorials",
+    "Node.js guides",
+    "TypeScript tips",
+    "full stack developer blog",
+    "Smit Parekh blog",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: `${siteConfig.url}/blog`,
+    siteName: siteConfig.name,
+    title: "Blog - Web Development Insights by Smit Parekh",
+    description:
+      "Articles on React, Next.js, Node.js, TypeScript and full-stack engineering. Real lessons from production projects.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-blog-web-development.png`,
+        width: 1200,
+        height: 630,
+        alt: "Web Development Blog by Smit Parekh",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: "Blog - Web Development Insights by Smit Parekh",
+    description:
+      "Articles on React, Next.js, Node.js, TypeScript and full-stack engineering.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-blog-web-development.png`,
+        width: 1200,
+        height: 630,
+        alt: "Web Development Blog by Smit Parekh",
+      },
+    ],
+  },
+};
 
 export const revalidate = 300;
 

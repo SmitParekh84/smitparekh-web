@@ -127,12 +127,14 @@ export const navItems: NavItem[] = [
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/hire-me", label: "Hire Me" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const mobileNavItems: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/hire-me", label: "Hire Me" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
