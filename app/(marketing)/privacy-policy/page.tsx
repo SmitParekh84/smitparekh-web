@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",

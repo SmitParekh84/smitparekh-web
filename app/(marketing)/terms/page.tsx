@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Terms governing your use of smitparekh.co.in, including the free tools, blog, and contact features.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",

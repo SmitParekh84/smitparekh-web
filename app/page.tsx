@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps. React, Next.js, Node.js, TypeScript, AWS.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - Full Stack Developer",
