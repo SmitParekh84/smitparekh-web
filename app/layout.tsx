@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
-        width: 800,
-        height: 800,
+        width: 1200,
+        height: 630,
         alt: "Smit Parekh - Full Stack Developer",
         type: "image/png",
       },
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
-        width: 800,
-        height: 800,
+        width: 1200,
+        height: 630,
         alt: "Smit Parekh - Full Stack Developer",
       },
     ],
