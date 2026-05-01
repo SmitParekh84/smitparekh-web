@@ -131,7 +131,7 @@ export const metadata: Metadata = {
       "Answers to common questions about services and every free tool - background remover, SEO analyzer, ATS resume checker, password generator and more.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - FAQ",
@@ -148,7 +148,7 @@ export const metadata: Metadata = {
       "Answers to common questions about services and every free tool on the site.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 800,
         height: 800,
         alt: "Smit Parekh - FAQ",
