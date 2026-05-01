@@ -84,6 +84,6 @@ export const blogsApi = {
     api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
   generateTopics: (seed?: string) =>
     api.post<GenerateBlogTopicsResponse>("/blogs/generate-topics", { seed: seed ?? "" }),
-  generateLinkedIn: (payload: { title: string; content: string; excerpt?: string; tags?: string[]; category?: string }) =>
+  generateLinkedIn: (payload: { title: string; content: string; excerpt?: string; tags?: string[]; category?: string; articleUrl?: string }) =>
     api.post<GenerateLinkedInResponse>("/blogs/generate-linkedin", payload),
 };

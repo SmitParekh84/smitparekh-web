@@ -232,6 +232,7 @@ export function ProjectForm({
         outcomes: form.outcomes,
         techStack: form.techStack as unknown as Record<string, string[]>,
         tags: form.tags,
+        articleUrl: form.slug ? `https://www.smitparekh.co.in/portfolio/${form.slug}` : undefined,
       });
       setLiData(res.data);
       setLiOpen(true);

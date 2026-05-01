@@ -178,6 +178,7 @@ export function BlogForm({
         excerpt: form.excerpt,
         tags: form.tagsCsv.split(",").map(t => t.trim()).filter(Boolean),
         category: form.category,
+        articleUrl: form.slug ? `https://www.smitparekh.co.in/blog/${form.slug}` : undefined,
       });
       setLiData(res.data);
       setLiOpen(true);
