@@ -278,6 +278,7 @@ export function BlogForm({
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="w-full space-y-6">
       {/* AI Generate */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent p-4 sm:p-5">
@@ -634,6 +635,7 @@ export function BlogForm({
       </div>
     </form>
     <LinkedInArticleModal open={liOpen} onClose={() => setLiOpen(false)} data={liData} />
+    </>
   );
 }
 
