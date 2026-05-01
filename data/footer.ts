@@ -1,4 +1,4 @@
-export type SocialPlatform = "instagram" | "email" | "linkedin" | "github";
+export type SocialPlatform = "instagram" | "email" | "linkedin" | "github" | "upwork";
 
 export interface FooterLink {
   href: string;
@@ -66,6 +66,11 @@ export const footerData: FooterData = {
       href: "https://github.com/SmitParekh84",
       platform: "github",
       label: "GitHub",
+    },
+    {
+      href: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
+      platform: "upwork",
+      label: "Upwork",
     },
   ],
   copyright: "© Smit Parekh. All rights reserved.",

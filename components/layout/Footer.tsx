@@ -9,6 +9,7 @@ import {
   LinkedInIcon,
   InstagramIcon,
   MailIcon,
+  UpworkIcon,
 } from "@/components/icons/SocialIcons";
 
 const socialIcons: Record<
@@ -19,6 +20,7 @@ const socialIcons: Record<
   email: MailIcon,
   linkedin: LinkedInIcon,
   github: GitHubIcon,
+  upwork: UpworkIcon,
 };
 
 export default function Footer() {
