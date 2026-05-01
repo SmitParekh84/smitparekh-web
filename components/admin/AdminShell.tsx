@@ -19,9 +19,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <AdminGuard>
       <TooltipProvider delay={150}>
-        <SidebarProvider>
+        <SidebarProvider className="h-svh">
           <AdminSidebar />
-          <SidebarInset>
+          <SidebarInset className="overflow-y-auto">
             <AdminTopbar />
             <div className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
               <div className="mx-auto w-full max-w-7xl">{children}</div>
