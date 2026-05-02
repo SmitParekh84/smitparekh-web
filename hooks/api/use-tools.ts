@@ -7,10 +7,12 @@ import {
   resumeApi,
   generatePostApi,
   removeBgApi,
+  toolsApi,
   type QrCodePayload,
   type LinkedInMediaPayload,
   type GeneratePostPayload,
   type CompressOptions,
+  type NotifyToolPayload,
 } from "@/lib/api";
 
 export function useGenerateQr() {
@@ -54,5 +56,11 @@ export function useCompressBulk() {
   return useMutation({
     mutationFn: ({ images, options }: { images: File[]; options?: CompressOptions }) =>
       removeBgApi.compressBulk(images, options),
+  });
+}
+
+export function useNotifyTool() {
+  return useMutation({
+    mutationFn: (payload: NotifyToolPayload) => toolsApi.notify(payload),
   });
 }

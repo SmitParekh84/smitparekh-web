@@ -63,3 +63,4 @@ export {
   type GenerateShareCaptionPayload,
   type GenerateShareCaptionResponse,
 } from "./social";
+export { toolsApi, type NotifyToolPayload, type NotifyToolResponse } from "./tools";
