@@ -12,7 +12,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "setup": "pnpm install && pnpm -C ../smitparekh-api install"
+    "setup": "pnpm install && pnpm -C ../smitparekh-api install",
+    "db:push": "pwsh -NoProfile -File ./scripts/db-push.ps1",
+    "db:push:dry": "pwsh -NoProfile -File ./scripts/db-push.ps1 -DryRun",
+    "db:new": "pwsh -NoProfile -File ./scripts/db-new-migration.ps1"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
