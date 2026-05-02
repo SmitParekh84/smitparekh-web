@@ -97,14 +97,16 @@ export function ATSNotifyModal({ open, onClose }: ATSNotifyModalProps) {
               </Button>
             </form>
 
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="sm"
               onClick={handleClose}
               disabled={notify.isPending}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors w-full text-center"
+              className="w-full text-xs text-muted-foreground"
             >
               Maybe later
-            </button>
+            </Button>
           </div>
         )}
       </DialogContent>
