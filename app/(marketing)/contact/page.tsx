@@ -9,6 +9,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { useSubmitContact } from "@/hooks/api/use-contact";
 import { toast } from "@/lib/toast";
+import { AppSelect } from "@/components/ui/app-select";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -270,19 +271,12 @@ export default function ContactPage() {
                     >
                       What can I help with?
                     </label>
-                    <select
-                      id="subject"
-                      name="subject"
+                    <AppSelect
                       value={form.subject}
-                      onChange={handleChange}
-                      className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors"
-                    >
-                      {SUBJECTS.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
-                    </select>
+                      onValueChange={(v) => setForm((f) => ({ ...f, subject: v }))}
+                      options={SUBJECTS}
+                      triggerClassName="rounded-xl border-border h-10"
+                    />
                   </div>
 
                   <div className="space-y-1.5">

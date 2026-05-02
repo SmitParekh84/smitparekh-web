@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AppSelect } from "@/components/ui/app-select";
 import { toast } from "@/lib/toast";
 import { useGenerateBlog, useGenerateBlogLinkedIn } from "@/hooks/use-blogs";
 import { CloudinaryImagePicker } from "@/components/admin/CloudinaryImagePicker";
@@ -443,17 +444,11 @@ export function BlogForm({
           </p>
         </Field>
         <Field label="Category" required>
-          <select
+          <AppSelect
             value={form.category}
-            onChange={(e) => setField("category", e.target.value)}
-            className="flex h-10 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
-          >
-            {CATEGORY_OPTIONS.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+            onValueChange={(v) => setField("category", v)}
+            options={CATEGORY_OPTIONS}
+          />
         </Field>
       </div>
 

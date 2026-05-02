@@ -94,7 +94,39 @@ Defined in `data/navigation.ts` - two arrays: `navItems` (desktop) and `mobileNa
 Current top-level links: Home, About, Portfolio, Blog, Free Tools, Feedback, **Hire Me** (`/hire-me`).
 "Resume" was renamed to "Hire Me" - do not revert.
 
-### Tool Quota System
+### shadcn Select — always use it, never native `<select>`
+
+**Never** write `<select><option>`. Always use shadcn:
+
+```tsx
+// For standard form/filter dropdowns → use AppSelect wrapper:
+import { AppSelect } from "@/components/ui/app-select";
+
+<AppSelect
+  value={value}
+  onValueChange={setValue}
+  options={["Option A", "Option B"]}        // string[] or SelectOption[]
+  triggerClassName="w-40"                   // optional width override
+/>
+
+// For inline badge-style toggles (e.g., status in a table row):
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+<Select value={status} onValueChange={onChange}>
+  <SelectTrigger className="h-auto w-auto rounded-full border-0 px-2.5 py-0.5 text-xs [&>svg]:h-3 [&>svg]:w-3">
+    <SelectValue />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="open">Open</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+### Reusable component principle
+- Component used in 2+ places → extract to `components/ui/`, `components/admin/`, or `components/layout/`
+- Do NOT duplicate styled JSX blocks across pages
+
+
 Every free tool goes through `app/api/tools/[slug]/use/route.ts`.
 - `POST` consumes a quota unit; `GET` returns remaining
 - Client hook: `useToolQuota({ slug })` - call `checkQuota()` before running the tool

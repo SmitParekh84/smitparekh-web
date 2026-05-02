@@ -24,6 +24,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
 import { toast } from "@/lib/toast";
+import { AppSelect, type SelectOption } from "@/components/ui/app-select";
 
 const CATEGORIES = ["All", "Image", "Content", "Career", "SEO", "Dev", "Security"];
 
@@ -336,28 +337,25 @@ export default function ToolsAdminPage() {
                 className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:border-blue-500/50"
               />
             </div>
-            <select
+            <AppSelect
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="text-sm rounded-lg border border-border bg-background px-3 py-2 focus:outline-none focus:border-blue-500/50"
-            >
-              {CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {c === "All" ? "All categories" : c}
-                </option>
-              ))}
-            </select>
-            <select
+              onValueChange={setCategory}
+              options={CATEGORIES.map((c): SelectOption => ({
+                value: c,
+                label: c === "All" ? "All categories" : c,
+              }))}
+              triggerClassName="w-40"
+            />
+            <AppSelect
               value={statusFilter}
-              onChange={(e) =>
-                setStatusFilter(e.target.value as "all" | "active" | "inactive")
-              }
-              className="text-sm rounded-lg border border-border bg-background px-3 py-2 focus:outline-none focus:border-blue-500/50"
-            >
-              <option value="all">All statuses</option>
-              <option value="active">Active only</option>
-              <option value="inactive">Inactive only</option>
-            </select>
+              onValueChange={(v) => setStatusFilter(v as "all" | "active" | "inactive")}
+              options={[
+                { value: "all", label: "All statuses" },
+                { value: "active", label: "Active only" },
+                { value: "inactive", label: "Inactive only" },
+              ]}
+              triggerClassName="w-36"
+            />
           </div>
 
           {/* Tools table */}

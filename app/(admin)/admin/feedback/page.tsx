@@ -22,6 +22,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   useAdminFeedbackList,
   useAdminUpdateFeedback,
   useAdminDeleteFeedback,
@@ -95,26 +102,32 @@ function FeedbackRow({ entry }: { entry: FeedbackEntry }) {
               </span>
             )}
             {/* Status select */}
-            <select
+            <Select
               value={entry.status}
               disabled={isUpdating}
-              onChange={(e) =>
+              onValueChange={(v) =>
                 update(
-                  { id: entry._id, body: { status: e.target.value as FeedbackStatus } },
+                  { id: entry._id, body: { status: v as FeedbackStatus } },
                   {
                     onSuccess: () => toast.success("Status updated"),
                     onError: () => toast.error("Failed to update status"),
                   }
                 )
               }
-              className={`rounded-full px-2 py-0.5 text-xs font-medium border-0 cursor-pointer ${statusColors[entry.status]}`}
             >
-              {STATUS_OPTIONS.map((s) => (
-                <option key={s} value={s}>
-                  {statusLabels[s]}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger
+                className={`h-auto w-auto rounded-full border-0 px-2.5 py-0.5 text-xs font-medium shadow-none focus:ring-1 [&>svg]:h-3 [&>svg]:w-3 ${statusColors[entry.status]}`}
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {STATUS_OPTIONS.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {statusLabels[s]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             {/* Public toggle */}
             <button
               type="button"

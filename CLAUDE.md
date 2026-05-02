@@ -489,3 +489,67 @@ Structure:
 
 There is **no public listing of submissions**. All feedback is admin-only via the Express backend (`GET /api/feedback` requires admin role).
 
+---
+
+## UI Component Standards
+
+### Never use native HTML form elements when a shadcn equivalent exists
+
+| ❌ Don't use                | ✅ Use instead                          |
+| -------------------------- | --------------------------------------- |
+| `<select>` / `<option>`    | `AppSelect` or shadcn `Select`          |
+| `<input type="checkbox">`  | shadcn `Checkbox`                       |
+| `<input type="radio">`     | shadcn `RadioGroup` + `RadioGroupItem`  |
+| raw `<textarea>`           | shadcn `Textarea`                       |
+| raw `<input>`              | shadcn `Input`                          |
+
+### `AppSelect` — project-standard dropdown
+
+Located at `components/ui/app-select.tsx`. Use for any dropdown where options are a simple array.
+
+```tsx
+import { AppSelect } from "@/components/ui/app-select";
+
+// Simple string options
+<AppSelect
+  value={category}
+  onValueChange={setCategory}
+  options={["All", "React", "Next.js"]}
+  triggerClassName="w-40"         // optional: override width/style
+/>
+
+// Label-value pairs
+<AppSelect
+  value={status}
+  onValueChange={setStatus}
+  options={[
+    { value: "all", label: "All statuses" },
+    { value: "active", label: "Active only" },
+  ]}
+/>
+```
+
+For **inline badge-style selects** (e.g., status toggle in a table row), use shadcn `Select` primitives directly with custom trigger classes:
+
+```tsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+<Select value={status} onValueChange={onChange}>
+  <SelectTrigger className="h-auto w-auto rounded-full border-0 px-2.5 py-0.5 text-xs font-medium shadow-none [&>svg]:h-3 [&>svg]:w-3 bg-blue-100 text-blue-700">
+    <SelectValue />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="open">Open</SelectItem>
+    <SelectItem value="resolved">Resolved</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+### Reusable component principle
+
+If a component is used in **2+ places** OR has likely future use, create it as a reusable component:
+- UI wrappers → `components/ui/` (e.g., `app-select.tsx`, `skeleton.tsx`)
+- Admin UI patterns → `components/admin/` (e.g., `FeedbackRow`, `BlogForm`)
+- Layout patterns → `components/layout/` (e.g., `PageHero`, `Container`)
+
+Do **not** duplicate styled JSX blocks across pages — extract immediately.
