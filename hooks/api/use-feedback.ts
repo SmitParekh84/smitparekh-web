@@ -27,6 +27,13 @@ export function useSubmitFeedback() {
   });
 }
 
+export function useMyFeedback() {
+  return useQuery({
+    queryKey: queryKeys.feedback.myList(),
+    queryFn: () => feedbackApi.myFeedback().then((r) => r),
+  });
+}
+
 // ── Admin ───────────────────────────────────────────────────────────────────
 
 export function useAdminFeedbackList(params?: {

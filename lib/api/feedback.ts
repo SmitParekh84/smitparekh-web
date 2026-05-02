@@ -54,4 +54,8 @@ export const feedbackApi = {
     api.patch<{ success: boolean; data: FeedbackEntry }>(`/admin/feedback/${id}`, body),
   adminDelete: (id: string) =>
     api.del<{ success: boolean; message: string }>(`/admin/feedback/${id}`),
+
+  // Authenticated user
+  myFeedback: (params?: { page?: number; limit?: number }) =>
+    api.get<FeedbackListResponse>("/user/feedback", { params }),
 };

@@ -19,6 +19,7 @@ export const queryKeys = {
   feedback: {
     all: ["feedback"] as const,
     list: () => [...queryKeys.feedback.all, "list"] as const,
+    myList: () => [...queryKeys.feedback.all, "my"] as const,
     adminList: (params?: object) => [...queryKeys.feedback.all, "admin", params ?? {}] as const,
   },
   chat: {
