@@ -91,7 +91,7 @@ function LoginContent() {
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12 flex-col justify-between">
         <div>
           <Link href="/" className="text-white/80 text-sm hover:text-white transition-colors">
-            ← smitparekh.in
+            ← smitparekh.co.in
           </Link>
         </div>
         <div className="space-y-10">
