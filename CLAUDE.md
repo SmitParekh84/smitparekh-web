@@ -354,8 +354,13 @@ Full list lives in `.env.example` / `README.md`. Highlights agents care about:
 | `SUPABASE_SERVICE_ROLE_KEY`       | server   | Bypasses RLS for quota writes / admin reads. Never expose. |
 | `IP_HASH_SALT`                    | server   | Salt for hashing IPs in `tool_usage.ip_hash`               |
 | `IP_QUOTA_MULTIPLIER`             | server   | Default `3` — sessions per NAT before IP cap hits          |
-| `ADMIN_EMAILS` / `NEXT_PUBLIC_ADMIN_EMAILS` | both | Comma-separated allowlist; empty = locked         |
+| `ADMIN_EMAILS`                    | server   | Comma-separated admin email allowlist; empty = locked. **Never use `NEXT_PUBLIC_ADMIN_EMAILS`** — that was removed (leaked admin identity to browser) |
+| `RESEND_API_KEY`                  | server   | Resend API key for sending email                           |
+| `RESEND_FROM`                     | server   | Sender address: `Smit Parekh <noreply@smitparekh.co.in>`  |
 | `SUPABASE_ACCESS_TOKEN` / `SUPABASE_DB_PASSWORD` | local-only | Used by `pnpm db:push`                       |
+
+> **Security rule:** Any variable with `NEXT_PUBLIC_` prefix is baked into the browser bundle and readable in DevTools.
+> Secrets must **never** use this prefix. Only safe-to-expose values: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
 
 ---
 
@@ -402,6 +407,85 @@ pnpm db:new <n>   # Scaffold next migration file
 
 ## Related
 
-- **Backend:** `../backend` - Express + MongoDB API (winston logger, kebab-case files)
+- **Backend:** `../smitparekh-api` - Express + MongoDB API (Resend email, Swagger dev docs, tsx ESM+JSX loader)
 - **Python tools:** `../python-tools` - FastAPI + rembg (background removal etc.), deployed to Hugging Face Docker Space
 - **Old frontend:** `../front-end` - Legacy Vite React SPA (reference only)
+
+---
+
+## PageHero Component
+
+Every marketing page uses `<PageHero>` from `components/layout/PageHero.tsx`.
+It's a **server component** — safe to use directly in `page.tsx`.
+
+```tsx
+import { PageHero } from "@/components/layout/PageHero";
+import { MessageSquare } from "lucide-react"; // or any Lucide icon
+
+<PageHero
+  eyebrow="Badge text"            // small badge above the title
+  title="Main heading"
+  description="Subtitle shown below the title."
+  icon={MessageSquare}            // Lucide icon component (not JSX, the reference)
+  align="center"                  // "left" | "center"
+/>
+```
+
+Used by: `/about`, `/contact`, `/portfolio`, `/blog`, `/feedback`, and all other marketing pages.
+Gradient: `from-blue-600 via-blue-500 to-cyan-500`.
+
+### Marketing page pattern
+
+```
+app/(marketing)/pagename/
+├── page.tsx       ← server component: Metadata export + <PageHero> + renders _client
+└── _client.tsx    ← "use client": form/interactive UI (no header — PageHero is in page.tsx)
+```
+
+Do NOT put a custom `<h1>` or `<div>` header inside `_client.tsx` — that was the bug.
+The `<PageHero>` lives in `page.tsx` and is rendered before `_client.tsx`.
+
+---
+
+## AdminGuard
+
+`components/admin/AdminGuard.tsx` is a **client component** (`"use client"`).
+
+It gates admin routes by checking `session.user.app_metadata?.role`:
+```ts
+const role = session.user.app_metadata?.role;
+const isAdmin = role === 'admin' || role === 'superadmin';
+```
+
+**Rules:**
+- **Never** use email comparison or `NEXT_PUBLIC_ADMIN_EMAILS` for client-side gating — that was removed.
+- The admin role is set in Supabase Auth dashboard → Users → Edit user → app_metadata: `{"role": "admin"}`.
+- For server-side admin checks (Route Handlers, Server Actions) use `isAdminEmail()` from `lib/admin-allowlist.ts` with the `ADMIN_EMAILS` server env var.
+
+---
+
+## Navigation
+
+Defined in `data/navigation.ts`. Two arrays used by Navbar:
+- `navItems` — desktop menu items
+- `mobileNavItems` — mobile drawer items
+
+**Current top-level links (both arrays must stay in sync):**
+Home · About · Portfolio · Blog · Free Tools · Feedback · **Hire Me** (`/hire-me`)
+
+> "Resume" was renamed to "Hire Me" — do not revert. The route is `/hire-me`.
+
+---
+
+## Feedback Page
+
+`app/(marketing)/feedback/` — submit-only, no public submissions list.
+
+Structure:
+- `page.tsx` — metadata + `<PageHero>` + `<FeedbackClientPage>`
+- `_client.tsx` — two-column layout:
+  - Left: `<SubmitForm>` (type selector, name/email, subject/description, send button)
+  - Right: `<HowItWorksPanel>` (4 process cards + 6-item what-to-report grid + contact CTA)
+
+There is **no public listing of submissions**. All feedback is admin-only via the Express backend (`GET /api/feedback` requires admin role).
+
