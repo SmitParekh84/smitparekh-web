@@ -35,7 +35,12 @@ function toolLabel(slug: string) {
 }
 
 function remainingBadge(remaining: number, quota: number) {
-  if (quota === 0) return <Badge variant="secondary">—</Badge>;
+  if (quota === 0)
+    return (
+      <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 gap-1">
+        ∞ Unlimited
+      </Badge>
+    );
   const pct = remaining / quota;
   if (pct > 0.5) return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">{remaining} left</Badge>;
   if (pct > 0) return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">{remaining} left</Badge>;
@@ -100,18 +105,27 @@ export default function DashboardToolsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {todayTools.map((tool) => {
-                    const pct = tool.quota > 0 ? Math.min(100, (tool.uses / tool.quota) * 100) : 0;
+                    {todayTools.map((tool) => {
+                    const isUnlimited = tool.quota === 0;
+                    const pct = isUnlimited ? 100 : Math.min(100, (tool.uses / tool.quota) * 100);
                     return (
                       <tr key={tool.slug} className="group hover:bg-muted/40 transition-colors">
                         <td className="py-3 pr-4 font-medium">{toolLabel(tool.slug)}</td>
                         <td className="py-3 text-right tabular-nums">{tool.uses}</td>
                         <td className="py-3 text-right tabular-nums hidden sm:table-cell text-muted-foreground">
-                          {tool.quota}
+                          {isUnlimited ? (
+                            <span className="font-semibold text-emerald-600 dark:text-emerald-400">∞</span>
+                          ) : tool.quota}
                         </td>
                         <td className="py-3 text-right">{remainingBadge(tool.remaining, tool.quota)}</td>
                         <td className="py-3 pl-4 hidden md:table-cell">
-                          <Progress value={pct} className="h-1.5" />
+                          {isUnlimited ? (
+                            <div className="h-1.5 rounded-full bg-emerald-500/30 overflow-hidden">
+                              <div className="h-full w-full bg-emerald-500 rounded-full" />
+                            </div>
+                          ) : (
+                            <Progress value={pct} className="h-1.5" />
+                          )}
                         </td>
                         <td className="py-3 pl-3">
                           <Link

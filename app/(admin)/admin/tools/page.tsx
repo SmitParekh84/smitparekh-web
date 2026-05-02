@@ -365,8 +365,7 @@ export default function ToolsAdminPage() {
             <CardHeader>
               <CardTitle className="text-base">Per-tool config</CardTitle>
               <CardDescription>
-                Edit quotas inline — changes save on blur. Set 0 to disable that
-                audience.
+                Edit quotas inline — changes save on blur. Set <span className="font-semibold text-emerald-600 dark:text-emerald-400">∞</span> (0) for unlimited.
                 {filteredTools.length !== data.perTool.length && (
                   <span className="ml-2 text-blue-500">
                     Showing {filteredTools.length} of {data.perTool.length}
@@ -659,22 +658,35 @@ function QuotaInput({
   disabled?: boolean;
 }) {
   const [v, setV] = useState(String(value));
+  const [focused, setFocused] = useState(false);
   useEffect(() => {
     setV(String(value));
   }, [value]);
+
+  const displayValue = !focused && value === 0 ? "∞" : v;
+
   return (
-    <input
-      type="number"
-      min={0}
-      value={v}
-      disabled={disabled}
-      onChange={(e) => setV(e.target.value)}
-      onBlur={() => {
-        const n = Math.max(0, Math.floor(Number(v) || 0));
-        if (n !== value) onCommit(n);
-        else setV(String(value));
-      }}
-      className="w-16 rounded-md border border-border bg-muted/30 px-2 py-1 text-right text-sm focus:outline-none focus:border-blue-500/50 disabled:opacity-50"
-    />
+    <div className="relative inline-flex items-center">
+      <input
+        type={focused ? "number" : "text"}
+        min={0}
+        value={displayValue}
+        disabled={disabled}
+        title={value === 0 ? "Unlimited (0 = no limit)" : undefined}
+        onChange={(e) => setV(e.target.value)}
+        onFocus={() => { setFocused(true); setV(String(value)); }}
+        onBlur={() => {
+          setFocused(false);
+          const n = Math.max(0, Math.floor(Number(v) || 0));
+          if (n !== value) onCommit(n);
+          else setV(String(value));
+        }}
+        className={`w-16 rounded-md border bg-muted/30 px-2 py-1 text-right text-sm focus:outline-none focus:border-blue-500/50 disabled:opacity-50 ${
+          value === 0
+            ? "border-emerald-400/50 text-emerald-600 dark:text-emerald-400 font-semibold"
+            : "border-border"
+        }`}
+      />
+    </div>
   );
 }

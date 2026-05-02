@@ -45,7 +45,7 @@ function greeting(name: string): string {
 }
 
 function remainingColor(remaining: number, quota: number) {
-  if (quota === 0) return "text-muted-foreground";
+  if (quota === 0) return "text-emerald-600 dark:text-emerald-400"; // unlimited = always green
   const pct = remaining / quota;
   if (pct > 0.5) return "text-green-600 dark:text-green-400";
   if (pct > 0.2) return "text-yellow-600 dark:text-yellow-400";
@@ -154,16 +154,24 @@ export default function DashboardPage() {
           ) : (
             <div className="space-y-4">
               {(data?.today.byTool ?? []).slice(0, 6).map((tool) => {
-                const pct = tool.quota > 0 ? Math.min(100, (tool.uses / tool.quota) * 100) : 0;
+                const isUnlimited = tool.quota === 0;
+                const pct = isUnlimited ? 100 : Math.min(100, (tool.uses / tool.quota) * 100);
                 return (
                   <div key={tool.slug} className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
                       <span className="font-medium truncate">{toolLabel(tool.slug)}</span>
                       <span className={`text-xs font-mono ml-2 shrink-0 ${remainingColor(tool.remaining, tool.quota)}`}>
-                        {tool.uses}/{tool.quota}
+                        {isUnlimited ? (
+                          <span className="font-semibold">∞ Unlimited</span>
+                        ) : (
+                          `${tool.uses}/${tool.quota}`
+                        )}
                       </span>
                     </div>
-                    <Progress value={pct} className="h-1.5" />
+                    <Progress
+                      value={pct}
+                      className={`h-1.5 ${isUnlimited ? "[&>div]:bg-emerald-500" : ""}`}
+                    />
                   </div>
                 );
               })}

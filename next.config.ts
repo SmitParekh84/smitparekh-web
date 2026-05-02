@@ -18,7 +18,7 @@ const securityHeaders = [
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static.licdn.com",
       "font-src 'self' https://fonts.gstatic.com https://static.licdn.com",
-      "img-src 'self' data: blob: https://res.cloudinary.com https://placehold.co https://api.smitparekh.co.in http://localhost:5000 https://img.youtube.com https://media.licdn.com https://dms.licdn.com https://platform.linkedin.com https://badges.linkedin.com https://static.licdn.com https://www.google-analytics.com",
+      "img-src 'self' data: blob: https://res.cloudinary.com https://placehold.co https://api.smitparekh.co.in http://localhost:5000 https://img.youtube.com https://media.licdn.com https://dms.licdn.com https://platform.linkedin.com https://badges.linkedin.com https://static.licdn.com https://www.google-analytics.com https://lh3.googleusercontent.com https://*.googleusercontent.com",
       "connect-src 'self' https://www.smitparekh.co.in https://api.smitparekh.co.in https://*.supabase.co wss://*.supabase.co https://*.hf.space http://localhost:5000 https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://badges.linkedin.com https://platform.linkedin.com",
       "frame-src https://badges.linkedin.com",
       "frame-ancestors 'self'",
@@ -52,6 +52,11 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
         port: "5000",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },
       {

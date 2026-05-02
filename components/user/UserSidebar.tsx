@@ -8,6 +8,7 @@ import {
   ExternalLink,
   LogOut,
   ChevronsUpDown,
+  Settings,
 } from "lucide-react";
 import {
   Sidebar,
@@ -38,6 +39,7 @@ import { siteConfig } from "@/data/site";
 const NAV_MAIN = [
   { title: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { title: "My Tools", href: "/dashboard/tools", icon: Wrench },
+  { title: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
 const NAV_LINKS = [

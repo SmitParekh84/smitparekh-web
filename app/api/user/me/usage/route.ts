@@ -22,8 +22,9 @@ export async function GET() {
   // Look up user's internal row
   const { data: userRow } = await admin
     .from("users")
-    .select("id,email,name")
+    .select("id,email,name,avatar_url")
     .eq("supabase_auth_id", user.id)
+    .is("deleted_at", null)
     .maybeSingle();
 
   if (!userRow) {
@@ -48,6 +49,7 @@ export async function GET() {
       user: {
         email: user.email ?? "",
         name: (user.user_metadata?.full_name as string | undefined) ?? null,
+        avatar_url: (user.user_metadata?.avatar_url as string | undefined) ?? null,
       },
       today: { total: 0, byTool },
       allTime: { total: 0, byTool: [] },
@@ -107,7 +109,7 @@ export async function GET() {
     .sort((a, b) => b.uses - a.uses);
 
   return NextResponse.json({
-    user: { email: userRow.email, name: userRow.name },
+    user: { email: userRow.email, name: userRow.name, avatar_url: userRow.avatar_url ?? null },
     today: { total: todayRows?.length ?? 0, byTool: byToolToday },
     allTime: { total: allRows?.length ?? 0, byTool: byToolAll },
   });

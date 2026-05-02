@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 const TITLES: Record<string, string> = {
   "/dashboard": "Overview",
   "/dashboard/tools": "My Tools",
+  "/dashboard/settings": "Settings",
 };
 
 function resolveTitle(pathname: string): string {
