@@ -45,7 +45,6 @@ import { Badge } from "@/components/ui/badge";
 import { clearAdminToken } from "@/lib/api";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { useAdminContactsUnreadCount } from "@/hooks/api/use-admin-contacts";
-import { toast } from "@/lib/toast";
 import { siteConfig } from "@/data/site";
 
 const NAV_MAIN = [
@@ -90,10 +89,6 @@ export function AdminSidebar() {
   async function handleLogout() {
     await clearAdminToken();
     router.replace("/admin/login");
-  }
-
-  function handleSwitchUser() {
-    toast.info("Coming soon", "Multi-account switching will be available in a future update.");
   }
 
   return (
@@ -227,23 +222,13 @@ export function AdminSidebar() {
 
                 <DropdownMenuSeparator />
 
-                {/* Dummy second account - future feature */}
-                <DropdownMenuLabel className="text-xs text-muted-foreground px-2 py-1 font-normal">
-                  Switch to
-                </DropdownMenuLabel>
-                <DropdownMenuItem onClick={handleSwitchUser} className="gap-2 opacity-60 cursor-pointer">
-                  <Avatar className="h-6 w-6 rounded-md">
-                    <AvatarFallback className="rounded-md bg-muted text-muted-foreground text-xs font-medium">
-                      DU
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-sm leading-tight">Demo User</span>
-                    <span className="text-xs text-muted-foreground leading-tight">viewer</span>
-                  </div>
-                  <Badge variant="secondary" className="ml-auto text-xs px-1.5 py-0 shrink-0">
-                    Soon
-                  </Badge>
+                {/* View user dashboard */}
+                <DropdownMenuItem
+                  onClick={() => router.push("/dashboard")}
+                  className="gap-2"
+                >
+                  <UserRound className="size-4" />
+                  My Dashboard
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator />
