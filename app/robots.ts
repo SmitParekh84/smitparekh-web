@@ -12,7 +12,6 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/admin/",
           "/dashboard/",
-          "/login",
         ],
       },
       // Allow AI search/citation crawlers (good for GEO/AEO - being cited drives traffic)
