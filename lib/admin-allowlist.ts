@@ -15,13 +15,5 @@ export function isAdminEmail(email: string | null | undefined): boolean {
   return getAdminEmails().includes(email.toLowerCase());
 }
 
-/**
- * Public list (lowercased) — exposed to client via NEXT_PUBLIC_ADMIN_EMAILS
- * for AdminGuard. Server-side checks should use the non-public version.
- */
-export function getPublicAdminEmails(): string[] {
-  return (process.env.NEXT_PUBLIC_ADMIN_EMAILS ?? "")
-    .split(",")
-    .map((e) => e.trim().toLowerCase())
-    .filter(Boolean);
-}
+// NOTE: Admin identity is intentionally NOT exposed to the browser.
+// All admin checks use ADMIN_EMAILS (server-only, no NEXT_PUBLIC_ prefix).
