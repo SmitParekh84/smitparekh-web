@@ -7,6 +7,7 @@ import { useRemoveBackground } from "@/hooks/api/use-tools";
 import { useToolQuota } from "@/hooks/api/use-tool-quota";
 import { toast } from "@/lib/toast";
 import { LoginGateModal } from "@/components/tools/LoginGateModal";
+import { QuotaBadge } from "@/components/tools/QuotaBadge";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -23,7 +24,7 @@ export default function BackgroundRemover() {
   const [loginGateOpen, setLoginGateOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mutation = useRemoveBackground();
-  const { checkQuota, isChecking } = useToolQuota("background-remover");
+  const { checkQuota, isChecking, status } = useToolQuota("background-remover");
 
   const handleFile = (f: File) => {
     if (!f.type.startsWith("image/")) {
@@ -75,6 +76,9 @@ export default function BackgroundRemover() {
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-end">
+        <QuotaBadge status={status} />
+      </div>
       {!file ? (
         <div
           onDragOver={(e) => { e.preventDefault(); setDragging(true); }}

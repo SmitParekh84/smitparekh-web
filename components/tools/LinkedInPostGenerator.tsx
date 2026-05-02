@@ -7,6 +7,7 @@ import { useGeneratePost } from "@/hooks/api/use-tools";
 import { useToolQuota } from "@/hooks/api/use-tool-quota";
 import { toast } from "@/lib/toast";
 import { LoginGateModal } from "@/components/tools/LoginGateModal";
+import { QuotaBadge } from "@/components/tools/QuotaBadge";
 
 const TONES = ["Professional", "Casual", "Inspirational", "Story", "Educational"] as const;
 const LENGTHS = ["short", "medium", "long"] as const;
@@ -20,7 +21,7 @@ export default function LinkedInPostGenerator() {
   const [copied, setCopied] = useState(false);
   const [loginGateOpen, setLoginGateOpen] = useState(false);
   const mutation = useGeneratePost();
-  const { checkQuota, isChecking } = useToolQuota("viral-linkedin-post-generator");
+  const { checkQuota, isChecking, status } = useToolQuota("viral-linkedin-post-generator");
 
   const generate = async () => {
     if (!topic.trim()) return;
@@ -54,6 +55,9 @@ export default function LinkedInPostGenerator() {
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-end">
+        <QuotaBadge status={status} />
+      </div>
       <div className="space-y-4">
         <div className="space-y-2">
           <label className="text-sm font-medium">Topic or Idea <span className="text-red-400">*</span></label>

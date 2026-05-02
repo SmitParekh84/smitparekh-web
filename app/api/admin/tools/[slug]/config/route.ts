@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { isAdminEmail } from "@/lib/admin-allowlist";
 
 /**
  * Admin endpoint to update per-tool quota config.
- * Auth: requires a logged-in Supabase session (matches AdminGuard behavior).
+ * Auth: requires a logged-in Supabase session WHOSE email is in ADMIN_EMAILS.
  * Body: { guest_quota?: number, user_quota?: number, is_active?: boolean }
  */
 export async function PATCH(
@@ -15,20 +16,17 @@ export async function PATCH(
   if (!slug) return NextResponse.json({ error: "Missing slug" }, { status: 400 });
 
   // Auth gate
-  let session;
   try {
     const supabase = await createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user || !isAdminEmail(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
-    session = user;
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  void session;
 
   const admin = createAdminClient();
   if (!admin) {

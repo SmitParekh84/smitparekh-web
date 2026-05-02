@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ATSNotifyModal } from "@/components/tools/ATSNotifyModal";
 import { LoginGateModal } from "@/components/tools/LoginGateModal";
+import { QuotaBadge } from "@/components/tools/QuotaBadge";
 
 type Step = 1 | 2 | 3;
 
@@ -92,7 +93,7 @@ export default function ATSResumeChecker() {
   const [loginGateOpen, setLoginGateOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mutation = useAnalyzeResume();
-  const { checkQuota, isChecking } = useToolQuota("ats-resume-checker");
+  const { checkQuota, isChecking, status } = useToolQuota("ats-resume-checker");
 
   const handleFile = (f: File) => {
     const allowed = [
@@ -149,6 +150,10 @@ export default function ATSResumeChecker() {
 
   return (
     <div className="space-y-8">
+      {/* Quota badge */}
+      <div className="flex justify-end">
+        <QuotaBadge status={status} />
+      </div>
       {/* Flow selector */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <button
