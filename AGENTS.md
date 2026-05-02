@@ -97,3 +97,34 @@ Follow conventional commits:
 - `refactor:` Code restructuring (no behavior change)
 - `chore:` Maintenance (deps, config)
 - `docs:` Documentation only
+
+---
+
+## Tool Quotas + Supabase
+
+Anything touching free-tools usage MUST go through the quota layer:
+
+- **Quota route:** `app/api/tools/[slug]/use/route.ts` — `POST` consumes, `GET` reports remaining
+- **Client hook:** `useToolQuota({ slug })` from `hooks/api/use-tool-quota.ts` — call `checkQuota()` before doing the work
+- **UI:** wire `<QuotaBadge>` (remaining count) + `<LoginGateModal>` (opens on 429) into every tool component — see `ATSResumeChecker.tsx`
+- **Admin:** every admin route + UI gates on `isAdminEmail()` (`lib/admin-allowlist.ts`). Empty `ADMIN_EMAILS` = locked-out by design.
+- **Never log raw IPs.** Use `hashIp()` from `lib/ip-hash.ts`.
+
+## Database Migrations
+
+- SQL lives in `supabase/migrations/NNNN_<name>.sql` (zero-padded). Never edit a migration after it's been pushed — add a new one.
+- **pnpm-only** workflow:
+  ```bash
+  pnpm db:new add_something   # scaffold next file
+  pnpm db:push:dry            # preview
+  pnpm db:push                # apply
+  ```
+- The script auto-loads `SUPABASE_ACCESS_TOKEN` + `SUPABASE_DB_PASSWORD` from `.env.local` and downloads the CLI on first run. Do **not** call `npm run db:*`.
+
+## Environment
+
+When adding a new env var:
+1. Document it in `.env.example` with a comment explaining what it is + where to get it
+2. Add the same key to `.env.local` for the dev value
+3. If it's user-facing config, mention it in `README.md` under "Environment variables"
+4. If it changes behavior agents should know about, add a row to the table in `CLAUDE.md`

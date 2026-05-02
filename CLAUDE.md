@@ -343,19 +343,61 @@ Animation keyframes (`aurora-float`) are defined in `app/globals.css`.
 
 ## Environment Variables
 
-| Variable                     | Default                       | Description                        |
-| ---------------------------- | ----------------------------- | ---------------------------------- |
-| `NEXT_PUBLIC_API_URL`        | `http://localhost:5000/api`   | Node/Express backend base URL      |
-| `NEXT_PUBLIC_PYTHON_API_URL` | _(unset, optional)_           | Python tools service (rembg, etc.) |
+Full list lives in `.env.example` / `README.md`. Highlights agents care about:
+
+| Variable                          | Scope    | Description                                                |
+| --------------------------------- | -------- | ---------------------------------------------------------- |
+| `NEXT_PUBLIC_API_URL`             | client   | Express backend base URL                                   |
+| `NEXT_PUBLIC_PYTHON_API_URL`      | client   | Python tools service (optional)                            |
+| `NEXT_PUBLIC_SUPABASE_URL`        | client   | Supabase project URL                                       |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | client | Publishable (anon) key                                  |
+| `SUPABASE_SERVICE_ROLE_KEY`       | server   | Bypasses RLS for quota writes / admin reads. Never expose. |
+| `IP_HASH_SALT`                    | server   | Salt for hashing IPs in `tool_usage.ip_hash`               |
+| `IP_QUOTA_MULTIPLIER`             | server   | Default `3` — sessions per NAT before IP cap hits          |
+| `ADMIN_EMAILS` / `NEXT_PUBLIC_ADMIN_EMAILS` | both | Comma-separated allowlist; empty = locked         |
+| `SUPABASE_ACCESS_TOKEN` / `SUPABASE_DB_PASSWORD` | local-only | Used by `pnpm db:push`                       |
+
+---
+
+## Tool Quotas (Supabase) — read before touching tools
+
+- **Tables:** `tool_usage`, `users`, `tools` — defined in `supabase/migrations/0001_tools_phase2.sql` + `0002_tools_ip_hash.sql`.
+- **Quota gate:** `app/api/tools/[slug]/use/route.ts`
+  - `POST` consumes one slot (and inserts a usage row).
+  - `GET` returns remaining quota for the badge — no consumption.
+  - Guests: `MAX(session_count, ceil(ip_count / IP_QUOTA_MULTIPLIER))`.
+  - Logged-in users: counted purely by `user_id`.
+- **Client API:** `useToolQuota()` (`hooks/api/use-tool-quota.ts`) — exposes `checkQuota()`, `status`, `refreshStatus()`. Auto-fetches `status` on mount so `<QuotaBadge>` renders immediately.
+- **Login gate:** `<LoginGateModal>` opens when the route returns `429`. Auto-resume after login is **not** wired yet — user must retry manually.
+- **Admin gate:** every admin route + page checks `isAdminEmail()` (`lib/admin-allowlist.ts`). Empty allowlist locks everyone out, including the dev.
+- **IP hashing:** `lib/ip-hash.ts` — sha256(`ip + IP_HASH_SALT`).slice(0, 32). Never log raw IPs.
+- **Adding a new tool:** insert a row in `tools` (slug, daily_limit_guest, daily_limit_user, monthly_limit_user). Wire `useToolQuota({ slug })` + `<QuotaBadge>` + `<LoginGateModal>` into the tool component — see `ATSResumeChecker.tsx` as the reference.
+
+---
+
+## Database Migrations
+
+- All schema changes live in `supabase/migrations/NNNN_<name>.sql` (zero-padded, sequential).
+- **Never auto-applied on deploy.** Apply locally:
+  ```bash
+  pnpm db:new add_something    # scaffold next file
+  # …edit the SQL…
+  pnpm db:push:dry             # preview
+  pnpm db:push                 # apply
+  ```
+- The script downloads the Supabase CLI to `.supabase-cli/` (gitignored) on first run and reads creds from `.env.local`. **Use `pnpm`, never `npm`.**
+- Once a migration is pushed to remote, **do not edit it** — create a new migration to fix or amend.
 
 ---
 
 ## Commands
 
 ```bash
-pnpm dev      # Dev server - runs on :3001 if :3000 is taken
-pnpm build    # Production build + type check
-pnpm lint     # ESLint
+pnpm dev          # Dev server - runs on :3001 if :3000 is taken
+pnpm build        # Production build + type check
+pnpm lint         # ESLint
+pnpm db:push      # Apply pending Supabase migrations
+pnpm db:new <n>   # Scaffold next migration file
 ```
 
 ## Related

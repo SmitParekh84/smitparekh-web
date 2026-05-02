@@ -249,13 +249,43 @@ Don't import `sonner` directly in feature code.
 
 ## 9. Environment variables
 
-| Variable                     | Default                       | What it is                         |
-| ---------------------------- | ----------------------------- | ---------------------------------- |
-| `NEXT_PUBLIC_API_URL`        | `http://localhost:5000/api`   | Node/Express backend base URL      |
-| `NEXT_PUBLIC_PYTHON_API_URL` | unset (optional)              | Python tools service (rembg, etc.) |
+| Variable                                         | Scope     | What it is                                              |
+| ------------------------------------------------ | --------- | ------------------------------------------------------- |
+| `NEXT_PUBLIC_API_URL`                            | client    | Express backend base URL                                |
+| `NEXT_PUBLIC_PYTHON_API_URL`                     | client    | Python tools service (rembg, etc., optional)            |
+| `NEXT_PUBLIC_SUPABASE_URL`                       | client    | Supabase project URL                                    |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`           | client    | Supabase anon key                                       |
+| `SUPABASE_SERVICE_ROLE_KEY`                      | server    | Bypasses RLS — quota writes + admin reads. Never expose |
+| `IP_HASH_SALT`                                   | server    | Salt for hashing IPs in `tool_usage.ip_hash`            |
+| `IP_QUOTA_MULTIPLIER`                            | server    | Default `3` — sessions per NAT before IP cap            |
+| `ADMIN_EMAILS` / `NEXT_PUBLIC_ADMIN_EMAILS`      | both      | Comma-separated admin allowlist; empty = locked         |
+| `SUPABASE_ACCESS_TOKEN` / `SUPABASE_DB_PASSWORD` | local     | Used by `pnpm db:push` only                             |
 
 `.env.example` is the source of truth, copy it to `.env.local` for local dev.
 Don't commit secrets. Anything client-needs-to-see must be `NEXT_PUBLIC_*`.
+
+When you add a new env var: update `.env.example` (with a comment), `.env.local`,
+this table, the `README.md` table, and `CLAUDE.md` if it changes runtime behavior.
+
+---
+
+## 9.5. Tool quotas + DB migrations
+
+- **Quota gate:** `app/api/tools/[slug]/use/route.ts` — `POST` consumes, `GET` reports remaining
+- **Hook:** `useToolQuota({ slug })` from `hooks/api/use-tool-quota.ts`
+- **UI:** every tool component wires `<QuotaBadge>` + `<LoginGateModal>`
+- **Admin:** all admin routes/pages gate on `isAdminEmail()` (`lib/admin-allowlist.ts`)
+- **IPs:** never log raw — use `hashIp()` (`lib/ip-hash.ts`)
+
+Migrations live in `supabase/migrations/NNNN_<name>.sql`. Apply with **pnpm**:
+
+```bash
+pnpm db:new add_something    # scaffold next sequential file
+pnpm db:push:dry             # preview
+pnpm db:push                 # apply
+```
+
+Never use `npm run db:*` — repo is pnpm-only. Never edit a migration that's already been pushed.
 
 ---
 

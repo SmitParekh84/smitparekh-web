@@ -81,6 +81,9 @@ Logs are interleaved with colored prefixes. Press `Ctrl+C` once to stop both.
 | `pnpm setup`     | `pnpm install` in both repos                         |
 | `pnpm build`     | Production build of the Next.js app                  |
 | `pnpm lint`      | ESLint                                               |
+| `pnpm db:push`     | Apply pending Supabase migrations (auto-detects creds, downloads CLI on first run) |
+| `pnpm db:push:dry` | Preview which migrations would be applied (no changes) |
+| `pnpm db:new <name>` | Scaffold the next sequential `supabase/migrations/NNNN_<name>.sql` |
 
 ### Requirements
 
@@ -91,10 +94,75 @@ Logs are interleaved with colored prefixes. Press `Ctrl+C` once to stop both.
 
 ## Environment variables
 
+Copy `.env.example` → `.env.local` and fill in values.
+
+### Backend services
+
 | Variable                     | Default                       | Description                         |
 | ---------------------------- | ----------------------------- | ----------------------------------- |
 | `NEXT_PUBLIC_API_URL`        | `http://localhost:5000/api`   | Express backend base URL            |
 | `NEXT_PUBLIC_PYTHON_API_URL` | _(unset, optional)_           | Python tools service (rembg, etc.)  |
+
+### Supabase auth + quotas
+
+| Variable                              | Required        | Description                                                   |
+| ------------------------------------- | --------------- | ------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`            | yes             | `https://<project-ref>.supabase.co`                           |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`| yes             | Publishable (anon) key from Project Settings → API            |
+| `SUPABASE_SERVICE_ROLE_KEY`           | yes (server)    | Server-only. Bypasses RLS for quota writes and admin reads.   |
+
+### Tool quotas
+
+| Variable               | Default | Description                                                                       |
+| ---------------------- | ------- | --------------------------------------------------------------------------------- |
+| `IP_HASH_SALT`         | _none_  | Salt used to sha256 client IPs in `tool_usage.ip_hash`. Rotate to wipe guest counts. |
+| `IP_QUOTA_MULTIPLIER`  | `3`     | Guest IP quota multiplier — up to N distinct sessions per NAT before the IP cap.  |
+
+### Admin allowlist
+
+| Variable                    | Required | Description                                                              |
+| --------------------------- | -------- | ------------------------------------------------------------------------ |
+| `ADMIN_EMAILS`              | server   | Comma-separated emails allowed at `/admin` server APIs. Empty = locked.  |
+| `NEXT_PUBLIC_ADMIN_EMAILS`  | client   | Same list, used by `<AdminGuard>` for the client-side gate.              |
+
+### Supabase CLI (only needed locally for `pnpm db:push`)
+
+| Variable                  | Description                                                                |
+| ------------------------- | -------------------------------------------------------------------------- |
+| `SUPABASE_ACCESS_TOKEN`   | Personal Access Token from <https://supabase.com/dashboard/account/tokens> |
+| `SUPABASE_DB_PASSWORD`    | Database password from Supabase Project Settings → Database                |
+
+> Production: set the same vars (minus the CLI ones) in your Vercel project.
+
+---
+
+## Database / Supabase migrations
+
+SQL migrations live under `supabase/migrations/NNNN_<name>.sql`. They are **never auto-applied on deploy** — apply them explicitly from your machine.
+
+### Apply pending migrations
+
+```bash
+pnpm db:push          # applies any new migration files
+pnpm db:push:dry      # preview only, no changes
+```
+
+The script (`scripts/db-push.ps1`):
+- Reads `SUPABASE_ACCESS_TOKEN` + `SUPABASE_DB_PASSWORD` from `.env.local` (or environment)
+- Downloads the Supabase CLI to `.supabase-cli/` on first run (gitignored)
+- Parses the project ref from `NEXT_PUBLIC_SUPABASE_URL`
+- Links the project (idempotent) and runs `supabase db push`
+
+### Create a new migration
+
+```bash
+pnpm db:new add_blog_comments
+# → supabase/migrations/0003_add_blog_comments.sql
+```
+
+Edit the generated file, then run `pnpm db:push`.
+
+> **pnpm vs npm:** the project is **pnpm-only**. `pnpm db:push` is the canonical command — never `npm run`.
 
 ---
 
