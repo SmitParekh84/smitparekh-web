@@ -18,6 +18,7 @@ import {
   UserRound,
   Users,
   FileBadge,
+  Bell,
 } from "lucide-react";
 import {
   Sidebar,
@@ -53,6 +54,7 @@ const NAV_MAIN = [
   { title: "Blog", href: "/admin/blogs", icon: FileText },
   { title: "Contacts", href: "/admin/contacts", icon: Mail },
   { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
+  { title: "Waitlist", href: "/admin/waitlist", icon: Bell },
   { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
   { title: "Tools", href: "/admin/tools", icon: Wrench },
   { title: "Resume", href: "/admin/resume", icon: FileBadge },

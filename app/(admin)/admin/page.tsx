@@ -61,11 +61,13 @@ function StatCard({ label, value, hint, icon: Icon, color, loading }: StatCardPr
 
 export default function AdminOverviewPage() {
   const { data: projects, isLoading: pLoading } = useProjects();
-  const { data: feedback, isLoading: fLoading } = useFeedbackList();
+  const { data: feedbackRes, isLoading: fLoading } = useFeedbackList();
+
+  const feedback = feedbackRes?.data;
 
   const total = projects?.length ?? 0;
   const featured = projects?.filter((p) => p.isShowcased).length ?? 0;
-  const totalFeedback = feedback?.length ?? 0;
+  const totalFeedback = feedbackRes?.total ?? 0;
   const ratings =
     feedback?.map((f) => f.rating).filter((r): r is number => typeof r === "number") ?? [];
   const avgRating =

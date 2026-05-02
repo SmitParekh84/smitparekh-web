@@ -19,6 +19,7 @@ export const queryKeys = {
   feedback: {
     all: ["feedback"] as const,
     list: () => [...queryKeys.feedback.all, "list"] as const,
+    adminList: (params?: object) => [...queryKeys.feedback.all, "admin", params ?? {}] as const,
   },
   chat: {
     all: ["chat"] as const,
@@ -48,5 +49,9 @@ export const queryKeys = {
     all: ["resume-events"] as const,
     stats: (days: number) =>
       [...queryKeys.resumeEvents.all, "stats", days] as const,
+  },
+  adminWaitlist: {
+    all: ["admin-waitlist"] as const,
+    list: () => [...queryKeys.adminWaitlist.all, "list"] as const,
   },
 } as const;

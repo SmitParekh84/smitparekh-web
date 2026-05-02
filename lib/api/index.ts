@@ -16,7 +16,16 @@ export {
   type ContactResponse,
   type CvDownloadPayload,
 } from "./contact";
-export { feedbackApi, type FeedbackPayload, type FeedbackEntry } from "./feedback";
+export {
+  feedbackApi,
+  type FeedbackPayload,
+  type FeedbackEntry,
+  type FeedbackType,
+  type FeedbackStatus,
+  type FeedbackListResponse,
+  type AdminFeedbackListResponse,
+} from "./feedback";
+export { adminWaitlistApi, type WaitlistGroup, type WaitlistEmail } from "./admin-waitlist";
 export {
   sendChatMessage,
   listChatSessions,
