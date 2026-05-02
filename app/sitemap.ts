@@ -16,10 +16,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/about`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
     { url: `${base}/portfolio`, priority: 0.8, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
     { url: `${base}/services`, priority: 0.8, changeFrequency: "monthly", lastModified: new Date(), images: [`${base}/images/smit-parekh-web-development-services.png`] },
+    { url: `${base}/hire-me`, priority: 0.85, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
+    { url: `${base}/feedback`, priority: 0.6, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-blog-web-development.png`] },
     { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
+    { url: `${base}/resume`, priority: 0.6, changeFrequency: "yearly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/faq`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
+    { url: `${base}/privacy-policy`, priority: 0.3, changeFrequency: "yearly", lastModified: new Date() },
+    { url: `${base}/terms`, priority: 0.3, changeFrequency: "yearly", lastModified: new Date() },
   ];
 
   const projects = await fetchAllCaseStudies();

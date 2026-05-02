@@ -4,11 +4,16 @@ import { siteConfig } from "@/data/site";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Main rule: allow all crawlers
+      // Main rule: allow all crawlers on public content
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/"],
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/dashboard/",
+          "/login",
+        ],
       },
       // Allow AI search/citation crawlers (good for GEO/AEO - being cited drives traffic)
       { userAgent: "PerplexityBot", allow: "/" },
