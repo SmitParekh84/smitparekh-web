@@ -4,7 +4,9 @@ import { useState, useRef } from "react";
 import { Upload, Download, X, Eraser } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRemoveBackground } from "@/hooks/api/use-tools";
+import { useToolQuota } from "@/hooks/api/use-tool-quota";
 import { toast } from "@/lib/toast";
+import { LoginGateModal } from "@/components/tools/LoginGateModal";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -18,8 +20,10 @@ export default function BackgroundRemover() {
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<"original" | "result">("original");
+  const [loginGateOpen, setLoginGateOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mutation = useRemoveBackground();
+  const { checkQuota, isChecking } = useToolQuota("background-remover");
 
   const handleFile = (f: File) => {
     if (!f.type.startsWith("image/")) {
@@ -34,8 +38,13 @@ export default function BackgroundRemover() {
     reader.readAsDataURL(f);
   };
 
-  const removeBackground = () => {
+  const removeBackground = async () => {
     if (!file) return;
+    const quota = await checkQuota();
+    if (!quota.allowed) {
+      setLoginGateOpen(true);
+      return;
+    }
     mutation.mutate(file, {
       onSuccess: (blob) => {
         setResultUrl(URL.createObjectURL(blob));
@@ -150,11 +159,11 @@ export default function BackgroundRemover() {
         <div className="flex gap-3">
           <button
             onClick={removeBackground}
-            disabled={mutation.isPending}
+            disabled={mutation.isPending || isChecking}
             className="flex-1 rounded-xl bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 transition-colors flex items-center justify-center gap-2"
           >
             <Eraser className="w-4 h-4" />
-            {mutation.isPending ? "Processing…" : "Remove Background"}
+            {isChecking ? "Checking…" : mutation.isPending ? "Processing…" : "Remove Background"}
           </button>
           {resultUrl && (
             <button
@@ -173,6 +182,12 @@ export default function BackgroundRemover() {
           <strong className="text-foreground">Tip:</strong> Works best on photos with clear subjects - portraits, products, animals. AI-powered via rembg - transparent PNG output.
         </p>
       </div>
+
+      <LoginGateModal
+        open={loginGateOpen}
+        onClose={() => setLoginGateOpen(false)}
+        toolName="the Background Remover"
+      />
     </div>
   );
 }

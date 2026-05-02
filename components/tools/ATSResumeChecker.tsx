@@ -13,10 +13,12 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAnalyzeResume } from "@/hooks/api/use-tools";
+import { useToolQuota } from "@/hooks/api/use-tool-quota";
 import { toast } from "@/lib/toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ATSNotifyModal } from "@/components/tools/ATSNotifyModal";
+import { LoginGateModal } from "@/components/tools/LoginGateModal";
 
 type Step = 1 | 2 | 3;
 
@@ -87,8 +89,10 @@ export default function ATSResumeChecker() {
   const [result, setResult] = useState<{ score?: number; analysis?: string; recommendations?: string[] } | null>(null);
   const [dragging, setDragging] = useState(false);
   const [notifyOpen, setNotifyOpen] = useState(false);
+  const [loginGateOpen, setLoginGateOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mutation = useAnalyzeResume();
+  const { checkQuota, isChecking } = useToolQuota("ats-resume-checker");
 
   const handleFile = (f: File) => {
     const allowed = [
@@ -107,8 +111,13 @@ export default function ATSResumeChecker() {
     setResult(null);
   };
 
-  const analyze = () => {
+  const analyze = async () => {
     if (!file) return;
+    const quota = await checkQuota();
+    if (!quota.allowed) {
+      setLoginGateOpen(true);
+      return;
+    }
     setStep(2);
     mutation.mutate(file, {
       onSuccess: (res) => {
@@ -294,11 +303,11 @@ export default function ATSResumeChecker() {
             {file && (
               <Button
                 onClick={analyze}
-                disabled={mutation.isPending}
+                disabled={mutation.isPending || isChecking}
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white"
               >
                 <Upload className="w-4 h-4 mr-2" />
-                Next: Analyse
+                {isChecking ? "Checking quota…" : "Next: Analyse"}
               </Button>
             )}
           </div>
@@ -380,6 +389,11 @@ export default function ATSResumeChecker() {
       </div>
 
       <ATSNotifyModal open={notifyOpen} onClose={() => setNotifyOpen(false)} />
+      <LoginGateModal
+        open={loginGateOpen}
+        onClose={() => setLoginGateOpen(false)}
+        toolName="the ATS Resume Checker"
+      />
     </div>
   );
 }

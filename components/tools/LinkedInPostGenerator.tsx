@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Copy, Check, Sparkles, RefreshCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGeneratePost } from "@/hooks/api/use-tools";
+import { useToolQuota } from "@/hooks/api/use-tool-quota";
 import { toast } from "@/lib/toast";
+import { LoginGateModal } from "@/components/tools/LoginGateModal";
 
 const TONES = ["Professional", "Casual", "Inspirational", "Story", "Educational"] as const;
 const LENGTHS = ["short", "medium", "long"] as const;
@@ -16,10 +18,17 @@ export default function LinkedInPostGenerator() {
   const [audience, setAudience] = useState("");
   const [post, setPost] = useState("");
   const [copied, setCopied] = useState(false);
+  const [loginGateOpen, setLoginGateOpen] = useState(false);
   const mutation = useGeneratePost();
+  const { checkQuota, isChecking } = useToolQuota("viral-linkedin-post-generator");
 
-  const generate = () => {
+  const generate = async () => {
     if (!topic.trim()) return;
+    const quota = await checkQuota();
+    if (!quota.allowed) {
+      setLoginGateOpen(true);
+      return;
+    }
     mutation.mutate(
       { topic: topic.trim(), tone: tone.toLowerCase() as "professional" | "casual" | "inspirational" | "story" | "educational", length, audience: audience.trim() || undefined },
       {
@@ -107,11 +116,11 @@ export default function LinkedInPostGenerator() {
 
       <button
         onClick={generate}
-        disabled={!topic.trim() || mutation.isPending}
+        disabled={!topic.trim() || mutation.isPending || isChecking}
         className="w-full rounded-xl bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 transition-colors flex items-center justify-center gap-2"
       >
         <Sparkles className="w-4 h-4" />
-        {mutation.isPending ? "Writing post…" : "Generate Post"}
+        {isChecking ? "Checking…" : mutation.isPending ? "Writing post…" : "Generate Post"}
       </button>
 
       <AnimatePresence>
@@ -163,6 +172,12 @@ export default function LinkedInPostGenerator() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <LoginGateModal
+        open={loginGateOpen}
+        onClose={() => setLoginGateOpen(false)}
+        toolName="the LinkedIn Post Generator"
+      />
     </div>
   );
 }
