@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Zap, History, TrendingUp, ShieldCheck, Loader2 } from "lucide-react";
+import { Zap, History, TrendingUp, ShieldCheck, Loader2, User, LayoutDashboard, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Session } from "@supabase/supabase-js";
 
 const BENEFITS = [
   {
@@ -60,18 +61,139 @@ function GoogleIcon() {
   );
 }
 
+/** Shown when the visitor is already signed in — let them continue or switch account */
+function AlreadySignedIn({
+  session,
+  next,
+}: {
+  session: Session;
+  next: string;
+}) {
+  const router = useRouter();
+  const [signingOut, setSigningOut] = useState(false);
+
+  const name = session.user.user_metadata?.full_name ?? session.user.email ?? "You";
+  const avatarUrl = session.user.user_metadata?.avatar_url as string | undefined;
+  const email = session.user.email ?? "";
+
+  async function handleSwitch() {
+    setSigningOut(true);
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    // Stay on login page — the useEffect will re-run and show the sign-in form
+    router.refresh();
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 sm:p-12 bg-background">
+      <Link href="/" className="mb-10 text-sm text-muted-foreground hover:text-foreground transition-colors self-start sm:self-auto">
+        ← smitparekh.co.in
+      </Link>
+
+      <Card className="w-full max-w-sm shadow-lg">
+        <CardHeader className="text-center pb-3">
+          {/* Avatar */}
+          <div className="flex justify-center mb-3">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt={name}
+                className="w-16 h-16 rounded-full object-cover ring-2 ring-border"
+              />
+            ) : (
+              <span className="w-16 h-16 rounded-full bg-muted flex items-center justify-center ring-2 ring-border">
+                <User className="w-7 h-7 text-muted-foreground" />
+              </span>
+            )}
+          </div>
+          <CardTitle className="text-xl font-bold">Already signed in</CardTitle>
+          <CardDescription className="mt-1">
+            You&apos;re signed in as <span className="font-medium text-foreground">{name}</span>
+            {email && email !== name && (
+              <span className="block text-xs mt-0.5 truncate">{email}</span>
+            )}
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent className="space-y-3 pt-2">
+          <Button
+            className="w-full gap-2"
+            size="lg"
+            onClick={() => router.push(next)}
+          >
+            <LayoutDashboard className="h-4 w-4" />
+            Continue to Dashboard
+          </Button>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-border" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-card px-3 text-xs text-muted-foreground">
+                or
+              </span>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            className="w-full gap-2"
+            size="lg"
+            onClick={handleSwitch}
+            disabled={signingOut}
+          >
+            {signingOut ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <LogOut className="h-4 w-4" />
+            )}
+            {signingOut ? "Signing out…" : "Switch account"}
+          </Button>
+
+          <p className="text-center text-[11px] text-muted-foreground leading-relaxed pt-1">
+            Switching will sign you out of <span className="font-medium">{email}</span> so
+            you can sign in with a different Google account.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "/dashboard";
   const [signingIn, setSigningIn] = useState(false);
+  const [existingSession, setExistingSession] = useState<Session | null | undefined>(undefined);
 
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) router.replace(next);
+      setExistingSession(data.session ?? null);
     });
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setExistingSession(session ?? null);
+    });
+
+    return () => sub.subscription.unsubscribe();
   }, [router, next]);
+
+  // Loading state while we check the session
+  if (existingSession === undefined) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  // Already signed in — show the "switch account" screen
+  if (existingSession) {
+    return <AlreadySignedIn session={existingSession} next={next} />;
+  }
 
   async function handleGoogleSignIn() {
     setSigningIn(true);

@@ -32,7 +32,6 @@ import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aboutBio, experiences, certifications } from "@/data/about";
-import { cvLink } from "@/data/home";
 
 export const metadata: Metadata = {
   title: "Hire Smit Parekh - Full Stack Developer | React, Next.js, Node.js",
@@ -307,18 +306,16 @@ export default function HireMePage() {
             Start a Conversation
             <ArrowRight className="w-4 h-4" />
           </Link>
-          <a
-            href={cvLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/resume"
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
               "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
             )}
           >
             <Download className="w-4 h-4" />
-            Download CV
-          </a>
+            View Resume
+          </Link>
           <a
             href={siteConfig.social.upwork}
             target="_blank"
