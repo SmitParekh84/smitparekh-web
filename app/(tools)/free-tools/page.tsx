@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Eraser, PenLine, FileText, Globe, QrCode, Hash,
-  Minimize2, ArrowLeftRight, Download, Search, Lock,
   ArrowRight, Zap, ShieldCheck, Brain, RefreshCw,
   CheckCircle, Users, Wrench,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import FreeToolsFAQ from "@/components/tools/FreeToolsFAQ";
+import ToolsCategoryFilter from "@/components/tools/ToolsCategoryFilter";
 
 export const metadata: Metadata = {
   title: "Free Online Tools - Background Remover, Resume Checker, QR Code Generator & More",
   description:
-    "11 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, word counter, SEO analyzer, and more. No signup, no cost. Available worldwide.",
+    "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, YouTube thumbnail downloader, SEO analyzer, and more. No signup, no cost. Available worldwide.",
   alternates: { canonical: `${siteConfig.url}/free-tools` },
   openGraph: {
     type: "website",
@@ -24,7 +22,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/free-tools`,
     title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, word counter, SEO analyzer & more. No signup, no cost. Used globally.",
+      "14 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, JSON formatter, base64 encoder, YouTube thumbnail downloader, SEO analyzer & more. No signup, no cost. Used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
@@ -41,7 +39,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "11 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes & more. No signup, used globally.",
+      "14 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes, JSON formatter, base64 encoder & more. No signup, used globally.",
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
@@ -74,6 +72,9 @@ export const metadata: Metadata = {
     "password generator free",
     "LinkedIn video downloader free",
     "meta tag checker free",
+    "youtube thumbnail downloader free",
+    "json formatter online",
+    "base64 encoder decoder free",
     // Geo - India
     "free online tools India",
     "best free web tools India",
@@ -89,37 +90,6 @@ export const metadata: Metadata = {
     "free tools online 2025",
   ],
 };
-
-const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
-  "background-remover": Eraser,
-  "viral-linkedin-post-generator": PenLine,
-  "ats-resume-checker": FileText,
-  "meta-tag-checker": Globe,
-  "qr-code-generator": QrCode,
-  "word-counter": Hash,
-  "image-compressor": Minimize2,
-  "image-converter": ArrowLeftRight,
-  "linkedin-media-downloader": Download,
-  "seo-analyzer": Search,
-  "password-generator": Lock,
-};
-
-const toolCategoryMap: Record<string, string> = {
-  "background-remover": "Image",
-  "viral-linkedin-post-generator": "Content",
-  "ats-resume-checker": "Career",
-  "meta-tag-checker": "SEO",
-  "qr-code-generator": "Dev",
-  "word-counter": "Content",
-  "image-compressor": "Image",
-  "image-converter": "Image",
-  "linkedin-media-downloader": "Content",
-  "seo-analyzer": "SEO",
-  "password-generator": "Security",
-};
-
-const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);
-const newSlugs = new Set(["ats-resume-checker"]);
 
 const features = [
   { icon: CheckCircle, title: "100% Free Forever", description: "Every tool is free with no hidden costs, trials, or subscription tiers. Use them as much as you need." },
@@ -140,7 +110,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Free Online Tools - No Signup Required",
-  description: "11 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Available globally, no account needed.",
+  description: "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, and more. Available globally, no account needed.",
   url: `${siteConfig.url}/free-tools`,
   inLanguage: "en",
   author: {
@@ -253,46 +223,10 @@ export default function FreeToolsPage() {
         </div>
       </PageHero>
 
-      {/* Tools Grid */}
+      {/* Tools Grid + Filter */}
       <section className="page-section" id="tools">
         <div className="page-container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {toolsSEO.map((tool) => {
-              const Icon = toolIconMap[tool.slug] ?? Globe;
-              const category = toolCategoryMap[tool.slug] ?? "Tool";
-              const isPopular = popularSlugs.has(tool.slug);
-              const isNew = newSlugs.has(tool.slug);
-              const shortTitle = tool.title.split(" - ")[0];
-
-              return (
-                <Link
-                  key={tool.slug}
-                  href={`/free-tools/${tool.slug}`}
-                  className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/5"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/15 transition-colors shrink-0">
-                      <Icon className="w-5 h-5 text-blue-500" />
-                    </div>
-                    <div className="flex gap-1.5 flex-wrap justify-end">
-                      <Badge variant="secondary" className="text-xs px-2 py-0.5">{category}</Badge>
-                      {isPopular && <Badge className="text-xs px-2 py-0.5 bg-blue-500/10 text-blue-500 border-blue-500/20">Popular</Badge>}
-                      {isNew && <Badge className="text-xs px-2 py-0.5 bg-cyan-400/10 text-cyan-500 border-cyan-400/20">New</Badge>}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="font-semibold text-base leading-snug mb-1.5 group-hover:text-blue-500 transition-colors">
-                      {shortTitle}
-                    </h2>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{tool.description}</p>
-                  </div>
-                  <div className="flex items-center gap-1 text-sm text-blue-500 font-medium mt-auto">
-                    Use for free <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <ToolsCategoryFilter />
         </div>
       </section>
 
