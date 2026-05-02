@@ -405,6 +405,18 @@ pnpm db:push      # Apply pending Supabase migrations
 pnpm db:new <n>   # Scaffold next migration file
 ```
 
+## Git Workflow
+
+**Never `git commit` or `git push` automatically.** Only stage with `git add` — the user commits and pushes.
+
+```bash
+git add <files>   # ✅ OK
+git commit ...    # ❌ Never
+git push          # ❌ Never
+```
+
+After making changes, tell the user which files were staged and suggest a commit message.
+
 ## Related
 
 - **Backend:** `../smitparekh-api` - Express + MongoDB API (Resend email, Swagger dev docs, tsx ESM+JSX loader)

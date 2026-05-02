@@ -225,6 +225,21 @@ PYTHON_API_URL=http://localhost:8000
 
 ---
 
+## Git Workflow
+
+**Never commit or push automatically.** Stage changes with `git add` only — the user commits and pushes manually.
+
+```bash
+# Correct — stage only
+git add <files>
+
+# Never do these automatically
+git commit ...   # ❌
+git push         # ❌
+```
+
+After making changes, tell the user what was staged and suggest a commit message.
+
 ## Git Commit Format
 Always follow conventional commits:
 - `feat:` new feature
