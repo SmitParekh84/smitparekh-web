@@ -17,24 +17,44 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Lock } from "lucide-react";
 
+function isAdminRole(role?: string | null) {
+  return role === "admin" || role === "superadmin";
+}
+
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useLogin();
 
+  // Only auto-redirect if the current session already has admin role confirmed.
+  // Checking app_metadata here prevents the redirect loop that happens when a
+  // non-admin user is logged in: AdminGuard would redirect back to this page
+  // and this useEffect would redirect back to /admin — infinite loop.
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) router.replace("/admin");
+      if (data.session && isAdminRole(data.session.user.app_metadata?.role)) {
+        router.replace("/admin");
+      }
     });
   }, [router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      await login.mutateAsync({ email, password });
-      router.replace("/admin");
+      // authApi.login calls Supabase + /auth/me (backend MongoDB role)
+      const result = await login.mutateAsync({ email, password });
+      if (isAdminRole(result.user?.role)) {
+        router.replace("/admin");
+      } else {
+        // Logged in but not admin — sign them out and show a clear error
+        await createClient().auth.signOut();
+        toast.error(
+          "Access denied",
+          "This account does not have admin access.",
+        );
+      }
     } catch {
       toast.error("Invalid credentials", "Check your email and password.");
     }

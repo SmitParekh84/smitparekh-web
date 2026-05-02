@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { api } from "@/lib/api";
 import { Loader2 } from "lucide-react";
+
+function isAdminRole(role: string | null | undefined): boolean {
+  return role === "admin" || role === "superadmin";
+}
 
 export function AdminGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -14,32 +19,44 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
     const supabase = createClient();
     let mounted = true;
 
-    const evaluate = (role: string | null | undefined) => {
-      if (!role) {
+    async function check(role: string | null | undefined, hasSession: boolean) {
+      if (!mounted) return;
+      // No session at all → go to login
+      if (!hasSession) {
         router.replace("/admin/login");
         return;
       }
-      if (role !== "admin" && role !== "superadmin") {
+      // Has session but no role in app_metadata → try backend (MongoDB is source of truth)
+      if (!role) {
+        try {
+          const me = await api.get<{ user?: { role?: string } }>("/auth/me");
+          role = me?.user?.role;
+        } catch {
+          // backend unreachable — fall through to forbidden
+        }
+      }
+      if (!mounted) return;
+      if (isAdminRole(role)) {
+        setForbidden(false);
+        setChecking(false);
+      } else {
+        // Logged in but not admin — show forbidden (NOT redirect to login, that causes a loop)
         setForbidden(true);
         setChecking(false);
-        return;
       }
-      setForbidden(false);
-      setChecking(false);
-    };
+    }
 
     supabase.auth.getSession().then(({ data }) => {
       if (!mounted) return;
-      if (!data.session) {
-        router.replace("/admin/login");
-      } else {
-        evaluate(data.session.user.app_metadata?.role);
-      }
+      check(data.session?.user.app_metadata?.role, !!data.session);
     });
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) router.replace("/admin/login");
-      else evaluate(session.user.app_metadata?.role);
+      if (!session) {
+        router.replace("/admin/login");
+      } else {
+        check(session.user.app_metadata?.role, true);
+      }
     });
 
     return () => {
