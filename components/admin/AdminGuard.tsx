@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Loader2 } from "lucide-react";
-import { getPublicAdminEmails } from "@/lib/admin-allowlist";
 
 export function AdminGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -14,14 +13,13 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const supabase = createClient();
     let mounted = true;
-    const allowlist = getPublicAdminEmails();
 
-    const evaluate = (email: string | null | undefined) => {
-      if (!email) {
+    const evaluate = (role: string | null | undefined) => {
+      if (!role) {
         router.replace("/admin/login");
         return;
       }
-      if (allowlist.length === 0 || !allowlist.includes(email.toLowerCase())) {
+      if (role !== "admin" && role !== "superadmin") {
         setForbidden(true);
         setChecking(false);
         return;
@@ -35,13 +33,13 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
       if (!data.session) {
         router.replace("/admin/login");
       } else {
-        evaluate(data.session.user.email);
+        evaluate(data.session.user.app_metadata?.role);
       }
     });
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) router.replace("/admin/login");
-      else evaluate(session.user.email);
+      else evaluate(session.user.app_metadata?.role);
     });
 
     return () => {
@@ -63,7 +61,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen flex flex-col items-center justify-center gap-3 p-6 text-center">
         <h1 className="text-xl font-semibold">Access denied</h1>
         <p className="text-sm text-muted-foreground max-w-md">
-          Your account is not in the admin allowlist. Sign in with an authorised email or contact the site owner.
+          Your account does not have admin access. Contact the site owner if you believe this is an error.
         </p>
         <button
           onClick={async () => {
@@ -81,3 +79,4 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
 
   return <>{children}</>;
 }
+

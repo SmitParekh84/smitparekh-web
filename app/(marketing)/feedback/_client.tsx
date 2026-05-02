@@ -1,42 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, Bug, Star, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { usePublicFeedback, useSubmitFeedback } from "@/hooks/api/use-feedback";
+import {
+  MessageSquare, Bug, Star, Send, CheckCircle2, Loader2,
+  Lightbulb, ShieldCheck, Zap, Clock, ArrowRight, HeartHandshake,
+} from "lucide-react";
+import { useSubmitFeedback } from "@/hooks/api/use-feedback";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
 import type { FeedbackType } from "@/lib/api";
 
 /* ── helpers ───────────────────────────────────────────────────────────────── */
-
-function StatusBadge({ status }: { status: string }) {
-  const map: Record<string, string> = {
-    open: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
-    in_review: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300",
-    resolved: "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300",
-  };
-  const label: Record<string, string> = {
-    open: "Open",
-    in_review: "In Review",
-    resolved: "Resolved",
-  };
-  return (
-    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${map[status] ?? map.open}`}>
-      {label[status] ?? status}
-    </span>
-  );
-}
-
-function TypeBadge({ type }: { type: FeedbackType }) {
-  return type === "bug" ? (
-    <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/40 dark:text-red-300">
-      <Bug className="h-3 w-3" /> Bug
-    </span>
-  ) : (
-    <span className="inline-flex items-center gap-1 rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
-      <MessageSquare className="h-3 w-3" /> Feedback
-    </span>
-  );
-}
 
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hovered, setHovered] = useState(0);
@@ -217,90 +190,96 @@ function SubmitForm() {
   );
 }
 
-/* ── public list ────────────────────────────────────────────────────────────── */
+/* ── what happens next panel ────────────────────────────────────────────────── */
 
-function PublicList() {
-  const [activeType, setActiveType] = useState<FeedbackType | "all">("all");
-  const { data, isLoading, isError } = usePublicFeedback();
+const HOW_IT_WORKS = [
+  {
+    icon: <ShieldCheck className="h-5 w-5 text-blue-500" />,
+    title: "Reviewed personally",
+    desc: "Every submission lands in my inbox. I read each one — no automated filters.",
+  },
+  {
+    icon: <Clock className="h-5 w-5 text-purple-500" />,
+    title: "Actioned within 48 h",
+    desc: "Bug reports get triaged fast. Feature ideas are tracked for upcoming releases.",
+  },
+  {
+    icon: <Zap className="h-5 w-5 text-yellow-500" />,
+    title: "Shapes what ships next",
+    desc: "Recurring feedback directly influences the roadmap — your voice matters.",
+  },
+  {
+    icon: <HeartHandshake className="h-5 w-5 text-green-500" />,
+    title: "You hear back",
+    desc: "Provide your email and I'll follow up once the bug is fixed or feature ships.",
+  },
+];
 
-  const items = data?.data ?? [];
-  const filtered =
-    activeType === "all" ? items : items.filter((i) => i.type === activeType);
+const GOOD_FEEDBACK = [
+  { icon: "🐛", label: "Broken button / layout issue" },
+  { icon: "💡", label: "Feature you wish existed" },
+  { icon: "⚡", label: "Performance or loading problem" },
+  { icon: "🔒", label: "Security or privacy concern" },
+  { icon: "✍️", label: "Content typo or wrong info" },
+  { icon: "🌟", label: "General experience rating" },
+];
 
+function HowItWorksPanel() {
   return (
-    <div className="space-y-4">
-      {/* Type filter */}
-      <div className="flex gap-2">
-        {(["all", "feedback", "bug"] as const).map((t) => (
-          <button
-            key={t}
-            onClick={() => setActiveType(t)}
-            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-              activeType === t
-                ? "bg-foreground text-background"
-                : "bg-muted text-muted-foreground hover:bg-muted/70"
-            }`}
-          >
-            {t === "all" ? `All (${items.length})` : t === "bug" ? "Bug Reports" : "Feedback"}
-          </button>
-        ))}
+    <div className="space-y-8">
+      {/* How it works */}
+      <div>
+        <div className="mb-4 flex items-center gap-2">
+          <Lightbulb className="h-5 w-5 text-yellow-500" />
+          <h2 className="text-lg font-semibold">What happens after you submit?</h2>
+        </div>
+        <div className="space-y-4">
+          {HOW_IT_WORKS.map(({ icon, title, desc }) => (
+            <div key={title} className="flex gap-3 rounded-xl border bg-card p-4 shadow-sm">
+              <div className="mt-0.5 shrink-0">{icon}</div>
+              <div>
+                <p className="text-sm font-semibold">{title}</p>
+                <p className="mt-0.5 text-sm text-muted-foreground">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {isLoading && (
-        <div className="flex items-center justify-center py-10">
-          <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+      {/* What to report */}
+      <div>
+        <div className="mb-4 flex items-center gap-2">
+          <MessageSquare className="h-5 w-5 text-blue-500" />
+          <h2 className="text-lg font-semibold">What's worth reporting?</h2>
         </div>
-      )}
+        <ul className="grid grid-cols-2 gap-2">
+          {GOOD_FEEDBACK.map(({ icon, label }) => (
+            <li
+              key={label}
+              className="flex items-center gap-2 rounded-lg border bg-muted/40 px-3 py-2.5 text-sm"
+            >
+              <span>{icon}</span>
+              <span className="text-muted-foreground">{label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      {isError && (
-        <p className="py-8 text-center text-sm text-muted-foreground">
-          Could not load public submissions.
-        </p>
-      )}
-
-      {!isLoading && !isError && filtered.length === 0 && (
-        <p className="py-8 text-center text-sm text-muted-foreground">
-          No public submissions yet. Be the first!
-        </p>
-      )}
-
-      <ul className="space-y-3">
-        {filtered.map((entry) => (
-          <li
-            key={entry._id}
-            className="rounded-xl border bg-card p-4 shadow-sm transition-shadow hover:shadow-md"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <span className="font-medium">{entry.name}</span>
-                <TypeBadge type={entry.type} />
-                <StatusBadge status={entry.status} />
-              </div>
-              <time className="text-xs text-muted-foreground">
-                {new Date(entry.createdAt).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </time>
-            </div>
-            <p className="mt-1 font-medium text-sm">{entry.title}</p>
-            <p className="mt-1 text-sm text-muted-foreground whitespace-pre-line">{entry.message}</p>
-            {typeof entry.rating === "number" && (
-              <div className="mt-2 flex gap-0.5">
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <Star
-                    key={n}
-                    className={`h-3.5 w-3.5 ${
-                      n <= entry.rating! ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/20"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+      {/* CTA strip */}
+      <div className="flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-5 py-4 dark:border-blue-900/40 dark:bg-blue-950/30">
+        <div>
+          <p className="text-sm font-semibold text-blue-900 dark:text-blue-200">Got a bigger idea?</p>
+          <p className="text-xs text-blue-700/70 dark:text-blue-400">
+            Reach out directly via the contact page.
+          </p>
+        </div>
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          Contact <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+      </div>
     </div>
   );
 }
@@ -327,11 +306,8 @@ export default function FeedbackClientPage() {
           <SubmitForm />
         </div>
 
-        {/* Public list */}
-        <div>
-          <h2 className="mb-6 text-xl font-semibold">Public Submissions</h2>
-          <PublicList />
-        </div>
+        {/* Right — how it works */}
+        <HowItWorksPanel />
       </div>
     </main>
   );
