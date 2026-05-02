@@ -10,7 +10,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aboutBio, experiences, certifications } from "@/data/about";
-import { homeData, aboutStats, cvLink } from "@/data/home";
+import { homeData, aboutStats } from "@/data/home";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -179,18 +179,16 @@ export default function AboutPage() {
                   Work With Me
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href={cvLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/resume"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
                     "gap-2"
                   )}
                 >
                   <Download className="w-4 h-4" />
-                  Download CV
-                </a>
+                  View Resume
+                </Link>
               </div>
 
               <div className="flex items-center gap-4">

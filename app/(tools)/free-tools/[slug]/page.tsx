@@ -9,6 +9,7 @@ import ToolRenderer from "@/components/tools/ToolRenderer";
 import ToolFAQ from "@/components/tools/ToolFAQ";
 import ToolHowItWorks from "@/components/tools/ToolHowItWorks";
 import RelatedTools from "@/components/tools/RelatedTools";
+import { ToolLoginCTA } from "@/components/tools/ToolLoginCTA";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -227,6 +228,7 @@ export default async function ToolPage({ params }: Props) {
               <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
                 <ToolRenderer slug={slug} />
               </div>
+              <ToolLoginCTA slug={slug} toolName={shortTitle} />
             </div>
           </div>
         </section>

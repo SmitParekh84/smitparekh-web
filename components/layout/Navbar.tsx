@@ -3,12 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, Sun, Moon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, LayoutDashboard, LogOut, User } from "lucide-react";
 import { useTheme } from "next-themes";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { navItems, mobileNavItems } from "@/data/navigation";
+import { useSupabaseSession } from "@/hooks/api/use-auth";
+import { createClient } from "@/lib/supabase/client";
 
 const linkItems = navItems.filter(
   (item) => item.href !== "/" && item.href !== "/contact" && !item.dropdown
@@ -20,9 +22,13 @@ export default function Navbar() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
   const toolsRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const { session } = useSupabaseSession();
 
   useEffect(() => setMounted(true), []);
 
@@ -44,6 +50,26 @@ export default function Navbar() {
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
   }, [toolsOpen]);
+
+  /* Close user menu when clicking outside */
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const handle = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, [userMenuOpen]);
+
+  async function handleLogout() {
+    setUserMenuOpen(false);
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/");
+    router.refresh();
+  }
 
   /* Close mobile menu on navigation */
   useEffect(() => setMobileOpen(false), [pathname]);
@@ -205,16 +231,74 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Hire Me - desktop only */}
-            <Link
-              href="/contact"
-              className={cn(
-                buttonVariants({ size: "sm" }),
-                "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
-              )}
-            >
-              Hire Me
-            </Link>
+            {/* User avatar (logged in) OR Hire Me (guest) - desktop only */}
+            {session ? (
+              <div ref={userMenuRef} className="relative hidden md:block">
+                <button
+                  onClick={() => setUserMenuOpen((v) => !v)}
+                  className="flex items-center gap-2 rounded-xl px-2 py-1 hover:bg-accent transition-colors"
+                  aria-label="User menu"
+                >
+                  {session.user.user_metadata?.avatar_url ? (
+                    <img
+                      src={session.user.user_metadata.avatar_url}
+                      alt={session.user.user_metadata?.full_name ?? "User"}
+                      className="w-7 h-7 rounded-full object-cover ring-2 ring-border"
+                    />
+                  ) : (
+                    <span className="w-7 h-7 rounded-full bg-muted flex items-center justify-center">
+                      <User className="w-4 h-4 text-muted-foreground" />
+                    </span>
+                  )}
+                  <span className="text-sm font-medium max-w-[96px] truncate hidden lg:block">
+                    {session.user.user_metadata?.full_name?.split(" ")[0] ?? "Account"}
+                  </span>
+                  <ChevronDown className={cn("w-3 h-3 text-muted-foreground transition-transform", userMenuOpen && "rotate-180")} />
+                </button>
+
+                {userMenuOpen && (
+                  <div className="absolute right-0 top-full pt-2 w-56">
+                    <div className="bg-popover border border-border rounded-2xl shadow-xl shadow-black/10 p-1.5 space-y-0.5">
+                      {/* User info header */}
+                      <div className="px-3 py-2 border-b border-border mb-1">
+                        <p className="text-xs font-semibold truncate">
+                          {session.user.user_metadata?.full_name ?? "User"}
+                        </p>
+                        <p className="text-[11px] text-muted-foreground truncate">
+                          {session.user.email}
+                        </p>
+                      </div>
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm hover:bg-accent transition-colors"
+                      >
+                        <LayoutDashboard className="w-4 h-4 text-muted-foreground" />
+                        My Dashboard
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm hover:bg-destructive/10 hover:text-destructive transition-colors text-left"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Log out
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/contact"
+                className={cn(
+                  buttonVariants({ size: "sm" }),
+                  "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
+                )}
+              >
+                Hire Me
+              </Link>
+            )}
 
             {/* Mobile hamburger */}
             <button
@@ -270,6 +354,45 @@ export default function Navbar() {
             >
               Hire Me
             </Link>
+
+            {/* Mobile: user actions when logged in */}
+            {session && (
+              <div className="mt-3 space-y-2">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-muted/50">
+                  {session.user.user_metadata?.avatar_url ? (
+                    <img
+                      src={session.user.user_metadata.avatar_url}
+                      alt="Avatar"
+                      className="w-9 h-9 rounded-full object-cover ring-2 ring-border"
+                    />
+                  ) : (
+                    <span className="w-9 h-9 rounded-full bg-muted flex items-center justify-center">
+                      <User className="w-5 h-5 text-muted-foreground" />
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium truncate">
+                      {session.user.user_metadata?.full_name ?? "User"}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">{session.user.email}</p>
+                  </div>
+                </div>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "w-full rounded-2xl gap-2")}
+                >
+                  <LayoutDashboard className="w-4 h-4" /> My Dashboard
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => { setMobileOpen(false); handleLogout(); }}
+                  className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "w-full rounded-2xl gap-2 text-destructive hover:text-destructive")}
+                >
+                  <LogOut className="w-4 h-4" /> Log out
+                </button>
+              </div>
+            )}
           </nav>
         </div>
       )}
