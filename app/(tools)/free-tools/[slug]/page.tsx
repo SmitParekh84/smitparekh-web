@@ -81,6 +81,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${title} - Free Online Tool`,
     description: `Use the free ${title} tool - no account required.`,
     alternates: { canonical: `${siteConfig.url}/free-tools/${slug}` },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: siteConfig.name,
+      title: `${title} - Free Online Tool`,
+      description: `Use the free ${title} tool - no account required.`,
+      url: `${siteConfig.url}/free-tools/${slug}`,
+    },
+    twitter: {
+      card: "summary",
+      site: siteConfig.twitterHandle,
+      title: `${title} - Free Online Tool`,
+      description: `Use the free ${title} tool - no account required.`,
+    },
   };
 }
 

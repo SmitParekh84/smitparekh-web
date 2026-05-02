@@ -87,7 +87,13 @@ export default function ATSResumeChecker() {
   const [flow, setFlow] = useState<1 | 2>(1);
   const [step, setStep] = useState<Step>(1);
   const [file, setFile] = useState<File | null>(null);
-  const [result, setResult] = useState<{ score?: number; analysis?: string; recommendations?: string[] } | null>(null);
+  const [result, setResult] = useState<{
+    score: number;
+    summary?: string;
+    sectionBreakdown: Array<{ section: string; rating: string; comments: string }>;
+    missingKeywords: string[];
+    recommendations: string[];
+  } | null>(null);
   const [dragging, setDragging] = useState(false);
   const [notifyOpen, setNotifyOpen] = useState(false);
   const [loginGateOpen, setLoginGateOpen] = useState(false);
@@ -124,10 +130,10 @@ export default function ATSResumeChecker() {
       onSuccess: (res) => {
         setResult({
           score: res.atsScore,
-          analysis:
-            res.summary ??
-            res.sectionBreakdown.map((s) => `${s.section} (${s.score}/100): ${s.feedback}`).join("\n\n"),
-          recommendations: res.recommendations,
+          summary: res.summary,
+          sectionBreakdown: res.sectionBreakdown ?? [],
+          missingKeywords: res.missingKeywords ?? [],
+          recommendations: res.recommendations ?? [],
         });
         setStep(3);
       },
@@ -335,38 +341,80 @@ export default function ATSResumeChecker() {
               className="space-y-5"
             >
               {/* Score */}
-              {result.score !== undefined && (
-                <div className="flex flex-col sm:flex-row items-center gap-6 rounded-xl border border-border bg-card p-6">
-                  <ScoreRing score={result.score} />
-                  <div>
-                    <p className="text-lg font-bold">ATS Score</p>
-                    <p className="text-sm text-muted-foreground mt-1 leading-relaxed max-w-sm">
-                      {result.score >= 75
-                        ? "Great score! Your resume is well-optimised for ATS systems."
-                        : result.score >= 50
-                        ? "Good start. A few improvements will help you pass more filters."
-                        : "Needs work. Follow the recommendations below to improve your score."}
-                    </p>
+              <div className="flex flex-col sm:flex-row items-center gap-6 rounded-xl border border-border bg-card p-6">
+                <ScoreRing score={result.score} />
+                <div>
+                  <p className="text-lg font-bold">ATS Score</p>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed max-w-sm">
+                    {result.score >= 75
+                      ? "Great score! Your resume is well-optimised for ATS systems."
+                      : result.score >= 50
+                      ? "Good start. A few improvements will help you pass more filters."
+                      : "Needs work. Follow the recommendations below to improve your score."}
+                  </p>
+                </div>
+              </div>
+
+              {/* Summary */}
+              {result.summary && (
+                <div className="rounded-xl border border-border bg-card overflow-hidden">
+                  <div className="px-4 py-3 border-b border-border bg-muted/30">
+                    <p className="text-sm font-semibold">Summary</p>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">{result.summary}</p>
                   </div>
                 </div>
               )}
 
-              {/* Analysis */}
-              {result.analysis && (
+              {/* Missing Keywords */}
+              {result.missingKeywords.length > 0 && (
                 <div className="rounded-xl border border-border bg-card overflow-hidden">
                   <div className="px-4 py-3 border-b border-border bg-muted/30">
-                    <p className="text-sm font-semibold">Analysis</p>
+                    <p className="text-sm font-semibold">Missing Keywords</p>
                   </div>
-                  <div className="p-4">
-                    <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                      {result.analysis}
-                    </p>
+                  <div className="p-4 flex flex-wrap gap-2">
+                    {result.missingKeywords.map((kw, i) => (
+                      <Badge key={i} variant="secondary" className="text-xs font-medium">
+                        {kw}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Section Breakdown */}
+              {result.sectionBreakdown.length > 0 && (
+                <div className="rounded-xl border border-border bg-card overflow-hidden">
+                  <div className="px-4 py-3 border-b border-border bg-muted/30">
+                    <p className="text-sm font-semibold">Section Breakdown</p>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {result.sectionBreakdown.map((s, i) => {
+                      const rc =
+                        s.rating.toLowerCase() === "excellent"
+                          ? "text-green-500 border-green-500/40 bg-green-500/5"
+                          : s.rating.toLowerCase() === "good"
+                          ? "text-blue-500 border-blue-500/40 bg-blue-500/5"
+                          : "text-yellow-500 border-yellow-500/40 bg-yellow-500/5";
+                      return (
+                        <div key={i} className="px-4 py-3">
+                          <div className="flex items-center justify-between mb-1">
+                            <p className="text-sm font-medium">{s.section}</p>
+                            <Badge variant="outline" className={`text-[10px] uppercase tracking-wide ${rc}`}>
+                              {s.rating}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{s.comments}</p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
               {/* Recommendations */}
-              {result.recommendations && result.recommendations.length > 0 && (
+              {result.recommendations.length > 0 && (
                 <div className="rounded-xl border border-border bg-card overflow-hidden">
                   <div className="px-4 py-3 border-b border-border bg-muted/30">
                     <p className="text-sm font-semibold">Recommendations</p>

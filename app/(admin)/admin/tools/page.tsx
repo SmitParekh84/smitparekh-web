@@ -1,8 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ExternalLink, Activity, Users, UserCheck, TrendingUp, AlertTriangle } from "lucide-react";
+import {
+  ExternalLink,
+  Activity,
+  Users,
+  UserCheck,
+  TrendingUp,
+  AlertTriangle,
+  Search,
+  RefreshCw,
+  CheckCircle2,
+  RotateCcw,
+} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,6 +23,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
+import { toast } from "@/lib/toast";
+
+const CATEGORIES = ["All", "Image", "Content", "Career", "SEO", "Dev", "Security"];
 
 const toolCategoryMap: Record<string, string> = {
   "background-remover": "Image",
@@ -53,6 +67,22 @@ interface StatsResponse {
   };
 }
 
+interface UserActivityItem {
+  userId: string;
+  email: string;
+  name: string | null;
+  usesToday: number;
+  toolsToday: string[];
+  usesTotal: number;
+  lastUsedAt: string | null;
+}
+
+interface UsersActivityResponse {
+  users: UserActivityItem[];
+  guestUsesToday: number;
+  guestSessionsToday: number;
+}
+
 function nameFromSlug(slug: string): string {
   const seo = toolsSEO.find((t) => t.slug === slug);
   if (seo) return seo.title.split(" - ")[0];
@@ -62,30 +92,82 @@ function nameFromSlug(slug: string): string {
     .join(" ");
 }
 
+function relativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diff / 60_000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs / 24)}d ago`;
+}
+
 export default function ToolsAdminPage() {
+  const [tab, setTab] = useState<"tools" | "users">("tools");
   const [data, setData] = useState<StatsResponse | null>(null);
+  const [usersData, setUsersData] = useState<UsersActivityResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [usersLoading, setUsersLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [savingSlug, setSavingSlug] = useState<string | null>(null);
+  const [savedSlug, setSavedSlug] = useState<string | null>(null);
+  const [resettingUser, setResettingUser] = useState<string | null>(null);
 
-  const load = async () => {
+  // Tool tab filters
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
+
+  const filteredTools = useMemo(() => {
+    if (!data?.perTool) return [];
+    return data.perTool.filter((t) => {
+      const name = nameFromSlug(t.slug).toLowerCase();
+      const matchSearch =
+        !search ||
+        name.includes(search.toLowerCase()) ||
+        t.slug.includes(search.toLowerCase());
+      const matchCat = category === "All" || toolCategoryMap[t.slug] === category;
+      const matchStatus =
+        statusFilter === "all" ||
+        (statusFilter === "active" ? t.is_active : !t.is_active);
+      return matchSearch && matchCat && matchStatus;
+    });
+  }, [data?.perTool, search, category, statusFilter]);
+
+  const loadTools = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/tools/stats", { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json: StatsResponse = await res.json();
-      setData(json);
+      setData(await res.json());
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load stats");
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  const loadUsers = useCallback(async () => {
+    setUsersLoading(true);
+    try {
+      const res = await fetch("/api/admin/users/usage", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setUsersData(await res.json());
+    } catch (e) {
+      toast.error("Failed to load users", e instanceof Error ? e.message : "Unknown error");
+    } finally {
+      setUsersLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    load();
-  }, []);
+    loadTools();
+  }, [loadTools]);
+
+  useEffect(() => {
+    if (tab === "users" && !usersData && !usersLoading) loadUsers();
+  }, [tab, usersData, usersLoading, loadUsers]);
 
   const updateField = async (
     slug: string,
@@ -101,20 +183,47 @@ export default function ToolsAdminPage() {
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || `HTTP ${res.status}`);
+        throw new Error((err as { error?: string }).error || `HTTP ${res.status}`);
       }
       setData((prev) =>
         prev
           ? {
               ...prev,
-              perTool: prev.perTool.map((t) => (t.slug === slug ? { ...t, [field]: value } : t)),
+              perTool: prev.perTool.map((t) =>
+                t.slug === slug ? { ...t, [field]: value } : t,
+              ),
             }
           : prev,
       );
+      setSavedSlug(slug);
+      setTimeout(() => setSavedSlug((s) => (s === slug ? null : s)), 2000);
     } catch (e) {
-      alert(`Update failed: ${e instanceof Error ? e.message : "unknown"}`);
+      toast.error("Update failed", e instanceof Error ? e.message : "Unknown error");
     } finally {
       setSavingSlug(null);
+    }
+  };
+
+  const resetUser = async (userId: string, email: string) => {
+    setResettingUser(userId);
+    try {
+      const res = await fetch(`/api/admin/users/${userId}/reset`, { method: "DELETE" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setUsersData((prev) =>
+        prev
+          ? {
+              ...prev,
+              users: prev.users.map((u) =>
+                u.userId === userId ? { ...u, usesToday: 0, toolsToday: [] } : u,
+              ),
+            }
+          : prev,
+      );
+      toast.success("Reset", `Today's usage cleared for ${email}.`);
+    } catch (e) {
+      toast.error("Reset failed", e instanceof Error ? e.message : "Unknown error");
+    } finally {
+      setResettingUser(null);
     }
   };
 
@@ -148,7 +257,9 @@ export default function ToolsAdminPage() {
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm text-muted-foreground">
-              Quota system not configured. Add <code>SUPABASE_SERVICE_ROLE_KEY</code> to your environment and run the SQL migration <code>supabase/migrations/0001_tools_phase2.sql</code> in your Supabase SQL Editor.
+              Quota system not configured. Add{" "}
+              <code>SUPABASE_SERVICE_ROLE_KEY</code> to your environment and run
+              the SQL migration.
             </p>
           </CardContent>
         </Card>
@@ -156,17 +267,19 @@ export default function ToolsAdminPage() {
     );
   }
 
-  const { summary, perTool } = data;
+  const { summary } = data;
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div>
         <h2 className="text-2xl font-semibold tracking-tight">Tools</h2>
         <p className="text-sm text-muted-foreground">
-          Per-tool quotas, usage, and activity (today vs. all-time).
+          Per-tool quotas, usage, and user activity.
         </p>
       </div>
 
+      {/* Summary cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <SummaryCard
           icon={<Activity className="w-5 h-5" />}
@@ -191,93 +304,322 @@ export default function ToolsAdminPage() {
         />
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Per-tool config</CardTitle>
-          <CardDescription>
-            Edit quotas inline — changes save on blur. Set 0 to disable that audience.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="overflow-x-auto p-0">
-          <table className="w-full text-sm">
-            <thead className="border-b border-border bg-muted/30 text-xs uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th className="text-left px-4 py-3">Tool</th>
-                <th className="text-left px-4 py-3">Category</th>
-                <th className="text-right px-4 py-3">Today</th>
-                <th className="text-right px-4 py-3">All-time</th>
-                <th className="text-right px-4 py-3">Sessions</th>
-                <th className="text-right px-4 py-3">Users</th>
-                <th className="text-right px-4 py-3">Guest quota</th>
-                <th className="text-right px-4 py-3">User quota</th>
-                <th className="text-center px-4 py-3">Active</th>
-                <th className="text-right px-4 py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {perTool.map((t) => (
-                <tr key={t.slug} className="border-b border-border/50 last:border-0">
-                  <td className="px-4 py-3 font-medium">{nameFromSlug(t.slug)}</td>
-                  <td className="px-4 py-3">
-                    <Badge variant="secondary" className="text-[10px] uppercase tracking-wide">
-                      {toolCategoryMap[t.slug] ?? "Tool"}
-                    </Badge>
-                  </td>
-                  <td className="px-4 py-3 text-right tabular-nums">{t.uses_today}</td>
-                  <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
-                    {t.uses_total}
-                  </td>
-                  <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
-                    {t.sessions_today}
-                  </td>
-                  <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">
-                    {t.users_today}
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <QuotaInput
-                      value={t.guest_quota}
-                      disabled={savingSlug === t.slug}
-                      onCommit={(v) => updateField(t.slug, "guest_quota", v)}
-                    />
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <QuotaInput
-                      value={t.user_quota}
-                      disabled={savingSlug === t.slug}
-                      onCommit={(v) => updateField(t.slug, "user_quota", v)}
-                    />
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <button
-                      onClick={() => updateField(t.slug, "is_active", !t.is_active)}
-                      disabled={savingSlug === t.slug}
-                      className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                        t.is_active ? "bg-blue-500" : "bg-muted"
-                      } disabled:opacity-50`}
-                    >
-                      <span
-                        className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                          t.is_active ? "translate-x-4" : "translate-x-0.5"
-                        }`}
-                      />
-                    </button>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <Link
-                      href={`/free-tools/${t.slug}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      Open <ExternalLink className="w-3 h-3" />
-                    </Link>
-                  </td>
-                </tr>
+      {/* Tabs */}
+      <div className="flex gap-1 border-b border-border">
+        {(["tools", "users"] as const).map((t) => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+              tab === t
+                ? "border-blue-500 text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {t === "tools" ? "Tools Config" : "User Activity"}
+          </button>
+        ))}
+      </div>
+
+      {/* ── Tools Config tab ─────────────────────────────── */}
+      {tab === "tools" && (
+        <div className="space-y-4">
+          {/* Filter bar */}
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+              <input
+                type="text"
+                placeholder="Search tools…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:border-blue-500/50"
+              />
+            </div>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="text-sm rounded-lg border border-border bg-background px-3 py-2 focus:outline-none focus:border-blue-500/50"
+            >
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {c === "All" ? "All categories" : c}
+                </option>
               ))}
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
+            </select>
+            <select
+              value={statusFilter}
+              onChange={(e) =>
+                setStatusFilter(e.target.value as "all" | "active" | "inactive")
+              }
+              className="text-sm rounded-lg border border-border bg-background px-3 py-2 focus:outline-none focus:border-blue-500/50"
+            >
+              <option value="all">All statuses</option>
+              <option value="active">Active only</option>
+              <option value="inactive">Inactive only</option>
+            </select>
+          </div>
+
+          {/* Tools table */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Per-tool config</CardTitle>
+              <CardDescription>
+                Edit quotas inline — changes save on blur. Set 0 to disable that
+                audience.
+                {filteredTools.length !== data.perTool.length && (
+                  <span className="ml-2 text-blue-500">
+                    Showing {filteredTools.length} of {data.perTool.length}
+                  </span>
+                )}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="overflow-x-auto p-0">
+              <table className="w-full text-sm min-w-[640px]">
+                <thead className="border-b border-border bg-muted/30 text-xs uppercase tracking-wide text-muted-foreground">
+                  <tr>
+                    <th className="text-left px-4 py-3">Tool</th>
+                    <th className="text-left px-4 py-3">Category</th>
+                    <th className="text-right px-4 py-3">Today</th>
+                    <th className="text-right px-4 py-3 hidden sm:table-cell">All-time</th>
+                    <th className="text-right px-4 py-3 hidden md:table-cell">Sessions</th>
+                    <th className="text-right px-4 py-3 hidden md:table-cell">Users</th>
+                    <th className="text-right px-4 py-3">Guest Q</th>
+                    <th className="text-right px-4 py-3">User Q</th>
+                    <th className="text-center px-4 py-3">Active</th>
+                    <th className="text-right px-4 py-3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTools.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={10}
+                        className="px-4 py-8 text-center text-sm text-muted-foreground"
+                      >
+                        No tools match your filters.
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredTools.map((t) => (
+                      <tr
+                        key={t.slug}
+                        className="border-b border-border/50 last:border-0 hover:bg-muted/20 transition-colors"
+                      >
+                        <td className="px-4 py-3 font-medium">{nameFromSlug(t.slug)}</td>
+                        <td className="px-4 py-3">
+                          <Badge
+                            variant="secondary"
+                            className="text-[10px] uppercase tracking-wide"
+                          >
+                            {toolCategoryMap[t.slug] ?? "Tool"}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums">
+                          {t.uses_today}
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums text-muted-foreground hidden sm:table-cell">
+                          {t.uses_total}
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums text-muted-foreground hidden md:table-cell">
+                          {t.sessions_today}
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums text-muted-foreground hidden md:table-cell">
+                          {t.users_today}
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          <QuotaInput
+                            value={t.guest_quota}
+                            disabled={savingSlug === t.slug}
+                            onCommit={(v) => updateField(t.slug, "guest_quota", v)}
+                          />
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          <QuotaInput
+                            value={t.user_quota}
+                            disabled={savingSlug === t.slug}
+                            onCommit={(v) => updateField(t.slug, "user_quota", v)}
+                          />
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <button
+                            onClick={() =>
+                              updateField(t.slug, "is_active", !t.is_active)
+                            }
+                            disabled={savingSlug === t.slug}
+                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                              t.is_active ? "bg-blue-500" : "bg-muted"
+                            } disabled:opacity-50`}
+                            aria-label={t.is_active ? "Deactivate" : "Activate"}
+                          >
+                            <span
+                              className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
+                                t.is_active ? "translate-x-4" : "translate-x-0.5"
+                              }`}
+                            />
+                          </button>
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          {savedSlug === t.slug ? (
+                            <span className="inline-flex items-center gap-1 text-xs text-green-500">
+                              <CheckCircle2 className="w-3.5 h-3.5" /> Saved
+                            </span>
+                          ) : (
+                            <Link
+                              href={`/free-tools/${t.slug}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                            >
+                              Open <ExternalLink className="w-3 h-3" />
+                            </Link>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* ── User Activity tab ─────────────────────────────── */}
+      {tab === "users" && (
+        <div className="space-y-4">
+          {usersLoading ? (
+            <p className="text-sm text-muted-foreground">Loading user activity…</p>
+          ) : usersData ? (
+            <>
+              {/* Guest summary */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <SummaryCard
+                  icon={<Users className="w-5 h-5" />}
+                  label="Guest uses today"
+                  value={usersData.guestUsesToday.toLocaleString()}
+                />
+                <SummaryCard
+                  icon={<Activity className="w-5 h-5" />}
+                  label="Guest sessions today"
+                  value={usersData.guestSessionsToday.toLocaleString()}
+                />
+              </div>
+
+              {/* Registered users table */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                  <div>
+                    <CardTitle className="text-base">Registered Users</CardTitle>
+                    <CardDescription>
+                      Users who have used at least one tool.
+                    </CardDescription>
+                  </div>
+                  <button
+                    onClick={loadUsers}
+                    disabled={usersLoading}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Refresh"
+                  >
+                    <RefreshCw
+                      className={`w-4 h-4 ${usersLoading ? "animate-spin" : ""}`}
+                    />
+                  </button>
+                </CardHeader>
+                <CardContent className="overflow-x-auto p-0">
+                  {usersData.users.length === 0 ? (
+                    <div className="px-4 py-8 text-center text-sm text-muted-foreground">
+                      No registered users have used any tools yet.
+                    </div>
+                  ) : (
+                    <table className="w-full text-sm min-w-[480px]">
+                      <thead className="border-b border-border bg-muted/30 text-xs uppercase tracking-wide text-muted-foreground">
+                        <tr>
+                          <th className="text-left px-4 py-3">User</th>
+                          <th className="text-right px-4 py-3">Today</th>
+                          <th className="text-right px-4 py-3 hidden sm:table-cell">
+                            All-time
+                          </th>
+                          <th className="text-left px-4 py-3 hidden md:table-cell">
+                            Tools today
+                          </th>
+                          <th className="text-right px-4 py-3 hidden sm:table-cell">
+                            Last active
+                          </th>
+                          <th className="text-right px-4 py-3">Reset</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {usersData.users.map((u) => (
+                          <tr
+                            key={u.userId}
+                            className="border-b border-border/50 last:border-0 hover:bg-muted/20 transition-colors"
+                          >
+                            <td className="px-4 py-3">
+                              <p className="font-medium text-sm">
+                                {u.name ?? u.email}
+                              </p>
+                              {u.name && (
+                                <p className="text-xs text-muted-foreground">
+                                  {u.email}
+                                </p>
+                              )}
+                            </td>
+                            <td className="px-4 py-3 text-right tabular-nums">
+                              {u.usesToday}
+                            </td>
+                            <td className="px-4 py-3 text-right tabular-nums text-muted-foreground hidden sm:table-cell">
+                              {u.usesTotal}
+                            </td>
+                            <td className="px-4 py-3 hidden md:table-cell">
+                              <div className="flex flex-wrap gap-1">
+                                {u.toolsToday.map((s) => (
+                                  <Badge
+                                    key={s}
+                                    variant="secondary"
+                                    className="text-[10px]"
+                                  >
+                                    {nameFromSlug(s)}
+                                  </Badge>
+                                ))}
+                                {u.toolsToday.length === 0 && (
+                                  <span className="text-xs text-muted-foreground">
+                                    —
+                                  </span>
+                                )}
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-right text-xs text-muted-foreground hidden sm:table-cell">
+                              {u.lastUsedAt ? relativeTime(u.lastUsedAt) : "—"}
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <button
+                                onClick={() => resetUser(u.userId, u.email)}
+                                disabled={
+                                  resettingUser === u.userId || u.usesToday === 0
+                                }
+                                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-red-500 disabled:opacity-40 transition-colors"
+                                title={
+                                  u.usesToday === 0
+                                    ? "No uses today"
+                                    : "Reset today's usage"
+                                }
+                              >
+                                <RotateCcw className="w-3.5 h-3.5" />
+                                <span className="hidden sm:inline">Reset</span>
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </CardContent>
+              </Card>
+            </>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 }

@@ -53,20 +53,7 @@ async function identifyCaller(request: NextRequest): Promise<CallerIdentity> {
   return { userId, sessionId, ipHash };
 }
 
-async function countUsage(
-  slug: string,
-  caller: CallerIdentity,
-): Promise<{ used: number; tier: Tier; effectiveQuota: number; quota: number }> {
-  // Returns the effective "used" count for the caller, applying the hybrid rule
-  // for guests (max of session + ip-scaled).
-  return Promise.resolve({
-    used: 0,
-    tier: caller.userId ? "user" : "guest",
-    effectiveQuota: 0,
-    quota: 0,
-  });
-}
-void countUsage; // (helper kept for future refactor; inlined below for readability)
+void 0; // placeholder removed
 
 /** Shared logic for both POST (consume) and GET (status). */
 async function loadCounts(

@@ -6,10 +6,10 @@ export interface ResumeAnalysisResponse {
   missingKeywords: string[];
   sectionBreakdown: Array<{
     section: string;
-    score: number;
-    feedback: string;
+    rating: string;    // e.g. "Excellent", "Good", "Needs Work"
+    comments: string;
   }>;
-  rewrittenBullets: Array<{
+  bulletSuggestions: Array<{
     original: string;
     improved: string;
   }>;
