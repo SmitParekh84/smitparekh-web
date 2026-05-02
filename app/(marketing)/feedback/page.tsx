@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { MessageSquare } from "lucide-react";
+import { PageHero } from "@/components/layout/PageHero";
+import FeedbackClientPage from "./_client";
 
 export const metadata: Metadata = {
   title: "Feedback & Bug Reports | Smit Parekh",
@@ -12,4 +15,17 @@ export const metadata: Metadata = {
   },
 };
 
-export { default } from "./_client";
+export default function FeedbackPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Feedback & Bug Reports"
+        title="Help make the site better"
+        description="Share ideas, report bugs, or rate your experience. Every submission is read personally — no bots, no filters."
+        icon={MessageSquare}
+        align="center"
+      />
+      <FeedbackClientPage />
+    </>
+  );
+}

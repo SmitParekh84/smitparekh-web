@@ -289,16 +289,6 @@ function HowItWorksPanel() {
 export default function FeedbackClientPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      {/* Header */}
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold tracking-tight">Feedback & Bug Reports</h1>
-        <p className="mt-3 text-lg text-muted-foreground">
-          Help make the tools better — share feedback or report a bug.
-          <br />
-          <span className="text-sm">No login required. All submissions are reviewed personally.</span>
-        </p>
-      </div>
-
       <div className="grid gap-12 lg:grid-cols-2">
         {/* Submit form */}
         <div className="rounded-2xl border bg-card p-6 shadow-sm">
