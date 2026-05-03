@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight, Zap, ShieldCheck, Brain, RefreshCw,
-  CheckCircle, Users, Wrench,
+  CheckCircle, Users, Wrench, LogIn,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
@@ -75,19 +75,22 @@ export const metadata: Metadata = {
     "youtube thumbnail downloader free",
     "json formatter online",
     "base64 encoder decoder free",
-    // Geo - India
-    "free online tools India",
-    "best free web tools India",
-    "free AI tools India",
     // Geo - US
     "free online tools USA",
     "free tools no signup United States",
-    // Geo - France
-    "outils gratuits en ligne",
-    "outils SEO gratuits",
-    "outils développeur gratuits",
+    "free developer tools United States",
+    // Geo - UK
+    "free online tools UK",
+    "free web tools United Kingdom",
+    "free developer tools UK",
+    // Geo - Canada
+    "free online tools Canada",
+    "free developer tools Canada",
+    // Geo - India
+    "free online tools India",
+    "free AI tools India",
     // Global
-    "free tools online 2025",
+    "free tools online 2026",
   ],
 };
 
@@ -110,7 +113,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Free Online Tools - No Signup Required",
-  description: "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, and more. Available globally, no account needed.",
+  description: "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, and more. Available in US, UK, Canada, India, and worldwide. No account needed.",
   url: `${siteConfig.url}/free-tools`,
   inLanguage: "en",
   author: {
@@ -136,7 +139,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Free Online Tools by Smit Parekh",
-  description: "Free browser-based tools with no signup required - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Used in India, US, France, and worldwide.",
+  description: "Free browser-based tools with no signup required - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, and more. Used in US, UK, Canada, India, and worldwide.",
   url: `${siteConfig.url}/free-tools`,
   numberOfItems: toolsSEO.length,
   itemListElement: toolsSEO.map((tool, i) => ({
@@ -156,10 +159,10 @@ const itemListSchema = {
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         eligibleRegion: [
-          { "@type": "Country", name: "IN" },
           { "@type": "Country", name: "US" },
-          { "@type": "Country", name: "FR" },
-          { "@type": "Country", name: "Worldwide" },
+          { "@type": "Country", name: "GB" },
+          { "@type": "Country", name: "CA" },
+          { "@type": "Country", name: "IN" },
         ],
       },
     },
@@ -222,6 +225,28 @@ export default function FreeToolsPage() {
           <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> 100% free forever</span>
         </div>
       </PageHero>
+
+      {/* Sign-in CTA banner */}
+      <section className="border-b border-border bg-blue-500/5">
+        <div className="page-container py-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-3 text-sm">
+              <Zap className="w-4 h-4 text-blue-500 shrink-0" />
+              <span>
+                <span className="font-semibold">Free users get 3 uses/day.</span>
+                <span className="text-muted-foreground ml-1.5">Sign in with Google to unlock 10× more — it takes 5 seconds.</span>
+              </span>
+            </div>
+            <Link
+              href="/login"
+              className="flex items-center gap-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2 transition-colors shrink-0"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              Sign in free
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Tools Grid + Filter */}
       <section className="page-section" id="tools">

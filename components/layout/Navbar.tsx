@@ -153,6 +153,18 @@ export default function Navbar() {
                 {toolsOpen && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[640px]">
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
+                      {/* Header row — links to the full landing page */}
+                      <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
+                        <p className="text-sm font-semibold text-foreground">Free Online Tools</p>
+                        <Link
+                          href="/free-tools"
+                          onClick={() => setToolsOpen(false)}
+                          className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600 transition-colors"
+                        >
+                          Browse all tools
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
                       <div className="grid grid-cols-3 gap-5">
                         {toolsItem.dropdown?.map((group) => (
                           <div key={group.title}>
@@ -289,15 +301,26 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <Link
-                href="/contact"
-                className={cn(
-                  buttonVariants({ size: "sm" }),
-                  "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
-                )}
-              >
-                Hire Me
-              </Link>
+              <>
+                <Link
+                  href="/login"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "sm" }),
+                    "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
+                  )}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/contact"
+                  className={cn(
+                    buttonVariants({ size: "sm" }),
+                    "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
+                  )}
+                >
+                  Hire Me
+                </Link>
+              </>
             )}
 
             {/* Mobile hamburger */}
@@ -347,13 +370,24 @@ export default function Navbar() {
               ))}
             </div>
 
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className={cn(buttonVariants({ size: "lg" }), "w-full rounded-2xl")}
-            >
-              Hire Me
-            </Link>
+            <div className="flex gap-2">
+              {!session && (
+                <Link
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "flex-1 rounded-2xl")}
+                >
+                  Sign in
+                </Link>
+              )}
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className={cn(buttonVariants({ size: "lg" }), !session ? "flex-1" : "w-full", "rounded-2xl")}
+              >
+                Hire Me
+              </Link>
+            </div>
 
             {/* Mobile: user actions when logged in */}
             {session && (

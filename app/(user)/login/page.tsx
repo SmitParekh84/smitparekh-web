@@ -34,7 +34,7 @@ const BENEFITS = [
   {
     icon: ShieldCheck,
     title: "Secure & private",
-    desc: "Only your email is stored. No passwords, no spam — just Google sign-in.",
+    desc: "Google Sign-In only — no password stored, no marketing emails, no data sold or shared. Ever.",
   },
 ];
 
@@ -241,7 +241,7 @@ function LoginContent() {
             ))}
           </ul>
         </div>
-        <p className="text-white/40 text-xs">No ads. No spam. Only your email is stored.</p>
+        <p className="text-white/40 text-xs">Google Sign-In only — no passwords, no marketing, no data sharing.</p>
       </div>
 
       {/* Right panel – sign-in card */}
