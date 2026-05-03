@@ -72,6 +72,8 @@ export const footerData: FooterData = {
   ],
   copyright: "© Smit Parekh. All rights reserved.",
   legalLinks: [
+    { href: "/changelog", label: "Changelog" },
+    { href: "/faq", label: "FAQ" },
     { href: "/privacy-policy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms of Service" },
   ],

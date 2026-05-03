@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified: new Date(), images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/resume`, priority: 0.6, changeFrequency: "yearly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/faq`, priority: 0.7, changeFrequency: "monthly", lastModified: new Date(), images: [defaultImage] },
+    { url: `${base}/changelog`, priority: 0.6, changeFrequency: "weekly", lastModified: new Date(), images: [defaultImage] },
     { url: `${base}/privacy-policy`, priority: 0.3, changeFrequency: "yearly", lastModified: new Date() },
     { url: `${base}/terms`, priority: 0.3, changeFrequency: "yearly", lastModified: new Date() },
   ];
