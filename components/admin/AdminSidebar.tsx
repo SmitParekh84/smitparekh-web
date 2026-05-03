@@ -201,8 +201,8 @@ export function AdminSidebar() {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent
-                side="right"
-                align="end"
+                side="top"
+                align="start"
                 sideOffset={8}
                 className="min-w-56 rounded-lg"
               >
