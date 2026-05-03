@@ -49,10 +49,20 @@ export const navItems: NavItem[] = [
             label: "Image Converter",
             description: "Convert between image formats easily",
           },
+          {
+            href: "/free-tools/image-to-base64",
+            label: "Image to Base64",
+            description: "Convert images to data URLs instantly",
+          },
+          {
+            href: "/free-tools/favicon-generator",
+            label: "Favicon Generator",
+            description: "Generate favicons in every size from text or image",
+          },
         ],
       },
       {
-        title: "Content Tools",
+        title: "Content & SEO",
         items: [
           {
             href: "/free-tools/viral-linkedin-post-generator",
@@ -84,26 +94,21 @@ export const navItems: NavItem[] = [
             label: "Word Counter",
             description: "Count words, characters, reading time & keyword density",
           },
+          {
+            href: "/free-tools/slug-generator",
+            label: "Slug Generator",
+            description: "Convert any text into clean SEO-friendly URL slugs",
+          },
+          {
+            href: "/free-tools/lorem-ipsum",
+            label: "Lorem Ipsum Generator",
+            description: "Generate placeholder paragraphs, sentences or words",
+          },
         ],
       },
       {
-        title: "Career & Dev Tools",
+        title: "Developer Tools",
         items: [
-          {
-            href: "/free-tools/qr-code-generator",
-            label: "QR Code Generator",
-            description: "Generate custom QR codes for any link",
-          },
-          {
-            href: "/free-tools/ats-resume-checker",
-            label: "ATS Resume Checker",
-            description: "Check your ATS score and get AI-powered resume tips",
-          },
-          {
-            href: "/free-tools/password-generator",
-            label: "Password Generator",
-            description: "Generate strong, secure, random passwords instantly",
-          },
           {
             href: "/free-tools/json-formatter",
             label: "JSON Formatter",
@@ -113,6 +118,91 @@ export const navItems: NavItem[] = [
             href: "/free-tools/base64-encoder-decoder",
             label: "Base64 Encoder / Decoder",
             description: "Encode and decode Base64 strings and files",
+          },
+          {
+            href: "/free-tools/url-encoder-decoder",
+            label: "URL Encoder / Decoder",
+            description: "Encode and decode URL components safely",
+          },
+          {
+            href: "/free-tools/regex-tester",
+            label: "Regex Tester",
+            description: "Test and debug regular expressions live",
+          },
+          {
+            href: "/free-tools/hash-generator",
+            label: "Hash Generator",
+            description: "Generate MD5, SHA-1, SHA-256, SHA-512 hashes",
+          },
+          {
+            href: "/free-tools/sql-formatter",
+            label: "SQL Formatter",
+            description: "Beautify and minify SQL queries instantly",
+          },
+          {
+            href: "/free-tools/uuid-generator",
+            label: "UUID Generator",
+            description: "Generate UUID v4 and v7 in bulk",
+          },
+          {
+            href: "/free-tools/jwt-decoder",
+            label: "JWT Decoder",
+            description: "Decode and inspect JWT tokens client-side",
+          },
+          {
+            href: "/free-tools/css-gradient-generator",
+            label: "CSS Gradient Generator",
+            description: "Build linear, radial and conic gradients visually",
+          },
+          {
+            href: "/free-tools/color-converter",
+            label: "Color Converter",
+            description: "Convert between HEX, RGB, HSL, OKLCH instantly",
+          },
+        ],
+      },
+      {
+        title: "Productivity & Career",
+        items: [
+          {
+            href: "/free-tools/ats-resume-checker",
+            label: "ATS Resume Checker",
+            description: "Check your ATS score and get AI-powered resume tips",
+          },
+          {
+            href: "/free-tools/qr-code-generator",
+            label: "QR Code Generator",
+            description: "Generate custom QR codes for any link",
+          },
+          {
+            href: "/free-tools/password-generator",
+            label: "Password Generator",
+            description: "Generate strong, secure, random passwords instantly",
+          },
+          {
+            href: "/free-tools/pomodoro-timer",
+            label: "Pomodoro Timer",
+            description: "Stay focused with customizable work/break cycles",
+          },
+          {
+            href: "/free-tools/world-clock",
+            label: "World Clock",
+            description: "Track multiple time zones at a glance",
+          },
+          {
+            href: "/free-tools/unit-converter",
+            label: "Unit Converter",
+            description: "Convert length, weight, temperature, data and more",
+          },
+          {
+            href: "/free-tools/markdown-editor",
+            label: "Markdown Editor",
+            description: "Live preview Markdown with side-by-side editor",
+          },
+          {
+            href: "/free-tools/cron-builder",
+            label: "Cron Expression Builder",
+            description: "Build and explain cron schedules visually",
           },
         ],
       },

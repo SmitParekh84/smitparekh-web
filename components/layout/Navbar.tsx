@@ -151,7 +151,7 @@ export default function Navbar() {
                 </button>
 
                 {toolsOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[640px]">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[860px]">
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
                       {/* Header row — links to the full landing page */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
@@ -165,7 +165,7 @@ export default function Navbar() {
                           <ArrowRight className="w-3 h-3" />
                         </Link>
                       </div>
-                      <div className="grid grid-cols-3 gap-5">
+                      <div className="grid grid-cols-4 gap-5">
                         {toolsItem.dropdown?.map((group) => (
                           <div key={group.title}>
                             <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2.5">

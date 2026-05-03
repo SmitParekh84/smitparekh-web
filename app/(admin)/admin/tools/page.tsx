@@ -28,7 +28,7 @@ import { toolsSEO } from "@/data/tools-seo";
 import { toast } from "@/lib/toast";
 import { AppSelect, type SelectOption } from "@/components/ui/app-select";
 
-const CATEGORIES = ["All", "Image", "Content", "Career", "SEO", "Dev", "Security"];
+const CATEGORIES = ["All", "Image", "Content", "Career", "SEO", "Dev", "Security", "Productivity"];
 
 const toolCategoryMap: Record<string, string> = {
   "background-remover": "Image",
