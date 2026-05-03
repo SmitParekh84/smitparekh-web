@@ -13,6 +13,7 @@ import {
   EyeOff,
   Sparkles,
   Share2,
+  X,
 } from "lucide-react";
 import {
   Dialog,
