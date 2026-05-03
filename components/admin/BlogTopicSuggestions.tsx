@@ -55,7 +55,7 @@ export function BlogTopicSuggestions({
       <div className="mb-1.5 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <TrendingUp className="h-3.5 w-3.5 text-blue-500" />
-          <span>Trending ideas (US / CA / UK / IN)</span>
+          <span>{seed ? "Ideas based on your prompt" : "Trending ideas (US / CA / UK / IN)"}</span>
         </div>
         <button
           type="button"
@@ -87,7 +87,7 @@ export function BlogTopicSuggestions({
           ))}
         </div>
       ) : topics.length > 0 ? (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-col gap-1.5">
           {topics.map((t) => (
             <button
               key={t}
@@ -96,7 +96,7 @@ export function BlogTopicSuggestions({
               disabled={disabled}
               title="Click to use as prompt"
               className={cn(
-                "max-w-full truncate rounded-full border border-border bg-background px-3 py-1.5 text-left text-xs",
+                "w-full rounded-xl border border-border bg-background px-3 py-2 text-left text-xs leading-snug",
                 "transition-colors hover:border-blue-500/60 hover:bg-blue-500/5",
                 "disabled:cursor-not-allowed disabled:opacity-50"
               )}

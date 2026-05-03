@@ -13,8 +13,15 @@ import {
   EyeOff,
   Sparkles,
   Share2,
-  X,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -214,36 +221,26 @@ export default function AdminBlogsPage() {
         </div>
       </div>
 
-      {aiOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
-          onClick={() => !generateBlog.isPending && setAiOpen(false)}
-        >
-          <div
-            className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-4 flex items-start gap-3">
-              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white">
+      <Dialog
+        open={aiOpen}
+        onOpenChange={(open) => { if (!generateBlog.isPending) setAiOpen(open); }}
+      >
+        <DialogContent className="max-h-[90svh] overflow-y-auto">
+          <DialogHeader>
+            <div className="flex items-start gap-3 pr-6">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-2 text-white shrink-0">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <div className="flex-1">
-                <h3 className="text-base font-semibold">Generate blog draft</h3>
-                <p className="text-xs text-muted-foreground">
-                  Describe the topic. The AI fills the new post - you review &
-                  edit before saving.
-                </p>
+              <div>
+                <DialogTitle>Generate blog draft</DialogTitle>
+                <DialogDescription>
+                  Describe the topic. The AI fills the new post — you review &amp; edit before saving.
+                </DialogDescription>
               </div>
-              <button
-                type="button"
-                onClick={() => setAiOpen(false)}
-                disabled={generateBlog.isPending}
-                className="rounded-lg p-1 text-muted-foreground hover:bg-muted disabled:opacity-50"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
+          </DialogHeader>
 
+          <div className="space-y-1">
             <textarea
               autoFocus
               rows={4}
@@ -254,48 +251,49 @@ export default function AdminBlogsPage() {
               placeholder="e.g. How I use ISR in Next.js 16 to ship a fast blog with editor previews"
               className="w-full resize-y rounded-xl border border-border bg-background px-3 py-2 text-sm transition-colors focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50"
             />
-            <p className="mt-1 text-right text-xs text-muted-foreground">
+            <p className="text-right text-xs text-muted-foreground">
               {aiPrompt.length}/4000
             </p>
-
-            <BlogTopicSuggestions
-              onPick={(t) => setAiPrompt(t)}
-              disabled={generateBlog.isPending}
-            />
-
-            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => setAiOpen(false)}
-                disabled={generateBlog.isPending}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={handleAiGenerate}
-                disabled={generateBlog.isPending || !aiPrompt.trim()}
-                className="gap-1.5"
-              >
-                {generateBlog.isPending ? (
-                  <>
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Generate
-                  </>
-                )}
-              </Button>
-            </div>
           </div>
-        </div>
-      )}
+
+          <BlogTopicSuggestions
+            onPick={(t) => setAiPrompt(t)}
+            disabled={generateBlog.isPending}
+            seed={aiPrompt.trim() || undefined}
+          />
+
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setAiOpen(false)}
+              disabled={generateBlog.isPending}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleAiGenerate}
+              disabled={generateBlog.isPending || !aiPrompt.trim()}
+              className="gap-1.5"
+            >
+              {generateBlog.isPending ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Generate
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <SocialShareDialog
         open={shareTarget !== null}
