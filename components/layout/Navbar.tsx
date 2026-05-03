@@ -352,7 +352,7 @@ export default function Navbar() {
           />
 
           <nav className="relative z-10 flex flex-col px-6 pt-24 pb-10 h-full">
-            <div className="flex-1 space-y-1">
+            <div className="flex-1 overflow-y-auto space-y-1 pb-2">
               {mobileNavItems.map((item) => (
                 <Link
                   key={item.href}
