@@ -94,6 +94,9 @@ export const metadata: Metadata = {
   },
   formatDetection: { telephone: false, email: false, address: false },
   category: "technology",
+  other: {
+    "google-adsense-account": "ca-pub-9526582197854160",
+  },
 };
 
 export default function RootLayout({
@@ -129,6 +132,12 @@ export default function RootLayout({
           </ThemeProvider>
         </QueryProvider>
         <Analytics />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9526582197854160"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
