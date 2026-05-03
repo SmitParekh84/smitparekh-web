@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  ExternalLink,
   Activity,
   Users,
   UserCheck,
@@ -13,7 +12,10 @@ import {
   RefreshCw,
   CheckCircle2,
   RotateCcw,
+  Wrench,
 } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { DateRangeFilter, rangeFor, type DateRangeMode, type DateRange } from "@/components/ui/date-range-filter";
 import {
   Card,
   CardContent,
@@ -84,6 +86,13 @@ interface UsersActivityResponse {
   guestSessionsToday: number;
 }
 
+const PERIOD_LABEL: Record<DateRangeMode, string> = {
+  day: "today",
+  week: "this week",
+  month: "this month",
+  year: "this year",
+};
+
 function nameFromSlug(slug: string): string {
   const seo = toolsSEO.find((t) => t.slug === slug);
   if (seo) return seo.title.split(" - ")[0];
@@ -110,6 +119,7 @@ export default function ToolsAdminPage() {
   const [loading, setLoading] = useState(true);
   const [usersLoading, setUsersLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [dateRange, setDateRange] = useState<DateRange>(rangeFor("month"));
   const [savingSlug, setSavingSlug] = useState<string | null>(null);
   const [savedSlug, setSavedSlug] = useState<string | null>(null);
   const [resettingUser, setResettingUser] = useState<string | null>(null);
@@ -135,10 +145,12 @@ export default function ToolsAdminPage() {
     });
   }, [data?.perTool, search, category, statusFilter]);
 
-  const loadTools = useCallback(async () => {
+  const loadTools = useCallback(async (range?: DateRange) => {
     setLoading(true);
+    const r = range ?? dateRange;
     try {
-      const res = await fetch("/api/admin/tools/stats", { cache: "no-store" });
+      const url = `/api/admin/tools/stats?from=${r.from}&to=${r.to}&mode=${r.mode}`;
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setData(await res.json());
       setError(null);
@@ -147,7 +159,12 @@ export default function ToolsAdminPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [dateRange]);
+
+  function handleRangeChange(range: DateRange) {
+    setDateRange(range);
+    loadTools(range);
+  }
 
   const loadUsers = useCallback(async () => {
     setUsersLoading(true);
@@ -231,8 +248,26 @@ export default function ToolsAdminPage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <h2 className="text-2xl font-semibold">Tools</h2>
-        <p className="text-sm text-muted-foreground">Loading…</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <Skeleton className="h-7 w-24 mb-2" />
+            <Skeleton className="h-4 w-56" />
+          </div>
+          <Skeleton className="h-8 w-56 rounded-lg" />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-xl border border-border p-5 space-y-3">
+              <Skeleton className="h-3 w-28" />
+              <Skeleton className="h-8 w-16" />
+            </div>
+          ))}
+        </div>
+        <div className="rounded-xl border border-border p-5 space-y-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-10 w-full" />
+          ))}
+        </div>
       </div>
     );
   }
@@ -273,33 +308,36 @@ export default function ToolsAdminPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Tools</h2>
-        <p className="text-sm text-muted-foreground">
-          Per-tool quotas, usage, and user activity.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight">Tools</h2>
+          <p className="text-sm text-muted-foreground">
+            Per-tool quotas, usage, and user activity.
+          </p>
+        </div>
+        <DateRangeFilter value={dateRange.mode} onChange={handleRangeChange} />
       </div>
 
       {/* Summary cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <SummaryCard
           icon={<Activity className="w-5 h-5" />}
-          label="Uses today"
+          label={`Uses ${PERIOD_LABEL[dateRange.mode]}`}
           value={summary.totalToday.toLocaleString()}
         />
         <SummaryCard
           icon={<Users className="w-5 h-5" />}
-          label="Sessions today"
+          label={`Sessions ${PERIOD_LABEL[dateRange.mode]}`}
           value={summary.sessionsToday.toLocaleString()}
         />
         <SummaryCard
           icon={<UserCheck className="w-5 h-5" />}
-          label="Logged-in users today"
+          label={`Logged-in users ${PERIOD_LABEL[dateRange.mode]}`}
           value={summary.usersToday.toLocaleString()}
         />
         <SummaryCard
           icon={<TrendingUp className="w-5 h-5" />}
-          label="Top tool today"
+          label={`Top tool ${PERIOD_LABEL[dateRange.mode]}`}
           value={summary.topTool ? nameFromSlug(summary.topTool.slug) : "—"}
           sub={summary.topTool ? `${summary.topTool.uses} uses` : undefined}
         />
@@ -377,7 +415,7 @@ export default function ToolsAdminPage() {
                   <tr>
                     <th className="text-left px-4 py-3">Tool</th>
                     <th className="text-left px-4 py-3">Category</th>
-                    <th className="text-right px-4 py-3">Today</th>
+                    <th className="text-right px-4 py-3 capitalize">{PERIOD_LABEL[dateRange.mode]}</th>
                     <th className="text-right px-4 py-3 hidden sm:table-cell">All-time</th>
                     <th className="text-right px-4 py-3 hidden md:table-cell">Sessions</th>
                     <th className="text-right px-4 py-3 hidden md:table-cell">Users</th>
@@ -463,12 +501,10 @@ export default function ToolsAdminPage() {
                             </span>
                           ) : (
                             <Link
-                              href={`/free-tools/${t.slug}`}
-                              target="_blank"
-                              rel="noreferrer"
+                              href={`/admin/tools/${t.slug}`}
                               className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
                             >
-                              Open <ExternalLink className="w-3 h-3" />
+                              <Wrench className="w-3 h-3" /> Use
                             </Link>
                           )}
                         </td>

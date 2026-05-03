@@ -1,9 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminEmail } from "@/lib/admin-allowlist";
 
-export async function GET() {
+function currentMonthStart() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
+}
+
+function todayISO() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export async function GET(req: NextRequest) {
   try {
     const supabase = await createClient();
     const {
@@ -26,29 +35,36 @@ export async function GET() {
     });
   }
 
-  const today = new Date().toISOString().slice(0, 10);
+  // Accept ?from=yyyy-mm-dd&to=yyyy-mm-dd — default to current month
+  const params = req.nextUrl.searchParams;
+  const from = params.get("from") ?? currentMonthStart();
+  const to = params.get("to") ?? todayISO();
 
-  const [{ data: configs }, { data: todayRows }, { data: allRows }] = await Promise.all([
+  const [{ data: configs }, { data: rangeRows }, { data: allRows }] = await Promise.all([
     admin
       .from("tool_config")
       .select("slug,guest_quota,user_quota,is_active,updated_at")
       .order("slug"),
-    admin.from("tool_usage").select("tool_slug,session_id,user_id").eq("date", today),
+    admin
+      .from("tool_usage")
+      .select("tool_slug,session_id,user_id")
+      .gte("date", from)
+      .lte("date", to),
     admin.from("tool_usage").select("tool_slug"),
   ]);
 
-  const perToolToday = new Map<
+  const perToolRange = new Map<
     string,
     { uses: number; sessions: Set<string>; users: Set<string> }
   >();
-  (todayRows ?? []).forEach(
+  (rangeRows ?? []).forEach(
     (r: { tool_slug: string; session_id: string | null; user_id: string | null }) => {
       const slot =
-        perToolToday.get(r.tool_slug) ?? { uses: 0, sessions: new Set(), users: new Set() };
+        perToolRange.get(r.tool_slug) ?? { uses: 0, sessions: new Set(), users: new Set() };
       slot.uses += 1;
       if (r.session_id) slot.sessions.add(r.session_id);
       if (r.user_id) slot.users.add(r.user_id);
-      perToolToday.set(r.tool_slug, slot);
+      perToolRange.set(r.tool_slug, slot);
     },
   );
 
@@ -57,10 +73,10 @@ export async function GET() {
     perToolAll.set(r.tool_slug, (perToolAll.get(r.tool_slug) ?? 0) + 1);
   });
 
-  const totalToday = todayRows?.length ?? 0;
+  const totalToday = rangeRows?.length ?? 0;
   const allSessions = new Set<string>();
   const allUsers = new Set<string>();
-  (todayRows ?? []).forEach(
+  (rangeRows ?? []).forEach(
     (r: { session_id: string | null; user_id: string | null }) => {
       if (r.session_id) allSessions.add(r.session_id);
       if (r.user_id) allUsers.add(r.user_id);
@@ -68,7 +84,7 @@ export async function GET() {
   );
 
   let topTool: { slug: string; uses: number } | null = null;
-  perToolToday.forEach((v, slug) => {
+  perToolRange.forEach((v, slug) => {
     if (!topTool || v.uses > topTool.uses) topTool = { slug, uses: v.uses };
   });
 
@@ -80,7 +96,7 @@ export async function GET() {
       is_active: boolean;
       updated_at: string;
     }) => {
-      const t = perToolToday.get(c.slug);
+      const t = perToolRange.get(c.slug);
       return {
         slug: c.slug,
         guest_quota: c.guest_quota,

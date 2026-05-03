@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Zap, Activity, Trophy, Loader2 } from "lucide-react";
+import { ArrowRight, Zap, Activity, Trophy } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { cn } from "@/lib/utils";
+import { toolsSEO } from "@/data/tools-seo";
 
 interface UsageTool {
   slug: string;
@@ -24,17 +26,10 @@ interface UsageData {
   allTime: { total: number; byTool: { slug: string; uses: number }[] };
 }
 
-const TOOL_LABELS: Record<string, string> = {
-  "ats-resume-checker": "ATS Resume Checker",
-  "image-compressor": "Image Compressor",
-  "qr-code-generator": "QR Code Generator",
-  "word-counter": "Word Counter",
-  "meta-tag-generator": "Meta Tag Generator",
-  "password-generator": "Password Generator",
-};
-
 function toolLabel(slug: string) {
-  return TOOL_LABELS[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const found = toolsSEO.find((t) => t.slug === slug);
+  if (found) return found.title.split(" - ")[0];
+  return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function greeting(name: string): string {
@@ -45,11 +40,63 @@ function greeting(name: string): string {
 }
 
 function remainingColor(remaining: number, quota: number) {
-  if (quota === 0) return "text-emerald-600 dark:text-emerald-400"; // unlimited = always green
+  if (quota === 0) return "text-emerald-600 dark:text-emerald-400";
   const pct = remaining / quota;
   if (pct > 0.5) return "text-green-600 dark:text-green-400";
   if (pct > 0.2) return "text-yellow-600 dark:text-yellow-400";
   return "text-red-600 dark:text-red-400";
+}
+
+function DashboardSkeleton() {
+  return (
+    <div className="space-y-8">
+      <div>
+        <Skeleton className="h-8 w-56 mb-2" />
+        <Skeleton className="h-4 w-72" />
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[0, 1, 2].map((i) => (
+          <Card key={i}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-4 rounded-full" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-8 w-16" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <Skeleton className="h-5 w-32" />
+          <Skeleton className="h-8 w-16 rounded-lg" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-4 w-36" />
+                <Skeleton className="h-4 w-12" />
+              </div>
+              <Skeleton className="h-1.5 w-full rounded-full" />
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <div>
+        <Skeleton className="h-4 w-24 mb-3" />
+        <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <Skeleton key={i} className="h-12 rounded-lg" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function DashboardPage() {
@@ -71,35 +118,21 @@ export default function DashboardPage() {
     (meta.name as string | undefined) ??
     "there";
 
+  if (loading) return <DashboardSkeleton />;
+
   const topTool =
     data?.allTime.byTool[0]?.slug
       ? toolLabel(data.allTime.byTool[0].slug)
       : "—";
 
   const summaryCards = [
-    {
-      label: "Uses today",
-      value: loading ? "—" : String(data?.today.total ?? 0),
-      icon: Zap,
-      color: "text-blue-500",
-    },
-    {
-      label: "All-time total",
-      value: loading ? "—" : String(data?.allTime.total ?? 0),
-      icon: Activity,
-      color: "text-indigo-500",
-    },
-    {
-      label: "Top tool",
-      value: loading ? "—" : topTool,
-      icon: Trophy,
-      color: "text-yellow-500",
-    },
+    { label: "Uses today", value: String(data?.today.total ?? 0), icon: Zap, color: "text-blue-500" },
+    { label: "All-time total", value: String(data?.allTime.total ?? 0), icon: Activity, color: "text-indigo-500" },
+    { label: "Top tool", value: topTool, icon: Trophy, color: "text-yellow-500" },
   ];
 
   return (
     <div className="space-y-8">
-      {/* Greeting */}
       <div>
         <h2 className="text-2xl font-bold">{greeting(displayName)}</h2>
         <p className="text-muted-foreground mt-1 text-sm">
@@ -107,22 +140,15 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Summary cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         {summaryCards.map((card) => (
           <Card key={card.label}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                {card.label}
-              </CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{card.label}</CardTitle>
               <card.icon className={`h-4 w-4 ${card.color}`} />
             </CardHeader>
             <CardContent>
-              {loading ? (
-                <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-              ) : (
-                <p className="text-2xl font-bold truncate">{card.value}</p>
-              )}
+              <p className="text-2xl font-bold truncate">{card.value}</p>
             </CardContent>
           </Card>
         ))}
@@ -136,19 +162,15 @@ export default function DashboardPage() {
             href="/dashboard/tools"
             className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "gap-1")}
           >
-            See all <ArrowRight className="h-3.5 w-3.5" />
+            All tools <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </CardHeader>
         <CardContent>
-          {loading ? (
-            <div className="flex justify-center py-8">
-              <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-            </div>
-          ) : (data?.today.byTool.length ?? 0) === 0 ? (
-            <div className="text-center py-10 space-y-2">
+          {(data?.today.byTool.length ?? 0) === 0 ? (
+            <div className="text-center py-10 space-y-3">
               <p className="text-muted-foreground text-sm">No tool uses today yet.</p>
-              <Link href="/free-tools" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-                Try a free tool
+              <Link href="/dashboard/tools" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                Browse tools
               </Link>
             </div>
           ) : (
@@ -159,19 +181,17 @@ export default function DashboardPage() {
                 return (
                   <div key={tool.slug} className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-medium truncate">{toolLabel(tool.slug)}</span>
+                      <Link
+                        href={`/dashboard/tools/${tool.slug}`}
+                        className="font-medium hover:text-blue-500 transition-colors truncate"
+                      >
+                        {toolLabel(tool.slug)}
+                      </Link>
                       <span className={`text-xs font-mono ml-2 shrink-0 ${remainingColor(tool.remaining, tool.quota)}`}>
-                        {isUnlimited ? (
-                          <span className="font-semibold">∞ Unlimited</span>
-                        ) : (
-                          `${tool.uses}/${tool.quota}`
-                        )}
+                        {isUnlimited ? "∞ Unlimited" : `${tool.uses}/${tool.quota}`}
                       </span>
                     </div>
-                    <Progress
-                      value={pct}
-                      className={`h-1.5 ${isUnlimited ? "[&>div]:bg-emerald-500" : ""}`}
-                    />
+                    <Progress value={pct} className={`h-1.5 ${isUnlimited ? "[&>div]:bg-emerald-500" : ""}`} />
                   </div>
                 );
               })}
@@ -186,20 +206,19 @@ export default function DashboardPage() {
           Quick access
         </h3>
         <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
-          {Object.entries(TOOL_LABELS).map(([slug, label]) => (
+          {toolsSEO.slice(0, 6).map((tool) => (
             <Link
-              key={slug}
-              href={`/free-tools/${slug}`}
+              key={tool.slug}
+              href={`/dashboard/tools/${tool.slug}`}
               className="flex items-center justify-between rounded-lg border border-border/60 bg-card px-4 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors gap-2 group"
             >
-              <span className="truncate">{label}</span>
+              <span className="truncate">{tool.title.split(" - ")[0]}</span>
               <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           ))}
         </div>
       </div>
 
-      {/* Plan notice */}
       {!loading && (data?.today.byTool.some((t) => t.remaining === 0)) && (
         <Card className="border-yellow-200 dark:border-yellow-900 bg-yellow-50 dark:bg-yellow-950/30">
           <CardContent className="py-4 flex items-center gap-3">
