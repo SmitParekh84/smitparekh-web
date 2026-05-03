@@ -455,6 +455,82 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
       answer: "No. Base64 is encoding, not encryption — it is fully reversible by anyone and provides no security. Never use it to protect sensitive data. Use it only to convert binary data into a text-safe format.",
     },
   ],
+
+  "url-encoder-decoder": [
+    {
+      question: "When should I use URL encoding?",
+      answer: "Whenever you put text inside a URL — query parameter values, path segments with special characters, or anchor fragments. Characters like spaces, &, =, ?, /, #, and non-ASCII letters must be percent-encoded so the URL is parsed correctly.",
+    },
+    {
+      question: "What is the difference between Component and Full URL mode?",
+      answer: "Component mode (encodeURIComponent) escapes everything that isn't a safe character — including ?, &, =, /, # — so it's safe to embed inside another URL as a parameter value. Full URL mode (encodeURI) preserves URL structure characters and is meant for encoding an entire URL once.",
+    },
+    {
+      question: "Is my input sent to a server?",
+      answer: "No. The encoder runs entirely in your browser using built-in JavaScript functions. Your text never leaves your device.",
+    },
+    {
+      question: "Why am I getting 'Invalid URL-encoded string'?",
+      answer: "The decoder expects valid percent-encoded sequences (%20, %3D, etc.). If you see that error, your input contains a malformed % followed by non-hex characters. Check that every % is followed by exactly two hex digits.",
+    },
+  ],
+
+  "hash-generator": [
+    {
+      question: "Which hash algorithm should I use?",
+      answer: "Use SHA-256 or SHA-512 for security-related hashing (file integrity, fingerprints, content addressing). Use MD5 only for non-security checksums or compatibility with legacy systems — it is broken for cryptographic purposes.",
+    },
+    {
+      question: "Is my text sent to a server?",
+      answer: "No. All hashes are computed locally in your browser using the Web Crypto API (and a pure-JS implementation for MD5). Your input never leaves your device.",
+    },
+    {
+      question: "Can hashes be reversed?",
+      answer: "No. Cryptographic hashes are one-way functions. There is no algorithm to recover the original text from a hash. 'Cracking' a hash means trying many guesses until one produces the same hash, which is only feasible for short, common, or weakly-hashed inputs.",
+    },
+    {
+      question: "Are MD5 and SHA-1 still safe?",
+      answer: "Not for security. Both have practical collision attacks. They are still fine for non-security checksums (file deduplication, cache keys), but never use them for password hashing, signatures, or anything an attacker might attack.",
+    },
+  ],
+
+  "regex-tester": [
+    {
+      question: "Which regex flavour does this tester use?",
+      answer: "JavaScript / ECMAScript regex — the same engine used in browsers and Node.js. Most patterns from PCRE, Python, and Ruby work, but some advanced features (e.g., lookbehind in older engines, possessive quantifiers, named recursion) may differ.",
+    },
+    {
+      question: "What does each flag do?",
+      answer: "g = find all matches, i = case-insensitive, m = ^ and $ match at line breaks, s = dot matches newlines, u = full Unicode matching, y = sticky matching from lastIndex.",
+    },
+    {
+      question: "How do capture groups work in replace mode?",
+      answer: "Use $1, $2, etc. in the replacement string to reference parenthesised groups in the pattern. For named groups (?<name>...), use $<name>. Use $$ for a literal dollar sign.",
+    },
+    {
+      question: "Is my regex pattern stored or sent to a server?",
+      answer: "No. The tester runs entirely in your browser. Nothing is logged, sent, or stored.",
+    },
+  ],
+
+  "color-converter": [
+    {
+      question: "Which colour formats does this tool support?",
+      answer: "HEX (3, 4, 6, 8 digit), RGB, RGBA, HSL, HSLA, and a CSS variable snippet. Edit any field and the others update instantly.",
+    },
+    {
+      question: "How does the alpha channel work in HEX?",
+      answer: "8-digit HEX adds two extra hex characters at the end representing alpha (00 = fully transparent, FF = fully opaque). For example, #3B82F680 is the standard blue at 50% opacity.",
+    },
+    {
+      question: "Why does HSL hue go from 0–360?",
+      answer: "Hue is measured as a position on the colour wheel in degrees. 0° is red, 120° is green, 240° is blue, and the wheel wraps back to red at 360°.",
+    },
+    {
+      question: "Is my colour data stored anywhere?",
+      answer: "No. The converter runs entirely in your browser. Nothing is uploaded.",
+    },
+  ],
 };
 
 export function getToolFAQ(slug: string): ToolFAQItem[] {

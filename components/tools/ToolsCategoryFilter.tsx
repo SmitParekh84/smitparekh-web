@@ -18,6 +18,10 @@ import {
   Video,
   Braces,
   Binary,
+  Link2,
+  Fingerprint,
+  Regex,
+  Palette,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
@@ -37,6 +41,10 @@ const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "youtube-thumbnail-downloader": Video,
   "json-formatter": Braces,
   "base64-encoder-decoder": Binary,
+  "url-encoder-decoder": Link2,
+  "hash-generator": Fingerprint,
+  "regex-tester": Regex,
+  "color-converter": Palette,
 };
 
 const toolCategoryMap: Record<string, string> = {
@@ -54,6 +62,10 @@ const toolCategoryMap: Record<string, string> = {
   "youtube-thumbnail-downloader": "Dev",
   "json-formatter": "Dev",
   "base64-encoder-decoder": "Dev",
+  "url-encoder-decoder": "Dev",
+  "hash-generator": "Security",
+  "regex-tester": "Dev",
+  "color-converter": "Dev",
 };
 
 const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);

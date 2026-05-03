@@ -24,6 +24,10 @@ const toolMap: Record<string, React.ComponentType> = {
   "youtube-thumbnail-downloader": dynamic(() => import("./YouTubeThumbnailDownloader"), { loading: Loading }),
   "json-formatter": dynamic(() => import("./JsonFormatter"), { loading: Loading }),
   "base64-encoder-decoder": dynamic(() => import("./Base64Tool"), { loading: Loading }),
+  "url-encoder-decoder": dynamic(() => import("./UrlEncoderTool"), { loading: Loading }),
+  "hash-generator": dynamic(() => import("./HashGenerator"), { loading: Loading }),
+  "regex-tester": dynamic(() => import("./RegexTester"), { loading: Loading }),
+  "color-converter": dynamic(() => import("./ColorConverter"), { loading: Loading }),
 };
 
 interface Props {

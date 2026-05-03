@@ -45,6 +45,10 @@ const toolCategoryMap: Record<string, string> = {
   "youtube-thumbnail-downloader": "Dev",
   "json-formatter": "Dev",
   "base64-encoder-decoder": "Dev",
+  "url-encoder-decoder": "Dev",
+  "hash-generator": "Security",
+  "regex-tester": "Dev",
+  "color-converter": "Dev",
 };
 
 interface PerTool {

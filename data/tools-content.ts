@@ -209,6 +209,62 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     relatedSlugs: ["json-formatter", "password-generator", "meta-tag-checker"],
   },
+
+  "url-encoder-decoder": {
+    howItWorks: [
+      { title: "Pick Encode or Decode", description: "Select Encode to convert plain text or a URL into percent-encoded form. Select Decode to convert a %-encoded string back into readable text." },
+      { title: "Choose Mode", description: "Component mode escapes every reserved character — perfect for embedding values inside a query parameter. Full URL mode preserves URL structure characters and is for encoding an entire URL." },
+      { title: "Copy the Output", description: "The output updates instantly. Click Copy to grab it, or Swap to flip the result back into the input for chained encode/decode steps." },
+    ],
+    useCases: [
+      { title: "API & Backend Developers", description: "Build query strings safely, debug malformed redirect URLs, and decode user-submitted parameters when troubleshooting webhook payloads or OAuth flows." },
+      { title: "Web & SEO Specialists", description: "Inspect tracking URLs with UTM parameters, decode encoded share links, and verify analytics URLs are properly escaped before launch." },
+      { title: "QA & Security Engineers", description: "Reproduce edge cases by encoding special characters, decode payloads found in logs, and inspect URLs during penetration tests." },
+    ],
+    relatedSlugs: ["base64-encoder-decoder", "json-formatter", "regex-tester"],
+  },
+
+  "hash-generator": {
+    howItWorks: [
+      { title: "Type Your Input", description: "Paste or type any text into the input area. Hashes are computed instantly as you type — no button to click." },
+      { title: "Compare Algorithms", description: "Output appears for MD5, SHA-1, SHA-256, SHA-384, and SHA-512 in parallel so you can compare digests at a glance." },
+      { title: "Copy and Use", description: "Click Copy next to any algorithm to grab its hash. Toggle uppercase output for tools and integrations that expect capital hex characters." },
+    ],
+    useCases: [
+      { title: "Backend Developers", description: "Generate stable cache keys, content fingerprints, and integrity hashes for files served from a CDN — verify uploads against an expected SHA-256." },
+      { title: "Security Engineers", description: "Compute hashes during incident response to compare against known IOCs (indicators of compromise) and confirm file authenticity." },
+      { title: "Data Engineers", description: "Hash row identifiers for deduplication, generate partition keys, and create deterministic IDs in ETL pipelines." },
+    ],
+    relatedSlugs: ["password-generator", "base64-encoder-decoder", "json-formatter"],
+  },
+
+  "regex-tester": {
+    howItWorks: [
+      { title: "Write Your Pattern", description: "Type a regular expression in the pattern box. The tester compiles it instantly and shows any syntax errors right below." },
+      { title: "Toggle Flags & Add Test Text", description: "Click flag chips to enable g, i, m, s, u, or y. Paste sample text and watch matches highlight live as you adjust the pattern." },
+      { title: "Test Replace & Capture Groups", description: "Enable Replace mode to preview substitutions with $1, $2 group references. Expand Match details to inspect every match's index and captures." },
+    ],
+    useCases: [
+      { title: "Frontend & Backend Developers", description: "Build form-field validators, parse log lines, and craft URL routing patterns confidently before pasting into your codebase." },
+      { title: "Data & Content Teams", description: "Find-and-replace across text content, extract data from semi-structured strings, and clean up imported CSV or JSON values." },
+      { title: "QA & Site Reliability Engineers", description: "Write log-search filters and alert patterns, and verify they match real production samples without deploying to test." },
+    ],
+    relatedSlugs: ["json-formatter", "url-encoder-decoder", "word-counter"],
+  },
+
+  "color-converter": {
+    howItWorks: [
+      { title: "Pick or Type a Colour", description: "Use the native colour picker, paste a HEX value, or tweak R/G/B/A inputs. Every other format (RGB, HSL, RGBA, HSLA) updates instantly." },
+      { title: "Adjust HSL Sliders", description: "Drag hue, saturation, and lightness sliders to fine-tune the colour. The live preview swatch shows alpha against a checkerboard background." },
+      { title: "Copy Any Format", description: "Click Copy on the format you need — HEX, RGB(A), HSL(A), or a ready-to-paste CSS variable snippet." },
+    ],
+    useCases: [
+      { title: "Frontend Developers", description: "Convert designer-supplied HEX colours to HSL for systematic light/dark variations, or to RGBA for overlays and shadows." },
+      { title: "UI / UX Designers", description: "Translate values between Figma, Sketch, and CSS without leaving the browser — keep HSL for colour systems and HEX for handoff." },
+      { title: "Brand & Marketing Teams", description: "Match brand colours across email templates, social graphics, and ad creatives by exporting consistent HEX/RGB values." },
+    ],
+    relatedSlugs: ["meta-tag-checker", "qr-code-generator", "regex-tester"],
+  },
 };
 
 export function getToolContent(slug: string): ToolContent | null {
