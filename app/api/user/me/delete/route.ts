@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export async function DELETE() {
@@ -8,9 +7,6 @@ export async function DELETE() {
     data: { session },
   } = await supabase.auth.getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const admin = createAdminClient();
-  if (!admin) return NextResponse.json({ error: "Not configured" }, { status: 503 });
 
   // Soft-delete in MongoDB via the backend API (keeps admin trash in sync)
   const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "https://api.smitparekh.co.in/api";

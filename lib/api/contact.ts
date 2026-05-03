@@ -22,6 +22,7 @@ export interface ContactResponse {
 export interface CvDownloadPayload {
   name: string;
   email: string;
+  source: string;
 }
 
 export const contactApi = {

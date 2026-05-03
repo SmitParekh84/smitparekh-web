@@ -71,7 +71,7 @@ export const authApi = {
   async uploadAvatar(file: File): Promise<string> {
     const form = new FormData();
     form.append("image", file);
-    const res = await api.postForm<{ url: string }>("/upload", form);
+    const res = await api.postForm<{ url: string }>("/auth/avatar", form);
     return res.url;
   },
 };
