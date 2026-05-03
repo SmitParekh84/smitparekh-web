@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/changelog`,
     title: "Changelog - Latest Features & Updates | Smit Parekh",
     description:
-      "A transparent product changelog. Every release, every new tool, every fix - in plain English.",
+      "A transparent product changelog. Every release, every new tool, every fix — in plain English.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -119,7 +119,7 @@ export default function ChangelogPage() {
       <PageHero
         eyebrow="Changelog"
         title="Every release, in plain English"
-        description="A transparent record of new features, improvements, fixes, and security updates shipped on smitparekh.co.in. Updated with every launch."
+        description="A transparent record of new features, improvements, fixes, and security updates we ship on smitparekh.co.in. Bookmark this page — we update it with every launch."
         icon={Tag}
         align="center"
       />

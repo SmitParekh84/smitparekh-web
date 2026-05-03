@@ -19,34 +19,28 @@ export interface ChangelogRelease {
 export const changelog: ChangelogRelease[] = [
   {
     version: "1.6.0",
-    codename: "Smarter Navigation",
-    date: "2026-05-04",
+    codename: "Cleaner Free Tools Menu",
+    date: "2026-05-03",
     summary:
-      "The Free Tools menu has been redesigned around the eight most-loved tools, with a brand-new admin control to feature any tool in the navbar — instantly, with no redeploy.",
+      "We simplified the Free Tools menu so the eight tools visitors use most are front and center — and the full library of 31 tools is still just one click away.",
     highlights: [
-      "Compact, two-column Free Tools dropdown",
-      "Admin can feature any tool in the navbar from /admin/tools",
-      "Zero client-side loading — featured list is rendered on the server with cache invalidation",
+      "Curated 8-tool quick menu in the navbar",
+      "One-click access to the full 31-tool library",
+      "Faster, distraction-free navigation on every page",
     ],
     changes: [
       {
         tag: "improved",
         title: "Redesigned Free Tools dropdown",
         description:
-          "Replaced the dense 24-tool menu with a curated two-column layout that surfaces only the most popular tools — and a clear link to browse the full catalogue of 31.",
+          "Replaced the dense, four-column menu with a clean two-column layout that highlights the most popular tools first. A clear link still takes you to the full catalog whenever you need it.",
         href: "/free-tools",
       },
       {
-        tag: "new",
-        title: "Featured-in-navbar admin toggle",
-        description:
-          "Admins can now choose which tools appear in the navbar dropdown directly from the admin tools dashboard. Changes propagate within seconds, with no rebuild required.",
-      },
-      {
         tag: "performance",
-        title: "Server-rendered navbar",
+        title: "Faster navigation, no flicker",
         description:
-          "The featured-tools list is fetched server-side and tag-cached. Visitors never see a loading state on the navbar, even after admin changes.",
+          "The menu now loads instantly on every page, even on slower connections — no spinners, no layout shift.",
       },
     ],
   },
@@ -55,39 +49,39 @@ export const changelog: ChangelogRelease[] = [
     codename: "Developer Toolkit",
     date: "2026-05-03",
     summary:
-      "Seven new client-side developer tools, a redesigned Free Tools menu, and a fully synced admin and user dashboard.",
+      "Seven new developer-focused tools, a refreshed Free Tools menu, and a dashboard that automatically reflects every tool we ship.",
     highlights: [
       "7 new free developer tools",
-      "Smarter, four-column tools menu",
-      "Admin and user dashboards now reflect every tool automatically",
+      "Refreshed, easier-to-scan tools menu",
+      "Your dashboard stays in sync with every new tool",
     ],
     changes: [
       {
         tag: "new",
         title: "JWT Decoder",
         description:
-          "Decode JSON Web Tokens in your browser, inspect headers, payloads, and expiry status without sending the token anywhere.",
+          "Decode JSON Web Tokens, inspect headers, payload, and expiry. Your token never leaves your browser.",
         href: "/free-tools/jwt-decoder",
       },
       {
         tag: "new",
         title: "SQL Formatter",
         description:
-          "Beautify, indent, and minify SQL queries instantly. Supports multi-word keywords like LEFT JOIN and GROUP BY.",
+          "Beautify, indent, and minify SQL queries instantly. Recognizes multi-word keywords like LEFT JOIN and GROUP BY.",
         href: "/free-tools/sql-formatter",
       },
       {
         tag: "new",
         title: "Image to Base64 Converter",
         description:
-          "Drag and drop any image to get a clean data URL, raw Base64, or ready-to-paste img tag.",
+          "Drag and drop any image to get a clean data URL, raw Base64, or a ready-to-paste image tag.",
         href: "/free-tools/image-to-base64",
       },
       {
         tag: "new",
         title: "CSS Gradient Generator",
         description:
-          "Visually build linear, radial, and conic gradients with multi-stop colour control. Copy ready-to-use CSS or Tailwind classes.",
+          "Visually build linear, radial, and conic gradients with multi-stop color control. Copy ready-to-use CSS or Tailwind classes.",
         href: "/free-tools/css-gradient-generator",
       },
       {
@@ -108,20 +102,14 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "UUID Generator (v4 and v7)",
         description:
-          "Generate up to 1,000 RFC-compliant UUIDs at a time. Supports the new time-ordered UUID v7 standard.",
+          "Generate up to 1,000 industry-standard unique IDs at a time, including the new time-ordered v7 format.",
         href: "/free-tools/uuid-generator",
       },
       {
         tag: "improved",
-        title: "Redesigned Free Tools menu",
+        title: "Refreshed Free Tools menu",
         description:
-          "The navbar dropdown now shows all 31 tools, grouped into Image, Content & SEO, Developer, and Productivity & Career.",
-      },
-      {
-        tag: "improved",
-        title: "Admin tools dashboard now lists every tool",
-        description:
-          "New tools automatically appear in the admin overview, category filter, and the user dashboard with no extra setup.",
+          "The navbar now groups tools into Image, Content & SEO, Developer, and Productivity & Career so you can find what you need at a glance.",
       },
     ],
   },
@@ -130,10 +118,10 @@ export const changelog: ChangelogRelease[] = [
     codename: "Productivity Pack",
     date: "2026-05-03",
     summary:
-      "Twelve new everyday productivity and developer utilities — all 100% free, with no sign-up required for the basics.",
+      "Twelve new everyday productivity and developer utilities — all 100% free, no sign-up required for the basics.",
     highlights: [
       "Pomodoro timer, world clock, and unit converter",
-      "JSON, regex, hash, and colour tools",
+      "JSON, regex, hash, and color tools",
       "Markdown editor, cron builder, and lorem ipsum",
     ],
     changes: [
@@ -141,7 +129,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "Pomodoro Timer",
         description:
-          "Stay focused with customisable work and break intervals. Includes desktop notifications and session history.",
+          "Stay focused with customizable work and break intervals. Includes desktop notifications and session history.",
         href: "/free-tools/pomodoro-timer",
       },
       {
@@ -194,13 +182,13 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "Hash Generator",
         description:
-          "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text or file, fully client-side.",
+          "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text or file. Your data never leaves your browser.",
         href: "/free-tools/hash-generator",
       },
       {
         tag: "new",
-        title: "Colour Converter",
-        description: "Convert between HEX, RGB, HSL, and OKLCH colour spaces with live previews.",
+        title: "Color Converter",
+        description: "Convert between HEX, RGB, HSL, and OKLCH color spaces with live previews.",
         href: "/free-tools/color-converter",
       },
       {
@@ -222,67 +210,62 @@ export const changelog: ChangelogRelease[] = [
     codename: "Accounts and Quotas",
     date: "2026-05-02",
     summary:
-      "User accounts arrive, alongside a transparent quota system, transactional email, and a brand-new public feedback page.",
+      "Free accounts arrive, alongside a transparent quota system, polished email notifications, and a brand-new public feedback page.",
     highlights: [
       "Sign in with Google to unlock higher limits",
-      "Personal dashboard with usage history",
-      "Transactional email powered by Resend and React Email",
+      "Personal dashboard with your usage history",
+      "Polished welcome and confirmation emails",
     ],
     changes: [
       {
         tag: "new",
         title: "Google sign-in and personal dashboard",
         description:
-          "Sign in with Google to track your tool usage, manage saved reports, and get higher daily quotas.",
+          "Sign in with Google to track your tool usage, manage saved reports, and unlock higher daily quotas.",
         href: "/login",
       },
       {
         tag: "new",
-        title: "Hybrid IP and session quotas",
+        title: "Generous free quotas, higher when you sign in",
         description:
-          "Guests get a generous free quota out of the box; signed-in users receive even higher limits with full transparency.",
+          "Guests get a generous free allowance out of the box. Signed-in users get even more — with full transparency on what's left.",
       },
       {
         tag: "new",
         title: "Public feedback page",
         description:
-          "Submit feedback, bug reports, or feature ideas directly from the site. Every message reaches us within minutes.",
+          "Share feedback, bug reports, or feature ideas straight from the site. Every message lands in our inbox within minutes.",
         href: "/feedback",
       },
       {
         tag: "improved",
-        title: "Branded transactional emails",
+        title: "Polished welcome and notification emails",
         description:
-          "Welcome, contact, and feedback emails now use polished React Email templates and ship via Resend for fast, reliable delivery.",
+          "Welcome, contact, and feedback emails now use clean, on-brand templates that arrive in your inbox in seconds.",
       },
       {
         tag: "improved",
-        title: "ATS Resume Checker, two-flow stepper",
+        title: "ATS Resume Checker, two-step flow",
         description:
-          "Cleaner step-by-step UX with clearer scoring and AI-powered suggestions tailored to each section.",
+          "A cleaner, step-by-step experience with clearer scoring and AI-powered suggestions tailored to each section.",
         href: "/free-tools/ats-resume-checker",
       },
       {
         tag: "improved",
         title: "Self-service account deletion",
         description:
-          "Delete your account at any time from Settings. We honour deletions immediately and remove all personal data.",
+          "Delete your account at any time from Settings. We honor deletions immediately and remove your personal data — fully GDPR and CCPA aligned.",
       },
       {
         tag: "improved",
-        title: "Avatar upload",
-        description: "Upload a profile picture from your account settings, hosted on Cloudinary.",
+        title: "Profile picture upload",
+        description: "Upload a profile picture from your account settings in seconds.",
       },
       {
         tag: "security",
-        title: "Removed admin email leak from the browser bundle",
+        title: "Hardened privacy controls",
         description:
-          "Tightened environment variable handling so admin identifiers stay strictly server-side.",
-      },
-      {
-        tag: "fixed",
-        title: "Admin login redirect loop",
-        description: "Admins are now redirected straight to the dashboard after sign-in.",
+          "Tightened how environment variables are handled so sensitive identifiers never reach the browser.",
       },
     ],
   },
@@ -291,24 +274,24 @@ export const changelog: ChangelogRelease[] = [
     codename: "Content Engine",
     date: "2026-05-01",
     summary:
-      "An AI-assisted blogging workflow, an upgraded SEO Analyzer with PDF reports, and a friendlier hire-me experience.",
+      "An AI-assisted blogging workflow, an upgraded SEO Analyzer with shareable PDF reports, and a friendlier hire-me experience.",
     highlights: [
-      "AI blog drafting with Gemini",
-      "PDF SEO reports you can email to clients",
-      "LinkedIn article generator for blogs and projects",
+      "AI-assisted blog drafting",
+      "Shareable PDF SEO reports",
+      "LinkedIn-ready articles from any blog or project",
     ],
     changes: [
       {
         tag: "new",
         title: "AI blog draft generator",
         description:
-          "Spin up a full blog draft, including outline and SEO meta, from a single topic prompt — built on Gemini.",
+          "Generate a full blog draft, including outline and SEO meta, from a single topic prompt.",
       },
       {
         tag: "new",
         title: "SEO Analyzer with PDF reports",
         description:
-          "Run a full SEO audit on any URL and download a polished PDF report ready to share with clients.",
+          "Run a full SEO audit on any URL and download a polished, white-label PDF report — ready to share with clients.",
         href: "/free-tools/seo-analyzer",
       },
       {
@@ -327,7 +310,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "Hire Me page",
         description:
-          "Detailed offerings, tech stack, availability, and a single click to book me on Upwork.",
+          "Detailed offerings, tech stack, availability, and a simple, two-click way to start a project.",
         href: "/hire-me",
       },
       {
@@ -339,8 +322,8 @@ export const changelog: ChangelogRelease[] = [
       },
       {
         tag: "improved",
-        title: "Mobile-friendly markdown tables",
-        description: "Wide tables now scroll horizontally on mobile instead of breaking the layout.",
+        title: "Mobile-friendly tables",
+        description: "Wide tables in articles now scroll horizontally on mobile instead of breaking the layout.",
       },
     ],
   },
@@ -349,11 +332,11 @@ export const changelog: ChangelogRelease[] = [
     codename: "Foundations",
     date: "2026-04-29",
     summary:
-      "The core portfolio, the first wave of free tools, and a complete admin panel for managing content.",
+      "The core portfolio, the first wave of free tools, and a polished foundation built for fast, reliable performance worldwide.",
     highlights: [
-      "Portfolio with project case studies",
-      "First free tools batch live",
-      "Admin panel for blogs, projects, contacts, and users",
+      "Portfolio with detailed project case studies",
+      "First batch of free tools live",
+      "Privacy-respecting analytics across the site",
     ],
     changes: [
       {
@@ -372,32 +355,20 @@ export const changelog: ChangelogRelease[] = [
       },
       {
         tag: "new",
-        title: "Admin panel",
+        title: "Resume view tracking",
         description:
-          "Full CRUD for blogs, projects, users, contacts, and feedback — secured with Supabase JWT and role-based access.",
-      },
-      {
-        tag: "new",
-        title: "Soft-delete for users, projects, and blogs",
-        description:
-          "Accidental deletes can now be restored from the admin Trash without restoring a backup.",
-      },
-      {
-        tag: "new",
-        title: "Resume PDF analytics",
-        description:
-          "Track downloads of the public resume PDF for sharper, data-driven hiring conversations.",
+          "See when your public resume gets viewed and downloaded, so you can have sharper, data-driven hiring conversations.",
       },
       {
         tag: "improved",
-        title: "Google Analytics and Tag Manager",
-        description: "Privacy-respecting analytics for tools, blog reads, and resume downloads.",
+        title: "Privacy-respecting analytics",
+        description: "Lightweight analytics across tools, blog reads, and resume downloads — with full respect for visitor privacy.",
       },
       {
         tag: "performance",
-        title: "Edge-friendly Next.js 16 setup",
+        title: "Built for global speed",
         description:
-          "App Router, React 19, Turbopack, and Tailwind v4 deliver fast first-paint everywhere in the world.",
+          "A modern, edge-optimized foundation delivers fast first paint and smooth navigation everywhere — North America, Europe, and beyond.",
       },
     ],
   },
