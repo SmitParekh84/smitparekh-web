@@ -74,6 +74,9 @@ interface PerTool {
   sessions_today: number;
   users_today: number;
   uses_total: number;
+  featured_in_nav: boolean;
+  nav_group: string | null;
+  nav_order: number;
 }
 
 interface StatsResponse {
@@ -206,8 +209,8 @@ export default function ToolsAdminPage() {
 
   const updateField = async (
     slug: string,
-    field: "guest_quota" | "user_quota" | "is_active",
-    value: number | boolean,
+    field: "guest_quota" | "user_quota" | "is_active" | "featured_in_nav" | "nav_group" | "nav_order",
+    value: number | boolean | string | null,
   ) => {
     setSavingSlug(slug);
     try {
@@ -439,6 +442,7 @@ export default function ToolsAdminPage() {
                     <th className="text-right px-4 py-3">Guest Q</th>
                     <th className="text-right px-4 py-3">User Q</th>
                     <th className="text-center px-4 py-3">Active</th>
+                    <th className="text-center px-4 py-3" title="Show in navbar dropdown">In Nav</th>
                     <th className="text-right px-4 py-3"></th>
                   </tr>
                 </thead>
@@ -446,7 +450,7 @@ export default function ToolsAdminPage() {
                   {filteredTools.length === 0 ? (
                     <tr>
                       <td
-                        colSpan={10}
+                        colSpan={11}
                         className="px-4 py-8 text-center text-sm text-muted-foreground"
                       >
                         No tools match your filters.
@@ -507,6 +511,29 @@ export default function ToolsAdminPage() {
                             <span
                               className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
                                 t.is_active ? "translate-x-4" : "translate-x-0.5"
+                              }`}
+                            />
+                          </button>
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <button
+                            onClick={() =>
+                              updateField(t.slug, "featured_in_nav", !t.featured_in_nav)
+                            }
+                            disabled={savingSlug === t.slug}
+                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                              t.featured_in_nav ? "bg-emerald-500" : "bg-muted"
+                            } disabled:opacity-50`}
+                            aria-label={t.featured_in_nav ? "Hide from navbar" : "Show in navbar"}
+                            title={
+                              t.featured_in_nav
+                                ? "Visible in the navbar dropdown"
+                                : "Hidden from navbar — toggle on to feature"
+                            }
+                          >
+                            <span
+                              className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
+                                t.featured_in_nav ? "translate-x-4" : "translate-x-0.5"
                               }`}
                             />
                           </button>

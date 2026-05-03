@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,13 +11,38 @@ import { cn } from "@/lib/utils";
 import { navItems, mobileNavItems } from "@/data/navigation";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { createClient } from "@/lib/supabase/client";
+import type { FeaturedNavTool } from "@/lib/featured-nav-tools";
 
 const linkItems = navItems.filter(
   (item) => item.href !== "/" && item.href !== "/contact" && !item.dropdown
 );
-const toolsItem = navItems.find((item) => !!item.dropdown);
 
-export default function Navbar() {
+const NAV_GROUP_ORDER: ReadonlyArray<FeaturedNavTool["group"]> = [
+  "Image",
+  "Content",
+  "Career",
+  "Developer",
+  "Productivity",
+];
+
+function groupTools(tools: FeaturedNavTool[]) {
+  const map = new Map<FeaturedNavTool["group"], FeaturedNavTool[]>();
+  tools.forEach((t) => {
+    const list = map.get(t.group) ?? [];
+    list.push(t);
+    map.set(t.group, list);
+  });
+  return NAV_GROUP_ORDER.filter((g) => map.has(g)).map((g) => ({
+    title: g,
+    items: (map.get(g) ?? []).sort((a, b) => a.order - b.order),
+  }));
+}
+
+export default function Navbar({
+  featuredNavTools,
+}: {
+  featuredNavTools: FeaturedNavTool[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,6 +54,9 @@ export default function Navbar() {
   const toolsRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { session } = useSupabaseSession();
+
+  const toolsGroups = useMemo(() => groupTools(featuredNavTools), [featuredNavTools]);
+  const showToolsDropdown = toolsGroups.length > 0;
 
   useEffect(() => setMounted(true), []);
 
@@ -130,7 +158,7 @@ export default function Navbar() {
             ))}
 
             {/* Free Tools - click-to-open dropdown */}
-            {toolsItem && (
+            {showToolsDropdown && (
               <div ref={toolsRef} className="relative">
                 <button
                   onClick={() => setToolsOpen((v) => !v)}
@@ -151,22 +179,32 @@ export default function Navbar() {
                 </button>
 
                 {toolsOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[860px]">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[520px]">
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
                       {/* Header row — links to the full landing page */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
-                        <p className="text-sm font-semibold text-foreground">Free Online Tools</p>
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">Most Popular Tools</p>
+                          <p className="text-[11px] text-muted-foreground mt-0.5">
+                            Hand-picked picks our visitors love
+                          </p>
+                        </div>
                         <Link
                           href="/free-tools"
                           onClick={() => setToolsOpen(false)}
                           className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600 transition-colors"
                         >
-                          Browse all tools
+                          Browse all 31 tools
                           <ArrowRight className="w-3 h-3" />
                         </Link>
                       </div>
-                      <div className="grid grid-cols-4 gap-5">
-                        {toolsItem.dropdown?.map((group) => (
+                      <div
+                        className={cn(
+                          "grid gap-x-5 gap-y-4",
+                          toolsGroups.length > 1 ? "grid-cols-2" : "grid-cols-1",
+                        )}
+                      >
+                        {toolsGroups.map((group) => (
                           <div key={group.title}>
                             <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2.5">
                               {group.title}
@@ -195,29 +233,25 @@ export default function Navbar() {
                         ))}
                       </div>
 
-                      {toolsItem.featured && (
-                        <div className="mt-4 pt-4 border-t border-border flex items-center justify-between gap-4">
-                          <div>
-                            <p className="text-sm font-semibold">
-                              {toolsItem.featured.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              {toolsItem.featured.description}
-                            </p>
-                          </div>
-                          <Link
-                            href={toolsItem.featured.href}
-                            onClick={() => setToolsOpen(false)}
-                            className={cn(
-                              buttonVariants({ variant: "outline", size: "sm" }),
-                              "gap-1.5 shrink-0 rounded-xl"
-                            )}
-                          >
-                            {toolsItem.featured.cta}
-                            <ArrowRight className="w-3.5 h-3.5" />
-                          </Link>
+                      <div className="mt-4 pt-4 border-t border-border flex items-center justify-between gap-4">
+                        <div>
+                          <p className="text-sm font-semibold">Looking for something else?</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">
+                            Explore our full catalog of free online tools.
+                          </p>
                         </div>
-                      )}
+                        <Link
+                          href="/free-tools"
+                          onClick={() => setToolsOpen(false)}
+                          className={cn(
+                            buttonVariants({ variant: "outline", size: "sm" }),
+                            "gap-1.5 shrink-0 rounded-xl"
+                          )}
+                        >
+                          See all tools
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}

@@ -12,6 +12,7 @@ import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { siteConfig } from "@/data/site";
+import { getFeaturedNavTools } from "@/lib/featured-nav-tools";
 
 const GA_MEASUREMENT_ID = "G-X9NMSPMQPD";
 const GTM_ID = "GTM-529BP97T";
@@ -100,9 +101,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // Fetched server-side and cached with the 'nav-tools' tag so the navbar
+  // never shows a client-side loading state. Admin toggles in /admin/tools
+  // call revalidateTag('nav-tools') to invalidate this.
+  const featuredNavTools = await getFeaturedNavTools();
+
   return (
     <html
       lang="en"
@@ -136,7 +142,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ConditionalNavbar />
+            <ConditionalNavbar featuredNavTools={featuredNavTools} />
             <main className="flex-1">{children}</main>
             <ConditionalFooter />
             <ConditionalChat />

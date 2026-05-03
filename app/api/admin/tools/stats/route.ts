@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
   const [{ data: configs }, { data: rangeRows }, { data: allRows }] = await Promise.all([
     admin
       .from("tool_config")
-      .select("slug,guest_quota,user_quota,is_active,updated_at")
+      .select("slug,guest_quota,user_quota,is_active,updated_at,featured_in_nav,nav_group,nav_order")
       .order("slug"),
     admin
       .from("tool_usage")
@@ -95,6 +95,9 @@ export async function GET(req: NextRequest) {
       user_quota: number;
       is_active: boolean;
       updated_at: string;
+      featured_in_nav?: boolean | null;
+      nav_group?: string | null;
+      nav_order?: number | null;
     }) => {
       const t = perToolRange.get(c.slug);
       return {
@@ -103,6 +106,9 @@ export async function GET(req: NextRequest) {
         user_quota: c.user_quota,
         is_active: c.is_active,
         updated_at: c.updated_at,
+        featured_in_nav: c.featured_in_nav ?? false,
+        nav_group: c.nav_group ?? null,
+        nav_order: c.nav_order ?? 100,
         uses_today: t?.uses ?? 0,
         sessions_today: t?.sessions.size ?? 0,
         users_today: t?.users.size ?? 0,

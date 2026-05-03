@@ -18,6 +18,39 @@ export interface ChangelogRelease {
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: "1.6.0",
+    codename: "Smarter Navigation",
+    date: "2026-05-04",
+    summary:
+      "The Free Tools menu has been redesigned around the eight most-loved tools, with a brand-new admin control to feature any tool in the navbar — instantly, with no redeploy.",
+    highlights: [
+      "Compact, two-column Free Tools dropdown",
+      "Admin can feature any tool in the navbar from /admin/tools",
+      "Zero client-side loading — featured list is rendered on the server with cache invalidation",
+    ],
+    changes: [
+      {
+        tag: "improved",
+        title: "Redesigned Free Tools dropdown",
+        description:
+          "Replaced the dense 24-tool menu with a curated two-column layout that surfaces only the most popular tools — and a clear link to browse the full catalogue of 31.",
+        href: "/free-tools",
+      },
+      {
+        tag: "new",
+        title: "Featured-in-navbar admin toggle",
+        description:
+          "Admins can now choose which tools appear in the navbar dropdown directly from the admin tools dashboard. Changes propagate within seconds, with no rebuild required.",
+      },
+      {
+        tag: "performance",
+        title: "Server-rendered navbar",
+        description:
+          "The featured-tools list is fetched server-side and tag-cached. Visitors never see a loading state on the navbar, even after admin changes.",
+      },
+    ],
+  },
+  {
     version: "1.5.0",
     codename: "Developer Toolkit",
     date: "2026-05-03",

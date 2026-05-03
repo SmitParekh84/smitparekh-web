@@ -1,12 +1,21 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { revalidateTag } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminEmail } from "@/lib/admin-allowlist";
+import { NAV_TOOLS_TAG } from "@/lib/featured-nav-tools";
 
 /**
- * Admin endpoint to update per-tool quota config.
+ * Admin endpoint to update per-tool quota + navbar visibility config.
  * Auth: requires a logged-in Supabase session WHOSE email is in ADMIN_EMAILS.
- * Body: { guest_quota?: number, user_quota?: number, is_active?: boolean }
+ * Body (any subset): {
+ *   guest_quota?: number,
+ *   user_quota?: number,
+ *   is_active?: boolean,
+ *   featured_in_nav?: boolean,
+ *   nav_group?: "Image" | "Content" | "Career" | "Developer" | "Productivity" | null,
+ *   nav_order?: number,
+ * }
  */
 export async function PATCH(
   request: NextRequest,
@@ -50,6 +59,18 @@ export async function PATCH(
   if (typeof body.is_active === "boolean") {
     update.is_active = body.is_active;
   }
+  if (typeof body.featured_in_nav === "boolean") {
+    update.featured_in_nav = body.featured_in_nav;
+  }
+  const allowedGroups = new Set(["Image", "Content", "Career", "Developer", "Productivity"]);
+  if (typeof body.nav_group === "string" && allowedGroups.has(body.nav_group)) {
+    update.nav_group = body.nav_group;
+  } else if (body.nav_group === null) {
+    update.nav_group = null;
+  }
+  if (typeof body.nav_order === "number" && Number.isFinite(body.nav_order)) {
+    update.nav_order = Math.max(0, Math.floor(body.nav_order));
+  }
   if (Object.keys(update).length === 1) {
     return NextResponse.json({ error: "No valid fields" }, { status: 400 });
   }
@@ -66,6 +87,20 @@ export async function PATCH(
   }
   if (!data) {
     return NextResponse.json({ error: "Tool not found" }, { status: 404 });
+  }
+
+  // If anything that affects the navbar changed, blow the ISR cache.
+  if (
+    "featured_in_nav" in update ||
+    "nav_group" in update ||
+    "nav_order" in update ||
+    "is_active" in update
+  ) {
+    try {
+      revalidateTag(NAV_TOOLS_TAG, "max");
+    } catch {
+      // best-effort — never fail the request because the tag couldn't be flushed.
+    }
   }
 
   return NextResponse.json({ success: true, config: data });
