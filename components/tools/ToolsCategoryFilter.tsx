@@ -28,6 +28,13 @@ import {
   FileEdit,
   CalendarClock,
   Type,
+  KeyRound,
+  Database,
+  ImagePlus,
+  Paintbrush,
+  Slice,
+  Star,
+  Hexagon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
@@ -57,6 +64,13 @@ const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "markdown-editor": FileEdit,
   "cron-builder": CalendarClock,
   "lorem-ipsum": Type,
+  "jwt-decoder": KeyRound,
+  "sql-formatter": Database,
+  "image-to-base64": ImagePlus,
+  "css-gradient-generator": Paintbrush,
+  "slug-generator": Slice,
+  "favicon-generator": Star,
+  "uuid-generator": Hexagon,
 };
 
 const toolCategoryMap: Record<string, string> = {
@@ -84,6 +98,13 @@ const toolCategoryMap: Record<string, string> = {
   "markdown-editor": "Content",
   "cron-builder": "Dev",
   "lorem-ipsum": "Content",
+  "jwt-decoder": "Security",
+  "sql-formatter": "Dev",
+  "image-to-base64": "Dev",
+  "css-gradient-generator": "Dev",
+  "slug-generator": "SEO",
+  "favicon-generator": "Dev",
+  "uuid-generator": "Dev",
 };
 
 const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);

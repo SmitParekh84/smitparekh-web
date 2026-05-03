@@ -349,6 +349,104 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     relatedSlugs: ["markdown-editor", "word-counter", "color-converter"],
   },
+
+  "jwt-decoder": {
+    howItWorks: [
+      { title: "Paste Your Token", description: "Drop any JWT (eyJ...) into the textarea. The decoder splits it on the dots and parses each segment instantly." },
+      { title: "Inspect Header & Payload", description: "Decoded JSON appears in syntax-highlighted blocks with copy buttons. Standard claims like exp, iat, and nbf are surfaced as human-readable timestamps." },
+      { title: "Check Expiry at a Glance", description: "A green 'Active' or red 'Expired' pill tells you the token's status without doing math on the exp claim." },
+    ],
+    useCases: [
+      { title: "Backend & Full-Stack Developers", description: "Debug auth flows fast — see what claims your identity provider is actually issuing without spinning up a script." },
+      { title: "QA & Support Engineers", description: "Inspect tokens from bug reports to verify expiry, audience, and roles before escalating." },
+      { title: "Security Reviewers", description: "Quickly audit JWTs from network captures or logs for sensitive claims that shouldn't be exposed client-side." },
+    ],
+    relatedSlugs: ["base64-encoder-decoder", "hash-generator", "uuid-generator"],
+  },
+
+  "sql-formatter": {
+    howItWorks: [
+      { title: "Paste Your Query", description: "Drop any SQL — single-line, minified, or messy auto-generated output. Comments and string literals are preserved." },
+      { title: "Pick Your Style", description: "Choose 2 / 4-space indent or tabs, and toggle UPPERCASE keywords on or off to match your team's convention." },
+      { title: "Copy or Minify", description: "Copy the formatted result, or use the Minify button to strip whitespace down to a single line — useful for embedding in code." },
+    ],
+    useCases: [
+      { title: "Backend Developers", description: "Clean up auto-generated ORM queries before committing them to Git or pasting into PR descriptions." },
+      { title: "Data Analysts & DBAs", description: "Make complex CTEs and joins readable when reviewing a teammate's query in Slack or a spreadsheet." },
+      { title: "Documentation Writers", description: "Embed beautifully formatted SQL examples in your docs without a separate VS Code session." },
+    ],
+    relatedSlugs: ["json-formatter", "regex-tester", "jwt-decoder"],
+  },
+
+  "image-to-base64": {
+    howItWorks: [
+      { title: "Drop or Pick an Image", description: "Drag a file onto the dropzone or click to choose one. PNG, JPG, GIF, SVG, WebP, and AVIF are supported up to 10 MB." },
+      { title: "See Live Stats", description: "The tool shows the original byte size next to the encoded base64 size so you can decide whether inlining is worth it." },
+      { title: "Copy in the Format You Need", description: "One-click copy as raw base64, full data URL, ready-to-paste <img> tag, or CSS background rule." },
+    ],
+    useCases: [
+      { title: "Email & Newsletter Designers", description: "Inline logos and decorative icons directly into HTML emails to bypass image-blocking and broken image links." },
+      { title: "Frontend Developers", description: "Embed tiny icons and signatures into CSS to eliminate extra HTTP requests for above-the-fold assets." },
+      { title: "Documentation & Storybook Authors", description: "Bake assets into Markdown and Storybook stories so examples remain self-contained and don't depend on external URLs." },
+    ],
+    relatedSlugs: ["image-compressor", "image-converter", "favicon-generator"],
+  },
+
+  "css-gradient-generator": {
+    howItWorks: [
+      { title: "Pick a Type", description: "Choose linear, radial, or conic. The live preview updates instantly so you can compare options without committing to one." },
+      { title: "Adjust Stops & Angle", description: "Add as many color stops as you like, drag positions on the slider, and rotate the angle for linear and conic gradients." },
+      { title: "Copy CSS or Tailwind", description: "Three outputs are ready to copy: the CSS value, the full background rule, and a Tailwind arbitrary class for v3 / v4 projects." },
+    ],
+    useCases: [
+      { title: "Web Designers", description: "Mock up hero backgrounds, button fills, and badge surfaces in the browser instead of bouncing between Figma and a sandbox." },
+      { title: "Frontend Developers", description: "Generate pixel-perfect CSS without memorising linear-gradient syntax — paste directly into your stylesheet or Tailwind class." },
+      { title: "Brand & Marketing Teams", description: "Iterate on landing-page accent gradients with the rest of the team in real time, then ship the exact CSS to engineering." },
+    ],
+    relatedSlugs: ["color-converter", "favicon-generator", "image-to-base64"],
+  },
+
+  "slug-generator": {
+    howItWorks: [
+      { title: "Paste Titles, One Per Line", description: "Drop a list of blog post titles, product names, or any human-readable strings into the input box." },
+      { title: "Tune the Output", description: "Choose your separator (-, _, .), max length, lowercase mode, and whether to remove common stop words." },
+      { title: "Copy Individually or All at Once", description: "Each slug has a one-click copy. Use 'Copy all' to grab the whole list as newline-separated text — perfect for spreadsheets and CSV imports." },
+    ],
+    useCases: [
+      { title: "Content Marketers & Bloggers", description: "Convert an editorial calendar of titles into clean, SEO-friendly URLs in one paste — no manual cleanup." },
+      { title: "E-commerce Operators", description: "Bulk-generate product slugs from SKU titles for catalog imports into Shopify, WooCommerce, or custom storefronts." },
+      { title: "Developers", description: "Slugify dynamic content before saving it to a URL field, with deterministic output that's safe for migrations." },
+    ],
+    relatedSlugs: ["seo-analyzer", "meta-tag-checker", "lorem-ipsum"],
+  },
+
+  "favicon-generator": {
+    howItWorks: [
+      { title: "Pick Text, Emoji, or Upload", description: "Type up to three letters, choose an emoji, or upload your own image — the tool renders it to every required favicon size simultaneously." },
+      { title: "Style the Background", description: "Pick foreground and background colors, choose square / rounded / circle shape, and select a font weight that reads well even at 16×16." },
+      { title: "Download the Bundle", description: "One click downloads the full set of PNGs (16, 32, 48, 64, 128, 180, 192, 512). Copy the matching <link> snippet for your <head>." },
+    ],
+    useCases: [
+      { title: "Indie Makers", description: "Ship a polished-looking site without opening Figma — pick a letter and a color, paste the link tags, and you're done." },
+      { title: "Side-Project Developers", description: "Test brand directions for a new product with multiple favicons in minutes, not hours." },
+      { title: "Agency Teams", description: "Prototype client favicons in client meetings — show 5 directions live without exporting from a design tool." },
+    ],
+    relatedSlugs: ["image-to-base64", "css-gradient-generator", "image-converter"],
+  },
+
+  "uuid-generator": {
+    howItWorks: [
+      { title: "Choose Version & Count", description: "Pick UUID v4 (random) or UUID v7 (time-ordered), and set how many you need — up to 1000 in one click." },
+      { title: "Tune the Format", description: "Toggle uppercase, strip hyphens, or wrap with braces (Microsoft GUID style) — combine any options." },
+      { title: "Copy Individually or in Bulk", description: "Each UUID has a per-row copy button. 'Copy all' grabs the whole list as newline-separated text — ideal for seeding databases and tests." },
+    ],
+    useCases: [
+      { title: "Backend Developers", description: "Seed databases, generate test fixtures, or grab a quick stable identifier without writing a one-off script." },
+      { title: "QA Engineers", description: "Create predictable test data for parametrised tests where unique IDs are needed but specific values aren't." },
+      { title: "DevOps & SREs", description: "Generate request IDs, deployment IDs, or migration markers ad-hoc during incident response and runbook execution." },
+    ],
+    relatedSlugs: ["hash-generator", "jwt-decoder", "password-generator"],
+  },
 };
 
 export function getToolContent(slug: string): ToolContent | null {

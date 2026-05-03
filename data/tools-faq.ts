@@ -645,6 +645,139 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
       answer: "No. Lorem Ipsum is for design previews only. Always replace it with real copy before shipping — leftover Lorem Ipsum is a common cause of embarrassing production bugs.",
     },
   ],
+
+  "jwt-decoder": [
+    {
+      question: "Is decoding a JWT the same as verifying it?",
+      answer: "No. Decoding only reads the base64url-encoded header and payload, which are not encrypted. Verifying a JWT requires checking the signature against the issuer's secret or public key — a server-side step that this tool intentionally does not perform.",
+    },
+    {
+      question: "Is it safe to paste my real production JWT here?",
+      answer: "Yes. The decoder runs entirely in your browser — your token is never sent to any server, logged, or stored. That said, treat any JWT as a credential and avoid sharing it through screenshots or chat.",
+    },
+    {
+      question: "Why does the tool say my token is expired?",
+      answer: "Standard JWTs include an 'exp' claim with a Unix timestamp. We compare it to your computer's current time. If your clock is wrong or the token is genuinely expired, the badge will turn red.",
+    },
+    {
+      question: "Which JWT algorithms are supported?",
+      answer: "All of them — the decoder treats the algorithm as informational only. HS256, RS256, ES256, EdDSA, and others all decode the same way because the header/payload encoding is identical across algorithms.",
+    },
+  ],
+
+  "sql-formatter": [
+    {
+      question: "Which SQL dialects does the formatter support?",
+      answer: "It works for ANSI-style SQL used by PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, BigQuery, Snowflake, and Redshift. Vendor-specific keywords are kept as-is and won't be reformatted incorrectly.",
+    },
+    {
+      question: "Does it preserve my comments?",
+      answer: "Yes. Both line comments (-- ...) and block comments (/* ... */) are preserved on their own lines in the output.",
+    },
+    {
+      question: "Will it break complex CTEs and subqueries?",
+      answer: "No. Parentheses are tracked and indentation increases for each nested level, so CTEs (WITH ... AS (...)) and subqueries stay readable.",
+    },
+    {
+      question: "Is my SQL sent to a server?",
+      answer: "Never. Formatting happens entirely in your browser using JavaScript — safe for confidential queries containing internal table names or business logic.",
+    },
+  ],
+
+  "image-to-base64": [
+    {
+      question: "Are my images uploaded anywhere?",
+      answer: "No. The conversion happens in your browser using the FileReader API. The file never leaves your device, making this safe for confidential or unreleased images.",
+    },
+    {
+      question: "When should I actually use a base64 image?",
+      answer: "Inline base64 is ideal for tiny icons, transactional emails, or eliminating an extra HTTP request for above-the-fold images. For anything larger than ~10 KB it's usually better to keep the file external — base64 inflates size by ~33%.",
+    },
+    {
+      question: "Does it work with SVG?",
+      answer: "Yes. SVGs are encoded as data URLs with the image/svg+xml MIME type and can be used directly in CSS background-image or <img> src.",
+    },
+    {
+      question: "What is the max file size?",
+      answer: "10 MB. Larger files are blocked because base64 strings become unmanageable and most email and CSS contexts have lower practical limits anyway.",
+    },
+  ],
+
+  "css-gradient-generator": [
+    {
+      question: "What's the difference between linear, radial, and conic gradients?",
+      answer: "Linear gradients transition along a straight line at a chosen angle. Radial gradients radiate outward from a center point. Conic gradients sweep around a center point like a clock face — perfect for pie-chart effects.",
+    },
+    {
+      question: "Are conic gradients supported in all browsers?",
+      answer: "Yes — conic-gradient() is supported in every evergreen browser (Chrome 69+, Edge 79+, Safari 12.1+, Firefox 83+). For very old browsers, fall back to a linear gradient.",
+    },
+    {
+      question: "Can I copy the result as Tailwind?",
+      answer: "Yes. The 'Tailwind arbitrary' output gives you a class like bg-[linear-gradient(135deg,#3b82f6_0%,#06b6d4_100%)] you can paste into any Tailwind project (v3 or v4).",
+    },
+    {
+      question: "How many color stops can I add?",
+      answer: "As many as you want — the generator supports unlimited stops with individual position controls. For practical use, 2–4 stops is usually best for crisp, fast-rendering gradients.",
+    },
+  ],
+
+  "slug-generator": [
+    {
+      question: "What characters get stripped from a slug?",
+      answer: "Anything that isn't ASCII alphanumeric. Spaces, punctuation, emoji, and special characters become separators. Accented characters (é, ü, ñ, etc.) are normalised to their ASCII equivalent (e, u, n).",
+    },
+    {
+      question: "Why use slugs instead of raw titles in URLs?",
+      answer: "Search engines and humans both prefer URLs that are short, lowercase, hyphenated, and free of percent-encoded characters. Slugs improve click-through rate, shareability, and SEO.",
+    },
+    {
+      question: "Should I remove stop words?",
+      answer: "For SEO, often yes — words like 'a', 'the', 'and' rarely add ranking value and shorter URLs perform better. For navigation breadcrumbs or human-readability, leave them in.",
+    },
+    {
+      question: "Will the same input always produce the same slug?",
+      answer: "Yes. The transformation is purely deterministic — given the same input and options, you'll always get the same slug. That makes it safe to use for permalinks and migration scripts.",
+    },
+  ],
+
+  "favicon-generator": [
+    {
+      question: "Which favicon sizes do I actually need?",
+      answer: "At minimum: 16×16 (browser tab), 32×32 (high-DPI tabs), 180×180 (Apple touch icon), 192×192 and 512×512 (Android / PWA manifest). The tool emits all of these plus 48, 64, and 128 for completeness.",
+    },
+    {
+      question: "Can I use an emoji as my favicon?",
+      answer: "Yes — switch to the Emoji tab and pick any emoji. It's rendered to canvas at every size, so you get crisp PNGs ready to upload to your /public folder.",
+    },
+    {
+      question: "Why a square / rounded / circle background?",
+      answer: "Modern operating systems (iOS, Android) display favicons inside their own shape masks. Picking 'rounded' or 'circle' here lets you preview how the icon will look on a home screen versus a browser tab.",
+    },
+    {
+      question: "Where do I install the favicon files?",
+      answer: "Put each PNG into your site's /public (or web root) folder, then paste the generated <link> tags into your <head>. The tool gives you the exact snippet to copy.",
+    },
+  ],
+
+  "uuid-generator": [
+    {
+      question: "What's the difference between UUID v4 and v7?",
+      answer: "UUID v4 is fully random and unsorted. UUID v7 is time-ordered — it includes a Unix-millisecond timestamp at the start, which makes it index- and sort-friendly for databases. v7 is the modern recommendation for new systems.",
+    },
+    {
+      question: "Are these UUIDs safe to use as primary keys?",
+      answer: "Yes. They are generated using the Web Crypto API (crypto.randomUUID), which is cryptographically secure. Collisions are mathematically negligible — you would need ~2.71 quintillion v4 UUIDs to have a 50% chance of one duplicate.",
+    },
+    {
+      question: "What's the NIL UUID for?",
+      answer: "The NIL UUID (00000000-0000-0000-0000-000000000000) is a special placeholder defined by RFC 4122 and used as a sentinel for 'no UUID yet' in databases, fixtures, and tests. The MAX UUID (all f's) is its opposite, used in test bounds.",
+    },
+    {
+      question: "How many can I generate at once?",
+      answer: "Up to 1000 per click. They're generated locally — no rate limits, no signup, no captcha.",
+    },
+  ],
 };
 
 export function getToolFAQ(slug: string): ToolFAQItem[] {

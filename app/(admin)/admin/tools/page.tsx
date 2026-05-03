@@ -55,6 +55,13 @@ const toolCategoryMap: Record<string, string> = {
   "markdown-editor": "Content",
   "cron-builder": "Dev",
   "lorem-ipsum": "Content",
+  "jwt-decoder": "Security",
+  "sql-formatter": "Dev",
+  "image-to-base64": "Dev",
+  "css-gradient-generator": "Dev",
+  "slug-generator": "SEO",
+  "favicon-generator": "Dev",
+  "uuid-generator": "Dev",
 };
 
 interface PerTool {

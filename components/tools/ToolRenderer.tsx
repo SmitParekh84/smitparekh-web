@@ -34,6 +34,13 @@ const toolMap: Record<string, React.ComponentType> = {
   "markdown-editor": dynamic(() => import("./MarkdownEditor"), { loading: Loading }),
   "cron-builder": dynamic(() => import("./CronBuilder"), { loading: Loading }),
   "lorem-ipsum": dynamic(() => import("./LoremIpsumGenerator"), { loading: Loading }),
+  "jwt-decoder": dynamic(() => import("./JwtDecoder"), { loading: Loading }),
+  "sql-formatter": dynamic(() => import("./SqlFormatter"), { loading: Loading }),
+  "image-to-base64": dynamic(() => import("./ImageToBase64"), { loading: Loading }),
+  "css-gradient-generator": dynamic(() => import("./GradientGenerator"), { loading: Loading }),
+  "slug-generator": dynamic(() => import("./SlugGenerator"), { loading: Loading }),
+  "favicon-generator": dynamic(() => import("./FaviconGenerator"), { loading: Loading }),
+  "uuid-generator": dynamic(() => import("./UuidGenerator"), { loading: Loading }),
 };
 
 interface Props {

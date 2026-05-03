@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Eraser, PenLine, FileText, Globe, QrCode, Hash, Braces, Regex, Fingerprint, Palette, Link as LinkIcon, Timer, Clock, Calculator, FileEdit, CalendarClock, Type } from "lucide-react";
+import { ArrowRight, Eraser, PenLine, FileText, Globe, QrCode, Hash, Braces, Regex, Fingerprint, Palette, Link as LinkIcon, Timer, Clock, Calculator, FileEdit, CalendarClock, Type, KeyRound, Database, ImagePlus, Paintbrush, Slice, Star, Hexagon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +27,13 @@ const iconMap = {
   FileEdit,
   CalendarClock,
   Type,
+  KeyRound,
+  Database,
+  ImagePlus,
+  Paintbrush,
+  Slice,
+  Star,
+  Hexagon,
 } as const;
 
 type IconName = keyof typeof iconMap;
