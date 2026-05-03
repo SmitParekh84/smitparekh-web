@@ -18,14 +18,14 @@ export default function CTABanner() {
 
             <div className="relative space-y-4 max-w-2xl mx-auto">
               <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Start a Project
+                Let&apos;s Build Together
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                Have a Project in Mind?
+                Your Next Product, Built Right — On Time
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Most clients go from first message to scoped proposal within 48 hours.
-                Tell me what you&apos;re building - let&apos;s see if we&apos;re a fit.
+                Most clients receive a scoped proposal within 48 hours of their first message.
+                No sales cycles, no handoffs, no surprises — just clean code delivered on schedule.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">

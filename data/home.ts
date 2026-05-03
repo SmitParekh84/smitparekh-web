@@ -12,9 +12,9 @@ export interface HomeData {
 
 export const homeData: HomeData = {
   title: "Hi, I'm Smit Parekh",
-  subtitle: "Full-Stack Web Development for Startups & Growing Businesses",
+  subtitle: "I Ship Production-Ready Web Apps — On Time, Every Time",
   description:
-    "I build fast, scalable web applications that drive real business results - from early-stage MVPs to enterprise platforms handling thousands of daily users. React · Node.js · TypeScript · AWS.",
+    "From scoped requirements to live, monitored deployment — I own the full stack so you never juggle multiple vendors. 30+ products shipped across FinTech, SaaS, and e-commerce. React · Node.js · TypeScript · AWS.",
   imageSrc: "/images/Smit-Parekh-Home.png",
   socialLinks: [
     {
@@ -53,7 +53,7 @@ export const homeData: HomeData = {
 export const aboutStats = {
   years: "4+",
   certifications: "4+",
-  companies: "4+",
+  companies: "15+",
 };
 
 export const cvLink = "https://www.smitparekh.co.in/Smit-parekh.pdf";

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, FileText, Workflow, Boxes, Network, GitBranch } from "lucide-react";
+import { ArrowRight, Briefcase, Workflow, Boxes, Network, GitBranch, Wrench } from "lucide-react";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
   SiNodedotjs, SiNestjs, SiExpress, SiPython, SiGraphql,
@@ -110,27 +110,38 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-3 pt-1"
+              className="flex flex-col gap-3 pt-1"
               variants={item}
             >
-              <Link
-                href="/free-tools"
-                className={cn(buttonVariants({ size: "lg" }), "gap-2")}
-              >
-                Explore Free Tools
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/resume"
-                onClick={() => trackResumeEvent.mutate("button_click")}
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "gap-2"
-                )}
-              >
-                <FileText className="w-4 h-4" />
-                View Resume
-              </Link>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                <Link
+                  href="/contact"
+                  className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+                >
+                  Let&apos;s Work Together
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/portfolio"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "gap-2"
+                  )}
+                >
+                  <Briefcase className="w-4 h-4" />
+                  See My Work
+                </Link>
+              </div>
+              <p className="text-xs text-muted-foreground text-center lg:text-left">
+                <Link
+                  href="/free-tools"
+                  onClick={() => trackResumeEvent.mutate("button_click")}
+                  className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+                >
+                  <Wrench className="w-3 h-3" />
+                  Or try 14 free online tools — no account needed
+                </Link>
+              </p>
             </motion.div>
 
             {/* Social links */}
@@ -203,7 +214,7 @@ export default function Hero() {
                 animate="visible"
               >
                 <p className="text-2xl font-bold leading-none">{aboutStats.companies}</p>
-                <p className="text-xs text-muted-foreground mt-1">Companies</p>
+                <p className="text-xs text-muted-foreground mt-1">Clients</p>
               </motion.div>
             </div>
           </div>

@@ -214,9 +214,17 @@ export default async function ToolPage({ params }: Props) {
                   {tool.description}
                 </p>
               )}
-              <p className="mt-3 text-xs text-muted-foreground">
-                Free · No account required · No data stored
-              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                <span>Free</span>
+                <span>·</span>
+                <span>No account required</span>
+                <span>·</span>
+                <span>Files deleted immediately</span>
+                <span>·</span>
+                <Link href="/" className="hover:text-foreground transition-colors">
+                  Built by Smit Parekh
+                </Link>
+              </div>
             </div>
           </div>
         </section>

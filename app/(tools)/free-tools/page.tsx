@@ -95,18 +95,18 @@ export const metadata: Metadata = {
 };
 
 const features = [
-  { icon: CheckCircle, title: "100% Free Forever", description: "Every tool is free with no hidden costs, trials, or subscription tiers. Use them as much as you need." },
-  { icon: Zap, title: "Lightning Fast", description: "Results in seconds. Browser-based tools run locally; AI tools use optimised server pipelines." },
-  { icon: ShieldCheck, title: "Private & Secure", description: "Uploaded files are processed and deleted immediately - never stored, never shared, never used for training." },
-  { icon: Brain, title: "AI-Powered", description: "Background removal, post generation, ATS scoring, and SEO analysis all use production-grade AI models." },
-  { icon: Users, title: "No Account Required", description: "No signup, no email, no OAuth. Open a tool and use it - every single time." },
-  { icon: RefreshCw, title: "Continuously Improved", description: "New tools and improvements ship regularly based on real feedback from developers and marketers." },
+  { icon: CheckCircle, title: "Zero Paywalls, Ever", description: "No trial countdown, no 'feature locked' banners, no credit card required. Every tool is free today and will still be free next year." },
+  { icon: ShieldCheck, title: "Files Deleted Immediately", description: "Uploads are processed in memory and deleted the moment your result is ready. Nothing is stored, logged, or used for AI training. Ever." },
+  { icon: Users, title: "No Signup to Start", description: "Open any tool and start working in seconds. If you want 10× more daily uses and a personal dashboard, one Google sign-in takes 5 seconds — still free." },
+  { icon: Brain, title: "Production-Grade AI", description: "Background removal, ATS scoring, LinkedIn post generation, and SEO analysis — the same quality as paid tools, at zero cost." },
+  { icon: Zap, title: "All 14 Tools, One Place", description: "Stop bookmarking a different site for each task. Image, Content, SEO, Career, and Dev tools — all here, all free, searchable by category." },
+  { icon: RefreshCw, title: "Built & Maintained by a Developer", description: "Not a VC-backed tool farm. Built by a full-stack developer who uses these tools weekly. Feedback actually ships — usually within days." },
 ];
 
 const steps = [
-  { step: "01", title: "Pick a Tool", description: "Browse the collection below and choose the tool that fits your task - image, content, SEO, or career." },
-  { step: "02", title: "Input Your Data", description: "Upload a file, paste a URL, or type your content. The interface tells you exactly what it needs." },
-  { step: "03", title: "Get Instant Results", description: "Download your processed image, copy your generated text, or read your detailed analysis - in seconds." },
+  { step: "01", title: "Choose Your Tool", description: "Browse 14 tools by category — Image, Content, SEO, Career, or Dev. Use the filter or scroll the full list. No account needed to start." },
+  { step: "02", title: "Paste or Upload", description: "Drop a file, paste a URL, or type your input. No complex setup, no documentation to read, no waiting in a queue." },
+  { step: "03", title: "Copy or Download", description: "One click to copy your text or download your file. Sign in free for a personal dashboard and 10× higher daily limits across all tools." },
 ];
 
 const websiteSchema = {
@@ -216,13 +216,13 @@ export default function FreeToolsPage() {
       <PageHero
         eyebrow="Free Tools"
         icon={Wrench}
-        title="Free Online Tools"
-        description={`${toolsSEO.length} browser-based tools - no signup, no account, no cost. Built for developers, marketers, and professionals.`}
+        title="Stop Paying for Tools You Use Twice a Week"
+        description={`${toolsSEO.length} browser-based tools — background remover, ATS resume checker, LinkedIn post generator, and more. Open it, use it, done. No account, no cost, no nonsense.`}
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/85">
           <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No account required</span>
-          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No data stored</span>
-          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> 100% free forever</span>
+          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> Files deleted immediately</span>
+          <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> Free forever, no trial</span>
         </div>
       </PageHero>
 
@@ -233,8 +233,8 @@ export default function FreeToolsPage() {
             <div className="flex items-center gap-3 text-sm">
               <Zap className="w-4 h-4 text-blue-500 shrink-0" />
               <span>
-                <span className="font-semibold">Free users get 3 uses/day.</span>
-                <span className="text-muted-foreground ml-1.5">Sign in with Google to unlock 10× more — it takes 5 seconds.</span>
+                <span className="font-semibold">You&apos;re on the free plan — 3 uses per tool per day.</span>
+                <span className="text-muted-foreground ml-1.5">Sign in with Google for 10× more daily uses + a personal dashboard. No password, no cost, 5 seconds.</span>
               </span>
             </div>
             <Link
@@ -259,10 +259,10 @@ export default function FreeToolsPage() {
       <section className="page-section border-t border-border bg-muted/20">
         <div className="page-container">
           <div className="text-center mb-10">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">Why Use These Tools</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Built for professionals who value their time</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">Why These Tools Are Different</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Not another tool graveyard with a freemium trap</h2>
             <p className="text-muted-foreground mt-3 text-sm max-w-xl mx-auto">
-              Every tool is designed to solve a real problem fast - no friction, no paywalls.
+              No trial countdowns, no locked features, no email capture walls. Just tools that work.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -284,7 +284,7 @@ export default function FreeToolsPage() {
         <div className="page-container">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">How It Works</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Three steps - that's it</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Open. Use. Done. That&apos;s really it.</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
             {steps.map(({ step, title, description }) => (
@@ -313,17 +313,30 @@ export default function FreeToolsPage() {
 
       {/* CTA */}
       <section className="page-section">
-        <div className="page-container text-center">
-          <h2 className="text-2xl font-bold tracking-tight mb-3">Ready to get started?</h2>
-          <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
-            Pick any tool above - no signup, no download, no waiting. Just results.
-          </p>
-          <Link
-            href="#tools"
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 text-sm transition-colors"
-          >
-            Browse All Tools <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="page-container">
+          <div className="rounded-3xl border border-border bg-muted/30 px-8 py-12 text-center max-w-2xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">No credit card. No expiry. No catch.</p>
+            <h2 className="text-2xl font-bold tracking-tight mb-3">
+              Every tool is free — today and always
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
+              Sign in free with Google for 10× more daily uses and a personal dashboard that tracks everything. Or just start using tools right now — no account needed.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="#tools"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 text-sm transition-colors"
+              >
+                Browse All Tools <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/login"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card hover:bg-accent font-semibold px-6 py-3 text-sm transition-colors"
+              >
+                <LogIn className="w-4 h-4" /> Sign in Free
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

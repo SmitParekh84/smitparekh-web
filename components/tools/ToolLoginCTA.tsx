@@ -63,11 +63,11 @@ export function ToolLoginCTA({ slug, toolName }: ToolLoginCTAProps) {
         </span>
         <div>
           <p className="text-sm font-semibold text-foreground">
-            Get more free uses with a free account
+            Get 10× more daily uses — completely free
           </p>
           <p className="text-xs text-muted-foreground mt-0.5">
-            Sign in with Google to unlock higher daily limits for {toolName} and all other tools.
-            Takes 5 seconds, completely free.
+            Sign in with Google to unlock higher daily limits for {toolName} and all 14 tools.
+            No password, no credit card — 5 seconds and you&apos;re in.
           </p>
         </div>
       </div>
