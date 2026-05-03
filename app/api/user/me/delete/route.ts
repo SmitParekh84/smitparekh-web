@@ -5,20 +5,26 @@ import { createClient } from "@/lib/supabase/server";
 export async function DELETE() {
   const supabase = await createClient();
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const admin = createAdminClient();
   if (!admin) return NextResponse.json({ error: "Not configured" }, { status: 503 });
 
-  // Soft-delete: set deleted_at — usage rows are intentionally kept (anti-abuse)
-  const { error } = await admin
-    .from("users")
-    .update({ deleted_at: new Date().toISOString() })
-    .eq("supabase_auth_id", user.id);
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  // Soft-delete in MongoDB via the backend API (keeps admin trash in sync)
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "https://api.smitparekh.co.in/api";
+  const mongoRes = await fetch(`${apiUrl}/auth/me`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${session.access_token}` },
+  });
+  if (!mongoRes.ok) {
+    const body = await mongoRes.json().catch(() => ({}));
+    return NextResponse.json(
+      { error: body.message ?? "Failed to delete account" },
+      { status: mongoRes.status }
+    );
+  }
 
   // Sign out the Supabase session
   await supabase.auth.signOut();
