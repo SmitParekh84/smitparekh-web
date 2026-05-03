@@ -22,6 +22,12 @@ import {
   Fingerprint,
   Regex,
   Palette,
+  Timer,
+  Clock,
+  Calculator,
+  FileEdit,
+  CalendarClock,
+  Type,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
@@ -45,6 +51,12 @@ const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "hash-generator": Fingerprint,
   "regex-tester": Regex,
   "color-converter": Palette,
+  "pomodoro-timer": Timer,
+  "world-clock": Clock,
+  "unit-converter": Calculator,
+  "markdown-editor": FileEdit,
+  "cron-builder": CalendarClock,
+  "lorem-ipsum": Type,
 };
 
 const toolCategoryMap: Record<string, string> = {
@@ -66,6 +78,12 @@ const toolCategoryMap: Record<string, string> = {
   "hash-generator": "Security",
   "regex-tester": "Dev",
   "color-converter": "Dev",
+  "pomodoro-timer": "Productivity",
+  "world-clock": "Productivity",
+  "unit-converter": "Productivity",
+  "markdown-editor": "Content",
+  "cron-builder": "Dev",
+  "lorem-ipsum": "Content",
 };
 
 const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);
@@ -76,7 +94,7 @@ const newSlugs = new Set([
   "base64-encoder-decoder",
 ]);
 
-const CATEGORIES = ["All", "Image", "Content", "SEO", "Career", "Dev", "Security"] as const;
+const CATEGORIES = ["All", "Image", "Content", "SEO", "Career", "Dev", "Security", "Productivity"] as const;
 type Category = (typeof CATEGORIES)[number];
 
 export default function ToolsCategoryFilter() {

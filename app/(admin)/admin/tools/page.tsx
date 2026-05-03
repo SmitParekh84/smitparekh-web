@@ -49,6 +49,12 @@ const toolCategoryMap: Record<string, string> = {
   "hash-generator": "Security",
   "regex-tester": "Dev",
   "color-converter": "Dev",
+  "pomodoro-timer": "Productivity",
+  "world-clock": "Productivity",
+  "unit-converter": "Productivity",
+  "markdown-editor": "Content",
+  "cron-builder": "Dev",
+  "lorem-ipsum": "Content",
 };
 
 interface PerTool {

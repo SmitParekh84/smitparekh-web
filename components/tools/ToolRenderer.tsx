@@ -28,6 +28,12 @@ const toolMap: Record<string, React.ComponentType> = {
   "hash-generator": dynamic(() => import("./HashGenerator"), { loading: Loading }),
   "regex-tester": dynamic(() => import("./RegexTester"), { loading: Loading }),
   "color-converter": dynamic(() => import("./ColorConverter"), { loading: Loading }),
+  "pomodoro-timer": dynamic(() => import("./PomodoroTimer"), { loading: Loading }),
+  "world-clock": dynamic(() => import("./WorldClock"), { loading: Loading }),
+  "unit-converter": dynamic(() => import("./UnitConverter"), { loading: Loading }),
+  "markdown-editor": dynamic(() => import("./MarkdownEditor"), { loading: Loading }),
+  "cron-builder": dynamic(() => import("./CronBuilder"), { loading: Loading }),
+  "lorem-ipsum": dynamic(() => import("./LoremIpsumGenerator"), { loading: Loading }),
 };
 
 interface Props {

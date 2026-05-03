@@ -531,6 +531,120 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
       answer: "No. The converter runs entirely in your browser. Nothing is uploaded.",
     },
   ],
+
+  "pomodoro-timer": [
+    {
+      question: "What is the Pomodoro Technique?",
+      answer: "A time-management method created by Francesco Cirillo in the late 1980s. You work for a focused interval (traditionally 25 minutes), then take a 5-minute break. Every 4 sessions, you take a longer 15–30 minute break. The structure trains your brain to sustain attention and recover.",
+    },
+    {
+      question: "Can I customise the focus and break lengths?",
+      answer: "Yes. Open Settings to set focus duration, short break, long break, and how often a long break occurs. Some people prefer 50/10 or 90/20 cycles — the timer supports anything from 1 to 90 minutes.",
+    },
+    {
+      question: "Will it work if I switch tabs or minimise the browser?",
+      answer: "Yes. The timer keeps running in the background. When a phase completes, you'll get a sound and a browser notification (if you allow notifications). The tab can stay pinned in the corner.",
+    },
+    {
+      question: "Are my session stats saved?",
+      answer: "Sessions are tracked in memory for the page lifetime so you can see how many rounds you've completed today. Nothing is sent to a server.",
+    },
+  ],
+
+  "world-clock": [
+    {
+      question: "How accurate is the time shown?",
+      answer: "It uses your device clock and the browser's IANA timezone database, so it's as accurate as your system clock. The display refreshes every second.",
+    },
+    {
+      question: "Can I add any city in the world?",
+      answer: "You can add any city from the built-in list, which covers the most-used IANA timezones across all continents. Cities sharing the same zone (e.g., Mumbai and Delhi both use Asia/Kolkata) show identical times.",
+    },
+    {
+      question: "Why do some cities glow warm and others cool?",
+      answer: "Cards switch between a warm (daytime) and cool (nighttime) gradient based on local hour at that timezone, so you can see at a glance whether it's a reasonable hour to call a colleague.",
+    },
+    {
+      question: "Does it handle daylight saving time?",
+      answer: "Yes. Because we use the Intl API and IANA zones, DST transitions are handled automatically — no manual adjustment needed.",
+    },
+  ],
+
+  "unit-converter": [
+    {
+      question: "Which unit categories are supported?",
+      answer: "Length, weight (mass), temperature, volume, area, speed, time, and digital data sizes (with both decimal KB/MB/GB and binary KiB/MiB/GiB).",
+    },
+    {
+      question: "Why are KB and KiB shown separately?",
+      answer: "KB / MB / GB / TB use base-1000 (decimal), while KiB / MiB / GiB / TiB use base-1024 (binary). Storage manufacturers usually advertise in decimal; operating systems often display in binary. Showing both avoids confusion.",
+    },
+    {
+      question: "How precise are the conversions?",
+      answer: "Conversions use double-precision floating-point math and standard SI/imperial conversion factors. Results show up to 8 significant digits and switch to scientific notation for very small or very large values.",
+    },
+    {
+      question: "Can I convert temperatures below absolute zero?",
+      answer: "The converter does not block it, but physically you can't go below 0 K (-273.15 °C / -459.67 °F). Values below that are still mathematically valid for unit-test cases but have no physical meaning.",
+    },
+  ],
+
+  "markdown-editor": [
+    {
+      question: "Which markdown flavour does the editor support?",
+      answer: "Standard CommonMark plus most GitHub-flavoured Markdown features rendered through react-markdown. Headings, lists, links, images, code blocks with fences, blockquotes, and inline HTML all work.",
+    },
+    {
+      question: "Can I export the rendered output as HTML?",
+      answer: "Yes. Click 'HTML' to copy the rendered HTML to your clipboard, or 'Markdown' to copy the source. Use '.md' to download the document as a Markdown file.",
+    },
+    {
+      question: "Does it autosave my work?",
+      answer: "No. To keep the tool 100% private, nothing is stored on a server. If you close the tab, the content is lost — download the .md file before leaving.",
+    },
+    {
+      question: "Is this safe for confidential documents?",
+      answer: "Yes. The editor never sends your text to any server. All preview rendering happens in-browser using JavaScript.",
+    },
+  ],
+
+  "cron-builder": [
+    {
+      question: "Which cron format does this builder use?",
+      answer: "Standard 5-field Unix / Linux cron: minute, hour, day-of-month, month, day-of-week. Names like Mon, Tue, Jan, Feb work as well as numbers. Step (*/5), range (1-5), and list (1,15,30) syntax is fully supported.",
+    },
+    {
+      question: "How are 'next runs' calculated?",
+      answer: "The tool simulates each upcoming minute against your expression and lists the first 5 matches in your local timezone. It correctly handles cases where day-of-month and day-of-week both narrow the schedule.",
+    },
+    {
+      question: "Can I use this for AWS / Vercel / GitHub Actions cron?",
+      answer: "Yes. Most platforms (AWS EventBridge, GitHub Actions, Vercel, Kubernetes CronJobs) accept the same 5-field syntax. AWS adds a 6-field 'year' variant — for that, just paste the 5-field equivalent here to validate.",
+    },
+    {
+      question: "Why does my expression say 'invalid'?",
+      answer: "Common causes: missing a field (you need exactly 5 separated by spaces), an out-of-range number (e.g., minute 60), an inverted range (5-1), or an unknown name. The error message tells you which field failed.",
+    },
+  ],
+
+  "lorem-ipsum": [
+    {
+      question: "What is Lorem Ipsum and why is it used?",
+      answer: "Lorem Ipsum is scrambled Latin filler text used since the 1500s by typesetters and designers to demonstrate how a layout looks without distracting readers with real content. It's the industry-standard placeholder.",
+    },
+    {
+      question: "Can I generate a specific number of words or characters?",
+      answer: "Yes. Switch the 'Generate' dropdown to Paragraphs, Sentences, Words, or Bytes (characters) and set the count. Useful for filling design mocks to an exact length.",
+    },
+    {
+      question: "Should the text always start with 'Lorem ipsum'?",
+      answer: "By default, yes — that's the convention designers expect. Uncheck the option to start with random Lorem-style words instead, which is closer to a real-world variability test.",
+    },
+    {
+      question: "Is it safe to use Lorem Ipsum in production?",
+      answer: "No. Lorem Ipsum is for design previews only. Always replace it with real copy before shipping — leftover Lorem Ipsum is a common cause of embarrassing production bugs.",
+    },
+  ],
 };
 
 export function getToolFAQ(slug: string): ToolFAQItem[] {

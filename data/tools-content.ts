@@ -265,6 +265,90 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     relatedSlugs: ["meta-tag-checker", "qr-code-generator", "regex-tester"],
   },
+
+  "pomodoro-timer": {
+    howItWorks: [
+      { title: "Pick a Focus Length", description: "Use the default 25-minute focus block or open Settings to customise focus, short break, long break, and how often a long break occurs." },
+      { title: "Press Start", description: "The timer counts down with a coloured progress bar. When focus ends, it auto-rolls into a break, plays a chime, and shows a browser notification." },
+      { title: "Build a Streak", description: "Each completed focus block increments your session counter. Every Nth round triggers a longer break so you don't burn out." },
+    ],
+    useCases: [
+      { title: "Students & Self-Learners", description: "Break long study sessions into manageable focus sprints — proven to improve retention and reduce procrastination." },
+      { title: "Remote Workers", description: "Structure deep work and meetings throughout the day. Use long breaks for stretching, hydration, or stepping away from the screen." },
+      { title: "Writers & Designers", description: "Create momentum on creative work by committing to a single 25-minute block. Most people produce more in two focused Pomodoros than four scattered hours." },
+    ],
+    relatedSlugs: ["world-clock", "unit-converter", "word-counter"],
+  },
+
+  "world-clock": {
+    howItWorks: [
+      { title: "See Default Cities", description: "The clock starts with Mumbai, London, New York, and Tokyo. Each card shows live local time, date, and timezone offset (UTC±)." },
+      { title: "Add Cities You Care About", description: "Click 'Add city' and search by city, country, or IANA timezone. The list covers every major hub across continents." },
+      { title: "Read Day vs. Night Instantly", description: "Cards glow warm during local daytime and cool at night, so you can scan availability without doing math in your head." },
+    ],
+    useCases: [
+      { title: "Distributed Teams", description: "Coordinate stand-ups, releases, and retros across continents — see at a glance whether your colleague is awake before scheduling a call." },
+      { title: "Remote Workers & Digital Nomads", description: "Track home, client, and current-location timezones together. Plan calls around overlapping working hours without spreadsheet gymnastics." },
+      { title: "Trading & Operations Desks", description: "Watch market open/close times across major exchanges (Mumbai, London, New York, Tokyo, Hong Kong) on one screen." },
+    ],
+    relatedSlugs: ["pomodoro-timer", "unit-converter", "cron-builder"],
+  },
+
+  "unit-converter": {
+    howItWorks: [
+      { title: "Pick a Category", description: "Choose length, weight, temperature, volume, area, speed, time, or data size from the chip row at the top." },
+      { title: "Pick From / To Units", description: "Select the units in the From and To dropdowns. Use the swap button to flip the direction in one click." },
+      { title: "Type Any Value", description: "Enter a number and the conversion appears live. Copy the result to your clipboard with one click." },
+    ],
+    useCases: [
+      { title: "Engineers & Scientists", description: "Convert between SI and imperial units, switch temperature scales, and translate between data-size standards (KB vs KiB) without context-switching to a spreadsheet." },
+      { title: "Travellers & Shoppers", description: "Compare metric vs imperial heights, weights, and distances when shopping, packing, or comparing fitness goals." },
+      { title: "Cooks & Bakers", description: "Convert between teaspoons, tablespoons, cups, and millilitres for international recipes — accurate to four decimal places." },
+    ],
+    relatedSlugs: ["world-clock", "pomodoro-timer", "color-converter"],
+  },
+
+  "markdown-editor": {
+    howItWorks: [
+      { title: "Type or Paste Markdown", description: "Use the editor pane on the left for source. The right pane shows a live, GitHub-flavoured rendering as you type." },
+      { title: "Switch Views", description: "Tap Editor, Split, or Preview to optimise for writing or reviewing. Split mode is great on desktop; Preview mode is best on mobile." },
+      { title: "Copy or Download", description: "One click copies the markdown source or the rendered HTML. Download as a .md file when you're ready to paste into your repo or CMS." },
+    ],
+    useCases: [
+      { title: "Open-Source Maintainers", description: "Draft README, CONTRIBUTING, and CHANGELOG files with confidence — see exactly how they'll render on GitHub before committing." },
+      { title: "Bloggers & Content Writers", description: "Compose long-form posts in markdown then paste straight into Ghost, Hashnode, dev.to, or any markdown-friendly CMS." },
+      { title: "Documentation Teams", description: "Iterate on docs, runbooks, and ADRs without spinning up a local docs server." },
+    ],
+    relatedSlugs: ["word-counter", "lorem-ipsum", "json-formatter"],
+  },
+
+  "cron-builder": {
+    howItWorks: [
+      { title: "Start From a Preset or Type", description: "Pick a common schedule (every 5 minutes, every Monday at 9am) or write your own 5-field cron expression directly." },
+      { title: "Read the Plain-English Description", description: "Each field is parsed and shown with its valid range. The Schedule card translates the expression into clear English." },
+      { title: "Verify the Next 5 Runs", description: "Confirm your cron is correct by checking the actual upcoming run timestamps in your local timezone." },
+    ],
+    useCases: [
+      { title: "Backend & DevOps Engineers", description: "Build crontab entries, GitHub Actions schedules, AWS EventBridge rules, and Kubernetes CronJobs without guessing." },
+      { title: "Data Engineers", description: "Schedule ETL jobs, Airflow DAGs, and dbt runs. Verify edge cases like 'every 15 minutes between 9 and 5 weekdays' actually fire when expected." },
+      { title: "Site Reliability Teams", description: "Confirm alert silences, backup windows, and report deliveries trigger at the right times across timezones." },
+    ],
+    relatedSlugs: ["world-clock", "regex-tester", "json-formatter"],
+  },
+
+  "lorem-ipsum": {
+    howItWorks: [
+      { title: "Choose Mode and Count", description: "Switch between paragraphs, sentences, words, or exact byte/character counts. Set how many you need." },
+      { title: "Optionally Start with 'Lorem ipsum'", description: "Designers traditionally expect the canonical opening — keep the toggle on for that, off for randomised starts." },
+      { title: "Copy or Regenerate", description: "Hit Copy to grab the result, or Regenerate to roll a fresh batch with the same settings." },
+    ],
+    useCases: [
+      { title: "UI / UX Designers", description: "Fill mockups, hero banners, and card layouts with realistic-length placeholder text in seconds." },
+      { title: "Frontend Developers", description: "Test how components handle long titles, multi-paragraph blurbs, or fixed-byte fields without writing your own filler." },
+      { title: "Print & Editorial Designers", description: "Lay out brochures, magazines, and book pages with classic Lorem Ipsum to evaluate typography before client copy arrives." },
+    ],
+    relatedSlugs: ["markdown-editor", "word-counter", "color-converter"],
+  },
 };
 
 export function getToolContent(slug: string): ToolContent | null {
