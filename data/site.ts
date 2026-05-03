@@ -78,25 +78,49 @@ export const siteConfig = {
     "free SEO tools",
     "free productivity tools",
 
-    // Geo - India
-    "free online tools India",
-    "best free web tools India",
-    "free AI tools India",
-    "free developer tools India",
-    "free tools no signup India",
+    // Hire intent - US
+    "hire full stack developer USA",
+    "hire React developer United States",
+    "freelance Next.js developer USA",
+    "remote full stack developer for hire",
+    "contract React developer United States",
 
-    // Geo - US
+    // Hire intent - UK
+    "hire full stack developer UK",
+    "freelance React developer UK",
+    "hire Next.js developer United Kingdom",
+    "contract web developer London",
+    "remote developer for hire UK",
+
+    // Hire intent - Canada
+    "hire full stack developer Canada",
+    "freelance React developer Canada",
+    "hire web developer Toronto",
+    "contract developer Vancouver",
+    "remote full stack developer Canada",
+
+    // Geo - US tools
     "free online tools USA",
     "free web tools United States",
     "best free browser tools",
+    "free developer tools United States",
 
-    // Geo - France
-    "outils gratuits en ligne",
-    "outils SEO gratuits",
-    "outils développeur gratuits en ligne",
+    // Geo - UK tools
+    "free online tools UK",
+    "free web tools United Kingdom",
+    "free developer tools UK",
+
+    // Geo - Canada tools
+    "free online tools Canada",
+    "free developer tools Canada",
+
+    // Geo - India
+    "free online tools India",
+    "free AI tools India",
+    "hire developer India",
 
     // Global / intent
-    "free tools online 2025",
+    "free tools online 2026",
     "100% free online tools no signup",
     "free browser based tools",
     "free tools no registration",

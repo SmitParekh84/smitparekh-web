@@ -14,6 +14,7 @@ import Script from "next/script";
 import { siteConfig } from "@/data/site";
 
 const GA_MEASUREMENT_ID = "G-X9NMSPMQPD";
+const GTM_ID = "GTM-529BP97T";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -115,8 +116,19 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
           rel="stylesheet"
         />
+        <Script id="gtm-head" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
       </head>
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <QueryProvider>
           <ThemeProvider
             attribute="class"
