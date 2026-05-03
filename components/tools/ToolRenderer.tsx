@@ -41,6 +41,12 @@ const toolMap: Record<string, React.ComponentType> = {
   "slug-generator": dynamic(() => import("./SlugGenerator"), { loading: Loading }),
   "favicon-generator": dynamic(() => import("./FaviconGenerator"), { loading: Loading }),
   "uuid-generator": dynamic(() => import("./UuidGenerator"), { loading: Loading }),
+  "ai-note-summarizer": dynamic(() => import("./AINoteSummarizer"), { loading: Loading }),
+  "ai-flashcard-generator": dynamic(() => import("./AIFlashcardGenerator"), { loading: Loading }),
+  "ai-essay-outliner": dynamic(() => import("./AIEssayOutliner"), { loading: Loading }),
+  "ai-citation-generator": dynamic(() => import("./AICitationGenerator"), { loading: Loading }),
+  "ai-paraphraser": dynamic(() => import("./AIParaphraser"), { loading: Loading }),
+  "ai-cover-letter": dynamic(() => import("./AICoverLetter"), { loading: Loading }),
 };
 
 interface Props {

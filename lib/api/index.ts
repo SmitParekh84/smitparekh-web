@@ -73,3 +73,18 @@ export {
   type GenerateShareCaptionResponse,
 } from "./social";
 export { toolsApi, type NotifyToolPayload, type NotifyToolResponse } from "./tools";
+export {
+  studentToolsApi,
+  type NoteSummarizerPayload,
+  type NoteSummary,
+  type FlashcardsPayload,
+  type FlashcardsResponse,
+  type EssayOutlinePayload,
+  type EssayOutline,
+  type CitationPayload,
+  type CitationResponse,
+  type ParaphrasePayload,
+  type ParaphraseResponse,
+  type CoverLetterPayload,
+  type CoverLetterResponse,
+} from "./student-tools";

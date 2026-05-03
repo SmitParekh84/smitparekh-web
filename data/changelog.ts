@@ -18,6 +18,65 @@ export interface ChangelogRelease {
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: "1.7.0",
+    codename: "Student AI Toolkit",
+    date: "2026-05-10",
+    summary:
+      "Six new AI tools built for college and university students — summarize lecture notes, generate flashcards, plan essays, cite sources, paraphrase paragraphs, and write tailored cover letters. All free, no sign-up needed for the first uses.",
+    highlights: [
+      "AI Note Summarizer with built-in flashcards and quiz",
+      "Flashcard generator with Anki-ready CSV export",
+      "Essay outliner with APA, MLA, Chicago, and Harvard support",
+      "Citation generator for APA, MLA, Chicago, Harvard, and IEEE",
+      "Three-tone paraphraser for academic, formal, and casual writing",
+      "Cover letter generator tailored to your resume and the job description",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "AI Note Summarizer",
+        description:
+          "Paste lecture notes or a textbook chapter and get clean bullet summaries, key terms, flashcards, and a self-check quiz. Pick brief, standard, or deep mode depending on how much detail you want.",
+        href: "/free-tools/ai-note-summarizer",
+      },
+      {
+        tag: "new",
+        title: "AI Flashcard Generator",
+        description:
+          "Type any topic and get up to 50 study cards. Flip them in the browser or download as an Anki CSV for spaced-repetition review.",
+        href: "/free-tools/ai-flashcard-generator",
+      },
+      {
+        tag: "new",
+        title: "AI Essay Outline Builder",
+        description:
+          "Hand it a topic, target word count, and citation style. You get a thesis, a hook, sectioned arguments with word targets, evidence ideas, and source suggestions.",
+        href: "/free-tools/ai-essay-outliner",
+      },
+      {
+        tag: "new",
+        title: "AI Citation Generator",
+        description:
+          "Paste a URL, DOI, ISBN, or reference details and get a clean citation in APA, MLA, Chicago, Harvard, or IEEE — plus the in-text version, ready to copy.",
+        href: "/free-tools/ai-citation-generator",
+      },
+      {
+        tag: "new",
+        title: "AI Paraphraser",
+        description:
+          "Three rewritten versions in one click — academic, formal, or casual. Keeps the meaning, changes the structure and wording.",
+        href: "/free-tools/ai-paraphraser",
+      },
+      {
+        tag: "new",
+        title: "AI Cover Letter Generator",
+        description:
+          "Paste your resume and the job description, pick a tone, and get a tailored cover letter you can copy or download.",
+        href: "/free-tools/ai-cover-letter",
+      },
+    ],
+  },
+  {
     version: "1.6.0",
     codename: "Cleaner Free Tools Menu",
     date: "2026-05-03",
