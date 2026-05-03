@@ -585,11 +585,9 @@ export function BlogForm({
       </div>
 
       {blockPublish && (
-        <Alert variant="destructive">
-          <AlertDescription>
-            Add a cover image to publish, or switch the toggle to Draft to save without one.
-          </AlertDescription>
-        </Alert>
+        <div className="rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
+          Cover image is required to publish. Use <strong>Save draft</strong> below to save your progress — you can add the image and publish later.
+        </div>
       )}
 
       {/* Actions */}
@@ -605,11 +603,11 @@ export function BlogForm({
         </Button>
         <Button
           type="button"
-          variant="secondary"
+          variant={blockPublish ? "default" : "secondary"}
           size="lg"
           onClick={handleSaveDraft}
           disabled={isPending || savingDraft}
-          className="w-full gap-2 sm:w-auto"
+          className={`w-full gap-2 sm:w-auto ${blockPublish ? "bg-blue-500 hover:bg-blue-600 text-white" : ""}`}
         >
           {savingDraft ? (
             <Loader2 className="h-4 w-4 animate-spin" />
