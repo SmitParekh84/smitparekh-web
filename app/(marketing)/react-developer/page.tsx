@@ -190,7 +190,7 @@ export default function ReactDeveloperPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero */}
-      <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16">
+      <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left — copy */}
