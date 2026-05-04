@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
+import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
   title: "Hire a React Developer – Production-Grade UI That Scales | Smit Parekh",
@@ -351,6 +352,8 @@ export default function ReactDeveloperPage() {
           </div>
         </div>
       </section>
+
+      <RelatedDeveloperPages currentSlug="react-developer" />
 
       {/* CTA */}
       <section className="page-section bg-muted/20">

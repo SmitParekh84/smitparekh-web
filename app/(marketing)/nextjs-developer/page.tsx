@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
+import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
   title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First, App Router Expert | Smit Parekh",
@@ -349,6 +350,8 @@ export default function NextjsDeveloperPage() {
           </div>
         </div>
       </section>
+
+      <RelatedDeveloperPages currentSlug="nextjs-developer" />
 
       {/* CTA */}
       <section className="page-section bg-muted/20">

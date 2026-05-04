@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
+import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
   title: "Hire a PostgreSQL Developer – Query Optimisation, Schema Design & 99.9% Uptime | Smit Parekh",
@@ -349,6 +350,8 @@ export default function PostgreSQLDeveloperPage() {
           </div>
         </div>
       </section>
+
+      <RelatedDeveloperPages currentSlug="postgresql-developer" />
 
       {/* CTA */}
       <section className="page-section bg-muted/20">

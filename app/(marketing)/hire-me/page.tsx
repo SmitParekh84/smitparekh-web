@@ -32,6 +32,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aboutBio, experiences, certifications } from "@/data/about";
+import { developerPages } from "@/data/developer-pages";
 
 export const metadata: Metadata = {
   title: "Hire Smit Parekh - Full Stack Developer | React, Next.js, Node.js",
@@ -647,6 +648,40 @@ export default function HireMePage() {
                 <h3 className="text-sm font-semibold">{item.q}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.a}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Developer specialty pages */}
+      <section className="page-section border-t border-border">
+        <div className="page-container">
+          <SectionHeader
+            label="Hire by Speciality"
+            title="Need a Specific Technology?"
+            description="Each page goes deep on one technology — what I build with it, the results I've delivered, and how I work."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {developerPages.map((page) => (
+              <a
+                key={page.slug}
+                href={`/${page.slug}`}
+                className="group flex flex-col gap-2.5 rounded-2xl border border-border bg-card px-5 py-4 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/5 transition-all"
+              >
+                <p className="font-semibold text-sm group-hover:text-blue-500 transition-colors">
+                  Hire a {page.title}
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed flex-1">
+                  {page.description}
+                </p>
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {page.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="text-xs px-2 py-0.5 rounded-full border border-border bg-muted text-muted-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </a>
             ))}
           </div>
         </div>

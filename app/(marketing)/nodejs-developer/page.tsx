@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
+import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
   title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime, NestJS & Express | Smit Parekh",
@@ -351,6 +352,8 @@ export default function NodejsDeveloperPage() {
           </div>
         </div>
       </section>
+
+      <RelatedDeveloperPages currentSlug="nodejs-developer" />
 
       {/* CTA */}
       <section className="page-section bg-muted/20">

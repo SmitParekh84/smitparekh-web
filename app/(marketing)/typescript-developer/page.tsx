@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
+import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
   title: "Hire a TypeScript Developer – Type-Safe Apps That Ship Without Surprises | Smit Parekh",
@@ -337,6 +338,8 @@ export default function TypeScriptDeveloperPage() {
           </div>
         </div>
       </section>
+
+      <RelatedDeveloperPages currentSlug="typescript-developer" />
 
       <section className="page-section bg-muted/20">
         <div className="page-container">
