@@ -4,6 +4,18 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { blogsApi, queryKeys } from "@/lib/api";
 import type { BackendBlogInput } from "@/types";
 
+async function revalidateBlogs() {
+  try {
+    await fetch("/api/revalidate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tag: "blogs" }),
+    });
+  } catch {
+    // non-critical — ISR will expire on its own
+  }
+}
+
 export function useBlogs() {
   return useQuery({
     queryKey: queryKeys.blogs.list(),
@@ -31,7 +43,10 @@ export function useCreateBlog() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (data: BackendBlogInput) => blogsApi.create(data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+    onSuccess: () => {
+      revalidateBlogs();
+      qc.invalidateQueries({ queryKey: queryKeys.blogs.all });
+    },
   });
 }
 
@@ -40,7 +55,10 @@ export function useUpdateBlog() {
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: Partial<BackendBlogInput> }) =>
       blogsApi.update(id, data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+    onSuccess: () => {
+      revalidateBlogs();
+      qc.invalidateQueries({ queryKey: queryKeys.blogs.all });
+    },
   });
 }
 
@@ -55,7 +73,10 @@ export function useDeleteBlog() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => blogsApi.remove(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+    onSuccess: () => {
+      revalidateBlogs();
+      qc.invalidateQueries({ queryKey: queryKeys.blogs.all });
+    },
   });
 }
 
@@ -63,7 +84,10 @@ export function useRestoreBlog() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => blogsApi.restore(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+    onSuccess: () => {
+      revalidateBlogs();
+      qc.invalidateQueries({ queryKey: queryKeys.blogs.all });
+    },
   });
 }
 
@@ -71,7 +95,10 @@ export function usePermanentDeleteBlog() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => blogsApi.removePermanent(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.blogs.all }),
+    onSuccess: () => {
+      revalidateBlogs();
+      qc.invalidateQueries({ queryKey: queryKeys.blogs.all });
+    },
   });
 }
 
