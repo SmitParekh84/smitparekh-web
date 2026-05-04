@@ -6,6 +6,6 @@ const ALLOWED_TAGS = new Set(["blogs", "projects"]);
 export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const tag = typeof body.tag === "string" && ALLOWED_TAGS.has(body.tag) ? body.tag : "blogs";
-  revalidateTag(tag);
+  revalidateTag(tag, "default");
   return NextResponse.json({ revalidated: true, tag });
 }

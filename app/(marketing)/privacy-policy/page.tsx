@@ -4,12 +4,12 @@ import { ShieldCheck, Mail } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
 
-const LAST_UPDATED = "April 28, 2026";
+const LAST_UPDATED = "May 4, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Smit Parekh",
   description:
-    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
+    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in — including contact form submissions, free tools usage, user accounts, and freelance client communications.",
   alternates: { canonical: `${siteConfig.url}/privacy-policy` },
   robots: { index: true, follow: true },
   openGraph: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/privacy-policy`,
     title: "Privacy Policy - Smit Parekh",
     description:
-      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
+      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in — including contact form submissions, free tools usage, user accounts, and freelance client communications.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Privacy Policy - Smit Parekh",
     description:
-      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in - including contact form submissions, free tools usage, and analytics.",
+      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -63,126 +63,254 @@ export default function PrivacyPolicyPage() {
           <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-6 prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-blue-500 hover:prose-a:underline">
             <p>
               This Privacy Policy describes how Smit Parekh (&quot;I&quot;,
-              &quot;me&quot;) collects, uses, and protects information when you
-              visit{" "}
+              &quot;me&quot;, &quot;my&quot;) collects, uses, and protects
+              information when you visit{" "}
               <a href={siteConfig.url} target="_blank" rel="noopener noreferrer">
                 {siteConfig.url}
               </a>{" "}
-              (the &quot;Site&quot;) or use the free tools and contact features
-              provided.
+              (the &quot;Site&quot;), use the free browser-based tools, create a
+              user account, or enquire about or engage my freelance development
+              services.
             </p>
 
             <h2>1. Information I Collect</h2>
-            <h3>Information you provide</h3>
+
+            <h3>Information you provide directly</h3>
             <ul>
               <li>
-                <strong>Contact form:</strong> name, email address, subject, and
-                the message you write.
+                <strong>Contact and enquiry form:</strong> name, email address,
+                subject, budget or project description, and any message you
+                write. This applies to general enquiries, freelance project
+                briefs, and student project enquiries.
               </li>
               <li>
-                <strong>Newsletter / blog:</strong> if you subscribe, your email
-                address.
+                <strong>User account (Google sign-in):</strong> when you sign
+                in with Google via the Site, I receive your Google account email
+                address, display name, and a unique Google account identifier.
+                No password is stored — authentication is delegated entirely to
+                Google via Supabase Auth.
               </li>
               <li>
-                <strong>Free tools:</strong> some tools (e.g. background
-                remover, resume checker) accept files or text you upload. These
-                are processed to deliver the result and are not retained beyond
-                the request unless explicitly stated.
+                <strong>Free tools — file and text uploads:</strong> some tools
+                (e.g. background remover, ATS resume checker, image compressor)
+                accept files or text you provide. These are processed to produce
+                the requested result. Files are deleted immediately after the
+                result is returned; text inputs are not retained beyond the
+                request.
+              </li>
+              <li>
+                <strong>Feedback submissions:</strong> if you submit feedback
+                via the feedback page, I receive your name, email (optional),
+                and the content of your feedback.
               </li>
             </ul>
 
             <h3>Information collected automatically</h3>
             <ul>
               <li>
-                <strong>Usage data:</strong> pages visited, referrer, approximate
-                location (country/region), device type, browser, and timestamps.
+                <strong>Usage data:</strong> pages visited, referrer URL,
+                approximate location (country and region only), device type,
+                browser, operating system, and timestamps — collected via
+                privacy-friendly analytics.
               </li>
               <li>
-                <strong>Cookies &amp; similar technologies:</strong> for
-                essential session state, preference storage (e.g. theme), and
-                privacy-friendly analytics.
+                <strong>Tool usage and quota tracking:</strong> to enforce daily
+                usage limits on the free tools, the Site tracks how many times
+                each tool is used per session (for guests) or per user account
+                (for signed-in users). For guest sessions, your IP address is
+                processed through a one-way SHA-256 hash with a server-side
+                salt before being stored. The raw IP address is never logged or
+                retained.
+              </li>
+              <li>
+                <strong>Cookies and local storage:</strong> a small number of
+                cookies and browser storage items are used for essential
+                functionality — session state, dark/light mode preference, and
+                authentication tokens. No advertising or cross-site tracking
+                cookies are used.
               </li>
             </ul>
 
             <h2>2. How I Use Information</h2>
             <ul>
-              <li>To respond to enquiries you submit through the contact form.</li>
-              <li>To deliver requested results from the free tools.</li>
-              <li>To improve the Site, fix bugs, and understand which content is useful.</li>
-              <li>To prevent abuse, spam, and malicious activity.</li>
-              <li>To comply with legal obligations.</li>
+              <li>To respond to enquiries and project briefs submitted through the contact form.</li>
+              <li>To deliver the requested results from the free tools.</li>
+              <li>To maintain and enforce per-user and per-session tool usage quotas.</li>
+              <li>To manage your user account and provide access to the personal tools dashboard.</li>
+              <li>To communicate about freelance or student project engagements, including scoping, updates, delivery, and support.</li>
+              <li>To improve the Site, fix bugs, and understand which tools and content are most useful.</li>
+              <li>To prevent abuse, spam, and misuse of the free tools.</li>
+              <li>To comply with applicable legal obligations.</li>
             </ul>
 
-            <h2>3. Legal Basis (GDPR)</h2>
+            <h2>3. Freelance and Student Project Enquiries</h2>
             <p>
-              If you are in the European Economic Area or the UK, the legal
-              basis for processing your data is one of: your consent, the
-              performance of a service you requested, my legitimate interest in
-              operating the Site, or compliance with a legal obligation.
+              When you submit a project brief — whether for freelance development
+              or student project work — the information you provide (project
+              description, budget, deadlines, and any supporting materials) is
+              treated as confidential. I do not share this information with third
+              parties, use it to train AI models, or reference it publicly
+              without your prior written consent.
+            </p>
+            <p>
+              For ongoing engagements, project-related communications (emails,
+              messages, deliverables) are retained for the duration of the
+              project and for a reasonable period thereafter for support and
+              reference purposes.
             </p>
 
-            <h2>4. Sharing &amp; Third Parties</h2>
+            <h2>4. Legal Basis for Processing (GDPR / UK GDPR)</h2>
             <p>
-              I do not sell your personal data. I share data only with service
-              providers who help operate the Site, including:
+              If you are in the European Economic Area, the United Kingdom, or
+              another jurisdiction with equivalent data protection law, my legal
+              basis for processing your personal data is one or more of the
+              following:
             </p>
             <ul>
-              <li>Hosting and CDN providers (e.g. Vercel, Render, AWS).</li>
-              <li>Email delivery providers used for contact-form replies.</li>
-              <li>Image storage and transformation (e.g. Cloudinary).</li>
-              <li>Privacy-friendly analytics.</li>
-              <li>AI providers used by certain free tools (input is processed only to return the result).</li>
+              <li><strong>Consent</strong> — where you have actively provided information (e.g. contact form, account creation).</li>
+              <li><strong>Contract performance</strong> — to deliver a service you have requested or engaged me to perform.</li>
+              <li><strong>Legitimate interests</strong> — to operate, secure, and improve the Site and its tools.</li>
+              <li><strong>Legal obligation</strong> — where required by applicable law.</li>
             </ul>
 
-            <h2>5. Data Retention</h2>
+            <h2>5. Sharing and Third Parties</h2>
             <p>
-              Contact-form messages are retained as long as needed to respond
-              and follow up on the project, then archived or deleted. Files you
-              upload to free tools are processed in-memory or in temporary
-              storage and removed once the result is returned.
+              I do not sell your personal data. I share data only with the
+              following service providers who help operate the Site, and only to
+              the extent necessary:
+            </p>
+            <ul>
+              <li>
+                <strong>Vercel</strong> — hosting and edge network for the
+                Site.
+              </li>
+              <li>
+                <strong>Supabase</strong> — user authentication (Google OAuth),
+                database (usage quotas, account data), and serverless functions.
+                Data is stored in Supabase-managed infrastructure. Supabase is
+                SOC 2 compliant.
+              </li>
+              <li>
+                <strong>Resend</strong> — transactional email delivery used to
+                send contact form confirmation emails and project update
+                notifications. Resend receives your email address solely to
+                deliver the email.
+              </li>
+              <li>
+                <strong>Cloudinary</strong> — image transformation and storage
+                for portfolio images and blog assets. User-uploaded files for
+                tools are not sent to Cloudinary.
+              </li>
+              <li>
+                <strong>Hugging Face / Python tools service</strong> — certain
+                AI-powered tools (e.g. background remover) use a self-hosted
+                inference service deployed on Hugging Face. Files you upload for
+                these tools are sent to this service solely to generate the
+                result and are not retained.
+              </li>
+              <li>
+                <strong>Analytics provider</strong> — privacy-friendly,
+                cookie-optional analytics that do not share data with
+                advertising networks.
+              </li>
+            </ul>
+
+            <h2>6. Data Retention</h2>
+            <ul>
+              <li>
+                <strong>Contact form messages and project enquiries:</strong>{" "}
+                retained for as long as needed to respond and, for active
+                projects, for the duration of the engagement plus a reasonable
+                support period.
+              </li>
+              <li>
+                <strong>User accounts:</strong> retained while your account is
+                active. You may request deletion at any time.
+              </li>
+              <li>
+                <strong>Tool usage quota records:</strong> hashed IP data and
+                session usage counts are retained for up to 24 hours (one daily
+                quota cycle) and then purged.
+              </li>
+              <li>
+                <strong>Uploaded files:</strong> processed in-memory or in
+                temporary storage and deleted immediately after the result is
+                returned. No uploaded file is retained beyond the single
+                request.
+              </li>
+            </ul>
+
+            <h2>7. Your Rights</h2>
+            <p>
+              Depending on where you live, you may have the right to:
+            </p>
+            <ul>
+              <li>Access the personal data I hold about you.</li>
+              <li>Correct inaccurate or incomplete data.</li>
+              <li>Request deletion of your data (&quot;right to be forgotten&quot;).</li>
+              <li>Request a portable copy of your data.</li>
+              <li>Object to or restrict certain processing.</li>
+              <li>Withdraw consent where processing is based on consent.</li>
+            </ul>
+            <p>
+              To exercise any of these rights, email{" "}
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> with
+              the subject line &quot;Privacy Request&quot;. I will respond
+              within 30 days.
             </p>
 
-            <h2>6. Your Rights</h2>
+            <h2>8. Cookies</h2>
             <p>
-              Depending on where you live, you may have the right to access,
-              correct, export, or delete the personal data I hold about you, and
-              to object to or restrict certain processing. To exercise any of
-              these rights, email{" "}
-              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+              The Site uses a small number of cookies and browser storage
+              mechanisms:
+            </p>
+            <ul>
+              <li><strong>Essential cookies:</strong> authentication session tokens, CSRF protection, and dark/light mode preference. These cannot be disabled without breaking core functionality.</li>
+              <li><strong>Analytics:</strong> privacy-friendly, aggregate-only analytics. No advertising IDs, no cross-site fingerprinting.</li>
+            </ul>
+            <p>
+              You can disable cookies in your browser settings. Some features
+              (authentication, tool quotas) will not work correctly without
+              essential cookies.
             </p>
 
-            <h2>7. Cookies</h2>
+            <h2>9. Security</h2>
             <p>
-              The Site uses a small number of cookies for essential
-              functionality (e.g. theme preference, anti-spam) and aggregate
-              analytics. You can disable cookies in your browser settings; some
-              features may not work as expected.
-            </p>
-
-            <h2>8. Security</h2>
-            <p>
-              I use industry-standard measures (HTTPS, hashed credentials,
-              least-privilege access) to protect your data. No method of
+              I use industry-standard measures to protect your data: HTTPS on
+              all endpoints, hashed credentials, least-privilege database
+              access, and one-way IP hashing for quota tracking. No method of
               transmission over the internet is 100% secure, and I cannot
               guarantee absolute security.
             </p>
 
-            <h2>9. Children&apos;s Privacy</h2>
+            <h2>10. International Transfers</h2>
             <p>
-              The Site is not directed at children under 13, and I do not
-              knowingly collect personal data from them.
+              The Site is operated from India and uses infrastructure providers
+              (Vercel, Supabase, Resend) that may process data in the United
+              States or the European Union. Where such transfers occur, they are
+              made subject to appropriate safeguards (e.g. Standard Contractual
+              Clauses) or to jurisdictions with an adequacy decision.
             </p>
 
-            <h2>10. Changes to This Policy</h2>
+            <h2>11. Children&apos;s Privacy</h2>
+            <p>
+              The Site is not directed at children under 13. I do not knowingly
+              collect personal data from children. If you believe a child has
+              submitted data to the Site, please contact me and I will delete it
+              promptly.
+            </p>
+
+            <h2>12. Changes to This Policy</h2>
             <p>
               I may update this Privacy Policy from time to time. Material
               changes will be reflected by updating the &quot;Last updated&quot;
-              date at the top of this page.
+              date at the top of this page. For significant changes, I may also
+              notify signed-in users by email.
             </p>
 
-            <h2>11. Contact</h2>
+            <h2>13. Contact</h2>
             <p>
-              Questions about this policy? Reach me at{" "}
+              Questions about this policy or a data request? Reach me at{" "}
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or
               via the{" "}
               <Link href="/contact">contact page</Link>.
