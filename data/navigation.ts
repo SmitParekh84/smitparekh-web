@@ -214,7 +214,27 @@ export const navItems: NavItem[] = [
       cta: "Try Background Remover",
     },
   },
-  { href: "/services", label: "Services" },
+  {
+    href: "/services",
+    label: "Services",
+    dropdown: [
+      {
+        title: "Services",
+        items: [
+          {
+            href: "/services",
+            label: "All Services",
+            description: "Full-stack web development, APIs, cloud, and SEO",
+          },
+          {
+            href: "/for-students",
+            label: "For Students",
+            description: "Budget-friendly projects, portfolios & hackathons for uni students",
+          },
+        ],
+      },
+    ],
+  },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/hire-me", label: "Hire Me" },
@@ -227,6 +247,7 @@ export const mobileNavItems: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/hire-me", label: "Hire Me" },
   { href: "/services", label: "Services" },
+  { href: "/for-students", label: "For Students" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/free-tools", label: "Free Tools" },
