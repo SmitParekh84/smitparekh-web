@@ -144,6 +144,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/for-students"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                >
+                  For Students
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
                 >

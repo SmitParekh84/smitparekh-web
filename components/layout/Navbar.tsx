@@ -14,8 +14,14 @@ import { createClient } from "@/lib/supabase/client";
 import type { FeaturedNavTool } from "@/lib/featured-nav-tools";
 
 const linkItems = navItems.filter(
-  (item) => item.href !== "/" && item.href !== "/contact" && !item.dropdown
+  (item) =>
+    item.href !== "/" &&
+    item.href !== "/contact" &&
+    item.href !== "/hire-me" &&
+    !item.dropdown
 );
+
+const servicesNavItem = navItems.find((item) => item.href === "/services");
 
 const NAV_GROUP_ORDER: ReadonlyArray<FeaturedNavTool["group"]> = [
   "Image",
@@ -45,6 +51,8 @@ export default function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -52,6 +60,7 @@ export default function Navbar({
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
   const toolsRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { session } = useSupabaseSession();
 
@@ -79,6 +88,18 @@ export default function Navbar({
     return () => document.removeEventListener("mousedown", handle);
   }, [toolsOpen]);
 
+  /* Close Services dropdown when clicking outside */
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const handle = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, [servicesOpen]);
+
   /* Close user menu when clicking outside */
   useEffect(() => {
     if (!userMenuOpen) return;
@@ -99,8 +120,13 @@ export default function Navbar({
     router.refresh();
   }
 
-  /* Close mobile menu on navigation */
-  useEffect(() => setMobileOpen(false), [pathname]);
+  /* Close dropdowns and mobile menu on navigation */
+  useEffect(() => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+    setToolsOpen(false);
+    setMobileServicesOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -147,7 +173,7 @@ export default function Navbar({
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "px-3 py-1.5 text-sm rounded-xl transition-colors",
+                  "px-2.5 py-1.5 text-sm rounded-xl transition-colors",
                   pathname === item.href
                     ? "text-foreground font-medium bg-accent"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -157,13 +183,70 @@ export default function Navbar({
               </Link>
             ))}
 
+            {/* Services - click-to-open dropdown */}
+            {servicesNavItem?.dropdown && (
+              <div ref={servicesRef} className="relative">
+                <button
+                  onClick={() => setServicesOpen((v) => !v)}
+                  className={cn(
+                    "flex items-center gap-1 px-2.5 py-1.5 text-sm rounded-xl transition-colors",
+                    servicesNavItem.dropdown
+                      .flatMap((g) => g.items)
+                      .some((i) => pathname.startsWith(i.href))
+                      ? "text-foreground font-medium bg-accent"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                  )}
+                >
+                  Services
+                  <ChevronDown
+                    className={cn(
+                      "w-3.5 h-3.5 transition-transform duration-200",
+                      servicesOpen && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                {servicesOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[260px]">
+                    <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-3">
+                      {servicesNavItem.dropdown.map((group) => (
+                        <div key={group.title}>
+                          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground px-2 mb-2">
+                            {group.title}
+                          </p>
+                          <ul className="space-y-0.5">
+                            {group.items.map((sub) => (
+                              <li key={sub.href}>
+                                <Link
+                                  href={sub.href}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="block px-2 py-2 rounded-xl hover:bg-accent transition-colors"
+                                >
+                                  <span className="text-sm font-medium">{sub.label}</span>
+                                  {sub.description && (
+                                    <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">
+                                      {sub.description}
+                                    </span>
+                                  )}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Free Tools - click-to-open dropdown */}
             {showToolsDropdown && (
               <div ref={toolsRef} className="relative">
                 <button
                   onClick={() => setToolsOpen((v) => !v)}
                   className={cn(
-                    "flex items-center gap-1 px-3 py-1.5 text-sm rounded-xl transition-colors",
+                    "flex items-center gap-1 px-2.5 py-1.5 text-sm rounded-xl transition-colors",
                     pathname.startsWith("/free-tools")
                       ? "text-foreground font-medium bg-accent"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -387,21 +470,72 @@ export default function Navbar({
 
           <nav className="relative z-10 flex flex-col px-6 pt-24 pb-10 h-full">
             <div className="flex-1 overflow-y-auto space-y-1 pb-2">
-              {mobileNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={cn(
-                    "flex w-full items-center px-4 py-3.5 text-lg font-medium rounded-2xl transition-colors",
-                    pathname === item.href
-                      ? "text-foreground bg-accent"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+              {mobileNavItems
+                .filter((item) => item.href !== "/services" && item.href !== "/for-students")
+                .map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "flex w-full items-center px-4 py-3.5 text-lg font-medium rounded-2xl transition-colors",
+                      pathname === item.href
+                        ? "text-foreground bg-accent"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+              {/* Services accordion */}
+              {servicesNavItem?.dropdown && (
+                <div>
+                  <button
+                    onClick={() => setMobileServicesOpen((v) => !v)}
+                    className={cn(
+                      "flex w-full items-center justify-between px-4 py-3.5 text-lg font-medium rounded-2xl transition-colors",
+                      servicesNavItem.dropdown
+                        .flatMap((g) => g.items)
+                        .some((i) => pathname.startsWith(i.href))
+                        ? "text-foreground bg-accent"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                    )}
+                  >
+                    Services
+                    <ChevronDown
+                      className={cn(
+                        "w-4 h-4 transition-transform duration-200",
+                        mobileServicesOpen && "rotate-180"
+                      )}
+                    />
+                  </button>
+                  {mobileServicesOpen && (
+                    <div className="ml-4 mt-0.5 space-y-0.5">
+                      {servicesNavItem.dropdown.flatMap((g) => g.items).map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          onClick={() => setMobileOpen(false)}
+                          className={cn(
+                            "flex flex-col px-4 py-3 text-base rounded-2xl transition-colors",
+                            pathname === sub.href
+                              ? "text-foreground bg-accent"
+                              : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                          )}
+                        >
+                          <span className="font-medium">{sub.label}</span>
+                          {sub.description && (
+                            <span className="text-xs mt-0.5 leading-snug opacity-70">
+                              {sub.description}
+                            </span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
                   )}
-                >
-                  {item.label}
-                </Link>
-              ))}
+                </div>
+              )}
             </div>
 
             <div className="flex gap-2">
