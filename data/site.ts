@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
   author: "Smit Parekh",
-  email: "smitparekh02@gmail.com",
+  email: "smitparekh03@gmail.com",
   twitterHandle: "@smit_parekh84",
   social: {
     linkedin: "https://www.linkedin.com/in/smitparekh84/",

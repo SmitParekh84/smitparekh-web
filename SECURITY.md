@@ -27,7 +27,7 @@ Instead, report them privately using one of the following channels:
 
 1. **GitHub Private Vulnerability Reporting** (preferred) — open a report at
    [github.com/SmitParekh84/smitparekh-web/security/advisories/new](https://github.com/SmitParekh84/smitparekh-web/security/advisories/new).
-2. **Email** — send details to **smitparekh02@gmail.com** with the subject line
+2. **Email** — send details to **smitparekh03@gmail.com** with the subject line
    `[SECURITY] smitparekh-web`.
 
 Please include as much of the following information as possible to help us

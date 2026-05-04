@@ -50,7 +50,7 @@ export const footerData: FooterData = {
       label: "Instagram",
     },
     {
-      href: "mailto:smitparekh02@gmail.com",
+      href: "mailto:smitparekh03@gmail.com",
       platform: "email",
       label: "Email",
     },

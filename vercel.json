@@ -14,7 +14,7 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "cv.smitparekh.co.in" }],
-      "destination": "https://www.smitparekh.co.in/Smit-parekh.pdf",
+      "destination": "https://www.smitparekh.co.in/resume",
       "permanent": true
     }
   ]

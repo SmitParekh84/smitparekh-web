@@ -18,7 +18,7 @@ export const homeData: HomeData = {
   imageSrc: "/images/Smit-Parekh-Home.png",
   socialLinks: [
     {
-      href: "mailto:smitparekh02@gmail.com",
+      href: "mailto:smitparekh03@gmail.com",
       label: "Send email",
       platform: "email",
     },

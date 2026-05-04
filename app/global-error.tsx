@@ -47,8 +47,8 @@ export default function GlobalRootError({
           <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, margin: "0 0 24px" }}>
             Something broke at the root level. Try refreshing - if this keeps
             happening, please let us know at{" "}
-            <a href="mailto:smitparekh02@gmail.com" style={{ color: "#fafafa" }}>
-              smitparekh02@gmail.com
+            <a href="mailto:smitparekh03@gmail.com" style={{ color: "#fafafa" }}>
+              smitparekh03@gmail.com
             </a>
             .
           </p>
