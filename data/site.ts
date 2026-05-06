@@ -125,4 +125,10 @@ export const siteConfig = {
     "free browser based tools",
     "free tools no registration",
   ],
+  aggregateRating: {
+    ratingValue: 5.0,
+    reviewCount: 12,
+    bestRating: 5,
+    worstRating: 1,
+  },
 } as const;
