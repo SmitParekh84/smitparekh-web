@@ -190,25 +190,25 @@ export default function ReactDeveloperPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero */}
-      <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-neutral-950">
+      <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left — copy */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/10 text-sm text-white/90 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiReact className="w-4 h-4 text-cyan-300" />
                 React.js Expert · AWS Certified · 30+ Products Shipped
               </div>
 
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-white">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white">
                 React Development{" "}
-                <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-white bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 dark:from-cyan-300 via-blue-300 dark:to-white bg-clip-text text-transparent">
                   Built to Last
                 </span>{" "}
                 Beyond the Demo
               </h1>
 
-              <p className="text-lg text-white/80 leading-relaxed max-w-lg">
+              <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 Most React codebases look fine until they hit 50 components, real users, or a deadline. I&apos;ve shipped
                 through all three — and I know exactly where things fall apart and how to prevent it.
               </p>
@@ -220,8 +220,8 @@ export default function ReactDeveloperPage() {
                   "40% performance improvement delivered on a live production codebase",
                   "Fixed-price proposals — no scope creep surprises",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-white/80">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300 mt-0.5 shrink-0" />
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
+                    <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -230,20 +230,20 @@ export default function ReactDeveloperPage() {
               <div className="flex flex-wrap gap-3 pt-1">
                 <Link
                   href="/contact"
-                  className={cn(buttonVariants({ size: "lg" }), "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}
+                  className={cn(buttonVariants({ size: "lg" }), "bg-blue-600 text-white hover:bg-blue-700 dark:bg-white dark:text-blue-600 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}
                 >
                   Get a Free Quote
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/portfolio"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white gap-2")}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:bg-transparent dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:text-white gap-2")}
                 >
                   See the Work
                 </Link>
               </div>
 
-              <p className="text-xs text-white/50">
+              <p className="text-xs text-neutral-400 dark:text-white/50">
                 No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
               </p>
             </div>
@@ -251,12 +251,12 @@ export default function ReactDeveloperPage() {
             {/* Right — result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
-                <div key={value} className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm p-5 flex flex-col gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10">
-                    <Icon className="w-5 h-5 text-cyan-300" />
+                <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 dark:bg-white/10">
+                    <Icon className="w-5 h-5 text-blue-500 dark:text-cyan-300" />
                   </div>
-                  <p className="text-3xl font-bold text-white leading-none">{value}</p>
-                  <p className="text-xs text-white/65 leading-relaxed">{label}</p>
+                  <p className="text-3xl font-bold text-neutral-900 leading-none dark:text-white">{value}</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed dark:text-white/65">{label}</p>
                 </div>
               ))}
             </div>
@@ -376,14 +376,14 @@ export default function ReactDeveloperPage() {
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link
                   href="/contact"
-                  className={cn(buttonVariants({ size: "lg" }), "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}
+                  className={cn(buttonVariants({ size: "lg" }), "bg-blue-600 text-white hover:bg-blue-700 dark:bg-white dark:text-blue-600 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}
                 >
                   Start the Conversation
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/portfolio"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white gap-2")}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:bg-transparent dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:text-white gap-2")}
                 >
                   View Case Studies
                 </Link>
