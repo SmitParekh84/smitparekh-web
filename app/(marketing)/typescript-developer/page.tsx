@@ -202,7 +202,7 @@ export default function TypeScriptDeveloperPage() {
 
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white">
                 TypeScript That{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 dark:from-blue-300 via-cyan-300 dark:to-white bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 dark:from-blue-300 dark:via-cyan-300 dark:to-white bg-clip-text text-transparent">
                   Catches Bugs
                 </span>{" "}
                 Before They Ship
@@ -356,10 +356,10 @@ export default function TypeScriptDeveloperPage() {
                 Send your brief and I&apos;ll reply within 24 hours with a written proposal. Fixed price, clear scope, no surprises.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
-                <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-blue-600 text-white hover:bg-blue-700 dark:bg-white dark:text-blue-600 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}>
+                <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}>
                   Get a Free Quote <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/hire-me" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:bg-transparent dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:text-white")}>
+                <Link href="/hire-me" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white")}>
                   About Me
                 </Link>
               </div>
