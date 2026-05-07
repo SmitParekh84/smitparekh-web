@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import { Copy, RefreshCw, Check, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const AMBIGUOUS = new Set([..."0OIl1"]);
+
 const CHARS = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercase: "abcdefghijklmnopqrstuvwxyz",
@@ -11,12 +13,14 @@ const CHARS = {
   symbols: "!@#$%^&*()-_=+[]{}|;:,.<>?",
 };
 
-function generatePassword(length: number, opts: Record<string, boolean>): string {
+function generatePassword(length: number, opts: Record<string, boolean>, excludeAmbiguous: boolean): string {
   let pool = "";
   if (opts.uppercase) pool += CHARS.uppercase;
   if (opts.lowercase) pool += CHARS.lowercase;
   if (opts.numbers) pool += CHARS.numbers;
   if (opts.symbols) pool += CHARS.symbols;
+  if (!pool) pool = CHARS.lowercase;
+  if (excludeAmbiguous) pool = pool.split("").filter((c) => !AMBIGUOUS.has(c)).join("");
   if (!pool) pool = CHARS.lowercase;
 
   const arr = new Uint8Array(length);
@@ -49,12 +53,13 @@ export default function PasswordGenerator() {
     numbers: true,
     symbols: false,
   });
-  const [password, setPassword] = useState(() => generatePassword(16, { uppercase: true, lowercase: true, numbers: true, symbols: false }));
+  const [excludeAmbiguous, setExcludeAmbiguous] = useState(false);
+  const [password, setPassword] = useState(() => generatePassword(16, { uppercase: true, lowercase: true, numbers: true, symbols: false }, false));
   const [copied, setCopied] = useState(false);
 
   const generate = useCallback(() => {
-    setPassword(generatePassword(length, options));
-  }, [length, options]);
+    setPassword(generatePassword(length, options, excludeAmbiguous));
+  }, [length, options, excludeAmbiguous]);
 
   const copy = async () => {
     await navigator.clipboard.writeText(password);
@@ -69,12 +74,18 @@ export default function PasswordGenerator() {
     const anyEnabled = Object.values(next).some(Boolean);
     if (!anyEnabled) return;
     setOptions(next);
-    setPassword(generatePassword(length, next));
+    setPassword(generatePassword(length, next, excludeAmbiguous));
+  };
+
+  const toggleAmbiguous = () => {
+    const next = !excludeAmbiguous;
+    setExcludeAmbiguous(next);
+    setPassword(generatePassword(length, options, next));
   };
 
   const handleLength = (val: number) => {
     setLength(val);
-    setPassword(generatePassword(val, options));
+    setPassword(generatePassword(val, options, excludeAmbiguous));
   };
 
   return (
@@ -168,6 +179,21 @@ export default function PasswordGenerator() {
           </button>
         ))}
       </div>
+
+      <button
+        onClick={toggleAmbiguous}
+        className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition-all w-full ${
+          excludeAmbiguous
+            ? "border-blue-500/50 bg-blue-500/10 text-blue-400"
+            : "border-border bg-card text-muted-foreground"
+        }`}
+      >
+        <span className={`w-3 h-3 rounded-sm flex-shrink-0 border-2 flex items-center justify-center ${excludeAmbiguous ? "bg-blue-500 border-blue-500" : "border-muted-foreground"}`}>
+          {excludeAmbiguous && <Check className="w-2 h-2 text-white" />}
+        </span>
+        Exclude ambiguous characters
+        <span className="ml-auto text-xs text-muted-foreground font-normal">0 O I l 1</span>
+      </button>
 
       <button
         onClick={generate}

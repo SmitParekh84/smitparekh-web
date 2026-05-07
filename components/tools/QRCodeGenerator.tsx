@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, QrCode, Wifi, Mail, Phone, MessageSquare, Link2, AlignLeft, ChevronDown, ChevronUp } from "lucide-react";
+import { Download, QrCode, Wifi, Mail, Phone, MessageSquare, Link2, AlignLeft, ChevronDown, ChevronUp, Copy, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGenerateQrImage } from "@/hooks/api/use-tools";
 import { toast } from "@/lib/toast";
@@ -59,6 +59,8 @@ export default function QRCodeGenerator() {
   const [transparent, setTransparent] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false);
   const [qrUrl, setQrUrl]           = useState<string | null>(null);
+  const [qrBlob, setQrBlob]         = useState<Blob | null>(null);
+  const [copied, setCopied]         = useState(false);
   const mutation = useGenerateQrImage();
 
   const setField = (k: string, v: string) => setFields((f) => ({ ...f, [k]: v }));
@@ -76,8 +78,11 @@ export default function QRCodeGenerator() {
         background: transparent ? "transparent" : bgColor.replace("#", ""),
       },
       {
-        onSuccess: (blob) => setQrUrl(URL.createObjectURL(blob)),
-        onError:   () => toast.error("Failed to generate QR", "Please try again."),
+        onSuccess: (blob) => {
+          setQrUrl(URL.createObjectURL(blob));
+          setQrBlob(blob);
+        },
+        onError: () => toast.error("Failed to generate QR", "Please try again."),
       },
     );
   };
@@ -88,6 +93,17 @@ export default function QRCodeGenerator() {
     a.href = qrUrl;
     a.download = `qr-${qrType}-${Date.now()}.png`;
     a.click();
+  };
+
+  const copyImage = async () => {
+    if (!qrBlob) return;
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": qrBlob })]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("Copy failed", "Your browser may not support copying images.");
+    }
   };
 
   const inputCls = "w-full rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 placeholder:text-muted-foreground";
@@ -225,9 +241,15 @@ export default function QRCodeGenerator() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex flex-col items-center gap-4 rounded-xl border border-border p-6" style={{ background: transparent ? 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGklEQVQoU2NkYGD4z8BQDwAEgAF/QualIQAAAABJRU5ErkJggg==") repeat' : bgColor }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={qrUrl} alt="Generated QR Code" className="max-w-56 w-full rounded-lg" />
-            <button onClick={download} className="flex items-center gap-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-6 py-2.5 transition-colors">
-              <Download className="w-4 h-4" /> Download PNG
-            </button>
+            <div className="flex gap-2">
+              <button onClick={copyImage} className="flex items-center gap-2 rounded-lg border border-border bg-card hover:bg-muted/40 text-sm font-medium px-4 py-2.5 transition-colors">
+                {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                {copied ? "Copied!" : "Copy"}
+              </button>
+              <button onClick={download} className="flex items-center gap-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-5 py-2.5 transition-colors">
+                <Download className="w-4 h-4" /> Download
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

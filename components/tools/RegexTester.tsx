@@ -1,13 +1,28 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Copy, Check, Trash2 } from "lucide-react";
+import { Copy, Check, Trash2, ChevronDown, ChevronUp, BookOpen } from "lucide-react";
 
 interface MatchInfo {
   match: string;
   index: number;
   groups: string[];
 }
+
+const COMMON_PATTERNS: { label: string; pattern: string; flags: string }[] = [
+  { label: "Email", pattern: "[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}", flags: "g" },
+  { label: "URL", pattern: "https?:\\/\\/[^\\s/$.?#].[^\\s]*", flags: "g" },
+  { label: "Phone (intl)", pattern: "\\+?[1-9]\\d{1,14}", flags: "g" },
+  { label: "IPv4", pattern: "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b", flags: "g" },
+  { label: "UUID", pattern: "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", flags: "gi" },
+  { label: "Date YYYY-MM-DD", pattern: "\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])", flags: "g" },
+  { label: "Time HH:MM", pattern: "(?:[01]\\d|2[0-3]):[0-5]\\d", flags: "g" },
+  { label: "Hex color", pattern: "#(?:[0-9a-fA-F]{3}){1,2}\\b", flags: "g" },
+  { label: "Slug", pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$", flags: "" },
+  { label: "Username", pattern: "^[a-zA-Z0-9_]{3,20}$", flags: "" },
+  { label: "Positive int", pattern: "^[1-9]\\d*$", flags: "" },
+  { label: "Whitespace", pattern: "\\s+", flags: "g" },
+];
 
 const FLAG_DESCRIPTIONS: Record<string, string> = {
   g: "Global - find all matches",
@@ -25,6 +40,8 @@ export default function RegexTester() {
   const [replace, setReplace] = useState("");
   const [showReplace, setShowReplace] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showPatterns, setShowPatterns] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const { matches, error, regex, replaced } = useMemo(() => {
     if (!pattern) {
@@ -101,6 +118,32 @@ export default function RegexTester() {
 
   return (
     <div className="space-y-4">
+      <div className="space-y-2">
+        <button
+          type="button"
+          onClick={() => setShowPatterns((p) => !p)}
+          className="flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <BookOpen className="w-3.5 h-3.5" />
+          Common patterns
+          {showPatterns ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </button>
+        {showPatterns && (
+          <div className="flex flex-wrap gap-1.5 rounded-xl border border-border bg-muted/20 p-3">
+            {COMMON_PATTERNS.map((p) => (
+              <button
+                key={p.label}
+                type="button"
+                onClick={() => { setPattern(p.pattern); setFlags(p.flags || "g"); setShowPatterns(false); }}
+                className="rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium hover:border-blue-500/40 hover:bg-blue-500/5 transition-colors"
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className="space-y-1.5">
         <label className="text-xs font-medium text-muted-foreground">Pattern</label>
         <div className="flex items-stretch gap-2">
@@ -211,30 +254,37 @@ export default function RegexTester() {
       </div>
 
       {matches.length > 0 && (
-        <details className="rounded-lg border border-border bg-muted/10 p-3">
-          <summary className="text-xs font-medium text-muted-foreground cursor-pointer">
-            Match details ({matches.length})
-          </summary>
-          <div className="mt-2 space-y-2 max-h-64 overflow-y-auto">
-            {matches.map((m, i) => (
-              <div key={i} className="text-xs font-mono border-l-2 border-blue-500 pl-2">
-                <div>
-                  <span className="text-muted-foreground">#{i + 1} @ {m.index}:</span>{" "}
-                  <span className="text-blue-500">{JSON.stringify(m.match)}</span>
-                </div>
-                {m.groups.length > 0 && (
-                  <div className="text-muted-foreground mt-0.5">
-                    {m.groups.map((g, gi) => (
-                      <div key={gi}>
-                        Group {gi + 1}: {g === undefined ? "undefined" : JSON.stringify(g)}
-                      </div>
-                    ))}
+        <div className="rounded-lg border border-border bg-muted/10 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowDetails((d) => !d)}
+            className="flex items-center justify-between w-full px-3 py-2.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/20 transition-colors"
+          >
+            <span>Match details ({matches.length})</span>
+            {showDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
+          {showDetails && (
+            <div className="px-3 pb-3 space-y-2 max-h-64 overflow-y-auto border-t border-border pt-2">
+              {matches.map((m, i) => (
+                <div key={i} className="text-xs font-mono border-l-2 border-blue-500 pl-2">
+                  <div>
+                    <span className="text-muted-foreground">#{i + 1} @ {m.index}:</span>{" "}
+                    <span className="text-blue-500">{JSON.stringify(m.match)}</span>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </details>
+                  {m.groups.length > 0 && (
+                    <div className="text-muted-foreground mt-0.5">
+                      {m.groups.map((g, gi) => (
+                        <div key={gi}>
+                          Group {gi + 1}: {g === undefined ? "undefined" : JSON.stringify(g)}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

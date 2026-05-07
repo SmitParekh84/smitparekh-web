@@ -92,6 +92,44 @@ export default function WordCounter() {
         </div>
       )}
 
+      {result.chars > 0 && (
+        <div className="rounded-xl border border-border bg-card overflow-hidden">
+          <div className="px-4 py-3 border-b border-border bg-muted/30">
+            <p className="text-sm font-semibold">Platform Limits</p>
+          </div>
+          <div className="divide-y divide-border">
+            {[
+              { label: "Twitter / X post", limit: 280, count: result.chars },
+              { label: "Meta description", limit: 160, count: result.chars },
+              { label: "LinkedIn headline", limit: 220, count: result.chars },
+              { label: "LinkedIn post", limit: 3000, count: result.chars },
+            ].map(({ label, limit, count }) => {
+              const pct = Math.min(100, (count / limit) * 100);
+              const over = count > limit;
+              return (
+                <div key={label} className="px-4 py-3 flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium">{label}</span>
+                    <span className={over ? "text-red-500 font-semibold" : "text-muted-foreground"}>
+                      {count} / {limit}
+                      <span className="ml-2">{over ? "✗ over" : "✓ ok"}</span>
+                    </span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                    <motion.div
+                      className={`h-full rounded-full ${over ? "bg-red-500" : "bg-blue-500"}`}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {text && (
         <button
           onClick={() => setText("")}
