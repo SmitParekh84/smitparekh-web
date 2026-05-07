@@ -68,6 +68,7 @@ export const metadata: Metadata = {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteConfig.url}/#person`,
   name: "Smit Parekh",
   url: siteConfig.url,
   jobTitle: "Full-Stack Web Developer",
@@ -75,6 +76,7 @@ const personSchema = {
     "Full-Stack Web Developer with 4+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
   email: siteConfig.email,
   image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  worksFor: { "@type": "Organization", name: "Freelance" },
   knowsAbout: [
     "React",
     "Next.js",
@@ -91,6 +93,7 @@ const personSchema = {
     siteConfig.social.github,
     siteConfig.social.x,
     siteConfig.social.instagram,
+    siteConfig.social.upwork,
   ],
 };
 
@@ -107,17 +110,16 @@ const websiteSchema = {
   url: siteConfig.url,
   description: siteConfig.description,
   inLanguage: "en",
-  author: {
-    "@type": "Person",
-    name: "Smit Parekh",
-    url: siteConfig.url,
-  },
-  publisher: {
-    "@type": "Person",
-    name: "Smit Parekh",
-    url: siteConfig.url,
-    image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-  },
+  author: { "@id": `${siteConfig.url}/#person` },
+  publisher: { "@id": `${siteConfig.url}/#person` },
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: "Smit Parekh - Full Stack Developer",
+  url: siteConfig.url,
+  mainEntity: { "@id": `${siteConfig.url}/#person` },
 };
 
 const faqSchema = {
@@ -172,6 +174,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
       />
 
       <Hero />

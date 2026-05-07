@@ -39,11 +39,7 @@ const servicesSchema = {
       "@type": "Service",
       name: service.title,
       description: service.shortDescription,
-      provider: {
-        "@type": "Person",
-        name: "Smit Parekh",
-        url: siteConfig.url,
-      },
+      provider: { "@id": `${siteConfig.url}/#person` },
       areaServed: "Worldwide",
     },
   })),

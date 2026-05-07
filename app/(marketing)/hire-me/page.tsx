@@ -31,6 +31,7 @@ import { UpworkIcon } from "@/components/icons/SocialIcons";
 import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { aggregateRatingSchema } from "@/lib/seo/schema";
 import { aboutBio, experiences, certifications } from "@/data/about";
 import { developerPages } from "@/data/developer-pages";
 
@@ -94,16 +95,19 @@ const hireMeSchema = {
   url: `${siteConfig.url}/hire-me`,
   mainEntity: {
     "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
     name: "Smit Parekh",
     url: siteConfig.url,
     jobTitle: "Full-Stack Web Developer",
     description: aboutBio,
     email: siteConfig.email,
     image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    worksFor: { "@type": "Organization", name: "Freelance" },
     sameAs: [
       siteConfig.social.linkedin,
       siteConfig.social.github,
       siteConfig.social.x,
+      siteConfig.social.upwork,
     ],
   },
 };
@@ -288,6 +292,10 @@ export default function HireMePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema()) }}
       />
 
       <PageHero

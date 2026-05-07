@@ -72,12 +72,14 @@ const profilePageSchema = {
   url: `${siteConfig.url}/about`,
   mainEntity: {
     "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
     name: "Smit Parekh",
     url: siteConfig.url,
     jobTitle: "Full-Stack Web Developer",
     description: aboutBio,
     email: siteConfig.email,
     image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    worksFor: { "@type": "Organization", name: "Freelance" },
     knowsAbout: [
       "React",
       "Next.js",
@@ -96,6 +98,7 @@ const profilePageSchema = {
       siteConfig.social.github,
       siteConfig.social.x,
       siteConfig.social.instagram,
+      siteConfig.social.upwork,
     ],
     hasCredential: certifications.map((cert) => ({
       "@type": "EducationalOccupationalCredential",

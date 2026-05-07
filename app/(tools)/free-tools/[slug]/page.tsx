@@ -5,6 +5,8 @@ import { siteConfig } from "@/data/site";
 import { toolsSEO, getToolSEO, getToolOgImage } from "@/data/tools-seo";
 import { getToolFAQ } from "@/data/tools-faq";
 import { getToolContent } from "@/data/tools-content";
+import { howToSchema } from "@/lib/seo/schema";
+import { getToolHowToSteps } from "@/data/tools-howto";
 import ToolRenderer from "@/components/tools/ToolRenderer";
 import ToolFAQ from "@/components/tools/ToolFAQ";
 import ToolHowItWorks from "@/components/tools/ToolHowItWorks";
@@ -133,20 +135,17 @@ export default async function ToolPage({ params }: Props) {
             { "@type": "Country", name: "AU" },
           ],
         },
-        author: {
-          "@type": "Person",
-          name: "Smit Parekh",
-          url: siteConfig.url,
-        },
-        publisher: {
-          "@type": "Person",
-          name: "Smit Parekh",
-          url: siteConfig.url,
-        },
+        author: { "@id": `${siteConfig.url}/#person` },
+        publisher: { "@id": `${siteConfig.url}/#person` },
         keywords: tool.keywords.join(", "),
         isAccessibleForFree: true,
         featureList: tool.keywords.slice(0, 5).join(", "),
       }
+    : null;
+
+  const howToSteps = tool ? getToolHowToSteps(slug) : [];
+  const howToSchemaData = tool && howToSteps.length > 0
+    ? howToSchema(slug, tool, howToSteps)
     : null;
 
   const faqSchema =
@@ -181,6 +180,12 @@ export default async function ToolPage({ params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }}
+        />
+      )}
+      {howToSchemaData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchemaData) }}
         />
       )}
       {faqSchema && (
