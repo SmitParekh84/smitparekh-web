@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Star, Eye, EyeOff, Sparkles, FileText } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, Sparkles, FileText, Braces, Copy, Check } from "lucide-react";
 import { LinkedInIcon } from "@/components/icons/SocialIcons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +25,22 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import type { BackendBlog, BackendBlogInput } from "@/types";
+
+const CLAUDE_PROMPT = `You are a senior SEO content strategist writing for Smit Parekh's personal portfolio blog.
+Services covered: full-stack web development, Next.js, React, Node.js, TypeScript, AI/LLM integration, DevOps, technical consulting.
+Target audience: developers, founders, CTOs, hiring managers in US, CA, UK, IN.
+
+Topic: [REPLACE WITH YOUR TOPIC]
+
+Return ONLY a valid JSON object — no prose, no code fence, no markdown around it:
+{
+  "title": "50-65 chars. Primary keyword near start. Title Case. No emojis.",
+  "excerpt": "140-160 chars meta description. Primary keyword once. Ends with an action verb.",
+  "content": "Full article in GitHub-Flavored Markdown, 1100-1700 words. Do NOT repeat the title as an H1 heading.",
+  "category": "MUST be exactly one of: Web Development, React, Next.js, Node.js, TypeScript, DevOps, Career, AI / ML, Tutorial, Case Study, General",
+  "tags": ["3 to 6 short lowercase tags"],
+  "readMinutes": 7
+}`;
 
 const CATEGORY_OPTIONS = [
   "Web Development",
@@ -73,6 +89,10 @@ export function BlogForm({
   const [liData, setLiData] = useState<{ headline: string; body: string; hashtags: string[]; charCount: number } | null>(null);
 
   const [savingDraft, setSavingDraft] = useState(false);
+  const [jsonOpen, setJsonOpen] = useState(false);
+  const [jsonText, setJsonText] = useState("");
+  const [jsonError, setJsonError] = useState<string | null>(null);
+  const [promptCopied, setPromptCopied] = useState(false);
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -186,6 +206,62 @@ export function BlogForm({
     } catch {
       toast.error("Generation failed", "Could not generate LinkedIn article. Try again.");
     }
+  }
+
+  function handleCopyPrompt() {
+    navigator.clipboard.writeText(CLAUDE_PROMPT).then(() => {
+      setPromptCopied(true);
+      setTimeout(() => setPromptCopied(false), 2000);
+    });
+  }
+
+  function handleImportJson() {
+    setJsonError(null);
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(jsonText.trim());
+    } catch {
+      setJsonError("Invalid JSON — check for missing quotes, commas, or brackets.");
+      return;
+    }
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+      setJsonError("Expected a JSON object, not an array or primitive.");
+      return;
+    }
+    const obj = parsed as Record<string, unknown>;
+    const missing: string[] = [];
+    if (!obj.title || typeof obj.title !== "string" || !obj.title.trim()) missing.push('"title"');
+    if (!obj.excerpt || typeof obj.excerpt !== "string" || !obj.excerpt.trim()) missing.push('"excerpt"');
+    if (!obj.content || typeof obj.content !== "string" || !obj.content.trim()) missing.push('"content"');
+    if (missing.length) {
+      setJsonError(`Missing required fields: ${missing.join(", ")}`);
+      return;
+    }
+    const rawCat = typeof obj.category === "string" ? obj.category.trim() : "";
+    const category = CATEGORY_OPTIONS.includes(rawCat) ? rawCat : "Web Development";
+    const tags = Array.isArray(obj.tags)
+      ? (obj.tags as unknown[]).filter((t): t is string => typeof t === "string").map((t) => t.trim()).filter(Boolean)
+      : [];
+    const readMinutes =
+      typeof obj.readMinutes === "number" && obj.readMinutes > 0 ? Math.round(obj.readMinutes) : 5;
+    setForm((prev) => ({
+      ...prev,
+      title: (obj.title as string).trim(),
+      slug: prev.slug || slugify((obj.title as string).trim()),
+      excerpt: (obj.excerpt as string).trim(),
+      content: (obj.content as string).trim(),
+      category,
+      tagsCsv: tags.join(", "),
+      readMinutes,
+    }));
+    const note =
+      rawCat && !CATEGORY_OPTIONS.includes(rawCat)
+        ? `Category "${rawCat}" not recognised — defaulted to "Web Development". Change if needed.`
+        : "Add a cover image and review before publishing.";
+    toast.success("JSON imported", note);
+    setJsonOpen(false);
+    setJsonText("");
+    setJsonError(null);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -310,6 +386,16 @@ export function BlogForm({
               type="button"
               variant="outline"
               size="sm"
+              onClick={() => { setJsonOpen(true); setJsonError(null); }}
+              className="gap-1.5"
+            >
+              <Braces className="h-3.5 w-3.5" />
+              Paste JSON
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
               onClick={handleGenerateLinkedIn}
               disabled={generateLinkedIn.isPending}
               className="gap-1.5"
@@ -401,6 +487,91 @@ export function BlogForm({
                   Generate
                 </>
               )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* JSON Import Dialog */}
+      <Dialog open={jsonOpen} onOpenChange={(o) => { setJsonOpen(o); if (!o) { setJsonText(""); setJsonError(null); } }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <div className="flex items-start gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 p-2 text-white">
+                <Braces className="h-4 w-4" />
+              </div>
+              <div className="flex-1">
+                <DialogTitle>Import from JSON</DialogTitle>
+                <DialogDescription>
+                  Paste JSON generated by Claude (or any LLM) to auto-fill the form.
+                </DialogDescription>
+              </div>
+            </div>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {/* Claude prompt helper */}
+            <div className="rounded-xl border border-border bg-muted/40 p-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-medium text-muted-foreground">
+                  Need a JSON? Copy this prompt → paste into Claude.ai → replace the topic → copy the output back here.
+                </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyPrompt}
+                  className="shrink-0 gap-1.5 text-xs"
+                >
+                  {promptCopied ? (
+                    <>
+                      <Check className="h-3 w-3 text-emerald-500" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3 w-3" />
+                      Copy prompt
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            {/* JSON textarea */}
+            <div>
+              <Textarea
+                autoFocus
+                rows={12}
+                value={jsonText}
+                onChange={(e) => { setJsonText(e.target.value); setJsonError(null); }}
+                placeholder={'{\n  "title": "...",\n  "excerpt": "...",\n  "content": "...",\n  "category": "Next.js",\n  "tags": ["nextjs", "performance"],\n  "readMinutes": 6\n}'}
+                className="resize-y font-mono text-xs leading-relaxed"
+              />
+              {jsonError && (
+                <p className="mt-1.5 text-xs text-destructive">{jsonError}</p>
+              )}
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setJsonOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleImportJson}
+              disabled={!jsonText.trim()}
+              className="gap-1.5"
+            >
+              <Braces className="h-3.5 w-3.5" />
+              Apply to form
             </Button>
           </DialogFooter>
         </DialogContent>
