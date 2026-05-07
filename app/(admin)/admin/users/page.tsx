@@ -36,6 +36,7 @@ import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import { ApiError } from "@/lib/api";
+import { formatDateTime, formatDate } from "@/lib/date";
 import type { AdminUser } from "@/types";
 
 type Tab = "active" | "trash";
@@ -208,15 +209,7 @@ export default function AdminUsersPage() {
                           {u.provider || "-"}
                         </TableCell>
                         <TableCell className="hidden lg:table-cell text-xs text-muted-foreground">
-                          {u.lastLoginAt
-                            ? new Date(u.lastLoginAt).toLocaleString("en-GB", {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })
-                            : "-"}
+                          {u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "-"}
                         </TableCell>
                         <TableCell className="hidden xl:table-cell text-xs text-muted-foreground">
                           {u.loginCount ?? 0}
@@ -335,13 +328,7 @@ export default function AdminUsersPage() {
                         {u.role || "user"}
                       </TableCell>
                       <TableCell className="hidden md:table-cell text-xs text-muted-foreground">
-                        {u.deletedAt
-                          ? new Date(u.deletedAt).toLocaleDateString("en-GB", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                            })
-                          : "-"}
+                        {u.deletedAt ? formatDate(u.deletedAt) : "-"}
                       </TableCell>
                       <TableCell>
                         <div className="flex justify-end">

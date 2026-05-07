@@ -35,6 +35,7 @@ import {
 } from "@/hooks/api/use-feedback";
 import type { FeedbackType, FeedbackStatus, FeedbackEntry } from "@/lib/api";
 import { toast } from "@/lib/toast";
+import { formatDate } from "@/lib/date";
 
 /* ── helpers ────────────────────────────────────────────────────────────────── */
 
@@ -167,11 +168,7 @@ function FeedbackRow({ entry }: { entry: FeedbackEntry }) {
         {/* Right column */}
         <div className="flex shrink-0 flex-col items-end gap-2">
           <time className="text-xs text-muted-foreground">
-            {new Date(entry.createdAt).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })}
+            {formatDate(entry.createdAt)}
           </time>
           <button
             type="button"

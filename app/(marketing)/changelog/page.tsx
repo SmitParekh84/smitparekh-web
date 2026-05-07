@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
+import { formatDate } from "@/lib/date";
 import {
   changelog,
   tagLabel,
@@ -81,13 +82,6 @@ const tagIcons: Record<ChangelogTag, typeof Sparkles> = {
   performance: Rocket,
 };
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 const changelogSchema = {
   "@context": "https://schema.org",

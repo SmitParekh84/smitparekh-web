@@ -87,13 +87,15 @@ export default function AdminOverviewPage() {
   const recentFeedback = feedback?.slice(0, 5);
 
   const now = new Date();
+  const etHour = Number(now.toLocaleString("en-US", { hour: "numeric", hour12: false, timeZone: "America/New_York" }));
   const greeting =
-    now.getHours() < 12 ? "Good morning" : now.getHours() < 18 ? "Good afternoon" : "Good evening";
-  const dateStr = now.toLocaleDateString("en-IN", {
+    etHour < 12 ? "Good morning" : etHour < 18 ? "Good afternoon" : "Good evening";
+  const dateStr = now.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "America/New_York",
   });
 
   return (

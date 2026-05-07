@@ -20,6 +20,7 @@ import { siteConfig } from "@/data/site";
 import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { normalizeMarkdown } from "@/lib/markdown";
+import { formatDate } from "@/lib/date";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -104,16 +105,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : {}),
     },
   };
-}
-
-function formatDate(value: string) {
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

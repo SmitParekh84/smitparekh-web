@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { PageHero } from "@/components/layout/PageHero";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { siteConfig } from "@/data/site";
+import { formatDate } from "@/lib/date";
 
 export const metadata: Metadata = {
   title: "Blog - Web Development Insights by Smit Parekh",
@@ -58,15 +59,6 @@ export const metadata: Metadata = {
 
 export const revalidate = 300;
 
-function formatDate(value: string) {
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
 
 export default async function BlogIndexPage() {
   const blogs = await fetchAllBlogs();

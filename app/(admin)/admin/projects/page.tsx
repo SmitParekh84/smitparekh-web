@@ -46,6 +46,7 @@ import { TrashTable } from "@/components/admin/TrashTable";
 import { SocialShareDialog } from "@/components/admin/SocialShareDialog";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
+import { formatDate } from "@/lib/date";
 
 export default function ProjectsPage() {
   const router = useRouter();
@@ -627,11 +628,7 @@ export default function ProjectsPage() {
                       </button>
                     </TableCell>
                     <TableCell className="hidden lg:table-cell text-xs text-muted-foreground">
-                      {new Date(project.publishDate).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
+                      {formatDate(project.publishDate)}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center justify-end gap-1">

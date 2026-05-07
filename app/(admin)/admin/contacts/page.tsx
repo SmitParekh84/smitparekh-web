@@ -31,6 +31,7 @@ import {
 } from "@/hooks/api/use-admin-contacts";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
+import { formatRelative, formatDateTime } from "@/lib/date";
 import type { AdminContact } from "@/types";
 
 type Tab = "inbox" | "trash";
@@ -639,31 +640,3 @@ function ContactDetailDrawer({
   );
 }
 
-/* -------------------------------- helpers -------------------------------- */
-
-function formatRelative(iso: string | Date | null | undefined): string {
-  if (iso == null) return "";
-  const date = typeof iso === "string" ? new Date(iso) : iso;
-  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
-  const diffMs = Date.now() - date.getTime();
-  const sec = Math.round(diffMs / 1000);
-  if (sec < 60) return "just now";
-  const min = Math.round(sec / 60);
-  if (min < 60) return `${min}m ago`;
-  const hr = Math.round(min / 60);
-  if (hr < 24) return `${hr}h ago`;
-  const day = Math.round(hr / 24);
-  if (day < 7) return `${day}d ago`;
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
-
-function formatDateTime(iso: string | Date | null | undefined): string {
-  if (iso == null) return "—";
-  const date = typeof iso === "string" ? new Date(iso) : iso;
-  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "—";
-  return date.toLocaleString();
-}

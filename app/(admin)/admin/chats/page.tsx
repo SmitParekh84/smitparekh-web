@@ -27,17 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useChatSessions, useChatSession } from "@/hooks/api/use-chat";
-
-function formatRelative(iso: string) {
-  if (!iso) return "-";
-  const d = new Date(iso);
-  const diff = (Date.now() - d.getTime()) / 1000;
-  if (diff < 60) return "just now";
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-  if (diff < 86400 * 7) return `${Math.floor(diff / 86400)}d ago`;
-  return d.toLocaleDateString();
-}
+import { formatRelative, formatDateTime, formatTime } from "@/lib/date";
 
 function SourceBadge({ source }: { source: string | null | undefined }) {
   if (!source || source === "user") return null;
@@ -267,7 +257,7 @@ export default function AdminChatsPage() {
                   <div>
                     <p className="text-muted-foreground">Started</p>
                     <p className="font-medium">
-                      {new Date(detail.data.createdAt).toLocaleString()}
+                      {formatDateTime(detail.data.createdAt)}
                     </p>
                   </div>
                   <div>
@@ -316,7 +306,7 @@ export default function AdminChatsPage() {
                                 </code>
                               )}
                               <span className="text-[10px] text-muted-foreground">
-                                {new Date(m.createdAt).toLocaleTimeString()}
+                                {formatTime(m.createdAt)}
                               </span>
                             </div>
                           )}

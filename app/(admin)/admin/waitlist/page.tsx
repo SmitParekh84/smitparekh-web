@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useAdminWaitlist } from "@/hooks/api/use-feedback";
 import type { WaitlistGroup } from "@/lib/api";
+import { formatDate } from "@/lib/date";
 
 function ToolLabel(slug: string) {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -66,11 +67,7 @@ function WaitlistCard({ group }: { group: WaitlistGroup }) {
                   </a>
                 </div>
                 <time className="shrink-0 text-xs text-muted-foreground">
-                  {new Date(e.joinedAt).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })}
+                  {formatDate(e.joinedAt)}
                 </time>
               </li>
             ))}
