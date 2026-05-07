@@ -66,6 +66,89 @@ Dark navy background (#0a0a1a). OG banner for a free online tools page. Left sid
 
 ---
 
+---
+
+## `hire-react-developer.png`
+**Page:** `/react-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a React Developer", grey subtitle "TypeScript · Redux Toolkit · 40% Performance Gains · 30+ Products", below that a small blue metric pill "4+ Years Experience". Right side: abstract minimal code window showing a React component outline — angled brackets and component name in blue (#0628FF) and cyan (#00C5EC) on a dark card with subtle glow. Thin gradient line blue-to-cyan at very top edge. Bottom right small text "smitparekh.co.in/react-developer". Ultra minimal dark tech design, no photography. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-nextjs-developer.png`
+**Page:** `/nextjs-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a Next.js Developer", grey subtitle "App Router · Server Components · SEO-first · 95+ Lighthouse", below that a blue pill "Vercel · AWS Deploy". Right side: abstract browser chrome frame with a score meter showing "95" in cyan, floating above a dark card with blue glow, suggesting a performance report. Thin blue-to-cyan gradient bar at top. Bottom right "smitparekh.co.in/nextjs-developer". Minimal dark tech aesthetic. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-nodejs-developer.png`
+**Page:** `/nodejs-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a Node.js Developer", grey subtitle "NestJS · Express · GraphQL · Redis · 10K+ req/day APIs", below that a small green uptime pill "99.9% Uptime". Right side: abstract server stack visual — three stacked horizontal bars with glowing left borders in blue and cyan, representing API layers, with small metric labels like "10K req/s" and "99.9%". Thin cyan gradient bar at top. Bottom right "smitparekh.co.in/nodejs-developer". Ultra minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-nestjs-developer.png`
+**Page:** `/nestjs-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a NestJS Developer", grey subtitle "TypeScript-first · Dependency Injection · Microservices · GraphQL", below that a blue pill "Modular · Testable · Scalable". Right side: abstract modular architecture diagram — clean geometric boxes connected by thin lines in blue and cyan, suggesting a module dependency tree or microservices diagram, with subtle glow. Top gradient bar blue-to-cyan. Bottom right "smitparekh.co.in/nestjs-developer". Minimal dark tech design. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-full-stack-developer.png`
+**Page:** `/full-stack-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a Full-Stack Developer", grey subtitle "React · Next.js · Node.js · PostgreSQL · AWS — One Engineer, Full Ownership", below that a row of three small pills "Frontend", "Backend", "Cloud". Right side: abstract vertical stack diagram showing three clean horizontal layers labeled with glowing icons — browser at top, server in middle, database at bottom — connected by thin blue vertical lines, cyan glow at connection points. Top gradient bar. Bottom right "smitparekh.co.in/full-stack-developer". Minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-api-developer.png`
+**Page:** `/api-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire an API Developer", grey subtitle "REST · GraphQL · JWT Auth · Rate Limiting · OpenAPI Docs", below that a blue pill "Typed · Documented · Secured". Right side: abstract API endpoint visualization — clean terminal-style lines showing HTTP verbs "GET", "POST", "PUT" in blue and cyan on a dark card, with a small JSON snippet fragment in cyan monospace text, subtle glow. Top gradient bar. Bottom right "smitparekh.co.in/api-developer". Ultra minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-saas-developer.png`
+**Page:** `/saas-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a SaaS Developer", grey subtitle "Multi-Tenant Apps · Stripe Billing · Auth Flows · Admin Dashboards", below that a blue pill "Next.js · Supabase · Stripe". Right side: abstract SaaS dashboard mockup — clean minimal UI card with a sidebar strip, header bar, and two small data widgets in blue/cyan, no real content, purely geometric shapes suggesting a web app dashboard. Soft blue glow. Top gradient bar. Bottom right "smitparekh.co.in/saas-developer". Minimal dark tech aesthetic. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-postgresql-developer.png`
+**Page:** `/postgresql-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a PostgreSQL Developer", grey subtitle "Schema Design · Query Optimisation · RLS · Supabase · Zero-Downtime Migrations", below that a blue pill "AWS RDS · Prisma". Right side: abstract database visual — clean geometric cylinder shape (representing a database) with blue-cyan gradient fill and glowing connection lines branching out, suggesting a schema or table relationship diagram. Minimal, no clutter. Top gradient bar. Bottom right "smitparekh.co.in/postgresql-developer". Dark tech aesthetic. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+## `hire-typescript-developer.png`
+**Page:** `/typescript-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a TypeScript Developer", grey subtitle "Strict Mode · Full-Stack TS · No 'any' · Zod Validation · Zero Runtime Surprises", below that a blue pill "React · Node.js · NestJS". Right side: abstract code window showing TypeScript type definition syntax — interface outline with property names and types in blue and cyan monospace font on a dark card with soft glow, suggesting strict typed code. Top gradient bar. Bottom right "smitparekh.co.in/typescript-developer". Ultra minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
 ## Notes
 
 - Your existing photo `public/images/Smit-Parekh-Home.png` is used as the **home page** OG image — no new image needed there.

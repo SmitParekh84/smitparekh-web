@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a Node.js Developer – 10K+ Req/Day APIs, NestJS, AWS | Smit Parekh",
     description: "Node.js APIs in production handling 10,000+ daily requests at 99.9% uptime. NestJS, GraphQL, PostgreSQL, Redis, Docker, AWS.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a Node.js Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-nodejs-developer.png`, width: 1200, height: 630, alt: "Hire a Node.js Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime | Smit Parekh",
     description: "Node.js APIs in production. NestJS, GraphQL, PostgreSQL, AWS. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-nodejs-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire Node.js developer", "Node.js developer for hire", "freelance Node.js developer",

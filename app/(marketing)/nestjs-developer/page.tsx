@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a NestJS Developer – TypeScript APIs, DI, Microservices | Smit Parekh",
     description: "NestJS APIs in production — dependency injection, guards, interceptors, GraphQL, microservices, TypeScript strict. Deployed on AWS or Docker.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a NestJS Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630, alt: "Hire a NestJS Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a NestJS Developer – TypeScript APIs, DI, Microservices | Smit Parekh",
     description: "NestJS TypeScript APIs with DI, guards, interceptors, GraphQL, and microservices. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire NestJS developer", "NestJS developer for hire", "freelance NestJS developer",

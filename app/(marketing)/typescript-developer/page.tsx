@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Hire a TypeScript Developer – Strict-Mode, No any, No Surprises | Smit Parekh",
     description:
       "TypeScript development across the full stack — React, Next.js, Node.js, NestJS, PostgreSQL. Strict mode, fully typed APIs, zero suppressions. Serving clients in the UK, US, Canada, and worldwide.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a TypeScript Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630, alt: "Hire a TypeScript Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a TypeScript Developer – Strict Mode, Full Stack | Smit Parekh",
     description: "Type-safe React, Node.js, and NestJS. No any, no suppressions, no runtime surprises. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire TypeScript developer", "TypeScript developer for hire", "freelance TypeScript developer",

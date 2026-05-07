@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a SaaS Developer – Multi-Tenant, Stripe, Auth | Smit Parekh",
     description: "Full-stack SaaS development — multi-tenant architecture, Stripe subscriptions, auth, onboarding flows, admin dashboards. From MVP to paying customers.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a SaaS Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-saas-developer.png`, width: 1200, height: 630, alt: "Hire a SaaS Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a SaaS Developer – Multi-Tenant, Stripe Billing, Auth | Smit Parekh",
     description: "SaaS apps with auth, Stripe billing, multi-tenancy, and admin dashboards. From MVP to scale. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-saas-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire SaaS developer", "SaaS developer for hire", "freelance SaaS developer",

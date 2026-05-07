@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a Next.js Developer – App Router Expert, 95+ Lighthouse | Smit Parekh",
     description: "Full-stack Next.js development — App Router, Server Components, TypeScript, SEO-first builds, 95+ Lighthouse. Deployed to Vercel or AWS.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a Next.js Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-nextjs-developer.png`, width: 1200, height: 630, alt: "Hire a Next.js Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First | Smit Parekh",
     description: "Full-stack Next.js. App Router, TypeScript, 95+ Lighthouse. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-nextjs-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire Next.js developer", "Next.js developer for hire", "freelance Next.js developer",

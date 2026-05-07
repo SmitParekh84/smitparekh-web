@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a PostgreSQL Developer – Sub-10ms Queries, Schema Design | Smit Parekh",
     description: "PostgreSQL database design and optimisation — indexing, partitioning, migrations, Supabase RLS. Sub-10ms p99 latency. Deployed on AWS RDS or Supabase.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a PostgreSQL Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-postgresql-developer.png`, width: 1200, height: 630, alt: "Hire a PostgreSQL Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a PostgreSQL Developer – Sub-10ms Queries, 99.9% Uptime | Smit Parekh",
     description: "PostgreSQL database design and optimisation. Indexing, RLS, Supabase, AWS RDS. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-postgresql-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire PostgreSQL developer", "PostgreSQL developer for hire", "freelance PostgreSQL developer",

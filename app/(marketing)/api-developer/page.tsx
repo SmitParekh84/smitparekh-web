@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire an API Developer – REST & GraphQL, 10K+ Req/Day | Smit Parekh",
     description: "Production REST and GraphQL APIs — TypeScript, JWT auth, rate limiting, Redis caching, OpenAPI documentation. 10K+ daily requests, 99.9% uptime.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire an API Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-api-developer.png`, width: 1200, height: 630, alt: "Hire an API Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire an API Developer – REST & GraphQL, 10K+ Req/Day | Smit Parekh",
     description: "REST and GraphQL APIs in production. TypeScript, JWT, rate limiting, OpenAPI. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-api-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire API developer", "API developer for hire", "freelance API developer",

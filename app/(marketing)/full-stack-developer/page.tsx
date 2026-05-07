@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a Full-Stack Developer – React, Next.js, Node.js, PostgreSQL | Smit Parekh",
     description: "Full-stack developer with 4+ years shipping production apps. React, Next.js, NestJS, PostgreSQL, and AWS — one engineer, full ownership from database to deploy.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a Full-Stack Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-full-stack-developer.png`, width: 1200, height: 630, alt: "Hire a Full-Stack Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a Full-Stack Developer – React, Next.js, Node.js, AWS | Smit Parekh",
     description: "Full-stack developer — React, Next.js, NestJS, PostgreSQL, AWS. One engineer, full ownership. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-full-stack-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire full-stack developer", "full-stack developer for hire", "freelance full-stack developer",
