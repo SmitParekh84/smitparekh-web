@@ -262,7 +262,10 @@ export default function Navbar({
                 </button>
 
                 {toolsOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[520px]">
+                  <div
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 max-w-[calc(100vw-2rem)]"
+                    style={{ minWidth: `${Math.min(Math.max(toolsGroups.length, 1), 5) * 240 + 40}px` }}
+                  >
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
                       {/* Header row — links to the full landing page */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
@@ -284,7 +287,11 @@ export default function Navbar({
                       <div
                         className={cn(
                           "grid gap-x-5 gap-y-4",
-                          toolsGroups.length > 1 ? "grid-cols-2" : "grid-cols-1",
+                          toolsGroups.length === 1 && "grid-cols-1",
+                          toolsGroups.length === 2 && "grid-cols-2",
+                          toolsGroups.length === 3 && "grid-cols-3",
+                          toolsGroups.length === 4 && "grid-cols-4",
+                          toolsGroups.length >= 5 && "grid-cols-5",
                         )}
                       >
                         {toolsGroups.map((group) => (
