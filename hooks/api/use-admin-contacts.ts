@@ -130,6 +130,49 @@ export function useSetContactRead() {
   });
 }
 
+/** Bulk mark read/unread with optimistic update across list caches. */
+export function useBulkSetContactsRead() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ ids, isRead }: { ids: string[]; isRead: boolean }) =>
+      adminContactsApi.bulkSetRead(ids, isRead),
+    onMutate: async ({ ids, isRead }) => {
+      await qc.cancelQueries({ queryKey: queryKeys.adminContacts.all });
+      const idSet = new Set(ids);
+      const lists = qc.getQueriesData<AdminContactsListResponse>({
+        queryKey: queryKeys.adminContacts.all,
+      });
+
+      lists.forEach(([key, value]) => {
+        if (!value || !Array.isArray(value.data)) return;
+        let flipped = 0;
+        const nextData = value.data.map((c) => {
+          if (!idSet.has(c._id)) return c;
+          if (c.isRead === isRead) return c;
+          flipped += 1;
+          return { ...c, isRead };
+        });
+        if (flipped === 0) return;
+        qc.setQueryData<AdminContactsListResponse>(key, {
+          ...value,
+          data: nextData,
+          unreadCount: Math.max(
+            0,
+            (value.unreadCount ?? 0) + (isRead ? -flipped : flipped),
+          ),
+        });
+      });
+
+      return { lists };
+    },
+    onError: (_err, _vars, ctx) => {
+      ctx?.lists.forEach(([key, value]) => qc.setQueryData(key, value));
+    },
+    onSettled: () =>
+      qc.invalidateQueries({ queryKey: queryKeys.adminContacts.all }),
+  });
+}
+
 export function useDeleteAdminContact() {
   const qc = useQueryClient();
   return useMutation({

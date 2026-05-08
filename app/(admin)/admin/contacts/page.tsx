@@ -29,6 +29,7 @@ import {
   useDeleteAdminContact,
   useRestoreAdminContact,
   useSetContactRead,
+  useBulkSetContactsRead,
 } from "@/hooks/api/use-admin-contacts";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
@@ -48,6 +49,7 @@ export default function AdminContactsPage() {
   const trashQuery = useDeletedAdminContacts();
 
   const setRead = useSetContactRead();
+  const bulkSetReadMut = useBulkSetContactsRead();
   const deleteContact = useDeleteAdminContact();
   const restoreContact = useRestoreAdminContact();
 
@@ -92,30 +94,22 @@ export default function AdminContactsPage() {
   }
 
   async function bulkSetRead(isRead: boolean) {
-    const targets = inbox.filter(
-      (c) => selected.has(c._id) && c.isRead !== isRead,
-    );
-    if (targets.length === 0) {
+    const ids = inbox
+      .filter((c) => selected.has(c._id) && c.isRead !== isRead)
+      .map((c) => c._id);
+    if (ids.length === 0) {
       setSelected(new Set());
       return;
     }
     setBulkPending(true);
     try {
-      const results = await Promise.allSettled(
-        targets.map((c) => setRead.mutateAsync({ id: c._id, isRead })),
+      const res = await bulkSetReadMut.mutateAsync({ ids, isRead });
+      toast.success(
+        `Marked ${res.modified} as ${isRead ? "read" : "unread"}`,
       );
-      const failed = results.filter((r) => r.status === "rejected").length;
-      const ok = results.length - failed;
-      if (ok > 0) {
-        toast.success(
-          `Marked ${ok} as ${isRead ? "read" : "unread"}`,
-          failed > 0 ? `${failed} failed.` : undefined,
-        );
-      }
-      if (failed > 0 && ok === 0) {
-        toast.error("Bulk update failed", "Please try again.");
-      }
       setSelected(new Set());
+    } catch {
+      toast.error("Bulk update failed", "Please try again.");
     } finally {
       setBulkPending(false);
     }

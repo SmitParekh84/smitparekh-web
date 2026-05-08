@@ -32,6 +32,13 @@ export const adminContactsApi = {
       `/admin/contacts/${id}/read`,
       { isRead },
     ),
+  bulkSetRead: (ids: string[], isRead: boolean) =>
+    api.patch<{
+      success: boolean;
+      message: string;
+      matched: number;
+      modified: number;
+    }>(`/admin/contacts/bulk/read`, { ids, isRead }),
   remove: (id: string) =>
     api.del<{ success: boolean; message: string }>(`/admin/contacts/${id}`),
   restore: (id: string) =>
