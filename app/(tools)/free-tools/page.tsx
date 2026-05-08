@@ -10,10 +10,12 @@ import { toolsSEO } from "@/data/tools-seo";
 import FreeToolsFAQ from "@/components/tools/FreeToolsFAQ";
 import ToolsCategoryFilter from "@/components/tools/ToolsCategoryFilter";
 
+const TOOLS_COUNT = toolsSEO.length;
+
 export const metadata: Metadata = {
   title: "Free Online Tools - Background Remover, Resume Checker, QR Code Generator & More",
   description:
-    "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, YouTube thumbnail downloader, SEO analyzer, and more. No signup, no cost. Available worldwide.",
+    `${TOOLS_COUNT} free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, YouTube thumbnail downloader, SEO analyzer, and more. No signup, no cost. Available worldwide.`,
   alternates: { canonical: `${siteConfig.url}/free-tools` },
   openGraph: {
     type: "website",
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/free-tools`,
     title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "14 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, JSON formatter, base64 encoder, YouTube thumbnail downloader, SEO analyzer & more. No signup, no cost. Used globally.",
+      `${TOOLS_COUNT} free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR code maker, JSON formatter, base64 encoder, YouTube thumbnail downloader, SEO analyzer & more. No signup, no cost. Used globally.`,
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Free Online Tools by Smit Parekh - No Signup Required",
     description:
-      "14 free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes, JSON formatter, base64 encoder & more. No signup, used globally.",
+      `${TOOLS_COUNT} free browser-based tools - background remover, ATS resume checker, LinkedIn generator, QR codes, JSON formatter, base64 encoder & more. No signup, used globally.`,
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-free-developer-tools.png`,
@@ -99,12 +101,12 @@ const features = [
   { icon: ShieldCheck, title: "Files Deleted Immediately", description: "Uploads are processed in memory and deleted the moment your result is ready. Nothing is stored, logged, or used for AI training. Ever." },
   { icon: Users, title: "No Signup to Start", description: "Open any tool and start working in seconds. If you want 10× more daily uses and a personal dashboard, one Google sign-in takes 5 seconds — still free." },
   { icon: Brain, title: "Production-Grade AI", description: "Background removal, ATS scoring, LinkedIn post generation, and SEO analysis — the same quality as paid tools, at zero cost." },
-  { icon: Zap, title: "All 14 Tools, One Place", description: "Stop bookmarking a different site for each task. Image, Content, SEO, Career, and Dev tools — all here, all free, searchable by category." },
+  { icon: Zap, title: `All ${TOOLS_COUNT} Tools, One Place`, description: "Stop bookmarking a different site for each task. Image, Content, SEO, Career, and Dev tools — all here, all free, searchable by category." },
   { icon: RefreshCw, title: "Built & Maintained by a Developer", description: "Not a VC-backed tool farm. Built by a full-stack developer who uses these tools weekly. Feedback actually ships — usually within days." },
 ];
 
 const steps = [
-  { step: "01", title: "Choose Your Tool", description: "Browse 14 tools by category — Image, Content, SEO, Career, or Dev. Use the filter or scroll the full list. No account needed to start." },
+  { step: "01", title: "Choose Your Tool", description: `Browse ${TOOLS_COUNT} tools by category — Image, Content, SEO, Career, or Dev. Use the filter or scroll the full list. No account needed to start.` },
   { step: "02", title: "Paste or Upload", description: "Drop a file, paste a URL, or type your input. No complex setup, no documentation to read, no waiting in a queue." },
   { step: "03", title: "Copy or Download", description: "One click to copy your text or download your file. Sign in free for a personal dashboard and 10× higher daily limits across all tools." },
 ];
@@ -113,7 +115,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Free Online Tools - No Signup Required",
-  description: "14 free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, and more. Available in US, UK, Canada, India, and worldwide. No account needed.",
+  description: `${TOOLS_COUNT} free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, and more. Available in US, UK, Canada, India, and worldwide. No account needed.`,
   url: `${siteConfig.url}/free-tools`,
   inLanguage: "en",
   author: {
@@ -248,10 +250,64 @@ export default function FreeToolsPage() {
         </div>
       </section>
 
+      {/* SEO intro - server-rendered so search engines see real content above the client-rendered grid */}
+      <section className="page-container pt-10">
+        <div className="max-w-3xl">
+          <p className="text-[15px] leading-relaxed text-muted-foreground">
+            A growing collection of {TOOLS_COUNT} free, browser-based utilities for developers,
+            marketers, designers, and job seekers. Most tools run entirely on your device — files
+            and text never leave the browser, so your data stays private. AI-powered tools (background
+            removal, ATS resume scoring, LinkedIn post generation, SEO audits) are processed
+            securely and deleted immediately after the result is returned. No signup required to
+            start, no watermarks on output, and no daily-limit paywalls. Sign in free with Google
+            to unlock 10× higher daily limits and a personal usage dashboard.
+          </p>
+        </div>
+      </section>
+
       {/* Tools Grid + Filter */}
       <section className="page-section" id="tools">
         <div className="page-container">
           <ToolsCategoryFilter />
+        </div>
+      </section>
+
+      {/* Server-rendered list of every tool - guarantees crawlers see all internal links
+          even before the client filter hydrates. Doubles as an A–Z index for users. */}
+      <section className="page-section border-t border-border bg-muted/10" id="all-tools">
+        <div className="page-container">
+          <div className="text-center mb-8">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">
+              Complete Tool Index
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              All {TOOLS_COUNT} Free Tools
+            </h2>
+            <p className="text-muted-foreground mt-3 text-sm max-w-xl mx-auto">
+              Every tool on this site, in one alphabetical list — open any one to start using it
+              immediately.
+            </p>
+          </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[...toolsSEO]
+              .sort((a, b) => a.slug.localeCompare(b.slug))
+              .map((tool) => {
+                const name = tool.title.split(" - ")[0];
+                return (
+                  <li key={tool.slug}>
+                    <Link
+                      href={`/free-tools/${tool.slug}`}
+                      className="block rounded-xl border border-border bg-card p-4 hover:border-blue-500/40 hover:bg-blue-500/[0.03] transition-colors h-full"
+                    >
+                      <p className="font-semibold text-sm mb-1.5">{name}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                        {tool.description}
+                      </p>
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
         </div>
       </section>
 
