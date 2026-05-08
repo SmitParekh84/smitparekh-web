@@ -267,8 +267,8 @@ export default function Navbar({
                   const cols = groupCount <= 4 ? groupCount : 3;
                   return (
                   <div
-                    className="absolute top-full right-0 pt-3 max-w-[calc(100vw-2rem)]"
-                    style={{ minWidth: `${cols * 240 + 40}px` }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 max-w-[calc(100vw-2rem)]"
+                    style={{ width: `${cols * 240 + 40}px` }}
                   >
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
                       {/* Header row — links to the full landing page */}
