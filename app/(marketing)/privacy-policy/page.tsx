@@ -4,7 +4,7 @@ import { ShieldCheck, Mail } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { siteConfig } from "@/data/site";
 
-const LAST_UPDATED = "May 4, 2026";
+const LAST_UPDATED = "May 8, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Smit Parekh",
@@ -126,8 +126,9 @@ export default function PrivacyPolicyPage() {
                 <strong>Cookies and local storage:</strong> a small number of
                 cookies and browser storage items are used for essential
                 functionality — session state, dark/light mode preference, and
-                authentication tokens. No advertising or cross-site tracking
-                cookies are used.
+                authentication tokens. Third-party advertising cookies (Google
+                AdSense) are also used to display ads that help keep the tools
+                free — see Section 8 for details and opt-out options.
               </li>
             </ul>
 
@@ -209,6 +210,37 @@ export default function PrivacyPolicyPage() {
                 result and are not retained.
               </li>
               <li>
+                <strong>Google AdSense</strong> — advertising network used to
+                display ads on the Site. Google may use cookies (including the
+                DoubleClick cookie) to serve ads based on your prior visits to
+                this or other websites. This helps keep the tools and content
+                free. You can opt out of personalised advertising at{" "}
+                <a
+                  href="https://www.google.com/settings/ads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Ads Settings
+                </a>{" "}
+                or via{" "}
+                <a
+                  href="https://optout.aboutads.info/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  aboutads.info
+                </a>
+                . See also{" "}
+                <a
+                  href="https://policies.google.com/technologies/ads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google&apos;s advertising policies
+                </a>
+                .
+              </li>
+              <li>
                 <strong>Analytics provider</strong> — privacy-friendly,
                 cookie-optional analytics that do not share data with
                 advertising networks.
@@ -261,17 +293,42 @@ export default function PrivacyPolicyPage() {
 
             <h2>8. Cookies</h2>
             <p>
-              The Site uses a small number of cookies and browser storage
-              mechanisms:
+              The Site uses cookies and browser storage for the following
+              purposes:
             </p>
             <ul>
               <li><strong>Essential cookies:</strong> authentication session tokens, CSRF protection, and dark/light mode preference. These cannot be disabled without breaking core functionality.</li>
-              <li><strong>Analytics:</strong> privacy-friendly, aggregate-only analytics. No advertising IDs, no cross-site fingerprinting.</li>
+              <li><strong>Analytics:</strong> privacy-friendly, aggregate-only analytics with no cross-site fingerprinting.</li>
+              <li>
+                <strong>Advertising cookies (Google AdSense):</strong> Google
+                AdSense places cookies — including the DoubleClick cookie — to
+                serve ads personalised to your interests based on your browsing
+                history on this and other sites. These cookies may track you
+                across websites. To opt out of personalised ads, visit{" "}
+                <a
+                  href="https://www.google.com/settings/ads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Ads Settings
+                </a>
+                {" "}or the{" "}
+                <a
+                  href="https://optout.aboutads.info/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  NAI opt-out tool
+                </a>
+                . Opting out means you will see non-personalised ads rather than
+                no ads.
+              </li>
             </ul>
             <p>
-              You can disable cookies in your browser settings. Some features
-              (authentication, tool quotas) will not work correctly without
-              essential cookies.
+              You can disable cookies in your browser settings. Essential
+              cookies (authentication, tool quotas) are required for core
+              functionality. Disabling advertising cookies will not affect your
+              ability to use any tool on this Site.
             </p>
 
             <h2>9. Security</h2>
