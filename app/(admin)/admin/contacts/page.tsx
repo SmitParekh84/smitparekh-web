@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   useAdminContacts,
   useAdminContact,
@@ -40,6 +41,8 @@ export default function AdminContactsPage() {
   const [tab, setTab] = useState<Tab>("inbox");
   const [unreadOnly, setUnreadOnly] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(() => new Set());
+  const [bulkPending, setBulkPending] = useState(false);
 
   const inboxQuery = useAdminContacts({ limit: 50, unread: unreadOnly });
   const trashQuery = useDeletedAdminContacts();
@@ -52,6 +55,71 @@ export default function AdminContactsPage() {
   const total = inboxQuery.data?.total ?? 0;
   const unreadCount = inboxQuery.data?.unreadCount ?? 0;
   const deleted = trashQuery.data ?? [];
+
+  // Drop selections that no longer exist (after refetch / filter change)
+  useEffect(() => {
+    if (selected.size === 0) return;
+    const visible = new Set(inbox.map((c) => c._id));
+    let changed = false;
+    const next = new Set<string>();
+    selected.forEach((id) => {
+      if (visible.has(id)) next.add(id);
+      else changed = true;
+    });
+    if (changed) setSelected(next);
+  }, [inbox, selected]);
+
+  // Clear selection on tab change
+  useEffect(() => {
+    setSelected(new Set());
+  }, [tab]);
+
+  function toggleOne(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleAllVisible(checked: boolean) {
+    if (!checked) {
+      setSelected(new Set());
+      return;
+    }
+    setSelected(new Set(inbox.map((c) => c._id)));
+  }
+
+  async function bulkSetRead(isRead: boolean) {
+    const targets = inbox.filter(
+      (c) => selected.has(c._id) && c.isRead !== isRead,
+    );
+    if (targets.length === 0) {
+      setSelected(new Set());
+      return;
+    }
+    setBulkPending(true);
+    try {
+      const results = await Promise.allSettled(
+        targets.map((c) => setRead.mutateAsync({ id: c._id, isRead })),
+      );
+      const failed = results.filter((r) => r.status === "rejected").length;
+      const ok = results.length - failed;
+      if (ok > 0) {
+        toast.success(
+          `Marked ${ok} as ${isRead ? "read" : "unread"}`,
+          failed > 0 ? `${failed} failed.` : undefined,
+        );
+      }
+      if (failed > 0 && ok === 0) {
+        toast.error("Bulk update failed", "Please try again.");
+      }
+      setSelected(new Set());
+    } finally {
+      setBulkPending(false);
+    }
+  }
 
   // Auto-mark read when opening unread contact
   const detailQuery = useAdminContact(openId);
@@ -164,12 +232,24 @@ export default function AdminContactsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-0">
+            {selected.size > 0 && (
+              <BulkActionBar
+                count={selected.size}
+                pending={bulkPending}
+                onMarkRead={() => bulkSetRead(true)}
+                onMarkUnread={() => bulkSetRead(false)}
+                onClear={() => setSelected(new Set())}
+              />
+            )}
             <ContactList
               isLoading={inboxQuery.isLoading}
               isError={inboxQuery.isError}
               onRefetch={() => inboxQuery.refetch()}
               items={inbox}
               onOpen={(id) => setOpenId(id)}
+              selected={selected}
+              onToggleOne={toggleOne}
+              onToggleAll={toggleAllVisible}
               emptyText={
                 unreadOnly ? "No unread messages." : "No messages yet."
               }
@@ -250,12 +330,76 @@ function TabButton({
   );
 }
 
+function BulkActionBar({
+  count,
+  pending,
+  onMarkRead,
+  onMarkUnread,
+  onClear,
+}: {
+  count: number;
+  pending: boolean;
+  onMarkRead: () => void;
+  onMarkUnread: () => void;
+  onClear: () => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-2 border-b border-border bg-blue-500/[0.06] px-4 py-2.5 sm:px-6">
+      <span className="text-sm font-medium text-blue-600">
+        {count} selected
+      </span>
+      <div className="ml-auto flex flex-wrap items-center gap-2">
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          className="h-8 gap-1.5 text-xs"
+          disabled={pending}
+          onClick={onMarkRead}
+        >
+          {pending ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          ) : (
+            <MailOpen className="h-3.5 w-3.5" />
+          )}
+          Mark read
+        </Button>
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          className="h-8 gap-1.5 text-xs"
+          disabled={pending}
+          onClick={onMarkUnread}
+        >
+          <Mail className="h-3.5 w-3.5" />
+          Mark unread
+        </Button>
+        <Button
+          type="button"
+          size="sm"
+          variant="ghost"
+          className="h-8 gap-1.5 text-xs"
+          disabled={pending}
+          onClick={onClear}
+        >
+          <X className="h-3.5 w-3.5" />
+          Clear
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 function ContactList({
   items,
   isLoading,
   isError,
   onRefetch,
   onOpen,
+  selected,
+  onToggleOne,
+  onToggleAll,
   emptyText,
 }: {
   items: AdminContact[];
@@ -263,6 +407,9 @@ function ContactList({
   isError: boolean;
   onRefetch: () => void;
   onOpen: (id: string) => void;
+  selected: Set<string>;
+  onToggleOne: (id: string) => void;
+  onToggleAll: (checked: boolean) => void;
   emptyText: string;
 }) {
   if (isLoading) {
@@ -291,60 +438,91 @@ function ContactList({
       </p>
     );
   }
+  const allSelected = items.length > 0 && items.every((c) => selected.has(c._id));
+  const someSelected = !allSelected && items.some((c) => selected.has(c._id));
   return (
-    <ul className="divide-y divide-border">
-      {items.map((c) => (
-        <li key={c._id}>
-          <button
-            type="button"
-            onClick={() => onOpen(c._id)}
-            className={cn(
-              "flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors hover:bg-muted/50 sm:px-6",
-              !c.isRead && "bg-blue-500/[0.04]",
-            )}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex min-w-0 items-center gap-2">
-                {!c.isRead && (
-                  <span
-                    aria-label="Unread"
-                    className="size-2 shrink-0 rounded-full bg-blue-500"
-                  />
-                )}
-                <span
-                  className={cn(
-                    "truncate",
-                    c.isRead ? "font-medium" : "font-semibold",
-                  )}
-                >
-                  {c.name}
-                </span>
-                <span className="hidden truncate text-xs text-muted-foreground sm:inline">
-                  {c.email}
-                </span>
-                {!c.emailSent && (
-                  <Badge
-                    variant="secondary"
-                    className="shrink-0 gap-1 border-amber-500/30 bg-amber-500/10 text-amber-600 hover:bg-amber-500/10"
-                  >
-                    <AlertTriangle className="h-3 w-3" />
-                    Email failed
-                  </Badge>
-                )}
+    <div>
+      <div className="flex items-center gap-3 border-b border-border bg-muted/30 px-4 py-2 sm:px-6">
+        <Checkbox
+          aria-label={allSelected ? "Deselect all" : "Select all"}
+          checked={allSelected ? true : someSelected ? "indeterminate" : false}
+          onCheckedChange={(v) => onToggleAll(v === true)}
+        />
+        <span className="text-xs font-medium text-muted-foreground">
+          {selected.size > 0
+            ? `${selected.size} selected`
+            : "Select all on this page"}
+        </span>
+      </div>
+      <ul className="divide-y divide-border">
+        {items.map((c) => {
+          const isSelected = selected.has(c._id);
+          return (
+            <li
+              key={c._id}
+              className={cn(
+                "flex items-start gap-3 px-4 py-3 transition-colors sm:px-6",
+                !c.isRead && "bg-blue-500/[0.04]",
+                isSelected && "bg-blue-500/[0.08]",
+                "hover:bg-muted/50",
+              )}
+            >
+              <div className="pt-0.5">
+                <Checkbox
+                  aria-label={`Select message from ${c.name}`}
+                  checked={isSelected}
+                  onCheckedChange={() => onToggleOne(c._id)}
+                />
               </div>
-              <time className="shrink-0 text-xs text-muted-foreground">
-                {formatRelative(c.createdAt)}
-              </time>
-            </div>
-            <p className="line-clamp-1 pl-4 text-sm text-foreground/90">
-              <span className="font-medium">{c.subject}</span>
-              <span className="mx-1.5 text-muted-foreground">&middot;</span>
-              <span className="text-muted-foreground">{c.description}</span>
-            </p>
-          </button>
-        </li>
-      ))}
-    </ul>
+              <button
+                type="button"
+                onClick={() => onOpen(c._id)}
+                className="flex min-w-0 flex-1 flex-col gap-1 text-left"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-2">
+                    {!c.isRead && (
+                      <span
+                        aria-label="Unread"
+                        className="size-2 shrink-0 rounded-full bg-blue-500"
+                      />
+                    )}
+                    <span
+                      className={cn(
+                        "truncate",
+                        c.isRead ? "font-medium" : "font-semibold",
+                      )}
+                    >
+                      {c.name}
+                    </span>
+                    <span className="hidden truncate text-xs text-muted-foreground sm:inline">
+                      {c.email}
+                    </span>
+                    {!c.emailSent && (
+                      <Badge
+                        variant="secondary"
+                        className="shrink-0 gap-1 border-amber-500/30 bg-amber-500/10 text-amber-600 hover:bg-amber-500/10"
+                      >
+                        <AlertTriangle className="h-3 w-3" />
+                        Email failed
+                      </Badge>
+                    )}
+                  </div>
+                  <time className="shrink-0 text-xs text-muted-foreground">
+                    {formatRelative(c.createdAt)}
+                  </time>
+                </div>
+                <p className="line-clamp-1 pl-4 text-sm text-foreground/90">
+                  <span className="font-medium">{c.subject}</span>
+                  <span className="mx-1.5 text-muted-foreground">&middot;</span>
+                  <span className="text-muted-foreground">{c.description}</span>
+                </p>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

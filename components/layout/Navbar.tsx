@@ -261,10 +261,14 @@ export default function Navbar({
                   />
                 </button>
 
-                {toolsOpen && (
+                {toolsOpen && (() => {
+                  const groupCount = Math.max(toolsGroups.length, 1);
+                  // Up to 4 categories: one row. 5+: wrap into rows of 3.
+                  const cols = groupCount <= 4 ? groupCount : 3;
+                  return (
                   <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 max-w-[calc(100vw-2rem)]"
-                    style={{ minWidth: `${Math.min(Math.max(toolsGroups.length, 1), 5) * 240 + 40}px` }}
+                    className="absolute top-full right-0 pt-3 max-w-[calc(100vw-2rem)]"
+                    style={{ minWidth: `${cols * 240 + 40}px` }}
                   >
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
                       {/* Header row — links to the full landing page */}
@@ -287,11 +291,10 @@ export default function Navbar({
                       <div
                         className={cn(
                           "grid gap-x-5 gap-y-4",
-                          toolsGroups.length === 1 && "grid-cols-1",
-                          toolsGroups.length === 2 && "grid-cols-2",
-                          toolsGroups.length === 3 && "grid-cols-3",
-                          toolsGroups.length === 4 && "grid-cols-4",
-                          toolsGroups.length >= 5 && "grid-cols-5",
+                          cols === 1 && "grid-cols-1",
+                          cols === 2 && "grid-cols-2",
+                          cols === 3 && "grid-cols-3",
+                          cols === 4 && "grid-cols-4",
                         )}
                       >
                         {toolsGroups.map((group) => (
@@ -344,7 +347,8 @@ export default function Navbar({
                       </div>
                     </div>
                   </div>
-                )}
+                  );
+                })()}
               </div>
             )}
           </div>
