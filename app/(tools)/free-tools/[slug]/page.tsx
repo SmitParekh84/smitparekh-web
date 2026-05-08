@@ -234,6 +234,17 @@ export default async function ToolPage({ params }: Props) {
           </div>
         </section>
 
+        {/* SEO intro - server-rendered above the tool so search engines see real content */}
+        {content?.intro && (
+          <section className="page-container pt-8">
+            <div className="max-w-2xl mx-auto">
+              <p className="text-[15px] leading-relaxed text-muted-foreground">
+                {content.intro}
+              </p>
+            </div>
+          </section>
+        )}
+
         {/* Tool */}
         <section className="page-section pb-8">
           <div className="page-container">
