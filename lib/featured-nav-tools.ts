@@ -13,15 +13,26 @@
  *
  * If Supabase is unreachable (or the migration hasn't run yet), the static
  * defaults below kick in so the build/render never breaks.
+ *
+ * Categories: imported from data/tool-categories (single source of truth).
+ * When the admin enables a tool's featured_in_nav flag but leaves nav_group
+ * NULL, the fallback derives the category from data/tool-categories rather
+ * than dumping every untagged tool into "Productivity".
  */
 import "server-only";
 import { unstable_cache } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { toolsSEO } from "@/data/tools-seo";
+import {
+  getToolCategory,
+  isToolCategory,
+  type ToolCategory,
+} from "@/data/tool-categories";
 
 export const NAV_TOOLS_TAG = "nav-tools";
 
-export type NavGroup = "Image" | "Content" | "Career" | "Developer" | "Productivity";
+/** Navbar groups are the same as public tool categories. */
+export type NavGroup = ToolCategory;
 
 export interface FeaturedNavTool {
   slug: string;
@@ -43,14 +54,6 @@ const STATIC_DEFAULTS: FeaturedNavTool[] = [
   { slug: "json-formatter",                group: "Developer",    order: 70, label: "JSON Formatter",            description: "Beautify, minify and validate JSON",        href: "/free-tools/json-formatter" },
   { slug: "password-generator",            group: "Developer",    order: 80, label: "Password Generator",        description: "Strong, secure, random passwords",          href: "/free-tools/password-generator" },
 ];
-
-const VALID_GROUPS: ReadonlySet<NavGroup> = new Set([
-  "Image",
-  "Content",
-  "Career",
-  "Developer",
-  "Productivity",
-]);
 
 interface ToolConfigRow {
   slug: string;
@@ -86,16 +89,21 @@ export const getFeaturedNavTools = unstable_cache(
         .map((row): FeaturedNavTool | null => {
           const seo = seoBySlug.get(row.slug);
           if (!seo) return null;
-          const group = (row.nav_group ?? "") as NavGroup;
           // Strip suffix like " - Free ..." from SEO title to keep navbar labels short.
           const shortLabel = seo.title.split(" - ")[0]?.trim() || prettifySlug(row.slug);
           const desc = seo.description?.split(".")[0]?.slice(0, 80);
+          // Prefer the admin-set nav_group; otherwise fall back to the central
+          // category map so a freshly-flagged tool lands in its real group
+          // instead of "Productivity".
+          const group: NavGroup = isToolCategory(row.nav_group)
+            ? row.nav_group
+            : getToolCategory(row.slug);
           return {
             slug: row.slug,
             href: `/free-tools/${row.slug}`,
             label: shortLabel.length <= 30 ? shortLabel : prettifySlug(row.slug),
             description: desc || undefined,
-            group: VALID_GROUPS.has(group) ? group : ("Productivity" as NavGroup),
+            group,
             order: row.nav_order ?? 100,
           };
         })
@@ -108,13 +116,15 @@ export const getFeaturedNavTools = unstable_cache(
       return STATIC_DEFAULTS;
     }
   },
-  ["nav-tools-v1"],
+  ["nav-tools-v2"],
   { tags: [NAV_TOOLS_TAG], revalidate: 300 },
 );
 
 /** Group featured tools into ordered buckets for the dropdown. */
-export function groupFeaturedTools(tools: FeaturedNavTool[]): Array<{ title: NavGroup; items: FeaturedNavTool[] }> {
-  const order: NavGroup[] = ["Image", "Content", "Career", "Developer", "Productivity"];
+export function groupFeaturedTools(
+  tools: FeaturedNavTool[],
+): Array<{ title: NavGroup; items: FeaturedNavTool[] }> {
+  const order: NavGroup[] = ["Image", "Content", "SEO", "Career", "Developer", "Productivity"];
   const buckets = new Map<NavGroup, FeaturedNavTool[]>();
   tools.forEach((t) => {
     const list = buckets.get(t.group) ?? [];

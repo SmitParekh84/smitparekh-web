@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
+import { TOOL_CATEGORIES, getToolCategory, type ToolCategory } from "@/data/tool-categories";
 
 const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "background-remover": Eraser,
@@ -73,40 +74,6 @@ const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "uuid-generator": Hexagon,
 };
 
-const toolCategoryMap: Record<string, string> = {
-  "background-remover": "Image",
-  "viral-linkedin-post-generator": "Content",
-  "ats-resume-checker": "Career",
-  "meta-tag-checker": "SEO",
-  "qr-code-generator": "Dev",
-  "word-counter": "Content",
-  "image-compressor": "Image",
-  "image-converter": "Image",
-  "linkedin-media-downloader": "Content",
-  "seo-analyzer": "SEO",
-  "password-generator": "Security",
-  "youtube-thumbnail-downloader": "Dev",
-  "json-formatter": "Dev",
-  "base64-encoder-decoder": "Dev",
-  "url-encoder-decoder": "Dev",
-  "hash-generator": "Security",
-  "regex-tester": "Dev",
-  "color-converter": "Dev",
-  "pomodoro-timer": "Productivity",
-  "world-clock": "Productivity",
-  "unit-converter": "Productivity",
-  "markdown-editor": "Content",
-  "cron-builder": "Dev",
-  "lorem-ipsum": "Content",
-  "jwt-decoder": "Security",
-  "sql-formatter": "Dev",
-  "image-to-base64": "Dev",
-  "css-gradient-generator": "Dev",
-  "slug-generator": "SEO",
-  "favicon-generator": "Dev",
-  "uuid-generator": "Dev",
-};
-
 const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);
 const trendingSlugs = new Set(["ats-resume-checker"]);
 const newSlugs = new Set([
@@ -115,8 +82,8 @@ const newSlugs = new Set([
   "base64-encoder-decoder",
 ]);
 
-const CATEGORIES = ["All", "Image", "Content", "SEO", "Career", "Dev", "Security", "Productivity"] as const;
-type Category = (typeof CATEGORIES)[number];
+const CATEGORIES = ["All", ...TOOL_CATEGORIES] as const;
+type Category = "All" | ToolCategory;
 
 export default function ToolsCategoryFilter() {
   const [active, setActive] = useState<Category>("All");
@@ -124,7 +91,7 @@ export default function ToolsCategoryFilter() {
   const counts = useMemo(() => {
     const map: Record<string, number> = { All: toolsSEO.length };
     for (const tool of toolsSEO) {
-      const cat = toolCategoryMap[tool.slug] ?? "Dev";
+      const cat = getToolCategory(tool.slug);
       map[cat] = (map[cat] ?? 0) + 1;
     }
     return map;
@@ -132,7 +99,7 @@ export default function ToolsCategoryFilter() {
 
   const visibleTools = useMemo(() => {
     if (active === "All") return toolsSEO;
-    return toolsSEO.filter((t) => (toolCategoryMap[t.slug] ?? "Dev") === active);
+    return toolsSEO.filter((t) => getToolCategory(t.slug) === active);
   }, [active]);
 
   return (
@@ -175,7 +142,7 @@ export default function ToolsCategoryFilter() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {visibleTools.map((tool) => {
           const Icon = toolIconMap[tool.slug] ?? Globe;
-          const category = toolCategoryMap[tool.slug] ?? "Tool";
+          const category = getToolCategory(tool.slug);
           const isPopular = popularSlugs.has(tool.slug);
           const isTrending = trendingSlugs.has(tool.slug);
           const isNew = newSlugs.has(tool.slug);

@@ -25,44 +25,11 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
+import { TOOL_CATEGORIES, getToolCategory } from "@/data/tool-categories";
 import { toast } from "@/lib/toast";
 import { AppSelect, type SelectOption } from "@/components/ui/app-select";
 
-const CATEGORIES = ["All", "Image", "Content", "Career", "SEO", "Dev", "Security", "Productivity"];
-
-const toolCategoryMap: Record<string, string> = {
-  "background-remover": "Image",
-  "viral-linkedin-post-generator": "Content",
-  "ats-resume-checker": "Career",
-  "meta-tag-checker": "SEO",
-  "qr-code-generator": "Dev",
-  "word-counter": "Content",
-  "image-compressor": "Image",
-  "image-converter": "Image",
-  "linkedin-media-downloader": "Content",
-  "seo-analyzer": "SEO",
-  "password-generator": "Security",
-  "youtube-thumbnail-downloader": "Dev",
-  "json-formatter": "Dev",
-  "base64-encoder-decoder": "Dev",
-  "url-encoder-decoder": "Dev",
-  "hash-generator": "Security",
-  "regex-tester": "Dev",
-  "color-converter": "Dev",
-  "pomodoro-timer": "Productivity",
-  "world-clock": "Productivity",
-  "unit-converter": "Productivity",
-  "markdown-editor": "Content",
-  "cron-builder": "Dev",
-  "lorem-ipsum": "Content",
-  "jwt-decoder": "Security",
-  "sql-formatter": "Dev",
-  "image-to-base64": "Dev",
-  "css-gradient-generator": "Dev",
-  "slug-generator": "SEO",
-  "favicon-generator": "Dev",
-  "uuid-generator": "Dev",
-};
+const CATEGORIES = ["All", ...TOOL_CATEGORIES] as const;
 
 interface PerTool {
   slug: string;
@@ -157,7 +124,7 @@ export default function ToolsAdminPage() {
         !search ||
         name.includes(search.toLowerCase()) ||
         t.slug.includes(search.toLowerCase());
-      const matchCat = category === "All" || toolCategoryMap[t.slug] === category;
+      const matchCat = category === "All" || getToolCategory(t.slug) === category;
       const matchStatus =
         statusFilter === "all" ||
         (statusFilter === "active" ? t.is_active : !t.is_active);
@@ -468,7 +435,7 @@ export default function ToolsAdminPage() {
                             variant="secondary"
                             className="text-[10px] uppercase tracking-wide"
                           >
-                            {toolCategoryMap[t.slug] ?? "Tool"}
+                            {getToolCategory(t.slug)}
                           </Badge>
                         </td>
                         <td className="px-4 py-3 text-right tabular-nums">

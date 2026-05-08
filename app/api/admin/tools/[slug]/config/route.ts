@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminEmail } from "@/lib/admin-allowlist";
 import { NAV_TOOLS_TAG } from "@/lib/featured-nav-tools";
+import { isToolCategory } from "@/data/tool-categories";
 
 /**
  * Admin endpoint to update per-tool quota + navbar visibility config.
@@ -13,7 +14,7 @@ import { NAV_TOOLS_TAG } from "@/lib/featured-nav-tools";
  *   user_quota?: number,
  *   is_active?: boolean,
  *   featured_in_nav?: boolean,
- *   nav_group?: "Image" | "Content" | "Career" | "Developer" | "Productivity" | null,
+ *   nav_group?: "Image" | "Content" | "SEO" | "Career" | "Developer" | "Productivity" | null,
  *   nav_order?: number,
  * }
  */
@@ -62,8 +63,7 @@ export async function PATCH(
   if (typeof body.featured_in_nav === "boolean") {
     update.featured_in_nav = body.featured_in_nav;
   }
-  const allowedGroups = new Set(["Image", "Content", "Career", "Developer", "Productivity"]);
-  if (typeof body.nav_group === "string" && allowedGroups.has(body.nav_group)) {
+  if (isToolCategory(body.nav_group)) {
     update.nav_group = body.nav_group;
   } else if (body.nav_group === null) {
     update.nav_group = null;
