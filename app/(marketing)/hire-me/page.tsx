@@ -31,7 +31,7 @@ import { UpworkIcon } from "@/components/icons/SocialIcons";
 import { PageHero } from "@/components/layout/PageHero";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { aggregateRatingSchema } from "@/lib/seo/schema";
+import { aggregateRatingSchema, faqPageSchema } from "@/lib/seo/schema";
 import { aboutBio, experiences, certifications } from "@/data/about";
 import { developerPages } from "@/data/developer-pages";
 
@@ -296,6 +296,10 @@ export default function HireMePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema(faqs)) }}
       />
 
       <PageHero

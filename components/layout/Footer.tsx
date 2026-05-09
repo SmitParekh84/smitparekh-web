@@ -4,6 +4,7 @@ import { ArrowUpRight, MapPin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { footerData, type SocialPlatform } from "@/data/footer";
 import { siteConfig } from "@/data/site";
+import { developerPages } from "@/data/developer-pages";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -200,6 +201,89 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        <Separator className="my-10" />
+
+        {/* HTML sitemap — internal links from every page boost crawl + ranking
+            for deep service pages that have no nav links. */}
+        <nav aria-label="Site map" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="space-y-3">
+            <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
+              Explore
+            </h4>
+            <ul className="space-y-2">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/about", label: "About" },
+                { href: "/portfolio", label: "Portfolio" },
+                { href: "/blog", label: "Blog" },
+                { href: "/faq", label: "FAQ" },
+                { href: "/feedback", label: "Feedback" },
+                { href: "/changelog", label: "Changelog" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-3 col-span-2 sm:col-span-2 lg:col-span-2">
+            <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
+              Hire as a Specialist
+            </h4>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+              {developerPages.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={`/${p.slug}`}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {p.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h4 className="font-semibold text-xs uppercase tracking-widest text-blue-500">
+              Engage
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/hire-me" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Hire Me
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/free-tools" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Free Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/for-students" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  For Students
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
         <Separator className="my-10" />
 
