@@ -63,6 +63,32 @@ interface BlogFormProps {
   isPending: boolean;
 }
 
+// Accept JSON where string values contain literal newlines/tabs (common when
+// pasting LLM output of long-form Markdown). Strict JSON.parse rejects those;
+// here we walk the input and escape control chars that occur INSIDE a string.
+function tolerantJsonParse(input: string): unknown {
+  try {
+    return JSON.parse(input);
+  } catch {
+    let out = "";
+    let inString = false;
+    let escaped = false;
+    for (let i = 0; i < input.length; i++) {
+      const ch = input[i];
+      if (escaped) { out += ch; escaped = false; continue; }
+      if (ch === "\\") { out += ch; escaped = true; continue; }
+      if (ch === '"') { inString = !inString; out += ch; continue; }
+      if (inString) {
+        if (ch === "\n") { out += "\\n"; continue; }
+        if (ch === "\r") { out += "\\r"; continue; }
+        if (ch === "\t") { out += "\\t"; continue; }
+      }
+      out += ch;
+    }
+    return JSON.parse(out);
+  }
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -215,13 +241,26 @@ export function BlogForm({
     });
   }
 
+  function handleBeautifyJson() {
+    if (!jsonText.trim()) return;
+    try {
+      const parsed = tolerantJsonParse(jsonText.trim());
+      setJsonText(JSON.stringify(parsed, null, 2));
+      setJsonError(null);
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : "unknown error";
+      setJsonError(`Cannot beautify — ${detail}`);
+    }
+  }
+
   function handleImportJson() {
     setJsonError(null);
     let parsed: unknown;
     try {
-      parsed = JSON.parse(jsonText.trim());
-    } catch {
-      setJsonError("Invalid JSON — check for missing quotes, commas, or brackets.");
+      parsed = tolerantJsonParse(jsonText.trim());
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : "unknown error";
+      setJsonError(`Invalid JSON: ${detail}`);
       return;
     }
     if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
@@ -562,6 +601,17 @@ export function BlogForm({
               onClick={() => setJsonOpen(false)}
             >
               Cancel
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleBeautifyJson}
+              disabled={!jsonText.trim()}
+              className="gap-1.5"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Beautify
             </Button>
             <Button
               type="button"
