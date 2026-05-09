@@ -89,6 +89,13 @@ function tolerantJsonParse(input: string): unknown {
   }
 }
 
+// Single-line fields (title, excerpt) should never contain newlines or
+// runs of whitespace — these creep in when JSON is copied from a chat
+// transcript that hard-wraps long lines.
+function collapseWhitespace(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -283,11 +290,13 @@ export function BlogForm({
       : [];
     const readMinutes =
       typeof obj.readMinutes === "number" && obj.readMinutes > 0 ? Math.round(obj.readMinutes) : 5;
+    const normTitle = collapseWhitespace(obj.title as string);
+    const normExcerpt = collapseWhitespace(obj.excerpt as string);
     setForm((prev) => ({
       ...prev,
-      title: (obj.title as string).trim(),
-      slug: prev.slug || slugify((obj.title as string).trim()),
-      excerpt: (obj.excerpt as string).trim(),
+      title: normTitle,
+      slug: prev.slug || slugify(normTitle),
+      excerpt: normExcerpt,
       content: (obj.content as string).trim(),
       category,
       tagsCsv: tags.join(", "),
