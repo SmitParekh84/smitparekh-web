@@ -676,12 +676,17 @@ function ContactDetailDrawer({
   }
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
-      onClick={onClose}
-    >
+    <>
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
+        onClick={(e) => {
+          // Only close on direct backdrop click — NOT on events bubbling from
+          // the React portal of the nested ContactReplyDialog.
+          if (e.target === e.currentTarget) onClose();
+        }}
+      >
       <aside
         className="flex h-full w-full max-w-xl flex-col border-l border-border bg-card shadow-xl"
         onClick={(e) => e.stopPropagation()}
@@ -838,6 +843,10 @@ function ContactDetailDrawer({
           </div>
         )}
       </aside>
+      </div>
+      {/* Rendered as a sibling (NOT inside the backdrop div) so its Radix
+          portal events don't bubble through React's tree into the drawer's
+          onClick={onClose} handler and accidentally close the drawer. */}
       {contact && (
         <ContactReplyDialog
           contact={contact}
@@ -845,7 +854,7 @@ function ContactDetailDrawer({
           onClose={() => setReplyOpen(false)}
         />
       )}
-    </div>
+    </>
   );
 }
 
