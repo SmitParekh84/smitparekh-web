@@ -56,4 +56,4 @@ export const aboutStats = {
   companies: "15+",
 };
 
-export const cvLink = "https://www.smitparekh.co.in/Smit-parekh.pdf";
+export const cvLink = "https://www.smitparekh.co.in/Smit_Parekh_FullStack.pdf";
