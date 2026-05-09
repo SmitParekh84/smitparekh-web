@@ -451,13 +451,17 @@ function ContactList({
       <ul className="divide-y divide-border">
         {items.map((c) => {
           const isSelected = selected.has(c._id);
+          const unread = !c.isRead;
           return (
             <li
               key={c._id}
               className={cn(
-                "flex items-start gap-3 px-4 py-3 transition-colors sm:px-6",
-                !c.isRead && "bg-blue-500/[0.04]",
-                isSelected && "bg-blue-500/[0.08]",
+                "relative flex items-start gap-3 px-4 py-3 transition-colors sm:px-6",
+                // Unread: clearer tint + left accent bar
+                unread && "bg-blue-500/[0.07] dark:bg-blue-500/[0.09]",
+                unread &&
+                  "before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-blue-500",
+                isSelected && "bg-blue-500/[0.12] dark:bg-blue-500/[0.14]",
                 "hover:bg-muted/50",
               )}
             >
@@ -475,7 +479,7 @@ function ContactList({
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-2">
-                    {!c.isRead && (
+                    {unread && (
                       <span
                         aria-label="Unread"
                         className="size-2 shrink-0 rounded-full bg-blue-500"
@@ -484,7 +488,11 @@ function ContactList({
                     <span
                       className={cn(
                         "truncate",
-                        c.isRead ? "font-medium" : "font-semibold",
+                        // Strong weight + full strength when unread,
+                        // normal weight + slightly muted when already read.
+                        unread
+                          ? "font-semibold text-foreground"
+                          : "font-normal text-muted-foreground",
                       )}
                     >
                       {c.name}
@@ -502,14 +510,35 @@ function ContactList({
                       </Badge>
                     )}
                   </div>
-                  <time className="shrink-0 text-xs text-muted-foreground">
+                  <time
+                    className={cn(
+                      "shrink-0 text-xs",
+                      unread ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  >
                     {formatRelative(c.createdAt)}
                   </time>
                 </div>
-                <p className="line-clamp-1 pl-4 text-sm text-foreground/90">
-                  <span className="font-medium">{c.subject}</span>
+                <p className="line-clamp-1 pl-4 text-sm">
+                  <span
+                    className={cn(
+                      unread
+                        ? "font-medium text-foreground"
+                        : "font-normal text-muted-foreground",
+                    )}
+                  >
+                    {c.subject}
+                  </span>
                   <span className="mx-1.5 text-muted-foreground">&middot;</span>
-                  <span className="text-muted-foreground">{c.description}</span>
+                  <span
+                    className={cn(
+                      unread
+                        ? "text-foreground/80"
+                        : "text-muted-foreground/70",
+                    )}
+                  >
+                    {c.description}
+                  </span>
                 </p>
               </button>
             </li>
