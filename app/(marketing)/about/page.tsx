@@ -9,6 +9,7 @@ import { PageHero } from "@/components/layout/PageHero";
 // import { LinkedInBadge } from "@/components/ui/linkedin-badge";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { faqPageSchema } from "@/lib/seo/schema";
 import { aboutBio, experiences, certifications } from "@/data/about";
 import { homeData, aboutStats } from "@/data/home";
 import {
@@ -109,6 +110,29 @@ const profilePageSchema = {
   },
 };
 
+const aboutFaqs: { q: string; a: string }[] = [
+  {
+    q: "What kind of projects does Smit Parekh work on?",
+    a: "Production web applications across FinTech, SaaS, AI/ML, and enterprise. Typical engagements include multi-tenant SaaS products, internal admin platforms, real-time dashboards, REST and GraphQL APIs, and Next.js marketing sites that need 95+ Lighthouse scores. Most projects involve React or Next.js on the frontend with Node.js, NestJS, or Express on the backend.",
+  },
+  {
+    q: "What makes Smit Parekh's work production-grade and professional quality?",
+    a: "Every project ships with TypeScript strict mode, automated tests on critical paths, CI/CD pipelines, monitoring, and documented deployment runbooks. No suppressed any types, no commented-out code, no hackathon-style shortcuts. The same standards apply whether the budget is for a 2-week MVP or a 6-month platform build.",
+  },
+  {
+    q: "Where is Smit Parekh based and which timezones does he work in?",
+    a: "Based in India (IST, UTC+5:30) and available worldwide as a remote contractor. Core working hours overlap comfortably with EU mornings and US East Coast evenings; sync calls and demos are scheduled to fit the client's working hours. Async-first by default, with daily updates and weekly demos.",
+  },
+  {
+    q: "How experienced is Smit Parekh with React, Next.js, and Node.js?",
+    a: "4+ years of professional experience shipping React and Node.js to production, with the last 2+ years focused heavily on Next.js App Router, Server Components, and edge deployments. Has shipped 20+ production applications including FinTech platforms handling 10K+ daily API requests at 99.9% uptime.",
+  },
+  {
+    q: "Does Smit Parekh take on long-term contracts or only short projects?",
+    a: "Both. Engagement models include fixed-scope projects (MVPs, redesigns, defined feature builds), time-and-materials contracts for evolving products, and monthly retainers for ongoing development and maintenance. Typical contracts range from 4 weeks to 12 months. Available for either solo ownership or as a senior contributor on an existing team.",
+  },
+];
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -149,6 +173,10 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema(aboutFaqs)) }}
       />
 
       {/* Hero banner - matches /blog style */}
@@ -337,6 +365,35 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
+      {/* FAQ */}
+      <section className="page-section">
+        <div className="page-container max-w-3xl">
+          <SectionHeader
+            label="Frequently Asked"
+            title="Common questions"
+            description="What clients usually ask before working with me."
+          />
+          <div className="mt-10 space-y-4">
+            {aboutFaqs.map((item) => (
+              <details
+                key={item.q}
+                className="group rounded-xl border border-border bg-card p-5 open:border-blue-500/40 open:shadow-sm transition-all"
+              >
+                <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-base leading-snug list-none">
+                  <span>{item.q}</span>
+                  <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border text-blue-500 transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="page-section bg-muted/20">
         <div className="page-container">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 px-8 py-14 sm:px-12 text-white text-center">
