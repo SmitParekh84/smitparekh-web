@@ -125,22 +125,48 @@ export default async function BlogPostPage({ params }: Props) {
   const relatedFinal = [...related, ...fillers].slice(0, 3);
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
+  const fallbackOgImage = `${url}/opengraph-image`;
+  const heroImage = blog.coverImage || fallbackOgImage;
+  const wordCount = blog.content
+    ? blog.content.trim().split(/\s+/).filter(Boolean).length
+    : undefined;
+
+  const personNode = {
+    "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
+    name: blog.author || "Smit Parekh",
+    url: siteConfig.url,
+    image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.github,
+      siteConfig.social.x,
+    ],
+  };
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blog.title,
     description: blog.excerpt,
-    image: blog.coverImage,
+    image: [
+      {
+        "@type": "ImageObject",
+        url: heroImage,
+        width: 1200,
+        height: 630,
+      },
+    ],
     datePublished: blog.publishedAt,
-    dateModified: blog.updatedAt,
+    dateModified: blog.updatedAt || blog.publishedAt,
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    author: { "@id": `${siteConfig.url}/#person` },
-    publisher: { "@id": `${siteConfig.url}/#person` },
+    author: personNode,
+    publisher: personNode,
     keywords: blog.tags.join(", "),
     articleSection: blog.category,
     inLanguage: "en",
+    ...(wordCount ? { wordCount } : {}),
   };
 
   const breadcrumbSchema = {
