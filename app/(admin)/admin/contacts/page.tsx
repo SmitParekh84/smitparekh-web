@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import {
   AlertTriangle,
+  CheckCircle2,
   Copy,
   Inbox,
   Loader2,
   Mail,
   MailOpen,
+  Reply,
   RotateCcw,
   Sparkles,
   Trash2,
@@ -511,6 +513,19 @@ function ContactList({
                         Email failed
                       </Badge>
                     )}
+                    {c.repliedAt && (
+                      <Badge
+                        variant="secondary"
+                        title={`Replied ${formatRelative(c.repliedAt)}${
+                          (c.replyCount ?? 0) > 1 ? ` · ${c.replyCount} replies` : ""
+                        }`}
+                        className="shrink-0 gap-1 border-emerald-500/30 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/10 dark:text-emerald-400"
+                      >
+                        <Reply className="h-3 w-3" />
+                        Replied
+                        {(c.replyCount ?? 0) > 1 ? ` ×${c.replyCount}` : ""}
+                      </Badge>
+                    )}
                   </div>
                   <time
                     className={cn(
@@ -760,6 +775,32 @@ function ContactDetailDrawer({
                 </p>
               </div>
 
+              {contact.repliedAt && (
+                <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-3.5">
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                        Replied {formatRelative(contact.repliedAt)}
+                        {(contact.replyCount ?? 0) > 1 && (
+                          <span className="ml-1.5 rounded-full bg-emerald-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+                            {contact.replyCount} replies
+                          </span>
+                        )}
+                      </p>
+                      {contact.lastReplySubject && (
+                        <p className="mt-1 truncate text-xs text-emerald-700/80 dark:text-emerald-300/80">
+                          Last subject: <span className="font-medium">{contact.lastReplySubject}</span>
+                        </p>
+                      )}
+                      <p className="mt-0.5 text-[11px] text-emerald-700/70 dark:text-emerald-300/70">
+                        {formatDateTime(contact.repliedAt)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 gap-3 rounded-xl border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
                 <div>
                   <p className="font-medium text-foreground">Received</p>
@@ -804,10 +845,15 @@ function ContactDetailDrawer({
             <button
               type="button"
               onClick={() => setReplyOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-md bg-blue-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-600"
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-white transition-colors",
+                contact.repliedAt
+                  ? "bg-emerald-600 hover:bg-emerald-700"
+                  : "bg-blue-500 hover:bg-blue-600",
+              )}
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Reply with AI
+              {contact.repliedAt ? "Reply again with AI" : "Reply with AI"}
             </button>
             <Button
               type="button"

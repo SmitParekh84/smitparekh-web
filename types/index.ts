@@ -151,6 +151,9 @@ export interface AdminContact {
   userAgent?: string;
   isDeleted: boolean;
   deletedAt?: string | null;
+  repliedAt?: string | null;
+  replyCount?: number;
+  lastReplySubject?: string | null;
   createdAt: string;
   updatedAt: string;
 }
