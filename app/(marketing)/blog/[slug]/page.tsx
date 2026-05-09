@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { developerPages } from "@/data/developer-pages";
 import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { normalizeMarkdown } from "@/lib/markdown";
@@ -107,6 +108,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Map a free-form tag/category token to a developer specialty page.
+// First match wins; falls back to /full-stack-developer.
+const TAG_TO_DEVELOPER_SLUG: Array<[RegExp, (typeof developerPages)[number]["slug"]]> = [
+  [/^next\.?js$/i, "nextjs-developer"],
+  [/^nest\.?js$/i, "nestjs-developer"],
+  [/^node\.?js?$/i, "nodejs-developer"],
+  [/^react$/i, "react-developer"],
+  [/^typescript$/i, "typescript-developer"],
+  [/^postgres(ql)?$/i, "postgresql-developer"],
+  [/^saas$/i, "saas-developer"],
+  [/^(api|rest|graphql)$/i, "api-developer"],
+];
+
+function pickSpecialist(tags: string[], category: string) {
+  const tokens = [category, ...tags].filter(Boolean);
+  for (const t of tokens) {
+    const hit = TAG_TO_DEVELOPER_SLUG.find(([re]) => re.test(t.trim()));
+    if (hit) return developerPages.find((p) => p.slug === hit[1])!;
+  }
+  return developerPages.find((p) => p.slug === "full-stack-developer")!;
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const blog = await fetchBlogBySlug(slug);
@@ -125,6 +148,7 @@ export default async function BlogPostPage({ params }: Props) {
   const relatedFinal = [...related, ...fillers].slice(0, 3);
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
+  const specialist = pickSpecialist(blog.tags, blog.category);
   const fallbackOgImage = `${url}/opengraph-image`;
   const heroImage = blog.coverImage || fallbackOgImage;
   const wordCount = blog.content
@@ -358,23 +382,31 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
       )}
 
-      {/* CTA */}
+      {/* CTA — tag-aware specialist link routes equity to money pages */}
       <section className="page-section">
         <div className="page-container max-w-2xl text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
-            Have a project in mind?
+            Need a {specialist.title.replace(/ Developer$/, "")} developer?
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
-            I&apos;m available for full-stack engagements - React, Next.js,
-            Node.js, PostgreSQL, AWS. Let&apos;s talk.
+            {specialist.description} Let&apos;s talk about your project.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
-              href="/contact"
+              href={`/${specialist.slug}`}
               className={cn(buttonVariants({ size: "lg" }), "gap-2")}
             >
-              Start a Conversation
+              Hire a {specialist.title.replace(/ Developer$/, "")} Developer
               <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "gap-2"
+              )}
+            >
+              Start a Conversation
             </Link>
             <Link
               href="/blog"

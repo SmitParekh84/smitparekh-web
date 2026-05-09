@@ -292,6 +292,12 @@ export default function Footer() {
             © {year} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 items-center">
+            <Link
+              href="/sitemap-html"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Site Map
+            </Link>
             {footerData.legalLinks.map((link) => (
               <Link
                 key={link.href}
