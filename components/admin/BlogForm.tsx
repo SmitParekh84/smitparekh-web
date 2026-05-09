@@ -32,7 +32,15 @@ Target audience: developers, founders, CTOs, hiring managers in US, CA, UK, IN.
 
 Topic: [REPLACE WITH YOUR TOPIC]
 
-Return ONLY a valid JSON object — no prose, no code fence, no markdown around it:
+Return ONLY a valid JSON object — no prose, no code fence, no markdown around it.
+
+CRITICAL JSON RULES (the import will fail if you break these):
+- Inside any string value, EVERY double quote must be escaped as \\". No exceptions.
+- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" — e.g. \\"Explain @Injectable()\\" — never raw " marks.
+- Use \\n for paragraph breaks inside "content".
+- Do not wrap the response in triple backtick fences.
+
+Schema:
 {
   "title": "50-65 chars. Primary keyword near start. Title Case. No emojis.",
   "excerpt": "140-160 chars meta description. Primary keyword once. Ends with an action verb.",
@@ -63,9 +71,16 @@ interface BlogFormProps {
   isPending: boolean;
 }
 
-// Accept JSON where string values contain literal newlines/tabs (common when
-// pasting LLM output of long-form Markdown). Strict JSON.parse rejects those;
-// here we walk the input and escape control chars that occur INSIDE a string.
+// Accept JSON where string values contain literal newlines/tabs OR
+// unescaped double quotes (both common when an LLM returns long-form
+// Markdown content). Strict JSON.parse rejects those; we walk the input
+// and rewrite control chars + heuristically detect literal " inside a
+// string by looking ahead at the next non-whitespace char.
+//
+// A " is treated as a real string terminator only if the next non-space
+// char is one of , } ] : (or end of input). Otherwise it's escaped to \".
+// This handles the typical case where an LLM forgets to escape inline
+// quotes inside Markdown content like:  "Explain `@Injectable()`."
 function tolerantJsonParse(input: string): unknown {
   try {
     return JSON.parse(input);
@@ -77,7 +92,26 @@ function tolerantJsonParse(input: string): unknown {
       const ch = input[i];
       if (escaped) { out += ch; escaped = false; continue; }
       if (ch === "\\") { out += ch; escaped = true; continue; }
-      if (ch === '"') { inString = !inString; out += ch; continue; }
+      if (ch === '"') {
+        if (!inString) {
+          inString = true;
+          out += ch;
+          continue;
+        }
+        // Look ahead for next non-whitespace char to decide if this " is
+        // a real string terminator or a literal quote inside content.
+        let j = i + 1;
+        while (j < input.length && /\s/.test(input[j])) j++;
+        const next = j < input.length ? input[j] : "";
+        const isTerminator = next === "" || next === "," || next === "}" || next === "]" || next === ":";
+        if (isTerminator) {
+          inString = false;
+          out += ch;
+        } else {
+          out += '\\"';
+        }
+        continue;
+      }
       if (inString) {
         if (ch === "\n") { out += "\\n"; continue; }
         if (ch === "\r") { out += "\\r"; continue; }
