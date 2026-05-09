@@ -63,6 +63,11 @@ export {
 export {
   adminContactsApi,
   type AdminContactsListParams,
+  type ReplyTone,
+  type AiDraftReplyPayload,
+  type AiDraftReplyResponse,
+  type SendReplyPayload,
+  type SendReplyResponse,
 } from "./admin-contacts";
 export { adminUsersApi } from "./admin-users";
 export {

@@ -10,6 +10,8 @@ import {
   adminContactsApi,
   queryKeys,
   type AdminContactsListParams,
+  type AiDraftReplyPayload,
+  type SendReplyPayload,
 } from "@/lib/api";
 import type {
   AdminContact,
@@ -210,5 +212,33 @@ export function useRestoreAdminContact() {
     },
     onSettled: () =>
       qc.invalidateQueries({ queryKey: queryKeys.adminContacts.all }),
+  });
+}
+
+
+/* AI draft reply (no cache mutation — caller decides what to do with result) */
+export function useAiDraftContactReply() {
+  return useMutation({
+    mutationFn: ({
+      id,
+      payload = {},
+    }: {
+      id: string;
+      payload?: AiDraftReplyPayload;
+    }) => adminContactsApi.aiDraftReply(id, payload),
+  });
+}
+
+/* Send reply via Resend; on success mark contact as read so the inbox
+   reflects that the conversation has been actioned. */
+export function useSendContactReply() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: SendReplyPayload }) =>
+      adminContactsApi.sendReply(id, payload),
+    onSuccess: (_res, { id }) => {
+      qc.invalidateQueries({ queryKey: queryKeys.adminContacts.detail(id) });
+      qc.invalidateQueries({ queryKey: queryKeys.adminContacts.all });
+    },
   });
 }

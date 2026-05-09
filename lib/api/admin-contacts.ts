@@ -47,4 +47,43 @@ export const adminContactsApi = {
     ),
   listDeleted: () =>
     api.get<BackendListResponse<AdminContact>>("/admin/contacts/deleted"),
+
+  // AI draft + send reply (backend wraps Gemini + Resend).
+  // Backend route spec:
+  //   POST /api/admin/contacts/:id/ai-draft-reply
+  //     body: { tone?: 'professional' | 'friendly' | 'brief', intent?: string }
+  //     returns: { success: true, subject: string, body: string }
+  //   POST /api/admin/contacts/:id/send-reply
+  //     body: { subject: string, body: string }
+  //     returns: { success: true, messageId?: string }
+  aiDraftReply: (id: string, payload: AiDraftReplyPayload = {}) =>
+    api.post<AiDraftReplyResponse>(
+      `/admin/contacts/${id}/ai-draft-reply`,
+      payload,
+    ),
+  sendReply: (id: string, payload: SendReplyPayload) =>
+    api.post<SendReplyResponse>(`/admin/contacts/${id}/send-reply`, payload),
 };
+
+export type ReplyTone = "professional" | "friendly" | "brief";
+
+export interface AiDraftReplyPayload {
+  tone?: ReplyTone;
+  intent?: string;
+}
+
+export interface AiDraftReplyResponse {
+  success: boolean;
+  subject: string;
+  body: string;
+}
+
+export interface SendReplyPayload {
+  subject: string;
+  body: string;
+}
+
+export interface SendReplyResponse {
+  success: boolean;
+  messageId?: string;
+}

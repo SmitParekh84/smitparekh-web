@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertTriangle,
   Copy,
@@ -9,9 +9,11 @@ import {
   Mail,
   MailOpen,
   RotateCcw,
+  Sparkles,
   Trash2,
   X,
 } from "lucide-react";
+import { ContactReplyDialog } from "@/components/admin/ContactReplyDialog";
 import {
   Card,
   CardContent,
@@ -650,20 +652,18 @@ function ContactDetailDrawer({
   onSoftDelete: (id: string) => Promise<void>;
 }) {
   const { data: contact, isLoading, isError, refetch } = useAdminContact(id);
+  const [replyOpen, setReplyOpen] = useState(false);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (replyOpen) return; // let the reply dialog handle its own escape
+        onClose();
+      }
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  const replyHref = useMemo(() => {
-    if (!contact) return "#";
-    const subject = encodeURIComponent(`Re: ${contact.subject}`);
-    return `mailto:${contact.email}?subject=${subject}`;
-  }, [contact]);
+  }, [onClose, replyOpen]);
 
   async function handleCopyEmail() {
     if (!contact) return;
@@ -796,13 +796,14 @@ function ContactDetailDrawer({
 
         {contact && (
           <div className="flex flex-wrap items-center gap-2 border-t border-border bg-muted/20 px-5 py-3">
-            <a
-              href={replyHref}
+            <button
+              type="button"
+              onClick={() => setReplyOpen(true)}
               className="inline-flex items-center gap-1.5 rounded-md bg-blue-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-600"
             >
-              <Mail className="h-3.5 w-3.5" />
-              Reply
-            </a>
+              <Sparkles className="h-3.5 w-3.5" />
+              Reply with AI
+            </button>
             <Button
               type="button"
               size="sm"
@@ -837,6 +838,13 @@ function ContactDetailDrawer({
           </div>
         )}
       </aside>
+      {contact && (
+        <ContactReplyDialog
+          contact={contact}
+          open={replyOpen}
+          onClose={() => setReplyOpen(false)}
+        />
+      )}
     </div>
   );
 }
