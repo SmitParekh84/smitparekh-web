@@ -55,15 +55,32 @@ export async function GET(req: NextRequest) {
 
   const perToolRange = new Map<
     string,
-    { uses: number; sessions: Set<string>; users: Set<string> }
+    {
+      uses: number;
+      sessions: Set<string>;
+      users: Set<string>;
+      guestUses: number;
+      userUses: number;
+    }
   >();
   (rangeRows ?? []).forEach(
     (r: { tool_slug: string; session_id: string | null; user_id: string | null }) => {
       const slot =
-        perToolRange.get(r.tool_slug) ?? { uses: 0, sessions: new Set(), users: new Set() };
+        perToolRange.get(r.tool_slug) ?? {
+          uses: 0,
+          sessions: new Set(),
+          users: new Set(),
+          guestUses: 0,
+          userUses: 0,
+        };
       slot.uses += 1;
       if (r.session_id) slot.sessions.add(r.session_id);
-      if (r.user_id) slot.users.add(r.user_id);
+      if (r.user_id) {
+        slot.users.add(r.user_id);
+        slot.userUses += 1;
+      } else {
+        slot.guestUses += 1;
+      }
       perToolRange.set(r.tool_slug, slot);
     },
   );
@@ -76,10 +93,19 @@ export async function GET(req: NextRequest) {
   const totalToday = rangeRows?.length ?? 0;
   const allSessions = new Set<string>();
   const allUsers = new Set<string>();
+  const guestSessions = new Set<string>();
+  let guestUses = 0;
+  let loggedInUses = 0;
   (rangeRows ?? []).forEach(
     (r: { session_id: string | null; user_id: string | null }) => {
       if (r.session_id) allSessions.add(r.session_id);
-      if (r.user_id) allUsers.add(r.user_id);
+      if (r.user_id) {
+        allUsers.add(r.user_id);
+        loggedInUses += 1;
+      } else {
+        guestUses += 1;
+        if (r.session_id) guestSessions.add(r.session_id);
+      }
     },
   );
 
@@ -112,6 +138,8 @@ export async function GET(req: NextRequest) {
         uses_today: t?.uses ?? 0,
         sessions_today: t?.sessions.size ?? 0,
         users_today: t?.users.size ?? 0,
+        guest_uses: t?.guestUses ?? 0,
+        user_uses: t?.userUses ?? 0,
         uses_total: perToolAll.get(c.slug) ?? 0,
       };
     },
@@ -124,6 +152,9 @@ export async function GET(req: NextRequest) {
       totalToday,
       sessionsToday: allSessions.size,
       usersToday: allUsers.size,
+      guestUses,
+      guestSessions: guestSessions.size,
+      loggedInUses,
       topTool,
     },
     perTool,

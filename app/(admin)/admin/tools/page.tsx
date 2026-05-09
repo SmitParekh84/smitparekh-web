@@ -6,6 +6,7 @@ import {
   Activity,
   Users,
   UserCheck,
+  UserX,
   TrendingUp,
   AlertTriangle,
   Search,
@@ -40,6 +41,8 @@ interface PerTool {
   uses_today: number;
   sessions_today: number;
   users_today: number;
+  guest_uses: number;
+  user_uses: number;
   uses_total: number;
   featured_in_nav: boolean;
   nav_group: string | null;
@@ -53,6 +56,9 @@ interface StatsResponse {
     totalToday: number;
     sessionsToday: number;
     usersToday: number;
+    guestUses: number;
+    guestSessions: number;
+    loggedInUses: number;
     topTool: { slug: string; uses: number } | null;
   };
 }
@@ -311,16 +317,23 @@ export default function ToolsAdminPage() {
           icon={<Activity className="w-5 h-5" />}
           label={`Uses ${PERIOD_LABEL[dateRange.mode]}`}
           value={summary.totalToday.toLocaleString()}
+          sub={
+            summary.totalToday > 0
+              ? `${summary.loggedInUses.toLocaleString()} user · ${summary.guestUses.toLocaleString()} guest`
+              : undefined
+          }
         />
         <SummaryCard
-          icon={<Users className="w-5 h-5" />}
-          label={`Sessions ${PERIOD_LABEL[dateRange.mode]}`}
-          value={summary.sessionsToday.toLocaleString()}
+          icon={<UserX className="w-5 h-5" />}
+          label={`Guest uses ${PERIOD_LABEL[dateRange.mode]}`}
+          value={summary.guestUses.toLocaleString()}
+          sub={`${summary.guestSessions.toLocaleString()} unique session${summary.guestSessions === 1 ? "" : "s"}`}
         />
         <SummaryCard
           icon={<UserCheck className="w-5 h-5" />}
-          label={`Logged-in users ${PERIOD_LABEL[dateRange.mode]}`}
-          value={summary.usersToday.toLocaleString()}
+          label={`Logged-in uses ${PERIOD_LABEL[dateRange.mode]}`}
+          value={summary.loggedInUses.toLocaleString()}
+          sub={`${summary.usersToday.toLocaleString()} unique user${summary.usersToday === 1 ? "" : "s"}`}
         />
         <SummaryCard
           icon={<TrendingUp className="w-5 h-5" />}
@@ -403,6 +416,18 @@ export default function ToolsAdminPage() {
                     <th className="text-left px-4 py-3">Tool</th>
                     <th className="text-left px-4 py-3">Category</th>
                     <th className="text-right px-4 py-3 capitalize">{PERIOD_LABEL[dateRange.mode]}</th>
+                    <th
+                      className="text-right px-4 py-3 hidden lg:table-cell"
+                      title="Uses by anonymous visitors (no login)"
+                    >
+                      Guest
+                    </th>
+                    <th
+                      className="text-right px-4 py-3 hidden lg:table-cell"
+                      title="Uses by signed-in users"
+                    >
+                      User
+                    </th>
                     <th className="text-right px-4 py-3 hidden sm:table-cell">All-time</th>
                     <th className="text-right px-4 py-3 hidden md:table-cell">Sessions</th>
                     <th className="text-right px-4 py-3 hidden md:table-cell">Users</th>
@@ -417,7 +442,7 @@ export default function ToolsAdminPage() {
                   {filteredTools.length === 0 ? (
                     <tr>
                       <td
-                        colSpan={11}
+                        colSpan={13}
                         className="px-4 py-8 text-center text-sm text-muted-foreground"
                       >
                         No tools match your filters.
@@ -440,6 +465,12 @@ export default function ToolsAdminPage() {
                         </td>
                         <td className="px-4 py-3 text-right tabular-nums">
                           {t.uses_today}
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums text-amber-600 dark:text-amber-400 hidden lg:table-cell">
+                          {t.guest_uses}
+                        </td>
+                        <td className="px-4 py-3 text-right tabular-nums text-emerald-600 dark:text-emerald-400 hidden lg:table-cell">
+                          {t.user_uses}
                         </td>
                         <td className="px-4 py-3 text-right tabular-nums text-muted-foreground hidden sm:table-cell">
                           {t.uses_total}
