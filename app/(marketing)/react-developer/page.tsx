@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -159,7 +160,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "React Developer for Hire",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "React.js Frontend Development",
   description: "Freelance React developer with 4+ years shipping production applications for FinTech, SaaS, and enterprise. TypeScript strict, Redux Toolkit, 40% performance improvements, 30+ products delivered.",
   areaServed: "Worldwide",

@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -161,7 +162,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "TypeScript Developer for Hire",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "TypeScript Full-Stack Development",
   description: "Freelance TypeScript developer with 4+ years in strict-mode TypeScript across React, Next.js, Node.js, and NestJS. 30+ fully typed codebases delivered.",
   areaServed: "Worldwide",

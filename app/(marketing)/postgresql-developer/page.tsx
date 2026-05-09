@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -157,7 +158,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "PostgreSQL Developer for Hire",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "PostgreSQL Database Development & Optimisation",
   description: "Freelance PostgreSQL developer with 4+ years designing and optimising production databases. Schema design, query optimisation, RLS, Supabase, and AWS RDS.",
   areaServed: "Worldwide",

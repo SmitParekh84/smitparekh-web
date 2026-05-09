@@ -22,6 +22,25 @@ export function howToSchema(slug: string, tool: ToolSEO, steps: HowToStep[]) {
   };
 }
 
+// Shared inline Person node for use as author/provider/publisher on
+// individual pages. Avoids dangling @id refs to a Person defined only
+// on the homepage — Google evaluates each page's JSON-LD graph alone.
+export function personNode() {
+  return {
+    "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
+    name: "Smit Parekh",
+    url: siteConfig.url,
+    jobTitle: "Full-Stack Web Developer",
+    image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.github,
+      siteConfig.social.x,
+    ],
+  };
+}
+
 export function faqPageSchema(faqs: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",

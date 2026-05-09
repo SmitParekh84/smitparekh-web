@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
   title: "Web Development for Students – Affordable Projects, Portfolios & Hackathons",
@@ -262,7 +263,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Web Development for Students",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "Web Development",
   description:
     "Affordable full-stack web development for university and college students — final year projects, hackathon apps, portfolio websites, startup MVPs, and technical documentation. Serving students in the UK, Canada, the US, and worldwide.",

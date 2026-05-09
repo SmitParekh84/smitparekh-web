@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -157,7 +158,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "SaaS Developer for Hire",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "SaaS Product Development",
   description: "Freelance SaaS developer with 4+ years building multi-tenant production applications. Auth, Stripe billing, subscriptions, onboarding flows, and admin dashboards.",
   areaServed: "Worldwide",

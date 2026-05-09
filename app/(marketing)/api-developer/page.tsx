@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { personNode } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -157,7 +158,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "API Developer for Hire",
-  provider: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
+  provider: personNode(),
   serviceType: "REST & GraphQL API Development",
   description: "Freelance API developer with 4+ years building production REST and GraphQL APIs. TypeScript strict, JWT auth, rate limiting, Redis caching, and OpenAPI documentation.",
   areaServed: "Worldwide",
