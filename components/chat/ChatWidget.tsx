@@ -20,11 +20,13 @@ import {
   RotateCcw,
   Loader2,
   AlertCircle,
+  CalendarClock,
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { cn } from "@/lib/utils";
+import { CAL } from "@/lib/cal";
 import {
   useChatUI,
   useChatStore,
@@ -312,6 +314,24 @@ export default function ChatWidget() {
                       </button>
                     ))}
                   </div>
+
+                  <p className="text-[11px] uppercase tracking-wider text-muted-foreground mt-4 mb-2">
+                    Or skip the chat
+                  </p>
+                  <button
+                    type="button"
+                    data-cal-namespace={CAL.namespace}
+                    data-cal-link={CAL.link}
+                    data-cal-config={JSON.stringify({ layout: CAL.layout, useSlotsViewOnSmallScreen: "true" })}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold",
+                      "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-sm",
+                      "hover:shadow-md hover:opacity-95 active:scale-95 transition-all",
+                    )}
+                  >
+                    <CalendarClock className="h-3.5 w-3.5" />
+                    Book a 15-min call
+                  </button>
                 </div>
               )}
 

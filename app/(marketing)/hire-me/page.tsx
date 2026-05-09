@@ -29,6 +29,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { UpworkIcon } from "@/components/icons/SocialIcons";
 import { PageHero } from "@/components/layout/PageHero";
+import { BookCallButton } from "@/components/cal/BookCallButton";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { aggregateRatingSchema, faqPageSchema } from "@/lib/seo/schema";
@@ -319,6 +320,12 @@ export default function HireMePage() {
             Start a Conversation
             <ArrowRight className="w-4 h-4" />
           </Link>
+          <BookCallButton
+            size="lg"
+            variant="outline"
+            label="Book a 15-min call"
+            className="gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+          />
           <Link
             href="/resume"
             className={cn(
@@ -728,6 +735,12 @@ export default function HireMePage() {
                   Get in Touch
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+                <BookCallButton
+                  size="lg"
+                  variant="outline"
+                  label="Book a 15-min call"
+                  className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white dark:bg-transparent dark:border-white/40 dark:hover:bg-white/10 dark:hover:text-white gap-2"
+                />
                 <Link
                   href="/portfolio"
                   className={cn(

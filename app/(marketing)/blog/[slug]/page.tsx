@@ -22,6 +22,7 @@ import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { normalizeMarkdown } from "@/lib/markdown";
 import { formatDate } from "@/lib/date";
+import { BookCallButton } from "@/components/cal/BookCallButton";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -408,6 +409,12 @@ export default async function BlogPostPage({ params }: Props) {
             >
               Start a Conversation
             </Link>
+            <BookCallButton
+              size="lg"
+              variant="outline"
+              label="Book a 15-min call"
+              className="gap-2"
+            />
             <Link
               href="/blog"
               className={cn(

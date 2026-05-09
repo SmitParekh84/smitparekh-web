@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, Clock, MapPin, Send, MessageSquare, MessageCircle, ClipboardCheck, Hammer, Rocket } from "lucide-react";
+import { ArrowRight, Mail, Clock, MapPin, Send, MessageSquare, MessageCircle, ClipboardCheck, Hammer, Rocket, CalendarClock } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { PageHero } from "@/components/layout/PageHero";
 // import { LinkedInBadge } from "@/components/ui/linkedin-badge";
@@ -83,7 +83,30 @@ export default function ContactPage() {
         icon={MessageSquare}
         title={<>Let&apos;s Work Together</>}
         description="Tell me about your project. I respond to every enquiry within 24 hours and deliver a scoped proposal within 48."
-      />
+      >
+        <div className="flex flex-wrap gap-3 items-center">
+          <Link
+            href="/book"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "gap-2 bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700"
+            )}
+          >
+            <CalendarClock className="w-4 h-4" />
+            Book a 15-min call
+          </Link>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+            )}
+          >
+            <Mail className="w-4 h-4" />
+            Email me directly
+          </a>
+        </div>
+      </PageHero>
 
       {/* Content */}
       <section className="page-section">

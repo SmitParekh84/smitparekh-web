@@ -9,6 +9,7 @@ import { ConditionalChat } from "@/components/chat/ConditionalChat";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
+import { CalProvider } from "@/components/cal/CalProvider";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { siteConfig } from "@/data/site";
@@ -147,6 +148,7 @@ export default async function RootLayout({
             <ConditionalFooter />
             <ConditionalChat />
             <ThemeAwareToaster />
+            <CalProvider />
           </ThemeProvider>
         </QueryProvider>
         <Analytics />
