@@ -796,8 +796,40 @@ function ContactDetailDrawer({
                       <p className="mt-0.5 text-[11px] text-emerald-700/70 dark:text-emerald-300/70">
                         {formatDateTime(contact.repliedAt)}
                       </p>
+                      {!contact.replies?.length && (
+                        <p className="mt-2 text-[11px] italic text-emerald-700/70 dark:text-emerald-300/70">
+                          Reply body not available — view in Resend logs.
+                        </p>
+                      )}
                     </div>
                   </div>
+                </div>
+              )}
+
+              {contact.replies && contact.replies.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                    Your replies
+                  </p>
+                  {[...contact.replies]
+                    .sort((a, b) => new Date(b.sentAt).getTime() - new Date(a.sentAt).getTime())
+                    .map((reply, idx) => (
+                      <div
+                        key={`${reply.sentAt}-${idx}`}
+                        className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.03] p-3.5"
+                      >
+                        <p className="text-sm font-medium">{reply.subject}</p>
+                        <p className="mt-1.5 whitespace-pre-line text-sm text-foreground/90">
+                          {reply.body}
+                        </p>
+                        <p
+                          className="mt-2 text-[11px] text-muted-foreground"
+                          title={formatDateTime(reply.sentAt)}
+                        >
+                          Sent {formatRelative(reply.sentAt)} · {formatDateTime(reply.sentAt)}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               )}
 

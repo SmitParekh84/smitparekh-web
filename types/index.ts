@@ -137,6 +137,13 @@ export interface BackendOneResponse<T> {
 }
 
 /* Admin: Contact submissions */
+export interface AdminContactReply {
+  subject: string;
+  body: string;
+  sentAt: string;
+  messageId?: string | null;
+}
+
 export interface AdminContact {
   _id: string;
   name: string;
@@ -154,6 +161,7 @@ export interface AdminContact {
   repliedAt?: string | null;
   replyCount?: number;
   lastReplySubject?: string | null;
+  replies?: AdminContactReply[];
   createdAt: string;
   updatedAt: string;
 }
