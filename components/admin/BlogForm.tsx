@@ -96,6 +96,24 @@ function collapseWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
 
+// Markdown content needs its newlines (paragraph breaks, lists, headings,
+// code blocks) but chat-wrap injects extra single \n inside paragraphs.
+// Strategy: leave fenced code blocks alone; outside code, replace a single
+// \n with a space ONLY if the next line is plain prose (not a heading,
+// list, blockquote, table, code marker, or blank line).
+function normalizeMarkdown(value: string): string {
+  const parts = value.replace(/\r\n/g, "\n").split(/(```[\s\S]*?```)/g);
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) return part; // fenced code — preserve verbatim
+      return part
+        .replace(/([^\n])\n(?![\n#\-*>|`\s\d])/g, "$1 ")
+        .replace(/[ \t]{2,}/g, " ");
+    })
+    .join("")
+    .trim();
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -297,7 +315,7 @@ export function BlogForm({
       title: normTitle,
       slug: prev.slug || slugify(normTitle),
       excerpt: normExcerpt,
-      content: (obj.content as string).trim(),
+      content: normalizeMarkdown(obj.content as string),
       category,
       tagsCsv: tags.join(", "),
       readMinutes,
