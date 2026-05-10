@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -9,6 +10,11 @@ import {
   LogOut,
   ChevronsUpDown,
   Settings,
+  FileText,
+  BookOpen,
+  Code2,
+  ChevronRight,
+  Loader2,
 } from "lucide-react";
 import {
   Sidebar,
@@ -21,6 +27,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
@@ -33,8 +42,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupabaseSession } from "@/hooks/api/use-auth";
+import { useMyTenant } from "@/hooks/api/use-tenant";
 import { createClient } from "@/lib/supabase/client";
 import { siteConfig } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 const NAV_MAIN = [
   { title: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -50,6 +61,70 @@ const NAV_LINKS = [
 function isActive(pathname: string, href: string) {
   if (href === "/dashboard") return pathname === "/dashboard";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function BlogNavSection({ pathname }: { pathname: string }) {
+  const [open, setOpen] = useState(() => pathname.startsWith("/dashboard/blog"));
+  const { data: tenant, isLoading } = useMyTenant();
+
+  const isBlogActive = pathname.startsWith("/dashboard/blog");
+
+  const subItems = (() => {
+    if (isLoading) return null;
+    if (!tenant) {
+      return [{ title: "Get Started", href: "/dashboard/blog/onboarding", icon: BookOpen }];
+    }
+    if (tenant.status === "pending" || tenant.status === "rejected") {
+      return [
+        { title: "Status", href: "/dashboard/blog/onboarding", icon: BookOpen },
+        { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
+      ];
+    }
+    return [
+      { title: "My Blogs", href: "/dashboard/blog", icon: FileText },
+      { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
+    ];
+  })();
+
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        isActive={isBlogActive}
+        tooltip="Blog"
+        onClick={() => setOpen((o) => !o)}
+        className="cursor-pointer"
+      >
+        {isLoading ? (
+          <Loader2 className="w-4 h-4 animate-spin" />
+        ) : (
+          <FileText className="w-4 h-4" />
+        )}
+        <span>Blog</span>
+        <ChevronRight
+          className={cn(
+            "ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
+            open && "rotate-90"
+          )}
+        />
+      </SidebarMenuButton>
+
+      {open && subItems && (
+        <SidebarMenuSub>
+          {subItems.map((item) => (
+            <SidebarMenuSubItem key={item.href}>
+              <SidebarMenuSubButton
+                render={<Link href={item.href} />}
+                isActive={isActive(pathname, item.href)}
+              >
+                <item.icon className="w-3.5 h-3.5" />
+                <span>{item.title}</span>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+          ))}
+        </SidebarMenuSub>
+      )}
+    </SidebarMenuItem>
+  );
 }
 
 export function UserSidebar() {
@@ -115,6 +190,7 @@ export function UserSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <BlogNavSection pathname={pathname} />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
