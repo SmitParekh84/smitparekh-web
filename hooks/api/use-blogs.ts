@@ -133,7 +133,8 @@ export function useGenerateBlog() {
 
 export function useGenerateBlogTopics() {
   return useMutation({
-    mutationFn: (seed?: string) => blogsApi.generateTopics(seed),
+    mutationFn: ({ seed, site }: { seed?: string; site?: string } = {}) =>
+      blogsApi.generateTopics(seed, site),
   });
 }
 

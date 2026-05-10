@@ -118,6 +118,7 @@ export interface BackendBlog {
   updatedAt: string;
   isDeleted?: boolean;
   deletedAt?: string | null;
+  site?: "smit" | "marketixpert";
 }
 
 export type BackendBlogInput = Omit<

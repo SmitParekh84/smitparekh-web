@@ -82,8 +82,8 @@ export const blogsApi = {
     api.post<{ success: boolean }>("/blogs/images/delete", { publicId }),
   generate: (prompt: string) =>
     api.post<GenerateBlogResponse>("/blogs/generate", { prompt }),
-  generateTopics: (seed?: string) =>
-    api.post<GenerateBlogTopicsResponse>("/blogs/generate-topics", { seed: seed ?? "" }),
+  generateTopics: (seed?: string, site?: string) =>
+    api.post<GenerateBlogTopicsResponse>("/blogs/generate-topics", { seed: seed ?? "", site: site ?? "" }),
   generateLinkedIn: (payload: { title: string; content: string; excerpt?: string; tags?: string[]; category?: string; articleUrl?: string }) =>
     api.post<GenerateLinkedInResponse>("/blogs/generate-linkedin", payload),
 };

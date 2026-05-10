@@ -192,6 +192,7 @@ export function BlogForm({
     author: initialData?.author ?? "Smit Parekh",
     isPublished: initialData?.isPublished ?? true,
     isFeatured: initialData?.isFeatured ?? false,
+    site: (initialData?.site ?? "smit") as "smit" | "marketixpert",
     publishedAt: initialData?.publishedAt
       ? new Date(initialData.publishedAt).toISOString().slice(0, 16)
       : new Date().toISOString().slice(0, 16),
@@ -430,6 +431,7 @@ export function BlogForm({
       author: form.author,
       isPublished: form.isPublished,
       isFeatured: form.isFeatured,
+      site: form.site,
       publishedAt: new Date(form.publishedAt).toISOString(),
     });
   }
@@ -477,6 +479,7 @@ export function BlogForm({
         coverImage: form.coverImage,
         category: form.category,
         tags,
+        site: form.site,
         readMinutes: Number(form.readMinutes) || 5,
         author: form.author,
         isPublished: false,
@@ -923,6 +926,32 @@ export function BlogForm({
             </p>
           </Label>
         </div>
+      </div>
+
+      {/* Target site */}
+      <div className="rounded-xl border border-border bg-card px-4 py-3">
+        <p className="mb-2 text-sm font-medium">Target Site</p>
+        <div className="flex gap-2">
+          {(["smit", "marketixpert"] as const).map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setField("site", s)}
+              className={`rounded-lg border px-4 py-1.5 text-sm font-medium transition-colors ${
+                form.site === s
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-background text-muted-foreground hover:border-primary/50"
+              }`}
+            >
+              {s === "smit" ? "smitparekh.co.in" : "marketixpert.com"}
+            </button>
+          ))}
+        </div>
+        <p className="mt-1.5 text-xs text-muted-foreground">
+          {form.site === "marketixpert"
+            ? "This post will appear on marketixpert.com/posts"
+            : "This post will appear on smitparekh.co.in/blog"}
+        </p>
       </div>
 
       {blockPublish && (

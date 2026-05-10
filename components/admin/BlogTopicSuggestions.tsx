@@ -9,8 +9,8 @@ import { toast } from "@/lib/toast";
 interface BlogTopicSuggestionsProps {
   onPick: (topic: string) => void;
   disabled?: boolean;
-  // Optional bias for the model (e.g. current prompt text or a niche)
   seed?: string;
+  site?: "smit" | "marketixpert";
   className?: string;
 }
 
@@ -23,6 +23,7 @@ export function BlogTopicSuggestions({
   onPick,
   disabled,
   seed,
+  site,
   className,
 }: BlogTopicSuggestionsProps) {
   const generateTopics = useGenerateBlogTopics();
@@ -33,7 +34,7 @@ export function BlogTopicSuggestions({
 
   async function load(seedOverride?: string) {
     try {
-      await generateTopics.mutateAsync(seedOverride ?? seed);
+      await generateTopics.mutateAsync({ seed: seedOverride ?? seed, site });
     } catch (err) {
       const msg =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -55,7 +56,13 @@ export function BlogTopicSuggestions({
       <div className="mb-1.5 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <TrendingUp className="h-3.5 w-3.5 text-blue-500" />
-          <span>{seed ? "Ideas based on your prompt" : "Trending ideas (US / CA / UK / IN)"}</span>
+          <span>
+            {seed
+              ? "Ideas based on your prompt"
+              : site === "marketixpert"
+              ? "Ideas for MarketiXpert (SEO / Web Design / PPC)"
+              : "Trending ideas (US / CA / UK / IN)"}
+          </span>
         </div>
         <button
           type="button"

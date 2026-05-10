@@ -60,6 +60,7 @@ import { formatDate } from "@/lib/date";
 export default function AdminBlogsPage() {
   const router = useRouter();
   const [tab, setTab] = useState<"active" | "trash">("active");
+  const [siteFilter, setSiteFilter] = useState<"all" | "smit" | "marketixpert">("all");
   const { data: blogs, isLoading, isError, refetch } = useBlogs();
   const {
     data: deletedBlogs,
@@ -85,7 +86,16 @@ export default function AdminBlogsPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
 
-  const visibleIds = (blogs ?? []).map((b) => b._id);
+  const filteredBlogs =
+    siteFilter === "all"
+      ? (blogs ?? [])
+      : (blogs ?? []).filter((b) =>
+          siteFilter === "marketixpert"
+            ? b.site === "marketixpert"
+            : b.site !== "marketixpert"
+        );
+
+  const visibleIds = filteredBlogs.map((b) => b._id);
   const allChecked =
     visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
   const someChecked =
@@ -262,6 +272,7 @@ export default function AdminBlogsPage() {
             onPick={(t) => setAiPrompt(t)}
             disabled={generateBlog.isPending}
             seed={aiPrompt.trim() || undefined}
+            site={siteFilter === "all" ? undefined : siteFilter}
           />
 
           <DialogFooter>
@@ -342,6 +353,38 @@ export default function AdminBlogsPage() {
             <span className="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500" />
           )}
         </button>
+
+        {/* Site filter — only visible on Active tab */}
+        {tab === "active" && (
+          <div className="ml-auto flex items-center gap-1 pr-2">
+            {(["all", "smit", "marketixpert"] as const).map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => { setSiteFilter(s); setSelectedIds(new Set()); }}
+                className={cn(
+                  "rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors",
+                  siteFilter === s
+                    ? s === "marketixpert"
+                      ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
+                      : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                    : "text-muted-foreground hover:bg-muted",
+                )}
+              >
+                {s === "all" ? "All sites" : s === "smit" ? "smitparekh.co.in" : "marketixpert.com"}
+                {blogs && (
+                  <span className="ml-1 opacity-60">
+                    {s === "all"
+                      ? blogs.length
+                      : s === "marketixpert"
+                      ? blogs.filter((b) => b.site === "marketixpert").length
+                      : blogs.filter((b) => b.site !== "marketixpert").length}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {tab === "trash" ? (
@@ -375,9 +418,11 @@ export default function AdminBlogsPage() {
       ) : (
       <Card>
         <CardHeader>
-          <CardTitle>All posts</CardTitle>
+          <CardTitle>
+            {siteFilter === "all" ? "All posts" : siteFilter === "marketixpert" ? "MarketiXpert posts" : "Smit posts"}
+          </CardTitle>
           <CardDescription>
-            {blogs ? `${blogs.length} total` : "-"}
+            {blogs ? `${filteredBlogs.length} shown${siteFilter !== "all" ? ` of ${blogs.length} total` : ""}` : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
@@ -398,22 +443,28 @@ export default function AdminBlogsPage() {
             </div>
           )}
 
-          {!isLoading && !isError && blogs && blogs.length === 0 && (
+          {!isLoading && !isError && filteredBlogs.length === 0 && (
             <div className="px-6 py-16 text-center">
               <p className="text-sm text-muted-foreground mb-4">
-                No blog posts yet.
+                {siteFilter !== "all" ? "No posts for this site yet." : "No blog posts yet."}
               </p>
-              <Link
-                href="/admin/blogs/new"
-                className={cn(buttonVariants({ size: "sm" }), "gap-2")}
-              >
-                <Plus className="h-4 w-4" />
-                Write your first post
-              </Link>
+              {siteFilter !== "all" ? (
+                <Button variant="outline" size="sm" onClick={() => setSiteFilter("all")}>
+                  Show all sites
+                </Button>
+              ) : (
+                <Link
+                  href="/admin/blogs/new"
+                  className={cn(buttonVariants({ size: "sm" }), "gap-2")}
+                >
+                  <Plus className="h-4 w-4" />
+                  Write your first post
+                </Link>
+              )}
             </div>
           )}
 
-          {!isLoading && !isError && blogs && blogs.length > 0 && (
+          {!isLoading && !isError && filteredBlogs.length > 0 && (
             <>
               {selectedIds.size > 0 && (
                 <div className="flex flex-wrap items-center gap-2 border-b border-border bg-muted/40 px-4 py-2">
@@ -506,7 +557,7 @@ export default function AdminBlogsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {blogs.map((blog) => (
+                {filteredBlogs.map((blog) => (
                   <TableRow
                     key={blog._id}
                     data-state={selectedIds.has(blog._id) ? "selected" : undefined}
@@ -531,7 +582,14 @@ export default function AdminBlogsPage() {
                           />
                         )}
                         <div className="min-w-0">
-                          <p className="truncate font-medium">{blog.title}</p>
+                          <div className="flex items-center gap-1.5">
+                            <p className="truncate font-medium">{blog.title}</p>
+                            {blog.site === "marketixpert" && (
+                              <span className="shrink-0 rounded-full bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">
+                                MX
+                              </span>
+                            )}
+                          </div>
                           <p className="line-clamp-1 max-w-[260px] text-xs text-muted-foreground">
                             {blog.excerpt}
                           </p>
