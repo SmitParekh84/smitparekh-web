@@ -24,9 +24,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -59,6 +56,7 @@ const NAV_MAIN = [
   { title: "Tools", href: "/admin/tools", icon: Wrench },
   { title: "Resume", href: "/admin/resume", icon: FileBadge },
   { title: "Users", href: "/admin/users", icon: Users },
+  { title: "Tenants", href: "/admin/tenants", icon: Users }, // Added Tenants
 ];
 
 const NAV_SECONDARY = [
