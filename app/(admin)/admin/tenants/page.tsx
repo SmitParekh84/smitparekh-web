@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
 import {
   TriangleAlert,
   Users,
@@ -47,7 +48,7 @@ export default function AdminTenantsPage() {
   const [bulkBusy, setBulkBusy] = useState(false);
 
   const {
-    data: tenants,
+    data: tenantResponse,
     isLoading,
     isError,
   } = useAdminTenants(statusFilter);
@@ -57,8 +58,8 @@ export default function AdminTenantsPage() {
   const suspendTenant = useSuspendTenant();
 
   const filteredTenants = statusFilter === "all"
-    ? (tenants ?? [])
-    : (tenants ?? []).filter(t => t.status === statusFilter);
+    ? (tenantResponse?.data ?? [])
+    : (tenantResponse?.data ?? []).filter(t => t.status === statusFilter);
 
   const allChecked =
     filteredTenants.length > 0 &&
@@ -112,7 +113,7 @@ export default function AdminTenantsPage() {
     setBulkBusy(true);
     try {
       await Promise.all(
-        ids.map((id) => rejectTenant.mutateAsync(id, "Bulk rejection via admin"))
+        ids.map((id) => rejectTenant.mutateAsync({ id, reason: "Bulk rejection via admin" }))
       );
       toast.success(`Rejected ${ids.length} ${ids.length === 1 ? "tenant" : "tenants"}`);
       clearSelection();
@@ -370,7 +371,8 @@ export default function AdminTenantsPage() {
                           {tenant.email}
                         </p>
                       </div>
-                    </TableCell>
+                    </div>
+                  </TableCell>
                   <TableCell>
                     <Badge
                       variant="secondary"
@@ -403,7 +405,7 @@ export default function AdminTenantsPage() {
                         onClick={() => {
                           // Simple prompt for demo - in production would use a dialog
                           const reason = prompt("Rejection reason (optional):");
-                          rejectTenant.mutateAsync(tenant._id, reason || "No reason provided");
+                          rejectTenant.mutateAsync({ id: tenant._id, reason: reason || "No reason provided" });
                         }}
                       >
                         <X className="h-3 w-3" />

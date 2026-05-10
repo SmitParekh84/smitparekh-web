@@ -77,6 +77,7 @@ export {
   type GenerateShareCaptionPayload,
   type GenerateShareCaptionResponse,
 } from "./social";
+export { adminTenantApi, type AdminTenant } from "./tenant";
 export { toolsApi, type NotifyToolPayload, type NotifyToolResponse } from "./tools";
 export {
   studentToolsApi,
