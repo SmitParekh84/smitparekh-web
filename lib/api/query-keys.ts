@@ -55,4 +55,13 @@ export const queryKeys = {
     all: ["admin-waitlist"] as const,
     list: () => [...queryKeys.adminWaitlist.all, "list"] as const,
   },
+  tenant: {
+    all: ["tenant"] as const,
+    me: () => [...queryKeys.tenant.all, "me"] as const,
+    myBlogs: () => [...queryKeys.tenant.all, "my-blogs"] as const,
+  },
+  adminTenants: {
+    all: ["admin-tenants"] as const,
+    list: (status?: string) => [...queryKeys.adminTenants.all, "list", status ?? "all"] as const,
+  },
 } as const;
