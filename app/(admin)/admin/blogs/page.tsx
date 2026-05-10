@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import {
   Plus,
   Pencil,
@@ -59,8 +59,22 @@ import { formatDate } from "@/lib/date";
 
 export default function AdminBlogsPage() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [tab, setTab] = useState<"active" | "trash">("active");
-  const [siteFilter, setSiteFilter] = useState<"all" | "smit" | "marketixpert">("all");
+
+  const rawSite = searchParams.get("site");
+  const siteFilter: "all" | "smit" | "marketixpert" =
+    rawSite === "smit" || rawSite === "marketixpert" ? rawSite : "all";
+
+  function setSiteFilter(s: "all" | "smit" | "marketixpert") {
+    setSelectedIds(new Set());
+    const params = new URLSearchParams(searchParams.toString());
+    if (s === "all") params.delete("site");
+    else params.set("site", s);
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }
   const { data: blogs, isLoading, isError, refetch } = useBlogs();
   const {
     data: deletedBlogs,
@@ -361,7 +375,7 @@ export default function AdminBlogsPage() {
               <button
                 key={s}
                 type="button"
-                onClick={() => { setSiteFilter(s); setSelectedIds(new Set()); }}
+                onClick={() => setSiteFilter(s)}
                 className={cn(
                   "rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors",
                   siteFilter === s
