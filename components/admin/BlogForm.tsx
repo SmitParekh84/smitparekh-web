@@ -26,7 +26,33 @@ import {
 } from "@/components/ui/dialog";
 import type { BackendBlog, BackendBlogInput } from "@/types";
 
-const CLAUDE_PROMPT = `You are a senior SEO content strategist writing for Smit Parekh's personal portfolio blog.
+function buildClaudePrompt(site: "smit" | "marketixpert") {
+  if (site === "marketixpert") {
+    return `You are a senior SEO content strategist writing for MarketiXpert (marketixpert.com), a full-service digital marketing agency.
+Services covered: SEO, local SEO, Google Ads, PPC, social media marketing, content marketing, e-commerce SEO, web design, email marketing.
+Target audience: small business owners, marketing managers, e-commerce operators, local service businesses in US, CA, UK, AU.
+
+Topic: [REPLACE WITH YOUR TOPIC]
+
+Return ONLY a valid JSON object — no prose, no code fence, no markdown around it.
+
+CRITICAL JSON RULES (the import will fail if you break these):
+- Inside any string value, EVERY double quote must be escaped as \\". No exceptions.
+- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" — never raw " marks.
+- Use \\n for paragraph breaks inside "content".
+- Do not wrap the response in triple backtick fences.
+
+Schema:
+{
+  "title": "50-65 chars. Primary keyword near start. Title Case. No emojis.",
+  "excerpt": "140-160 chars meta description. Primary keyword once. Ends with a clear benefit or call to action.",
+  "content": "Full article in GitHub-Flavored Markdown, 1100-1700 words. Do NOT repeat the title as an H1 heading. Write for a small business owner, not a developer.",
+  "category": "MUST be exactly one of: SEO, Local SEO, Google Ads, Social Media Marketing, Content Marketing, E-Commerce SEO, Web Design, Digital Marketing, Email Marketing, PPC, Case Study, Tutorial, General",
+  "tags": ["3 to 6 short lowercase tags relevant to digital marketing"],
+  "readMinutes": 7
+}`;
+  }
+  return `You are a senior SEO content strategist writing for Smit Parekh's personal portfolio blog.
 Services covered: full-stack web development, Next.js, React, Node.js, TypeScript, AI/LLM integration, DevOps, technical consulting.
 Target audience: developers, founders, CTOs, hiring managers in US, CA, UK, IN.
 
@@ -49,8 +75,9 @@ Schema:
   "tags": ["3 to 6 short lowercase tags"],
   "readMinutes": 7
 }`;
+}
 
-const CATEGORY_OPTIONS = [
+const SMIT_CATEGORY_OPTIONS = [
   "Web Development",
   "React",
   "Next.js",
@@ -63,6 +90,27 @@ const CATEGORY_OPTIONS = [
   "Case Study",
   "General",
 ];
+
+const MARKETIXPERT_CATEGORY_OPTIONS = [
+  "SEO",
+  "Local SEO",
+  "Google Ads",
+  "Social Media Marketing",
+  "Content Marketing",
+  "E-Commerce SEO",
+  "Web Design",
+  "Digital Marketing",
+  "Email Marketing",
+  "PPC",
+  "Case Study",
+  "Tutorial",
+  "General",
+];
+
+// Merged list used for paste-JSON normalization (covers both sites)
+const ALL_CATEGORY_OPTIONS = Array.from(
+  new Set([...SMIT_CATEGORY_OPTIONS, ...MARKETIXPERT_CATEGORY_OPTIONS])
+);
 
 interface BlogFormProps {
   initialData?: Partial<BackendBlog>;
@@ -186,7 +234,7 @@ export function BlogForm({
     excerpt: initialData?.excerpt ?? "",
     content: initialData?.content ?? "",
     coverImage: initialData?.coverImage ?? "",
-    category: initialData?.category ?? "Web Development",
+    category: initialData?.category ?? (initialData?.site === "marketixpert" ? "Digital Marketing" : "Web Development"),
     tagsCsv: (initialData?.tags ?? []).join(", "),
     readMinutes: initialData?.readMinutes ?? 5,
     author: initialData?.author ?? "Smit Parekh",
@@ -296,7 +344,7 @@ export function BlogForm({
   }
 
   function handleCopyPrompt() {
-    navigator.clipboard.writeText(CLAUDE_PROMPT).then(() => {
+    navigator.clipboard.writeText(buildClaudePrompt(form.site)).then(() => {
       setPromptCopied(true);
       setTimeout(() => setPromptCopied(false), 2000);
     });
@@ -373,7 +421,9 @@ export function BlogForm({
       return;
     }
     const rawCat = typeof obj.category === "string" ? obj.category.trim() : "";
-    const category = CATEGORY_OPTIONS.includes(rawCat) ? rawCat : "Web Development";
+    const siteOptions = form.site === "marketixpert" ? MARKETIXPERT_CATEGORY_OPTIONS : SMIT_CATEGORY_OPTIONS;
+    const defaultCat = form.site === "marketixpert" ? "Digital Marketing" : "Web Development";
+    const category = ALL_CATEGORY_OPTIONS.includes(rawCat) ? rawCat : defaultCat;
     const tags = Array.isArray(obj.tags)
       ? (obj.tags as unknown[]).filter((t): t is string => typeof t === "string").map((t) => t.trim()).filter(Boolean)
       : [];
@@ -392,8 +442,8 @@ export function BlogForm({
       readMinutes,
     }));
     const note =
-      rawCat && !CATEGORY_OPTIONS.includes(rawCat)
-        ? `Category "${rawCat}" not recognised — defaulted to "Web Development". Change if needed.`
+      rawCat && !siteOptions.includes(rawCat)
+        ? `Category "${rawCat}" not in this site's list — defaulted to "${defaultCat}". Change if needed.`
         : "Add a cover image and review before publishing.";
     toast.success("JSON imported", note);
     setJsonOpen(false);
@@ -791,7 +841,7 @@ export function BlogForm({
           <AppSelect
             value={form.category}
             onValueChange={(v) => setField("category", v)}
-            options={CATEGORY_OPTIONS}
+            options={form.site === "marketixpert" ? MARKETIXPERT_CATEGORY_OPTIONS : SMIT_CATEGORY_OPTIONS}
           />
         </Field>
       </div>
@@ -936,7 +986,14 @@ export function BlogForm({
             <button
               key={s}
               type="button"
-              onClick={() => setField("site", s)}
+              onClick={() => {
+                setField("site", s);
+                // Reset category to the new site's default if current value isn't valid there
+                const newOptions = s === "marketixpert" ? MARKETIXPERT_CATEGORY_OPTIONS : SMIT_CATEGORY_OPTIONS;
+                if (!newOptions.includes(form.category)) {
+                  setField("category", s === "marketixpert" ? "Digital Marketing" : "Web Development");
+                }
+              }}
               className={`rounded-lg border px-4 py-1.5 text-sm font-medium transition-colors ${
                 form.site === s
                   ? "border-primary bg-primary text-primary-foreground"
