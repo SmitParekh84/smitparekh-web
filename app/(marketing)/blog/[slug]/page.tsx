@@ -48,7 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
-  const title = `${blog.title} | Smit Parekh Blog`;
+  const readLabel = blog.readMinutes ? ` · ${blog.readMinutes}-min read` : "";
+  const title = `${blog.title}${readLabel} | Smit Parekh`;
 
   return {
     title,
