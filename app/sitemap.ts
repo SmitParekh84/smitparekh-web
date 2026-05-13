@@ -10,7 +10,7 @@ export const revalidate = 300;
 // Stable lastModified for static routes. Bump this date only when the
 // underlying page content actually changes — Google reads a constantly
 // updated lastModified as a noisy/spammy freshness signal and ignores it.
-const STATIC_LASTMOD = new Date("2026-05-09");
+const STATIC_LASTMOD = new Date("2026-05-13");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
@@ -43,6 +43,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/saas-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/api-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/postgresql-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/production-nextjs`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/nextjs-vercel-guide`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
   ];
 
   const projects = await fetchAllCaseStudies();
