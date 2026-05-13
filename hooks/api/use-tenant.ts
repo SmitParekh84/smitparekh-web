@@ -99,6 +99,13 @@ export function usePublishMyBlog() {
   });
 }
 
+export function useUploadMyBlogImage() {
+  return useMutation({
+    mutationFn: (file: File) => tenantApi.uploadMyBlogImage(file),
+    onError: (err: ApiError) => toast.error("Upload failed", err.message),
+  });
+}
+
 // Admin hooks
 export function useAdminTenants(status?: string) {
   return useQuery({

@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMyBlogs, useUpdateMyBlog } from "@/hooks/api/use-tenant";
+import { TenantCoverImagePicker } from "@/components/dashboard/TenantCoverImagePicker";
 import type { TenantBlog } from "@/lib/api/tenant";
 
 export default function EditBlogPage({ params }: { params: Promise<{ id: string }> }) {
@@ -93,23 +94,20 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
               rows={12}
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-sm font-medium">Category</label>
-              <Input
-                value={form.category}
-                onChange={handleChange("category")}
-                placeholder="General"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-sm font-medium">Cover Image URL</label>
-              <Input
-                value={form.coverImage}
-                onChange={handleChange("coverImage")}
-                placeholder="https://…"
-              />
-            </div>
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium">Category</label>
+            <Input
+              value={form.category}
+              onChange={handleChange("category")}
+              placeholder="General"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium">Cover Image</label>
+            <TenantCoverImagePicker
+              value={form.coverImage}
+              onChange={(url) => setForm((f) => ({ ...f, coverImage: url }))}
+            />
           </div>
           <div className="flex gap-3 pt-2">
             <Button onClick={handleSave} disabled={updateBlog.isPending}>

@@ -53,6 +53,11 @@ export const tenantApi = {
     api.del<{ success: boolean }>(`/tenants/me/blogs/${id}`),
   publishMyBlog: (id: string) =>
     api.patch<{ success: boolean; data: TenantBlog }>(`/tenants/me/blogs/${id}/publish`),
+  uploadMyBlogImage: (file: File) => {
+    const form = new FormData();
+    form.append("image", file);
+    return api.postForm<{ url: string }>("/tenants/me/blogs/upload", form);
+  },
 };
 
 export const adminTenantApi = {
