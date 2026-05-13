@@ -11,9 +11,10 @@ import {
   Loader2,
   Eye,
   EyeOff,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -30,6 +31,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 import {
   useAdminTenants,
   useApproveTenant,
@@ -231,6 +233,17 @@ function TenantRow({
             >
               <Ban className="h-3 w-3" />
             </Button>
+
+            <Link
+              href={`/admin/tenants/${tenant._id}/blogs`}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-7 w-7 text-muted-foreground hover:text-foreground"
+              )}
+              title="View & edit tenant blogs"
+            >
+              <BookOpen className="h-3 w-3" />
+            </Link>
 
             <Button
               variant="ghost"

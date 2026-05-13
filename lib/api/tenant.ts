@@ -71,4 +71,8 @@ export const adminTenantApi = {
       "/admin/tenants/migrate-site-blogs",
       { apiKey, site }
     ),
+  listBlogs: (tenantId: string) =>
+    api.get<{ success: boolean; count: number; tenant: AdminTenant; data: TenantBlog[] }>(
+      `/admin/tenants/${tenantId}/blogs`
+    ),
 };

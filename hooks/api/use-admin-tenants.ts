@@ -55,3 +55,11 @@ export function useMigrateSiteBlogs() {
       adminTenantApi.migrateSiteBlogs(apiKey, site),
   });
 }
+
+export function useAdminTenantBlogs(tenantId: string) {
+  return useQuery({
+    queryKey: queryKeys.adminTenants.blogs(tenantId),
+    queryFn: () => adminTenantApi.listBlogs(tenantId),
+    enabled: !!tenantId,
+  });
+}

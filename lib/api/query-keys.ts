@@ -63,5 +63,6 @@ export const queryKeys = {
   adminTenants: {
     all: ["admin-tenants"] as const,
     list: (status?: string) => [...queryKeys.adminTenants.all, "list", status ?? "all"] as const,
+    blogs: (tenantId: string) => [...queryKeys.adminTenants.all, "blogs", tenantId] as const,
   },
 } as const;
