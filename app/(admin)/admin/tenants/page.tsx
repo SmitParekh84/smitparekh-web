@@ -13,6 +13,7 @@ import {
   MessageSquareWarning,
   Ban,
   Plus,
+  DatabaseZap,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useAdminTenants, useApproveTenant, useRejectTenant, useSuspendTenant } from "@/hooks/api/use-admin-tenants";
+import { useAdminTenants, useApproveTenant, useRejectTenant, useSuspendTenant, useMigrateSiteBlogs } from "@/hooks/api/use-admin-tenants";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +57,7 @@ export default function AdminTenantsPage() {
   const approveTenant = useApproveTenant();
   const rejectTenant = useRejectTenant();
   const suspendTenant = useSuspendTenant();
+  const migrateSiteBlogs = useMigrateSiteBlogs();
 
   const filteredTenants = statusFilter === "all"
     ? (tenantResponse?.data ?? [])
@@ -418,6 +420,34 @@ export default function AdminTenantsPage() {
                         onClick={() => suspendTenant.mutateAsync(tenant._id)}
                       >
                         <Ban className="h-3 w-3" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-7 w-7 text-muted-foreground hover:text-blue-500"
+                        title="Migrate site blogs to this tenant"
+                        disabled={migrateSiteBlogs.isPending}
+                        onClick={async () => {
+                          const site = window.prompt(
+                            `Migrate all unowned blogs with site =\nEnter site name (e.g. marketixpert):`,
+                            "marketixpert"
+                          );
+                          if (!site) return;
+                          try {
+                            const res = await migrateSiteBlogs.mutateAsync({
+                              apiKey: tenant.apiKey,
+                              site,
+                            });
+                            toast.success(
+                              `Migration complete`,
+                              `${res.modifiedCount} blog(s) assigned to ${tenant.name}`
+                            );
+                          } catch {
+                            toast.error("Migration failed", "Check the console for details.");
+                          }
+                        }}
+                      >
+                        <DatabaseZap className="h-3 w-3" />
                       </Button>
                     </div>
                   </TableCell>

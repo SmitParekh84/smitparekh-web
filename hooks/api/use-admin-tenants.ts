@@ -48,3 +48,10 @@ export function useSuspendTenant() {
     },
   });
 }
+
+export function useMigrateSiteBlogs() {
+  return useMutation({
+    mutationFn: ({ apiKey, site }: { apiKey: string; site: string }) =>
+      adminTenantApi.migrateSiteBlogs(apiKey, site),
+  });
+}

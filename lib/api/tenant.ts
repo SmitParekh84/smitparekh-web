@@ -66,4 +66,9 @@ export const adminTenantApi = {
     api.patch<{ success: boolean; data: AdminTenant }>(`/admin/tenants/${id}/reject`, { reason }),
   suspend: (id: string) =>
     api.patch<{ success: boolean; data: AdminTenant }>(`/admin/tenants/${id}/suspend`),
+  migrateSiteBlogs: (apiKey: string, site: string) =>
+    api.post<{ success: boolean; modifiedCount: number; tenant: AdminTenant }>(
+      "/admin/tenants/migrate-site-blogs",
+      { apiKey, site }
+    ),
 };

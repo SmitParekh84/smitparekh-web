@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   Plus,
   Pencil,
@@ -59,22 +59,8 @@ import { formatDate } from "@/lib/date";
 
 export default function AdminBlogsPage() {
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [tab, setTab] = useState<"active" | "trash">("active");
 
-  const rawSite = searchParams.get("site");
-  const siteFilter: "all" | "smit" | "marketixpert" =
-    rawSite === "smit" || rawSite === "marketixpert" ? rawSite : "all";
-
-  function setSiteFilter(s: "all" | "smit" | "marketixpert") {
-    setSelectedIds(new Set());
-    const params = new URLSearchParams(searchParams.toString());
-    if (s === "all") params.delete("site");
-    else params.set("site", s);
-    const qs = params.toString();
-    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
-  }
   const { data: blogs, isLoading, isError, refetch } = useBlogs();
   const {
     data: deletedBlogs,
@@ -100,14 +86,7 @@ export default function AdminBlogsPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
 
-  const filteredBlogs =
-    siteFilter === "all"
-      ? (blogs ?? [])
-      : (blogs ?? []).filter((b) =>
-          siteFilter === "marketixpert"
-            ? b.site === "marketixpert"
-            : b.site !== "marketixpert"
-        );
+  const filteredBlogs = blogs ?? [];
 
   const visibleIds = filteredBlogs.map((b) => b._id);
   const allChecked =
@@ -286,7 +265,6 @@ export default function AdminBlogsPage() {
             onPick={(t) => setAiPrompt(t)}
             disabled={generateBlog.isPending}
             seed={aiPrompt.trim() || undefined}
-            site={siteFilter === "all" ? undefined : siteFilter}
           />
 
           <DialogFooter>
@@ -368,37 +346,6 @@ export default function AdminBlogsPage() {
           )}
         </button>
 
-        {/* Site filter — only visible on Active tab */}
-        {tab === "active" && (
-          <div className="ml-auto flex items-center gap-1 pr-2">
-            {(["all", "smit", "marketixpert"] as const).map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => setSiteFilter(s)}
-                className={cn(
-                  "rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors",
-                  siteFilter === s
-                    ? s === "marketixpert"
-                      ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
-                      : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                    : "text-muted-foreground hover:bg-muted",
-                )}
-              >
-                {s === "all" ? "All sites" : s === "smit" ? "smitparekh.co.in" : "marketixpert.com"}
-                {blogs && (
-                  <span className="ml-1 opacity-60">
-                    {s === "all"
-                      ? blogs.length
-                      : s === "marketixpert"
-                      ? blogs.filter((b) => b.site === "marketixpert").length
-                      : blogs.filter((b) => b.site !== "marketixpert").length}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
       {tab === "trash" ? (
@@ -432,11 +379,9 @@ export default function AdminBlogsPage() {
       ) : (
       <Card>
         <CardHeader>
-          <CardTitle>
-            {siteFilter === "all" ? "All posts" : siteFilter === "marketixpert" ? "MarketiXpert posts" : "Smit posts"}
-          </CardTitle>
+          <CardTitle>All posts</CardTitle>
           <CardDescription>
-            {blogs ? `${filteredBlogs.length} shown${siteFilter !== "all" ? ` of ${blogs.length} total` : ""}` : "-"}
+            {blogs ? `${filteredBlogs.length} posts` : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
@@ -459,22 +404,14 @@ export default function AdminBlogsPage() {
 
           {!isLoading && !isError && filteredBlogs.length === 0 && (
             <div className="px-6 py-16 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
-                {siteFilter !== "all" ? "No posts for this site yet." : "No blog posts yet."}
-              </p>
-              {siteFilter !== "all" ? (
-                <Button variant="outline" size="sm" onClick={() => setSiteFilter("all")}>
-                  Show all sites
-                </Button>
-              ) : (
-                <Link
-                  href="/admin/blogs/new"
-                  className={cn(buttonVariants({ size: "sm" }), "gap-2")}
-                >
-                  <Plus className="h-4 w-4" />
-                  Write your first post
-                </Link>
-              )}
+              <p className="text-sm text-muted-foreground mb-4">No blog posts yet.</p>
+              <Link
+                href="/admin/blogs/new"
+                className={cn(buttonVariants({ size: "sm" }), "gap-2")}
+              >
+                <Plus className="h-4 w-4" />
+                Write your first post
+              </Link>
             </div>
           )}
 
@@ -598,11 +535,6 @@ export default function AdminBlogsPage() {
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">
                             <p className="truncate font-medium">{blog.title}</p>
-                            {blog.site === "marketixpert" && (
-                              <span className="shrink-0 rounded-full bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">
-                                MX
-                              </span>
-                            )}
                           </div>
                           <p className="line-clamp-1 max-w-[260px] text-xs text-muted-foreground">
                             {blog.excerpt}
