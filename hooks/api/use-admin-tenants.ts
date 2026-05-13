@@ -31,7 +31,7 @@ export function useApproveTenant() {
 export function useRejectTenant() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, reason }: { id: string; reason: string }) =>
+    mutationFn: ({ id, reason }: { id: string; reason?: string }) =>
       adminTenantApi.reject(id, reason),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: queryKeys.adminTenants.all });
