@@ -18,6 +18,46 @@ export interface ChangelogRelease {
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: "1.8.0",
+    codename: "Headless Blog API",
+    date: "2026-05-14",
+    summary:
+      "A polished blog dashboard, a public Blog API landing page, and full feature parity between the admin and tenant blog editors. Anyone can now plug a headless blog into their Next.js project, business site, or SaaS dashboard.",
+    highlights: [
+      "New /blog-api landing page — request a tenant in one click",
+      "Tenant blog editor rebuilt to match the admin editor",
+      "Drafts, categories, tags, read time, featured posts and scheduled publish for every tenant",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Blog API landing page",
+        description:
+          "A dedicated page that explains the headless blog service, with use-cases for Next.js projects, business sites, and SaaS dashboards. Includes a copy-paste Next.js fetch example, the full endpoint list, and an FAQ.",
+        href: "/blog-api",
+      },
+      {
+        tag: "improved",
+        title: "Tenant blog editor — full parity with the admin editor",
+        description:
+          "The dashboard blog form now matches the admin form: slug auto-generation, category dropdown, tags, read time, author, scheduled publish date, publish and featured toggles, save-draft, and a monospace Markdown editor.",
+        href: "/dashboard/blog/new",
+      },
+      {
+        tag: "improved",
+        title: "Cover image is enforced before publishing",
+        description:
+          "Tenants now get a clear inline warning when trying to publish without a cover image, and a one-click 'Save draft' option so no work is lost.",
+      },
+      {
+        tag: "improved",
+        title: "Blog API discoverability",
+        description:
+          "Added the Blog API to the Services menu and the sitemap, so it can be discovered without the dashboard.",
+      },
+    ],
+  },
+  {
     version: "1.7.0",
     codename: "Student AI Toolkit",
     date: "2026-05-10",

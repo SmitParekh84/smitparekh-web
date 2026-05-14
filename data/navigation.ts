@@ -227,6 +227,11 @@ export const navItems: NavItem[] = [
             description: "Full-stack web development, APIs, cloud, and SEO",
           },
           {
+            href: "/blog-api",
+            label: "Blog API",
+            description: "Hosted headless blog API for Next.js, business sites & SaaS",
+          },
+          {
             href: "/for-students",
             label: "For Students",
             description: "Budget-friendly projects, portfolios & hackathons for uni students",

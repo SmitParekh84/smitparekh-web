@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/about`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
     { url: `${base}/portfolio`, priority: 0.8, changeFrequency: "weekly", lastModified, images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
     { url: `${base}/services`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-web-development-services.png`] },
+    { url: `${base}/blog-api`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/hire-me`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/feedback`, priority: 0.6, changeFrequency: "monthly", lastModified, images: [defaultImage] },
