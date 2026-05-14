@@ -18,6 +18,67 @@ export interface ChangelogRelease {
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: "1.9.0",
+    codename: "Service Pages & Lead Gen",
+    date: "2026-05-14",
+    summary:
+      "Ten dedicated service landing pages built for SEO and lead generation — Web Development, Frontend, Backend, API, SaaS, E-commerce, SEO, Technical SEO, Local SEO, SEO Audit, and AI Integration. Every page has its own quote form so visitors can start a project in 30 seconds.",
+    highlights: [
+      "10 new service landing pages with full SEO + JSON-LD",
+      "Inline lead-gen form on every service page (24-hour reply target)",
+      "Services mega menu rebuilt with 4 categories",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Web Development service page",
+        description:
+          "Full landing page for end-to-end Next.js + Node.js builds, with pricing tiers, tech stack, process, FAQs, and an inline quote form.",
+        href: "/services/web-development",
+      },
+      {
+        tag: "new",
+        title: "Frontend, Backend, API, SaaS & E-commerce pages",
+        description:
+          "Five dedicated development service pages, each with unique copy, pricing models, and a lead form that drops straight into the inbox.",
+        href: "/services/frontend-development",
+      },
+      {
+        tag: "new",
+        title: "SEO service pages",
+        description:
+          "Four SEO landing pages — SEO Services, Technical SEO, Local SEO, and SEO Audit — covering content, Core Web Vitals, Google Business Profile, and audit-only engagements.",
+        href: "/services/seo",
+      },
+      {
+        tag: "new",
+        title: "AI Integration service page",
+        description:
+          "Dedicated page for OpenAI, Claude, RAG, and LLM-in-production work — with evals, structured outputs, and cost-control as headline deliverables.",
+        href: "/services/ai-integration",
+      },
+      {
+        tag: "improved",
+        title: "Mega-menu Services dropdown",
+        description:
+          "Services menu rebuilt as a 4-column mega menu — Development, Marketing & SEO, Products & Specialized, and Browse — so visitors can find the right service in one glance.",
+        href: "/services",
+      },
+      {
+        tag: "new",
+        title: "Inline lead-gen form on every service page",
+        description:
+          "A reusable form with project type, budget, and timeline pickers. Submissions hit the same backend as /contact and trigger an email reply within 24 hours.",
+      },
+      {
+        tag: "improved",
+        title: "Schema.org coverage for every service page",
+        description:
+          "Service, FAQPage, and BreadcrumbList JSON-LD on each landing page — eligible for rich results in Google and clear context for AI search engines.",
+      },
+    ],
+  },
+  {
     version: "1.8.0",
     codename: "Headless Blog API",
     date: "2026-05-14",

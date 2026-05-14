@@ -206,37 +206,73 @@ export default function Navbar({
                   />
                 </button>
 
-                {servicesOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[260px]">
-                    <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-3">
-                      {servicesNavItem.dropdown.map((group) => (
-                        <div key={group.title}>
-                          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground px-2 mb-2">
-                            {group.title}
-                          </p>
-                          <ul className="space-y-0.5">
-                            {group.items.map((sub) => (
-                              <li key={sub.href}>
-                                <Link
-                                  href={sub.href}
-                                  onClick={() => setServicesOpen(false)}
-                                  className="block px-2 py-2 rounded-xl hover:bg-accent transition-colors"
-                                >
-                                  <span className="text-sm font-medium">{sub.label}</span>
-                                  {sub.description && (
-                                    <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">
-                                      {sub.description}
-                                    </span>
-                                  )}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+                {servicesOpen && (() => {
+                  const groupCount = servicesNavItem.dropdown.length;
+                  const isMega = groupCount >= 3;
+                  // 2-col when 2 groups; 4-col grid for 3+ groups
+                  const cols = isMega ? Math.min(groupCount, 4) : 1;
+                  return (
+                    <div
+                      className={cn(
+                        "absolute top-full left-1/2 -translate-x-1/2 pt-3",
+                        isMega ? "w-[min(96vw,1100px)]" : "min-w-[260px]"
+                      )}
+                    >
+                      <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-4 sm:p-5">
+                        <div
+                          className={cn(
+                            "grid gap-x-5 gap-y-4",
+                            cols === 1 && "grid-cols-1",
+                            cols === 2 && "grid-cols-1 sm:grid-cols-2",
+                            cols === 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+                            cols === 4 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                          )}
+                        >
+                          {servicesNavItem.dropdown.map((group) => (
+                            <div key={group.title}>
+                              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground px-2 mb-2">
+                                {group.title}
+                              </p>
+                              <ul className="space-y-0.5">
+                                {group.items.map((sub) => (
+                                  <li key={sub.href}>
+                                    <Link
+                                      href={sub.href}
+                                      onClick={() => setServicesOpen(false)}
+                                      className="block px-2 py-2 rounded-xl hover:bg-accent transition-colors"
+                                    >
+                                      <span className="text-sm font-medium">{sub.label}</span>
+                                      {sub.description && (
+                                        <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">
+                                          {sub.description}
+                                        </span>
+                                      )}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                        {isMega && (
+                          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between gap-3 px-2">
+                            <p className="text-xs text-muted-foreground">
+                              Free quote in 24 hours — no sales call required.
+                            </p>
+                            <Link
+                              href="/contact"
+                              onClick={() => setServicesOpen(false)}
+                              className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                            >
+                              Start a project
+                              <ChevronDown className="h-3 w-3 -rotate-90" />
+                            </Link>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </div>
             )}
 

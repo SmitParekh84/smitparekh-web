@@ -4,6 +4,7 @@ import { toolsSEO, getToolOgImage } from "@/data/tools-seo";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
+import { servicePages } from "@/data/services-catalog";
 
 export const revalidate = 300;
 
@@ -72,6 +73,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ],
   }));
 
+  const serviceRoutes: MetadataRoute.Sitemap = servicePages.map((s) => ({
+    url: `${base}/services/${s.slug}`,
+    priority: 0.85,
+    changeFrequency: "monthly" as const,
+    lastModified: STATIC_LASTMOD,
+    images: [defaultImage],
+  }));
+
   const toolRoutes: MetadataRoute.Sitemap = toolsSEO.map(({ slug }) => ({
     url: `${base}/free-tools/${slug}`,
     priority: 0.8,
@@ -80,5 +89,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [`${base}${getToolOgImage(slug)}`],
   }));
 
-  return [...staticRoutes, ...caseStudyRoutes, ...blogRoutes, ...toolRoutes];
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...caseStudyRoutes,
+    ...blogRoutes,
+    ...toolRoutes,
+  ];
 }
