@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, LayoutDashboard, LogOut, User } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, LayoutDashboard, LogOut, User, Code2, TrendingUp, Package, LayoutGrid } from "lucide-react";
 import { useTheme } from "next-themes";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,12 +13,20 @@ import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { createClient } from "@/lib/supabase/client";
 import type { FeaturedNavTool } from "@/lib/featured-nav-tools";
 
+const SERVICE_CAT_ICONS: Record<string, typeof Code2> = {
+  "Development": Code2,
+  "Marketing & SEO": TrendingUp,
+  "Products & AI": Package,
+  "Browse": LayoutGrid,
+};
+
 const linkItems = navItems.filter(
   (item) =>
     item.href !== "/" &&
     item.href !== "/contact" &&
     item.href !== "/hire-me" &&
-    !item.dropdown
+    !item.dropdown &&
+    !item.categories
 );
 
 const servicesNavItem = navItems.find((item) => item.href === "/services");
@@ -53,6 +61,8 @@ export default function Navbar({
   const [toolsOpen, setToolsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [activeServiceGroup, setActiveServiceGroup] = useState(0);
+  const [activeServiceSub, setActiveServiceSub] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -98,6 +108,14 @@ export default function Navbar({
     };
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
+  }, [servicesOpen]);
+
+  /* Reset category + sub-category when Services dropdown closes */
+  useEffect(() => {
+    if (!servicesOpen) {
+      setActiveServiceGroup(0);
+      setActiveServiceSub(0);
+    }
   }, [servicesOpen]);
 
   /* Close user menu when clicking outside */
@@ -183,15 +201,16 @@ export default function Navbar({
               </Link>
             ))}
 
-            {/* Services - click-to-open dropdown */}
-            {servicesNavItem?.dropdown && (
+            {/* Services - 3-level mega menu */}
+            {servicesNavItem?.categories && (
               <div ref={servicesRef} className="relative">
                 <button
                   onClick={() => setServicesOpen((v) => !v)}
                   className={cn(
                     "flex items-center gap-1 px-2.5 py-1.5 text-sm rounded-xl transition-colors",
-                    servicesNavItem.dropdown
-                      .flatMap((g) => g.items)
+                    servicesNavItem.categories
+                      .flatMap((c) => c.subCategories)
+                      .flatMap((s) => s.items)
                       .some((i) => pathname.startsWith(i.href))
                       ? "text-foreground font-medium bg-accent"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -207,68 +226,115 @@ export default function Navbar({
                 </button>
 
                 {servicesOpen && (() => {
-                  const groupCount = servicesNavItem.dropdown.length;
-                  const isMega = groupCount >= 3;
-                  // 2-col when 2 groups; 4-col grid for 3+ groups
-                  const cols = isMega ? Math.min(groupCount, 4) : 1;
+                  const activeCat = servicesNavItem.categories[activeServiceGroup] ?? servicesNavItem.categories[0];
+                  const activeSub = activeCat.subCategories[activeServiceSub] ?? activeCat.subCategories[0];
                   return (
-                    <div
-                      className={cn(
-                        "absolute top-full left-1/2 -translate-x-1/2 pt-3",
-                        isMega ? "w-[min(96vw,1100px)]" : "min-w-[260px]"
-                      )}
-                    >
-                      <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-4 sm:p-5">
-                        <div
-                          className={cn(
-                            "grid gap-x-5 gap-y-4",
-                            cols === 1 && "grid-cols-1",
-                            cols === 2 && "grid-cols-1 sm:grid-cols-2",
-                            cols === 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-                            cols === 4 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-                          )}
-                        >
-                          {servicesNavItem.dropdown.map((group) => (
-                            <div key={group.title}>
-                              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground px-2 mb-2">
-                                {group.title}
-                              </p>
-                              <ul className="space-y-0.5">
-                                {group.items.map((sub) => (
-                                  <li key={sub.href}>
-                                    <Link
-                                      href={sub.href}
-                                      onClick={() => setServicesOpen(false)}
-                                      className="block px-2 py-2 rounded-xl hover:bg-accent transition-colors"
-                                    >
-                                      <span className="text-sm font-medium">{sub.label}</span>
-                                      {sub.description && (
-                                        <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">
-                                          {sub.description}
-                                        </span>
-                                      )}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                        {isMega && (
-                          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between gap-3 px-2">
-                            <p className="text-xs text-muted-foreground">
-                              Free quote in 24 hours — no sales call required.
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[min(96vw,900px)]">
+                      <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 overflow-hidden">
+                        <div className="flex min-h-[220px]">
+
+                          {/* Column 1: Main categories */}
+                          <div className="w-40 shrink-0 bg-muted/40 dark:bg-muted/20 border-r border-border p-3 flex flex-col gap-0.5">
+                            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
+                              Category
                             </p>
-                            <Link
-                              href="/contact"
-                              onClick={() => setServicesOpen(false)}
-                              className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                            >
-                              Start a project
-                              <ChevronDown className="h-3 w-3 -rotate-90" />
-                            </Link>
+                            {servicesNavItem.categories.map((cat, i) => {
+                              const Icon = SERVICE_CAT_ICONS[cat.title] ?? LayoutGrid;
+                              const isActive = activeServiceGroup === i;
+                              return (
+                                <button
+                                  key={cat.title}
+                                  onMouseEnter={() => { setActiveServiceGroup(i); setActiveServiceSub(0); }}
+                                  onClick={() => { setActiveServiceGroup(i); setActiveServiceSub(0); }}
+                                  className={cn(
+                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm text-left transition-all duration-150",
+                                    isActive
+                                      ? "bg-background text-foreground font-medium shadow-sm ring-1 ring-border"
+                                      : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                                  )}
+                                >
+                                  <Icon className={cn("w-4 h-4 shrink-0", isActive ? "text-blue-500" : "")} />
+                                  <span className="flex-1">{cat.title}</span>
+                                  {isActive && <ChevronDown className="w-3 h-3 -rotate-90 text-blue-500 shrink-0" />}
+                                </button>
+                              );
+                            })}
                           </div>
-                        )}
+
+                          {/* Column 2: Sub-categories */}
+                          <div className="w-44 shrink-0 border-r border-border p-3 flex flex-col gap-0.5">
+                            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
+                              {activeCat.title}
+                            </p>
+                            {activeCat.subCategories.map((sub, i) => {
+                              const isActive = activeServiceSub === i;
+                              return (
+                                <button
+                                  key={sub.title}
+                                  onMouseEnter={() => setActiveServiceSub(i)}
+                                  onClick={() => setActiveServiceSub(i)}
+                                  className={cn(
+                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm text-left transition-all duration-150",
+                                    isActive
+                                      ? "bg-accent text-foreground font-medium"
+                                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                                  )}
+                                >
+                                  <span className="flex-1">{sub.title}</span>
+                                  <span className={cn(
+                                    "text-[10px] px-1.5 py-0.5 rounded-full shrink-0 transition-colors",
+                                    isActive ? "bg-blue-500/15 text-blue-600 dark:text-blue-400" : "bg-muted text-muted-foreground"
+                                  )}>
+                                    {sub.items.length}
+                                  </span>
+                                  {isActive && <ChevronDown className="w-3 h-3 -rotate-90 text-blue-500 shrink-0" />}
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          {/* Column 3: Pages — 3-col card grid */}
+                          <div className="flex-1 p-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3 px-0.5">
+                              {activeSub.title}
+                            </p>
+                            <div className="grid grid-cols-3 gap-2">
+                              {activeSub.items.map((item) => (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="group flex flex-col gap-1 p-3 rounded-xl border border-border hover:border-blue-500/40 hover:bg-blue-500/5 transition-all"
+                                >
+                                  <span className="text-sm font-medium group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors leading-tight">
+                                    {item.label}
+                                  </span>
+                                  {item.description && (
+                                    <span className="text-[11px] text-muted-foreground leading-snug line-clamp-2">
+                                      {item.description}
+                                    </span>
+                                  )}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+
+                        </div>
+
+                        {/* Footer */}
+                        <div className="px-5 py-3 border-t border-border bg-muted/20 flex items-center justify-between gap-3">
+                          <p className="text-xs text-muted-foreground">
+                            Free quote in 24 hours — no sales call required.
+                          </p>
+                          <Link
+                            href="/contact"
+                            onClick={() => setServicesOpen(false)}
+                            className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                          >
+                            Start a project
+                            <ChevronDown className="h-3 w-3 -rotate-90" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   );
@@ -536,14 +602,15 @@ export default function Navbar({
                 ))}
 
               {/* Services accordion */}
-              {servicesNavItem?.dropdown && (
+              {servicesNavItem?.categories && (
                 <div>
                   <button
                     onClick={() => setMobileServicesOpen((v) => !v)}
                     className={cn(
                       "flex w-full items-center justify-between px-4 py-3.5 text-lg font-medium rounded-2xl transition-colors",
-                      servicesNavItem.dropdown
-                        .flatMap((g) => g.items)
+                      servicesNavItem.categories
+                        .flatMap((c) => c.subCategories)
+                        .flatMap((s) => s.items)
                         .some((i) => pathname.startsWith(i.href))
                         ? "text-foreground bg-accent"
                         : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -559,26 +626,29 @@ export default function Navbar({
                   </button>
                   {mobileServicesOpen && (
                     <div className="ml-4 mt-0.5 space-y-0.5">
-                      {servicesNavItem.dropdown.flatMap((g) => g.items).map((sub) => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          onClick={() => setMobileOpen(false)}
-                          className={cn(
-                            "flex flex-col px-4 py-3 text-base rounded-2xl transition-colors",
-                            pathname === sub.href
-                              ? "text-foreground bg-accent"
-                              : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
-                          )}
-                        >
-                          <span className="font-medium">{sub.label}</span>
-                          {sub.description && (
-                            <span className="text-xs mt-0.5 leading-snug opacity-70">
-                              {sub.description}
-                            </span>
-                          )}
-                        </Link>
-                      ))}
+                      {servicesNavItem.categories
+                        .flatMap((c) => c.subCategories)
+                        .flatMap((s) => s.items)
+                        .map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={cn(
+                              "flex flex-col px-4 py-3 text-base rounded-2xl transition-colors",
+                              pathname === sub.href
+                                ? "text-foreground bg-accent"
+                                : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                            )}
+                          >
+                            <span className="font-medium">{sub.label}</span>
+                            {sub.description && (
+                              <span className="text-xs mt-0.5 leading-snug opacity-70">
+                                {sub.description}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
                     </div>
                   )}
                 </div>
