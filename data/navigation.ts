@@ -236,6 +236,11 @@ export const navItems: NavItem[] = [
             title: "Web & E-commerce",
             items: [
               {
+                href: "/services/mvp-development",
+                label: "MVP Development",
+                description: "Idea to live product in 4–8 weeks, fixed price",
+              },
+              {
                 href: "/services/web-development",
                 label: "Web Development",
                 description: "End-to-end Next.js + Node.js builds, MVP to scale",
@@ -246,19 +251,39 @@ export const navItems: NavItem[] = [
                 description: "Multi-tenant apps with Stripe billing & RBAC",
               },
               {
+                href: "/services/shopify-development",
+                label: "Shopify Development",
+                description: "Headless Next.js storefront on Shopify backend",
+              },
+              {
                 href: "/services/ecommerce-development",
                 label: "E-commerce Development",
-                description: "Headless Shopify or custom commerce on Next.js",
+                description: "Custom commerce on Next.js, any backend",
               },
             ],
           },
           {
-            title: "Frontend",
+            title: "Frontend & Performance",
             items: [
+              {
+                href: "/services/nextjs-development",
+                label: "Next.js Development",
+                description: "App Router, RSC, TypeScript, 95+ Lighthouse",
+              },
+              {
+                href: "/services/react-development",
+                label: "React Development",
+                description: "SPAs, dashboards & component libraries",
+              },
               {
                 href: "/services/frontend-development",
                 label: "Frontend Development",
-                description: "React, Next.js, design systems & 95+ Lighthouse",
+                description: "React, Next.js, design systems & accessibility",
+              },
+              {
+                href: "/services/performance-optimization",
+                label: "Performance Optimization",
+                description: "Core Web Vitals, 95+ Lighthouse, bundle cuts",
               },
             ],
           },
