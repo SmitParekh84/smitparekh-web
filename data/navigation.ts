@@ -19,8 +19,19 @@ export interface NavFeatured {
   cta: string;
 }
 
+export interface NavSubCategory {
+  title: string;
+  items: NavDropdownItem[];
+}
+
+export interface NavCategory {
+  title: string;
+  subCategories: NavSubCategory[];
+}
+
 export interface NavItem extends NavLink {
   dropdown?: NavDropdownGroup[];
+  categories?: NavCategory[];
   featured?: NavFeatured;
 }
 
@@ -217,104 +228,144 @@ export const navItems: NavItem[] = [
   {
     href: "/services",
     label: "Services",
-    dropdown: [
+    categories: [
       {
         title: "Development",
-        items: [
+        subCategories: [
           {
-            href: "/services/web-development",
-            label: "Web Development",
-            description: "End-to-end Next.js + Node.js builds, MVP to scale",
+            title: "Web & E-commerce",
+            items: [
+              {
+                href: "/services/web-development",
+                label: "Web Development",
+                description: "End-to-end Next.js + Node.js builds, MVP to scale",
+              },
+              {
+                href: "/services/saas-development",
+                label: "SaaS Development",
+                description: "Multi-tenant apps with Stripe billing & RBAC",
+              },
+              {
+                href: "/services/ecommerce-development",
+                label: "E-commerce Development",
+                description: "Headless Shopify or custom commerce on Next.js",
+              },
+            ],
           },
           {
-            href: "/services/frontend-development",
-            label: "Frontend Development",
-            description: "React, Next.js, design systems & 95+ Lighthouse",
+            title: "Frontend",
+            items: [
+              {
+                href: "/services/frontend-development",
+                label: "Frontend Development",
+                description: "React, Next.js, design systems & 95+ Lighthouse",
+              },
+            ],
           },
           {
-            href: "/services/backend-development",
-            label: "Backend Development",
-            description: "Node.js, NestJS, PostgreSQL, Redis & AWS",
-          },
-          {
-            href: "/services/api-development",
-            label: "API Development",
-            description: "REST & GraphQL APIs with auth, rate limits, webhooks",
-          },
-          {
-            href: "/services/saas-development",
-            label: "SaaS Development",
-            description: "Multi-tenant apps with Stripe billing & RBAC",
-          },
-          {
-            href: "/services/ecommerce-development",
-            label: "E-commerce Development",
-            description: "Headless Shopify or custom commerce on Next.js",
+            title: "Backend & APIs",
+            items: [
+              {
+                href: "/services/backend-development",
+                label: "Backend Development",
+                description: "Node.js, NestJS, PostgreSQL, Redis & AWS",
+              },
+              {
+                href: "/services/api-development",
+                label: "API Development",
+                description: "REST & GraphQL APIs with auth, rate limits, webhooks",
+              },
+            ],
           },
         ],
       },
       {
         title: "Marketing & SEO",
-        items: [
+        subCategories: [
           {
-            href: "/services/seo",
-            label: "SEO Services",
-            description: "Developer-led on-page, technical & content SEO",
+            title: "SEO Services",
+            items: [
+              {
+                href: "/services/seo",
+                label: "SEO Services",
+                description: "Developer-led on-page, technical & content SEO",
+              },
+              {
+                href: "/services/technical-seo",
+                label: "Technical SEO",
+                description: "Core Web Vitals, schema & JavaScript rendering",
+              },
+              {
+                href: "/services/local-seo",
+                label: "Local SEO",
+                description: "Google Business Profile, citations & reviews",
+              },
+            ],
           },
           {
-            href: "/services/technical-seo",
-            label: "Technical SEO",
-            description: "Core Web Vitals, schema & JavaScript rendering",
-          },
-          {
-            href: "/services/local-seo",
-            label: "Local SEO",
-            description: "Google Business Profile, citations & reviews",
-          },
-          {
-            href: "/services/seo-audit",
-            label: "SEO Audit",
-            description: "Severity-ranked report delivered in 5 business days",
+            title: "Audits",
+            items: [
+              {
+                href: "/services/seo-audit",
+                label: "SEO Audit",
+                description: "Severity-ranked report delivered in 5 business days",
+              },
+            ],
           },
         ],
       },
       {
-        title: "Products & Specialized",
-        items: [
+        title: "Products & AI",
+        subCategories: [
           {
-            href: "/blog-api",
-            label: "Blog API",
-            description: "Hosted headless blog API for any project",
+            title: "Digital Products",
+            items: [
+              {
+                href: "/blog-api",
+                label: "Blog API",
+                description: "Hosted headless blog API for any project",
+              },
+              {
+                href: "/services/ai-integration",
+                label: "AI Integration",
+                description: "OpenAI, Claude, RAG & evals in production",
+              },
+            ],
           },
           {
-            href: "/services/ai-integration",
-            label: "AI Integration",
-            description: "OpenAI, Claude, RAG & evals in production",
-          },
-          {
-            href: "/for-students",
-            label: "For Students",
-            description: "Budget-friendly projects & hackathon help",
+            title: "Programs",
+            items: [
+              {
+                href: "/for-students",
+                label: "For Students",
+                description: "Budget-friendly projects & hackathon help",
+              },
+            ],
           },
         ],
       },
       {
         title: "Browse",
-        items: [
+        subCategories: [
           {
-            href: "/services",
-            label: "All Services",
-            description: "Full overview of every service & engagement model",
-          },
-          {
-            href: "/hire-me",
-            label: "Hire Me",
-            description: "Availability, rates & how engagements work",
-          },
-          {
-            href: "/portfolio",
-            label: "Case Studies",
-            description: "See past projects, tech stacks & outcomes",
+            title: "Quick Links",
+            items: [
+              {
+                href: "/services",
+                label: "All Services",
+                description: "Full overview of every service & engagement model",
+              },
+              {
+                href: "/hire-me",
+                label: "Hire Me",
+                description: "Availability, rates & how engagements work",
+              },
+              {
+                href: "/portfolio",
+                label: "Case Studies",
+                description: "See past projects, tech stacks & outcomes",
+              },
+            ],
           },
         ],
       },
