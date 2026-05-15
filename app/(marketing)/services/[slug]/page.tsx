@@ -26,6 +26,7 @@ import {
   Webhook,
   Star,
   ChevronRight,
+  Minus,
   type LucideIcon,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
@@ -462,6 +463,136 @@ export default async function ServicePageRoute({
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Me vs Agency vs In-house */}
+      <section className="page-section bg-muted/20 border-y border-border">
+        <div className="page-container">
+          <div className="mx-auto max-w-2xl text-center mb-10">
+            <Badge variant="secondary" className="mb-3">Why solo dev</Badge>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Me vs. an agency vs. hiring in-house
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground">
+              Three ways to get this built. Here&apos;s the honest comparison.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto -mx-4 px-4">
+            <table className="w-full min-w-[600px] border-separate border-spacing-0 text-sm">
+              <thead>
+                <tr>
+                  <th className="w-[200px] pb-4 text-left text-xs font-semibold uppercase tracking-widest text-muted-foreground" />
+                  <th className="pb-4 px-4">
+                    <div className="relative rounded-t-2xl bg-gradient-to-b from-blue-500/15 to-blue-500/5 border border-b-0 border-blue-500/30 px-4 pt-4 pb-3 text-center">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-blue-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white">
+                        <Star className="h-2.5 w-2.5" /> Best value
+                      </span>
+                      <p className="font-bold text-base text-blue-500">Solo Dev (me)</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$80–$120 /hr or fixed</p>
+                    </div>
+                  </th>
+                  <th className="pb-4 px-4">
+                    <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 pt-5 pb-3 text-center">
+                      <p className="font-semibold text-base">Agency</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$150–$300 /hr blended</p>
+                    </div>
+                  </th>
+                  <th className="pb-4 px-4">
+                    <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 pt-5 pb-3 text-center">
+                      <p className="font-semibold text-base">In-house hire</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$80–$120K /yr + benefits</p>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {([
+                  {
+                    label: "Start date",
+                    me: "1–2 weeks from quote",
+                    agency: "4–8 weeks onboarding",
+                    inhouse: "8–16 weeks to hire",
+                    meGood: true, agencyGood: false, inhouseGood: false,
+                  },
+                  {
+                    label: "Who writes the code",
+                    me: "Senior dev — every single line",
+                    agency: "Junior assigned to your account",
+                    inhouse: "Whoever you manage to hire",
+                    meGood: true, agencyGood: false, inhouseGood: null,
+                  },
+                  {
+                    label: "Communication",
+                    me: "Direct — you talk to who codes",
+                    agency: "Via account manager first",
+                    inhouse: "Direct, but management overhead",
+                    meGood: true, agencyGood: false, inhouseGood: null,
+                  },
+                  {
+                    label: "Flexibility",
+                    me: "Scale up or down any time",
+                    agency: "Locked to contract length",
+                    inhouse: "Fixed headcount, hard to change",
+                    meGood: true, agencyGood: false, inhouseGood: false,
+                  },
+                  {
+                    label: "Code ownership",
+                    me: "100% yours, full handover docs",
+                    agency: "Depends on contract terms",
+                    inhouse: "Yours, but bus factor risk",
+                    meGood: true, agencyGood: null, inhouseGood: null,
+                  },
+                  {
+                    label: "Risk",
+                    me: "Weekly demos, fixed scope",
+                    agency: "Scope creep & handoff gaps",
+                    inhouse: "Wrong hire = months lost",
+                    meGood: true, agencyGood: false, inhouseGood: false,
+                  },
+                ] as const).map((row, i) => {
+                  const isLast = i === 5;
+                  const cellBase = "px-4 py-3.5 text-center text-xs text-muted-foreground";
+                  const meCellBg = "bg-blue-500/5 border-x border-blue-500/30";
+                  const otherCellBg = "bg-card border-x border-border";
+                  const lastMeRound = isLast ? "rounded-b-2xl border-b border-blue-500/30" : "";
+                  const lastOtherRound = isLast ? "rounded-b-2xl border-b border-border" : "";
+                  return (
+                    <tr key={row.label} className={i % 2 === 0 ? "" : "bg-muted/10"}>
+                      <td className="py-3.5 pr-4 text-xs font-medium text-foreground/80">{row.label}</td>
+                      <td className={cn(cellBase, meCellBg, lastMeRound)}>
+                        <span className="flex flex-col items-center gap-1">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                          <span className="font-medium text-foreground/90">{row.me}</span>
+                        </span>
+                      </td>
+                      <td className={cn(cellBase, otherCellBg, lastOtherRound)}>
+                        <span className="flex flex-col items-center gap-1">
+                          {row.agencyGood === false ? (
+                            <Minus className="h-4 w-4 text-red-400 shrink-0" />
+                          ) : (
+                            <CheckCircle2 className="h-4 w-4 text-muted-foreground shrink-0" />
+                          )}
+                          {row.agency}
+                        </span>
+                      </td>
+                      <td className={cn(cellBase, otherCellBg, lastOtherRound)}>
+                        <span className="flex flex-col items-center gap-1">
+                          {row.inhouseGood === false ? (
+                            <Minus className="h-4 w-4 text-red-400 shrink-0" />
+                          ) : (
+                            <CheckCircle2 className="h-4 w-4 text-muted-foreground shrink-0" />
+                          )}
+                          {row.inhouse}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

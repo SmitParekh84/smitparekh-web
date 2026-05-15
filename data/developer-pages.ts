@@ -53,6 +53,24 @@ export const developerPages = [
     description: "Strict-mode TypeScript across the full stack — no any, no suppressions, no runtime surprises",
     tags: ["TypeScript", "React", "Node.js", "Zod"],
   },
+  {
+    slug: "aws-developer",
+    title: "AWS Developer",
+    description: "99.9% uptime cloud infrastructure — EC2, Lambda, RDS, CloudFront, CDK, and zero-trust IAM",
+    tags: ["AWS", "Lambda", "EC2", "Terraform"],
+  },
+  {
+    slug: "wordpress-developer",
+    title: "WordPress Developer",
+    description: "50+ sites shipped — custom themes, WooCommerce, headless WordPress, and 95+ Lighthouse scores",
+    tags: ["WordPress", "WooCommerce", "PHP", "Headless"],
+  },
+  {
+    slug: "react-native-developer",
+    title: "React Native Developer",
+    description: "Cross-platform iOS & Android apps with Expo, TypeScript strict, and OTA updates via EAS",
+    tags: ["React Native", "Expo", "iOS", "Android"],
+  },
 ] as const;
 
 export type DeveloperPageSlug = (typeof developerPages)[number]["slug"];
@@ -67,4 +85,7 @@ export const relatedPages: Record<DeveloperPageSlug, DeveloperPageSlug[]> = {
   "saas-developer": ["nextjs-developer", "react-developer", "postgresql-developer", "full-stack-developer"],
   "postgresql-developer": ["nodejs-developer", "api-developer", "saas-developer", "full-stack-developer"],
   "typescript-developer": ["react-developer", "nextjs-developer", "nestjs-developer", "full-stack-developer"],
+  "aws-developer": ["nodejs-developer", "full-stack-developer", "api-developer", "saas-developer"],
+  "wordpress-developer": ["full-stack-developer", "react-developer", "nextjs-developer", "saas-developer"],
+  "react-native-developer": ["react-developer", "typescript-developer", "full-stack-developer", "saas-developer"],
 };

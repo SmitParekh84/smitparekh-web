@@ -240,6 +240,33 @@ Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white he
 
 ---
 
+### `hire-aws-developer.png`
+**Page:** `/aws-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire an AWS Developer", grey subtitle "EC2 · Lambda · RDS · CloudFront · CDK · IaC — 99.9% Uptime Infra", below that a cyan pill "Top Rated · Available Now". Right side: abstract cloud architecture visual — clean minimal cloud icon outline in blue (#0628FF) with three smaller service node boxes below it (labeled "Lambda", "RDS", "S3" in small cyan monospace), connected by thin glowing lines, soft blue glow behind diagram. Thin gradient bar blue-to-cyan at top. Bottom right "smitparekh.co.in/aws-developer". Ultra minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+### `hire-wordpress-developer.png`
+**Page:** `/wordpress-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a WordPress Developer", grey subtitle "Custom Themes · WooCommerce · Headless WP · PHP · 95+ Lighthouse", below that a blue pill "50+ Sites Shipped · Top Rated". Right side: abstract WordPress-themed card — clean minimal browser frame with a sidebar CMS editor strip in blue, a large content canvas with horizontal Gutenberg block outlines in cyan, small "WooCommerce" text badge in the corner, soft glow. Thin gradient bar blue-to-cyan at top. Bottom right "smitparekh.co.in/wordpress-developer". Minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
+### `hire-react-native-developer.png`
+**Page:** `/react-native-developer`
+
+```
+Dark navy background (#0a0a1a). Professional OG banner. Left side: bold white heading "Hire a React Native Developer", grey subtitle "Expo · iOS & Android · TypeScript · EAS · App Store Ready", below that a cyan pill "2 Apps Live · 4.5★ Rated". Right side: two clean mobile phone silhouettes side by side — one with an iOS-style top notch, one with an Android-style bezel, both showing a minimal app screen with blue header and cyan accent, a small React atom logo between them, soft blue glow. Thin gradient bar blue-to-cyan at top. Bottom right "smitparekh.co.in/react-native-developer". Minimal dark tech. --ar 1200:630 --v 6 --style raw
+```
+
+---
+
 ## Notes
 
 - After generating, drop each service file in `public/images/services-og/` with the exact filename shown.
