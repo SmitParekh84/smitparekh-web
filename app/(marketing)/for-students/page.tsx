@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Final year projects, hackathon apps, portfolio websites, and startup MVPs — built by a professional developer at student-friendly prices. React, Next.js, Node.js. Free quote within 24 hours.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+        url: `${siteConfig.url}/images/for-students.png`,
         width: 1200,
         height: 630,
         alt: "Affordable Web Development for Students by Smit Parekh",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Affordable Web Development for Students – UK, Canada, US",
     description:
       "Final year projects, hackathons, portfolios, startup MVPs. Budget-friendly pricing. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/for-students.png`, width: 1200, height: 630 }],
   },
   keywords: [
     // Core intent

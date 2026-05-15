@@ -1805,6 +1805,638 @@ export const servicePages: ServicePage[] = [
     ],
     related: ["ecommerce-development", "web-development", "performance-optimization", "frontend-development"],
   },
+
+  // ---------------------------------------------------------------- DEVOPS
+  {
+    slug: "devops-consulting",
+    category: "development",
+    iconName: "Cloud",
+    metaTitle: "DevOps & Cloud Consulting — CI/CD, AWS, Docker | Smit Parekh",
+    metaDescription:
+      "DevOps consulting for growing web products. GitHub Actions CI/CD, Docker containerisation, AWS architecture, monitoring, and zero-downtime deploys. Audit your infra or build it from scratch — free review in 24 hours.",
+    keywords: [
+      "devops consulting services",
+      "CI/CD setup developer",
+      "GitHub Actions setup",
+      "Docker containerisation",
+      "AWS architecture consulting",
+      "zero-downtime deployment",
+      "freelance devops engineer",
+      "cloud infrastructure setup",
+      "devops for startups",
+      "infrastructure as code",
+    ],
+    eyebrow: "DevOps & Cloud",
+    heroTitle: "Infrastructure that ships fast and doesn't page you at 3am",
+    heroDescription:
+      "CI/CD pipelines, Docker, AWS, monitoring, and zero-downtime deploys — set up once, maintained to production standards. From a one-person startup to a 50-engineer team.",
+    lede: "Most outages are not caused by bad code — they're caused by missing observability, manual deploys, and infrastructure configured by whoever happened to be there at the time. I set up the boring-but-critical layer: repeatable deploys, automatic rollbacks, secrets management, and alerts that fire before users notice.",
+    deliverables: [
+      {
+        iconName: "Cloud",
+        title: "CI/CD pipelines with auto-rollback",
+        description:
+          "GitHub Actions workflows that lint, test, build, and deploy on every merge. Preview environments per PR, production gates on test failure, and one-click rollback if something slips through.",
+      },
+      {
+        iconName: "Server",
+        title: "Docker & containerisation",
+        description:
+          "Multi-stage Dockerfiles, optimised layer caching, docker-compose for local dev parity, and container registries on ECR or GHCR. Your app runs the same on a developer's laptop and AWS.",
+      },
+      {
+        iconName: "Code2",
+        title: "Infrastructure as code",
+        description:
+          "Terraform or AWS CDK for repeatable, version-controlled infrastructure. Spin up a staging environment with one command; tear it down when you're done.",
+      },
+      {
+        iconName: "BarChart3",
+        title: "Monitoring, logging & alerting",
+        description:
+          "Structured logging, uptime checks, error rate alerts, and p95 latency dashboards. Sentry for exceptions, Datadog or Grafana for metrics — you know what's happening before users report it.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "Security hardening",
+        description:
+          "Secrets rotated out of source code into AWS Secrets Manager or Vault, IAM least-privilege, dependency scanning in CI, and OWASP Top 10 review. Nothing in environment variables that shouldn't be there.",
+      },
+      {
+        iconName: "Zap",
+        title: "Cost & performance optimisation",
+        description:
+          "Right-sizing EC2 instances, S3 lifecycle policies, CloudFront caching, and autoscaling policies. Most teams cut their AWS bill 30–50% in the first review.",
+      },
+    ],
+    techStack: [
+      { label: "CI/CD", items: ["GitHub Actions", "Docker", "ECR", "EAS Build"] },
+      { label: "Cloud", items: ["AWS EC2", "RDS", "S3", "Lambda", "CloudFront"] },
+      { label: "IaC", items: ["Terraform", "AWS CDK", "Cloudflare", "Vercel"] },
+      { label: "Observability", items: ["Datadog", "Grafana", "Sentry", "CloudWatch"] },
+    ],
+    process: [
+      {
+        title: "Infrastructure audit",
+        description:
+          "I review your current setup: deploy process, environment config, secrets hygiene, IAM roles, and monitoring coverage. You get a written severity-ranked findings list within 24 hours.",
+      },
+      {
+        title: "Architecture design",
+        description:
+          "A written infrastructure plan covering environments, networking, deploy strategy, and rollback procedures — agreed before any changes are made.",
+      },
+      {
+        title: "Incremental rollout",
+        description:
+          "Changes staged and tested in a non-production environment first. Every infrastructure change is a pull request — reviewed, tested, and merged, not SSHed in at midnight.",
+      },
+      {
+        title: "Handover & runbooks",
+        description:
+          "Written runbooks for every operational task, on-call alert definitions, and a 2-hour walkthrough so your team can own it going forward.",
+      },
+    ],
+    proof: [
+      { value: "99.9%", label: "Uptime target across deployed projects" },
+      { value: "<5min", label: "Median deployment time after CI setup" },
+      { value: "~40%", label: "Average AWS cost reduction on first review" },
+      { value: "0", label: "Production credential leaks after secrets migration" },
+    ],
+    pricing: [
+      {
+        name: "Infra Audit",
+        startingFrom: "$800",
+        bestFor: "Teams who want a clear picture before spending",
+        bullets: [
+          "Full review of CI, deploys, AWS, and secrets",
+          "Severity-ranked findings document",
+          "30-min walkthrough call",
+          "Delivered in 3 business days",
+        ],
+      },
+      {
+        name: "Setup & Build",
+        startingFrom: "$3,500",
+        popular: true,
+        bestFor: "Startups building reliable infra from scratch",
+        bullets: [
+          "CI/CD pipelines + Docker + AWS setup",
+          "Staging & production environments",
+          "Monitoring, alerting & runbooks",
+          "Delivered in 2–3 weeks",
+        ],
+      },
+      {
+        name: "Retainer",
+        startingFrom: "$1,200/mo",
+        bestFor: "Ongoing infrastructure ownership",
+        bullets: [
+          "Reserved DevOps hours each month",
+          "Incident response & on-call backup",
+          "Cost reviews & security patches",
+          "Cancel any time",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "We already have a deployment process — do we need this?",
+        a: "If your deploys are manual, undocumented, or cause anxiety — yes. The goal isn't to replace what works; it's to add the safety net: auto-rollback, preview environments, and observability that tells you when something is wrong before a user tweets about it.",
+      },
+      {
+        q: "Which cloud providers do you work with?",
+        a: "Primarily AWS — it's where most production workloads live. I also work with Vercel, Railway, Cloudflare Workers, Fly.io, and Google Cloud. The right choice depends on your team's familiarity and the workload type.",
+      },
+      {
+        q: "Will you touch our production environment directly?",
+        a: "Only after every change has been tested in staging and reviewed as a PR. I don't SSH into production and 'fix things'. If a hotfix is ever needed urgently, I document it and follow up with a proper solution.",
+      },
+      {
+        q: "How long does a typical DevOps setup take?",
+        a: "A CI/CD pipeline and Docker setup for an existing app takes 3–5 days. Full infrastructure from scratch — AWS VPC, RDS, EC2, CloudFront, monitoring, and IaC — takes 2–3 weeks depending on complexity.",
+      },
+      {
+        q: "Can you train our team on the infrastructure you build?",
+        a: "Yes — written runbooks, architecture diagrams, and a video walkthrough are part of every engagement. The goal is for your team to own the infrastructure, not to create a dependency on me.",
+      },
+    ],
+    related: ["backend-development", "web-development", "performance-optimization", "api-development"],
+  },
+
+  // ---------------------------------------------------------------- LANDING PAGES
+  {
+    slug: "landing-page-development",
+    category: "development",
+    iconName: "Target",
+    metaTitle: "Landing Page Development — Next.js, 95+ Lighthouse, High-Converting | Smit Parekh",
+    metaDescription:
+      "High-converting landing pages built with Next.js and Tailwind. 95+ Lighthouse, sub-1.2s LCP, SEO metadata, schema markup, and analytics wired in. Simple pages delivered in 48 hours. Free quote.",
+    keywords: [
+      "landing page development",
+      "high converting landing page",
+      "Next.js landing page developer",
+      "fast landing page development",
+      "SaaS landing page",
+      "product launch landing page",
+      "SEO landing page",
+      "marketing page developer",
+      "freelance landing page developer",
+      "conversion optimised landing page",
+    ],
+    eyebrow: "Landing Pages",
+    heroTitle: "Landing pages that rank, load in under a second, and convert",
+    heroDescription:
+      "Conversion-first copy structure, 95+ Lighthouse, SEO metadata, schema, and analytics — built in Next.js and ready to A/B test from day one.",
+    lede: "A slow, badly structured landing page is invisible to Google and ignored by visitors. I build pages the other way: performance budget enforced from line one, copy architected around the visitor's intent, and tracking wired in before launch. Most clients see their organic impressions climb within 6 weeks.",
+    deliverables: [
+      {
+        iconName: "Target",
+        title: "Conversion-first copy architecture",
+        description:
+          "Hero headline, value prop, social proof, objection handling, and CTA — structured to match the visitor's intent signal. No guessing; modelled on what converts in your category.",
+      },
+      {
+        iconName: "Zap",
+        title: "95+ Lighthouse on real devices",
+        description:
+          "Next.js with ISR or static generation, next/image for every asset, critical CSS inlined, and no render-blocking scripts. LCP under 1.2s on a real 4G connection, not a lab test.",
+      },
+      {
+        iconName: "Search",
+        title: "SEO metadata & schema markup",
+        description:
+          "Server-rendered title, description, canonical, hreflang, OG tags, Twitter card, JSON-LD WebPage and FAQPage schema. Everything Google needs to understand and surface the page.",
+      },
+      {
+        iconName: "BarChart3",
+        title: "Analytics & conversion tracking",
+        description:
+          "GTM container, GA4 event tracking, and a goal setup for the primary CTA. Optionally Plausible or Fathom for privacy-first analytics. You know exactly where visitors drop off.",
+      },
+      {
+        iconName: "TrendingUp",
+        title: "A/B variant ready",
+        description:
+          "Component structure designed for easy A/B testing — swap headlines, CTAs, or hero sections without touching the page template. Integrates with your split-testing tool of choice.",
+      },
+      {
+        iconName: "Smartphone",
+        title: "Mobile-first & accessible",
+        description:
+          "Designed for the viewport where most of your traffic lands. WCAG 2.1 AA, semantic HTML, keyboard navigable, and tested on real devices — not just Chrome DevTools.",
+      },
+    ],
+    techStack: [
+      { label: "Framework", items: ["Next.js", "React", "TypeScript", "Astro"] },
+      { label: "Styling", items: ["Tailwind CSS", "Framer Motion", "shadcn/ui"] },
+      { label: "Analytics", items: ["GA4", "GTM", "Plausible", "Hotjar"] },
+      { label: "Deploy", items: ["Vercel", "Cloudflare Pages", "Netlify"] },
+    ],
+    process: [
+      {
+        title: "Brief & keyword research",
+        description:
+          "I review your offer, target audience, and primary keyword. You get a one-page brief confirming the intent match, page structure, and delivery timeline.",
+      },
+      {
+        title: "Copy outline & wireframe",
+        description:
+          "A section-by-section content outline — headlines, sub-copy, social proof placement, and CTAs — agreed in writing before any design or code.",
+      },
+      {
+        title: "Build & optimise",
+        description:
+          "Page built in Next.js with Lighthouse CI running on every commit. I don't ship until LCP, CLS, and INP all pass the budget.",
+      },
+      {
+        title: "Launch & track",
+        description:
+          "Analytics verified, schema validated in Rich Results Test, sitemap submitted, and a 7-day post-launch check to confirm indexation and Core Web Vitals on real traffic.",
+      },
+    ],
+    proof: [
+      { value: "95+", label: "Lighthouse on every page shipped" },
+      { value: "<1.2s", label: "LCP target on real 4G connection" },
+      { value: "48h", label: "Delivery time for a single-section page" },
+      { value: "30%", label: "Average conversion lift reported by clients" },
+    ],
+    pricing: [
+      {
+        name: "Single Page",
+        startingFrom: "$800",
+        bestFor: "Product launches, event sign-ups, waitlists",
+        bullets: [
+          "Up to 6 sections",
+          "SEO metadata & schema",
+          "Analytics setup",
+          "Delivered in 2–4 days",
+        ],
+      },
+      {
+        name: "Campaign",
+        startingFrom: "$2,500",
+        popular: true,
+        bestFor: "SaaS, agency, or product-led growth teams",
+        bullets: [
+          "3–5 landing pages with shared design system",
+          "A/B variant per page",
+          "Full analytics funnel tracking",
+          "Delivered in 1–2 weeks",
+        ],
+      },
+      {
+        name: "Full Funnel",
+        startingFrom: "$5,000",
+        bestFor: "Paid ads + SEO teams needing a full funnel",
+        bullets: [
+          "5–10 pages: ads, organic, and retargeting",
+          "Lead capture + CRM integration",
+          "Split-test framework wired in",
+          "Delivered in 2–4 weeks",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How long does a landing page take to build?",
+        a: "A single-section waitlist or event page: 24–48 hours. A full product landing page with 6 sections, animations, and analytics: 3–5 days. A multi-page campaign: 1–2 weeks. Timelines start from the moment copy is agreed.",
+      },
+      {
+        q: "Do you write the copy or do I provide it?",
+        a: "Both options work. I can write the copy structure based on your brief and product positioning — or you can provide copy and I'll build around it. Copy-first delivery is faster; I recommend you provide at least bullet points for each section if you have them.",
+      },
+      {
+        q: "Can you match our existing brand/design?",
+        a: "Yes — I work from Figma files, brand guidelines, or an existing site to match style and feel. If you have no design, I build using a clean design system and can match any style direction you describe.",
+      },
+      {
+        q: "Will the page rank on Google?",
+        a: "Technical SEO is handled: server-rendered markup, valid schema, fast load, and proper metadata. Ranking also depends on domain authority, content quality, and link building — I handle the on-page foundation; broader SEO strategy is a separate engagement.",
+      },
+      {
+        q: "Can you integrate with our CRM or email tool?",
+        a: "Yes — HubSpot, Mailchimp, ConvertKit, ActiveCampaign, Klaviyo, or a custom API integration. Form submissions can go directly into your CRM, trigger an automation, or land in a spreadsheet. You decide.",
+      },
+    ],
+    related: ["frontend-development", "web-development", "seo", "performance-optimization"],
+  },
+
+  // ---------------------------------------------------------------- WORDPRESS
+  {
+    slug: "wordpress-development",
+    category: "development",
+    iconName: "Globe",
+    metaTitle: "WordPress Development Services — Custom Themes, WooCommerce | Smit Parekh",
+    metaDescription:
+      "Custom WordPress development: bespoke themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js. 95+ Lighthouse, no bloated page builders. Free quote in 24 hours.",
+    keywords: [
+      "WordPress development services",
+      "custom WordPress theme developer",
+      "WooCommerce development",
+      "headless WordPress developer",
+      "WordPress developer for hire",
+      "WordPress Next.js headless",
+      "Gutenberg block development",
+      "WordPress performance optimisation",
+      "bespoke WordPress site",
+      "WordPress WooCommerce store",
+    ],
+    eyebrow: "WordPress Development",
+    heroTitle: "Custom WordPress that actually performs",
+    heroDescription:
+      "Bespoke themes, WooCommerce stores, Gutenberg blocks, and headless setups with Next.js — no page builder bloat, no 50-plugin stacks, no compromises on speed.",
+    lede: "Most WordPress sites score 40–60 on Lighthouse because they're built on themes that prioritise aesthetics over engineering. I build WordPress differently: clean PHP, purpose-built Gutenberg blocks, and a deployment workflow that catches regressions before they reach production. If you're ready for headless, I can wire WordPress as a CMS to a Next.js frontend — best of both worlds.",
+    deliverables: [
+      {
+        iconName: "Code2",
+        title: "Bespoke theme development",
+        description:
+          "No Elementor, Divi, or Avada. A hand-coded child theme or standalone theme with a clean PHP architecture, BEM CSS, and design tokens — maintainable by any developer who comes after me.",
+      },
+      {
+        iconName: "Database",
+        title: "WooCommerce store build",
+        description:
+          "Product catalogue, variable products, payment gateway integration (Stripe, PayPal), shipping rules, tax configuration, and a checkout flow optimised for conversion. Fully manageable by your team via the WooCommerce admin.",
+      },
+      {
+        iconName: "Layers",
+        title: "Custom Gutenberg blocks",
+        description:
+          "React-based Gutenberg blocks registered with block.json, full editor preview, and typed attributes. Your content team gets a drag-and-drop interface; the output is clean, semantic HTML — not div soup.",
+      },
+      {
+        iconName: "Search",
+        title: "SEO-optimised from the ground up",
+        description:
+          "Rank Math or Yoast configured correctly, schema markup, XML sitemap, canonical tags, and OG images. No duplicate meta, no thin pages, no plugin conflicts eating your rankings.",
+      },
+      {
+        iconName: "Zap",
+        title: "Performance-tuned to 95+ Lighthouse",
+        description:
+          "Critical CSS inlined, images served via next-gen formats, lazy loading everywhere, a CDN layer via Cloudflare, and object caching on Redis. WordPress can be fast — it just takes intention.",
+      },
+      {
+        iconName: "Server",
+        title: "Headless WordPress option",
+        description:
+          "WordPress as a content back-end, Next.js as the front-end. WPGraphQL or the REST API, ISR for instant page loads, and a full preview mode so editors see exactly what will publish. Keep the familiar CMS, gain the performance.",
+      },
+    ],
+    techStack: [
+      { label: "WordPress", items: ["PHP 8.2", "WooCommerce", "ACF", "Gutenberg"] },
+      { label: "Headless", items: ["Next.js", "WPGraphQL", "REST API", "ISR"] },
+      { label: "Performance", items: ["Redis", "Cloudflare", "WebP/AVIF", "Critical CSS"] },
+      { label: "Deploy", items: ["WP Engine", "Kinsta", "Cloudflare", "Vercel"] },
+    ],
+    process: [
+      {
+        title: "Discovery & architecture",
+        description:
+          "I review your current site (if any), content structure, and goals. You get a written recommendation: custom theme, WooCommerce build, or headless — with a rationale for each.",
+      },
+      {
+        title: "Theme & component build",
+        description:
+          "Core templates, header/footer, Gutenberg blocks, and post types built in sequence. Deployed to a staging environment — your team can review and edit content in real time.",
+      },
+      {
+        title: "Content migration & SEO",
+        description:
+          "Existing content migrated, URL structure preserved with 301s where needed, SEO plugin configured, and schema validated. Organic traffic protected from day one.",
+      },
+      {
+        title: "Performance audit & launch",
+        description:
+          "Lighthouse audit, caching configured, CDN wired up, and a final security review. Launched on your hosting with a DNS cutover checklist so there's zero downtime.",
+      },
+    ],
+    proof: [
+      { value: "50+", label: "WordPress sites shipped since 2019" },
+      { value: "95+", label: "Lighthouse score on every custom theme" },
+      { value: "0", label: "Page builders used — ever" },
+      { value: "<2s", label: "LCP target on WooCommerce product pages" },
+    ],
+    pricing: [
+      {
+        name: "Custom Theme",
+        startingFrom: "$2,000",
+        bestFor: "Blogs, portfolios, and brochure sites",
+        bullets: [
+          "Fully custom PHP theme, no page builder",
+          "Up to 8 templates",
+          "SEO plugin config + schema",
+          "Delivered in 1–2 weeks",
+        ],
+      },
+      {
+        name: "WooCommerce Store",
+        startingFrom: "$4,000",
+        popular: true,
+        bestFor: "Businesses selling products online",
+        bullets: [
+          "Custom theme + WooCommerce setup",
+          "Stripe & PayPal integration",
+          "Product import, shipping & tax config",
+          "Delivered in 2–4 weeks",
+        ],
+      },
+      {
+        name: "Headless WP + Next.js",
+        startingFrom: "$7,000",
+        bestFor: "High-traffic sites needing maximum performance",
+        bullets: [
+          "Next.js frontend + WordPress CMS",
+          "WPGraphQL or REST API layer",
+          "ISR, preview mode, Vercel deploy",
+          "Delivered in 3–5 weeks",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Why custom theme over Elementor or Divi?",
+        a: "Page builders generate 10–20× more HTML than hand-coded themes, block the render thread with large JS bundles, and create content that's nearly impossible to migrate away from. A custom theme gives you clean output, full design control, and a Lighthouse score that doesn't embarrass you.",
+      },
+      {
+        q: "Can you migrate my existing site to a custom theme?",
+        a: "Yes. I export your current content, rebuild the theme from scratch, and migrate posts, pages, products, and media. URL structure is preserved with 301 redirects where anything changes. Organic traffic is protected throughout.",
+      },
+      {
+        q: "What hosting do you recommend?",
+        a: "WP Engine and Kinsta for managed WordPress with Redis and a built-in CDN. Cloudflare on top of either for extra edge caching and DDoS protection. For headless, the Next.js frontend deploys to Vercel.",
+      },
+      {
+        q: "Is headless WordPress worth it?",
+        a: "For sites with more than 10K monthly visitors or a content team that needs the WP admin interface, yes. You keep the familiar editing experience and gain Next.js performance. For smaller sites, a well-optimised custom theme is more cost-effective.",
+      },
+      {
+        q: "Do you provide ongoing maintenance?",
+        a: "Yes — monthly retainers cover WordPress core/plugin updates, security patches, uptime monitoring, and a monthly Lighthouse audit to catch performance regressions early. Most clients sign on for at least 3 months post-launch.",
+      },
+    ],
+    related: ["web-development", "ecommerce-development", "seo", "performance-optimization"],
+  },
+
+  // ---------------------------------------------------------------- MOBILE APP
+  {
+    slug: "mobile-app-development",
+    category: "development",
+    iconName: "Smartphone",
+    metaTitle: "Mobile App Development — React Native, iOS & Android | Smit Parekh",
+    metaDescription:
+      "Cross-platform mobile app development with React Native and Expo. One codebase for iOS and Android, TypeScript strict, Expo EAS build pipeline, and App Store submission handled. Free quote in 24 hours.",
+    keywords: [
+      "mobile app development services",
+      "React Native developer",
+      "iOS and Android app development",
+      "Expo app development",
+      "cross-platform mobile app",
+      "freelance React Native developer",
+      "mobile app developer for hire",
+      "React Native TypeScript",
+      "mobile MVP development",
+      "app store submission service",
+    ],
+    eyebrow: "Mobile App Development",
+    heroTitle: "iOS & Android apps built once, shipped twice",
+    heroDescription:
+      "React Native with Expo — one TypeScript codebase, two stores, 60% of the cost of going native. From MVP to production with EAS builds, push notifications, and offline support.",
+    lede: "Building separate native apps is rarely justified until you have a team of 10+ engineers. React Native with Expo gives you native performance and platform-specific UI conventions from a single codebase — with the same React patterns your web team already uses. I've shipped apps to both stores and know where the edge cases live.",
+    deliverables: [
+      {
+        iconName: "Code2",
+        title: "React Native & Expo codebase",
+        description:
+          "TypeScript strict, Expo SDK, and a file-based routing with Expo Router. Clean architecture with separated concerns — UI, state, and API layers don't leak into each other.",
+      },
+      {
+        iconName: "Smartphone",
+        title: "iOS & Android native feel",
+        description:
+          "Platform-specific navigation patterns, native gestures via React Native Gesture Handler, and haptic feedback. The app feels at home on both platforms — not like a web view in a shell.",
+      },
+      {
+        iconName: "Webhook",
+        title: "API integration & real-time data",
+        description:
+          "REST or GraphQL API integration with TanStack Query, WebSocket support for real-time features, offline queue for write operations, and optimistic UI updates for instant response.",
+      },
+      {
+        iconName: "Zap",
+        title: "Push notifications",
+        description:
+          "Expo Notifications wired to your back-end with FCM and APNs. Targeted, scheduled, and silent push notifications — with deep linking so a tap takes the user exactly where they need to be.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "Offline support & secure storage",
+        description:
+          "SQLite via Expo SQLite or MMKV for local persistence, AsyncStorage replaced with a typed wrapper, and Expo SecureStore for tokens. The app works on a plane, not just with 5G.",
+      },
+      {
+        iconName: "Sparkles",
+        title: "EAS build & App Store submission",
+        description:
+          "Expo EAS for OTA updates and store builds. I handle the Apple Developer Program setup, provisioning profiles, Play Console listing, screenshots, and the review submission. You just approve.",
+      },
+    ],
+    techStack: [
+      { label: "App", items: ["React Native", "Expo SDK", "TypeScript", "Expo Router"] },
+      { label: "State & data", items: ["TanStack Query", "Zustand", "MMKV", "SQLite"] },
+      { label: "Backend", items: ["Node.js", "Supabase", "Firebase", "Pusher"] },
+      { label: "Deploy", items: ["EAS Build", "App Store", "Google Play", "OTA updates"] },
+    ],
+    process: [
+      {
+        title: "Scoping & architecture",
+        description:
+          "Define screens, data flow, auth strategy, and offline behaviour. You get a written spec with wireframe-level screen list and API contract before any code is written.",
+      },
+      {
+        title: "Core flows first",
+        description:
+          "Auth, primary user journey, and data fetching built and running on a real device. You test the app on your phone within the first week — not a simulator demo.",
+      },
+      {
+        title: "Feature build & polish",
+        description:
+          "Screen-by-screen delivery with OTA updates pushed via EAS after each milestone. Animations, haptics, and edge-case handling added in the final sprint.",
+      },
+      {
+        title: "Store submission",
+        description:
+          "Screenshots, store descriptions, privacy policy, and compliance checklist. I handle the submission and manage reviewer questions — first-time approval rate is high when metadata is done right.",
+      },
+    ],
+    proof: [
+      { value: "2", label: "Apps live on App Store & Google Play" },
+      { value: "~60%", label: "Cost saving vs separate native builds" },
+      { value: "4.5★", label: "Average store rating on shipped apps" },
+      { value: "OTA", label: "Over-the-air updates without review delays" },
+    ],
+    pricing: [
+      {
+        name: "MVP",
+        startingFrom: "$6,000",
+        bestFor: "Founders validating an idea in market",
+        bullets: [
+          "iOS + Android from one codebase",
+          "Auth, 3–5 core flows, basic push notifications",
+          "EAS build + store submission",
+          "Delivered in 4–6 weeks",
+        ],
+      },
+      {
+        name: "Production App",
+        startingFrom: "$15,000",
+        popular: true,
+        bestFor: "Startups building a full consumer or B2B app",
+        bullets: [
+          "10+ screens, offline support, real-time features",
+          "Design system + animations",
+          "Backend API or integration with existing API",
+          "Delivered in 8–12 weeks",
+        ],
+      },
+      {
+        name: "Retainer",
+        startingFrom: "$1,500/mo",
+        bestFor: "Ongoing feature development after launch",
+        bullets: [
+          "Reserved monthly hours",
+          "SDK upgrades & OS compatibility",
+          "OTA updates, bug fixes & new features",
+          "Cancel any time",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "React Native vs native Swift/Kotlin — which should I choose?",
+        a: "React Native is the right call for most startups: one team, one codebase, 60% of the cost, and near-identical performance for CRUD-heavy apps. Go native if you need deep hardware access (AR, Bluetooth LE, custom camera pipelines) or if your team's background is exclusively iOS/Android.",
+      },
+      {
+        q: "How long does Apple App Store review take?",
+        a: "Typically 1–3 days for new submissions, often same-day for updates once the app has history. The most common rejection reasons are missing privacy policy, vague app description, or a broken review account. I prepare everything to avoid those.",
+      },
+      {
+        q: "Can you add a mobile app to our existing web product?",
+        a: "Yes — the most common pattern is a React Native app that talks to the same API as your web app. If your web app is in Next.js or React, a significant portion of the business logic and state patterns can be shared.",
+      },
+      {
+        q: "What's an OTA update and why does it matter?",
+        a: "Expo EAS lets you push JavaScript bundle updates to users' devices without going through the app store review process. Bug fixes, copy changes, and non-native feature additions can ship in minutes instead of days.",
+      },
+      {
+        q: "Do you handle backend development too?",
+        a: "Yes — if you need an API built alongside the app, I can do both. See /services/backend-development or /services/api-development for what that covers. Bundling the two often saves time since API contracts get designed alongside the screens that consume them.",
+      },
+    ],
+    related: ["web-development", "backend-development", "api-development", "saas-development"],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePage | undefined {

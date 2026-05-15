@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { Loader2, Send, CheckCircle2, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -133,13 +133,34 @@ export function ServiceLeadForm({
       )}
     >
       {variant === "card" && !compact && (
-        <div className="mb-2">
-          <h3 className="text-lg font-semibold tracking-tight">
-            Start a conversation
-          </h3>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            Reply within 24 hours. No sales call required upfront.
-          </p>
+        <div className="mb-2 space-y-3">
+          {/* Trust bar */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border bg-muted/30 px-3.5 py-2.5">
+            <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="text-xs font-medium">5.0 · Upwork Top Rated</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              <span className="text-xs text-muted-foreground">Accepting projects</span>
+            </div>
+            <span className="text-xs text-muted-foreground">· Reply in 24h</span>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold tracking-tight">
+              Start a conversation
+            </h3>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              No sales call required. Free quote within 24 hours.
+            </p>
+          </div>
         </div>
       )}
 
@@ -238,6 +259,28 @@ export function ServiceLeadForm({
         )}
         {submitContact.isPending ? "Sending..." : "Send & get a reply in 24h"}
       </Button>
+
+      {variant === "card" && !compact && (
+        <div className="rounded-xl border border-border bg-muted/30 p-3.5">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2.5">
+            What happens next
+          </p>
+          <ol className="space-y-2">
+            {[
+              "I read your message — usually within a few hours",
+              "I reply with 1–2 clarifying questions or a written estimate",
+              "We align on scope, timeline & price — no pressure",
+            ].map((step, i) => (
+              <li key={i} className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/15 text-blue-500 font-semibold text-[10px]">
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <p className="text-xs text-muted-foreground text-center">
         Or email{" "}

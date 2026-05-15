@@ -94,7 +94,7 @@ export async function generateMetadata({
       description: service.metaDescription,
       images: [
         {
-          url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+          url: `${siteConfig.url}/images/services-og/${service.slug}.png`,
           width: 1200,
           height: 630,
           alt: service.heroTitle,
@@ -108,7 +108,7 @@ export async function generateMetadata({
       creator: siteConfig.twitterHandle,
       title: service.metaTitle,
       description: service.metaDescription,
-      images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
+      images: [`${siteConfig.url}/images/services-og/${service.slug}.png`],
     },
   };
 }

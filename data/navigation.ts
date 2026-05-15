@@ -246,9 +246,19 @@ export const navItems: NavItem[] = [
                 description: "End-to-end Next.js + Node.js builds, MVP to scale",
               },
               {
+                href: "/services/landing-page-development",
+                label: "Landing Pages",
+                description: "High-converting pages, 95+ Lighthouse, 48h delivery",
+              },
+              {
                 href: "/services/saas-development",
                 label: "SaaS Development",
                 description: "Multi-tenant apps with Stripe billing & RBAC",
+              },
+              {
+                href: "/services/wordpress-development",
+                label: "WordPress Development",
+                description: "Custom themes, WooCommerce & headless WP + Next.js",
               },
               {
                 href: "/services/shopify-development",
@@ -299,6 +309,21 @@ export const navItems: NavItem[] = [
                 href: "/services/api-development",
                 label: "API Development",
                 description: "REST & GraphQL APIs with auth, rate limits, webhooks",
+              },
+              {
+                href: "/services/devops-consulting",
+                label: "DevOps & Cloud",
+                description: "CI/CD, Docker, AWS architecture & zero-downtime deploys",
+              },
+            ],
+          },
+          {
+            title: "Mobile",
+            items: [
+              {
+                href: "/services/mobile-app-development",
+                label: "Mobile App Development",
+                description: "React Native + Expo — iOS & Android from one codebase",
               },
             ],
           },
