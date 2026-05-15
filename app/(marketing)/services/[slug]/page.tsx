@@ -485,7 +485,7 @@ export default async function ServicePageRoute({
               <thead>
                 <tr>
                   <th className="w-[200px] pb-4 text-left text-xs font-semibold uppercase tracking-widest text-muted-foreground" />
-                  <th className="pb-4 px-4">
+                  <th className="pt-5 pb-4 px-4">
                     <div className="relative rounded-t-2xl bg-gradient-to-b from-blue-500/15 to-blue-500/5 border border-b-0 border-blue-500/30 px-4 pt-4 pb-3 text-center">
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-blue-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-white">
                         <Star className="h-2.5 w-2.5" /> Best value
