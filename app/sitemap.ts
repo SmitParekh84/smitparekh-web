@@ -11,7 +11,7 @@ export const revalidate = 300;
 // Stable lastModified for static routes. Bump this date only when the
 // underlying page content actually changes — Google reads a constantly
 // updated lastModified as a noisy/spammy freshness signal and ignores it.
-const STATIC_LASTMOD = new Date("2026-05-13");
+const STATIC_LASTMOD = new Date("2026-05-16");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
@@ -30,21 +30,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/blog`, priority: 0.85, changeFrequency: "weekly", lastModified, images: [`${base}/images/smit-parekh-blog-web-development.png`] },
     { url: `${base}/free-tools`, priority: 0.9, changeFrequency: "weekly", lastModified, images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/resume`, priority: 0.6, changeFrequency: "yearly", lastModified, images: [defaultImage] },
-    { url: `${base}/for-students`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/for-students`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [`${base}/images/for-students.png`] },
     { url: `${base}/faq`, priority: 0.7, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/changelog`, priority: 0.6, changeFrequency: "weekly", lastModified, images: [defaultImage] },
     { url: `${base}/privacy-policy`, priority: 0.3, changeFrequency: "yearly", lastModified },
     { url: `${base}/terms`, priority: 0.3, changeFrequency: "yearly", lastModified },
     { url: `${base}/sitemap-html`, priority: 0.4, changeFrequency: "monthly", lastModified },
-    { url: `${base}/react-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/nextjs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/nodejs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/typescript-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/full-stack-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/nestjs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/saas-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/api-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/postgresql-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/react-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-react-developer.png`] },
+    { url: `${base}/nextjs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-nextjs-developer.png`] },
+    { url: `${base}/nodejs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-nodejs-developer.png`] },
+    { url: `${base}/typescript-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-typescript-developer.png`] },
+    { url: `${base}/full-stack-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-full-stack-developer.png`] },
+    { url: `${base}/nestjs-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-nestjs-developer.png`] },
+    { url: `${base}/saas-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-saas-developer.png`] },
+    { url: `${base}/api-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-api-developer.png`] },
+    { url: `${base}/postgresql-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-postgresql-developer.png`] },
+    { url: `${base}/aws-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/wordpress-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/react-native-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/production-nextjs`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-vercel-guide`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
   ];
@@ -78,7 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
     changeFrequency: "monthly" as const,
     lastModified: STATIC_LASTMOD,
-    images: [defaultImage],
+    images: [`${base}/images/services-og/${s.slug}.png`],
   }));
 
   const toolRoutes: MetadataRoute.Sitemap = toolsSEO.map(({ slug }) => ({
