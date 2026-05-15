@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Hire a WordPress Developer – Custom Themes & WooCommerce | Smit Parekh",
     description:
       "Custom WordPress themes, WooCommerce stores, and headless WP + Next.js. 95+ Lighthouse, no page builders. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a WordPress Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-wordpress-developer.png`, width: 1200, height: 630, alt: "Hire a WordPress Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a WordPress Developer – No Page Builders | Smit Parekh",
     description: "Custom WordPress themes, WooCommerce, headless WP. 95+ Lighthouse. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-wordpress-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire WordPress developer", "WordPress developer for hire", "freelance WordPress developer",

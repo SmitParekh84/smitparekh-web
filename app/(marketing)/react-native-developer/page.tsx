@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Hire a React Native Developer – iOS & Android | Smit Parekh",
     description:
       "React Native with Expo — one TypeScript codebase, two stores, 60% cost vs native. App Store submission handled. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire a React Native Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-react-native-developer.png`, width: 1200, height: 630, alt: "Hire a React Native Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a React Native Developer – iOS & Android | Smit Parekh",
     description: "React Native + Expo. iOS & Android from one codebase. App Store submission included. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-react-native-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire React Native developer", "React Native developer for hire", "freelance React Native developer",

@@ -45,9 +45,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/saas-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-saas-developer.png`] },
     { url: `${base}/api-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-api-developer.png`] },
     { url: `${base}/postgresql-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-postgresql-developer.png`] },
-    { url: `${base}/aws-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/wordpress-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    { url: `${base}/react-native-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/aws-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-aws-developer.png`] },
+    { url: `${base}/wordpress-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-wordpress-developer.png`] },
+    { url: `${base}/react-native-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-react-native-developer.png`] },
     { url: `${base}/production-nextjs`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-vercel-guide`, priority: 0.9, changeFrequency: "monthly", lastModified, images: [defaultImage] },
   ];

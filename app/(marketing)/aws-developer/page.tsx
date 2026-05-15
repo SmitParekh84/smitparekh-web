@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Hire an AWS Developer – Production Cloud Architecture | Smit Parekh",
     description:
       "AWS cloud architecture, serverless, CI/CD, and zero-downtime deploys. 99.9% uptime across deployed projects. Serving clients worldwide.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630, alt: "Hire an AWS Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630, alt: "Hire an AWS Developer – Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire an AWS Developer – 99.9% Uptime | Smit Parekh",
     description: "AWS cloud architecture, serverless APIs, CI/CD pipelines. Free architecture review in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
     "hire AWS developer", "AWS developer for hire", "freelance AWS developer",
