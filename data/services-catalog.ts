@@ -1021,6 +1021,790 @@ export const servicePages: ServicePage[] = [
     ],
     related: ["api-development", "backend-development", "web-development", "saas-development"],
   },
+
+  // ---------------------------------------------------------------- MVP DEVELOPMENT
+  {
+    slug: "mvp-development",
+    category: "development",
+    iconName: "Zap",
+    metaTitle: "MVP Development Service — Idea to Live Product in 4–8 Weeks | Smit Parekh",
+    metaDescription:
+      "Investor-ready MVPs built in 4–8 weeks. Full-stack Next.js + Node.js, auth, payments, admin dashboard. Fixed price, no scope creep. Free 24-hour quote.",
+    keywords: [
+      "MVP development service",
+      "minimum viable product development",
+      "build an MVP",
+      "startup MVP developer",
+      "MVP web app development",
+      "SaaS MVP development",
+      "rapid prototyping service",
+      "freelance MVP developer",
+      "hire MVP developer",
+      "investor-ready MVP",
+      "launch MVP fast",
+      "startup product development",
+    ],
+    eyebrow: "MVP Development",
+    heroTitle: "From idea to live product in 4–8 weeks",
+    heroDescription:
+      "Investor-ready MVPs built with the right stack, the right scope, and a fixed price. Ship fast, validate with real users, and raise with confidence.",
+    lede: "Most MVPs fail because they're either over-engineered (takes 6 months, costs $50K) or under-engineered (can't scale past 100 users). I've shipped 20+ MVPs and know exactly where to cut scope without cutting quality — auth, payments, core flows, and a deploy that doesn't embarrass you in a demo.",
+    deliverables: [
+      {
+        iconName: "Code2",
+        title: "Full-stack app with core user flows",
+        description:
+          "Next.js frontend + Node.js API + PostgreSQL database. Typesafe end-to-end, mobile-responsive from day one, and fast enough to impress investors without a loader spinner.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "Authentication & role-based access",
+        description:
+          "Email/password, Google OAuth, or magic links via Supabase Auth or Clerk. User roles and permission guards included — you don't have to bolt them on post-launch.",
+      },
+      {
+        iconName: "Webhook",
+        title: "Payments wired up",
+        description:
+          "Stripe Checkout, subscriptions, and webhooks. Pricing page, trial logic, and a billing portal so users can manage themselves. PCI-compliant from the start.",
+      },
+      {
+        iconName: "Layers",
+        title: "Admin dashboard",
+        description:
+          "Internal dashboard to manage users, view signups, toggle flags, and handle support tasks — without needing direct DB access. Saves hours every week from day one.",
+      },
+      {
+        iconName: "Cloud",
+        title: "Production deploy + CI/CD",
+        description:
+          "Vercel + Supabase (or Railway) with preview environments per branch and a GitHub Actions pipeline. You get a real URL for your pitch deck, not a localhost screenshot.",
+      },
+      {
+        iconName: "FileSearch",
+        title: "Handover documentation",
+        description:
+          "Architecture overview, environment setup guide, and a Loom walkthrough of the codebase. Any developer you hire next can be productive in hours, not weeks.",
+      },
+    ],
+    techStack: [
+      { label: "Frontend", items: ["Next.js 14+", "TypeScript", "Tailwind CSS", "shadcn/ui"] },
+      { label: "Backend", items: ["Node.js", "Express / Hono", "Zod", "Prisma ORM"] },
+      { label: "Database & Auth", items: ["PostgreSQL", "Supabase", "Clerk", "Redis"] },
+      { label: "Payments & Deploy", items: ["Stripe", "Vercel", "Railway", "GitHub Actions"] },
+    ],
+    process: [
+      {
+        title: "Scope session (Day 1)",
+        description:
+          "30-minute call to map the core user journey. We cut anything that doesn't prove the value prop. You get a written scope and fixed quote within 24 hours.",
+      },
+      {
+        title: "Schema & wireframes (Week 1)",
+        description:
+          "Data model, API contracts, and page-level wireframes. Every decision written down before code starts. No re-architecture surprises mid-build.",
+      },
+      {
+        title: "Iterative build (Weeks 2–6)",
+        description:
+          "Weekly deployed previews. Loom walkthroughs at each milestone. Feedback in the PR — nothing waits for a big reveal at the end.",
+      },
+      {
+        title: "Launch & handover (Week 7–8)",
+        description:
+          "Final QA, Lighthouse audit, production deploy, and codebase walkthrough. 30 days of post-launch bug fixes included.",
+      },
+    ],
+    proof: [
+      { value: "20+", label: "MVPs shipped to real users" },
+      { value: "4–8 wks", label: "Average time from kickoff to live" },
+      { value: "Fixed", label: "Price — no scope creep surprises" },
+      { value: "30 days", label: "Post-launch bug-fix support" },
+    ],
+    pricing: [
+      {
+        name: "Lean MVP",
+        startingFrom: "$3,500",
+        bestFor: "Validate a single core loop",
+        bullets: [
+          "1 user type, 3–5 core screens",
+          "Auth + 1 payment flow",
+          "Deployed to Vercel / Supabase",
+          "Delivered in 2–3 weeks",
+        ],
+      },
+      {
+        name: "Full MVP",
+        startingFrom: "$7,500",
+        popular: true,
+        bestFor: "Investor-ready, demo-able product",
+        bullets: [
+          "2 user types (e.g. user + admin)",
+          "Auth, payments, dashboard, onboarding",
+          "5–10 core flows, mobile responsive",
+          "Delivered in 4–6 weeks",
+        ],
+      },
+      {
+        name: "Post-launch Retainer",
+        startingFrom: "$2,000/mo",
+        bestFor: "Iterate after first users",
+        bullets: [
+          "Dedicated hours for new features",
+          "Bug fixes + performance work",
+          "Weekly async standups",
+          "Cancel any time",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How is an MVP different from a full product?",
+        a: "An MVP has exactly one core user journey — the thing that proves your value. Everything else (settings, reports, integrations, secondary flows) is cut. I help you decide what that core is, and we build only that. You can always add more after validation.",
+      },
+      {
+        q: "Can we add features after the MVP ships?",
+        a: "Yes — most clients continue on a monthly retainer after launch to iterate based on real user feedback. The codebase is structured for extension from the start.",
+      },
+      {
+        q: "What if requirements change mid-build?",
+        a: "Small changes are absorbed. Significant scope changes (new entities, new flows) are scoped separately and quoted. Nothing gets added silently — every change is a written decision.",
+      },
+      {
+        q: "Do you help with the product itself, or just the code?",
+        a: "Both. Part of the discovery call is questioning the scope. If a feature adds complexity without adding proof, I'll flag it. Some of the best decisions I've made for clients were cuts, not additions.",
+      },
+      {
+        q: "Will the MVP be able to scale when I get users?",
+        a: "Yes. I use PostgreSQL with proper indexes, a stateless API, and a Vercel/Railway deploy that autoscales. The architecture handles 10K+ daily active users without a rewrite.",
+      },
+    ],
+    related: ["web-development", "saas-development", "api-development", "frontend-development"],
+  },
+
+  // ---------------------------------------------------------------- NEXT.JS DEVELOPMENT
+  {
+    slug: "nextjs-development",
+    category: "development",
+    iconName: "Globe",
+    metaTitle: "Next.js Development Service — App Router, RSC, Vercel | Smit Parekh",
+    metaDescription:
+      "Next.js 14+ development service. App Router, React Server Components, TypeScript, Tailwind, SEO-first builds. 95+ Lighthouse, fast deploys, full-stack or frontend-only.",
+    keywords: [
+      "Next.js development service",
+      "hire Next.js developer",
+      "Next.js App Router developer",
+      "Next.js 14 development",
+      "React Server Components developer",
+      "Next.js full-stack developer",
+      "Next.js frontend developer",
+      "Vercel deployment service",
+      "Next.js SEO development",
+      "Next.js TypeScript developer",
+    ],
+    eyebrow: "Next.js Development",
+    heroTitle: "Next.js 14+ built the way the framework was meant to be used",
+    heroDescription:
+      "App Router, React Server Components, TypeScript strict, Tailwind, and a 95+ Lighthouse score on real data. Frontend-only or full-stack — I'll fit your team.",
+    lede: "I've shipped 15+ Next.js apps since the App Router launched and know exactly where its strengths are (server-first data fetching, ISR, edge middleware) and where teams burn hours needlessly. No config archaeology, no client-side waterfalls, no layout shift.",
+    deliverables: [
+      {
+        iconName: "Code2",
+        title: "App Router with server-first data fetching",
+        description:
+          "Layouts, loading states, error boundaries, route groups, and parallel routes done correctly. Zero client-side waterfalls — data arrives before paint.",
+      },
+      {
+        iconName: "Search",
+        title: "SEO built into the framework",
+        description:
+          "generateMetadata per page, JSON-LD schema, dynamic OG images, sitemap.xml, robots.txt, and canonical URLs. No plugin layer — native Next.js APIs only.",
+      },
+      {
+        iconName: "Zap",
+        title: "95+ Lighthouse on production traffic",
+        description:
+          "Image optimization with next/image and blur placeholders, font subsetting with next/font, code splitting, and Largest Contentful Paint consistently under 2.5 seconds.",
+      },
+      {
+        iconName: "Layers",
+        title: "Component architecture that scales",
+        description:
+          "Shared UI primitives, design-token-based Tailwind setup, server vs client boundary strategy documented. Your next hire can contribute from day one.",
+      },
+      {
+        iconName: "Cloud",
+        title: "Vercel + GitHub Actions CI",
+        description:
+          "Preview environments on every PR, production deploys on merge, edge caching for static routes, and error alerting wired up before you touch a real user.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "TypeScript strict mode throughout",
+        description:
+          "No implicit any, no type assertions, no ts-ignore. Every component, hook, API route, and server action is typed end-to-end including environment variables.",
+      },
+    ],
+    techStack: [
+      { label: "Framework", items: ["Next.js 14+", "React 19", "TypeScript 5", "Turbopack"] },
+      { label: "Styling", items: ["Tailwind CSS v4", "shadcn/ui", "Framer Motion", "CSS Modules"] },
+      { label: "Data", items: ["TanStack Query", "Prisma", "Supabase", "tRPC"] },
+      { label: "Deploy", items: ["Vercel", "Edge Middleware", "ISR", "GitHub Actions"] },
+    ],
+    process: [
+      {
+        title: "Architecture review",
+        description:
+          "Which pages are static, dynamic, or ISR? Where do server vs client components split? Data-fetching strategy defined before a component is written.",
+      },
+      {
+        title: "Design-to-code",
+        description:
+          "Figma or wireframes converted to reusable components with Tailwind tokens, responsive breakpoints, and accessibility built in.",
+      },
+      {
+        title: "Integration & testing",
+        description:
+          "API routes, auth, third-party SDKs, and a Playwright smoke suite on the critical paths. Lighthouse CI gating on every PR.",
+      },
+      {
+        title: "Deploy & handover",
+        description:
+          "Production Vercel config, team access, environment variables documented, codebase walkthrough, and 30 days of post-launch support.",
+      },
+    ],
+    proof: [
+      { value: "15+", label: "Next.js apps shipped with App Router" },
+      { value: "95+", label: "Lighthouse on production, not labs" },
+      { value: "<2.5s", label: "LCP on all delivered projects" },
+      { value: "0", label: "Client-side waterfalls shipped to production" },
+    ],
+    pricing: [
+      {
+        name: "Frontend only",
+        startingFrom: "$2,500",
+        bestFor: "Designs or migrations to Next.js",
+        bullets: [
+          "App Router + TypeScript + Tailwind",
+          "SEO metadata + Lighthouse audit",
+          "Vercel deploy + preview environments",
+          "Delivered in 1–3 weeks",
+        ],
+      },
+      {
+        name: "Full-stack Next.js",
+        startingFrom: "$6,000",
+        popular: true,
+        bestFor: "Complete app or product build",
+        bullets: [
+          "App Router + API routes or separate Node.js API",
+          "Auth, DB, edge caching, CI/CD",
+          "95+ Lighthouse + FAQPage / JSON-LD schema",
+          "Delivered in 3–6 weeks",
+        ],
+      },
+      {
+        name: "Migration",
+        startingFrom: "$4,000",
+        bestFor: "Pages Router or CRA → App Router",
+        bullets: [
+          "Component-by-component migration plan",
+          "Zero downtime, branch-per-feature",
+          "Performance before/after report",
+          "Timeline depends on app size",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Should I use the App Router or Pages Router?",
+        a: "App Router for all new projects — it's where Next.js investment is going. If you're on Pages Router and your app works, migrating just to migrate isn't worth it unless you're hitting specific limitations (ISR granularity, layouts, streaming). I'll tell you honestly.",
+      },
+      {
+        q: "Can you migrate our existing React / CRA app to Next.js?",
+        a: "Yes. I do this by building the Next.js shell alongside the existing app and migrating route-by-route. No big-bang rewrites. Each route is tested and deployed before the next one is touched.",
+      },
+      {
+        q: "Do you work frontend-only, or full-stack?",
+        a: "Both. I can build the Next.js frontend and integrate it against your existing API, or I can build the API too. Whichever fits your team.",
+      },
+      {
+        q: "How do you hit 95+ Lighthouse consistently?",
+        a: "Image lazy loading and correct sizing with next/image, font subsetting with next/font, server-side rendering so there's no JS blocking the first paint, and zero render-blocking third-party scripts. I measure on real devices, not the Lighthouse desktop emulator.",
+      },
+    ],
+    related: ["web-development", "frontend-development", "react-development", "performance-optimization"],
+  },
+
+  // ---------------------------------------------------------------- REACT DEVELOPMENT
+  {
+    slug: "react-development",
+    category: "development",
+    iconName: "Layers",
+    metaTitle: "React Development Service — SPAs, Dashboards, Component Libraries | Smit Parekh",
+    metaDescription:
+      "React development service for SPAs, admin dashboards, design systems, and component libraries. TypeScript, TanStack Query, Vite, Tailwind. Senior-only work.",
+    keywords: [
+      "React development service",
+      "hire React developer",
+      "React SPA development",
+      "React dashboard development",
+      "React component library development",
+      "React TypeScript developer",
+      "custom React application",
+      "React TanStack Query developer",
+      "senior React developer for hire",
+      "React design system development",
+      "React Vite development",
+    ],
+    eyebrow: "React Development",
+    heroTitle: "React apps that ship fast and stay maintainable",
+    heroDescription:
+      "SPAs, data-heavy dashboards, and component libraries in React with TypeScript, TanStack Query, and a component architecture your team can extend without fear.",
+    lede: "Most React codebases become unmaintainable within 12 months — not because React is bad, but because prop drilling, inconsistent state patterns, and no component boundaries. I've refactored enough of these to know what to build right the first time: clear data-fetching boundaries, a typed component API, and a design system that doesn't fight the product.",
+    deliverables: [
+      {
+        iconName: "Layers",
+        title: "Component library with typed API",
+        description:
+          "Atomic components (Button, Input, Modal, Table) up to feature-level blocks (DataTable, FilterBar, DashboardCard). Props documented with TypeScript — no reading source code to understand usage.",
+      },
+      {
+        iconName: "Zap",
+        title: "TanStack Query data layer",
+        description:
+          "Typed query hooks per resource, optimistic updates, background refresh, and error boundaries. Every loading and error state handled — no empty screens or silent failures.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "TypeScript strict mode, no exceptions",
+        description:
+          "No any, no non-null assertions, no ts-ignore. Inference used where natural, explicit types where safety matters. Codebase that the next developer can trust.",
+      },
+      {
+        iconName: "Target",
+        title: "Performance by default",
+        description:
+          "React.memo, useMemo, and useCallback used correctly (not everywhere). Code-split by route with React.lazy and Suspense. Bundle analysed and trimmed before handover.",
+      },
+      {
+        iconName: "Database",
+        title: "State management that fits",
+        description:
+          "Zustand for client state, TanStack Query for server state. Context only where it belongs (theme, auth). No Redux unless the team specifically needs it.",
+      },
+      {
+        iconName: "FileSearch",
+        title: "Testing & documentation",
+        description:
+          "Vitest + React Testing Library on critical paths. Component stories in Storybook if a library is being built. README per module explaining the data flow.",
+      },
+    ],
+    techStack: [
+      { label: "Core", items: ["React 18+", "TypeScript 5", "Vite", "React Router v7"] },
+      { label: "Data", items: ["TanStack Query", "Axios", "Zod", "Zustand"] },
+      { label: "UI", items: ["Tailwind CSS", "shadcn/ui", "Radix UI", "Framer Motion"] },
+      { label: "Quality", items: ["Vitest", "React Testing Library", "Storybook", "ESLint"] },
+    ],
+    process: [
+      {
+        title: "Component audit (existing apps)",
+        description:
+          "For existing codebases: identify the duplicated components, inconsistent patterns, and biggest pain points before writing a line of new code.",
+      },
+      {
+        title: "Design system setup",
+        description:
+          "Token-based Tailwind config, primitive components, and a naming convention that scales. Built once, used everywhere.",
+      },
+      {
+        title: "Feature build",
+        description:
+          "Features built in vertical slices: route → data hook → component tree → tests. Deployed previews per PR so stakeholders can review on real devices.",
+      },
+      {
+        title: "Handover",
+        description:
+          "Bundle size report, component documentation, and a Loom codebase walkthrough. Your team owns it from day one.",
+      },
+    ],
+    proof: [
+      { value: "5+", label: "Years of React in production" },
+      { value: "10+", label: "React apps from scratch or refactored" },
+      { value: "TypeScript", label: "Strict mode — no implicit any anywhere" },
+      { value: "0", label: "Redux installs in the last 3 years" },
+    ],
+    pricing: [
+      {
+        name: "Component library",
+        startingFrom: "$2,000",
+        bestFor: "Design system or shared UI package",
+        bullets: [
+          "Typed component API with Tailwind",
+          "Storybook stories + usage docs",
+          "Published to your npm org or monorepo",
+          "Delivered in 1–2 weeks",
+        ],
+      },
+      {
+        name: "React SPA or dashboard",
+        startingFrom: "$5,000",
+        popular: true,
+        bestFor: "Data-heavy internal tools & apps",
+        bullets: [
+          "TanStack Query data layer + auth",
+          "Role-based views + optimistic updates",
+          "Responsive, tested, Lighthouse-audited",
+          "Delivered in 3–5 weeks",
+        ],
+      },
+      {
+        name: "Retainer",
+        startingFrom: "$2,000/mo",
+        bestFor: "Ongoing feature development",
+        bullets: [
+          "Dedicated weekly hours",
+          "New screens, components, bug fixes",
+          "Async standups + weekly review",
+          "Cancel any time",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Next.js or plain React — which should I use?",
+        a: "If you need SEO, server-side rendering, or an API layer — use Next.js. If you're building a fully authenticated SPA (dashboard, admin tool, internal app) where SEO doesn't matter and you already have an API — plain React with Vite is simpler and ships faster.",
+      },
+      {
+        q: "Can you refactor our existing React codebase?",
+        a: "Yes. I start with a component and data-flow audit, identify the worst pain points, and refactor incrementally. No big-bang rewrites — you ship features throughout the engagement.",
+      },
+      {
+        q: "Do you build Storybook design systems?",
+        a: "Yes. For teams with multiple apps or a shared component library, Storybook with interaction tests and auto-generated docs is a significant productivity multiplier. I'll set it up and document the contribution workflow.",
+      },
+      {
+        q: "We're using Redux, should we migrate to Zustand / TanStack Query?",
+        a: "Often yes — most Redux in 2024 is managing server state that TanStack Query handles better, and local UI state that Zustand handles with a tenth of the boilerplate. I'll audit your Redux usage and recommend only the parts worth migrating.",
+      },
+    ],
+    related: ["frontend-development", "nextjs-development", "web-development", "performance-optimization"],
+  },
+
+  // ---------------------------------------------------------------- PERFORMANCE OPTIMIZATION
+  {
+    slug: "performance-optimization",
+    category: "development",
+    iconName: "TrendingUp",
+    metaTitle: "Web Performance Optimization — Core Web Vitals, 95+ Lighthouse | Smit Parekh",
+    metaDescription:
+      "Fix slow websites. Core Web Vitals (LCP, CLS, INP), 95+ Lighthouse, bundle size reduction, image optimization, server response time. Written report + implementation included.",
+    keywords: [
+      "web performance optimization service",
+      "Core Web Vitals fix",
+      "improve Lighthouse score",
+      "website speed optimization",
+      "LCP optimization",
+      "CLS fix",
+      "INP optimization",
+      "website slow fix",
+      "Next.js performance optimization",
+      "React bundle size optimization",
+      "hire performance optimization developer",
+      "PageSpeed Insights improvement",
+    ],
+    eyebrow: "Performance Optimization",
+    heroTitle: "From slow to 95+ Lighthouse — with a written plan and real results",
+    heroDescription:
+      "Core Web Vitals fixed, bundle sizes cut, LCP under 2.5 seconds. I audit, prioritize, and implement — or give you the plan to do it yourself.",
+    lede: "A slow site doesn't just frustrate users — it costs you ranking positions and conversion rate. Studies consistently show a 100ms increase in page load time drops conversions by 1%. I've taken sites from 38 → 97 Lighthouse and know the exact sequence: measure on real users, find the 20% of fixes that unlock 80% of the score, and implement without regressions.",
+    deliverables: [
+      {
+        iconName: "FileSearch",
+        title: "Performance audit report",
+        description:
+          "Full analysis with Lighthouse, WebPageTest, and Chrome UX Report (real-user CrUX data). Every issue severity-ranked by impact on LCP, CLS, INP, and TTFB — with implementation instructions.",
+      },
+      {
+        iconName: "Zap",
+        title: "LCP under 2.5 seconds",
+        description:
+          "Largest Contentful Paint fixed via image optimization (next/image, AVIF/WebP, preload hints), critical CSS inlining, server response time improvements, and removing render-blocking resources.",
+      },
+      {
+        iconName: "Layers",
+        title: "Bundle size reduction",
+        description:
+          "Webpack Bundle Analyzer or Rollup Visualizer teardown. Tree-shaking dead imports, code-splitting by route, replacing heavy libraries, and lazy-loading below-fold components.",
+      },
+      {
+        iconName: "Search",
+        title: "CLS elimination",
+        description:
+          "Every layout shift tracked to its source: unsized images, late-loading fonts, injected banners, dynamic content without reserved space. Fixed to 0.1 or below.",
+      },
+      {
+        iconName: "Server",
+        title: "Server response time (TTFB)",
+        description:
+          "Database query profiling, N+1 query fixes, Redis caching for hot paths, edge CDN configuration, and API route response-time instrumentation.",
+      },
+      {
+        iconName: "TrendingUp",
+        title: "Before/after evidence",
+        description:
+          "Lighthouse comparison, WebPageTest filmstrip, and a CrUX dashboard showing real-user improvement over 28 days. Stakeholder-ready results you can share.",
+      },
+    ],
+    techStack: [
+      { label: "Measurement", items: ["Lighthouse CI", "WebPageTest", "Chrome UX Report", "Datadog RUM"] },
+      { label: "Frontend", items: ["next/image", "next/font", "Bundle Analyzer", "Preload / Prefetch"] },
+      { label: "Backend", items: ["Redis", "Prisma query logs", "pg_stat_statements", "EXPLAIN ANALYZE"] },
+      { label: "CDN & Infra", items: ["Vercel Edge", "Cloudflare", "AWS CloudFront", "Cache-Control headers"] },
+    ],
+    process: [
+      {
+        title: "Baseline measurement",
+        description:
+          "Lighthouse + WebPageTest + CrUX field data. I measure on real mobile hardware, not just desktop. No fixing what we haven't measured.",
+      },
+      {
+        title: "Prioritised fix plan",
+        description:
+          "Each issue gets an effort vs impact score. The top 5 fixes typically unlock 80% of the score gain. We agree on what's in scope before work starts.",
+      },
+      {
+        title: "Implementation",
+        description:
+          "Fixes shipped in small PRs with before/after Lighthouse diffs. No regressions — Lighthouse CI gates every PR.",
+      },
+      {
+        title: "Evidence report",
+        description:
+          "Final Lighthouse comparison, WebPageTest filmstrip, and 28-day CrUX trend. A document you can use to show stakeholders what changed and why.",
+      },
+    ],
+    proof: [
+      { value: "38→97", label: "Best single-project Lighthouse improvement" },
+      { value: "2×", label: "Organic traffic uplift documented after CWV fixes" },
+      { value: "<2.5s", label: "LCP target on every delivered project" },
+      { value: "0.1", label: "CLS or below on all delivered pages" },
+    ],
+    pricing: [
+      {
+        name: "Audit only",
+        startingFrom: "$500",
+        bestFor: "Get the plan, implement yourself",
+        bullets: [
+          "Full Lighthouse + WebPageTest + CrUX analysis",
+          "Severity-ranked issue list with fix instructions",
+          "30-min walkthrough call",
+          "Delivered in 3 business days",
+        ],
+      },
+      {
+        name: "Audit + Implementation",
+        startingFrom: "$2,500",
+        popular: true,
+        bestFor: "Full fix on a live production site",
+        bullets: [
+          "Full audit as above",
+          "Top-priority fixes implemented",
+          "Lighthouse CI added to your pipeline",
+          "Before/after evidence report",
+        ],
+      },
+      {
+        name: "Ongoing monitoring",
+        startingFrom: "$800/mo",
+        bestFor: "Prevent regressions as you ship",
+        bullets: [
+          "Monthly Lighthouse + CrUX review",
+          "Regression alerts + fix PRs",
+          "Quarterly full audit",
+          "Cancel any time",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Our Lighthouse score is good in the tool, but real users report it's slow. Why?",
+        a: "Lighthouse desktop emulates a fast CPU and fast network. Real users on mobile 4G see different results. I always measure with CrUX (28-day real-user data) and WebPageTest on a throttled mobile connection. The lab score and field score often diverge significantly — field data is what actually affects your Search ranking.",
+      },
+      {
+        q: "Will improving performance affect our SEO?",
+        a: "Yes, directly. Core Web Vitals are a confirmed Google ranking signal. Improving LCP, CLS, and INP to 'Good' thresholds on the CrUX field data removes a ranking suppressor. The effect is usually visible in Search Console within 4–6 weeks.",
+      },
+      {
+        q: "Can you optimize a WordPress / PHP site, or only React/Next.js?",
+        a: "Primarily React, Next.js, and Node.js stacks. For WordPress I can advise on caching strategy, image delivery, and CDN configuration, but I won't implement PHP-level changes.",
+      },
+      {
+        q: "How long do the improvements last?",
+        a: "Performance regresses when new code ships without measurement gates. As part of the engagement I add Lighthouse CI to your pipeline so every PR shows a Lighthouse delta — regressions get caught before they reach production.",
+      },
+    ],
+    related: ["web-development", "nextjs-development", "technical-seo", "frontend-development"],
+  },
+
+  // ---------------------------------------------------------------- SHOPIFY DEVELOPMENT
+  {
+    slug: "shopify-development",
+    category: "development",
+    iconName: "Smartphone",
+    metaTitle: "Headless Shopify Development — Next.js + Storefront API | Smit Parekh",
+    metaDescription:
+      "Headless Shopify development with Next.js and the Storefront API. Custom storefronts, Hydrogen migrations, 95+ Lighthouse, faster checkouts. Free quote in 24 hours.",
+    keywords: [
+      "headless Shopify development",
+      "Shopify Next.js development",
+      "Shopify Storefront API developer",
+      "custom Shopify storefront",
+      "Shopify Hydrogen alternative",
+      "Shopify headless commerce",
+      "hire Shopify developer",
+      "Shopify performance optimization",
+      "Shopify custom frontend",
+      "decoupled Shopify development",
+      "Next.js Shopify developer",
+    ],
+    eyebrow: "Shopify Development",
+    heroTitle: "Headless Shopify storefront that actually converts",
+    heroDescription:
+      "Custom Next.js frontend on top of Shopify's battle-tested checkout and inventory. The flexibility of a bespoke storefront, the reliability of Shopify's backend.",
+    lede: "Shopify's built-in themes are fast to set up but hit a wall when you need custom UX, specific performance targets, or design that doesn't look like every other Shopify store. Going headless gives you a React frontend you fully control — while keeping Shopify's checkout, payments, inventory, and fulfilment working exactly as they do today.",
+    deliverables: [
+      {
+        iconName: "Code2",
+        title: "Next.js storefront with Storefront API",
+        description:
+          "Full product catalogue, collections, cart, and checkout flow via Shopify Storefront API or Hydrogen-compatible GraphQL. Typesafe with auto-generated GQL types.",
+      },
+      {
+        iconName: "Zap",
+        title: "95+ Lighthouse — faster than any Shopify theme",
+        description:
+          "Server-rendered product pages with ISR, next/image for every product photo, and a Time to Interactive under 3 seconds on real mobile hardware. Themes can't match this.",
+      },
+      {
+        iconName: "Layers",
+        title: "Custom UI that matches your brand",
+        description:
+          "Pixel-perfect product pages, collection filters, search, wishlist, and cart drawer — designed to your spec, not limited by a theme's section schema.",
+      },
+      {
+        iconName: "Search",
+        title: "SEO-first product & collection pages",
+        description:
+          "Server-rendered metadata, Product schema, BreadcrumbList schema, automatic sitemap, canonical URLs, and hreflang for international stores. Designed to rank.",
+      },
+      {
+        iconName: "ShieldCheck",
+        title: "Shopify checkout & payments untouched",
+        description:
+          "Shopify Checkout handles payments, fraud protection, Shop Pay, and local payment methods. Nothing custom here — you keep everything Shopify already does well.",
+      },
+      {
+        iconName: "Webhook",
+        title: "Webhooks for inventory & order sync",
+        description:
+          "Real-time stock updates, order confirmation flows, and fulfilment status pushed to your storefront via Shopify webhooks. No stale product data.",
+      },
+    ],
+    techStack: [
+      { label: "Frontend", items: ["Next.js 14+", "TypeScript", "Tailwind CSS", "Framer Motion"] },
+      { label: "Commerce", items: ["Shopify Storefront API", "Shopify Admin API", "GraphQL Codegen", "Shopify Checkout"] },
+      { label: "Search & CMS", items: ["Algolia", "Shopify Search", "Contentful", "Sanity"] },
+      { label: "Deploy", items: ["Vercel", "Cloudflare", "ISR", "Shopify Webhooks"] },
+    ],
+    process: [
+      {
+        title: "Commerce audit",
+        description:
+          "Review your current Shopify setup: products, variants, metafields, markets, and checkout customisations. We identify what headless gives you vs what it complicates before committing.",
+      },
+      {
+        title: "Design & data model",
+        description:
+          "Storefront wireframes, Shopify metafield schema for custom product data, and GraphQL query plan. No frontend work until the data layer is locked.",
+      },
+      {
+        title: "Storefront build",
+        description:
+          "Product pages, collection pages, cart, search, and account flows built iteratively with Vercel preview deploys. Lighthouse gated on every PR.",
+      },
+      {
+        title: "Launch & redirect",
+        description:
+          "DNS cutover plan, 301 redirects from old URLs, Search Console notification, and 30 days of post-launch support. Zero ranking loss on transition.",
+      },
+    ],
+    proof: [
+      { value: "95+", label: "Lighthouse — faster than any theme" },
+      { value: "TypeSafe", label: "GraphQL with auto-generated types" },
+      { value: "0", label: "Changes to Shopify checkout or payments" },
+      { value: "30 days", label: "Post-launch support included" },
+    ],
+    pricing: [
+      {
+        name: "Storefront MVP",
+        startingFrom: "$5,000",
+        bestFor: "New stores or simple catalogues",
+        bullets: [
+          "Home, collection, product, cart pages",
+          "Storefront API integration",
+          "Mobile responsive, 95+ Lighthouse",
+          "Delivered in 3–4 weeks",
+        ],
+      },
+      {
+        name: "Full Custom Storefront",
+        startingFrom: "$12,000",
+        popular: true,
+        bestFor: "High-traffic or design-led brands",
+        bullets: [
+          "All pages + search + account + wishlist",
+          "Algolia or Shopify search",
+          "International markets + hreflang",
+          "Delivered in 6–10 weeks",
+        ],
+      },
+      {
+        name: "Theme → Headless Migration",
+        startingFrom: "$8,000",
+        bestFor: "Replacing an existing Shopify theme",
+        bullets: [
+          "URL parity + 301 redirect plan",
+          "Zero ranking loss on cutover",
+          "Performance before/after report",
+          "Timeline based on page count",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Why go headless instead of using a Shopify theme?",
+        a: "Three main reasons: performance (95+ Lighthouse vs typical theme scores of 40–65), design control (not limited by a theme's section schema), and flexibility (integrate any CMS, loyalty program, or search provider). The trade-off is complexity — it's more expensive to build and maintain. For high-traffic, high-AOV, or design-led brands, the conversion lift justifies it.",
+      },
+      {
+        q: "Does headless Shopify affect checkout?",
+        a: "No — Shopify Checkout (and all its payment methods, Shop Pay, fraud protection) remains completely untouched. The cart is built on your Next.js frontend; checkout happens on Shopify's hosted checkout page.",
+      },
+      {
+        q: "Will we lose SEO rankings when we migrate?",
+        a: "Not if the migration is handled correctly. I build a URL parity map, implement 301 redirects for any changed URLs, keep metadata identical, and notify Google Search Console on launch day. With ISR, pages are server-rendered and indexable from day one.",
+      },
+      {
+        q: "Can you integrate with Shopify Plus features?",
+        a: "Yes — checkout extensibility, custom B2B pricing, market-specific content, and Shopify Functions are all available via the API layer. Plus features are supported but not required.",
+      },
+      {
+        q: "What about Hydrogen (Shopify's official headless framework)?",
+        a: "Hydrogen is great if you want to stay in the Shopify ecosystem long-term. I prefer Next.js when clients want more framework familiarity, better hiring market, and Vercel's ecosystem — but I can also build in Hydrogen if that's the preference.",
+      },
+    ],
+    related: ["ecommerce-development", "web-development", "performance-optimization", "frontend-development"],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePage | undefined {
