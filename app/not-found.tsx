@@ -16,7 +16,7 @@ const popularLinks = [
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/services", label: "Services" },
-  { href: "/tools", label: "Free Tools" },
+  { href: "/free-tools", label: "Free Tools" },
   { href: "/contact", label: "Contact" },
 ];
 

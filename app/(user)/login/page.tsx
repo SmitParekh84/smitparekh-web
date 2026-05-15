@@ -289,7 +289,7 @@ function LoginContent() {
 
             <p className="text-center text-xs text-muted-foreground">
               By signing in you agree to our{" "}
-              <Link href="/privacy" className="underline hover:text-foreground transition-colors">
+              <Link href="/privacy-policy" className="underline hover:text-foreground transition-colors">
                 Privacy Policy
               </Link>
               .
