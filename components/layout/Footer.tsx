@@ -29,16 +29,28 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-border bg-background overflow-hidden">
-      {/* Top accent bar matching the page hero gradient */}
-      <div className="h-1 w-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500" />
+      {/* Top accent bar */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60" />
+      <div className="h-[3px] w-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500" />
 
-      {/* Soft glow */}
+      {/* Dot-grid texture */}
       <div
-        className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[60rem] h-[20rem] rounded-full bg-blue-500/5 blur-3xl"
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(6,40,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      {/* Radial glow */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[72rem] h-[22rem] rounded-full bg-blue-500/6 blur-3xl"
         aria-hidden
       />
 
-      <div className="container mx-auto px-4 py-14 relative">
+      <div className="page-container py-14 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 md:col-span-5 space-y-4">
@@ -112,12 +124,29 @@ export default function Footer() {
                     target={isEmail ? undefined : "_blank"}
                     rel={isEmail ? undefined : "noopener noreferrer"}
                     aria-label={social.label}
-                    className="grid place-items-center w-9 h-9 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-blue-500/40 hover:bg-blue-500/5 transition-all"
+                    className="grid place-items-center w-9 h-9 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-blue-500/50 hover:bg-blue-500/8 hover:scale-105 transition-all duration-150"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
                 );
               })}
+            </div>
+
+            {/* Mini CTA */}
+            <div className="mt-6 rounded-xl border border-blue-500/20 bg-blue-500/5 px-4 py-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-1">
+                Ready to build?
+              </p>
+              <p className="text-sm text-muted-foreground leading-snug mb-3">
+                Let&apos;s turn your idea into a production-ready product.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-500 hover:text-blue-400 transition-colors group"
+              >
+                Start a conversation
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
           </div>
 
@@ -130,7 +159,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/hire-me"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-150"
                 >
                   Hire Me
                 </Link>
@@ -138,7 +167,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-150"
                 >
                   Services
                 </Link>
@@ -146,7 +175,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/for-students"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-150"
                 >
                   For Students
                 </Link>
@@ -154,7 +183,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-150"
                 >
                   Contact
                 </Link>
@@ -183,7 +212,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 transition-all"
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-150"
                   >
                     {link.label}
                   </Link>
@@ -288,13 +317,13 @@ export default function Footer() {
         <Separator className="my-10" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs text-muted-foreground/70 tracking-wide">
             © {year} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 items-center">
             <Link
               href="/sitemap-html"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors"
             >
               Site Map
             </Link>
@@ -302,7 +331,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
