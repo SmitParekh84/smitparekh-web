@@ -70,13 +70,21 @@ const personSchema = {
   "@type": "Person",
   "@id": `${siteConfig.url}/#person`,
   name: "Smit Parekh",
+  givenName: "Smit",
+  familyName: "Parekh",
   url: siteConfig.url,
   jobTitle: "Full-Stack Web Developer",
   description:
     "Full-Stack Web Developer with 4+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
   email: siteConfig.email,
   image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
-  worksFor: { "@type": "Organization", name: "Freelance" },
+  nationality: { "@type": "Country", name: "India" },
+  worksFor: {
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#org`,
+    name: "Smit Parekh - Freelance Web Development",
+    url: siteConfig.url,
+  },
   knowsAbout: [
     "React",
     "Next.js",
@@ -87,12 +95,38 @@ const personSchema = {
     "AWS",
     "Docker",
     "NestJS",
+    "GraphQL",
+    "Full-Stack Web Development",
+    "Technical SEO",
+    "SaaS Development",
   ],
   sameAs: [
     siteConfig.social.linkedin,
     siteConfig.social.github,
     siteConfig.social.x,
     siteConfig.social.instagram,
+    siteConfig.social.upwork,
+  ],
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteConfig.url}/#org`,
+  name: "Smit Parekh - Freelance Web Development",
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/Smit-Logo.svg`,
+  founder: { "@id": `${siteConfig.url}/#person` },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: siteConfig.email,
+    contactType: "customer service",
+    availableLanguage: "English",
+  },
+  areaServed: "Worldwide",
+  sameAs: [
+    siteConfig.social.linkedin,
+    siteConfig.social.github,
     siteConfig.social.upwork,
   ],
 };
@@ -158,6 +192,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <script
         type="application/ld+json"

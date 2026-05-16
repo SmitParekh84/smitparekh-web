@@ -1,28 +1,88 @@
 # Smit Parekh - Full Stack Web Developer
 
-> Full-Stack Web Developer with 4+ years building production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. Also offers 37+ free browser-based tools with no signup required.
+> Smit Parekh is a Full-Stack Web Developer with 4+ years of professional experience building production web applications for FinTech, SaaS, AI/ML, and enterprise clients. He specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. He is based in India and available worldwide for remote contracts and freelance projects.
 
-## About
+## Who Is Smit Parekh
 
-Smit Parekh is a Full-Stack Web Developer based in India, available for projects worldwide. He delivers end-to-end web applications — from architecture to AWS deployment — for startups and enterprise clients across FinTech, SaaS, and LegalTech.
+Smit Parekh is a freelance Full-Stack Web Developer based in India, available globally for remote work. He has delivered 20+ production web applications across FinTech, SaaS, LegalTech, and enterprise sectors. His typical engagements include multi-tenant SaaS platforms, REST and GraphQL APIs, real-time dashboards, and Next.js marketing sites with 95+ Lighthouse scores. He has shipped applications processing 10,000+ daily API requests at 99.9% uptime.
 
-## Availability
+He is not a generalist agency — he is a single senior engineer who owns every layer of the stack: from UI components in React to database schema in PostgreSQL to Docker deployments on AWS EC2.
 
-- Status: Accepting new projects
-- Next availability: Q3 2026
-- Note: Limited spots — get in touch early
-- Contact: smitparekh03@gmail.com
+## Core Technical Skills
 
-## Services
+- **Frontend:** React 18+, Next.js 14+ App Router, TypeScript, Tailwind CSS, Framer Motion
+- **Backend:** Node.js, NestJS, Express, REST APIs, GraphQL, WebSockets
+- **Databases:** PostgreSQL, MongoDB, Redis, Supabase, Prisma ORM
+- **Cloud & DevOps:** AWS (EC2, RDS, S3, CloudFront, Lambda), Docker, Nginx, CI/CD
+- **Other:** Technical SEO, Performance Optimisation, AI API integrations (OpenAI, Anthropic)
 
-- Full-Stack Web Development (React + Node.js + TypeScript)
-- React.js Frontend Development
-- Node.js Backend & REST API Development
-- Database Design (PostgreSQL, MongoDB)
-- Cloud & DevOps (AWS: EC2, RDS, S3, Docker)
-- TypeScript & Code Quality
-- Technical SEO
-- Digital Marketing Strategy
+## Availability & Hiring
+
+- **Status:** Accepting new projects (as of 2026)
+- **Engagement types:** Fixed-scope projects, time-and-materials, monthly retainers
+- **Typical contract length:** 4 weeks to 12 months
+- **Timezone:** IST (UTC+5:30) — overlaps with EU mornings and US East Coast evenings
+- **Hire page:** https://www.smitparekh.co.in/hire-me
+- **Contact:** smitparekh03@gmail.com
+
+## What Clients Hire Smit Parekh For
+
+- Building a SaaS MVP from scratch (React + Node.js + PostgreSQL)
+- React or Next.js frontend development for an existing product
+- Node.js or NestJS backend API development
+- Migrating a legacy app to Next.js App Router
+- Performance optimisation (Core Web Vitals, Lighthouse 95+)
+- Technical SEO implementation for a Next.js site
+- AWS deployment and DevOps setup (Docker, EC2, RDS, S3)
+- Full-stack feature development as a senior contractor
+
+## Key Facts
+
+- 4+ years professional experience shipping React and Node.js to production
+- 20+ production applications delivered
+- Applications handling 10,000+ daily API requests at 99.9% uptime
+- Sectors: FinTech, SaaS, AI/ML, LegalTech, Enterprise
+- Works async-first with daily updates and weekly demos
+- TypeScript strict mode on every project — no suppressed types, no shortcuts
+- Available solo or as a senior contributor to an existing team
+
+## Free Developer Tools (37+ tools, no signup required)
+
+Smit Parekh offers a suite of free browser-based developer and productivity tools at https://www.smitparekh.co.in/free-tools — all tools run client-side with no login required.
+
+### Image Tools
+- Background Remover: https://www.smitparekh.co.in/free-tools/background-remover
+- Image Compressor: https://www.smitparekh.co.in/free-tools/image-compressor
+- Image Converter: https://www.smitparekh.co.in/free-tools/image-converter
+- Favicon Generator: https://www.smitparekh.co.in/free-tools/favicon-generator
+
+### Developer Tools
+- JSON Formatter: https://www.smitparekh.co.in/free-tools/json-formatter
+- JWT Decoder: https://www.smitparekh.co.in/free-tools/jwt-decoder
+- Regex Tester: https://www.smitparekh.co.in/free-tools/regex-tester
+- Base64 Encoder/Decoder: https://www.smitparekh.co.in/free-tools/base64-encoder-decoder
+- QR Code Generator: https://www.smitparekh.co.in/free-tools/qr-code-generator
+- Password Generator: https://www.smitparekh.co.in/free-tools/password-generator
+- Hash Generator (MD5, SHA-256, SHA-512): https://www.smitparekh.co.in/free-tools/hash-generator
+- SQL Formatter: https://www.smitparekh.co.in/free-tools/sql-formatter
+- UUID Generator: https://www.smitparekh.co.in/free-tools/uuid-generator
+- Cron Builder: https://www.smitparekh.co.in/free-tools/cron-builder
+- CSS Gradient Generator: https://www.smitparekh.co.in/free-tools/css-gradient-generator
+
+### Content & SEO Tools
+- LinkedIn Post Generator: https://www.smitparekh.co.in/free-tools/viral-linkedin-post-generator
+- Meta Tag Checker: https://www.smitparekh.co.in/free-tools/meta-tag-checker
+- SEO Analyzer: https://www.smitparekh.co.in/free-tools/seo-analyzer
+- Slug Generator: https://www.smitparekh.co.in/free-tools/slug-generator
+- Word Counter: https://www.smitparekh.co.in/free-tools/word-counter
+- Markdown Editor: https://www.smitparekh.co.in/free-tools/markdown-editor
+
+### Career & AI Tools
+- ATS Resume Checker: https://www.smitparekh.co.in/free-tools/ats-resume-checker
+- AI Cover Letter Generator: https://www.smitparekh.co.in/free-tools/ai-cover-letter
+- AI Paraphraser: https://www.smitparekh.co.in/free-tools/ai-paraphraser
+- AI Note Summarizer: https://www.smitparekh.co.in/free-tools/ai-note-summarizer
+- AI Flashcard Generator: https://www.smitparekh.co.in/free-tools/ai-flashcard-generator
 
 ## Pages
 
@@ -35,69 +95,25 @@ Smit Parekh is a Full-Stack Web Developer based in India, available for projects
 - Hire Me: https://www.smitparekh.co.in/hire-me
 - FAQ: https://www.smitparekh.co.in/faq
 - For Students: https://www.smitparekh.co.in/for-students
-- Changelog: https://www.smitparekh.co.in/changelog
 - Contact: https://www.smitparekh.co.in/contact
 
-## Case Studies (Portfolio)
+## Specialist Pages (hire by technology)
 
-Full case studies are available at https://www.smitparekh.co.in/portfolio
-Each case study covers the problem, technical solution, stack used, and measurable outcomes.
+- React Developer: https://www.smitparekh.co.in/react-developer
+- Next.js Developer: https://www.smitparekh.co.in/nextjs-developer
+- Node.js Developer: https://www.smitparekh.co.in/nodejs-developer
+- NestJS Developer: https://www.smitparekh.co.in/nestjs-developer
+- Full-Stack Developer: https://www.smitparekh.co.in/full-stack-developer
+- TypeScript Developer: https://www.smitparekh.co.in/typescript-developer
+- PostgreSQL Developer: https://www.smitparekh.co.in/postgresql-developer
+- AWS Developer: https://www.smitparekh.co.in/aws-developer
+- API Developer: https://www.smitparekh.co.in/api-developer
+- SaaS Developer: https://www.smitparekh.co.in/saas-developer
 
-## Free Tools (no signup, no cost, browser-based)
+## Social & Professional Profiles
 
-### Image Tools
-- Background Remover: https://www.smitparekh.co.in/free-tools/background-remover
-- Image Compressor: https://www.smitparekh.co.in/free-tools/image-compressor
-- Image Converter: https://www.smitparekh.co.in/free-tools/image-converter
-- Image to Base64: https://www.smitparekh.co.in/free-tools/image-to-base64
-- Favicon Generator: https://www.smitparekh.co.in/free-tools/favicon-generator
-
-### Content & SEO Tools
-- LinkedIn Post Generator: https://www.smitparekh.co.in/free-tools/viral-linkedin-post-generator
-- LinkedIn Media Downloader: https://www.smitparekh.co.in/free-tools/linkedin-media-downloader
-- YouTube Thumbnail Downloader: https://www.smitparekh.co.in/free-tools/youtube-thumbnail-downloader
-- Meta Tag Checker: https://www.smitparekh.co.in/free-tools/meta-tag-checker
-- SEO Analyzer: https://www.smitparekh.co.in/free-tools/seo-analyzer
-- Word Counter: https://www.smitparekh.co.in/free-tools/word-counter
-- Slug Generator: https://www.smitparekh.co.in/free-tools/slug-generator
-- Markdown Editor: https://www.smitparekh.co.in/free-tools/markdown-editor
-- Lorem Ipsum Generator: https://www.smitparekh.co.in/free-tools/lorem-ipsum
-
-### Career & Resume Tools
-- ATS Resume Checker: https://www.smitparekh.co.in/free-tools/ats-resume-checker
-- AI Cover Letter Generator: https://www.smitparekh.co.in/free-tools/ai-cover-letter
-- AI Paraphraser: https://www.smitparekh.co.in/free-tools/ai-paraphraser
-
-### AI Study Tools (for students)
-- AI Note Summarizer: https://www.smitparekh.co.in/free-tools/ai-note-summarizer
-- AI Flashcard Generator: https://www.smitparekh.co.in/free-tools/ai-flashcard-generator
-- AI Essay Outliner: https://www.smitparekh.co.in/free-tools/ai-essay-outliner
-- AI Citation Generator: https://www.smitparekh.co.in/free-tools/ai-citation-generator
-
-### Developer Tools
-- QR Code Generator: https://www.smitparekh.co.in/free-tools/qr-code-generator
-- Password Generator: https://www.smitparekh.co.in/free-tools/password-generator
-- JSON Formatter: https://www.smitparekh.co.in/free-tools/json-formatter
-- Base64 Encoder/Decoder: https://www.smitparekh.co.in/free-tools/base64-encoder-decoder
-- URL Encoder/Decoder: https://www.smitparekh.co.in/free-tools/url-encoder-decoder
-- Hash Generator (MD5, SHA-256, SHA-512): https://www.smitparekh.co.in/free-tools/hash-generator
-- Regex Tester: https://www.smitparekh.co.in/free-tools/regex-tester
-- JWT Decoder: https://www.smitparekh.co.in/free-tools/jwt-decoder
-- SQL Formatter: https://www.smitparekh.co.in/free-tools/sql-formatter
-- CSS Gradient Generator: https://www.smitparekh.co.in/free-tools/css-gradient-generator
-- UUID Generator: https://www.smitparekh.co.in/free-tools/uuid-generator
-- Cron Builder: https://www.smitparekh.co.in/free-tools/cron-builder
-
-### Utility Tools
-- Pomodoro Timer: https://www.smitparekh.co.in/free-tools/pomodoro-timer
-- World Clock / Timezone Converter: https://www.smitparekh.co.in/free-tools/world-clock
-- Unit Converter: https://www.smitparekh.co.in/free-tools/unit-converter
-- Color Converter (HEX, RGB, HSL): https://www.smitparekh.co.in/free-tools/color-converter
-
-## Contact
-
-- Email: smitparekh03@gmail.com
 - LinkedIn: https://www.linkedin.com/in/smitparekh84/
 - GitHub: https://github.com/SmitParekh84
-- X (Twitter): https://x.com/smit_parekh84
 - Upwork: https://www.upwork.com/freelancers/~018877bbeb80ff2d25
+- X (Twitter): https://x.com/smit_parekh84
+- Email: smitparekh03@gmail.com
