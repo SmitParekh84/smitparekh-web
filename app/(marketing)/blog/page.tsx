@@ -65,23 +65,50 @@ export default async function BlogIndexPage() {
   const featured = blogs.find((b) => b.isFeatured) ?? blogs[0];
   const rest = blogs.filter((b) => b._id !== featured?._id);
 
+  const personNode = {
+    "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
+    name: "Smit Parekh",
+    url: siteConfig.url,
+  };
+
   const blogListSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: `${siteConfig.name} - Blog`,
+    "@id": `${siteConfig.url}/blog#blog`,
+    name: `${siteConfig.name} Blog`,
     url: `${siteConfig.url}/blog`,
     description:
       "Articles and engineering notes by Smit Parekh on web development, React, Next.js, Node.js and TypeScript.",
+    inLanguage: "en",
+    author: personNode,
+    publisher: personNode,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}/blog` },
     blogPost: blogs.slice(0, 20).map((b) => ({
       "@type": "BlogPosting",
+      "@id": `${siteConfig.url}/blog/${b.slug}`,
       headline: b.title,
       description: b.excerpt,
       datePublished: b.publishedAt,
-      dateModified: b.updatedAt,
+      dateModified: b.updatedAt || b.publishedAt,
       url: `${siteConfig.url}/blog/${b.slug}`,
-      image: b.coverImage,
-      author: { "@type": "Person", name: b.author, url: siteConfig.url },
+      inLanguage: "en",
+      ...(b.coverImage
+        ? { image: { "@type": "ImageObject", url: b.coverImage, width: 1200, height: 630 } }
+        : {}),
+      author: { "@type": "Person", "@id": `${siteConfig.url}/#person`, name: b.author || "Smit Parekh", url: siteConfig.url },
+      keywords: b.tags?.join(", "),
+      articleSection: b.category,
     })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteConfig.url}/blog` },
+    ],
   };
 
   return (
@@ -89,6 +116,10 @@ export default async function BlogIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <PageHero
