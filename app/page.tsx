@@ -144,6 +144,7 @@ const websiteSchema = {
   url: siteConfig.url,
   description: siteConfig.description,
   inLanguage: "en",
+  dateModified: "2026-05-18",
   author: { "@id": `${siteConfig.url}/#person` },
   publisher: { "@id": `${siteConfig.url}/#person` },
 };
@@ -153,6 +154,8 @@ const profilePageSchema = {
   "@type": "ProfilePage",
   name: "Smit Parekh - Full Stack Developer",
   url: siteConfig.url,
+  datePublished: "2024-01-01",
+  dateModified: "2026-05-18",
   mainEntity: { "@id": `${siteConfig.url}/#person` },
 };
 

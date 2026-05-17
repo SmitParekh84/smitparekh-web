@@ -121,6 +121,8 @@ export default async function ToolPage({ params }: Props) {
         applicationCategory: "WebApplication",
         operatingSystem: "Web Browser",
         inLanguage: "en",
+        datePublished: "2025-01-01",
+        dateModified: "2026-05-18",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -238,6 +240,9 @@ export default async function ToolPage({ params }: Props) {
         {content?.intro && (
           <section className="page-container pt-8">
             <div className="max-w-2xl mx-auto">
+              <h2 className="text-base font-semibold text-foreground mb-2">
+                What is {shortTitle}?
+              </h2>
               <p className="text-[15px] leading-relaxed text-muted-foreground">
                 {content.intro}
               </p>

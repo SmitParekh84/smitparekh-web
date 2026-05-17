@@ -118,10 +118,10 @@ Last updated: 2026-05-16
 ## Next Actions (implement in code)
 
 ### High value — quick wins
-- [ ] Add `dateModified` to all page schemas
-- [ ] Add `Article` schema to `/blog/[slug]/page.tsx`
-- [ ] Add `SoftwareApplication` schema to `/free-tools/[slug]/page.tsx`
-- [ ] Add "What is [tool]?" definition block (first 60 words) to every tool page
+- [x] Add `dateModified` to all page schemas (ProfilePage home/about + SoftwareApplication tools — 2026-05-18)
+- [x] Add `Article` schema to `/blog/[slug]/page.tsx` (was already done — BlogPosting schema present)
+- [x] Add `SoftwareApplication` schema to `/free-tools/[slug]/page.tsx` (was already done — added dateModified/datePublished)
+- [x] Add "What is [tool]?" definition block to every tool page (`<h2>What is {shortTitle}?</h2>` before intro — 2026-05-18)
 
 ### Medium effort
 - [ ] Add `HowTo` schema to tutorial blog posts
