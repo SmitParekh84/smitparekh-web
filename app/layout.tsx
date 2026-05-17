@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
 import { CalProvider } from "@/components/cal/CalProvider";
+import { ScrollToTop } from "@/components/providers/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { siteConfig } from "@/data/site";
@@ -143,6 +144,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <ScrollToTop />
             <ConditionalNavbar featuredNavTools={featuredNavTools} />
             <main className="flex-1">{children}</main>
             <ConditionalFooter />

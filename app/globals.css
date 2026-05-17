@@ -243,6 +243,7 @@
   html {
     @apply font-sans;
     scrollbar-width: none;
+    scroll-behavior: smooth;
   }
   html::-webkit-scrollbar {
     display: none;
