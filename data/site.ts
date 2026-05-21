@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Smit Parekh",
   url: "https://www.smitparekh.co.in",
   description:
-    "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
+    "Senior full stack developer — 4+ years shipping production React, Next.js, Node.js and TypeScript apps for FinTech, SaaS and enterprise teams. Free quote in 24 hours.",
   author: "Smit Parekh",
   email: "smitparekh03@gmail.com",
   twitterHandle: "@smit_parekh84",
@@ -24,6 +24,17 @@ export const siteConfig = {
     "Smit Parekh",
     "Smit Parekh developer",
     "Smit Parekh portfolio",
+    "Smit Parekh project quality",
+    "Smit Parekh professional",
+    "Smit Parekh blog",
+
+    // High-impression queries (from Search Console)
+    "deploy Next.js on Vercel 2026",
+    "Next.js Vercel deployment guide 2026",
+    "how to deploy Next.js app to Vercel step by step",
+    "Vercel Next.js deployment best practices",
+    "Next.js production checklist Vercel",
+    "Vercel zero-config deployment Next.js",
 
     // Role
     "Full Stack Developer",

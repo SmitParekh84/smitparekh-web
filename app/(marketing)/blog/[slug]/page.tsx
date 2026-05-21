@@ -48,12 +48,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
-  const readLabel = blog.readMinutes ? ` · ${blog.readMinutes}-min read` : "";
-  const title = `${blog.title}${readLabel} | Smit Parekh`;
+  const freshnessDate = blog.updatedAt || blog.publishedAt;
+  const freshnessYear = freshnessDate
+    ? new Date(freshnessDate).getFullYear()
+    : null;
+  // Snippet-first description: lead with read time + freshness, then excerpt.
+  // Google often truncates around 155-160 chars on desktop, ~120 on mobile.
+  const descriptionPrefix = [
+    blog.readMinutes ? `${blog.readMinutes}-min read` : null,
+    freshnessYear ? `updated ${freshnessYear}` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  const description = descriptionPrefix
+    ? `${descriptionPrefix}. ${blog.excerpt}`
+    : blog.excerpt;
+  // Bypass the root "%s | Smit Parekh" template so the article title isn't
+  // double-branded. OpenGraph/Twitter keep their own branded titles for shares.
+  const ogTitle = `${blog.title} | Smit Parekh`;
 
   return {
-    title,
-    description: blog.excerpt,
+    title: { absolute: blog.title },
+    description,
     alternates: { canonical: url },
     keywords: [
       blog.title,
@@ -67,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: "en_US",
       siteName: siteConfig.name,
       url,
-      title,
+      title: ogTitle,
       description: blog.excerpt,
       publishedTime: blog.publishedAt,
       modifiedTime: blog.updatedAt,
@@ -92,7 +108,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       site: siteConfig.twitterHandle,
       creator: siteConfig.twitterHandle,
-      title,
+      title: ogTitle,
       description: blog.excerpt,
       ...(blog.coverImage
         ? {

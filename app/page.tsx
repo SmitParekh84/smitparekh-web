@@ -12,18 +12,22 @@ import { siteConfig } from "@/data/site";
 import { faqData } from "@/data/faq";
 
 export const metadata: Metadata = {
-  title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+  title: {
+    absolute:
+      "Smit Parekh — Full Stack Developer for Hire (React, Next.js, Node.js)",
+  },
   description:
-    "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
+    "Senior full stack developer — 4+ years shipping production React, Next.js, Node.js and TypeScript apps for FinTech, SaaS and enterprise teams. Free quote in 24 hours.",
   alternates: { canonical: siteConfig.url },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title:
+      "Smit Parekh — Full Stack Developer for Hire (React, Next.js, Node.js)",
     description:
-      "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS.",
+      "Senior full stack developer — 4+ years shipping production React, Next.js, Node.js and TypeScript apps for FinTech, SaaS and enterprise teams. Free quote in 24 hours.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -38,9 +42,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title:
+      "Smit Parekh — Full Stack Developer for Hire (React, Next.js, Node.js)",
     description:
-      "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps. React, Next.js, Node.js, TypeScript, AWS.",
+      "Senior full stack developer — 4+ years shipping production React, Next.js, Node.js and TypeScript apps for FinTech, SaaS and enterprise teams.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -144,7 +149,7 @@ const websiteSchema = {
   url: siteConfig.url,
   description: siteConfig.description,
   inLanguage: "en",
-  dateModified: "2026-05-18",
+  dateModified: "2026-05-21",
   author: { "@id": `${siteConfig.url}/#person` },
   publisher: { "@id": `${siteConfig.url}/#person` },
 };
@@ -155,7 +160,7 @@ const profilePageSchema = {
   name: "Smit Parekh - Full Stack Developer",
   url: siteConfig.url,
   datePublished: "2024-01-01",
-  dateModified: "2026-05-18",
+  dateModified: "2026-05-21",
   mainEntity: { "@id": `${siteConfig.url}/#person` },
 };
 
