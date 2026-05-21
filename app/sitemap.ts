@@ -11,7 +11,7 @@ export const revalidate = 300;
 // Stable lastModified for static routes. Bump this date only when the
 // underlying page content actually changes — Google reads a constantly
 // updated lastModified as a noisy/spammy freshness signal and ignores it.
-const STATIC_LASTMOD = new Date("2026-05-16");
+const STATIC_LASTMOD = new Date("2026-05-21");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
