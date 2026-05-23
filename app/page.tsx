@@ -70,15 +70,24 @@ const personSchema = {
   "@type": "Person",
   "@id": `${siteConfig.url}/#person`,
   name: "Smit Parekh",
+  alternateName: ["Smit Parikh", "Smit Parekh Developer"],
   givenName: "Smit",
   familyName: "Parekh",
   url: siteConfig.url,
+  mainEntityOfPage: siteConfig.url,
   jobTitle: "Full-Stack Web Developer",
   description:
     "Full-Stack Web Developer with 4+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
   email: siteConfig.email,
   image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  gender: "https://schema.org/Male",
   nationality: { "@type": "Country", name: "India" },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+    addressRegion: "Gujarat",
+  },
+  knowsLanguage: ["en", "hi", "gu"],
   worksFor: {
     "@type": "Organization",
     "@id": `${siteConfig.url}/#org`,
@@ -134,19 +143,29 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteConfig.url}/#website`,
   name: siteConfig.name,
   alternateName: [
     "Smit Parekh - Full Stack Developer",
     "Smit Parekh Portfolio",
     "Smit Parekh Tools",
     "Smit Parekh Dev",
+    "Smit Parikh",
   ],
   url: siteConfig.url,
   description: siteConfig.description,
   inLanguage: "en",
-  dateModified: "2026-05-18",
+  dateModified: "2026-05-23",
   author: { "@id": `${siteConfig.url}/#person` },
   publisher: { "@id": `${siteConfig.url}/#person` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const profilePageSchema = {

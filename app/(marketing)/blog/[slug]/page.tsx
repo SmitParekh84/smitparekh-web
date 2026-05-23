@@ -36,6 +36,25 @@ export async function generateStaticParams() {
   return blogs.map((b) => ({ slug: b.slug }));
 }
 
+// Per-slug SEO overrides for posts whose DB title/excerpt is hurting CTR.
+// Lets us fix SERP titles without an admin-UI edit.
+type SlugOverride = {
+  title?: string;
+  description?: string;
+  robots?: Metadata["robots"];
+};
+const SLUG_SEO_OVERRIDES: Record<string, SlugOverride> = {
+  // GSC (3-mo to 2026-05-23): 5,357 impressions / 0 clicks at pos 7.3.
+  // The DB title is stuffed with "2026" — irrelevant to real searchers.
+  // Override to a click-worthy human title and let it re-earn CTR.
+  "deploy-nextjs-on-vercel-in-2026-a-beginners-guide": {
+    title:
+      "How to Deploy a Next.js App on Vercel — Beginner's Walkthrough | Smit Parekh",
+    description:
+      "Step-by-step beginner's guide to deploying a Next.js app on Vercel: GitHub import, environment variables, preview deployments, and going live. Written by a freelance Next.js developer.",
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const blog = await fetchBlogBySlug(slug);
@@ -49,11 +68,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
   const readLabel = blog.readMinutes ? ` · ${blog.readMinutes}-min read` : "";
-  const title = `${blog.title}${readLabel} | Smit Parekh`;
+  const override = SLUG_SEO_OVERRIDES[blog.slug];
+  const title = override?.title ?? `${blog.title}${readLabel} | Smit Parekh`;
+  const description = override?.description ?? blog.excerpt;
 
   return {
     title,
-    description: blog.excerpt,
+    description,
+    ...(override?.robots ? { robots: override.robots } : {}),
     alternates: { canonical: url },
     keywords: [
       blog.title,
@@ -68,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: siteConfig.name,
       url,
       title,
-      description: blog.excerpt,
+      description,
       publishedTime: blog.publishedAt,
       modifiedTime: blog.updatedAt,
       authors: [blog.author],
@@ -93,7 +115,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       site: siteConfig.twitterHandle,
       creator: siteConfig.twitterHandle,
       title,
-      description: blog.excerpt,
+      description,
       ...(blog.coverImage
         ? {
             images: [

@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { personNode } from "@/lib/seo/schema";
+import { personNode, serviceRatingFields } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -163,9 +163,9 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "Node.js Backend Development",
   description: "Freelance Node.js developer with 4+ years shipping production APIs handling 10,000+ daily requests at 99.9% uptime. NestJS, Express, GraphQL, PostgreSQL, Redis, AWS Certified.",
-  areaServed: "Worldwide",
   url: `${siteConfig.url}/nodejs-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  ...serviceRatingFields(),
 };
 
 const faqSchema = {

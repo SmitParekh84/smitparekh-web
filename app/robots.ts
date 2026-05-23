@@ -8,7 +8,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/dashboard/"],
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/dashboard/",
+          "/login",
+          "/auth/",
+          "/sitemap-html",
+        ],
       },
       // AI search/citation crawlers — allow all for GEO/AEO visibility
       { userAgent: "GPTBot", allow: "/" },          // ChatGPT web search + citations

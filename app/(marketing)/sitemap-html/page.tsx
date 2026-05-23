@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Complete directory of all pages on smitparekh.co.in — developer hire pages, portfolio, free tools, blog, and more.",
   alternates: { canonical: `${siteConfig.url}/sitemap-html` },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 type Page = { href: string; title: string; desc: string };

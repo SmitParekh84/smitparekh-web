@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { personNode } from "@/lib/seo/schema";
+import { personNode, serviceRatingFields } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -161,9 +161,9 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "REST & GraphQL API Development",
   description: "Freelance API developer with 4+ years building production REST and GraphQL APIs. TypeScript strict, JWT auth, rate limiting, Redis caching, and OpenAPI documentation.",
-  areaServed: "Worldwide",
   url: `${siteConfig.url}/api-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  ...serviceRatingFields(),
 };
 
 const faqSchema = {
