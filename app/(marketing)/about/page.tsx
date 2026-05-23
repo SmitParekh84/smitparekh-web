@@ -71,7 +71,7 @@ const profilePageSchema = {
   "@type": "ProfilePage",
   name: "About Smit Parekh - Full Stack Developer",
   url: `${siteConfig.url}/about`,
-  dateModified: "2026-05-18",
+  dateModified: "2026-05-23T00:00:00+05:30",
   mainEntity: {
     "@type": "Person",
     "@id": `${siteConfig.url}/#person`,
