@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { getClientIp, hashIp } from "@/lib/ip-hash";
+import { getCachedCount, incrementCounters, quotaKey } from "@/lib/quota-cache";
 
 /**
  * Quota gate for any tool invocation.
@@ -93,17 +94,23 @@ async function loadCounts(
   const today = new Date().toISOString().slice(0, 10);
 
   if (!isGuest) {
-    const { count } = await admin
-      .from("tool_usage")
-      .select("id", { count: "exact", head: true })
-      .eq("tool_slug", slug)
-      .eq("date", today)
-      .eq("user_id", caller.userId);
+    const used = await getCachedCount(
+      quotaKey(slug, today, "u", caller.userId as string),
+      async () => {
+        const { count } = await admin
+          .from("tool_usage")
+          .select("id", { count: "exact", head: true })
+          .eq("tool_slug", slug)
+          .eq("date", today)
+          .eq("user_id", caller.userId);
+        return count ?? 0;
+      },
+    );
     return {
       ok: true,
       tier: "user",
       quota,
-      used: count ?? 0,
+      used,
       caller,
       isGuest: false,
     };
@@ -114,23 +121,34 @@ async function loadCounts(
     return { ok: false, reason: "missing-session" };
   }
 
-  const [{ count: sessionCount }, { count: ipCount }] = await Promise.all([
-    admin
-      .from("tool_usage")
-      .select("id", { count: "exact", head: true })
-      .eq("tool_slug", slug)
-      .eq("date", today)
-      .eq("session_id", caller.sessionId),
-    admin
-      .from("tool_usage")
-      .select("id", { count: "exact", head: true })
-      .eq("tool_slug", slug)
-      .eq("date", today)
-      .eq("ip_hash", caller.ipHash),
+  const [sCount, iCount] = await Promise.all([
+    getCachedCount(
+      quotaKey(slug, today, "s", caller.sessionId as string),
+      async () => {
+        const { count } = await admin
+          .from("tool_usage")
+          .select("id", { count: "exact", head: true })
+          .eq("tool_slug", slug)
+          .eq("date", today)
+          .eq("session_id", caller.sessionId);
+        return count ?? 0;
+      },
+    ),
+    getCachedCount(
+      quotaKey(slug, today, "i", caller.ipHash),
+      async () => {
+        const { count } = await admin
+          .from("tool_usage")
+          .select("id", { count: "exact", head: true })
+          .eq("tool_slug", slug)
+          .eq("date", today)
+          .eq("ip_hash", caller.ipHash);
+        return count ?? 0;
+      },
+    ),
   ]);
 
-  const sCount = sessionCount ?? 0;
-  const iScaled = Math.ceil((ipCount ?? 0) / Math.max(1, IP_QUOTA_MULTIPLIER));
+  const iScaled = Math.ceil(iCount / Math.max(1, IP_QUOTA_MULTIPLIER));
   const used = Math.max(sCount, iScaled);
 
   return { ok: true, tier: "guest", quota, used, caller, isGuest: true };
@@ -178,6 +196,18 @@ export async function POST(
   if (insertErr) {
     return NextResponse.json({ allowed: true, remaining: null, unlimited: false, tier });
   }
+
+  // Mirror the write into the Redis fast-path counters (best-effort; Supabase
+  // already holds the truth). loadCounts seeded these from the DB above, so the
+  // INCR lands on the correct base even when Redis was enabled mid-day.
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const keys = isGuest
+    ? [
+        quotaKey(slug, todayKey, "s", caller.sessionId as string),
+        quotaKey(slug, todayKey, "i", caller.ipHash),
+      ]
+    : [quotaKey(slug, todayKey, "u", caller.userId as string)];
+  await incrementCounters(keys);
 
   return NextResponse.json({
     allowed: true,
