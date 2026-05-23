@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/resume`,                  priority: 0.5,  changeFrequency: "yearly",  lastModified, images: [defaultImage] },
     { url: `${base}/feedback`,                priority: 0.5,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/changelog`,               priority: 0.5,  changeFrequency: "weekly",  lastModified, images: [defaultImage] },
-    { url: `${base}/sitemap-html`,            priority: 0.4,  changeFrequency: "monthly", lastModified },
+    // /sitemap-html intentionally omitted — page is noindex'd (utility page for humans only).
     { url: `${base}/privacy-policy`,          priority: 0.3,  changeFrequency: "yearly",  lastModified },
     { url: `${base}/terms`,                   priority: 0.3,  changeFrequency: "yearly",  lastModified },
   ];

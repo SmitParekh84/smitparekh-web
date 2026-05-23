@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { personNode } from "@/lib/seo/schema";
+import { personNode, serviceRatingFields } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -162,9 +162,9 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "Full-Stack Web Development",
   description: "Freelance full-stack developer with 4+ years shipping production applications. React, Next.js, NestJS, PostgreSQL, and AWS — one engineer from database to frontend deploy.",
-  areaServed: "Worldwide",
   url: `${siteConfig.url}/full-stack-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  ...serviceRatingFields(),
 };
 
 const faqSchema = {

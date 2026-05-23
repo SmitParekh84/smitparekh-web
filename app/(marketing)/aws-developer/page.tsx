@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { personNode } from "@/lib/seo/schema";
+import { personNode, serviceRatingFields } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -170,9 +170,9 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "AWS Cloud Architecture & DevOps",
   description: "Freelance AWS developer with production experience across EC2, RDS, Lambda, ECS, CDK, and Terraform. CI/CD pipelines, 99.9% uptime, cost optimisation, and zero-downtime deploys.",
-  areaServed: "Worldwide",
   url: `${siteConfig.url}/aws-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements. Free architecture review within 24 hours.", availability: "https://schema.org/InStock" },
+  ...serviceRatingFields(),
 };
 
 const faqSchema = {
