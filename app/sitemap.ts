@@ -64,7 +64,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
     changeFrequency: "monthly" as const,
     lastModified: STATIC_LASTMOD,
-    images: [`${base}/portfolio/${p.slug}/opengraph-image`],
+    // Prefer the real project banner (the image users actually see on the page
+    // and in Google Images) over the synthetic OG card. Falls back to the OG
+    // card only when a project has no uploaded image.
+    images: [
+      p.imageUrl
+        ? optimizeImageUrl(p.imageUrl)
+        : `${base}/portfolio/${p.slug}/opengraph-image`,
+    ],
   }));
 
   const blogs = await fetchAllBlogs();

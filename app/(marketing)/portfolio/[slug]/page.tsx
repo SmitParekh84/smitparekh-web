@@ -150,6 +150,21 @@ function buildSchemas(project: Project) {
     project.imageUrl ||
     `${siteConfig.url}/images/smit-parekh-portfolio-case-studies.png`;
 
+  // Explicit ImageObject so Google Images associates the case-study banner
+  // with THIS page (not the homepage, where the same thumbnail also renders).
+  // primaryImageOfPage + the on-page <figure> below give a strong, single
+  // image→page binding that fixes the "image titled as homepage" problem.
+  const imageObject = {
+    "@type": "ImageObject",
+    "@id": `${url}#primaryimage`,
+    url: image,
+    contentUrl: image,
+    width: 1200,
+    height: 630,
+    caption: `${project.title} — ${project.subtitle}`,
+    representativeOfPage: true,
+  };
+
   const creativeWork = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -157,7 +172,9 @@ function buildSchemas(project: Project) {
     headline: `${project.title} Case Study`,
     description: project.summary,
     url,
-    image,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    image: imageObject,
+    primaryImageOfPage: { "@id": `${url}#primaryimage` },
     inLanguage: "en",
     author: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
     creator: { "@type": "Person", name: "Smit Parekh", url: siteConfig.url },
@@ -288,6 +305,29 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Cover image — renders project.imageUrl ON the case study page itself.
+          Previously this image only existed in OG meta + the homepage portfolio
+          grid, so Google Images attributed it to the homepage. Showing it here
+          with a descriptive alt + figcaption binds the image to this URL. */}
+      {project.imageUrl && (
+        <section className="page-container max-w-4xl -mt-8 sm:-mt-10 relative z-10">
+          <figure className="rounded-2xl overflow-hidden border border-border shadow-lg bg-card">
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title} — ${project.subtitle} (${project.industry} case study by Smit Parekh)`}
+              width={1600}
+              height={900}
+              priority
+              sizes="(max-width: 768px) 100vw, 896px"
+              className="w-full aspect-[16/9] object-cover"
+            />
+            <figcaption className="sr-only">
+              {project.title} — {project.subtitle}. {project.summary}
+            </figcaption>
+          </figure>
+        </section>
+      )}
 
       {/* Project meta */}
       <section className="page-section pt-10 sm:pt-12 pb-0">

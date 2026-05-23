@@ -112,6 +112,25 @@ const ALL_CATEGORY_OPTIONS = Array.from(
   new Set([...SMIT_CATEGORY_OPTIONS, ...MARKETIXPERT_CATEGORY_OPTIONS])
 );
 
+// Resolve an AI-provided category to a value that is guaranteed to exist in the
+// current site's dropdown. Without this, an unmatched category leaves the
+// AppSelect blank (no matching SelectItem) and the post saves with a category
+// the editor never sees. Matching is case-insensitive and ignores spaces around
+// slashes so "ai/ml" or "AI/ML" still resolves to "AI / ML".
+function normalizeCategory(
+  raw: string | undefined,
+  site: "smit" | "marketixpert"
+): string {
+  const options = site === "marketixpert"
+    ? MARKETIXPERT_CATEGORY_OPTIONS
+    : SMIT_CATEGORY_OPTIONS;
+  const fallback = site === "marketixpert" ? "Digital Marketing" : "Web Development";
+  if (!raw || typeof raw !== "string") return fallback;
+  const canon = (s: string) => s.trim().toLowerCase().replace(/\s*\/\s*/g, "/");
+  const target = canon(raw);
+  return options.find((o) => canon(o) === target) ?? fallback;
+}
+
 interface BlogFormProps {
   initialData?: Partial<BackendBlog>;
   onSubmit: (data: BackendBlogInput) => Promise<void>;
@@ -272,7 +291,7 @@ export function BlogForm({
         slug: prev.slug || slugify(ai.title || ""),
         excerpt: ai.excerpt || prev.excerpt,
         content: ai.content || prev.content,
-        category: ai.category || prev.category,
+        category: ai.category ? normalizeCategory(ai.category, prev.site) : prev.category,
         tagsCsv:
           Array.isArray(ai.tags) && ai.tags.length
             ? ai.tags.join(", ")
@@ -307,7 +326,7 @@ export function BlogForm({
         slug: prev.slug || slugify(ai.title || prev.title),
         excerpt: ai.excerpt || prev.excerpt,
         content: ai.content || prev.content,
-        category: ai.category || prev.category,
+        category: ai.category ? normalizeCategory(ai.category, prev.site) : prev.category,
         tagsCsv: Array.isArray(ai.tags) && ai.tags.length ? ai.tags.join(", ") : prev.tagsCsv,
         readMinutes: ai.readMinutes || prev.readMinutes,
       }));
