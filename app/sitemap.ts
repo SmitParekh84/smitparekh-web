@@ -48,13 +48,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/production-nextjs`,       priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-vercel-guide`,     priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/blog-api`,                priority: 0.7,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    // Tier 5 — utility / low-value
-    { url: `${base}/resume`,                  priority: 0.5,  changeFrequency: "yearly",  lastModified, images: [defaultImage] },
+    // Tier 5 — utility (low-value pages omitted from sitemap to concentrate
+    // crawl budget on money pages. Coverage report 2026-05-23 showed 98 URLs
+    // stuck in "Discovered – not indexed" — Google is rationing crawl, so the
+    // sitemap should advertise only pages we genuinely want indexed.
     { url: `${base}/feedback`,                priority: 0.5,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/changelog`,               priority: 0.5,  changeFrequency: "weekly",  lastModified, images: [defaultImage] },
-    // /sitemap-html intentionally omitted — page is noindex'd (utility page for humans only).
-    { url: `${base}/privacy-policy`,          priority: 0.3,  changeFrequency: "yearly",  lastModified },
-    { url: `${base}/terms`,                   priority: 0.3,  changeFrequency: "yearly",  lastModified },
+    // /resume, /privacy-policy, /terms, /sitemap-html intentionally omitted.
+    // They remain crawlable via internal links but don't take up sitemap slots.
   ];
 
   const projects = await fetchAllCaseStudies();
