@@ -354,6 +354,8 @@ Full list lives in `.env.example` / `README.md`. Highlights agents care about:
 | `SUPABASE_SERVICE_ROLE_KEY`       | server   | Bypasses RLS for quota writes / admin reads. Never expose. |
 | `IP_HASH_SALT`                    | server   | Salt for hashing IPs in `tool_usage.ip_hash`               |
 | `IP_QUOTA_MULTIPLIER`             | server   | Default `3` — sessions per NAT before IP cap hits          |
+| `UPSTASH_REDIS_REST_URL`          | server   | Upstash Redis REST endpoint — fast-path cache for tool-usage quota counts. Optional; unset = Supabase `COUNT` fallback. See `lib/redis.ts` + `lib/quota-cache.ts` |
+| `UPSTASH_REDIS_REST_TOKEN`        | server   | Upstash Redis REST token (server-only secret). Pairs with `UPSTASH_REDIS_REST_URL` |
 | `ADMIN_EMAILS`                    | server   | Comma-separated admin email allowlist; empty = locked. **Never use `NEXT_PUBLIC_ADMIN_EMAILS`** — that was removed (leaked admin identity to browser) |
 | `RESEND_API_KEY`                  | server   | Resend API key for sending email                           |
 | `RESEND_FROM`                     | server   | Sender address: `Smit Parekh <noreply@smitparekh.co.in>`  |
