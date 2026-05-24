@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CheckCircle, Clock, XCircle, Copy, Check, BookOpen } from "lucide-react";
+import { CheckCircle, Clock, XCircle, Copy, Check, BookOpen, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -137,6 +137,14 @@ export default function OnboardingPage() {
               Use this key in the <code className="text-xs bg-muted px-1 rounded">X-API-Key</code> header. Keep it secret.
             </p>
           </div>
+
+          <Link
+            href="/dashboard/blog/settings"
+            className={cn(buttonVariants({ variant: "outline" }), "w-full gap-2")}
+          >
+            <Sparkles className="h-4 w-4" />
+            Set up your blog preferences
+          </Link>
 
           <Link
             href="/dashboard/blog/api-docs"

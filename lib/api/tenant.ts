@@ -17,6 +17,8 @@ export interface Tenant {
   // Optional: tenant docs created before this feature shipped won't have it on .lean() reads.
   features?: TenantFeatures;
   blogPreferences?: BlogPreferences;
+  // Feature keys the tenant requested but the admin hasn't granted yet.
+  featureRequests?: string[];
 }
 
 export interface TenantBlog {
@@ -89,6 +91,11 @@ export const tenantApi = {
     api.post<{ success: boolean; data: { content: string } }>(
       "/tenants/me/blogs/ai/improve",
       { content, mode }
+    ),
+  requestFeature: (feature: string) =>
+    api.post<{ success: boolean; message?: string; data: { featureRequests: string[] } }>(
+      "/tenants/me/features/request",
+      { feature }
     ),
 };
 
