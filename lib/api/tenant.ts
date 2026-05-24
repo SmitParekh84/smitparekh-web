@@ -1,4 +1,5 @@
 import { api } from "./client";
+import type { TenantFeatures } from "@/lib/tenant-features";
 
 export interface Tenant {
   _id: string;
@@ -12,6 +13,8 @@ export interface Tenant {
   requestedAt: string;
   approvedAt: string | null;
   approvedBy: string | null;
+  // Optional: tenant docs created before this feature shipped won't have it on .lean() reads.
+  features?: TenantFeatures;
 }
 
 export interface TenantBlog {
@@ -58,6 +61,18 @@ export const tenantApi = {
     form.append("image", file);
     return api.postForm<{ url: string }>("/tenants/me/blogs/upload", form);
   },
+  generateBlog: (prompt: string) =>
+    api.post<{
+      success: boolean;
+      data: {
+        title: string;
+        excerpt: string;
+        content: string;
+        category: string;
+        tags: string[];
+        readMinutes: number;
+      };
+    }>("/tenants/me/blogs/ai/generate", { prompt }),
 };
 
 export const adminTenantApi = {
@@ -80,4 +95,6 @@ export const adminTenantApi = {
     api.get<{ success: boolean; count: number; tenant: AdminTenant; data: TenantBlog[] }>(
       `/admin/tenants/${tenantId}/blogs`
     ),
+  updateFeatures: (id: string, features: Partial<TenantFeatures>) =>
+    api.patch<{ success: boolean; data: AdminTenant }>(`/admin/tenants/${id}/features`, { features }),
 };

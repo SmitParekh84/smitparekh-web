@@ -422,9 +422,9 @@ export const navItems: NavItem[] = [
     ],
   },
   { href: "/blog", label: "Blog" },
+  { href: "/blog-api", label: "Blog API" },
   { href: "/about", label: "About" },
   { href: "/hire-me", label: "Hire Me" },
-  { href: "/feedback", label: "Feedback" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -436,7 +436,7 @@ export const mobileNavItems: NavLink[] = [
   { href: "/for-students", label: "For Students" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
+  { href: "/blog-api", label: "Blog API" },
   { href: "/free-tools", label: "Free Tools" },
-  { href: "/feedback", label: "Feedback" },
   { href: "/contact", label: "Contact" },
 ];

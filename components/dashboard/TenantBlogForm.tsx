@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Star, Eye, EyeOff, FileText } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, FileText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { AppSelect } from "@/components/ui/app-select";
 import { toast } from "@/lib/toast";
 import { TenantCoverImagePicker } from "@/components/dashboard/TenantCoverImagePicker";
+import { useMyTenant, useGenerateMyBlog } from "@/hooks/api/use-tenant";
 import type { TenantBlog } from "@/lib/api/tenant";
 
 const CATEGORY_OPTIONS = [
@@ -74,6 +75,36 @@ export function TenantBlogForm({
 }: TenantBlogFormProps) {
   const router = useRouter();
   const [savingDraft, setSavingDraft] = useState(false);
+
+  const { data: myTenant } = useMyTenant();
+  const aiEnabled = !!myTenant?.features?.aiBlogGeneration;
+  const generateAi = useGenerateMyBlog();
+  const [aiPrompt, setAiPrompt] = useState("");
+
+  async function handleAiGenerate() {
+    const prompt = aiPrompt.trim();
+    if (!prompt) {
+      toast.error("Add a prompt", "Describe what the post should be about.");
+      return;
+    }
+    try {
+      const res = await generateAi.mutateAsync(prompt);
+      const d = res.data;
+      setForm((prev) => ({
+        ...prev,
+        title: d.title || prev.title,
+        slug: prev.slug || slugify(d.title || ""),
+        excerpt: d.excerpt || prev.excerpt,
+        content: d.content || prev.content,
+        category: d.category || prev.category,
+        tagsCsv: d.tags?.length ? d.tags.join(", ") : prev.tagsCsv,
+        readMinutes: d.readMinutes || prev.readMinutes,
+      }));
+      toast.success("Draft generated", "Review and edit before publishing.");
+    } catch {
+      toast.error("Generation failed", "Try again in a moment.");
+    }
+  }
 
   const [form, setForm] = useState({
     title: initialData?.title ?? "",
@@ -160,6 +191,39 @@ export function TenantBlogForm({
 
   return (
     <form onSubmit={handleSubmit} className="w-full space-y-6">
+      {aiEnabled && (
+        <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4">
+          <div className="mb-2 flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400">
+            <Sparkles className="h-4 w-4" />
+            Generate with AI
+          </div>
+          <Textarea
+            rows={2}
+            value={aiPrompt}
+            onChange={(e) => setAiPrompt(e.target.value)}
+            placeholder="e.g. A practical guide to caching in Next.js for small teams"
+            className="resize-y"
+          />
+          <Button
+            type="button"
+            onClick={handleAiGenerate}
+            disabled={generateAi.isPending}
+            className="mt-2 gap-2"
+            size="sm"
+          >
+            {generateAi.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Sparkles className="h-4 w-4" />
+            )}
+            {generateAi.isPending ? "Generating…" : "Generate draft"}
+          </Button>
+          <p className="mt-1.5 text-xs text-muted-foreground">
+            Fills the fields below with an AI draft. You can edit everything before saving.
+          </p>
+        </div>
+      )}
+
       {/* Title */}
       <Field label="Title" required>
         <Input
