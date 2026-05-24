@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Tag } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -139,13 +139,43 @@ export default function ApiDocsPage() {
   }
 
   return (
-    <div className="max-w-3xl space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold">Blog API Documentation</h2>
-        <p className="text-muted-foreground text-sm mt-1">
-          Use these endpoints to manage your blog from any tool or site.
+    <div className="max-w-3xl space-y-6">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-[22px] font-semibold tracking-tight">API docs</h1>
+        <p className="text-[13px] text-muted-foreground">
+          Programmatically create and update posts.
         </p>
       </div>
+
+      {/* Header card */}
+      <Card>
+        <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">
+          <div className="flex items-center gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600 dark:text-blue-400">
+              <Tag className="h-[18px] w-[18px]" />
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-[18px] font-semibold tracking-tight">Blog API</h2>
+                <Badge variant="outline" className="font-mono">v1</Badge>
+                <Badge className="gap-1 border-0 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Operational
+                </Badge>
+              </div>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-[12.5px] text-muted-foreground">
+                <span>Base URL</span>
+                <code className="rounded border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-foreground/80">
+                  {API_BASE}
+                </code>
+                <span>·</span>
+                <span>
+                  Header <code className="font-mono text-foreground/80">X-API-Key</code>
+                </span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>
