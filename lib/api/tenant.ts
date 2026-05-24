@@ -1,5 +1,6 @@
 import { api } from "./client";
 import type { TenantFeatures } from "@/lib/tenant-features";
+import type { BlogPreferences, ImproveMode } from "@/lib/blog-categories";
 
 export interface Tenant {
   _id: string;
@@ -15,6 +16,7 @@ export interface Tenant {
   approvedBy: string | null;
   // Optional: tenant docs created before this feature shipped won't have it on .lean() reads.
   features?: TenantFeatures;
+  blogPreferences?: BlogPreferences;
 }
 
 export interface TenantBlog {
@@ -73,6 +75,21 @@ export const tenantApi = {
         readMinutes: number;
       };
     }>("/tenants/me/blogs/ai/generate", { prompt }),
+  updatePreferences: (prefs: Partial<BlogPreferences>) =>
+    api.put<{ success: boolean; data: { blogPreferences: BlogPreferences } }>(
+      "/tenants/me/preferences",
+      prefs
+    ),
+  generateTopics: (category?: string) =>
+    api.post<{ success: boolean; data: { topics: string[] } }>(
+      "/tenants/me/blogs/ai/topics",
+      { category: category ?? "" }
+    ),
+  improveContent: (content: string, mode: ImproveMode) =>
+    api.post<{ success: boolean; data: { content: string } }>(
+      "/tenants/me/blogs/ai/improve",
+      { content, mode }
+    ),
 };
 
 export const adminTenantApi = {
