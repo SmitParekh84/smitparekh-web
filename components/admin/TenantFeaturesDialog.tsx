@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Clock, Loader2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +11,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import {
@@ -20,6 +21,7 @@ import {
 } from "@/lib/tenant-features";
 import { useUpdateTenantFeatures } from "@/hooks/api/use-admin-tenants";
 import { toast } from "@/lib/toast";
+import { cn } from "@/lib/utils";
 
 interface TenantFeaturesDialogProps {
   open: boolean;
@@ -28,6 +30,8 @@ interface TenantFeaturesDialogProps {
   tenantName: string;
   // Optional: pre-existing tenants may not have the field yet.
   features?: Partial<TenantFeatures>;
+  // Feature keys the tenant requested but hasn't been granted yet.
+  featureRequests?: string[];
 }
 
 export function TenantFeaturesDialog({
@@ -36,6 +40,7 @@ export function TenantFeaturesDialog({
   tenantId,
   tenantName,
   features,
+  featureRequests,
 }: TenantFeaturesDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -54,6 +59,7 @@ export function TenantFeaturesDialog({
             tenantId={tenantId}
             tenantName={tenantName}
             features={features}
+            featureRequests={featureRequests}
             onClose={() => onOpenChange(false)}
           />
         )}
@@ -66,11 +72,13 @@ function FeaturesForm({
   tenantId,
   tenantName,
   features,
+  featureRequests = [],
   onClose,
 }: {
   tenantId: string;
   tenantName: string;
   features?: Partial<TenantFeatures>;
+  featureRequests?: string[];
   onClose: () => void;
 }) {
   const [draft, setDraft] = useState<TenantFeatures>({
@@ -92,26 +100,44 @@ function FeaturesForm({
   return (
     <>
       <div className="space-y-3 py-2">
-        {TENANT_FEATURE_DEFS.map((f) => (
-          <div
-            key={f.key}
-            className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3"
-          >
-            <Switch
-              id={`feat-${f.key}`}
-              checked={draft[f.key]}
-              onCheckedChange={(checked) =>
-                setDraft((prev) => ({ ...prev, [f.key]: checked }))
-              }
-            />
-            <Label htmlFor={`feat-${f.key}`} className="flex-1 cursor-pointer">
-              <span className="block text-sm font-medium">{f.label}</span>
-              <span className="block text-xs font-normal text-muted-foreground">
-                {f.description}
-              </span>
-            </Label>
-          </div>
-        ))}
+        {TENANT_FEATURE_DEFS.map((f) => {
+          // Pending = the tenant asked for it and it isn't switched on in the draft.
+          const isPending = featureRequests.includes(f.key) && !draft[f.key];
+          return (
+            <div
+              key={f.key}
+              className={cn(
+                "flex items-center gap-3 rounded-xl border bg-card px-4 py-3",
+                isPending ? "border-amber-500/40 bg-amber-500/5" : "border-border"
+              )}
+            >
+              <Switch
+                id={`feat-${f.key}`}
+                checked={draft[f.key]}
+                onCheckedChange={(checked) =>
+                  setDraft((prev) => ({ ...prev, [f.key]: checked }))
+                }
+              />
+              <Label htmlFor={`feat-${f.key}`} className="flex-1 cursor-pointer">
+                <span className="flex items-center gap-1.5 text-sm font-medium">
+                  {f.label}
+                  {isPending && (
+                    <Badge
+                      variant="secondary"
+                      className="gap-1 border-0 bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                    >
+                      <Clock className="h-3 w-3" />
+                      Requested
+                    </Badge>
+                  )}
+                </span>
+                <span className="block text-xs font-normal text-muted-foreground">
+                  {f.description}
+                </span>
+              </Label>
+            </div>
+          );
+        })}
       </div>
 
       <DialogFooter>

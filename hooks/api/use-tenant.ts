@@ -180,3 +180,13 @@ export function useImproveMyContent() {
       tenantApi.improveContent(content, mode),
   });
 }
+
+export function useRequestFeature() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (feature: string) => tenantApi.requestFeature(feature),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.tenant.me() });
+    },
+  });
+}

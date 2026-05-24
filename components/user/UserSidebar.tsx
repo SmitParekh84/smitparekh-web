@@ -77,11 +77,13 @@ function BlogNavSection({ pathname }: { pathname: string }) {
     if (tenant.status === "pending" || tenant.status === "rejected") {
       return [
         { title: "Status", href: "/dashboard/blog/onboarding", icon: BookOpen },
+        { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
         { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
       ];
     }
     return [
       { title: "My Blogs", href: "/dashboard/blog", icon: FileText },
+      { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
       { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
     ];
   })();

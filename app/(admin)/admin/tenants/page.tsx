@@ -102,6 +102,12 @@ function TenantRow({
   const [showKey, setShowKey] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
 
+  // Features the tenant requested but that aren't enabled yet → admin attention.
+  const pendingRequests = (tenant.featureRequests ?? []).filter(
+    (key) => !tenant.features?.[key as keyof typeof tenant.features]
+  );
+  const hasPendingRequests = pendingRequests.length > 0;
+
   async function handleMigrate() {
     const site = window.prompt(
       "Migrate unowned blogs to this tenant.\nEnter site name (e.g. marketixpert):",
@@ -251,11 +257,23 @@ function TenantRow({
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground hover:text-blue-500"
-              title="AI feature permissions"
+              className={cn(
+                "relative h-7 w-7 text-muted-foreground hover:text-blue-500",
+                hasPendingRequests && "text-amber-600 hover:text-amber-600"
+              )}
+              title={
+                hasPendingRequests
+                  ? `${pendingRequests.length} feature request${pendingRequests.length > 1 ? "s" : ""} pending`
+                  : "AI feature permissions"
+              }
               onClick={() => setShowFeatures(true)}
             >
               <SlidersHorizontal className="h-3 w-3" />
+              {hasPendingRequests && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-amber-500 px-1 text-[9px] font-bold leading-none text-white">
+                  {pendingRequests.length}
+                </span>
+              )}
             </Button>
 
             <Button
@@ -332,6 +350,7 @@ function TenantRow({
         tenantId={tenant._id}
         tenantName={tenant.name}
         features={tenant.features}
+        featureRequests={tenant.featureRequests}
       />
     </>
   );
