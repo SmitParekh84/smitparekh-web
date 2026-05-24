@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Star, Eye, EyeOff, FileText, Sparkles } from "lucide-react";
+import { Loader2, Star, Eye, EyeOff, FileText, Sparkles, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,7 +11,9 @@ import { Switch } from "@/components/ui/switch";
 import { AppSelect } from "@/components/ui/app-select";
 import { toast } from "@/lib/toast";
 import { TenantCoverImagePicker } from "@/components/dashboard/TenantCoverImagePicker";
-import { useMyTenant, useGenerateMyBlog } from "@/hooks/api/use-tenant";
+import { TenantAiTools } from "@/components/dashboard/TenantAiTools";
+import { useMyTenant, useGenerateMyBlog, useImproveMyContent } from "@/hooks/api/use-tenant";
+import type { ImproveMode } from "@/lib/blog-categories";
 import type { TenantBlog } from "@/lib/api/tenant";
 
 const CATEGORY_OPTIONS = [
@@ -103,6 +105,38 @@ export function TenantBlogForm({
       toast.success("Draft generated", "Review and edit before publishing.");
     } catch {
       toast.error("Generation failed", "Try again in a moment.");
+    }
+  }
+
+  const topicsEnabled = !!myTenant?.features?.aiTopicSuggestions;
+  const improveEnabled = !!myTenant?.features?.aiContentImprove;
+  const improve = useImproveMyContent();
+  const [improveMode, setImproveMode] = useState<ImproveMode | null>(null);
+
+  function applyTopic(topic: string) {
+    setField("title", topic);
+    setForm((prev) => (prev.slug ? prev : { ...prev, slug: slugify(topic) }));
+    if (aiEnabled) setAiPrompt(topic);
+    toast.success(
+      "Topic applied",
+      aiEnabled ? "Added to the title and AI prompt." : "Added to the title."
+    );
+  }
+
+  async function handleImprove(mode: ImproveMode) {
+    if (!form.content.trim()) {
+      toast.error("Nothing to improve", "Write some content first.");
+      return;
+    }
+    setImproveMode(mode);
+    try {
+      const res = await improve.mutateAsync({ content: form.content, mode });
+      setField("content", res.data.content);
+      toast.success("Content updated", `Applied: ${mode}.`);
+    } catch {
+      toast.error("Couldn't update content", "Try again in a moment.");
+    } finally {
+      setImproveMode(null);
     }
   }
 
@@ -224,6 +258,13 @@ export function TenantBlogForm({
         </div>
       )}
 
+      {topicsEnabled && myTenant && (
+        <TenantAiTools
+          preferences={myTenant.blogPreferences}
+          onApplyTopic={applyTopic}
+        />
+      )}
+
       {/* Title */}
       <Field label="Title" required>
         <Input
@@ -304,6 +345,27 @@ export function TenantBlogForm({
 
       {/* Content */}
       <Field label="Content (Markdown)" required>
+        {improveEnabled && (
+          <div className="mb-2 flex flex-wrap items-center gap-1.5">
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <Wand2 className="h-3.5 w-3.5 text-blue-500" /> AI:
+            </span>
+            {(["improve", "rewrite", "expand", "shorten"] as ImproveMode[]).map((m) => (
+              <Button
+                key={m}
+                type="button"
+                variant="outline"
+                size="sm"
+                className="h-7 gap-1 px-2.5 text-xs capitalize"
+                disabled={improve.isPending || !form.content.trim()}
+                onClick={() => handleImprove(m)}
+              >
+                {improveMode === m && <Loader2 className="h-3 w-3 animate-spin" />}
+                {m}
+              </Button>
+            ))}
+          </div>
+        )}
         <Textarea
           required
           rows={20}

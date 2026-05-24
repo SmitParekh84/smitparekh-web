@@ -18,6 +18,62 @@ export interface ChangelogRelease {
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: "1.10.0",
+    codename: "Blog AI Studio",
+    date: "2026-05-24",
+    summary:
+      "AI writing tools for Blog API tenants — generate full drafts from a prompt, get topic ideas tuned to your niche and audience, and rewrite or expand content in one click. Each capability is enabled per account.",
+    highlights: [
+      "AI blog draft generation from a single prompt",
+      "Niche-aware topic suggestions with category tabs",
+      "One-click Improve / Rewrite / Expand / Shorten on any draft",
+      "Per-account AI feature permissions",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "AI blog generation",
+        description:
+          "Describe a topic and get a complete, structured draft — title, excerpt, body, category and tags — ready to edit and publish.",
+        href: "/dashboard/blog/new",
+      },
+      {
+        tag: "new",
+        title: "Niche-aware topic suggestions",
+        description:
+          "Save your blog niche, audience and categories, then generate SEO-friendly title ideas per category. Click any idea to drop it straight into your post.",
+        href: "/dashboard/blog/new",
+      },
+      {
+        tag: "new",
+        title: "AI content rewrite & improve",
+        description:
+          "Improve, rewrite, expand or shorten your draft content with one click while keeping your Markdown structure intact.",
+        href: "/dashboard/blog/new",
+      },
+      {
+        tag: "new",
+        title: "Per-account AI permissions",
+        description:
+          "Each Blog API account's AI features are enabled individually, so you only see the tools available to you.",
+      },
+      {
+        tag: "improved",
+        title: "Blog API in the main menu",
+        description:
+          "The Blog API now has its own top-level navigation link for quicker access.",
+        href: "/blog-api",
+      },
+      {
+        tag: "improved",
+        title: "Feedback moved to the footer",
+        description:
+          "Tidied the top navigation; the feedback form now lives in the site footer.",
+        href: "/feedback",
+      },
+    ],
+  },
+  {
     version: "1.9.0",
     codename: "Service Pages & Lead Gen",
     date: "2026-05-14",

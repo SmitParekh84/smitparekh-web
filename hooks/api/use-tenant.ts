@@ -6,6 +6,7 @@ import { ApiError } from "@/lib/api/client";
 import { tenantApi, adminTenantApi } from "@/lib/api/tenant";
 import { queryKeys } from "@/lib/api/query-keys";
 import { toast } from "@/lib/toast";
+import type { BlogPreferences, ImproveMode } from "@/lib/blog-categories";
 
 export function useMyTenant() {
   return useQuery({
@@ -154,5 +155,28 @@ export function useSuspendTenant() {
 export function useGenerateMyBlog() {
   return useMutation({
     mutationFn: (prompt: string) => tenantApi.generateBlog(prompt),
+  });
+}
+
+export function useUpdateMyPreferences() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (prefs: Partial<BlogPreferences>) => tenantApi.updatePreferences(prefs),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.tenant.me() });
+    },
+  });
+}
+
+export function useGenerateMyTopics() {
+  return useMutation({
+    mutationFn: (category?: string) => tenantApi.generateTopics(category),
+  });
+}
+
+export function useImproveMyContent() {
+  return useMutation({
+    mutationFn: ({ content, mode }: { content: string; mode: ImproveMode }) =>
+      tenantApi.improveContent(content, mode),
   });
 }
