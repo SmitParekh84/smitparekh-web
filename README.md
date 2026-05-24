@@ -208,6 +208,55 @@ import { api, projectsApi } from "@/lib/api";
 
 ---
 
+## Admin redesign
+
+The admin dashboard (`app/(admin)/admin/**`) is being reskinned from a Claude Design
+handoff (shadcn-flavored, Geist-style cards, sectioned sidebar, breadcrumb topbar).
+
+**Approach — dark mode is free.** The handoff prototype hardcoded light colors
+(`bg-white`, `text-fg`, `bg-subtle`, `brand-500`). We do **not** copy those. Every
+surface uses the existing semantic tokens from `globals.css`, so light/dark flips
+automatically via `next-themes`:
+
+| Handoff token            | Use in this repo                          |
+| ------------------------ | ----------------------------------------- |
+| `bg` / `bg-white` (page) | `bg-background`                            |
+| `card`                   | `bg-card`                                  |
+| `subtle`                 | `bg-muted/40`                             |
+| `fg` / `mutedfg`         | `text-foreground` / `text-muted-foreground` |
+| `border`                 | `border-border`                           |
+| `brand-500` (`#0628ff`)  | `blue-500` (already the project brand)    |
+
+### Shipped so far
+
+- **Shell** — `AdminSidebar` regrouped into **Workspace / Team / Account** sections
+  (Tenants now uses the `Building2` icon); `AdminTopbar` gained an `Admin › Page`
+  breadcrumb and a search field.
+- **Overview** (`app/(admin)/admin/page.tsx`) — new stat cards, visitors chart,
+  top-sources, recent projects/feedback, and shortcuts. All real lists stay wired to
+  the live API; nothing functional was removed.
+
+### ⚠️ New UI built ahead of its backend (functionality is future work)
+
+These surfaces are rendered so the design is complete, but are **not wired** yet.
+They're labelled in the UI (e.g. a `Preview` badge) so they don't read as real data:
+
+- **Overview → Visitors chart** — uses sample traffic data. Needs a real pageview
+  source. Suggested: a Redis-backed daily counter (the project already has Upstash
+  Redis REST configured — see `lib/redis.ts`), or Vercel Web Analytics.
+- **Overview → Top sources** — sample referrer breakdown; same backend as above.
+- **Topbar → global search** — input is non-functional; needs a search endpoint /
+  command-palette wiring.
+
+### Remaining pages (next passes, after this checkpoint)
+
+Projects · Blog · Contacts · Feedback · Waitlist · Chats · Tools · Resume · Users ·
+Tenants · Settings (the design adds Security/2FA, Domain, Integrations, API tokens,
+Billing sub-tabs — these are also UI-ahead-of-backend and will be marked + listed
+here as they land).
+
+---
+
 ## Folder structure
 
 ```
