@@ -6,6 +6,8 @@ import { useTheme } from "next-themes";
 import {
   Moon,
   Sun,
+  ChevronRight,
+  Search,
   ExternalLink as ExternalLinkIcon,
   LogOut,
   Settings,
@@ -13,6 +15,7 @@ import {
 } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -32,8 +35,16 @@ const TITLES: Record<string, string> = {
   "/admin": "Overview",
   "/admin/projects": "Projects",
   "/admin/projects/new": "New project",
+  "/admin/blogs": "Blog",
+  "/admin/blogs/new": "New post",
+  "/admin/contacts": "Contacts",
   "/admin/feedback": "Feedback",
+  "/admin/waitlist": "Waitlist",
+  "/admin/chats": "Chats",
   "/admin/tools": "Tools",
+  "/admin/resume": "Resume",
+  "/admin/users": "Users",
+  "/admin/tenants": "Tenants",
   "/admin/settings": "Settings",
 };
 
@@ -41,6 +52,8 @@ function resolveTitle(pathname: string): string {
   if (TITLES[pathname]) return TITLES[pathname];
   if (pathname.startsWith("/admin/projects/")) return "Edit project";
   if (pathname.startsWith("/admin/blogs/")) return "Edit blog";
+  if (pathname.startsWith("/admin/tenants/")) return "Tenant blogs";
+  if (pathname.startsWith("/admin/tools/")) return "Tool";
   return "Admin";
 }
 
@@ -74,12 +87,25 @@ export function AdminTopbar() {
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur-sm sm:px-6">
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="h-5" />
-      <div className="flex min-w-0 flex-col leading-tight">
+      {/* Breadcrumb: Admin › PageTitle */}
+      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-2">
         <span className="text-xs text-muted-foreground">Admin</span>
-        <h1 className="truncate text-sm font-semibold">{title}</h1>
-      </div>
+        <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/60" />
+        <h1 className="truncate text-sm font-medium">{title}</h1>
+      </nav>
 
-      <div className="ml-auto flex items-center gap-1">
+      <div className="ml-auto flex items-center gap-1.5">
+        {/* Global search — UI only; wiring is future work (see README). */}
+        <div className="relative hidden w-56 md:block">
+          <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Search…"
+            aria-label="Search admin"
+            className="h-8 pl-8 text-sm"
+          />
+        </div>
+
         {/* Theme toggle */}
         <Button
           variant="ghost"

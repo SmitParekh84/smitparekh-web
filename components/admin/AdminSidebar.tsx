@@ -12,11 +12,11 @@ import {
   MessagesSquare,
   Wrench,
   Settings2,
-  ExternalLink,
   LogOut,
   ChevronsUpDown,
   UserRound,
   Users,
+  Building2,
   FileBadge,
   Bell,
 } from "lucide-react";
@@ -48,24 +48,34 @@ import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { useAdminContactsUnreadCount } from "@/hooks/api/use-admin-contacts";
 import { siteConfig } from "@/data/site";
 
-const NAV_MAIN = [
-  { title: "Overview", href: "/admin", icon: LayoutDashboard },
-  { title: "Projects", href: "/admin/projects", icon: FolderKanban },
-  { title: "Blog", href: "/admin/blogs", icon: FileText },
-  { title: "Contacts", href: "/admin/contacts", icon: Mail },
-  { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
-  { title: "Waitlist", href: "/admin/waitlist", icon: Bell },
-  { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
-  { title: "Tools", href: "/admin/tools", icon: Wrench },
-  { title: "Resume", href: "/admin/resume", icon: FileBadge },
-  { title: "Users", href: "/admin/users", icon: Users },
-  { title: "Tenants", href: "/admin/tenants", icon: Users }, // Added Tenants
-];
-
-const NAV_SECONDARY = [
-  { title: "View site", href: "/", icon: ExternalLink, external: true },
-  { title: "Settings", href: "/admin/settings", icon: Settings2 },
-];
+// Grouped nav — mirrors the redesign's Workspace / Team / Account sections.
+const NAV_SECTIONS = [
+  {
+    label: "Workspace",
+    items: [
+      { title: "Overview", href: "/admin", icon: LayoutDashboard },
+      { title: "Projects", href: "/admin/projects", icon: FolderKanban },
+      { title: "Blog", href: "/admin/blogs", icon: FileText },
+      { title: "Contacts", href: "/admin/contacts", icon: Mail },
+      { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },
+      { title: "Waitlist", href: "/admin/waitlist", icon: Bell },
+      { title: "Chats", href: "/admin/chats", icon: MessagesSquare },
+      { title: "Tools", href: "/admin/tools", icon: Wrench },
+      { title: "Resume", href: "/admin/resume", icon: FileBadge },
+    ],
+  },
+  {
+    label: "Team",
+    items: [
+      { title: "Users", href: "/admin/users", icon: Users },
+      { title: "Tenants", href: "/admin/tenants", icon: Building2 },
+    ],
+  },
+  {
+    label: "Account",
+    items: [{ title: "Settings", href: "/admin/settings", icon: Settings2 }],
+  },
+] as const;
 
 function isActive(pathname: string, href: string) {
   if (href === "/admin") return pathname === "/admin";
@@ -121,59 +131,36 @@ export function AdminSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Workspace</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {NAV_MAIN.map((item) => {
-                const showContactsPill =
-                  item.href === "/admin/contacts" && unreadContacts > 0;
-                return (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      render={<Link href={item.href} />}
-                      tooltip={item.title}
-                      isActive={isActive(pathname, item.href)}
-                    >
-                      <item.icon />
-                      <span>{item.title}</span>
-                      {showContactsPill && (
-                        <Badge className="ml-auto h-5 min-w-5 rounded-full bg-blue-500 px-1.5 text-[10px] font-semibold text-white hover:bg-blue-500">
-                          {unreadContacts > 99 ? "99+" : unreadContacts}
-                        </Badge>
-                      )}
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup className="mt-auto">
-          <SidebarGroupLabel>More</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {NAV_SECONDARY.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    render={
-                      <Link
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noreferrer" : undefined}
-                      />
-                    }
-                    tooltip={item.title}
-                  >
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {NAV_SECTIONS.map((section, i) => (
+          <SidebarGroup key={section.label} className={i === 0 ? undefined : "mt-1"}>
+            <SidebarGroupLabel>{section.label}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {section.items.map((item) => {
+                  const showContactsPill =
+                    item.href === "/admin/contacts" && unreadContacts > 0;
+                  return (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        render={<Link href={item.href} />}
+                        tooltip={item.title}
+                        isActive={isActive(pathname, item.href)}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
+                        {showContactsPill && (
+                          <Badge className="ml-auto h-5 min-w-5 rounded-full bg-blue-500 px-1.5 text-[10px] font-semibold text-white hover:bg-blue-500">
+                            {unreadContacts > 99 ? "99+" : unreadContacts}
+                          </Badge>
+                        )}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
 
       <SidebarFooter>
