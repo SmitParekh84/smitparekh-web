@@ -150,3 +150,9 @@ export function useSuspendTenant() {
     onError: (err: ApiError) => toast.error("Failed", err.message),
   });
 }
+
+export function useGenerateMyBlog() {
+  return useMutation({
+    mutationFn: (prompt: string) => tenantApi.generateBlog(prompt),
+  });
+}

@@ -12,6 +12,7 @@ import {
   Eye,
   EyeOff,
   BookOpen,
+  SlidersHorizontal,
 } from "lucide-react";
 import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -42,6 +43,7 @@ import {
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import type { AdminTenant } from "@/lib/api/tenant";
+import { TenantFeaturesDialog } from "@/components/admin/TenantFeaturesDialog";
 
 function CopyBtn({ value, label }: { value: string; label?: string }) {
   const [copied, setCopied] = useState(false);
@@ -98,6 +100,7 @@ function TenantRow({
   const [showReject, setShowReject] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
   const [showKey, setShowKey] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
 
   async function handleMigrate() {
     const site = window.prompt(
@@ -249,6 +252,16 @@ function TenantRow({
               variant="ghost"
               size="icon"
               className="h-7 w-7 text-muted-foreground hover:text-blue-500"
+              title="AI feature permissions"
+              onClick={() => setShowFeatures(true)}
+            >
+              <SlidersHorizontal className="h-3 w-3" />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 text-muted-foreground hover:text-blue-500"
               title="Migrate site blogs to this tenant"
               disabled={migrateSiteBlogs.isPending}
               onClick={handleMigrate}
@@ -312,6 +325,14 @@ function TenantRow({
           </TableCell>
         </TableRow>
       )}
+
+      <TenantFeaturesDialog
+        open={showFeatures}
+        onOpenChange={setShowFeatures}
+        tenantId={tenant._id}
+        tenantName={tenant.name}
+        features={tenant.features}
+      />
     </>
   );
 }

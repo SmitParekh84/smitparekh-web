@@ -10,6 +10,7 @@ import {
   queryKeys,
 } from "@/lib/api";
 import type { AdminTenant } from "@/lib/api/tenant";
+import type { TenantFeatures } from "@/lib/tenant-features";
 
 export function useAdminTenants(status?: string) {
   return useQuery({
@@ -61,5 +62,16 @@ export function useAdminTenantBlogs(tenantId: string) {
     queryKey: queryKeys.adminTenants.blogs(tenantId),
     queryFn: () => adminTenantApi.listBlogs(tenantId),
     enabled: !!tenantId,
+  });
+}
+
+export function useUpdateTenantFeatures() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, features }: { id: string; features: Partial<TenantFeatures> }) =>
+      adminTenantApi.updateFeatures(id, features),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.adminTenants.all });
+    },
   });
 }
