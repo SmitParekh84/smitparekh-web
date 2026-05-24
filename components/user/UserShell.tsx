@@ -15,7 +15,7 @@ export function UserShell({ children }: { children: React.ReactNode }) {
           <SidebarInset className="overflow-y-auto">
             <UserTopbar />
             <div className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
-              <div className="mx-auto w-full max-w-5xl">{children}</div>
+              <div className="mx-auto w-full max-w-6xl">{children}</div>
             </div>
           </SidebarInset>
         </SidebarProvider>

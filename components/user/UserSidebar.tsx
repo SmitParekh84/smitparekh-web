@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -13,7 +12,7 @@ import {
   FileText,
   BookOpen,
   Code2,
-  ChevronRight,
+  MessageSquare,
   Loader2,
 } from "lucide-react";
 import {
@@ -27,9 +26,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
@@ -45,17 +41,17 @@ import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { useMyTenant } from "@/hooks/api/use-tenant";
 import { createClient } from "@/lib/supabase/client";
 import { siteConfig } from "@/data/site";
-import { cn } from "@/lib/utils";
 
-const NAV_MAIN = [
+type NavItem = { title: string; href: string; icon: typeof FileText };
+
+const NAV_DASHBOARD: NavItem[] = [
   { title: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { title: "My Tools", href: "/dashboard/tools", icon: Wrench },
-  { title: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
-const NAV_LINKS = [
-  { title: "Free Tools", href: "/free-tools", icon: ExternalLink },
-  { title: "View site", href: "/", icon: ExternalLink },
+const NAV_ACCOUNT: NavItem[] = [
+  { title: "Help & feedback", href: "/dashboard/help", icon: MessageSquare },
+  { title: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -63,76 +59,11 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function BlogNavSection({ pathname }: { pathname: string }) {
-  const [open, setOpen] = useState(() => pathname.startsWith("/dashboard/blog"));
-  const { data: tenant, isLoading } = useMyTenant();
-
-  const isBlogActive = pathname.startsWith("/dashboard/blog");
-
-  const subItems = (() => {
-    if (isLoading) return null;
-    if (!tenant) {
-      return [{ title: "Get Started", href: "/dashboard/blog/onboarding", icon: BookOpen }];
-    }
-    if (tenant.status === "pending" || tenant.status === "rejected") {
-      return [
-        { title: "Status", href: "/dashboard/blog/onboarding", icon: BookOpen },
-        { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
-        { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
-      ];
-    }
-    return [
-      { title: "My Blogs", href: "/dashboard/blog", icon: FileText },
-      { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
-      { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
-    ];
-  })();
-
-  return (
-    <SidebarMenuItem>
-      <SidebarMenuButton
-        isActive={isBlogActive}
-        tooltip="Blog"
-        onClick={() => setOpen((o) => !o)}
-        className="cursor-pointer"
-      >
-        {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin" />
-        ) : (
-          <FileText className="w-4 h-4" />
-        )}
-        <span>Blog</span>
-        <ChevronRight
-          className={cn(
-            "ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
-            open && "rotate-90"
-          )}
-        />
-      </SidebarMenuButton>
-
-      {open && subItems && (
-        <SidebarMenuSub>
-          {subItems.map((item) => (
-            <SidebarMenuSubItem key={item.href}>
-              <SidebarMenuSubButton
-                render={<Link href={item.href} />}
-                isActive={isActive(pathname, item.href)}
-              >
-                <item.icon className="w-3.5 h-3.5" />
-                <span>{item.title}</span>
-              </SidebarMenuSubButton>
-            </SidebarMenuSubItem>
-          ))}
-        </SidebarMenuSub>
-      )}
-    </SidebarMenuItem>
-  );
-}
-
 export function UserSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { session } = useSupabaseSession();
+  const { data: tenant, isLoading: tenantLoading } = useMyTenant();
 
   const meta = session?.user?.user_metadata ?? {};
   const displayName: string =
@@ -149,10 +80,46 @@ export function UserSidebar() {
     .slice(0, 2)
     .toUpperCase();
 
+  // Blog section adapts to the tenant's onboarding status — same logic as before,
+  // just rendered as a flat section to match the redesign.
+  const blogItems: NavItem[] | null = (() => {
+    if (tenantLoading) return null;
+    if (!tenant) {
+      return [{ title: "Get Started", href: "/dashboard/blog/onboarding", icon: BookOpen }];
+    }
+    if (tenant.status === "pending" || tenant.status === "rejected") {
+      return [
+        { title: "Status", href: "/dashboard/blog/onboarding", icon: BookOpen },
+        { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
+        { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
+      ];
+    }
+    return [
+      { title: "My Posts", href: "/dashboard/blog", icon: FileText },
+      { title: "Blog Settings", href: "/dashboard/blog/settings", icon: Settings },
+      { title: "API Docs", href: "/dashboard/blog/api-docs", icon: Code2 },
+    ];
+  })();
+
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
     router.replace("/login");
+  }
+
+  function renderItems(items: NavItem[]) {
+    return items.map((item) => (
+      <SidebarMenuItem key={item.href}>
+        <SidebarMenuButton
+          render={<Link href={item.href} />}
+          isActive={isActive(pathname, item.href)}
+          tooltip={item.title}
+        >
+          <item.icon className="w-4 h-4" />
+          <span>{item.title}</span>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    ));
   }
 
   return (
@@ -179,39 +146,47 @@ export function UserSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
+            <SidebarMenu>{renderItems(NAV_DASHBOARD)}</SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Blog</SidebarGroupLabel>
+          <SidebarGroupContent>
             <SidebarMenu>
-              {NAV_MAIN.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    render={<Link href={item.href} />}
-                    isActive={isActive(pathname, item.href)}
-                    tooltip={item.title}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.title}</span>
+              {blogItems === null ? (
+                <SidebarMenuItem>
+                  <SidebarMenuButton disabled>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Loading…</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-              ))}
-              <BlogNavSection pathname={pathname} />
+              ) : (
+                renderItems(blogItems)
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
+        <SidebarGroup>
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>{renderItems(NAV_ACCOUNT)}</SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
         <SidebarGroup className="mt-auto">
-          <SidebarGroupLabel>Quick links</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {NAV_LINKS.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    render={<Link href={item.href} target="_blank" rel="noreferrer" />}
-                    tooltip={item.title}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/free-tools" target="_blank" rel="noreferrer" />}
+                  tooltip="Free tools"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Free tools</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

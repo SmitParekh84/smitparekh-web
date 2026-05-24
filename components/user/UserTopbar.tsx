@@ -3,9 +3,17 @@
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, ExternalLink as ExternalLinkIcon, LogOut } from "lucide-react";
+import {
+  Moon,
+  Sun,
+  ChevronRight,
+  Search,
+  ExternalLink as ExternalLinkIcon,
+  LogOut,
+} from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,11 +31,26 @@ import { cn } from "@/lib/utils";
 const TITLES: Record<string, string> = {
   "/dashboard": "Overview",
   "/dashboard/tools": "My Tools",
+  "/dashboard/blog": "My Posts",
+  "/dashboard/blog/new": "New post",
+  "/dashboard/blog/settings": "Blog Settings",
+  "/dashboard/blog/api-docs": "API Docs",
+  "/dashboard/blog/onboarding": "Blog",
+  "/dashboard/help": "Help & feedback",
   "/dashboard/settings": "Settings",
 };
 
 function resolveTitle(pathname: string): string {
-  return TITLES[pathname] ?? "Dashboard";
+  if (TITLES[pathname]) return TITLES[pathname];
+  if (pathname.startsWith("/dashboard/blog/")) return "Edit post";
+  if (pathname.startsWith("/dashboard/tools/")) return "Tool";
+  return "Dashboard";
+}
+
+function resolveSection(pathname: string): string {
+  if (pathname.startsWith("/dashboard/blog")) return "Blog";
+  if (pathname === "/dashboard/settings" || pathname === "/dashboard/help") return "Account";
+  return "Dashboard";
 }
 
 export function UserTopbar() {
@@ -36,6 +59,7 @@ export function UserTopbar() {
   const { resolvedTheme, setTheme } = useTheme();
   const { session } = useSupabaseSession();
   const title = resolveTitle(pathname);
+  const section = resolveSection(pathname);
 
   const meta = session?.user?.user_metadata ?? {};
   const displayName: string =
@@ -61,12 +85,25 @@ export function UserTopbar() {
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur-sm sm:px-6">
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="h-5" />
-      <div className="flex min-w-0 flex-col leading-tight">
-        <span className="text-xs text-muted-foreground">Dashboard</span>
-        <h1 className="truncate text-sm font-semibold">{title}</h1>
-      </div>
+      {/* Breadcrumb: Section › PageTitle */}
+      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-2">
+        <span className="text-xs text-muted-foreground">{section}</span>
+        <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/60" />
+        <h1 className="truncate text-sm font-medium">{title}</h1>
+      </nav>
 
-      <div className="ml-auto flex items-center gap-1">
+      <div className="ml-auto flex items-center gap-1.5">
+        {/* Search — UI only; wiring is future work. */}
+        <div className="relative hidden w-52 md:block">
+          <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Search…"
+            aria-label="Search dashboard"
+            className="h-8 pl-8 text-sm"
+          />
+        </div>
+
         <Button
           variant="ghost"
           size="icon"

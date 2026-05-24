@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2, X } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2, X, Search } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Card,
@@ -46,6 +47,8 @@ export default function TenantBlogListPage() {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
+  const [tab, setTab] = useState<"all" | "published" | "draft">("all");
+  const [q, setQ] = useState("");
 
   useEffect(() => {
     if (!tenantLoading && (!tenant || tenant.status !== "approved")) {
@@ -64,7 +67,22 @@ export default function TenantBlogListPage() {
   }
 
   const allBlogs: TenantBlog[] = blogs ?? [];
-  const visibleIds = allBlogs.map((b) => b._id);
+  const publishedCount = allBlogs.filter((b) => b.isPublished).length;
+  const draftCount = allBlogs.length - publishedCount;
+
+  const filtered = allBlogs.filter((b) => {
+    const matchesTab =
+      tab === "all" ||
+      (tab === "published" && b.isPublished) ||
+      (tab === "draft" && !b.isPublished);
+    const matchesQ =
+      !q.trim() ||
+      b.title.toLowerCase().includes(q.toLowerCase()) ||
+      (b.excerpt ?? "").toLowerCase().includes(q.toLowerCase());
+    return matchesTab && matchesQ;
+  });
+
+  const visibleIds = filtered.map((b) => b._id);
   const allChecked = visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
   const someChecked = !allChecked && visibleIds.some((id) => selectedIds.has(id));
 
@@ -130,29 +148,78 @@ export default function TenantBlogListPage() {
     }
   }
 
+  const TABS: { value: typeof tab; label: string; count: number }[] = [
+    { value: "all", label: "All", count: allBlogs.length },
+    { value: "published", label: "Published", count: publishedCount },
+    { value: "draft", label: "Drafts", count: draftCount },
+  ];
+
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">My Blogs</h2>
-          <p className="text-muted-foreground text-sm mt-0.5">
-            Manage your blog posts via dashboard or API.
-          </p>
+    <div className="space-y-5">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-[22px] font-semibold tracking-tight">My posts</h1>
+        <p className="text-[13px] text-muted-foreground">
+          Posts served through your tenant API.
+        </p>
+      </div>
+
+      {/* Stat cards */}
+      <div className="grid gap-4 sm:grid-cols-4">
+        <PostStat label="Total posts" value={allBlogs.length} />
+        <PostStat label="Published" value={publishedCount} />
+        <PostStat label="Drafts" value={draftCount} />
+        <PostStat label="Views" value="—" sub="analytics soon" />
+      </div>
+
+      {/* Tabs + search + new */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="inline-flex h-9 items-center gap-1 rounded-lg border border-border bg-muted/40 p-0.5">
+          {TABS.map((t) => (
+            <button
+              key={t.value}
+              type="button"
+              onClick={() => setTab(t.value)}
+              className={cn(
+                "inline-flex h-7 items-center gap-1.5 rounded-md px-3 text-[13px] font-medium transition-colors",
+                tab === t.value
+                  ? "border border-border bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {t.label}
+              <span className="tabular-nums text-[11px] text-muted-foreground">{t.count}</span>
+            </button>
+          ))}
         </div>
-        <Link
-          href="/dashboard/blog/new"
-          className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
-        >
-          <Plus className="h-4 w-4" />
-          New post
-        </Link>
+        <div className="flex items-center gap-2">
+          <div className="relative w-48">
+            <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search posts"
+              className="h-9 pl-8 text-sm"
+            />
+          </div>
+          <Link
+            href="/dashboard/blog/new"
+            className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+          >
+            <Plus className="h-4 w-4" />
+            <span className="hidden sm:inline">Write a post</span>
+          </Link>
+        </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>All posts</CardTitle>
+          <CardTitle>
+            {tab === "all" ? "All posts" : tab === "published" ? "Published" : "Drafts"}
+          </CardTitle>
           <CardDescription>
-            {blogs ? `${allBlogs.length} post${allBlogs.length !== 1 ? "s" : ""}` : "—"}
+            {blogs
+              ? `${filtered.length} of ${allBlogs.length} post${allBlogs.length !== 1 ? "s" : ""}`
+              : "—"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
@@ -258,7 +325,14 @@ export default function TenantBlogListPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {allBlogs.map((blog) => (
+                  {filtered.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={6} className="py-10 text-center text-sm text-muted-foreground">
+                        No posts match this filter.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {filtered.map((blog) => (
                     <TableRow
                       key={blog._id}
                       data-state={selectedIds.has(blog._id) ? "selected" : undefined}
@@ -379,5 +453,27 @@ export default function TenantBlogListPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+function PostStat({
+  label,
+  value,
+  sub,
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+}) {
+  return (
+    <Card>
+      <CardContent className="p-4">
+        <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+          {label}
+        </div>
+        <div className="mt-1 text-[22px] font-semibold tabular-nums">{value}</div>
+        {sub && <div className="text-[11.5px] text-muted-foreground">{sub}</div>}
+      </CardContent>
+    </Card>
   );
 }
