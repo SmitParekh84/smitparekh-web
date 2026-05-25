@@ -200,9 +200,9 @@ export default function AdminBlogsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Blog</h2>
-          <p className="text-sm text-muted-foreground">
-            Manage articles, drafts and featured posts.
+          <h1 className="text-[22px] font-semibold tracking-tight">Blog</h1>
+          <p className="text-[13px] text-muted-foreground">
+            Posts, drafts and scheduled content.
           </p>
         </div>
         <div className="flex gap-2 self-start sm:self-auto">

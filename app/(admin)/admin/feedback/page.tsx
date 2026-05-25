@@ -220,26 +220,30 @@ export default function FeedbackPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Feedback & Bug Reports</h2>
-        <p className="text-sm text-muted-foreground">
-          Manage all user submissions — update status, toggle public visibility, or delete.
+      <div className="flex flex-col gap-1">
+        <h1 className="text-[22px] font-semibold tracking-tight">Feedback</h1>
+        <p className="text-[13px] text-muted-foreground">
+          Visitor notes, ratings and bug reports — update status, toggle visibility, or delete.
         </p>
       </div>
 
       {/* Stats */}
       {data && (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
-            { label: "Total", value: data.total, color: "text-foreground" },
-            { label: "Feedback", value: feedbackCount, color: "text-purple-600" },
-            { label: "Bugs", value: bugCount, color: "text-red-600" },
-            { label: "Open", value: openCount, color: "text-blue-600" },
+            { label: "Total", value: data.total },
+            { label: "Feedback", value: feedbackCount },
+            { label: "Bugs", value: bugCount },
+            { label: "Open", value: openCount },
           ].map((s) => (
-            <div key={s.label} className="rounded-xl border bg-card p-4">
-              <p className="text-xs text-muted-foreground">{s.label}</p>
-              <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-            </div>
+            <Card key={s.label}>
+              <CardContent className="p-4">
+                <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                  {s.label}
+                </div>
+                <div className="mt-1 text-[22px] font-semibold tabular-nums">{s.value}</div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}

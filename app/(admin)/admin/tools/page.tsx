@@ -303,9 +303,9 @@ export default function ToolsAdminPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Tools</h2>
-          <p className="text-sm text-muted-foreground">
-            Per-tool quotas, usage, and user activity.
+          <h1 className="text-[22px] font-semibold tracking-tight">Tools</h1>
+          <p className="text-[13px] text-muted-foreground">
+            Free tools published under /free-tools — quotas, usage and activity.
           </p>
         </div>
         <DateRangeFilter value={dateRange.mode} onChange={handleRangeChange} />

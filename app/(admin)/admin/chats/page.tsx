@@ -77,8 +77,8 @@ export default function AdminChatsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Chats</h2>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-[22px] font-semibold tracking-tight">Chats</h1>
+          <p className="text-[13px] text-muted-foreground">
             Conversations from the site assistant. Canned and banned replies are
             answered instantly without calling Gemini.
           </p>

@@ -473,9 +473,9 @@ export default function AdminTenantsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Tenants</h2>
-        <p className="text-sm text-muted-foreground">
-          Approve or reject blog API access requests.
+        <h1 className="text-[22px] font-semibold tracking-tight">Tenants</h1>
+        <p className="text-[13px] text-muted-foreground">
+          Workspaces using your platform — approve or reject blog API access.
         </p>
       </div>
 

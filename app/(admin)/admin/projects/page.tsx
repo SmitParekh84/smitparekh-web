@@ -189,10 +189,10 @@ export default function ProjectsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
-          <p className="text-sm text-muted-foreground">
-            Manage your portfolio projects.
+        <div className="flex flex-col gap-1">
+          <h1 className="text-[22px] font-semibold tracking-tight">Projects</h1>
+          <p className="text-[13px] text-muted-foreground">
+            Your portfolio — visible on the public site.
           </p>
         </div>
         <div className="flex gap-2 self-start sm:self-auto">

@@ -94,9 +94,9 @@ export default function AdminUsersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Users</h2>
-        <p className="text-sm text-muted-foreground">
-          Manage admin and superadmin accounts.
+        <h1 className="text-[22px] font-semibold tracking-tight">Users</h1>
+        <p className="text-[13px] text-muted-foreground">
+          People with access to this admin.
         </p>
       </div>
 

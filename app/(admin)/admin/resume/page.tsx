@@ -1,6 +1,6 @@
 "use client";
 
-import { FileText, MousePointerClick, Eye, Download, Loader2 } from "lucide-react";
+import { MousePointerClick, Eye, Download, Loader2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -41,14 +41,11 @@ export default function AdminResumePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <FileText className="h-6 w-6 text-blue-500" />
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Resume analytics</h2>
-          <p className="text-sm text-muted-foreground">
-            Tracking button clicks, page views, and downloads over the last 30 days.
-          </p>
-        </div>
+      <div className="flex flex-col gap-1">
+        <h1 className="text-[22px] font-semibold tracking-tight">Resume</h1>
+        <p className="text-[13px] text-muted-foreground">
+          Button clicks, page views and downloads over the last 30 days.
+        </p>
       </div>
 
       {isLoading && (

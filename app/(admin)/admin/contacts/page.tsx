@@ -168,11 +168,11 @@ export default function AdminContactsPage() {
                 <Inbox className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight">
+                <h1 className="text-[22px] font-semibold tracking-tight">
                   Contacts
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  Submissions from the public contact form.
+                </h1>
+                <p className="text-[13px] text-muted-foreground">
+                  Incoming messages from the contact form.
                 </p>
               </div>
             </div>

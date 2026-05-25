@@ -86,11 +86,11 @@ export default function AdminWaitlistPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Waitlist</h2>
-          <p className="text-sm text-muted-foreground">
-            Users who signed up for coming-soon tool notifications.
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-[22px] font-semibold tracking-tight">Waitlist</h1>
+          <p className="text-[13px] text-muted-foreground">
+            Emails captured from coming-soon tool banners.
           </p>
         </div>
         <Button variant="outline" size="sm" onClick={() => refetch()} disabled={isLoading}>
@@ -101,21 +101,23 @@ export default function AdminWaitlistPage() {
 
       {/* Total stat */}
       {data && (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          <div className="rounded-xl border bg-card p-4">
-            <p className="text-xs text-muted-foreground">Total Signups</p>
-            <p className="text-2xl font-bold text-blue-600">{totalSignups}</p>
-          </div>
-          <div className="rounded-xl border bg-card p-4">
-            <p className="text-xs text-muted-foreground">Tools</p>
-            <p className="text-2xl font-bold">{groups.length}</p>
-          </div>
-          <div className="rounded-xl border bg-card p-4 sm:col-span-1 col-span-2">
-            <p className="text-xs text-muted-foreground">Most Wanted</p>
-            <p className="text-base font-semibold truncate">
-              {groups[0] ? ToolLabel(groups[0].tool) : "—"}
-            </p>
-          </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {[
+            { label: "Total signups", value: String(totalSignups) },
+            { label: "Tools", value: String(groups.length) },
+            { label: "Most wanted", value: groups[0] ? ToolLabel(groups[0].tool) : "—" },
+          ].map((s) => (
+            <Card key={s.label} className={s.label === "Most wanted" ? "col-span-2 sm:col-span-1" : undefined}>
+              <CardContent className="p-4">
+                <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                  {s.label}
+                </div>
+                <div className="mt-1 truncate text-[22px] font-semibold tabular-nums">
+                  {s.value}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       )}
 
