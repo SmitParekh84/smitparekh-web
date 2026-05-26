@@ -28,9 +28,7 @@ export function ClientShell({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-sm">
         <div className="page-container flex h-14 items-center justify-between gap-4">
           <Link href="/client/dashboard" className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400">
-              <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={16} height={16} />
-            </div>
+            <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={28} height={28} className="h-7 w-7" />
             <span className="text-sm font-semibold">Client Portal</span>
           </Link>
 

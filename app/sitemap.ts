@@ -6,7 +6,7 @@ import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { servicePages } from "@/data/services-catalog";
 
-export const revalidate = 300;
+export const revalidate = 3600; // hourly; SEO freshness at negligible write cost
 
 // Stable lastModified for static routes. Bump this date only when the
 // underlying page content actually changes — Google reads a constantly

@@ -26,7 +26,7 @@ async function safeFetch<T>(
     const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
     const res = await fetch(url, {
       signal: controller.signal,
-      next: { revalidate: 300, tags: ["blogs"] },
+      next: { revalidate: 86400, tags: ["blogs"] },
       headers: { Accept: "application/json" },
     });
     clearTimeout(timer);

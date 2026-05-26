@@ -232,12 +232,12 @@ const steps = [
 const fetchExample = `// app/blog/page.tsx (Next.js 15+)
 const POSTS_URL = "https://api.smitparekh.co.in/api/v1/blogs";
 
-export const revalidate = 300; // refresh every 5 minutes
+export const revalidate = 86400; // refresh daily; this page rarely changes
 
 async function getPosts() {
   const res = await fetch(POSTS_URL, {
     headers: { "X-API-Key": process.env.BLOG_API_KEY! },
-    next: { revalidate: 300 },
+    next: { revalidate: 86400 },
   });
   if (!res.ok) throw new Error("Failed to load posts");
   const { data } = await res.json();

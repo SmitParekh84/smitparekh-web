@@ -28,7 +28,7 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 300;
+export const revalidate = 86400; // 24h; busted on-demand via revalidateTag("blogs")
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

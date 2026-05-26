@@ -117,7 +117,7 @@ export const getFeaturedNavTools = unstable_cache(
     }
   },
   ["nav-tools-v2"],
-  { tags: [NAV_TOOLS_TAG], revalidate: 300 },
+  { tags: [NAV_TOOLS_TAG], revalidate: 86400 },
 );
 
 /** Group featured tools into ordered buckets for the dropdown. */
