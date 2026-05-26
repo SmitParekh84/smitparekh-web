@@ -1,23 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Loader2 } from "lucide-react";
 
+const LOGIN_PATH = "/client/login";
+
 export function ClientGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isLoginPage = pathname === LOGIN_PATH;
   const [checking, setChecking] = useState(true);
   const [forbidden, setForbidden] = useState(false);
 
   useEffect(() => {
+    // The login page lives under the client route group but must not be guarded.
+    // It's rendered via the early return below, so no auth check is needed here.
+    if (isLoginPage) return;
+
     const supabase = createClient();
     let mounted = true;
+    const loginHref = `${LOGIN_PATH}?next=${encodeURIComponent(pathname)}`;
 
     function resolve(hasSession: boolean) {
       if (!mounted) return;
       if (!hasSession) {
-        router.replace("/admin/login");
+        router.replace(loginHref);
         return;
       }
       setForbidden(false);
@@ -27,7 +36,7 @@ export function ClientGuard({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(({ data }) => resolve(!!data.session));
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) router.replace("/admin/login");
+      if (!session) router.replace(loginHref);
       else resolve(true);
     });
 
@@ -35,7 +44,11 @@ export function ClientGuard({ children }: { children: React.ReactNode }) {
       mounted = false;
       sub.subscription.unsubscribe();
     };
-  }, [router]);
+  }, [router, pathname, isLoginPage]);
+
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
 
   if (checking) {
     return (
@@ -53,7 +66,7 @@ export function ClientGuard({ children }: { children: React.ReactNode }) {
           Please sign in to access the client portal.
         </p>
         <button
-          onClick={() => router.replace("/admin/login")}
+          onClick={() => router.replace(LOGIN_PATH)}
           className="text-sm underline text-blue-500"
         >
           Sign in

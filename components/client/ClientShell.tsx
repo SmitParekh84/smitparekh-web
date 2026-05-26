@@ -19,7 +19,12 @@ export function ClientShell({ children }: { children: React.ReactNode }) {
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.replace("/admin/login");
+    router.replace("/client/login");
+  }
+
+  // The login page shares this layout but must render without the portal chrome.
+  if (pathname === "/client/login") {
+    return <>{children}</>;
   }
 
   return (
