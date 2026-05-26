@@ -3,12 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, LogOut } from "lucide-react";
+import { LayoutDashboard, FileText, FolderKanban, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
 const NAV = [
   { title: "Dashboard", href: "/client/dashboard", icon: LayoutDashboard },
+  { title: "Project", href: "/client/project", icon: FolderKanban },
   { title: "Requirements", href: "/client/requirements", icon: FileText },
 ];
 

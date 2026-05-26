@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Briefcase,
   Loader2,
@@ -92,6 +93,7 @@ function initials(name?: string, email?: string) {
 }
 
 export default function AdminClientsPage() {
+  const router = useRouter();
   const [inviteOpen, setInviteOpen] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
 
@@ -187,7 +189,11 @@ export default function AdminClientsPage() {
               </TableHeader>
               <TableBody>
                 {clients.map((client) => (
-                  <TableRow key={client._id}>
+                  <TableRow
+                    key={client._id}
+                    onClick={() => router.push(`/admin/clients/${client._id}`)}
+                    className="cursor-pointer"
+                  >
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-xs font-semibold text-blue-500">
@@ -219,7 +225,7 @@ export default function AdminClientsPage() {
                     </TableCell>
 
                     <TableCell>
-                      <div className="flex justify-end">
+                      <div className="flex justify-end" onClick={(e) => e.stopPropagation()}>
                         {busyId === client._id ? (
                           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                         ) : (

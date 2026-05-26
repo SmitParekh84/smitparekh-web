@@ -73,5 +73,7 @@ export const queryKeys = {
     invitation: (token: string) => [...queryKeys.clients.all, "invitation", token] as const,
     me: () => [...queryKeys.clients.all, "me"] as const,
     myRequirements: () => [...queryKeys.clients.all, "my-requirements"] as const,
+    project: (clientId: string) => [...queryKeys.clients.all, "project", clientId] as const,
+    myProject: () => [...queryKeys.clients.all, "my-project"] as const,
   },
 } as const;
