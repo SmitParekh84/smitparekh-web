@@ -65,4 +65,13 @@ export const queryKeys = {
     list: (status?: string) => [...queryKeys.adminTenants.all, "list", status ?? "all"] as const,
     blogs: (tenantId: string) => [...queryKeys.adminTenants.all, "blogs", tenantId] as const,
   },
+  clients: {
+    all: ["clients"] as const,
+    list: () => [...queryKeys.clients.all, "list"] as const,
+    byId: (id: string) => [...queryKeys.clients.all, "id", id] as const,
+    requirements: (clientId: string) => [...queryKeys.clients.all, "requirements", clientId] as const,
+    invitation: (token: string) => [...queryKeys.clients.all, "invitation", token] as const,
+    me: () => [...queryKeys.clients.all, "me"] as const,
+    myRequirements: () => [...queryKeys.clients.all, "my-requirements"] as const,
+  },
 } as const;

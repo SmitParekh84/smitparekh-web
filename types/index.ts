@@ -206,3 +206,108 @@ export interface AuthResponse {
   token: string;
   user?: AuthUser;
 }
+
+/* ─── Client Onboarding ─────────────────────────────────────────────────── */
+
+export type ClientStatus = "invited" | "onboarded" | "active" | "inactive";
+export type InvitationStatus = "pending" | "accepted" | "expired";
+
+export interface Client {
+  _id: string;
+  name?: string;
+  email: string;
+  mobile?: string;
+  company?: string;
+  status: ClientStatus;
+  invitedAt: string;
+  onboardedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ClientInvitation {
+  token: string;
+  email: string;
+  status: InvitationStatus;
+  expiresAt: string;
+  invitedBy?: string;
+}
+
+/* ─── Service / Requirements Form ──────────────────────────────────────── */
+
+export type ServiceCategory =
+  | "website"
+  | "seo"
+  | "ai-automation"
+  | "custom-software";
+
+export type BudgetRange =
+  | "under-500"
+  | "500-2000"
+  | "2000-5000"
+  | "5000-15000"
+  | "15000-50000"
+  | "50000-plus"
+  | "not-sure";
+
+export type Timeline =
+  | "asap"
+  | "1-month"
+  | "2-3-months"
+  | "3-6-months"
+  | "6-plus-months"
+  | "flexible";
+
+export type WorkPreference = "us" | "vendor" | "freelancer";
+
+export interface WebsiteRequirements {
+  hasExistingWebsite: boolean;
+  existingUrl?: string;
+  websiteGoals?: string[]; // redesign, add-features, fix-bugs, performance, other
+  websiteType?: string; // landing-page, ecommerce, portfolio, blog, webapp, other
+  hasDesigner?: "yes" | "no" | "need-one";
+  hasContent?: "yes" | "no" | "need-help";
+}
+
+export interface SeoRequirements {
+  hasExistingWebsite: boolean;
+  existingUrl?: string;
+  workingWithAgency?: "no" | "another-agency" | "you";
+  primaryGoal?: string[]; // increase-traffic, improve-rankings, local-seo, technical-seo, all
+  hasAnalytics?: boolean;
+}
+
+export interface AiAutomationRequirements {
+  automationGoals?: string[]; // email, support-chatbot, data-processing, reports, social-media, integration, other
+  hasExistingSystems?: boolean;
+  existingSystemsDescription?: string;
+  techPreference?: string; // no-preference, specific-describe
+  techPreferenceDetail?: string;
+}
+
+export interface CustomSoftwareRequirements {
+  softwareType?: string; // web-app, mobile-ios, mobile-android, mobile-both, desktop, api-backend, other
+  hasDesignWireframes?: "yes" | "no" | "need-help";
+  hasTechSpec?: "yes" | "no" | "need-help";
+  description: string;
+}
+
+export interface ClientRequirements {
+  _id?: string;
+  clientId?: string;
+  categories: ServiceCategory[];
+  budget: BudgetRange;
+  timeline: Timeline;
+  workPreference: WorkPreference;
+  vendorCompanyName?: string;
+  freelancerProfileUrl?: string;
+  hasUxDesigner?: boolean;
+  additionalNotes?: string;
+  website?: WebsiteRequirements;
+  seo?: SeoRequirements;
+  aiAutomation?: AiAutomationRequirements;
+  customSoftware?: CustomSoftwareRequirements;
+  submittedAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
