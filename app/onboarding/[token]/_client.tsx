@@ -17,10 +17,43 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 import { useValidateInvitation, useOnboardClient } from "@/hooks/api/use-clients";
+import { createClient } from "@/lib/supabase/client";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
+
+/* Common country dial codes for the mobile field. */
+const COUNTRIES = [
+  { iso: "IN", name: "India", dial: "+91", flag: "🇮🇳" },
+  { iso: "US", name: "United States", dial: "+1", flag: "🇺🇸" },
+  { iso: "GB", name: "United Kingdom", dial: "+44", flag: "🇬🇧" },
+  { iso: "AE", name: "UAE (Dubai)", dial: "+971", flag: "🇦🇪" },
+  { iso: "CA", name: "Canada", dial: "+1", flag: "🇨🇦" },
+  { iso: "AU", name: "Australia", dial: "+61", flag: "🇦🇺" },
+  { iso: "SG", name: "Singapore", dial: "+65", flag: "🇸🇬" },
+  { iso: "SA", name: "Saudi Arabia", dial: "+966", flag: "🇸🇦" },
+  { iso: "QA", name: "Qatar", dial: "+974", flag: "🇶🇦" },
+  { iso: "KW", name: "Kuwait", dial: "+965", flag: "🇰🇼" },
+  { iso: "DE", name: "Germany", dial: "+49", flag: "🇩🇪" },
+  { iso: "FR", name: "France", dial: "+33", flag: "🇫🇷" },
+  { iso: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱" },
+  { iso: "PK", name: "Pakistan", dial: "+92", flag: "🇵🇰" },
+  { iso: "BD", name: "Bangladesh", dial: "+880", flag: "🇧🇩" },
+  { iso: "LK", name: "Sri Lanka", dial: "+94", flag: "🇱🇰" },
+  { iso: "NP", name: "Nepal", dial: "+977", flag: "🇳🇵" },
+  { iso: "ZA", name: "South Africa", dial: "+27", flag: "🇿🇦" },
+  { iso: "NG", name: "Nigeria", dial: "+234", flag: "🇳🇬" },
+  { iso: "JP", name: "Japan", dial: "+81", flag: "🇯🇵" },
+  { iso: "CN", name: "China", dial: "+86", flag: "🇨🇳" },
+  { iso: "BR", name: "Brazil", dial: "+55", flag: "🇧🇷" },
+];
 
 type Step = "welcome" | "info" | "password" | "done";
 
@@ -40,6 +73,7 @@ export function OnboardingClient({ token }: { token: string }) {
     password: "",
     confirmPassword: "",
   });
+  const [countryIso, setCountryIso] = useState("IN");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
@@ -57,7 +91,7 @@ export function OnboardingClient({ token }: { token: string }) {
   function validateInfo(): boolean {
     const newErrors: Partial<FormData> = {};
     if (!form.name.trim()) newErrors.name = "Full name is required.";
-    if (form.mobile && !/^\+?[\d\s\-()]{7,15}$/.test(form.mobile)) {
+    if (form.mobile && !/^[\d\s\-()]{6,15}$/.test(form.mobile)) {
       newErrors.mobile = "Enter a valid mobile number.";
     }
     setErrors(newErrors);
@@ -80,12 +114,29 @@ export function OnboardingClient({ token }: { token: string }) {
   async function handleComplete() {
     if (!validatePassword()) return;
     try {
+      const dial = COUNTRIES.find((c) => c.iso === countryIso)?.dial ?? "";
+      const mobile = form.mobile.trim() ? `${dial} ${form.mobile.trim()}`.trim() : undefined;
+
       await onboard.mutateAsync({
         token,
         name: form.name.trim(),
-        mobile: form.mobile.trim() || undefined,
+        mobile,
         password: form.password,
       });
+
+      // Establish a real browser session so the portal is accessible right away.
+      // If this fails the account still exists — the user can sign in at /client/login.
+      if (invitation?.email) {
+        try {
+          await createClient().auth.signInWithPassword({
+            email: invitation.email,
+            password: form.password,
+          });
+        } catch {
+          /* fall through to the done screen */
+        }
+      }
+
       setStep("done");
     } catch (err) {
       const msg =
@@ -198,16 +249,20 @@ export function OnboardingClient({ token }: { token: string }) {
                 Mobile number{" "}
                 <span className="text-[11px] text-muted-foreground font-normal">(optional)</span>
               </Label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="mobile"
-                  type="tel"
-                  placeholder="+91 98765 43210"
-                  value={form.mobile}
-                  onChange={(e) => updateField("mobile", e.target.value)}
-                  className={cn("pl-9", errors.mobile && "border-destructive")}
-                />
+              <div className="flex gap-2">
+                <CountryCodeSelect value={countryIso} onChange={setCountryIso} />
+                <div className="relative flex-1">
+                  <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="mobile"
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="98765 43210"
+                    value={form.mobile}
+                    onChange={(e) => updateField("mobile", e.target.value)}
+                    className={cn("pl-9", errors.mobile && "border-destructive")}
+                  />
+                </div>
               </div>
               {errors.mobile && (
                 <p className="text-xs text-destructive">{errors.mobile}</p>
@@ -354,6 +409,37 @@ export function OnboardingClient({ token }: { token: string }) {
 }
 
 /* ─── Shared sub-components ──────────────────────────────────────────────── */
+
+function CountryCodeSelect({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  const selected = COUNTRIES.find((c) => c.iso === value) ?? COUNTRIES[0];
+  return (
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger className="w-[116px] shrink-0" aria-label="Country code">
+        <span className="flex items-center gap-1.5">
+          <span className="text-base leading-none">{selected.flag}</span>
+          <span className="text-sm">{selected.dial}</span>
+        </span>
+      </SelectTrigger>
+      <SelectContent className="max-h-72">
+        {COUNTRIES.map((c) => (
+          <SelectItem key={c.iso} value={c.iso}>
+            <span className="flex items-center gap-2">
+              <span className="text-base leading-none">{c.flag}</span>
+              <span>{c.name}</span>
+              <span className="text-muted-foreground">{c.dial}</span>
+            </span>
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
 
 function OnboardingShell({ children }: { children: React.ReactNode }) {
   return (
