@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { clientsApi } from "@/lib/api/clients";
 import { queryKeys } from "@/lib/api/query-keys";
-import type { ClientRequirements, UpdateProjectStepPayload } from "@/types";
+import type { ClientRequirements, ProjectStepPatch } from "@/types";
 
 /* ─── Admin hooks ─────────────────────────────────────────────────────── */
 
@@ -58,13 +58,13 @@ export function useAdminClientProject(clientId: string) {
 export function useUpdateProjectStep(clientId: string) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ stepKey, payload }: { stepKey: string; payload: UpdateProjectStepPayload }) =>
-      clientsApi.updateStep(clientId, stepKey, payload),
+    mutationFn: ({ stepKey, patch }: { stepKey: string; patch: ProjectStepPatch }) =>
+      clientsApi.updateProjectStep(clientId, stepKey, patch),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
   });
 }
 
-export function useRegenerateClientProject(clientId: string) {
+export function useRegenerateProject(clientId: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: () => clientsApi.regenerateProject(clientId),

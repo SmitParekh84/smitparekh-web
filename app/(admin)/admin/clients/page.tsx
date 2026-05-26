@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Briefcase,
+  ExternalLink,
   Loader2,
   Mail,
   MoreHorizontal,
@@ -93,7 +94,6 @@ function initials(name?: string, email?: string) {
 }
 
 export default function AdminClientsPage() {
-  const router = useRouter();
   const [inviteOpen, setInviteOpen] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
 
@@ -189,22 +189,18 @@ export default function AdminClientsPage() {
               </TableHeader>
               <TableBody>
                 {clients.map((client) => (
-                  <TableRow
-                    key={client._id}
-                    onClick={() => router.push(`/admin/clients/${client._id}`)}
-                    className="cursor-pointer"
-                  >
+                  <TableRow key={client._id}>
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-xs font-semibold text-blue-500">
                           {initials(client.name, client.email)}
                         </div>
-                        <div className="min-w-0">
-                          <p className="truncate font-medium">
+                        <Link href={`/admin/clients/${client._id}`} className="min-w-0 group">
+                          <p className="truncate font-medium group-hover:underline">
                             {client.name || <span className="text-muted-foreground italic">Pending</span>}
                           </p>
                           <p className="truncate text-xs text-muted-foreground">{client.email}</p>
-                        </div>
+                        </Link>
                       </div>
                     </TableCell>
 
@@ -225,7 +221,7 @@ export default function AdminClientsPage() {
                     </TableCell>
 
                     <TableCell>
-                      <div className="flex justify-end" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex justify-end">
                         {busyId === client._id ? (
                           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                         ) : (
@@ -242,6 +238,13 @@ export default function AdminClientsPage() {
                               <MoreHorizontal className="h-4 w-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
+                              <DropdownMenuItem
+                                render={<Link href={`/admin/clients/${client._id}`} />}
+                                className="gap-2"
+                              >
+                                <ExternalLink className="h-3.5 w-3.5 text-blue-500" />
+                                View details
+                              </DropdownMenuItem>
                               {client.status !== "active" && (
                                 <DropdownMenuItem
                                   onClick={() => handleStatusChange(client, "active")}

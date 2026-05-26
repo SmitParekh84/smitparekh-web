@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ClipboardList, Clock } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useMyRequirements } from "@/hooks/api/use-clients";
+import { useMyRequirements, useMyProject } from "@/hooks/api/use-clients";
 import { Spinner } from "@/components/ui/spinner";
 import { buttonVariants } from "@/components/ui/button";
+import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 
 const SERVICE_LABELS: Record<string, string> = {
   website: "Website Development",
@@ -37,7 +37,9 @@ const TIMELINE_LABELS: Record<string, string> = {
 
 export default function ClientDashboardPage() {
   const { data, isLoading } = useMyRequirements();
+  const { data: projectData } = useMyProject();
   const requirements = data?.data ?? null;
+  const project = projectData?.data ?? null;
 
   return (
     <div className="space-y-8">
@@ -121,6 +123,17 @@ export default function ClientDashboardPage() {
               </Link>
             </CardContent>
           </Card>
+
+          {project && project.steps.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Project progress</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ClientProjectTimeline steps={project.steps} />
+              </CardContent>
+            </Card>
+          )}
         </div>
       ) : (
         /* No requirements yet */

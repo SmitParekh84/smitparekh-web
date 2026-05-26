@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import type { FeaturedNavTool } from "@/lib/featured-nav-tools";
 
-const NO_SHELL_PREFIXES = ["/admin", "/dashboard", "/login"];
+const NO_SHELL_PREFIXES = ["/admin", "/dashboard", "/client", "/login"];
 
 function hideShell(pathname: string) {
   return NO_SHELL_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));

@@ -1,0 +1,170 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  ChevronsUpDown,
+  ExternalLink,
+  FileText,
+  LayoutDashboard,
+  LogOut,
+} from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarRail,
+} from "@/components/ui/sidebar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useClientMe } from "@/hooks/api/use-clients";
+import { createClient } from "@/lib/supabase/client";
+
+type NavItem = { title: string; href: string; icon: typeof FileText };
+
+const NAV: NavItem[] = [
+  { title: "Dashboard", href: "/client/dashboard", icon: LayoutDashboard },
+  { title: "Requirements", href: "/client/requirements", icon: FileText },
+];
+
+function isActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function ClientSidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { data } = useClientMe();
+  const client = data?.data;
+
+  const displayName = client?.name || client?.email || "Client";
+  const email = client?.email ?? "";
+  const initials =
+    displayName
+      .split(" ")
+      .map((w) => w[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "C";
+
+  async function handleLogout() {
+    await createClient().auth.signOut();
+    router.replace("/client/login");
+  }
+
+  return (
+    <Sidebar collapsible="icon" variant="inset">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" render={<Link href="/client/dashboard" />}>
+              <div className="flex aspect-square w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400 shrink-0">
+                <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={16} height={16} />
+              </div>
+              <div className="flex flex-col gap-0.5 leading-none min-w-0">
+                <span className="font-semibold text-sm">Client Portal</span>
+                <span className="text-xs text-muted-foreground truncate">Smit Parekh</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Portal</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {NAV.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                  <SidebarMenuButton
+                    render={<Link href={item.href} />}
+                    isActive={isActive(pathname, item.href)}
+                    tooltip={item.title}
+                  >
+                    <item.icon className="w-4 h-4" />
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup className="mt-auto">
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/" target="_blank" rel="noreferrer" />}
+                  tooltip="Main site"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Main site</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <SidebarMenuButton
+                    size="lg"
+                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  />
+                }
+              >
+                <Avatar className="h-7 w-7 rounded-lg shrink-0">
+                  <AvatarFallback className="rounded-lg bg-blue-500/15 text-blue-500 text-xs font-semibold">
+                    {initials}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col gap-0.5 leading-none min-w-0">
+                  <span className="font-semibold text-sm truncate">{displayName}</span>
+                  <span className="text-xs text-muted-foreground truncate">{email}</span>
+                </div>
+                <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="top" align="start" className="w-52">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-0.5">
+                    <span className="text-sm font-medium truncate">{displayName}</span>
+                    <span className="text-xs text-muted-foreground truncate">{email}</span>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout} className="gap-2 text-destructive">
+                  <LogOut className="h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+
+      <SidebarRail />
+    </Sidebar>
+  );
+}

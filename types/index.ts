@@ -221,6 +221,7 @@ export interface Client {
   status: ClientStatus;
   invitedAt: string;
   onboardedAt?: string | null;
+  invitationExpiresAt?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -312,14 +313,9 @@ export interface ClientRequirements {
   updatedAt?: string;
 }
 
-/* ─── Client Project Workflow ──────────────────────────────────────────── */
+/* ─── Project Workflow ─────────────────────────────────────────────────── */
 
 export type ProjectStepStatus = "pending" | "in_progress" | "done" | "skipped";
-
-export interface ProjectLink {
-  label?: string;
-  url: string;
-}
 
 export interface ProjectStep {
   key: string;
@@ -331,7 +327,6 @@ export interface ProjectStep {
   startDate?: string | null;
   endDate?: string | null;
   note?: string;
-  links?: ProjectLink[];
   order: number;
 }
 
@@ -339,14 +334,13 @@ export interface ClientProject {
   _id: string;
   clientId: string;
   steps: ProjectStep[];
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface UpdateProjectStepPayload {
+export interface ProjectStepPatch {
   status?: ProjectStepStatus;
   startDate?: string | null;
   endDate?: string | null;
   note?: string;
-  links?: ProjectLink[];
 }
