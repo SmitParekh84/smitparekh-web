@@ -221,6 +221,7 @@ export interface Client {
   status: ClientStatus;
   invitedAt: string;
   onboardedAt?: string | null;
+  invitationExpiresAt?: string | null;
   createdAt: string;
   updatedAt: string;
 }
