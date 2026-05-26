@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
-  ChevronsUpDown,
-  ExternalLink,
-  FileText,
-  LayoutDashboard,
-  LogOut,
-} from "lucide-react";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -23,17 +22,12 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useClientMe } from "@/hooks/api/use-clients";
 import { createClient } from "@/lib/supabase/client";
+import { ChevronsUpDown, ExternalLink, FileText, LayoutDashboard, LogOut } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 type NavItem = { title: string; href: string; icon: typeof FileText };
 
@@ -73,7 +67,7 @@ export function ClientSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" render={<Link href="/client/dashboard" />}>
-              <div className="flex aspect-square w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400 shrink-0">
+              <div className="flex aspect-square w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 shrink-0">
                 <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={16} height={16} />
               </div>
               <div className="flex flex-col gap-0.5 leading-none min-w-0">

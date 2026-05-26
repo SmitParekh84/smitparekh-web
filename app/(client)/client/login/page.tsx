@@ -1,16 +1,16 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, Eye, EyeOff, Loader2, Lock } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
-import { toast } from "@/lib/toast";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "@/lib/toast";
+import { ArrowLeft, Eye, EyeOff, Loader2, Lock } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 function ClientLoginContent() {
   const router = useRouter();
@@ -68,7 +68,7 @@ function ClientLoginContent() {
 
         <div className="w-full max-w-sm rounded-2xl border border-border/60 bg-background/80 backdrop-blur-xl shadow-xl shadow-black/5">
           <div className="px-6 pt-8 pb-6 text-center space-y-3">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400 mx-auto">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 mx-auto">
               <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={28} height={28} />
             </div>
             <div>

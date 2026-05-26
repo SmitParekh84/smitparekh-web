@@ -1,7 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
+import { useOnboardClient, useValidateInvitation } from "@/hooks/api/use-clients";
+import { ApiError } from "@/lib/api";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "@/lib/toast";
+import { cn } from "@/lib/utils";
 import {
   AlertCircle,
   ArrowRight,
@@ -14,20 +21,8 @@ import {
   User,
 } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
-import { useValidateInvitation, useOnboardClient } from "@/hooks/api/use-clients";
-import { createClient } from "@/lib/supabase/client";
-import { toast } from "@/lib/toast";
-import { ApiError } from "@/lib/api";
-import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 /* Common country dial codes for the mobile field. */
 const COUNTRIES = [
@@ -103,8 +98,7 @@ export function OnboardingClient({ token }: { token: string }) {
     if (!form.password) newErrors.password = "Password is required.";
     else if (form.password.length < 8)
       newErrors.password = "Password must be at least 8 characters.";
-    if (!form.confirmPassword)
-      newErrors.confirmPassword = "Please confirm your password.";
+    if (!form.confirmPassword) newErrors.confirmPassword = "Please confirm your password.";
     else if (form.password !== form.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match.";
     setErrors(newErrors);
@@ -139,10 +133,7 @@ export function OnboardingClient({ token }: { token: string }) {
 
       setStep("done");
     } catch (err) {
-      const msg =
-        err instanceof ApiError
-          ? err.message
-          : "Something went wrong. Please try again.";
+      const msg = err instanceof ApiError ? err.message : "Something went wrong. Please try again.";
       toast.error("Onboarding failed", msg);
     }
   }
@@ -170,8 +161,8 @@ export function OnboardingClient({ token }: { token: string }) {
           <div>
             <h2 className="text-lg font-semibold">Link expired or invalid</h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              This invitation link is no longer valid. Please ask your account manager to send a
-              new one.
+              This invitation link is no longer valid. Please ask your account manager to send a new
+              one.
             </p>
           </div>
         </div>
@@ -184,7 +175,7 @@ export function OnboardingClient({ token }: { token: string }) {
     return (
       <OnboardingShell>
         <div className="flex flex-col items-center gap-5 py-8 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-400 shadow-lg">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 shadow-lg">
             <Image src="/Smit-Logo.svg" alt="Smit Parekh" width={32} height={32} />
           </div>
           <div>
@@ -194,12 +185,11 @@ export function OnboardingClient({ token }: { token: string }) {
             <h1 className="mt-1.5 text-2xl font-bold">Welcome aboard!</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               You&apos;ve been invited to{" "}
-              <span className="font-medium text-foreground">smitparekh.co.in</span> client
-              portal. Let&apos;s set up your account — it takes less than a minute.
+              <span className="font-medium text-foreground">smitparekh.co.in</span> client portal.
+              Let&apos;s set up your account — it takes less than a minute.
             </p>
             <p className="mt-3 text-xs text-muted-foreground">
-              Invitation for{" "}
-              <span className="font-medium text-foreground">{invitation.email}</span>
+              Invitation for <span className="font-medium text-foreground">{invitation.email}</span>
             </p>
           </div>
           <Button className="mt-2 gap-2 px-8" onClick={() => setStep("info")}>
@@ -219,9 +209,7 @@ export function OnboardingClient({ token }: { token: string }) {
         <div className="space-y-6">
           <div>
             <h2 className="text-xl font-semibold">Your details</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Tell us a little about yourself.
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Tell us a little about yourself.</p>
           </div>
 
           <div className="space-y-4">
@@ -239,9 +227,7 @@ export function OnboardingClient({ token }: { token: string }) {
                   className={cn("pl-9", errors.name && "border-destructive")}
                 />
               </div>
-              {errors.name && (
-                <p className="text-xs text-destructive">{errors.name}</p>
-              )}
+              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
             </div>
 
             <div className="space-y-1.5">
@@ -264,9 +250,7 @@ export function OnboardingClient({ token }: { token: string }) {
                   />
                 </div>
               </div>
-              {errors.mobile && (
-                <p className="text-xs text-destructive">{errors.mobile}</p>
-              )}
+              {errors.mobile && <p className="text-xs text-destructive">{errors.mobile}</p>}
             </div>
           </div>
 
@@ -325,9 +309,7 @@ export function OnboardingClient({ token }: { token: string }) {
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.password && (
-                <p className="text-xs text-destructive">{errors.password}</p>
-              )}
+              {errors.password && <p className="text-xs text-destructive">{errors.password}</p>}
             </div>
 
             <div className="space-y-1.5">
@@ -364,11 +346,7 @@ export function OnboardingClient({ token }: { token: string }) {
             <Button variant="ghost" onClick={() => setStep("info")}>
               Back
             </Button>
-            <Button
-              className="gap-2"
-              onClick={handleComplete}
-              disabled={onboard.isPending}
-            >
+            <Button className="gap-2" onClick={handleComplete} disabled={onboard.isPending}>
               {onboard.isPending ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
@@ -395,8 +373,8 @@ export function OnboardingClient({ token }: { token: string }) {
         <div>
           <h2 className="text-2xl font-bold">You&apos;re all set!</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Welcome, {form.name.split(" ")[0]}! Your account is ready. Head to your
-            dashboard to submit your project requirements.
+            Welcome, {form.name.split(" ")[0]}! Your account is ready. Head to your dashboard to
+            submit your project requirements.
           </p>
         </div>
         <Button className="mt-2 gap-2 px-8" onClick={() => router.push("/client/dashboard")}>
@@ -410,13 +388,7 @@ export function OnboardingClient({ token }: { token: string }) {
 
 /* ─── Shared sub-components ──────────────────────────────────────────────── */
 
-function CountryCodeSelect({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-}) {
+function CountryCodeSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const selected = COUNTRIES.find((c) => c.iso === value) ?? COUNTRIES[0];
   return (
     <Select value={value} onValueChange={onChange}>
@@ -445,9 +417,7 @@ function OnboardingShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">
-          {children}
-        </div>
+        <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">{children}</div>
         <p className="mt-4 text-center text-xs text-muted-foreground">
           Smit Parekh · smitparekh.co.in
         </p>
@@ -464,7 +434,7 @@ function StepDots({ current, total }: { current: number; total: number }) {
           key={i}
           className={cn(
             "h-1.5 rounded-full transition-all duration-300",
-            i === current ? "w-6 bg-blue-500" : "w-1.5 bg-muted-foreground/30"
+            i === current ? "w-6 bg-blue-500" : "w-1.5 bg-muted-foreground/30",
           )}
         />
       ))}
@@ -483,12 +453,7 @@ function PasswordStrength({ password }: { password: string }) {
   ];
   const strength = checks.filter(Boolean).length;
   const labels = ["Weak", "Fair", "Good", "Strong"];
-  const colors = [
-    "bg-destructive",
-    "bg-yellow-500",
-    "bg-blue-500",
-    "bg-green-500",
-  ];
+  const colors = ["bg-destructive", "bg-yellow-500", "bg-blue-500", "bg-green-500"];
 
   return (
     <div className="space-y-1.5">
@@ -498,14 +463,21 @@ function PasswordStrength({ password }: { password: string }) {
             key={i}
             className={cn(
               "h-1 flex-1 rounded-full transition-colors duration-300",
-              i < strength ? colors[strength - 1] : "bg-muted"
+              i < strength ? colors[strength - 1] : "bg-muted",
             )}
           />
         ))}
       </div>
       <p className="text-xs text-muted-foreground">
         Strength:{" "}
-        <span className={cn("font-medium", strength <= 1 && "text-destructive", strength === 2 && "text-yellow-600", strength >= 3 && "text-foreground")}>
+        <span
+          className={cn(
+            "font-medium",
+            strength <= 1 && "text-destructive",
+            strength === 2 && "text-yellow-600",
+            strength >= 3 && "text-foreground",
+          )}
+        >
           {labels[strength - 1] ?? "Very weak"}
         </span>
       </p>
