@@ -6,24 +6,24 @@ export interface HomeData {
   socialLinks: Array<{
     href: string;
     label: string;
-    platform: "email" | "linkedin" | "github" | "x";
+    platform: "email" | "linkedin" | "github" | "x" | "upwork" | "marketixpert";
   }>;
 }
 
 export const homeData: HomeData = {
   title: "Hi, I'm Smit Parekh",
-  subtitle: "Full-Stack Web Development for Startups & Growing Businesses",
+  subtitle: "I Ship Production-Ready Web Apps — On Time, Every Time",
   description:
-    "I build fast, scalable web applications that drive real business results — from early-stage MVPs to enterprise platforms handling thousands of daily users. React · Node.js · TypeScript · AWS.",
+    "From scoped requirements to live, monitored deployment — I own the full stack so you never juggle multiple vendors. 30+ products shipped across FinTech, SaaS, and e-commerce. React · Node.js · TypeScript · AWS.",
   imageSrc: "/images/Smit-Parekh-Home.png",
   socialLinks: [
     {
-      href: "mailto:smitparekh02@gmail.com",
+      href: "mailto:smitparekh03@gmail.com",
       label: "Send email",
       platform: "email",
     },
     {
-      href: "https://www.linkedin.com/in/smit-parekh-n/",
+      href: "https://www.linkedin.com/in/smitparekh84/",
       label: "LinkedIn profile",
       platform: "linkedin",
     },
@@ -37,13 +37,23 @@ export const homeData: HomeData = {
       label: "X profile",
       platform: "x",
     },
+    {
+      href: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
+      label: "Upwork profile",
+      platform: "upwork",
+    },
+    {
+      href: "https://www.marketixpert.com",
+      label: "Marketixpert - my agency website",
+      platform: "marketixpert",
+    },
   ],
 };
 
 export const aboutStats = {
-  years: "3.5+",
+  years: "4+",
   certifications: "4+",
-  companies: "3+",
+  companies: "15+",
 };
 
-export const cvLink = "https://www.smitparekh.co.in/Smit-parekh.pdf";
+export const cvLink = "https://www.smitparekh.co.in/Smit_Parekh_FullStack.pdf";

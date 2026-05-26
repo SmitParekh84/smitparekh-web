@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, Clock, MapPin, Send } from "lucide-react";
+import { ArrowRight, Mail, Clock, MapPin, Send, MessageSquare, MessageCircle, ClipboardCheck, Hammer, Rocket, CalendarClock } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { PageHero } from "@/components/layout/PageHero";
+// import { LinkedInBadge } from "@/components/ui/linkedin-badge";
 import { cn } from "@/lib/utils";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@/lib/api";
+import { useSubmitContact } from "@/hooks/api/use-contact";
 import { toast } from "@/lib/toast";
+import { AppSelect } from "@/components/ui/app-select";
 import {
   GitHubIcon,
   LinkedInIcon,
   MailIcon,
+  UpworkIcon,
   XIcon,
 } from "@/components/icons/SocialIcons";
 import { siteConfig } from "@/data/site";
@@ -24,13 +27,6 @@ const SUBJECTS = [
   "Other",
 ];
 
-interface ContactPayload {
-  name: string;
-  email: string;
-  subject: string;
-  description: string;
-}
-
 export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
@@ -40,17 +36,7 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const mutation = useMutation({
-    mutationFn: (data: ContactPayload) =>
-      api.post<{ message: string }>("/contact", data),
-    onSuccess: () => {
-      setSubmitted(true);
-      setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
-    },
-    onError: () => {
-      toast.error("Something went wrong", "Please try again or email me directly.");
-    },
-  });
+  const mutation = useSubmitContact();
 
   function handleChange(
     e: React.ChangeEvent<
@@ -66,31 +52,61 @@ export default function ContactPage() {
       toast.error("Missing fields", "Please fill in all required fields.");
       return;
     }
-    mutation.mutate({
-      name: form.name,
-      email: form.email,
-      subject: form.subject,
-      description: form.description,
-    });
+    mutation.mutate(
+      {
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        description: form.description,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success(
+            "Message sent!",
+            res?.message || "I'll get back to you within 24 hours.",
+          );
+          setSubmitted(true);
+          setForm({ name: "", email: "", subject: SUBJECTS[0], description: "" });
+        },
+        onError: () => {
+          toast.error("Something went wrong", "Please try again or email me directly.");
+        },
+      }
+    );
   }
 
   return (
     <>
       {/* Header */}
-      <section className="page-section pt-24 sm:pt-28 pb-0">
-        <div className="page-container text-center max-w-2xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">
-            Get in Touch
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            Let&apos;s Work Together
-          </h1>
-          <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-            Tell me about your project. I respond to every enquiry within 24 hours
-            and deliver a scoped proposal within 48.
-          </p>
+      <PageHero
+        eyebrow="Get in Touch"
+        icon={MessageSquare}
+        title={<>Let&apos;s Work Together</>}
+        description="Tell me about your project. I respond to every enquiry within 24 hours and deliver a scoped proposal within 48."
+      >
+        <div className="flex flex-wrap gap-3 items-center">
+          <Link
+            href="/book"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "gap-2 bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700"
+            )}
+          >
+            <CalendarClock className="w-4 h-4" />
+            Book a 15-min call
+          </Link>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+            )}
+          >
+            <Mail className="w-4 h-4" />
+            Email me directly
+          </a>
         </div>
-      </section>
+      </PageHero>
 
       {/* Content */}
       <section className="page-section">
@@ -159,6 +175,15 @@ export default function ContactPage() {
                     <XIcon className="w-4 h-4" />
                   </a>
                   <a
+                    href={siteConfig.social.upwork}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Upwork"
+                    className="flex items-center justify-center w-9 h-9 rounded-xl border border-border bg-card hover:border-blue-500/40 hover:bg-blue-500/5 transition-all text-muted-foreground hover:text-foreground"
+                  >
+                    <UpworkIcon className="w-4 h-4" />
+                  </a>
+                  <a
                     href={`mailto:${siteConfig.email}`}
                     aria-label="Email"
                     className="flex items-center justify-center w-9 h-9 rounded-xl border border-border bg-card hover:border-blue-500/40 hover:bg-blue-500/5 transition-all text-muted-foreground hover:text-foreground"
@@ -170,15 +195,31 @@ export default function ContactPage() {
 
               <div className="rounded-2xl border border-border bg-card p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      siteConfig.availability.accepting
+                        ? "bg-green-500 animate-pulse"
+                        : "bg-amber-500"
+                    }`}
+                  />
                   <span className="text-sm font-semibold">
-                    Available for New Projects
+                    {siteConfig.availability.accepting
+                      ? "Available for New Projects"
+                      : "Currently Unavailable"}
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Currently accepting new clients for Q2 2025 start dates. Limited
-                  spots available — get in touch early.
+                  {siteConfig.availability.accepting
+                    ? `Currently accepting new clients for ${siteConfig.availability.quarter} start dates. ${siteConfig.availability.note}`
+                    : "Not currently taking on new clients. Check back soon or send a message."}
                 </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                  LinkedIn
+                </p>
+                {/* <LinkedInBadge className="lg:justify-start" /> */}
               </div>
             </div>
 
@@ -253,19 +294,12 @@ export default function ContactPage() {
                     >
                       What can I help with?
                     </label>
-                    <select
-                      id="subject"
-                      name="subject"
+                    <AppSelect
                       value={form.subject}
-                      onChange={handleChange}
-                      className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors"
-                    >
-                      {SUBJECTS.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
-                    </select>
+                      onValueChange={(v) => setForm((f) => ({ ...f, subject: v }))}
+                      options={SUBJECTS}
+                      triggerClassName="rounded-xl border-border h-10"
+                    />
                   </div>
 
                   <div className="space-y-1.5">
@@ -282,7 +316,7 @@ export default function ContactPage() {
                       rows={6}
                       value={form.description}
                       onChange={handleChange}
-                      placeholder="Tell me about your project — what are you building, what's the timeline, and what kind of help do you need?"
+                      placeholder="Tell me about your project - what are you building, what's the timeline, and what kind of help do you need?"
                       className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-colors resize-none"
                     />
                   </div>
@@ -308,6 +342,123 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What happens next */}
+      <section className="page-section pt-0">
+        <div className="page-container">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-wider text-blue-500 font-semibold mb-2">
+              What Happens Next
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              From first message to first commit
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+              I keep the start of every project deliberately simple. No long
+              sales calls, no lock-in contracts before we&apos;ve agreed the
+              scope makes sense for both sides.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: MessageCircle,
+                title: "1 - Reply within 24h",
+                description:
+                  "I read every message personally and reply with clarifying questions, a rough timeline estimate, and next steps.",
+              },
+              {
+                icon: ClipboardCheck,
+                title: "2 - Free scoping call",
+                description:
+                  "30–45 minutes to walk through the goal, constraints, and tech. You leave with a written scope and fixed-price proposal.",
+              },
+              {
+                icon: Hammer,
+                title: "3 - Build in the open",
+                description:
+                  "Weekly demos, async Loom updates, and a shared Linear board. You always know what's shipped and what's next.",
+              },
+              {
+                icon: Rocket,
+                title: "4 - Launch & support",
+                description:
+                  "Production deploy, monitoring, and docs handover. Optional retainer for ongoing iteration after launch.",
+              },
+            ].map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.title}
+                  className="rounded-2xl border border-border bg-card p-6 hover:border-blue-500/40 transition-colors"
+                >
+                  <div className="rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/15 p-2.5 text-blue-500 inline-flex">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-semibold mt-4">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="page-section pt-0">
+        <div className="page-container">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-wider text-blue-500 font-semibold mb-2">
+              Common Questions
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              Before you reach out
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                q: "What kind of projects do you take on?",
+                a: "Production web apps and SaaS products - typically Next.js + Node/Express + Postgres or MongoDB. From MVPs through to scaling existing codebases. I don't take pure WordPress, Shopify customisation, or marketing-only sites.",
+              },
+              {
+                q: "How are you priced?",
+                a: "Fixed-price for clearly scoped projects, hourly for ongoing work. After our scoping call you get a written proposal - no hidden fees.",
+              },
+              {
+                q: "How soon can we start?",
+                a: "Usually within 1–2 weeks of agreeing the scope. For urgent fixes on existing projects I can often start the same week.",
+              },
+              {
+                q: "Do you work with teams?",
+                a: "Yes - I integrate with your existing engineering team, your tooling (Linear/Jira/GitHub), and your deployment pipelines. I'm comfortable as the only engineer or as a senior on a larger team.",
+              },
+              {
+                q: "Can you help us pick the right stack?",
+                a: "Absolutely. The free scoping call covers tech recommendations, hosting options, and pragmatic tradeoffs based on your team size, budget, and growth plans.",
+              },
+              {
+                q: "Where are you based?",
+                a: "India. I work async with clients across the US, EU, and APAC - overlapping a few hours daily for sync work and demos.",
+              },
+            ].map((item) => (
+              <div
+                key={item.q}
+                className="rounded-2xl border border-border bg-card p-5"
+              >
+                <h3 className="text-sm font-semibold">{item.q}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {item.a}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

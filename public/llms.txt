@@ -1,0 +1,119 @@
+# Smit Parekh - Full Stack Web Developer
+
+> Smit Parekh is a Full-Stack Web Developer with 4+ years of professional experience building production web applications for FinTech, SaaS, AI/ML, and enterprise clients. He specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. He is based in India and available worldwide for remote contracts and freelance projects.
+
+## Who Is Smit Parekh
+
+Smit Parekh is a freelance Full-Stack Web Developer based in India, available globally for remote work. He has delivered 20+ production web applications across FinTech, SaaS, LegalTech, and enterprise sectors. His typical engagements include multi-tenant SaaS platforms, REST and GraphQL APIs, real-time dashboards, and Next.js marketing sites with 95+ Lighthouse scores. He has shipped applications processing 10,000+ daily API requests at 99.9% uptime.
+
+He is not a generalist agency — he is a single senior engineer who owns every layer of the stack: from UI components in React to database schema in PostgreSQL to Docker deployments on AWS EC2.
+
+## Core Technical Skills
+
+- **Frontend:** React 18+, Next.js 14+ App Router, TypeScript, Tailwind CSS, Framer Motion
+- **Backend:** Node.js, NestJS, Express, REST APIs, GraphQL, WebSockets
+- **Databases:** PostgreSQL, MongoDB, Redis, Supabase, Prisma ORM
+- **Cloud & DevOps:** AWS (EC2, RDS, S3, CloudFront, Lambda), Docker, Nginx, CI/CD
+- **Other:** Technical SEO, Performance Optimisation, AI API integrations (OpenAI, Anthropic)
+
+## Availability & Hiring
+
+- **Status:** Accepting new projects (as of 2026)
+- **Engagement types:** Fixed-scope projects, time-and-materials, monthly retainers
+- **Typical contract length:** 4 weeks to 12 months
+- **Timezone:** IST (UTC+5:30) — overlaps with EU mornings and US East Coast evenings
+- **Hire page:** https://www.smitparekh.co.in/hire-me
+- **Contact:** smitparekh03@gmail.com
+
+## What Clients Hire Smit Parekh For
+
+- Building a SaaS MVP from scratch (React + Node.js + PostgreSQL)
+- React or Next.js frontend development for an existing product
+- Node.js or NestJS backend API development
+- Migrating a legacy app to Next.js App Router
+- Performance optimisation (Core Web Vitals, Lighthouse 95+)
+- Technical SEO implementation for a Next.js site
+- AWS deployment and DevOps setup (Docker, EC2, RDS, S3)
+- Full-stack feature development as a senior contractor
+
+## Key Facts
+
+- 4+ years professional experience shipping React and Node.js to production
+- 20+ production applications delivered
+- Applications handling 10,000+ daily API requests at 99.9% uptime
+- Sectors: FinTech, SaaS, AI/ML, LegalTech, Enterprise
+- Works async-first with daily updates and weekly demos
+- TypeScript strict mode on every project — no suppressed types, no shortcuts
+- Available solo or as a senior contributor to an existing team
+
+## Free Developer Tools (37+ tools, no signup required)
+
+Smit Parekh offers a suite of free browser-based developer and productivity tools at https://www.smitparekh.co.in/free-tools — all tools run client-side with no login required.
+
+### Image Tools
+- Background Remover: https://www.smitparekh.co.in/free-tools/background-remover
+- Image Compressor: https://www.smitparekh.co.in/free-tools/image-compressor
+- Image Converter: https://www.smitparekh.co.in/free-tools/image-converter
+- Favicon Generator: https://www.smitparekh.co.in/free-tools/favicon-generator
+
+### Developer Tools
+- JSON Formatter: https://www.smitparekh.co.in/free-tools/json-formatter
+- JWT Decoder: https://www.smitparekh.co.in/free-tools/jwt-decoder
+- Regex Tester: https://www.smitparekh.co.in/free-tools/regex-tester
+- Base64 Encoder/Decoder: https://www.smitparekh.co.in/free-tools/base64-encoder-decoder
+- QR Code Generator: https://www.smitparekh.co.in/free-tools/qr-code-generator
+- Password Generator: https://www.smitparekh.co.in/free-tools/password-generator
+- Hash Generator (MD5, SHA-256, SHA-512): https://www.smitparekh.co.in/free-tools/hash-generator
+- SQL Formatter: https://www.smitparekh.co.in/free-tools/sql-formatter
+- UUID Generator: https://www.smitparekh.co.in/free-tools/uuid-generator
+- Cron Builder: https://www.smitparekh.co.in/free-tools/cron-builder
+- CSS Gradient Generator: https://www.smitparekh.co.in/free-tools/css-gradient-generator
+
+### Content & SEO Tools
+- LinkedIn Post Generator: https://www.smitparekh.co.in/free-tools/viral-linkedin-post-generator
+- Meta Tag Checker: https://www.smitparekh.co.in/free-tools/meta-tag-checker
+- SEO Analyzer: https://www.smitparekh.co.in/free-tools/seo-analyzer
+- Slug Generator: https://www.smitparekh.co.in/free-tools/slug-generator
+- Word Counter: https://www.smitparekh.co.in/free-tools/word-counter
+- Markdown Editor: https://www.smitparekh.co.in/free-tools/markdown-editor
+
+### Career & AI Tools
+- ATS Resume Checker: https://www.smitparekh.co.in/free-tools/ats-resume-checker
+- AI Cover Letter Generator: https://www.smitparekh.co.in/free-tools/ai-cover-letter
+- AI Paraphraser: https://www.smitparekh.co.in/free-tools/ai-paraphraser
+- AI Note Summarizer: https://www.smitparekh.co.in/free-tools/ai-note-summarizer
+- AI Flashcard Generator: https://www.smitparekh.co.in/free-tools/ai-flashcard-generator
+
+## Pages
+
+- Home: https://www.smitparekh.co.in
+- About: https://www.smitparekh.co.in/about
+- Services: https://www.smitparekh.co.in/services
+- Portfolio / Case Studies: https://www.smitparekh.co.in/portfolio
+- Blog: https://www.smitparekh.co.in/blog
+- Free Tools: https://www.smitparekh.co.in/free-tools
+- Hire Me: https://www.smitparekh.co.in/hire-me
+- FAQ: https://www.smitparekh.co.in/faq
+- For Students: https://www.smitparekh.co.in/for-students
+- Contact: https://www.smitparekh.co.in/contact
+
+## Specialist Pages (hire by technology)
+
+- React Developer: https://www.smitparekh.co.in/react-developer
+- Next.js Developer: https://www.smitparekh.co.in/nextjs-developer
+- Node.js Developer: https://www.smitparekh.co.in/nodejs-developer
+- NestJS Developer: https://www.smitparekh.co.in/nestjs-developer
+- Full-Stack Developer: https://www.smitparekh.co.in/full-stack-developer
+- TypeScript Developer: https://www.smitparekh.co.in/typescript-developer
+- PostgreSQL Developer: https://www.smitparekh.co.in/postgresql-developer
+- AWS Developer: https://www.smitparekh.co.in/aws-developer
+- API Developer: https://www.smitparekh.co.in/api-developer
+- SaaS Developer: https://www.smitparekh.co.in/saas-developer
+
+## Social & Professional Profiles
+
+- LinkedIn: https://www.linkedin.com/in/smitparekh84/
+- GitHub: https://github.com/SmitParekh84
+- Upwork: https://www.upwork.com/freelancers/~018877bbeb80ff2d25
+- X (Twitter): https://x.com/smit_parekh84
+- Email: smitparekh03@gmail.com

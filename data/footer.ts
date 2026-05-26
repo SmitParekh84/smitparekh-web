@@ -1,4 +1,4 @@
-export type SocialPlatform = "instagram" | "email" | "linkedin" | "github";
+export type SocialPlatform = "instagram" | "email" | "linkedin" | "github" | "upwork";
 
 export interface FooterLink {
   href: string;
@@ -25,12 +25,12 @@ export const footerData: FooterData = {
   title: "Smit Parekh",
   subtitle: "Full Stack Developer & Marketing Manager",
   pageLinks: [
-    { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
-    { href: "/project", label: "Projects" },
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/qualification", label: "Experience" },
-    { href: "/contact", label: "Contact Me" },
+    { href: "/blog", label: "Blog" },
+    { href: "/free-tools", label: "Free Tools" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/feedback", label: "Feedback" },
   ],
   toolLinks: [
     { href: "/free-tools/background-remover", label: "Bg Remover" },
@@ -51,12 +51,12 @@ export const footerData: FooterData = {
       label: "Instagram",
     },
     {
-      href: "mailto:smitparekh02@gmail.com",
+      href: "mailto:smitparekh03@gmail.com",
       platform: "email",
       label: "Email",
     },
     {
-      href: "https://www.linkedin.com/in/smit-parekh-n",
+      href: "https://www.linkedin.com/in/smitparekh84",
       platform: "linkedin",
       label: "LinkedIn",
     },
@@ -65,9 +65,16 @@ export const footerData: FooterData = {
       platform: "github",
       label: "GitHub",
     },
+    {
+      href: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
+      platform: "upwork",
+      label: "Upwork",
+    },
   ],
   copyright: "© Smit Parekh. All rights reserved.",
   legalLinks: [
+    { href: "/changelog", label: "Changelog" },
+    { href: "/faq", label: "FAQ" },
     { href: "/privacy-policy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms of Service" },
   ],

@@ -3,21 +3,12 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { AdminGuard } from "@/components/admin/AdminGuard";
 import { ProjectForm } from "@/components/admin/ProjectForm";
 import { useCreateProject } from "@/hooks/use-projects";
 import { toast } from "@/lib/toast";
 import type { BackendProjectInput } from "@/types";
 
 export default function NewProjectPage() {
-  return (
-    <AdminGuard>
-      <NewProject />
-    </AdminGuard>
-  );
-}
-
-function NewProject() {
   const router = useRouter();
   const createProject = useCreateProject();
 
@@ -25,7 +16,7 @@ function NewProject() {
     try {
       await createProject.mutateAsync(data);
       toast.success("Project created!");
-      router.push("/admin");
+      router.push("/admin/projects");
     } catch {
       toast.error("Failed to create project", "Please try again.");
     }
@@ -35,19 +26,19 @@ function NewProject() {
     <div className="space-y-6">
       <div>
         <Link
-          href="/admin"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+          href="/admin/projects"
+          className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
           Back to Projects
         </Link>
-        <h1 className="text-2xl font-bold">New Project</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">
-          Add a new project to your portfolio
+        <h1 className="text-2xl font-semibold tracking-tight">New project</h1>
+        <p className="mt-0.5 text-sm text-muted-foreground">
+          Add a new project to your portfolio.
         </p>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-7 sm:p-9">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:p-8">
         <ProjectForm
           onSubmit={handleSubmit}
           submitLabel="Create Project"

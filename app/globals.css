@@ -1,11 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 /* ─────────────────────────────────────────────────────────────────────────
-   DESIGN TOKENS  —  two-layer architecture
+   DESIGN TOKENS - two-layer architecture
    Layer 1  Primitive scale      @theme inline, static OKLCH values
    Layer 2  Semantic aliases     :root / .dark, consumed by shadcn + Tailwind
    ─────────────────────────────────────────────────────────────────────────
@@ -78,7 +79,7 @@
   --color-neutral-900: oklch(0.170 0.016 264);
   --color-neutral-950: oklch(0.120 0.018 264);
 
-  /* ── Layer 2: Semantic aliases — wire Tailwind utilities to CSS vars ─── */
+  /* ── Layer 2: Semantic aliases - wire Tailwind utilities to CSS vars ─── */
   --color-background:                 var(--background);
   --color-foreground:                 var(--foreground);
   --color-card:                       var(--card);
@@ -112,9 +113,9 @@
   --color-sidebar-ring:               var(--sidebar-ring);
 
   /* Fonts */
-  --font-sans:    var(--font-geist-sans);
+  --font-sans:    "Google Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono:    var(--font-geist-mono);
-  --font-heading: var(--font-geist-sans);
+  --font-heading: "Google Sans", ui-sans-serif, system-ui, sans-serif;
 
   /* Radii */
   --radius-sm:  calc(var(--radius) * 0.6);
@@ -154,11 +155,11 @@
   --chart-4:              oklch(0.370 0.265 264.1);
   --chart-5:              oklch(0.992 0.022 97.1);
   --radius:               0.625rem;
-  --sidebar:              oklch(0.992 0.022 97.1);
+  --sidebar:              oklch(0.985 0.003 264);
   --sidebar-foreground:   oklch(0.145 0 0);
   --sidebar-primary:      oklch(0.432 0.277 264.1);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:       oklch(0.940 0.025 204.6);
+  --sidebar-accent:       oklch(0.955 0.008 264);
   --sidebar-accent-foreground:  oklch(0.432 0.277 264.1);
   --sidebar-border:       oklch(0.910 0.010 240);
   --sidebar-ring:         oklch(0.761 0.141 204.6);
@@ -202,6 +203,19 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   MARQUEE ANIMATION  (components/sections/Skills.tsx)
+───────────────────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    AURORA ANIMATION  (components/ui/aurora-background.tsx)
 ───────────────────────────────────────────────────────────────────────── */
 @keyframes aurora-float {
@@ -221,10 +235,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Google Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
   }
   html {
     @apply font-sans;
     scrollbar-width: none;
+    scroll-behavior: smooth;
   }
   html::-webkit-scrollbar {
     display: none;
@@ -232,7 +251,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   LAYOUT UTILITIES  —  use these instead of repeating container + padding
+   LAYOUT UTILITIES - use these instead of repeating container + padding
    .page-container   full-width, max-w-7xl, responsive px
    .page-section     vertical rhythm for page sections
 ───────────────────────────────────────────────────────────────────────── */
@@ -242,5 +261,34 @@
   }
   .page-section {
     @apply py-16 sm:py-20 lg:py-24;
+  }
+  .animate-marquee {
+    --marquee-gap: 0.5rem;
+    animation: marquee 60s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee-reverse {
+    --marquee-gap: 0.5rem;
+    animation: marquee-reverse 50s linear infinite;
+    will-change: transform;
+  }
+  @media (min-width: 640px) {
+    .animate-marquee,
+    .animate-marquee-reverse {
+      --marquee-gap: 0.75rem;
+    }
+  }
+  /* Only pause on hover-capable pointers so taps don't freeze it on mobile */
+  @media (hover: hover) {
+    .animate-marquee:hover,
+    .animate-marquee-reverse:hover {
+      animation-play-state: paused;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-marquee-reverse {
+      animation: none;
+    }
   }
 }

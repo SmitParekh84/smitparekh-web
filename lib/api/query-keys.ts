@@ -1,0 +1,79 @@
+export const queryKeys = {
+  projects: {
+    all: ["projects"] as const,
+    list: () => [...queryKeys.projects.all, "list"] as const,
+    deleted: () => [...queryKeys.projects.all, "deleted"] as const,
+    byId: (id: string) => [...queryKeys.projects.all, "id", id] as const,
+    byTitle: (title: string) => [...queryKeys.projects.all, "title", title] as const,
+    bySlug: (slug: string) => [...queryKeys.projects.all, "slug", slug] as const,
+    images: () => [...queryKeys.projects.all, "images"] as const,
+  },
+  blogs: {
+    all: ["blogs"] as const,
+    list: () => [...queryKeys.blogs.all, "list"] as const,
+    deleted: () => [...queryKeys.blogs.all, "deleted"] as const,
+    byId: (id: string) => [...queryKeys.blogs.all, "id", id] as const,
+    bySlug: (slug: string) => [...queryKeys.blogs.all, "slug", slug] as const,
+    images: () => [...queryKeys.blogs.all, "images"] as const,
+  },
+  feedback: {
+    all: ["feedback"] as const,
+    list: () => [...queryKeys.feedback.all, "list"] as const,
+    myList: () => [...queryKeys.feedback.all, "my"] as const,
+    adminList: (params?: object) => [...queryKeys.feedback.all, "admin", params ?? {}] as const,
+  },
+  chat: {
+    all: ["chat"] as const,
+    sessions: (params?: { page?: number; limit?: number; search?: string }) =>
+      [...queryKeys.chat.all, "sessions", params ?? {}] as const,
+    session: (id: string) => [...queryKeys.chat.all, "session", id] as const,
+  },
+  meta: {
+    all: ["meta"] as const,
+    tags: (url: string) => [...queryKeys.meta.all, "tags", url] as const,
+    seoReports: () => [...queryKeys.meta.all, "seo-reports"] as const,
+  },
+  adminContacts: {
+    all: ["admin-contacts"] as const,
+    list: (params?: { page?: number; limit?: number; unread?: boolean }) =>
+      [...queryKeys.adminContacts.all, "list", params ?? {}] as const,
+    deleted: () => [...queryKeys.adminContacts.all, "deleted"] as const,
+    detail: (id: string) =>
+      [...queryKeys.adminContacts.all, "detail", id] as const,
+  },
+  adminUsers: {
+    all: ["admin-users"] as const,
+    list: () => [...queryKeys.adminUsers.all, "list"] as const,
+    deleted: () => [...queryKeys.adminUsers.all, "deleted"] as const,
+  },
+  resumeEvents: {
+    all: ["resume-events"] as const,
+    stats: (days: number) =>
+      [...queryKeys.resumeEvents.all, "stats", days] as const,
+  },
+  adminWaitlist: {
+    all: ["admin-waitlist"] as const,
+    list: () => [...queryKeys.adminWaitlist.all, "list"] as const,
+  },
+  tenant: {
+    all: ["tenant"] as const,
+    me: () => [...queryKeys.tenant.all, "me"] as const,
+    myBlogs: () => [...queryKeys.tenant.all, "my-blogs"] as const,
+  },
+  adminTenants: {
+    all: ["admin-tenants"] as const,
+    list: (status?: string) => [...queryKeys.adminTenants.all, "list", status ?? "all"] as const,
+    blogs: (tenantId: string) => [...queryKeys.adminTenants.all, "blogs", tenantId] as const,
+  },
+  clients: {
+    all: ["clients"] as const,
+    list: () => [...queryKeys.clients.all, "list"] as const,
+    byId: (id: string) => [...queryKeys.clients.all, "id", id] as const,
+    requirements: (clientId: string) => [...queryKeys.clients.all, "requirements", clientId] as const,
+    project: (clientId: string) => [...queryKeys.clients.all, "project", clientId] as const,
+    invitation: (token: string) => [...queryKeys.clients.all, "invitation", token] as const,
+    me: () => [...queryKeys.clients.all, "me"] as const,
+    myRequirements: () => [...queryKeys.clients.all, "my-requirements"] as const,
+    myProject: () => [...queryKeys.clients.all, "my-project"] as const,
+  },
+} as const;

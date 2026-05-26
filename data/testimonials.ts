@@ -49,4 +49,64 @@ export const testimonials: Testimonial[] = [
     initials: "TB",
     avatarColor: "from-blue-400 to-cyan-500",
   },
+  {
+    id: 5,
+    name: "Aarav Shah",
+    company: "Lumen Labs",
+    quote:
+      "Shipped a production-ready dashboard in two weeks - clean code, sensible architecture, and zero hand-holding. Felt like hiring a senior, not a freelancer.",
+    rating: 5,
+    initials: "AS",
+    avatarColor: "from-indigo-500 to-blue-600",
+  },
+  {
+    id: 6,
+    name: "Riya Kapoor",
+    company: "FinFlow",
+    quote:
+      "Our checkout conversion jumped 23% after Smit rebuilt the funnel. He thinks in business outcomes, not just lines of code.",
+    rating: 5,
+    initials: "RK",
+    avatarColor: "from-violet-500 to-purple-500",
+  },
+  {
+    id: 7,
+    name: "Karan Mehta",
+    company: "ShipStack",
+    quote:
+      "Migrated our legacy Express API to a clean Node + TypeScript stack with full test coverage. Pull requests were a joy to review.",
+    rating: 5,
+    initials: "KM",
+    avatarColor: "from-emerald-500 to-teal-500",
+  },
+  {
+    id: 8,
+    name: "Neha Verma",
+    company: "Studio Nine",
+    quote:
+      "Took our rough Figma and shipped a pixel-perfect Next.js site with great Lighthouse scores. Async-friendly and unblocked the team daily.",
+    rating: 5,
+    initials: "NV",
+    avatarColor: "from-pink-500 to-rose-500",
+  },
+  {
+    id: 9,
+    name: "Vihaan Gupta",
+    company: "NorthPeak",
+    quote:
+      "Smit owned the entire backend - schema, jobs, auth, deploy. Solid engineer who actually cares about edge cases and observability.",
+    rating: 5,
+    initials: "VG",
+    avatarColor: "from-amber-500 to-orange-500",
+  },
+  {
+    id: 10,
+    name: "Ishaan Roy",
+    company: "Bytewave",
+    quote:
+      "Rare combo of speed and craftsmanship. Documented everything, set up CI, and left us a codebase we can actually extend.",
+    rating: 5,
+    initials: "IR",
+    avatarColor: "from-fuchsia-500 to-pink-500",
+  },
 ];

@@ -4,7 +4,6 @@ import { use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Loader2 } from "lucide-react";
-import { AdminGuard } from "@/components/admin/AdminGuard";
 import { ProjectForm } from "@/components/admin/ProjectForm";
 import { useProject, useUpdateProject } from "@/hooks/use-projects";
 import { toast } from "@/lib/toast";
@@ -16,14 +15,6 @@ export default function EditProjectPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  return (
-    <AdminGuard>
-      <EditProject id={id} />
-    </AdminGuard>
-  );
-}
-
-function EditProject({ id }: { id: string }) {
   const router = useRouter();
   const { data: project, isLoading, isError } = useProject(id);
   const updateProject = useUpdateProject();
@@ -32,7 +23,7 @@ function EditProject({ id }: { id: string }) {
     try {
       await updateProject.mutateAsync({ id, data });
       toast.success("Project updated!");
-      router.push("/admin");
+      router.push("/admin/projects");
     } catch {
       toast.error("Failed to update project", "Please try again.");
     }
@@ -51,10 +42,10 @@ function EditProject({ id }: { id: string }) {
       <div className="text-center py-20 text-muted-foreground">
         <p className="text-sm mb-4">Could not load project.</p>
         <Link
-          href="/admin"
+          href="/admin/projects"
           className="text-sm text-blue-500 hover:text-blue-400"
         >
-          Back to Dashboard
+          Back to Projects
         </Link>
       </div>
     );
@@ -64,17 +55,17 @@ function EditProject({ id }: { id: string }) {
     <div className="space-y-6">
       <div>
         <Link
-          href="/admin"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+          href="/admin/projects"
+          className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
           Back to Projects
         </Link>
-        <h1 className="text-2xl font-bold">Edit Project</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">{project.title}</p>
+        <h1 className="text-2xl font-semibold tracking-tight">Edit project</h1>
+        <p className="mt-0.5 truncate text-sm text-muted-foreground">{project.title}</p>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-7 sm:p-9">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:p-8">
         <ProjectForm
           initialData={project}
           onSubmit={handleSubmit}

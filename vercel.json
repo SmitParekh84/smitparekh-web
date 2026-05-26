@@ -1,0 +1,21 @@
+{
+  "redirects": [
+    {
+      "source": "/project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "hire.smitparekh.co.in" }],
+      "destination": "https://www.smitparekh.co.in/contact",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "cv.smitparekh.co.in" }],
+      "destination": "https://www.smitparekh.co.in/resume",
+      "permanent": true
+    }
+  ]
+}

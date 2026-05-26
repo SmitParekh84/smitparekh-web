@@ -7,12 +7,12 @@ export const faqData: FAQItem[] = [
   {
     question: "What services do you offer?",
     answer:
-      "I offer full-stack web development (React + Node.js + TypeScript), database design, cloud deployment on AWS, technical SEO, and digital marketing strategy. Whether you need a complete application, API, or growth support — I can deliver end-to-end.",
+      "I offer full-stack web development (React + Node.js + TypeScript), database design, cloud deployment on AWS, technical SEO, and digital marketing strategy. Whether you need a complete application, API, or growth support - I can deliver end-to-end.",
   },
   {
     question: "Are the free tools really free?",
     answer:
-      "Yes — 100% free. No account, no subscription, no hidden fees. Every tool on this site is available to anyone, instantly, with no limits on usage.",
+      "Yes - 100% free. No account, no subscription, no hidden fees. Every tool on this site is available to anyone, instantly, with no limits on usage.",
   },
   {
     question: "How quickly do you respond to inquiries?",
