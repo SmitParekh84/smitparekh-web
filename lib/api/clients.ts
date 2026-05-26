@@ -1,5 +1,11 @@
 import { api } from "./client";
-import type { Client, ClientInvitation, ClientRequirements } from "@/types";
+import type {
+  Client,
+  ClientInvitation,
+  ClientRequirements,
+  ClientProject,
+  ProjectStepPatch,
+} from "@/types";
 
 export const clientsApi = {
   /* Admin */
@@ -16,6 +22,18 @@ export const clientsApi = {
 
   getRequirements: (clientId: string) =>
     api.get<{ success: boolean; data: ClientRequirements }>(`/clients/${clientId}/requirements`),
+
+  getProject: (clientId: string) =>
+    api.get<{ success: boolean; data: ClientProject }>(`/clients/${clientId}/project`),
+
+  updateProjectStep: (clientId: string, stepKey: string, patch: ProjectStepPatch) =>
+    api.patch<{ success: boolean; data: ClientProject }>(
+      `/clients/${clientId}/project/steps/${stepKey}`,
+      patch
+    ),
+
+  regenerateProject: (clientId: string) =>
+    api.post<{ success: boolean; data: ClientProject }>(`/clients/${clientId}/project/regenerate`),
 
   /* Onboarding (public — no auth token) */
   validateInvitation: (token: string) =>
@@ -39,4 +57,7 @@ export const clientsApi = {
 
   getMe: () =>
     api.get<{ success: boolean; data: Client }>("/clients/me"),
+
+  getMyProject: () =>
+    api.get<{ success: boolean; data: ClientProject | null }>("/clients/project/me"),
 };

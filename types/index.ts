@@ -311,3 +311,35 @@ export interface ClientRequirements {
   createdAt?: string;
   updatedAt?: string;
 }
+
+/* ─── Project Workflow ─────────────────────────────────────────────────── */
+
+export type ProjectStepStatus = "pending" | "in_progress" | "done" | "skipped";
+
+export interface ProjectStep {
+  key: string;
+  service?: string;
+  serviceLabel?: string;
+  phase?: string;
+  label: string;
+  status: ProjectStepStatus;
+  startDate?: string | null;
+  endDate?: string | null;
+  note?: string;
+  order: number;
+}
+
+export interface ClientProject {
+  _id: string;
+  clientId: string;
+  steps: ProjectStep[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProjectStepPatch {
+  status?: ProjectStepStatus;
+  startDate?: string | null;
+  endDate?: string | null;
+  note?: string;
+}

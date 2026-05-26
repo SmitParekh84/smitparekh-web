@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { clientsApi } from "@/lib/api/clients";
 import { queryKeys } from "@/lib/api/query-keys";
-import type { ClientRequirements } from "@/types";
+import type { ClientRequirements, ProjectStepPatch } from "@/types";
 
 /* ─── Admin hooks ─────────────────────────────────────────────────────── */
 
@@ -47,6 +47,31 @@ export function useAdminClientRequirements(clientId: string) {
   });
 }
 
+export function useAdminClientProject(clientId: string) {
+  return useQuery({
+    queryKey: queryKeys.clients.project(clientId),
+    queryFn: () => clientsApi.getProject(clientId),
+    enabled: !!clientId,
+  });
+}
+
+export function useUpdateProjectStep(clientId: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ stepKey, patch }: { stepKey: string; patch: ProjectStepPatch }) =>
+      clientsApi.updateProjectStep(clientId, stepKey, patch),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
+  });
+}
+
+export function useRegenerateProject(clientId: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => clientsApi.regenerateProject(clientId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
+  });
+}
+
 /* ─── Onboarding (public) ─────────────────────────────────────────────── */
 
 export function useValidateInvitation(token: string) {
@@ -82,6 +107,13 @@ export function useMyRequirements() {
   return useQuery({
     queryKey: queryKeys.clients.myRequirements(),
     queryFn: () => clientsApi.getMyRequirements(),
+  });
+}
+
+export function useMyProject() {
+  return useQuery({
+    queryKey: queryKeys.clients.myProject(),
+    queryFn: () => clientsApi.getMyProject(),
   });
 }
 
