@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2 } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +14,7 @@ import {
   useAdminClientProject,
   useUpdateProjectStep,
   useRegenerateProject,
+  useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
@@ -57,12 +58,14 @@ export default function AdminClientDetailPage({
 }) {
   const { id } = use(params);
   const [tab, setTab] = useState("workflow");
+  const [nowTs] = useState(() => Date.now());
 
   const clientQuery = useAdminClient(id);
   const requirementsQuery = useAdminClientRequirements(id);
   const projectQuery = useAdminClientProject(id);
   const updateStep = useUpdateProjectStep(id);
   const regenerate = useRegenerateProject(id);
+  const updateStatus = useUpdateClientStatus();
 
   const client = clientQuery.data?.data;
   const requirements = requirementsQuery.data?.data;
@@ -95,6 +98,16 @@ export default function AdminClientDetailPage({
     }
   }
 
+  async function handleResendInvite() {
+    try {
+      await updateStatus.mutateAsync({ id, status: "invited" });
+      toast.success("Invitation resent", "A fresh onboarding link is on its way.");
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Could not resend invitation.";
+      toast.error("Resend failed", msg);
+    }
+  }
+
   if (clientQuery.isLoading) {
     return (
       <div className="flex items-center justify-center py-24">
@@ -116,6 +129,10 @@ export default function AdminClientDetailPage({
   }
 
   const status = STATUS_CONFIG[client.status] ?? STATUS_CONFIG.inactive;
+  const inviteExpired =
+    client.status === "invited" &&
+    !!client.invitationExpiresAt &&
+    new Date(client.invitationExpiresAt).getTime() < nowTs;
 
   return (
     <div className="space-y-6">
@@ -163,6 +180,37 @@ export default function AdminClientDetailPage({
             {client.onboardedAt && <p>Onboarded {formatDate(client.onboardedAt)}</p>}
           </div>
         </CardContent>
+
+        {client.status === "invited" && (
+          <div className="flex flex-col gap-3 border-t border-border px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2 text-sm">
+              <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
+              {inviteExpired ? (
+                <span className="text-destructive">
+                  Invitation expired {formatDate(client.invitationExpiresAt)}
+                </span>
+              ) : (
+                <span className="text-muted-foreground">
+                  Invitation pending · expires {formatDate(client.invitationExpiresAt)}
+                </span>
+              )}
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleResendInvite}
+              disabled={updateStatus.isPending}
+              className="gap-1.5"
+            >
+              {updateStatus.isPending ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Send className="h-3.5 w-3.5" />
+              )}
+              Resend invitation
+            </Button>
+          </div>
+        )}
       </Card>
 
       <Tabs value={tab} onValueChange={(v) => setTab(String(v))}>
