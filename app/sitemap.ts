@@ -5,6 +5,7 @@ import { fetchAllCaseStudies } from "@/lib/server/projects";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { servicePages } from "@/data/services-catalog";
+import { geoCountries } from "@/data/geo-pages";
 
 export const revalidate = 300; // hourly; SEO freshness at negligible write cost
 
@@ -97,6 +98,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [`${base}/images/services-og/${s.slug}.png`],
   }));
 
+  // Gulf (GCC) geo hire pages — country-targeted English landing pages.
+  // The OG card is generated per route by opengraph-image.tsx.
+  const geoRoutes: MetadataRoute.Sitemap = [
+    { url: `${base}/hire-developer`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    ...geoCountries.map((c) => ({
+      url: `${base}/hire-developer/${c.slug}`,
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
+      lastModified,
+      images: [`${base}/hire-developer/${c.slug}/opengraph-image`],
+    })),
+  ];
+
   const toolRoutes: MetadataRoute.Sitemap = toolsSEO.map(({ slug }) => ({
     url: `${base}/free-tools/${slug}`,
     priority: 0.8,
@@ -108,6 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticRoutes,
     ...serviceRoutes,
+    ...geoRoutes,
     ...caseStudyRoutes,
     ...blogRoutes,
     ...toolRoutes,
