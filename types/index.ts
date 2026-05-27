@@ -317,6 +317,11 @@ export interface ClientRequirements {
 
 export type ProjectStepStatus = "pending" | "in_progress" | "done" | "skipped";
 
+export interface ProjectStepLink {
+  label: string;
+  url: string;
+}
+
 export interface ProjectStep {
   key: string;
   service?: string;
@@ -327,6 +332,7 @@ export interface ProjectStep {
   startDate?: string | null;
   endDate?: string | null;
   note?: string;
+  links?: ProjectStepLink[];
   order: number;
 }
 
@@ -343,4 +349,5 @@ export interface ProjectStepPatch {
   startDate?: string | null;
   endDate?: string | null;
   note?: string;
+  links?: ProjectStepLink[];
 }

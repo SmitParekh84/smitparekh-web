@@ -119,7 +119,7 @@ export default function ClientDashboardPage() {
                 href="/client/requirements"
                 className={buttonVariants({ variant: "outline", size: "sm" })}
               >
-                View / edit requirements
+                View requirements
               </Link>
             </CardContent>
           </Card>

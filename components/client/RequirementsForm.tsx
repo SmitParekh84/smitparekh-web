@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { AppSelect } from "@/components/ui/app-select";
 import { Badge } from "@/components/ui/badge";
 import { useSubmitRequirements, useMyRequirements } from "@/hooks/api/use-clients";
+import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -359,8 +360,29 @@ export function RequirementsForm() {
     }
   }
 
-  /* Success state */
-  if (submitted || existingData?.data) {
+  /* Already submitted — show full read-only requirements */
+  if (existingData?.data) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-2.5 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-green-500" />
+          <p className="text-sm font-medium text-green-700 dark:text-green-400">
+            Requirements submitted — our team will review and get back to you shortly.
+          </p>
+        </div>
+        <ClientRequirementsView data={existingData.data} />
+        <div className="border-t border-border pt-4">
+          <Button variant="ghost" onClick={() => router.push("/client/dashboard")} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            Back to dashboard
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  /* Just submitted — data not yet available from refetch */
+  if (submitted) {
     return (
       <div className="flex flex-col items-center gap-5 py-16 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500/15">
