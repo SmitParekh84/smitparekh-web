@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
-import { toolsSEO, getToolSEO, getToolOgImage } from "@/data/tools-seo";
+import { toolsSEO, getToolSEO } from "@/data/tools-seo";
 import { getToolFAQ } from "@/data/tools-faq";
 import { getToolContent } from "@/data/tools-content";
 import { howToSchema } from "@/lib/seo/schema";
@@ -48,15 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: tool.title,
         description: tool.description,
         url: `${siteConfig.url}/free-tools/${slug}`,
-        images: [
-          {
-            url: `${siteConfig.url}${getToolOgImage(slug)}`,
-            width: 1200,
-            height: 630,
-            alt: `${tool.title} - Free Online Tool by Smit Parekh`,
-            type: "image/png",
-          },
-        ],
+        // opengraph-image.tsx generates a unique branded card per tool
       },
       twitter: {
         card: "summary_large_image",
@@ -64,14 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         creator: siteConfig.twitterHandle,
         title: tool.title,
         description: tool.description,
-        images: [
-          {
-            url: `${siteConfig.url}${getToolOgImage(slug)}`,
-            width: 1200,
-            height: 630,
-            alt: `${tool.title} - Free Online Tool by Smit Parekh`,
-          },
-        ],
+        // opengraph-image.tsx handles the image
       },
     };
   }
