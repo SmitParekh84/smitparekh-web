@@ -12,6 +12,7 @@ import { ThemeAwareToaster } from "@/components/providers/ThemeAwareToaster";
 import { CalProvider } from "@/components/cal/CalProvider";
 import { ScrollToTop } from "@/components/providers/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { siteConfig } from "@/data/site";
 import { getFeaturedNavTools } from "@/lib/featured-nav-tools";
@@ -154,6 +155,7 @@ export default async function RootLayout({
           </ThemeProvider>
         </QueryProvider>
         <Analytics />
+        <SpeedInsights />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9526582197854160"
