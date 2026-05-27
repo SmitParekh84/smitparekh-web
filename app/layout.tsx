@@ -125,9 +125,12 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
           rel="stylesheet"
         />
-        <Script id="gtm-head" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
-        </Script>
+        {/*
+          GTM is loaded afterInteractive (not beforeInteractive) so it does
+          NOT block the critical rendering path. This improves LCP typically
+          by 200–500 ms. The trade-off is that very-early sub-second events
+          may be missed, which is acceptable for a portfolio site.
+        */}
       </head>
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <noscript>
@@ -156,6 +159,13 @@ export default async function RootLayout({
         </QueryProvider>
         <Analytics />
         <SpeedInsights />
+        {/* GTM — afterInteractive keeps it off the critical path */}
+        <Script
+          id="gtm-head"
+          strategy="afterInteractive"
+        >
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9526582197854160"

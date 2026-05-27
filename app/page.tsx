@@ -10,6 +10,7 @@ import FAQ from "@/components/sections/FAQ";
 import CTABanner from "@/components/sections/CTABanner";
 import { siteConfig } from "@/data/site";
 import { faqData } from "@/data/faq";
+import { testimonials } from "@/data/testimonials";
 
 export const metadata: Metadata = {
   title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
@@ -116,6 +117,14 @@ const personSchema = {
     siteConfig.social.instagram,
     siteConfig.social.upwork,
   ],
+  // ── AggregateRating: makes Google show ⭐⭐⭐⭐⭐ stars in search results ──
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteConfig.aggregateRating.ratingValue,
+    reviewCount: siteConfig.aggregateRating.reviewCount,
+    bestRating: siteConfig.aggregateRating.bestRating,
+    worstRating: siteConfig.aggregateRating.worstRating,
+  },
 };
 
 const organizationSchema = {
@@ -198,6 +207,14 @@ const serviceSchema = {
     "End-to-end web development services including React frontends, Node.js backends, PostgreSQL databases, and AWS cloud deployment.",
   areaServed: "Worldwide",
   url: `${siteConfig.url}/services`,
+  // ── AggregateRating on the service entity ──
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteConfig.aggregateRating.ratingValue,
+    reviewCount: siteConfig.aggregateRating.reviewCount,
+    bestRating: siteConfig.aggregateRating.bestRating,
+    worstRating: siteConfig.aggregateRating.worstRating,
+  },
 };
 
 const breadcrumbSchema = {
@@ -206,6 +223,45 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
   ],
+};
+
+// ── Client reviews as Review objects — feeds Google rich results + AI search ──
+// Using real testimonials from data/testimonials.ts (5-star ones for best signal).
+const reviewsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Client Reviews — Smit Parekh Full-Stack Developer",
+  description: "Real client testimonials for Smit Parekh's web development services.",
+  itemListElement: testimonials
+    .filter((t) => t.rating === 5)
+    .slice(0, 5)
+    .map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Review",
+        itemReviewed: {
+          "@type": "Person",
+          "@id": `${siteConfig.url}/#person`,
+          name: "Smit Parekh",
+        },
+        author: {
+          "@type": "Person",
+          name: t.name,
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: t.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        reviewBody: t.quote,
+        publisher: {
+          "@type": "Organization",
+          name: t.company,
+        },
+      },
+    })),
 };
 
 export default function HomePage() {
@@ -238,6 +294,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema) }}
       />
 
       <Hero />
