@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First, App Router Expert | Smit Parekh",
+  title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First, App Router Expert",
   description:
     "Hire a Next.js developer with 4+ years shipping full-stack production apps. App Router, Server Components, TypeScript strict, 95+ Lighthouse scores on every deployment. Fixed-price available. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/nextjs-developer` },

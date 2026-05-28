@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire an API Developer – REST & GraphQL APIs, 10K+ Req/Day, TypeScript | Smit Parekh",
+  title: "Hire an API Developer – REST & GraphQL APIs, 10K+ Req/Day, TypeScript",
   description:
     "Hire an API developer with 4+ years building production REST and GraphQL APIs handling 10,000+ daily requests at 99.9% uptime. TypeScript strict, JWT auth, rate limiting, OpenAPI docs. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/api-developer` },

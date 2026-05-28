@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire an AWS Developer – Cloud Architecture, Serverless & DevOps | Smit Parekh",
+  title: "Hire an AWS Developer – Cloud Architecture, Serverless & DevOps",
   description:
     "Hire an AWS developer with production experience across EC2, RDS, S3, Lambda, CloudFront, ECS, and CDK. CI/CD pipelines, zero-downtime deploys, 99.9% uptime. Free architecture review in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/aws-developer` },

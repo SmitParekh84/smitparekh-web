@@ -12,7 +12,7 @@ import { geoCountries } from "@/data/geo-pages";
 const url = `${siteConfig.url}/hire-developer`;
 
 export const metadata: Metadata = {
-  title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC | Smit Parekh",
+  title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC",
   description:
     "Hire a remote full-stack developer for the Gulf — UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman. React, Next.js, Node.js & PostgreSQL on a Gulf-timezone overlap. Free quote in 24 hours.",
   keywords: [

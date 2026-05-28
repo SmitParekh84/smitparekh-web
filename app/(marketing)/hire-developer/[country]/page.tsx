@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!c) return {};
 
   const url = `${siteConfig.url}/hire-developer/${c.slug}`;
-  const title = `Hire a Full-Stack Developer in ${c.primaryCity} & ${c.country} | Smit Parekh`;
+  const title = `Hire a Full-Stack Developer in ${c.primaryCity} & ${c.country}`;
   const description = `Hire a full-stack developer for ${c.primaryCity} and ${c.country} businesses. React, Next.js, Node.js & PostgreSQL — ${c.timezoneLabel} overlap, free quote in 24 hours.`;
 
   return {

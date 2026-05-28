@@ -4,7 +4,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import FeedbackClientPage from "./_client";
 
 export const metadata: Metadata = {
-  title: "Feedback & Bug Reports | Smit Parekh",
+  title: "Feedback & Bug Reports",
   description:
     "Share your feedback or report a bug on Smit Parekh's portfolio tools. All submissions are reviewed personally.",
   openGraph: {

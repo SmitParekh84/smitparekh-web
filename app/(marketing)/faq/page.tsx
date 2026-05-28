@@ -98,7 +98,7 @@ const allFaqs: { question: string; answer: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "FAQ - Frequently Asked Questions | Smit Parekh",
+  title: "FAQ - Frequently Asked Questions",
   description:
     "Answers to common questions about Smit Parekh's full-stack web development services and every free tool on the site - background remover, SEO analyzer, ATS resume checker, password generator and more.",
   alternates: { canonical: `${siteConfig.url}/faq` },
