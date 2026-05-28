@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Code2, Server, Database, Globe, Users, BookOpen,
-  Wrench, FileText, HelpCircle, MessageSquare, ArrowRight,
+  Wrench, FileText, HelpCircle, MessageSquare, ArrowRight, MapPin,
 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import { developerPages } from "@/data/developer-pages";
+import { geoCountries } from "@/data/geo-pages";
 
 export const metadata: Metadata = {
   title: "Site Map – All Pages | Smit Parekh",
@@ -52,6 +53,19 @@ const devPages: Page[] = developerPages.map((p) => ({
   desc: p.description,
 }));
 
+const geoPages: Page[] = [
+  {
+    href: "/hire-developer",
+    title: "Hire a Developer in the Gulf — GCC Hub",
+    desc: "Overview page for all GCC country-targeted hire pages.",
+  },
+  ...geoCountries.map((c) => ({
+    href: `/hire-developer/${c.slug}`,
+    title: `Hire a Developer in ${c.primaryCity} & ${c.country}`,
+    desc: c.intro,
+  })),
+];
+
 const toolPages: Page[] = [...toolsSEO]
   .sort((a, b) => a.slug.localeCompare(b.slug))
   .map((t) => ({
@@ -62,6 +76,7 @@ const toolPages: Page[] = [...toolsSEO]
 
 const sections = [
   { label: "Hire a Developer", icon: Code2, description: "Speciality pages for every technology I work with", pages: devPages },
+  { label: "Hire by Region", icon: MapPin, description: "Country-targeted hire pages for the Gulf (GCC)", pages: geoPages },
   { label: "Core Pages", icon: Globe, description: "Main sections of the site", pages: corePages },
   { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools — no signup required`, pages: toolPages },
   { label: "Content & Guides", icon: BookOpen, description: "Articles, guides, changelogs, and learning resources", pages: contentPages },
