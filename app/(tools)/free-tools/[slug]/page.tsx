@@ -127,6 +127,13 @@ export default async function ToolPage({ params }: Props) {
         keywords: tool.keywords.join(", "),
         isAccessibleForFree: true,
         featureList: tool.keywords.slice(0, 5).join(", "),
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: siteConfig.aggregateRating.ratingValue,
+          reviewCount: siteConfig.aggregateRating.reviewCount,
+          bestRating: siteConfig.aggregateRating.bestRating,
+          worstRating: siteConfig.aggregateRating.worstRating,
+        },
       }
     : null;
 
