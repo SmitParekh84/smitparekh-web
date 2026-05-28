@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a SaaS Developer – Multi-Tenant Apps, Stripe Billing & Auth | Smit Parekh",
+  title: "Hire a SaaS Developer – Multi-Tenant Apps, Stripe Billing & Auth",
   description:
     "Hire a SaaS developer with 4+ years building production multi-tenant applications. Auth, Stripe billing, subscription management, onboarding flows, admin dashboards, and scalable architecture. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/saas-developer` },

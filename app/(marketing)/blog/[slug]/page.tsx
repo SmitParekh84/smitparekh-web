@@ -49,7 +49,7 @@ const SLUG_SEO_OVERRIDES: Record<string, SlugOverride> = {
   // Override to a click-worthy human title and let it re-earn CTR.
   "deploy-nextjs-on-vercel-in-2026-a-beginners-guide": {
     title:
-      "How to Deploy a Next.js App on Vercel — Beginner's Walkthrough | Smit Parekh",
+      "How to Deploy a Next.js App on Vercel — Beginner's Walkthrough",
     description:
       "Step-by-step beginner's guide to deploying a Next.js app on Vercel: GitHub import, environment variables, preview deployments, and going live. Written by a freelance Next.js developer.",
   },
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${siteConfig.url}/blog/${blog.slug}`;
   const readLabel = blog.readMinutes ? ` · ${blog.readMinutes}-min read` : "";
   const override = SLUG_SEO_OVERRIDES[blog.slug];
-  const title = override?.title ?? `${blog.title}${readLabel} | Smit Parekh`;
+  const title = override?.title ?? `${blog.title}${readLabel}`;
   const description = override?.description ?? blog.excerpt;
 
   return {

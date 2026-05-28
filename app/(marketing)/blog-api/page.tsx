@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Headless Blog API — Add a Blog to Any Site in Minutes | Smit Parekh",
+  title: "Headless Blog API — Add a Blog to Any Site in Minutes",
   description:
     "Power your Next.js project, business site, or SaaS dashboard with a fast, hosted headless blog API. JSON endpoints, Markdown content, image hosting, drafts, categories, and tags — no CMS to maintain.",
   alternates: { canonical: `${siteConfig.url}/blog-api` },

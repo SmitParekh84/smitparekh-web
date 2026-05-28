@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a PostgreSQL Developer – Query Optimisation, Schema Design & 99.9% Uptime | Smit Parekh",
+  title: "Hire a PostgreSQL Developer – Query Optimisation, Schema Design & 99.9% Uptime",
   description:
     "Hire a PostgreSQL developer with 4+ years designing production databases. Query optimisation, indexing, schema design, partitioning, and migrations. Sub-10ms p99 latency, 99.9% uptime. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/postgresql-developer` },

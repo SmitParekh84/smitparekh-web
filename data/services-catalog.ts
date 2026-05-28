@@ -110,7 +110,7 @@ export const servicePages: ServicePage[] = [
     slug: "web-development",
     category: "development",
     iconName: "Code2",
-    metaTitle: "Web Development Services — Next.js, React, Node.js | Smit Parekh",
+    metaTitle: "Web Development Services — Next.js, React, Node.js",
     metaDescription:
       "Production-grade web development services. Next.js & React frontends, Node.js APIs, PostgreSQL, AWS deploys, 95+ Lighthouse, SEO-first. From MVP to scale. Free quote in 24 hours.",
     keywords: [
@@ -269,7 +269,7 @@ export const servicePages: ServicePage[] = [
     slug: "frontend-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "Frontend Development Services — React & Next.js Specialists | Smit Parekh",
+    metaTitle: "Frontend Development Services — React & Next.js Specialists",
     metaDescription:
       "Frontend development for React and Next.js — accessible, animated, 95+ Lighthouse, TypeScript strict, design-system driven. From single landing pages to multi-tenant dashboards.",
     keywords: [
@@ -380,7 +380,7 @@ export const servicePages: ServicePage[] = [
     slug: "backend-development",
     category: "development",
     iconName: "Server",
-    metaTitle: "Backend Development Services — Node.js, NestJS, PostgreSQL | Smit Parekh",
+    metaTitle: "Backend Development Services — Node.js, NestJS, PostgreSQL",
     metaDescription:
       "Backend development services for production traffic. Node.js, NestJS, PostgreSQL, Redis, AWS. Typed APIs, 99.9% uptime, sub-100ms p95, OpenAPI docs. Free architecture review in 24 hours.",
     keywords: [
@@ -491,7 +491,7 @@ export const servicePages: ServicePage[] = [
     slug: "api-development",
     category: "development",
     iconName: "Webhook",
-    metaTitle: "API Development Services — REST, GraphQL, Webhooks | Smit Parekh",
+    metaTitle: "API Development Services — REST, GraphQL, Webhooks",
     metaDescription:
       "API development services. REST and GraphQL APIs with JWT auth, rate limiting, OpenAPI docs, webhooks, and SDKs. Built to be consumed by partners and customers, not just your own frontend.",
     keywords: [
@@ -572,7 +572,7 @@ export const servicePages: ServicePage[] = [
     slug: "saas-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "SaaS Development Services — Multi-Tenant Apps, Stripe Billing | Smit Parekh",
+    metaTitle: "SaaS Development Services — Multi-Tenant Apps, Stripe Billing",
     metaDescription:
       "SaaS development services — multi-tenant Next.js apps with Stripe billing, Supabase auth, RBAC, admin dashboards, and onboarding. From idea to paying customers.",
     keywords: [
@@ -637,7 +637,7 @@ export const servicePages: ServicePage[] = [
     slug: "ecommerce-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "E-commerce Development Services — Headless Shopify, Next.js | Smit Parekh",
+    metaTitle: "E-commerce Development Services — Headless Shopify, Next.js",
     metaDescription:
       "Headless e-commerce builds on Next.js with Shopify, Stripe, or custom backends. Sub-second product pages, SEO-first catalog, and conversion-tuned checkout. Free audit in 24 hours.",
     keywords: [
@@ -702,7 +702,7 @@ export const servicePages: ServicePage[] = [
     slug: "seo",
     category: "marketing",
     iconName: "Search",
-    metaTitle: "SEO Services — Developer-Led SEO for SaaS & B2B | Smit Parekh",
+    metaTitle: "SEO Services — Developer-Led SEO for SaaS & B2B",
     metaDescription:
       "SEO services that combine on-page, technical, and content work. Built by a developer who knows Core Web Vitals, schema, and how Next.js really renders. Free SEO audit in 24 hours.",
     keywords: [
@@ -767,7 +767,7 @@ export const servicePages: ServicePage[] = [
     slug: "technical-seo",
     category: "marketing",
     iconName: "FileSearch",
-    metaTitle: "Technical SEO Services — Core Web Vitals, Schema, Next.js | Smit Parekh",
+    metaTitle: "Technical SEO Services — Core Web Vitals, Schema, Next.js",
     metaDescription:
       "Technical SEO services for Next.js, React, and headless sites. Core Web Vitals, structured data, indexation, rendering audits. Fixes shipped, not just recommended.",
     keywords: [
@@ -832,7 +832,7 @@ export const servicePages: ServicePage[] = [
     slug: "local-seo",
     category: "marketing",
     iconName: "MapPin",
-    metaTitle: "Local SEO Services — Google Business Profile, Citations, Reviews | Smit Parekh",
+    metaTitle: "Local SEO Services — Google Business Profile, Citations, Reviews",
     metaDescription:
       "Local SEO services for service businesses and multi-location brands. Google Business Profile optimisation, citations, reviews, local schema, location pages that actually rank.",
     keywords: [
@@ -897,7 +897,7 @@ export const servicePages: ServicePage[] = [
     slug: "seo-audit",
     category: "marketing",
     iconName: "FileSearch",
-    metaTitle: "SEO Audit Services — Full Technical & Content Audit | Smit Parekh",
+    metaTitle: "SEO Audit Services — Full Technical & Content Audit",
     metaDescription:
       "Comprehensive SEO audits — technical, on-page, content, and backlink. Severity-ranked action plan with effort and impact estimates. Delivered in 5 business days.",
     keywords: [
@@ -962,7 +962,7 @@ export const servicePages: ServicePage[] = [
     slug: "ai-integration",
     category: "specialized",
     iconName: "Brain",
-    metaTitle: "AI Integration Services — OpenAI, Claude, RAG, LLM in Production | Smit Parekh",
+    metaTitle: "AI Integration Services — OpenAI, Claude, RAG, LLM in Production",
     metaDescription:
       "AI integration services for SaaS and web apps. OpenAI, Claude, Llama, RAG, vector search, evals. Built to be reliable in production, not just demo-able.",
     keywords: [
@@ -1027,7 +1027,7 @@ export const servicePages: ServicePage[] = [
     slug: "mvp-development",
     category: "development",
     iconName: "Zap",
-    metaTitle: "MVP Development Service — Idea to Live Product in 4–8 Weeks | Smit Parekh",
+    metaTitle: "MVP Development Service — Idea to Live Product in 4–8 Weeks",
     metaDescription:
       "Investor-ready MVPs built in 4–8 weeks. Full-stack Next.js + Node.js, auth, payments, admin dashboard. Fixed price, no scope creep. Free 24-hour quote.",
     keywords: [
@@ -1187,7 +1187,7 @@ export const servicePages: ServicePage[] = [
     slug: "nextjs-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "Next.js Development Service — App Router, RSC, Vercel | Smit Parekh",
+    metaTitle: "Next.js Development Service — App Router, RSC, Vercel",
     metaDescription:
       "Next.js 14+ development service. App Router, React Server Components, TypeScript, Tailwind, SEO-first builds. 95+ Lighthouse, fast deploys, full-stack or frontend-only.",
     keywords: [
@@ -1341,7 +1341,7 @@ export const servicePages: ServicePage[] = [
     slug: "react-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "React Development Service — SPAs, Dashboards, Component Libraries | Smit Parekh",
+    metaTitle: "React Development Service — SPAs, Dashboards, Component Libraries",
     metaDescription:
       "React development service for SPAs, admin dashboards, design systems, and component libraries. TypeScript, TanStack Query, Vite, Tailwind. Senior-only work.",
     keywords: [
@@ -1496,7 +1496,7 @@ export const servicePages: ServicePage[] = [
     slug: "performance-optimization",
     category: "development",
     iconName: "TrendingUp",
-    metaTitle: "Web Performance Optimization — Core Web Vitals, 95+ Lighthouse | Smit Parekh",
+    metaTitle: "Web Performance Optimization — Core Web Vitals, 95+ Lighthouse",
     metaDescription:
       "Fix slow websites. Core Web Vitals (LCP, CLS, INP), 95+ Lighthouse, bundle size reduction, image optimization, server response time. Written report + implementation included.",
     keywords: [
@@ -1652,7 +1652,7 @@ export const servicePages: ServicePage[] = [
     slug: "shopify-development",
     category: "development",
     iconName: "Smartphone",
-    metaTitle: "Headless Shopify Development — Next.js + Storefront API | Smit Parekh",
+    metaTitle: "Headless Shopify Development — Next.js + Storefront API",
     metaDescription:
       "Headless Shopify development with Next.js and the Storefront API. Custom storefronts, Hydrogen migrations, 95+ Lighthouse, faster checkouts. Free quote in 24 hours.",
     keywords: [
@@ -1811,7 +1811,7 @@ export const servicePages: ServicePage[] = [
     slug: "devops-consulting",
     category: "development",
     iconName: "Cloud",
-    metaTitle: "DevOps & Cloud Consulting — CI/CD, AWS, Docker | Smit Parekh",
+    metaTitle: "DevOps & Cloud Consulting — CI/CD, AWS, Docker",
     metaDescription:
       "DevOps consulting for growing web products. GitHub Actions CI/CD, Docker containerisation, AWS architecture, monitoring, and zero-downtime deploys. Audit your infra or build it from scratch — free review in 24 hours.",
     keywords: [
@@ -1969,7 +1969,7 @@ export const servicePages: ServicePage[] = [
     slug: "landing-page-development",
     category: "development",
     iconName: "Target",
-    metaTitle: "Landing Page Development — Next.js, 95+ Lighthouse, High-Converting | Smit Parekh",
+    metaTitle: "Landing Page Development — Next.js, 95+ Lighthouse, High-Converting",
     metaDescription:
       "High-converting landing pages built with Next.js and Tailwind. 95+ Lighthouse, sub-1.2s LCP, SEO metadata, schema markup, and analytics wired in. Simple pages delivered in 48 hours. Free quote.",
     keywords: [
@@ -2127,7 +2127,7 @@ export const servicePages: ServicePage[] = [
     slug: "wordpress-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "WordPress Development Services — Custom Themes, WooCommerce | Smit Parekh",
+    metaTitle: "WordPress Development Services — Custom Themes, WooCommerce",
     metaDescription:
       "Custom WordPress development: bespoke themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js. 95+ Lighthouse, no bloated page builders. Free quote in 24 hours.",
     keywords: [
@@ -2285,7 +2285,7 @@ export const servicePages: ServicePage[] = [
     slug: "mobile-app-development",
     category: "development",
     iconName: "Smartphone",
-    metaTitle: "Mobile App Development — React Native, iOS & Android | Smit Parekh",
+    metaTitle: "Mobile App Development — React Native, iOS & Android",
     metaDescription:
       "Cross-platform mobile app development with React Native and Expo. One codebase for iOS and Android, TypeScript strict, Expo EAS build pipeline, and App Store submission handled. Free quote in 24 hours.",
     keywords: [

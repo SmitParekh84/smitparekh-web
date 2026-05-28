@@ -15,7 +15,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a WordPress Developer – Custom Themes, WooCommerce & Headless WP | Smit Parekh",
+  title: "Hire a WordPress Developer – Custom Themes, WooCommerce & Headless WP",
   description:
     "Hire a WordPress developer who builds without page builders. Custom PHP themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js. 95+ Lighthouse on every site. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/wordpress-developer` },

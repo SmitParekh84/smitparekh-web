@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a Full-Stack Developer – React, Next.js, Node.js & PostgreSQL | Smit Parekh",
+  title: "Hire a Full-Stack Developer – React, Next.js, Node.js & PostgreSQL",
   description:
     "Hire a full-stack developer with 4+ years shipping production applications. React, Next.js, NestJS, PostgreSQL, and AWS. One engineer from database to frontend deploy. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/full-stack-developer` },

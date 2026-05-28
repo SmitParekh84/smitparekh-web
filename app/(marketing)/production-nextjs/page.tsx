@@ -13,7 +13,7 @@ import { personNode } from "@/lib/seo/schema";
 import { BookCallButton } from "@/components/cal/BookCallButton";
 
 export const metadata: Metadata = {
-  title: "Production Next.js 2026: Architecture, Performance & Deployment Guide | Smit Parekh",
+  title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
   description:
     "Everything that separates a production-grade Next.js app from a tutorial project: App Router architecture, 95+ Lighthouse, TypeScript strict, ISR, structured data, Vercel deployment, and monitoring. Written by a developer who ships these every week.",
   alternates: { canonical: `${siteConfig.url}/production-nextjs` },

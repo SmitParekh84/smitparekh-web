@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a NestJS Developer – TypeScript-First APIs, DI, Guards & Interceptors | Smit Parekh",
+  title: "Hire a NestJS Developer – TypeScript-First APIs, DI, Guards & Interceptors",
   description:
     "Hire a NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, pipes, microservices, GraphQL, and AWS deployment. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/nestjs-developer` },

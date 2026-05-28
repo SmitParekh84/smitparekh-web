@@ -18,7 +18,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a TypeScript Developer – Type-Safe Apps That Ship Without Surprises | Smit Parekh",
+  title: "Hire a TypeScript Developer – Type-Safe Apps That Ship Without Surprises",
   description:
     "Hire a TypeScript developer with 4+ years in strict-mode TypeScript across React, Next.js, Node.js, and NestJS. Fewer runtime bugs, better DX, 30+ typed codebases delivered. Fixed-price available. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/typescript-developer` },

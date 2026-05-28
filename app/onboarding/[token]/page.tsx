@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { OnboardingClient } from "./_client";
 
 export const metadata: Metadata = {
-  title: "Set up your account | Smit Parekh",
+  title: "Set up your account",
   description: "Complete your onboarding to access the client portal.",
   robots: { index: false, follow: false },
 };

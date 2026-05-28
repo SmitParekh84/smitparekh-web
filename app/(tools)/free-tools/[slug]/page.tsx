@@ -114,12 +114,12 @@ export default async function ToolPage({ params }: Props) {
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
           eligibleRegion: [
-            { "@type": "Country", name: "IN" },
-            { "@type": "Country", name: "US" },
-            { "@type": "Country", name: "FR" },
-            { "@type": "Country", name: "GB" },
-            { "@type": "Country", name: "CA" },
-            { "@type": "Country", name: "AU" },
+            { "@type": "Country", name: "India" },
+            { "@type": "Country", name: "United States" },
+            { "@type": "Country", name: "France" },
+            { "@type": "Country", name: "United Kingdom" },
+            { "@type": "Country", name: "Canada" },
+            { "@type": "Country", name: "Australia" },
           ],
         },
         author: { "@id": `${siteConfig.url}/#person` },
@@ -127,6 +127,13 @@ export default async function ToolPage({ params }: Props) {
         keywords: tool.keywords.join(", "),
         isAccessibleForFree: true,
         featureList: tool.keywords.slice(0, 5).join(", "),
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: siteConfig.aggregateRating.ratingValue,
+          reviewCount: siteConfig.aggregateRating.reviewCount,
+          bestRating: siteConfig.aggregateRating.bestRating,
+          worstRating: siteConfig.aggregateRating.worstRating,
+        },
       }
     : null;
 

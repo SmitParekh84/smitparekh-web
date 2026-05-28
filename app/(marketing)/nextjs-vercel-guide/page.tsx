@@ -20,7 +20,7 @@ import { siteConfig } from "@/data/site";
 import { BookCallButton } from "@/components/cal/BookCallButton";
 
 export const metadata: Metadata = {
-  title: "How to Deploy Next.js to Vercel: Step-by-Step Guide (2026) | Smit Parekh",
+  title: "How to Deploy Next.js to Vercel: Step-by-Step Guide (2026)",
   description:
     "Deploy your Next.js app to Vercel in 15 minutes. Step-by-step: create app → push to GitHub → import to Vercel → configure env vars → custom domain. Includes environment variable setup, preview deployments, and production gotchas from a developer who ships Next.js every week.",
   alternates: { canonical: `${siteConfig.url}/nextjs-vercel-guide` },

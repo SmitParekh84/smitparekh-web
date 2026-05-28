@@ -15,7 +15,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a React Native Developer – iOS & Android from One Codebase | Smit Parekh",
+  title: "Hire a React Native Developer – iOS & Android from One Codebase",
   description:
     "Hire a React Native developer with Expo experience. One TypeScript codebase for iOS and Android, EAS build pipeline, push notifications, offline support, and App Store submission handled. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/react-native-developer` },

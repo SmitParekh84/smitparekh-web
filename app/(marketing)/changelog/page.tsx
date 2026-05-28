@@ -21,7 +21,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Changelog - Latest Features & Updates | Smit Parekh",
+  title: "Changelog - Latest Features & Updates",
   description:
     "See every release, new free tool, improvement, and fix shipped on smitparekh.co.in. A transparent product changelog updated with each launch.",
   alternates: { canonical: `${siteConfig.url}/changelog` },

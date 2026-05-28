@@ -16,7 +16,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime, NestJS & Express | Smit Parekh",
+  title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime, NestJS & Express",
   description:
     "Hire a Node.js developer with 4+ years shipping production APIs handling 10,000+ daily requests at 99.9% uptime. NestJS, Express, GraphQL, PostgreSQL, Redis, AWS. Fixed-price available. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/nodejs-developer` },

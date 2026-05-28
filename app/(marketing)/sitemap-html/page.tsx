@@ -10,7 +10,7 @@ import { developerPages } from "@/data/developer-pages";
 import { geoCountries } from "@/data/geo-pages";
 
 export const metadata: Metadata = {
-  title: "Site Map – All Pages | Smit Parekh",
+  title: "Site Map – All Pages",
   description:
     "Complete directory of all pages on smitparekh.co.in — developer hire pages, portfolio, free tools, blog, and more.",
   alternates: { canonical: `${siteConfig.url}/sitemap-html` },

@@ -15,7 +15,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a React Developer – Production-Grade UI That Scales | Smit Parekh",
+  title: "Hire a React Developer – Production-Grade UI That Scales",
   description:
     "Hire a React developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise. Redux Toolkit, TypeScript strict, 40% performance gains, 30+ products delivered. Fixed-price available. Free quote in 24 hours.",
   alternates: { canonical: `${siteConfig.url}/react-developer` },
