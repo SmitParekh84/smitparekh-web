@@ -57,7 +57,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400; // 24h; busted on-demand via revalidateTag("blogs")
+// 5-minute ISR window — new posts appear within 5 minutes without a deploy.
+// The /api/revalidate webhook busts this immediately when a post is published;
+// this short window is a safety net for when the webhook is not reachable.
+export const revalidate = 300;
 
 
 export default async function BlogIndexPage() {
