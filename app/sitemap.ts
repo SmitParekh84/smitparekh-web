@@ -12,7 +12,7 @@ export const revalidate = 300; // hourly; SEO freshness at negligible write cost
 // Stable lastModified for static routes. Bump this date only when the
 // underlying page content actually changes — Google reads a constantly
 // updated lastModified as a noisy/spammy freshness signal and ignores it.
-const STATIC_LASTMOD = new Date("2026-05-16");
+const STATIC_LASTMOD = new Date("2026-05-28");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Tier 5 — utility (low-value pages omitted from sitemap to concentrate
     // crawl budget on money pages. Coverage report 2026-05-23 showed 98 URLs
     // stuck in "Discovered – not indexed" — Google is rationing crawl, so the
-    // sitemap should advertise only pages we genuinely want indexed.
+    // sitemap should advertise only pages we genuinely want indexed.)
     { url: `${base}/feedback`,                priority: 0.5,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/changelog`,               priority: 0.5,  changeFrequency: "weekly",  lastModified, images: [defaultImage] },
     // /resume, /privacy-policy, /terms, /sitemap-html intentionally omitted.
@@ -101,10 +101,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Gulf (GCC) geo hire pages — country-targeted English landing pages.
   // The OG card is generated per route by opengraph-image.tsx.
   const geoRoutes: MetadataRoute.Sitemap = [
-    { url: `${base}/hire-developer`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/hire-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     ...geoCountries.map((c) => ({
       url: `${base}/hire-developer/${c.slug}`,
-      priority: 0.8,
+      priority: 0.85,
       changeFrequency: "monthly" as const,
       lastModified,
       images: [`${base}/hire-developer/${c.slug}/opengraph-image`],

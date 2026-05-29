@@ -5,6 +5,9 @@ export const siteConfig = {
     "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
   author: "Smit Parekh",
   email: "smitparekh03@gmail.com",
+  // Add your WhatsApp number (e.g. "919876543210") to enable WhatsApp CTA on the contact page.
+  // Leave empty string to hide the WhatsApp button.
+  whatsapp: "",
   twitterHandle: "@smit_parekh84",
   social: {
     linkedin: "https://www.linkedin.com/in/smitparekh84/",
@@ -98,6 +101,28 @@ export const siteConfig = {
     "hire web developer Toronto",
     "contract developer Vancouver",
     "remote full stack developer Canada",
+
+    // Hire intent - Gulf / GCC
+    "hire full stack developer UAE",
+    "hire developer Dubai",
+    "hire React developer Dubai",
+    "hire Next.js developer UAE",
+    "freelance web developer Dubai",
+    "web developer Dubai",
+    "hire developer Saudi Arabia",
+    "hire developer Riyadh",
+    "hire developer Qatar",
+    "hire developer Doha",
+    "hire developer Kuwait",
+    "hire developer Bahrain",
+    "hire developer Oman",
+    "hire developer Muscat",
+    "web development Gulf",
+    "hire web developer Gulf",
+    "full stack developer Gulf",
+    "remote developer for hire GCC",
+    "SaaS developer UAE",
+    "MVP development Dubai",
 
     // Geo - US tools
     "free online tools USA",
