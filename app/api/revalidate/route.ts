@@ -20,6 +20,6 @@ export async function POST(request: Request) {
       ? body.tag
       : "blogs";
 
-  revalidateTag(tag, "default");
+  revalidateTag(tag);
   return NextResponse.json({ revalidated: true, tag });
 }
