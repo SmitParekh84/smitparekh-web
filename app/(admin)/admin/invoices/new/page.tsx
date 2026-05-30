@@ -3,15 +3,21 @@
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronDown, Send } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AppSelect } from "@/components/ui/app-select";
 import { useAdminClients } from "@/hooks/api/use-clients";
-import { useCreateInvoice } from "@/hooks/api/use-invoices";
+import { useCreateInvoice, useSendInvoice } from "@/hooks/api/use-invoices";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -31,6 +37,7 @@ function NewInvoiceForm() {
   const { data: clientsData } = useAdminClients();
   const clients = clientsData?.data ?? [];
   const createInvoice = useCreateInvoice();
+  const sendInvoice = useSendInvoice();
 
   const [clientId, setClientId] = useState(presetClient);
   const [title, setTitle] = useState("");
@@ -40,14 +47,14 @@ function NewInvoiceForm() {
   const [notes, setNotes] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
-  async function submit() {
+  async function submit(andSend = false) {
     setErr(null);
     if (!clientId || !title || !amount) {
       setErr("Client, title and amount are required.");
       return;
     }
     try {
-      await createInvoice.mutateAsync({
+      const res = await createInvoice.mutateAsync({
         clientId,
         title,
         currency,
@@ -56,7 +63,12 @@ function NewInvoiceForm() {
         notes: notes || undefined,
         dueDate: dueDate || null,
       });
-      toast.success("Invoice created", "Saved as draft.");
+      if (andSend) {
+        await sendInvoice.mutateAsync(res.data._id);
+        toast.success("Invoice sent", "Client has been notified by email.");
+      } else {
+        toast.success("Invoice created", "Saved as draft.");
+      }
       router.push("/admin/invoices");
     } catch (e) {
       const msg = e instanceof ApiError ? e.message : "Could not create invoice.";
@@ -64,6 +76,8 @@ function NewInvoiceForm() {
       toast.error("Failed", msg);
     }
   }
+
+  const busy = createInvoice.isPending || sendInvoice.isPending;
 
   return (
     <div className="mx-auto max-w-xl space-y-6">
@@ -147,9 +161,34 @@ function NewInvoiceForm() {
             review) — test mode works now.
           </p>
 
-          <Button onClick={submit} disabled={createInvoice.isPending}>
-            {createInvoice.isPending ? "Creating…" : "Create draft"}
-          </Button>
+          {/* Split button: primary = Create & Send, dropdown = Save draft */}
+          <div className="flex items-center">
+            <Button
+              onClick={() => submit(true)}
+              disabled={busy}
+              className="gap-1.5 rounded-r-none border-r border-r-white/20"
+            >
+              <Send className="h-3.5 w-3.5" />
+              {sendInvoice.isPending ? "Sending…" : createInvoice.isPending ? "Creating…" : "Create & Send"}
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    disabled={busy}
+                    className="rounded-l-none px-2"
+                  />
+                }
+              >
+                <ChevronDown className="h-3.5 w-3.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => submit(false)} className="gap-2">
+                  Save as draft
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </CardContent>
       </Card>
     </div>
