@@ -9,8 +9,8 @@ import type {
 
 export const clientsApi = {
   /* Admin */
-  invite: (email: string) =>
-    api.post<{ success: boolean; message: string }>("/clients/invite", { email }),
+  invite: (payload: { email: string; name?: string; company?: string; message?: string }) =>
+    api.post<{ success: boolean; message: string }>("/clients/invite", payload),
 
   list: () => api.get<{ success: boolean; data: Client[]; total: number }>("/clients"),
 

@@ -222,6 +222,7 @@ export interface Client {
   invitedAt: string;
   onboardedAt?: string | null;
   invitationExpiresAt?: string | null;
+  requirementsSubmitted?: boolean;
   createdAt: string;
   updatedAt: string;
 }

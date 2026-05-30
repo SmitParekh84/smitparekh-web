@@ -25,7 +25,8 @@ export function useAdminClient(id: string) {
 export function useInviteClient() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (email: string) => clientsApi.invite(email),
+    mutationFn: (payload: { email: string; name?: string; company?: string; message?: string }) =>
+      clientsApi.invite(payload),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.list() }),
   });
 }
