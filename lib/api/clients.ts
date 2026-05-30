@@ -26,10 +26,15 @@ export const clientsApi = {
   getProject: (clientId: string) =>
     api.get<{ success: boolean; data: ClientProject }>(`/clients/${clientId}/project`),
 
-  updateProjectStep: (clientId: string, stepKey: string, patch: ProjectStepPatch) =>
+  updateProjectStep: (
+    clientId: string,
+    stepKey: string,
+    patch: ProjectStepPatch,
+    notify = false
+  ) =>
     api.patch<{ success: boolean; data: ClientProject }>(
       `/clients/${clientId}/project/steps/${stepKey}`,
-      patch
+      { ...patch, notify }
     ),
 
   regenerateProject: (clientId: string) =>
@@ -57,6 +62,9 @@ export const clientsApi = {
 
   getMe: () =>
     api.get<{ success: boolean; data: Client }>("/clients/me"),
+
+  updateMe: (payload: { name?: string; company?: string; mobile?: string }) =>
+    api.patch<{ success: boolean; data: Client }>("/clients/me", payload),
 
   getMyProject: () =>
     api.get<{ success: boolean; data: ClientProject | null }>("/clients/project/me"),

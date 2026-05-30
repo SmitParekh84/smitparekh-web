@@ -8,6 +8,15 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTab, TabsPanel } from "@/components/ui/tabs";
 import { Spinner } from "@/components/ui/spinner";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   useAdminClient,
   useAdminClientRequirements,
@@ -51,6 +60,25 @@ function formatDate(iso?: string | null) {
   });
 }
 
+function initials(name?: string, email?: string) {
+  const src = name?.trim() || email || "";
+  return (
+    src
+      .split(/\s+|@/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((p) => p[0])
+      .join("")
+      .toUpperCase() || "C"
+  );
+}
+
+function projectProgress(steps: { status: string }[]) {
+  const total = steps.length;
+  const done = steps.filter((s) => s.status === "done").length;
+  return { total, done, pct: Math.round((done / Math.max(1, total)) * 100) };
+}
+
 export default function AdminClientDetailPage({
   params,
 }: {
@@ -59,6 +87,7 @@ export default function AdminClientDetailPage({
   const { id } = use(params);
   const [tab, setTab] = useState("workflow");
   const [nowTs] = useState(() => Date.now());
+  const [notifyClient, setNotifyClient] = useState(false);
 
   const clientQuery = useAdminClient(id);
   const requirementsQuery = useAdminClientRequirements(id);
@@ -77,9 +106,14 @@ export default function AdminClientDetailPage({
     requirementsQuery.error.status === 404;
 
   function handleUpdateStep(stepKey: string, patch: Parameters<typeof updateStep.mutate>[0]["patch"]) {
+    // Only status changes can trigger a client email, and only when "Notify client" is ticked.
+    const willNotify = notifyClient && patch.status !== undefined;
     updateStep.mutate(
-      { stepKey, patch },
+      { stepKey, patch, notify: willNotify },
       {
+        onSuccess: () => {
+          if (willNotify) toast.success("Client notified", "An update email was sent.");
+        },
         onError: (err) => {
           const msg = err instanceof ApiError ? err.message : "Could not update step.";
           toast.error("Update failed", msg);
@@ -105,6 +139,16 @@ export default function AdminClientDetailPage({
     } catch (err) {
       const msg = err instanceof ApiError ? err.message : "Could not resend invitation.";
       toast.error("Resend failed", msg);
+    }
+  }
+
+  async function handleSetStatus(status: ClientStatus) {
+    try {
+      await updateStatus.mutateAsync({ id, status });
+      toast.success("Status updated", `Client marked as ${status}.`);
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Could not update status.";
+      toast.error("Update failed", msg);
     }
   }
 
@@ -147,37 +191,64 @@ export default function AdminClientDetailPage({
       {/* Client header */}
       <Card>
         <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2.5">
-              <h1 className="text-xl font-semibold">
-                {client.name || <span className="italic text-muted-foreground">Pending</span>}
-              </h1>
-              <Badge variant="outline" className={cn("text-[11px]", status.className)}>
-                {status.label}
-              </Badge>
-            </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <Mail className="h-3.5 w-3.5" />
-                {client.email}
-              </span>
-              {client.mobile && (
+          <div className="flex items-start gap-3">
+            <Avatar className="h-11 w-11">
+              <AvatarFallback className="bg-blue-500/15 text-sm font-semibold text-blue-500">
+                {initials(client.name, client.email)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-xl font-semibold">
+                  {client.name || <span className="italic text-muted-foreground">Pending</span>}
+                </h1>
+                <Badge variant="outline" className={cn("text-[11px]", status.className)}>
+                  {status.label}
+                </Badge>
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1.5">
-                  <Phone className="h-3.5 w-3.5" />
-                  {client.mobile}
+                  <Mail className="h-3.5 w-3.5" />
+                  {client.email}
                 </span>
-              )}
-              {client.company && (
-                <span className="flex items-center gap-1.5">
-                  <Building2 className="h-3.5 w-3.5" />
-                  {client.company}
-                </span>
-              )}
+                {client.mobile && (
+                  <span className="flex items-center gap-1.5">
+                    <Phone className="h-3.5 w-3.5" />
+                    {client.mobile}
+                  </span>
+                )}
+                {client.company && (
+                  <span className="flex items-center gap-1.5">
+                    <Building2 className="h-3.5 w-3.5" />
+                    {client.company}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-          <div className="shrink-0 text-xs text-muted-foreground sm:text-right">
-            <p>Invited {formatDate(client.invitedAt)}</p>
-            {client.onboardedAt && <p>Onboarded {formatDate(client.onboardedAt)}</p>}
+          <div className="flex shrink-0 flex-col gap-2 sm:items-end">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Set status:</span>
+              {/* Only the email-free transitions are exposed here. Sending a fresh
+                  invite (status → "invited", which emails the client) stays behind
+                  the explicit "Resend invitation" button below. */}
+              <Select
+                value={client.status === "active" ? "active" : "inactive"}
+                onValueChange={(v) => handleSetStatus(v as ClientStatus)}
+              >
+                <SelectTrigger className="h-8 w-36 text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="active" className="text-xs">Active</SelectItem>
+                  <SelectItem value="inactive" className="text-xs">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="text-xs text-muted-foreground sm:text-right">
+              <p>Invited {formatDate(client.invitedAt)}</p>
+              {client.onboardedAt && <p>Onboarded {formatDate(client.onboardedAt)}</p>}
+            </div>
           </div>
         </CardContent>
 
@@ -223,21 +294,39 @@ export default function AdminClientDetailPage({
         <TabsPanel value="workflow" className="mt-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between gap-3">
-              <CardTitle className="text-base">Project workflow</CardTitle>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRegenerate}
-                disabled={regenerate.isPending}
-                className="gap-1.5"
-              >
-                {regenerate.isPending ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : (
-                  <RefreshCw className="h-3.5 w-3.5" />
+              <div>
+                <CardTitle className="text-base">Project workflow</CardTitle>
+                {project && project.steps.length > 0 && (
+                  <p className="mt-0.5 text-[13px] text-muted-foreground">
+                    {projectProgress(project.steps).done} of {projectProgress(project.steps).total}{" "}
+                    steps done · {projectProgress(project.steps).pct}% — pre-sales → execution,
+                    synced to the client instantly.
+                  </p>
                 )}
-                Rebuild from requirements
-              </Button>
+              </div>
+              <div className="flex items-center gap-3">
+                <label className="flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground select-none">
+                  <Checkbox
+                    checked={notifyClient}
+                    onCheckedChange={(v) => setNotifyClient(v === true)}
+                  />
+                  Notify client by email
+                </label>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRegenerate}
+                  disabled={regenerate.isPending}
+                  className="gap-1.5"
+                >
+                  {regenerate.isPending ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-3.5 w-3.5" />
+                  )}
+                  Rebuild from requirements
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               {projectQuery.isLoading ? (

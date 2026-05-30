@@ -10,6 +10,7 @@ import {
   MoreHorizontal,
   Plus,
   RotateCcw,
+  Search,
   UserCheck,
 } from "lucide-react";
 import {
@@ -36,6 +37,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { AppSelect } from "@/components/ui/app-select";
 import { useAdminClients, useUpdateClientStatus } from "@/hooks/api/use-clients";
 import { InviteClientModal } from "@/components/admin/InviteClientModal";
 import { toast } from "@/lib/toast";
@@ -96,11 +99,23 @@ function initials(name?: string, email?: string) {
 export default function AdminClientsPage() {
   const [inviteOpen, setInviteOpen] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const clientsQuery = useAdminClients();
   const updateStatus = useUpdateClientStatus();
 
-  const clients = clientsQuery.data?.data ?? [];
+  const allClients = clientsQuery.data?.data ?? [];
+  const query = search.trim().toLowerCase();
+  const clients = allClients.filter((c) => {
+    const matchesStatus = statusFilter === "all" || c.status === statusFilter;
+    const matchesSearch =
+      !query ||
+      (c.name?.toLowerCase().includes(query) ?? false) ||
+      c.email.toLowerCase().includes(query) ||
+      (c.company?.toLowerCase().includes(query) ?? false);
+    return matchesStatus && matchesSearch;
+  });
 
   async function handleStatusChange(client: Client, status: ClientStatus) {
     setBusyId(client._id);
@@ -129,6 +144,32 @@ export default function AdminClientsPage() {
           Invite client
         </Button>
       </div>
+
+      {allClients.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="relative w-full sm:w-72">
+            <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search clients"
+              className="h-9 pl-8"
+            />
+          </div>
+          <AppSelect
+            value={statusFilter}
+            onValueChange={setStatusFilter}
+            options={[
+              { value: "all", label: "All statuses" },
+              { value: "active", label: "Active" },
+              { value: "onboarded", label: "Onboarded" },
+              { value: "invited", label: "Invited" },
+              { value: "inactive", label: "Inactive" },
+            ]}
+            triggerClassName="h-9 w-36"
+          />
+        </div>
+      )}
 
       <Card>
         <CardHeader>
@@ -159,7 +200,7 @@ export default function AdminClientsPage() {
             </div>
           )}
 
-          {!clientsQuery.isLoading && !clientsQuery.isError && clients.length === 0 && (
+          {!clientsQuery.isLoading && !clientsQuery.isError && allClients.length === 0 && (
             <div className="flex flex-col items-center gap-3 py-16 text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
                 <Mail className="h-6 w-6 text-blue-500" />
@@ -174,6 +215,15 @@ export default function AdminClientsPage() {
               </Button>
             </div>
           )}
+
+          {!clientsQuery.isLoading &&
+            !clientsQuery.isError &&
+            allClients.length > 0 &&
+            clients.length === 0 && (
+              <div className="px-6 py-16 text-center text-sm text-muted-foreground">
+                No clients match your search.
+              </div>
+            )}
 
           {!clientsQuery.isLoading && !clientsQuery.isError && clients.length > 0 && (
             <Table>

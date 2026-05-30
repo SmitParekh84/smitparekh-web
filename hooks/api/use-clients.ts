@@ -58,8 +58,15 @@ export function useAdminClientProject(clientId: string) {
 export function useUpdateProjectStep(clientId: string) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ stepKey, patch }: { stepKey: string; patch: ProjectStepPatch }) =>
-      clientsApi.updateProjectStep(clientId, stepKey, patch),
+    mutationFn: ({
+      stepKey,
+      patch,
+      notify,
+    }: {
+      stepKey: string;
+      patch: ProjectStepPatch;
+      notify?: boolean;
+    }) => clientsApi.updateProjectStep(clientId, stepKey, patch, notify ?? false),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
   });
 }
@@ -100,6 +107,15 @@ export function useClientMe() {
   return useQuery({
     queryKey: queryKeys.clients.me(),
     queryFn: () => clientsApi.getMe(),
+  });
+}
+
+export function useUpdateClientMe() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: { name?: string; company?: string; mobile?: string }) =>
+      clientsApi.updateMe(payload),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.me() }),
   });
 }
 

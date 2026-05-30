@@ -22,6 +22,8 @@ import { cn } from "@/lib/utils";
 const TITLES: Record<string, string> = {
   "/client/dashboard": "Dashboard",
   "/client/requirements": "Requirements",
+  "/client/project": "Project",
+  "/client/account": "Account",
 };
 
 function resolveTitle(pathname: string): string {

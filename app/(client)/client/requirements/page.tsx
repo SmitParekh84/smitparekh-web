@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/layout/PageHero";
-import { ClipboardList } from "lucide-react";
 import { RequirementsForm } from "@/components/client/RequirementsForm";
 
 export const metadata: Metadata = {
@@ -10,17 +8,14 @@ export const metadata: Metadata = {
 
 export default function ClientRequirementsPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Client Portal"
-        title="Project Requirements"
-        description="Tell us what you need and we'll put the right team together."
-        icon={ClipboardList}
-        align="left"
-      />
-      <div className="mt-8">
-        <RequirementsForm />
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">Requirements</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Tell us what you need and we&apos;ll put the right team together.
+        </p>
       </div>
-    </>
+      <RequirementsForm />
+    </div>
   );
 }

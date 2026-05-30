@@ -24,16 +24,33 @@ import {
 } from "@/components/ui/sidebar";
 import { useClientMe } from "@/hooks/api/use-clients";
 import { createClient } from "@/lib/supabase/client";
-import { ChevronsUpDown, ExternalLink, FileText, LayoutDashboard, LogOut } from "lucide-react";
+import {
+  Briefcase,
+  ChevronsUpDown,
+  ExternalLink,
+  FileText,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+  Shield,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-type NavItem = { title: string; href: string; icon: typeof FileText };
+type NavItem = {
+  title: string;
+  href: string;
+  icon: typeof FileText;
+  /** When set, the item is locked (not clickable) until the client status matches. */
+  lockedUntilActive?: boolean;
+};
 
 const NAV: NavItem[] = [
   { title: "Dashboard", href: "/client/dashboard", icon: LayoutDashboard },
   { title: "Requirements", href: "/client/requirements", icon: FileText },
+  { title: "Project", href: "/client/project", icon: Briefcase, lockedUntilActive: true },
+  { title: "Account", href: "/client/account", icon: Settings },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -84,18 +101,36 @@ export function ClientSidebar() {
           <SidebarGroupLabel>Portal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {NAV.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    render={<Link href={item.href} />}
-                    isActive={isActive(pathname, item.href)}
-                    tooltip={item.title}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {NAV.map((item) => {
+                const locked = item.lockedUntilActive && client?.status !== "active";
+                if (locked) {
+                  return (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        disabled
+                        tooltip="Unlocks once your project is active"
+                        className="cursor-not-allowed opacity-50"
+                      >
+                        <item.icon className="w-4 h-4" />
+                        <span>{item.title}</span>
+                        <Shield className="ml-auto h-3.5 w-3.5" />
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                }
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      render={<Link href={item.href} />}
+                      isActive={isActive(pathname, item.href)}
+                      tooltip={item.title}
+                    >
+                      <item.icon className="w-4 h-4" />
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
