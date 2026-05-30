@@ -21,6 +21,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useMyRequirements, useMyProject, useClientMe } from "@/hooks/api/use-clients";
+import { useMyInvoices } from "@/hooks/api/use-invoices";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 import { ClientStageBar } from "@/components/client/ClientStageBar";
 import { projectStats } from "@/lib/project-journey";
@@ -195,9 +196,31 @@ function DashboardWithRequirements({
   const steps = project?.steps ?? [];
   const stats = projectStats(steps);
   const categories = (requirements.categories ?? []) as ServiceCategory[];
+  const { data: invoiceData } = useMyInvoices();
+  const pendingInvoices = (invoiceData?.data ?? []).filter(
+    (i) => i.status === "sent" || i.status === "overdue"
+  );
 
   return (
     <div className="space-y-6">
+      {/* Pending invoice alert */}
+      {pendingInvoices.length > 0 && (
+        <Link href="/client/invoices" className="block">
+          <div className="flex items-center gap-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 transition-colors hover:bg-amber-500/15">
+            <Clock className="h-5 w-5 shrink-0 text-amber-500" />
+            <div>
+              <p className="text-sm font-medium text-amber-700 dark:text-amber-400">
+                You have {pendingInvoices.length} invoice
+                {pendingInvoices.length > 1 ? "s" : ""} awaiting payment
+              </p>
+              <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
+                Click to review and pay.
+              </p>
+            </div>
+          </div>
+        </Link>
+      )}
+
       {/* Status banner */}
       {isActive ? (
         <Card className="overflow-hidden">

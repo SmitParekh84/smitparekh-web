@@ -65,6 +65,14 @@ export const queryKeys = {
     list: (status?: string) => [...queryKeys.adminTenants.all, "list", status ?? "all"] as const,
     blogs: (tenantId: string) => [...queryKeys.adminTenants.all, "blogs", tenantId] as const,
   },
+  invoices: {
+    all: ["invoices"] as const,
+    list: (params?: { status?: string; clientId?: string }) =>
+      [...queryKeys.invoices.all, "list", params ?? {}] as const,
+    byId: (id: string) => [...queryKeys.invoices.all, "id", id] as const,
+    mine: () => [...queryKeys.invoices.all, "mine"] as const,
+    forClient: (clientId: string) => [...queryKeys.invoices.all, "forClient", clientId] as const,
+  },
   clients: {
     all: ["clients"] as const,
     list: () => [...queryKeys.clients.all, "list"] as const,

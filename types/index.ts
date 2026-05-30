@@ -351,3 +351,46 @@ export interface ProjectStepPatch {
   note?: string;
   links?: ProjectStepLink[];
 }
+
+/* ─── Invoices ─────────────────────────────────────────────────────────── */
+
+export type InvoiceStatus = "draft" | "sent" | "paid" | "overdue" | "cancelled";
+export type InvoiceCurrency = "USD" | "INR";
+
+export interface InvoiceLineItem {
+  description: string;
+  amount: number;
+}
+
+export interface InvoiceStatusEvent {
+  status: InvoiceStatus;
+  at: string;
+  by: string;
+}
+
+export interface Invoice {
+  _id: string;
+  invoiceNumber: string;
+  clientId: string | { _id: string; name?: string; email?: string; company?: string };
+  projectId?: string | null;
+  title: string;
+  lineItems: InvoiceLineItem[];
+  currency: InvoiceCurrency;
+  amount: number;
+  notes?: string;
+  status: InvoiceStatus;
+  dueDate?: string | null;
+  razorpayOrderId?: string | null;
+  razorpayPaymentId?: string | null;
+  paidAt?: string | null;
+  statusHistory: InvoiceStatusEvent[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateOrderResponse {
+  orderId: string;
+  amount: number;
+  currency: InvoiceCurrency;
+  keyId: string;
+}

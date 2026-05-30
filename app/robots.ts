@@ -31,6 +31,8 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "CCBot", disallow: "/" },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
-    host: siteConfig.url,
+    // The robots `Host:` directive must be a bare hostname — including the
+    // scheme (https://) makes validators report "Syntax not understood".
+    host: new URL(siteConfig.url).host,
   };
 }

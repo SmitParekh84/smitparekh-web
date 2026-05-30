@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,6 +25,7 @@ import {
   useRegenerateProject,
   useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
+import { useClientInvoices } from "@/hooks/api/use-invoices";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 import { toast } from "@/lib/toast";
@@ -95,6 +96,8 @@ export default function AdminClientDetailPage({
   const updateStep = useUpdateProjectStep(id);
   const regenerate = useRegenerateProject(id);
   const updateStatus = useUpdateClientStatus();
+  const invoicesQuery = useClientInvoices(id);
+  const invoices = invoicesQuery.data?.data ?? [];
 
   const client = clientQuery.data?.data;
   const requirements = requirementsQuery.data?.data;
@@ -366,6 +369,39 @@ export default function AdminClientDetailPage({
           )}
         </TabsPanel>
       </Tabs>
+
+      {/* Invoices */}
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between gap-3">
+          <CardTitle className="text-base">Invoices</CardTitle>
+          <Link
+            href={`/admin/invoices/new?clientId=${id}`}
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}
+          >
+            <Plus className="h-3.5 w-3.5" /> New invoice
+          </Link>
+        </CardHeader>
+        <CardContent className="space-y-2 text-sm">
+          {invoices.length === 0 ? (
+            <p className="text-muted-foreground">No invoices for this client yet.</p>
+          ) : (
+            invoices.map((inv) => (
+              <div
+                key={inv._id}
+                className="flex items-center justify-between border-b border-border/50 pb-2 last:border-0 last:pb-0"
+              >
+                <Link href={`/admin/invoices/${inv._id}`} className="font-medium hover:underline">
+                  {inv.invoiceNumber}
+                </Link>
+                <span className="text-muted-foreground">
+                  {inv.currency === "INR" ? "₹" : "$"}
+                  {inv.amount.toFixed(2)} · {inv.status}
+                </span>
+              </div>
+            ))
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

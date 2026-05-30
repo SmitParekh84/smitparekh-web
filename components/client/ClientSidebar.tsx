@@ -23,6 +23,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useClientMe } from "@/hooks/api/use-clients";
+import { useMyInvoices } from "@/hooks/api/use-invoices";
 import { createClient } from "@/lib/supabase/client";
 import {
   Briefcase,
@@ -31,6 +32,7 @@ import {
   FileText,
   LayoutDashboard,
   LogOut,
+  Receipt,
   Settings,
   Shield,
 } from "lucide-react";
@@ -44,12 +46,15 @@ type NavItem = {
   icon: typeof FileText;
   /** When set, the item is locked (not clickable) until the client status matches. */
   lockedUntilActive?: boolean;
+  /** When set, the item is hidden until the client has at least one invoice. */
+  requiresInvoices?: boolean;
 };
 
 const NAV: NavItem[] = [
   { title: "Dashboard", href: "/client/dashboard", icon: LayoutDashboard },
   { title: "Requirements", href: "/client/requirements", icon: FileText },
   { title: "Project", href: "/client/project", icon: Briefcase, lockedUntilActive: true },
+  { title: "Invoices", href: "/client/invoices", icon: Receipt, requiresInvoices: true },
   { title: "Account", href: "/client/account", icon: Settings },
 ];
 
@@ -62,6 +67,9 @@ export function ClientSidebar() {
   const router = useRouter();
   const { data } = useClientMe();
   const client = data?.data;
+  const { data: invoiceData } = useMyInvoices();
+  const hasInvoices = (invoiceData?.data ?? []).length > 0;
+  const navItems = NAV.filter((item) => !item.requiresInvoices || hasInvoices);
 
   const displayName = client?.name || client?.email || "Client";
   const email = client?.email ?? "";
@@ -101,7 +109,7 @@ export function ClientSidebar() {
           <SidebarGroupLabel>Portal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {NAV.map((item) => {
+              {navItems.map((item) => {
                 const locked = item.lockedUntilActive && client?.status !== "active";
                 if (locked) {
                   return (

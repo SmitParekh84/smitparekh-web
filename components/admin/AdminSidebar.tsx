@@ -20,6 +20,7 @@ import {
   FileBadge,
   Bell,
   Briefcase,
+  Receipt,
 } from "lucide-react";
 import {
   Sidebar,
@@ -71,6 +72,7 @@ const NAV_SECTIONS = [
       { title: "Users", href: "/admin/users", icon: Users },
       { title: "Tenants", href: "/admin/tenants", icon: Building2 },
       { title: "Clients", href: "/admin/clients", icon: Briefcase },
+      { title: "Invoices", href: "/admin/invoices", icon: Receipt },
     ],
   },
   {

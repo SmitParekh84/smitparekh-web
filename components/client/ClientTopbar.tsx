@@ -23,6 +23,7 @@ const TITLES: Record<string, string> = {
   "/client/dashboard": "Dashboard",
   "/client/requirements": "Requirements",
   "/client/project": "Project",
+  "/client/invoices": "Invoices",
   "/client/account": "Account",
 };
 
