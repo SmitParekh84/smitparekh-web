@@ -232,17 +232,16 @@ export default function AdminClientDetailPage({
           <div className="flex shrink-0 flex-col gap-2 sm:items-end">
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">Set status:</span>
-              {/* Only the email-free transitions are exposed here. Sending a fresh
-                  invite (status → "invited", which emails the client) stays behind
-                  the explicit "Resend invitation" button below. */}
               <Select
-                value={client.status === "active" ? "active" : "inactive"}
+                value={client.status}
                 onValueChange={(v) => handleSetStatus(v as ClientStatus)}
               >
                 <SelectTrigger className="h-8 w-36 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="invited" className="text-xs">Invited</SelectItem>
+                  <SelectItem value="onboarded" className="text-xs">Onboarded</SelectItem>
                   <SelectItem value="active" className="text-xs">Active</SelectItem>
                   <SelectItem value="inactive" className="text-xs">Inactive</SelectItem>
                 </SelectContent>
@@ -291,6 +290,7 @@ export default function AdminClientDetailPage({
         <TabsList>
           <TabsTab value="workflow">Workflow</TabsTab>
           <TabsTab value="requirements">Requirements</TabsTab>
+          <TabsTab value="invoices">Invoices</TabsTab>
         </TabsList>
 
         {/* Workflow */}
@@ -368,40 +368,46 @@ export default function AdminClientDetailPage({
             </div>
           )}
         </TabsPanel>
-      </Tabs>
 
-      {/* Invoices */}
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between gap-3">
-          <CardTitle className="text-base">Invoices</CardTitle>
-          <Link
-            href={`/admin/invoices/new?clientId=${id}`}
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}
-          >
-            <Plus className="h-3.5 w-3.5" /> New invoice
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm">
-          {invoices.length === 0 ? (
-            <p className="text-muted-foreground">No invoices for this client yet.</p>
-          ) : (
-            invoices.map((inv) => (
-              <div
-                key={inv._id}
-                className="flex items-center justify-between border-b border-border/50 pb-2 last:border-0 last:pb-0"
+        {/* Invoices */}
+        <TabsPanel value="invoices" className="mt-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between gap-3">
+              <CardTitle className="text-base">Invoices</CardTitle>
+              <Link
+                href={`/admin/invoices/new?clientId=${id}`}
+                className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}
               >
-                <Link href={`/admin/invoices/${inv._id}`} className="font-medium hover:underline">
-                  {inv.invoiceNumber}
-                </Link>
-                <span className="text-muted-foreground">
-                  {inv.currency === "INR" ? "₹" : "$"}
-                  {inv.amount.toFixed(2)} · {inv.status}
-                </span>
-              </div>
-            ))
-          )}
-        </CardContent>
-      </Card>
+                <Plus className="h-3.5 w-3.5" /> New invoice
+              </Link>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              {invoicesQuery.isLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Spinner />
+                </div>
+              ) : invoices.length === 0 ? (
+                <p className="text-muted-foreground">No invoices for this client yet.</p>
+              ) : (
+                invoices.map((inv) => (
+                  <div
+                    key={inv._id}
+                    className="flex items-center justify-between border-b border-border/50 pb-2 last:border-0 last:pb-0"
+                  >
+                    <Link href={`/admin/invoices/${inv._id}`} className="font-medium hover:underline">
+                      {inv.invoiceNumber}
+                    </Link>
+                    <span className="text-muted-foreground">
+                      {inv.currency === "INR" ? "₹" : "$"}
+                      {inv.amount.toFixed(2)} · {inv.status}
+                    </span>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
+        </TabsPanel>
+      </Tabs>
     </div>
   );
 }

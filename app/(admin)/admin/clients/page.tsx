@@ -4,14 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ChevronRight,
-  ExternalLink,
-  Loader2,
   Mail,
-  MoreHorizontal,
   Plus,
   RotateCcw,
   Search,
-  UserCheck,
 } from "lucide-react";
 import {
   Table,
@@ -21,23 +17,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner as UiSpinner } from "@/components/ui/spinner";
 import { AppSelect } from "@/components/ui/app-select";
-import { useAdminClients, useUpdateClientStatus } from "@/hooks/api/use-clients";
+import { useAdminClients } from "@/hooks/api/use-clients";
 import { InviteClientModal } from "@/components/admin/InviteClientModal";
-import { toast } from "@/lib/toast";
-import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
-import type { Client, ClientStatus } from "@/types";
+import type { ClientStatus } from "@/types";
 
 const STATUS_CONFIG: Record<ClientStatus, { label: string; dot: string; badge: string }> = {
   invited: {
@@ -87,12 +75,10 @@ function initials(name?: string, email?: string) {
 
 export default function AdminClientsPage() {
   const [inviteOpen, setInviteOpen] = useState(false);
-  const [busyId, setBusyId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
   const clientsQuery = useAdminClients();
-  const updateStatus = useUpdateClientStatus();
 
   const allClients = clientsQuery.data?.data ?? [];
   const query = search.trim().toLowerCase();
@@ -105,19 +91,6 @@ export default function AdminClientsPage() {
       (c.company?.toLowerCase().includes(query) ?? false);
     return matchesStatus && matchesSearch;
   });
-
-  async function handleStatusChange(client: Client, status: ClientStatus) {
-    setBusyId(client._id);
-    try {
-      await updateStatus.mutateAsync({ id: client._id, status });
-      toast.success("Status updated");
-    } catch (err) {
-      const msg = err instanceof ApiError ? err.message : "Could not update status.";
-      toast.error("Update failed", msg);
-    } finally {
-      setBusyId(null);
-    }
-  }
 
   return (
     <div className="space-y-5">
@@ -205,7 +178,7 @@ export default function AdminClientsPage() {
                 <TableHead>Client</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="hidden sm:table-cell">Requirements</TableHead>
-                <TableHead className="w-[1%] text-right">Actions</TableHead>
+                <TableHead className="w-10"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -245,70 +218,16 @@ export default function AdminClientsPage() {
                   </TableCell>
 
                   <TableCell>
-                    <div className="flex items-center justify-end gap-1">
-                      {busyId === client._id ? (
-                        <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-                      ) : (
-                        <>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger
-                              render={
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-7 w-7 text-muted-foreground opacity-0 group-hover:opacity-100"
-                                />
-                              }
-                            >
-                              <MoreHorizontal className="h-4 w-4" />
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem
-                                render={<Link href={`/admin/clients/${client._id}`} />}
-                                className="gap-2"
-                              >
-                                <ExternalLink className="h-3.5 w-3.5 text-blue-500" />
-                                View details
-                              </DropdownMenuItem>
-                              {client.status !== "active" && (
-                                <DropdownMenuItem
-                                  onClick={() => handleStatusChange(client, "active")}
-                                  className="gap-2"
-                                >
-                                  <UserCheck className="h-3.5 w-3.5 text-green-500" />
-                                  Mark as Active
-                                </DropdownMenuItem>
-                              )}
-                              {client.status !== "inactive" && (
-                                <DropdownMenuItem
-                                  onClick={() => handleStatusChange(client, "inactive")}
-                                  className="gap-2 text-muted-foreground"
-                                >
-                                  Mark as Inactive
-                                </DropdownMenuItem>
-                              )}
-                              {client.status === "invited" && (
-                                <DropdownMenuItem
-                                  onClick={() => handleStatusChange(client, "invited")}
-                                  className="gap-2"
-                                >
-                                  <Mail className="h-3.5 w-3.5 text-yellow-500" />
-                                  Resend invitation
-                                </DropdownMenuItem>
-                              )}
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                          <Link href={`/admin/clients/${client._id}`}>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7 text-muted-foreground"
-                            >
-                              <ChevronRight className="h-4 w-4" />
-                            </Button>
-                          </Link>
-                        </>
-                      )}
+                    <div className="flex items-center justify-end">
+                      <Link href={`/admin/clients/${client._id}`}>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 text-muted-foreground"
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   </TableCell>
                 </TableRow>
