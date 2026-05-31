@@ -1,4 +1,4 @@
-# smitparekh-web
+# smitparekh-web.
 
 Next.js 16 frontend for [smitparekh.co.in](https://smitparekh.co.in) — portfolio site, tools landing page, and admin dashboard. Talks to a sibling Express API ([`smitparekh-api`](../smitparekh-api)) and an optional Python tools service ([`python-tools`](../python-tools)).
 
