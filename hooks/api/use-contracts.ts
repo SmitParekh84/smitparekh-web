@@ -42,3 +42,9 @@ export function useUploadContractTemplate(clientId: string) {
     onSuccess: () => qc.invalidateQueries({ queryKey: KEYS.admin(clientId) }),
   });
 }
+
+export function useSendContractSigningRequest() {
+  return useMutation({
+    mutationFn: (clientId: string) => contractsApi.sendSigningRequest(clientId),
+  });
+}

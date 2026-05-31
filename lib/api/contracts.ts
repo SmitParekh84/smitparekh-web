@@ -33,4 +33,9 @@ export const contractsApi = {
 
   previewForClient: (clientId: string) =>
     api.get<Blob>(`/clients/${clientId}/contract/preview`, { responseType: "blob" }),
+
+  sendSigningRequest: (clientId: string) =>
+    api.post<{ success: boolean; message: string }>(
+      `/clients/${clientId}/contract/send-signing-request`,
+    ),
 };

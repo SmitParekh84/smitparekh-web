@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye, LinkIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +26,7 @@ import {
   useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
 import { useClientInvoices, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
-import { useAdminContract, useUploadContractTemplate } from "@/hooks/api/use-contracts";
+import { useAdminContract, useUploadContractTemplate, useSendContractSigningRequest } from "@/hooks/api/use-contracts";
 import { contractsApi } from "@/lib/api/contracts";
 import { DocxViewer } from "@/components/client/DocxViewer";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
@@ -582,9 +582,26 @@ export default function AdminClientDetailPage({
 function ContractTab({ clientId, clientName }: { clientId: string; clientName?: string }) {
   const { data, isLoading } = useAdminContract(clientId);
   const uploadMutation = useUploadContractTemplate(clientId);
+  const sendRequest = useSendContractSigningRequest();
   const [downloading, setDownloading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [linkSent, setLinkSent] = useState(false);
   const contract = data?.data;
+
+  async function handleSendSigningLink() {
+    try {
+      await sendRequest.mutateAsync(clientId);
+      setLinkSent(true);
+      toast.success(
+        "Signing link sent",
+        `${clientName ?? "The client"} will receive an email with a one-click sign-in link.`,
+      );
+      setTimeout(() => setLinkSent(false), 6000);
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Could not send signing link.";
+      toast.error("Send failed", msg);
+    }
+  }
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -702,6 +719,34 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
             </div>
           ) : (
             <p className="text-sm text-muted-foreground">No contract template uploaded yet.</p>
+          )}
+
+          {/* Send signing link — shown when template exists and not yet signed */}
+          {hasTemplate && !isSigned && (
+            <div className="flex items-center gap-3 rounded-xl border border-blue-500/20 bg-blue-500/5 px-4 py-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] font-medium">Ready to send?</p>
+                <p className="text-[11.5px] text-muted-foreground">
+                  Email {clientName ?? "the client"} a one-click link — they click it, get
+                  automatically signed in, and land straight on the contract page.
+                </p>
+              </div>
+              <Button
+                className="shrink-0 gap-1.5"
+                size="sm"
+                onClick={handleSendSigningLink}
+                disabled={sendRequest.isPending || linkSent}
+              >
+                {sendRequest.isPending ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : linkSent ? (
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                ) : (
+                  <LinkIcon className="h-3.5 w-3.5" />
+                )}
+                {linkSent ? "Link sent!" : "Send signing link"}
+              </Button>
+            </div>
           )}
 
           {/* Upload / replace */}
