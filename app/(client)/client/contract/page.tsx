@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CheckCircle2,
   Download,
+  Eye,
   FileSignature,
   Loader2,
+  RotateCcw,
+  Save,
   ShieldCheck,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { SignaturePad } from "@/components/client/SignaturePad";
+import { DocxViewer } from "@/components/client/DocxViewer";
 import { useMyContract, useSignContract } from "@/hooks/api/use-contracts";
 import { contractsApi } from "@/lib/api/contracts";
 import { toast } from "@/lib/toast";
@@ -20,10 +24,21 @@ import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import type { ContractStatus } from "@/types";
 
-const STATUS_CONFIG: Record<
-  ContractStatus,
-  { label: string; dot: string; badge: string }
-> = {
+/* ─── localStorage key for saved signature ─────────────────────────────── */
+const LS_KEY = "sp_saved_signature";
+
+function loadSaved(): string | null {
+  try { return localStorage.getItem(LS_KEY); } catch { return null; }
+}
+function saveSig(b64: string) {
+  try { localStorage.setItem(LS_KEY, b64); } catch {}
+}
+function clearSaved() {
+  try { localStorage.removeItem(LS_KEY); } catch {}
+}
+
+/* ─── Status config ─────────────────────────────────────────────────────── */
+const STATUS_CONFIG: Record<ContractStatus, { label: string; dot: string; badge: string }> = {
   no_template: {
     label: "Not ready",
     dot: "bg-muted-foreground/40",
@@ -41,23 +56,44 @@ const STATUS_CONFIG: Record<
   },
 };
 
+/* ─── Page ──────────────────────────────────────────────────────────────── */
 export default function ClientContractPage() {
   const { data, isLoading } = useMyContract();
   const signMutation = useSignContract();
+
   const [downloading, setDownloading] = useState(false);
-  const [signed, setSigned] = useState(false);
+  const [justSigned, setJustSigned] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [showSignedDoc, setShowSignedDoc] = useState(false);
+  const [saveForFuture, setSaveForFuture] = useState(true);
+  const [savedSig, setSavedSig] = useState<string | null>(null);
+  const [usingSaved, setUsingSaved] = useState(false);
+
+  // Load saved signature from localStorage on mount
+  useEffect(() => {
+    const sig = loadSaved();
+    setSavedSig(sig);
+    if (sig) setUsingSaved(true);
+  }, []);
 
   const contract = data?.data;
 
   async function handleSign(dataUrl: string) {
     try {
       await signMutation.mutateAsync(dataUrl);
-      setSigned(true);
+      if (saveForFuture) saveSig(dataUrl);
+      setJustSigned(true);
+      setSavedSig(dataUrl);
       toast.success("Contract signed!", "Your signed document is ready to download.");
     } catch (err) {
       const msg = err instanceof ApiError ? err.message : "Could not save signature.";
       toast.error("Signing failed", msg);
     }
+  }
+
+  async function handleUseSaved() {
+    if (!savedSig) return;
+    await handleSign(savedSig);
   }
 
   async function handleDownload() {
@@ -78,6 +114,7 @@ export default function ClientContractPage() {
     }
   }
 
+  /* ── Loading ─────────────────────────────────────────────────────────── */
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-24">
@@ -86,7 +123,7 @@ export default function ClientContractPage() {
     );
   }
 
-  /* No template uploaded by admin yet */
+  /* ── No template ─────────────────────────────────────────────────────── */
   if (!contract || contract.status === "no_template") {
     return (
       <div className="mx-auto max-w-lg">
@@ -98,7 +135,7 @@ export default function ClientContractPage() {
             <p className="text-sm font-medium">No contract ready yet</p>
             <p className="max-w-sm text-xs text-muted-foreground">
               Your project contract will appear here once it&apos;s been prepared. You&apos;ll be
-              notified by email when it&apos;s ready to sign.
+              notified by email when it&apos;s ready.
             </p>
           </CardContent>
         </Card>
@@ -107,13 +144,14 @@ export default function ClientContractPage() {
   }
 
   const cfg = STATUS_CONFIG[contract.status];
-  const isSigned = contract.status === "signed" || signed;
+  const isSigned = contract.status === "signed" || justSigned;
 
   return (
-    <div className="mx-auto max-w-xl space-y-5">
-      {/* Header card */}
+    <div className="mx-auto max-w-2xl space-y-5">
+
+      {/* ── Header card ─────────────────────────────────────────────────── */}
       <Card>
-        <CardContent className="flex items-start justify-between gap-4 p-5">
+        <CardContent className="flex items-center justify-between gap-4 p-5">
           <div className="flex items-center gap-3">
             <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue-500/10 text-blue-600">
               <FileSignature className="h-5 w-5" />
@@ -123,14 +161,43 @@ export default function ClientContractPage() {
               <p className="text-xs text-muted-foreground">{contract.templateName}</p>
             </div>
           </div>
-          <Badge variant="outline" className={cn("gap-1.5 text-[11px]", cfg.badge)}>
-            <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
-            {cfg.label}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className={cn("gap-1.5 text-[11px]", cfg.badge)}>
+              <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
+              {cfg.label}
+            </Badge>
+            {/* Preview template button */}
+            {!isSigned && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-1.5"
+                onClick={() => setShowPreview((v) => !v)}
+              >
+                <Eye className="h-3.5 w-3.5" />
+                {showPreview ? "Hide" : "Preview"}
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
 
-      {/* Signed state */}
+      {/* ── DOCX preview (template, before signing) ─────────────────────── */}
+      {showPreview && !isSigned && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Contract preview</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <DocxViewer
+              fetchDoc={() => contractsApi.previewMine()}
+              className="px-2 pb-4"
+            />
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── Signed state ─────────────────────────────────────────────────── */}
       {isSigned ? (
         <Card>
           <CardContent className="space-y-4 p-6">
@@ -154,43 +221,123 @@ export default function ClientContractPage() {
                 )}
               </div>
             </div>
-            <p className="text-[13px] text-muted-foreground">
-              Your signature has been recorded. Download your signed copy below.
-            </p>
-            <Button
-              className="w-full gap-2"
-              onClick={handleDownload}
-              disabled={downloading}
-            >
-              {downloading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Download className="h-3.5 w-3.5" />
-              )}
-              {downloading ? "Generating…" : "Download signed contract (.docx)"}
-            </Button>
+
+            <div className="flex flex-wrap gap-2">
+              <Button
+                className="flex-1 gap-2"
+                onClick={handleDownload}
+                disabled={downloading}
+              >
+                {downloading ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Download className="h-3.5 w-3.5" />
+                )}
+                {downloading ? "Generating…" : "Download signed contract (.docx)"}
+              </Button>
+              <Button
+                variant="outline"
+                className="gap-2"
+                onClick={() => setShowSignedDoc((v) => !v)}
+              >
+                <Eye className="h-3.5 w-3.5" />
+                {showSignedDoc ? "Hide" : "View"}
+              </Button>
+            </div>
           </CardContent>
         </Card>
       ) : (
-        /* Pending signature */
+        /* ── Signing card ─────────────────────────────────────────────── */
         <Card>
           <CardHeader>
             <div>
               <CardTitle className="text-base">Sign your contract</CardTitle>
               <p className="mt-0.5 text-sm text-muted-foreground">
-                Draw your signature below using a mouse or touchscreen.
+                {savedSig && usingSaved
+                  ? "Use your saved signature or draw a new one."
+                  : "Draw your signature using a mouse or touchscreen."}
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <SignaturePad
-              onSign={handleSign}
-            />
+
+            {/* Saved signature option */}
+            {savedSig && (
+              <div className="space-y-3">
+                <div className="flex items-start justify-between gap-3 rounded-xl border border-border bg-muted/20 p-3">
+                  <div className="space-y-1.5">
+                    <p className="text-[12.5px] font-medium">Use saved signature</p>
+                    <img
+                      src={savedSig}
+                      alt="Your saved signature"
+                      className="h-12 w-auto rounded border border-border bg-white"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Button
+                      size="sm"
+                      className="gap-1.5"
+                      onClick={handleUseSaved}
+                      disabled={signMutation.isPending}
+                    >
+                      {signMutation.isPending ? (
+                        <Loader2 className="h-3 w-3 animate-spin" />
+                      ) : (
+                        <CheckCircle2 className="h-3 w-3" />
+                      )}
+                      Use this
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="gap-1.5 text-muted-foreground"
+                      onClick={() => { clearSaved(); setSavedSig(null); setUsingSaved(false); }}
+                    >
+                      <RotateCcw className="h-3 w-3" /> Draw new
+                    </Button>
+                  </div>
+                </div>
+                <p className="text-center text-[11px] text-muted-foreground">— or draw a new signature below —</p>
+              </div>
+            )}
+
+            {/* Drawing pad */}
+            <SignaturePad onSign={handleSign} />
+
+            {/* Save for future checkbox */}
+            {!savedSig && (
+              <label className="flex cursor-pointer items-center gap-2 text-[12.5px] text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={saveForFuture}
+                  onChange={(e) => setSaveForFuture(e.target.checked)}
+                  className="h-3.5 w-3.5 rounded border-border"
+                />
+                <Save className="h-3.5 w-3.5" />
+                Save this signature for future use
+              </label>
+            )}
+
             {signMutation.isPending && (
               <p className="flex items-center gap-2 text-xs text-muted-foreground">
                 <Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving your signature…
               </p>
             )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ── Signed document inline view ──────────────────────────────────── */}
+      {isSigned && showSignedDoc && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Signed contract</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <DocxViewer
+              fetchDoc={() => contractsApi.downloadMine()}
+              className="px-2 pb-4"
+            />
           </CardContent>
         </Card>
       )}

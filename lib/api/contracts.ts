@@ -27,4 +27,10 @@ export const contractsApi = {
 
   downloadForClient: (clientId: string) =>
     api.get<Blob>(`/clients/${clientId}/contract/download`, { responseType: "blob" }),
+
+  previewMine: () =>
+    api.get<Blob>("/clients/contract/preview", { responseType: "blob" }),
+
+  previewForClient: (clientId: string) =>
+    api.get<Blob>(`/clients/${clientId}/contract/preview`, { responseType: "blob" }),
 };

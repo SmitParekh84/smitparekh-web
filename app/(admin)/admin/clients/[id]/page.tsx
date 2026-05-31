@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,6 +28,7 @@ import {
 import { useClientInvoices, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
 import { useAdminContract, useUploadContractTemplate } from "@/hooks/api/use-contracts";
 import { contractsApi } from "@/lib/api/contracts";
+import { DocxViewer } from "@/components/client/DocxViewer";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 import { toast } from "@/lib/toast";
@@ -582,6 +583,7 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
   const { data, isLoading } = useAdminContract(clientId);
   const uploadMutation = useUploadContractTemplate(clientId);
   const [downloading, setDownloading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const contract = data?.data;
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -589,6 +591,7 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
     if (!file) return;
     try {
       await uploadMutation.mutateAsync(file);
+      setShowPreview(false);
       toast.success("Template uploaded", "The client can now sign their contract.");
     } catch (err) {
       const msg = err instanceof ApiError ? err.message : "Upload failed.";
@@ -618,87 +621,139 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
   if (isLoading) return <div className="flex items-center justify-center py-12"><Spinner /></div>;
 
   const isSigned = contract?.status === "signed";
+  const hasTemplate = contract && contract.status !== "no_template";
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-start justify-between gap-3">
-        <div>
-          <CardTitle className="text-base">Contract</CardTitle>
-          <p className="mt-0.5 text-[13px] text-muted-foreground">
-            Upload a DOCX template — the client signs it in their portal.
-          </p>
-        </div>
-        {isSigned && (
-          <Badge
-            variant="outline"
-            className="gap-1.5 border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400"
-          >
-            <CheckCircle2 className="h-3 w-3" /> Signed
-          </Badge>
-        )}
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {/* Template info */}
-        {contract && contract.status !== "no_template" ? (
-          <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/20 px-3.5 py-3">
-            <FileSignature className="h-5 w-5 shrink-0 text-blue-500" />
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-medium">{contract.templateName}</p>
-              <p className="text-xs text-muted-foreground capitalize">
-                {contract.status === "signed"
-                  ? `Signed ${contract.signedAt ? new Date(contract.signedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : ""}`
-                  : "Awaiting client signature"}
-              </p>
+    <div className="space-y-4">
+      <Card>
+        <CardHeader className="flex flex-row items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-base">Contract</CardTitle>
+            <p className="mt-0.5 text-[13px] text-muted-foreground">
+              Upload a DOCX template — the client signs it in their portal.
+            </p>
+          </div>
+          {isSigned && (
+            <Badge
+              variant="outline"
+              className="gap-1.5 border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400"
+            >
+              <CheckCircle2 className="h-3 w-3" /> Signed
+            </Badge>
+          )}
+        </CardHeader>
+        <CardContent className="space-y-4">
+
+          {/* Signed alert */}
+          {isSigned && (
+            <div className="flex items-center gap-2.5 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600" />
+              <div className="flex-1 text-[13px]">
+                <span className="font-medium text-green-700 dark:text-green-400">
+                  {clientName ?? "Client"} has signed this contract.
+                </span>
+                {contract.signedAt && (
+                  <span className="ml-1 text-green-600/80 dark:text-green-500/80">
+                    · {new Date(contract.signedAt).toLocaleDateString("en-US", {
+                      year: "numeric", month: "short", day: "numeric",
+                    })}
+                  </span>
+                )}
+              </div>
             </div>
-            {isSigned && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-1.5 shrink-0"
-                onClick={handleDownload}
-                disabled={downloading}
-              >
-                {downloading ? (
+          )}
+
+          {/* Template info row */}
+          {hasTemplate ? (
+            <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/20 px-3.5 py-3">
+              <FileSignature className="h-5 w-5 shrink-0 text-blue-500" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[13px] font-medium">{contract.templateName}</p>
+                <p className="text-xs text-muted-foreground">
+                  {isSigned ? "Signed & ready to download" : "Awaiting client signature"}
+                </p>
+              </div>
+              <div className="flex shrink-0 items-center gap-1.5">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5"
+                  onClick={() => setShowPreview((v) => !v)}
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  {showPreview ? "Hide" : "Preview"}
+                </Button>
+                {isSigned && (
+                  <Button
+                    size="sm"
+                    className="gap-1.5"
+                    onClick={handleDownload}
+                    disabled={downloading}
+                  >
+                    {downloading ? (
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    ) : (
+                      <Download className="h-3.5 w-3.5" />
+                    )}
+                    Download
+                  </Button>
+                )}
+              </div>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">No contract template uploaded yet.</p>
+          )}
+
+          {/* Upload / replace */}
+          <div className="flex items-center gap-3">
+            <label className="cursor-pointer">
+              <input
+                type="file"
+                accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                className="sr-only"
+                onChange={handleUpload}
+                disabled={uploadMutation.isPending}
+              />
+              <div className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-[13px] font-medium hover:bg-muted cursor-pointer">
+                {uploadMutation.isPending ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 ) : (
-                  <Download className="h-3.5 w-3.5" />
+                  <Upload className="h-3.5 w-3.5" />
                 )}
-                Download
-              </Button>
-            )}
+                {hasTemplate ? "Replace template" : "Upload DOCX template"}
+              </div>
+            </label>
           </div>
-        ) : (
-          <p className="text-sm text-muted-foreground">No contract template uploaded yet.</p>
-        )}
 
-        {/* Upload / replace */}
-        <div>
-          <label className="cursor-pointer">
-            <input
-              type="file"
-              accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              className="sr-only"
-              onChange={handleUpload}
-              disabled={uploadMutation.isPending}
+          <div className="rounded-lg border border-border bg-muted/20 px-3.5 py-3 text-xs text-muted-foreground space-y-1">
+            <p className="font-semibold text-foreground/70">Template placeholders:</p>
+            <p><code className="font-mono text-[11px]">&#123;clientName&#125;</code> — client full name</p>
+            <p><code className="font-mono text-[11px]">&#123;date&#125;</code> — signing date</p>
+            <p><code className="font-mono text-[11px]">&#123;%signature&#125;</code> — signature image (alone in its own paragraph)</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* DOCX preview panel */}
+      {showPreview && hasTemplate && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">
+              {isSigned ? "Signed contract preview" : "Template preview"}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <DocxViewer
+              fetchDoc={
+                isSigned
+                  ? () => contractsApi.downloadForClient(clientId)
+                  : () => contractsApi.previewForClient(clientId)
+              }
+              className="px-2 pb-4"
             />
-            <div className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-[13px] font-medium hover:bg-muted disabled:opacity-50 cursor-pointer">
-              {uploadMutation.isPending ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Upload className="h-3.5 w-3.5" />
-              )}
-              {contract && contract.status !== "no_template" ? "Replace template" : "Upload DOCX template"}
-            </div>
-          </label>
-        </div>
-
-        <div className="rounded-lg border border-border bg-muted/20 px-3.5 py-3 text-xs text-muted-foreground space-y-1">
-          <p className="font-semibold text-foreground/70">Template placeholders:</p>
-          <p><code className="font-mono text-[11px]">&#123;clientName&#125;</code> — client&apos;s full name</p>
-          <p><code className="font-mono text-[11px]">&#123;date&#125;</code> — signing date</p>
-          <p><code className="font-mono text-[11px]">&#123;%signature&#125;</code> — drawn signature image (must be alone in its own paragraph)</p>
-        </div>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
+      )}
+    </div>
   );
 }
