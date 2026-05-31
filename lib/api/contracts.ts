@@ -38,4 +38,9 @@ export const contractsApi = {
     api.post<{ success: boolean; message: string }>(
       `/clients/${clientId}/contract/send-signing-request`,
     ),
+
+  generateSigningLink: (clientId: string) =>
+    api.post<{ success: boolean; link: string }>(
+      `/clients/${clientId}/contract/generate-signing-link`,
+    ),
 };

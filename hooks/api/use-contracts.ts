@@ -48,3 +48,9 @@ export function useSendContractSigningRequest() {
     mutationFn: (clientId: string) => contractsApi.sendSigningRequest(clientId),
   });
 }
+
+export function useGenerateSigningLink() {
+  return useMutation({
+    mutationFn: (clientId: string) => contractsApi.generateSigningLink(clientId),
+  });
+}

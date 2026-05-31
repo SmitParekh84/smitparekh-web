@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye, LinkIcon } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye, LinkIcon, Copy, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,7 +29,7 @@ import {
   useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
 import { useClientInvoices, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
-import { useAdminContract, useUploadContractTemplate, useSendContractSigningRequest } from "@/hooks/api/use-contracts";
+import { useAdminContract, useUploadContractTemplate, useSendContractSigningRequest, useGenerateSigningLink } from "@/hooks/api/use-contracts";
 import { contractsApi } from "@/lib/api/contracts";
 import { DocxViewer } from "@/components/client/DocxViewer";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
@@ -581,10 +581,25 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
   const { data, isLoading } = useAdminContract(clientId);
   const uploadMutation = useUploadContractTemplate(clientId);
   const sendRequest = useSendContractSigningRequest();
+  const generateLink = useGenerateSigningLink();
   const [downloading, setDownloading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [linkSent, setLinkSent] = useState(false);
+  const [copied, setCopied] = useState(false);
   const contract = data?.data;
+
+  async function handleCopyLink() {
+    try {
+      const res = await generateLink.mutateAsync(clientId);
+      await navigator.clipboard.writeText(res.link);
+      setCopied(true);
+      toast.success("Link copied!", "Paste it into WhatsApp or any chat.");
+      setTimeout(() => setCopied(false), 4000);
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Could not generate link.";
+      toast.error("Failed", msg);
+    }
+  }
 
   async function handleSendSigningLink() {
     try {
@@ -729,21 +744,44 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
                   automatically signed in, and land straight on the contract page.
                 </p>
               </div>
-              <Button
-                className="shrink-0 gap-1.5"
-                size="sm"
-                onClick={handleSendSigningLink}
-                disabled={sendRequest.isPending || linkSent}
-              >
-                {sendRequest.isPending ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : linkSent ? (
-                  <CheckCircle2 className="h-3.5 w-3.5" />
-                ) : (
-                  <LinkIcon className="h-3.5 w-3.5" />
-                )}
-                {linkSent ? "Link sent!" : "Send signing link"}
-              </Button>
+              <div className="flex shrink-0 items-center gap-1.5">
+                {/* Send via email */}
+                <Button
+                  className="gap-1.5"
+                  size="sm"
+                  onClick={handleSendSigningLink}
+                  disabled={sendRequest.isPending || linkSent}
+                  title="Send link by email"
+                >
+                  {sendRequest.isPending ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : linkSent ? (
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  ) : (
+                    <Mail className="h-3.5 w-3.5" />
+                  )}
+                  {linkSent ? "Sent!" : "Email"}
+                </Button>
+
+                {/* Copy link for WhatsApp / manual send */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5"
+                  onClick={handleCopyLink}
+                  disabled={generateLink.isPending || copied}
+                  title="Copy link to clipboard (send via WhatsApp, etc.)"
+                >
+                  {generateLink.isPending ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : copied ? (
+                    <Check className="h-3.5 w-3.5 text-green-600" />
+                  ) : (
+                    <Copy className="h-3.5 w-3.5" />
+                  )}
+                  {copied ? "Copied!" : "Copy link"}
+                </Button>
+              </div>
             </div>
           )}
 
