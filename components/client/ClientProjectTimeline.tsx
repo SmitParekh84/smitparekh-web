@@ -23,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { isMilestone } from "@/lib/project-journey";
+import { isMilestone, JOURNEY_META, toJourneyStage } from "@/lib/project-journey";
 import type { ProjectStep, ProjectStepLink, ProjectStepStatus, ProjectStepPatch } from "@/types";
 
 const STATUS_META: Record<
@@ -208,6 +208,12 @@ export function ClientProjectTimeline({ steps, editable, onUpdateStep, busyStepK
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                       {ph.phase}
                     </span>
+                    {(() => {
+                      const blurb = JOURNEY_META[toJourneyStage(ph.phase)]?.blurb;
+                      return blurb ? (
+                        <span className="text-[11px] text-muted-foreground/60">· {blurb}</span>
+                      ) : null;
+                    })()}
                     {allDone && (
                       <Badge
                         variant="outline"
