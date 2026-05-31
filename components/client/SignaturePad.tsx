@@ -20,10 +20,13 @@ export function SignaturePad({ onSign, className }: Props) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Match canvas internal resolution to its CSS size for sharp rendering
+    // Match canvas internal resolution to its CSS size for sharp rendering.
+    // Fall back to explicit dimensions if the element hasn't laid out yet (offsetWidth = 0).
     const ratio = Math.max(window.devicePixelRatio ?? 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
+    const w = canvas.offsetWidth || canvas.getBoundingClientRect().width || 600;
+    const h = canvas.offsetHeight || canvas.getBoundingClientRect().height || 144;
+    canvas.width = w * ratio;
+    canvas.height = h * ratio;
     canvas.getContext("2d")?.scale(ratio, ratio);
 
     const pad = new SignaturePadLib(canvas, {

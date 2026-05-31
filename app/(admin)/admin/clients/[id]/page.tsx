@@ -600,7 +600,7 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
   async function handleDownload() {
     setDownloading(true);
     try {
-      const blob = await contractsApi.downloadForClient(clientId) as unknown as Blob;
+      const blob = await contractsApi.downloadForClient(clientId);
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;

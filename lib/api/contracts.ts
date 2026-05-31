@@ -10,9 +10,7 @@ export const contractsApi = {
     api.post<{ success: boolean; data: ClientContract }>("/clients/contract/sign", { signature }),
 
   downloadMine: () =>
-    api.get<Blob>("/clients/contract/download", {
-      responseType: "blob",
-    } as Parameters<typeof api.get>[1]),
+    api.get<Blob>("/clients/contract/download", { responseType: "blob" }),
 
   /* Admin */
   getForClient: (clientId: string) =>
@@ -28,7 +26,5 @@ export const contractsApi = {
   },
 
   downloadForClient: (clientId: string) =>
-    api.get<Blob>(`/clients/${clientId}/contract/download`, {
-      responseType: "blob",
-    } as Parameters<typeof api.get>[1]),
+    api.get<Blob>(`/clients/${clientId}/contract/download`, { responseType: "blob" }),
 };

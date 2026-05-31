@@ -63,7 +63,7 @@ export default function ClientContractPage() {
   async function handleDownload() {
     setDownloading(true);
     try {
-      const blob = await contractsApi.downloadMine() as unknown as Blob;
+      const blob = await contractsApi.downloadMine();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
