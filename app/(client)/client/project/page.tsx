@@ -1,14 +1,15 @@
 "use client";
 
-import { Briefcase, Mail } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Spinner } from "@/components/ui/spinner";
-import { buttonVariants } from "@/components/ui/button";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 import { ClientStageBar } from "@/components/client/ClientStageBar";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
 import { useMyProject } from "@/hooks/api/use-clients";
 import { projectStats } from "@/lib/project-journey";
 import { cn } from "@/lib/utils";
+import { Briefcase, Mail } from "lucide-react";
 
 export default function ClientProjectPage() {
   const { data, isLoading } = useMyProject();
@@ -32,8 +33,8 @@ export default function ClientProjectPage() {
           </div>
           <p className="text-sm font-medium">No active project yet</p>
           <p className="max-w-sm text-xs text-muted-foreground">
-            Once your requirements are approved and work kicks off, your project timeline will appear
-            here.
+            Once your requirements are approved and work kicks off, your project timeline will
+            appear here.
           </p>
         </CardContent>
       </Card>
@@ -46,6 +47,26 @@ export default function ClientProjectPage() {
     <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
       <div className="space-y-4">
         <ClientStageBar steps={steps} />
+
+        {stats.inProgress.length > 0 && (
+          <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 px-4 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-blue-500">
+              Currently working on
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {stats.inProgress.map((s) => (
+                <Badge
+                  key={s.key}
+                  variant="outline"
+                  className="border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                >
+                  {s.label}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+
         <Card>
           <CardHeader>
             <div>
@@ -89,7 +110,7 @@ export default function ClientProjectPage() {
               Reach your project team — replies within a few hours.
             </p>
             <a
-              href="mailto:hello@smitparekh.co.in"
+              href="mailto:business.smitp@gmail.com"
               className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full gap-1.5")}
             >
               <Mail className="h-3.5 w-3.5" /> Email the team

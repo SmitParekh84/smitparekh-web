@@ -1,7 +1,23 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ImageCropperDialog,
+  shouldSkipCropping,
+  useImageCropper,
+} from "@/components/ui/image-cropper";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Switch } from "@/components/ui/switch";
+import { useSupabaseSession, useUpdateProfile, useUploadAvatar } from "@/hooks/api/use-auth";
+import { clearAdminToken } from "@/lib/api";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "@/lib/toast";
+import { cn } from "@/lib/utils";
 import {
   Bell,
   Camera,
@@ -17,25 +33,8 @@ import {
   UserRound,
   Zap,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Switch } from "@/components/ui/switch";
-import { Separator } from "@/components/ui/separator";
-import {
-  ImageCropperDialog,
-  shouldSkipCropping,
-  useImageCropper,
-} from "@/components/ui/image-cropper";
-import { useSupabaseSession, useUpdateProfile, useUploadAvatar } from "@/hooks/api/use-auth";
-import { createClient } from "@/lib/supabase/client";
-import { clearAdminToken } from "@/lib/api";
-import { toast } from "@/lib/toast";
-import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
 /* ─── Left-nav structure ──────────────────────────────────────────────── */
 
@@ -108,9 +107,7 @@ function SettingsCard({
           {desc && <CardDescription className="mt-0.5">{desc}</CardDescription>}
         </div>
       </CardHeader>
-      <CardContent className="divide-y divide-border pt-0">
-        {children}
-      </CardContent>
+      <CardContent className="divide-y divide-border pt-0">{children}</CardContent>
       {footer && (
         <div className="flex items-center justify-end gap-2 rounded-b-xl border-t border-border bg-muted/30 px-5 py-3">
           {footer}
@@ -220,7 +217,11 @@ function ProfileSettings({
         desc="Public details shown in the admin and on your portfolio."
         footer={
           <>
-            <Button variant="outline" onClick={() => setName(currentName)} disabled={name === currentName}>
+            <Button
+              variant="outline"
+              onClick={() => setName(currentName)}
+              disabled={name === currentName}
+            >
               Cancel
             </Button>
             <Button
@@ -375,7 +376,11 @@ function NotificationsSettings() {
   });
 
   const rows: { key: keyof typeof notif; label: string; hint: string }[] = [
-    { key: "contacts", label: "New contact form submissions", hint: "Email + in-app notification." },
+    {
+      key: "contacts",
+      label: "New contact form submissions",
+      hint: "Email + in-app notification.",
+    },
     { key: "feedback", label: "New feedback entries", hint: "Email when rating is 2 or below." },
     { key: "waitlist", label: "Waitlist signups", hint: "Daily digest at 9am." },
     { key: "weekly", label: "Weekly traffic summary", hint: "Sent every Monday." },
@@ -414,7 +419,7 @@ function GeneralSettings() {
         />
       </FieldRow>
       <FieldRow label="Public email" hint="Shown in the footer.">
-        <Input defaultValue="hello@smitparekh.co.in" className="max-w-md" />
+        <Input defaultValue="business.smitp@gmail.com" className="max-w-md" />
       </FieldRow>
     </SettingsCard>
   );
@@ -443,7 +448,7 @@ function AppearanceSettings() {
                 "flex h-16 w-24 flex-col items-center justify-center gap-2 rounded-lg border text-[12px] font-medium capitalize transition-all",
                 theme === value
                   ? "border-blue-500 bg-blue-500/8 text-blue-600 dark:text-blue-400"
-                  : "border-border bg-card text-muted-foreground hover:border-blue-500/40 hover:text-foreground"
+                  : "border-border bg-card text-muted-foreground hover:border-blue-500/40 hover:text-foreground",
               )}
             >
               <Icon className="h-5 w-5" />
@@ -485,7 +490,9 @@ function DomainSettings() {
         </Badge>
       </FieldRow>
       <FieldRow label="Hosting">
-        <span className="text-[13px] text-muted-foreground">Vercel — configured via Vercel dashboard.</span>
+        <span className="text-[13px] text-muted-foreground">
+          Vercel — configured via Vercel dashboard.
+        </span>
       </FieldRow>
     </SettingsCard>
   );
@@ -556,7 +563,8 @@ function ApiSettings() {
       <CardContent>
         <div className="rounded-lg border border-dashed border-border p-8 text-center">
           <p className="text-sm text-muted-foreground">
-            API token management is coming soon. Use the Supabase service role key for server-side access.
+            API token management is coming soon. Use the Supabase service role key for server-side
+            access.
           </p>
         </div>
       </CardContent>
@@ -592,7 +600,7 @@ export default function SettingsPage() {
                         "flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-[13px] transition-colors",
                         active
                           ? "bg-muted font-medium text-foreground"
-                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
                       )}
                     >
                       <Icon className="h-3.5 w-3.5 shrink-0" />

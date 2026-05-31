@@ -1,6 +1,17 @@
 "use client";
 
-import Link from "next/link";
+import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
+import { ClientStageBar } from "@/components/client/ClientStageBar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
+import { useClientMe, useMyProject, useMyRequirements } from "@/hooks/api/use-clients";
+import { useMyInvoices } from "@/hooks/api/use-invoices";
+import { projectStats } from "@/lib/project-journey";
+import { cn } from "@/lib/utils";
+import type { ClientProject, ClientRequirements, ServiceCategory } from "@/types";
 import {
   ArrowRight,
   Bot,
@@ -15,18 +26,7 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useMyRequirements, useMyProject, useClientMe } from "@/hooks/api/use-clients";
-import { useMyInvoices } from "@/hooks/api/use-invoices";
-import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
-import { ClientStageBar } from "@/components/client/ClientStageBar";
-import { projectStats } from "@/lib/project-journey";
-import { cn } from "@/lib/utils";
-import type { ClientProject, ClientRequirements, ServiceCategory } from "@/types";
+import Link from "next/link";
 
 const SERVICE_LABELS: Record<string, string> = {
   website: "Website Development",
@@ -108,15 +108,14 @@ function DashboardNew({ firstName }: { firstName: string }) {
             >
               <Sparkles className="h-3 w-3" /> Welcome, {firstName}
             </Badge>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Let&apos;s scope your project</h2>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+              Let&apos;s scope your project
+            </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Tell us what you need — website, SEO, AI automation, or custom software — and we&apos;ll
-              put together the right plan and a proposal within 24–48 hours.
+              Tell us what you need — website, SEO, AI automation, or custom software — and
+              we&apos;ll put together the right plan and a proposal within 24–48 hours.
             </p>
-            <Link
-              href="/client/requirements"
-              className={cn(buttonVariants(), "mt-4 gap-2")}
-            >
+            <Link href="/client/requirements" className={cn(buttonVariants(), "mt-4 gap-2")}>
               Submit requirements <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -168,7 +167,7 @@ function DashboardNew({ firstName }: { firstName: string }) {
             </div>
             <div className="space-y-1.5 text-[12.5px] text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Mail className="h-3.5 w-3.5" /> hello@smitparekh.co.in
+                <Mail className="h-3.5 w-3.5" /> business.smitp@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-3.5 w-3.5" /> Replies within a few hours (IST)
@@ -198,7 +197,7 @@ function DashboardWithRequirements({
   const categories = (requirements.categories ?? []) as ServiceCategory[];
   const { data: invoiceData } = useMyInvoices();
   const pendingInvoices = (invoiceData?.data ?? []).filter(
-    (i) => i.status === "sent" || i.status === "overdue"
+    (i) => i.status === "sent" || i.status === "overdue",
   );
 
   return (
@@ -299,8 +298,16 @@ function DashboardWithRequirements({
       {/* Stat cards (active only) */}
       {isActive && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <DashStat label="Progress" value={`${stats.pct}%`} sub={`${stats.done}/${stats.total} steps`} />
-          <DashStat label="In progress" value={String(stats.inProgress.length)} sub="active steps" />
+          <DashStat
+            label="Progress"
+            value={`${stats.pct}%`}
+            sub={`${stats.done}/${stats.total} steps`}
+          />
+          <DashStat
+            label="In progress"
+            value={String(stats.inProgress.length)}
+            sub="active steps"
+          />
           <DashStat label="Next up" value={stats.next ? stats.next.label : "—"} small />
           <DashStat
             label="Workstreams"
@@ -369,7 +376,9 @@ function DashboardWithRequirements({
             <CardHeader className="flex flex-row items-start justify-between gap-3">
               <div>
                 <CardTitle className="text-base">Project progress</CardTitle>
-                <p className="mt-0.5 text-sm text-muted-foreground">Latest across all workstreams.</p>
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  Latest across all workstreams.
+                </p>
               </div>
             </CardHeader>
             <CardContent className="pt-3">
@@ -394,7 +403,7 @@ function DashboardWithRequirements({
                       "grid h-6 w-6 shrink-0 place-items-center rounded-full border",
                       s.d
                         ? "border-green-500 bg-green-500 text-white"
-                        : "border-dashed border-border text-muted-foreground"
+                        : "border-dashed border-border text-muted-foreground",
                     )}
                   >
                     {s.d ? (
@@ -403,7 +412,9 @@ function DashboardWithRequirements({
                       <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
                     )}
                   </div>
-                  <span className={cn("text-[13px]", s.d ? "font-medium" : "text-muted-foreground")}>
+                  <span
+                    className={cn("text-[13px]", s.d ? "font-medium" : "text-muted-foreground")}
+                  >
                     {s.l}
                   </span>
                 </div>
@@ -433,7 +444,12 @@ function DashStat({
         <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
           {label}
         </div>
-        <div className={cn("mt-1.5 font-semibold tracking-tight", small ? "text-[15px]" : "text-[26px]")}>
+        <div
+          className={cn(
+            "mt-1.5 font-semibold tracking-tight",
+            small ? "text-[15px]" : "text-[26px]",
+          )}
+        >
           {value}
         </div>
         {sub && <div className="mt-0.5 text-xs text-muted-foreground">{sub}</div>}

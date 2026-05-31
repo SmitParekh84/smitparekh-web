@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,13 +25,13 @@ import {
   useRegenerateProject,
   useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
-import { useClientInvoices } from "@/hooks/api/use-invoices";
+import { useClientInvoices, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
 import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
-import type { ClientStatus } from "@/types";
+import type { ClientStatus, Invoice, InvoiceStatus } from "@/types";
 
 const STATUS_CONFIG: Record<ClientStatus, { label: string; className: string }> = {
   invited: {
@@ -78,6 +78,130 @@ function projectProgress(steps: { status: string }[]) {
   const total = steps.length;
   const done = steps.filter((s) => s.status === "done").length;
   return { total, done, pct: Math.round((done / Math.max(1, total)) * 100) };
+}
+
+/* ─── Invoice helpers ─────────────────────────────────────────────────── */
+
+function money(amount: number, currency: string) {
+  return `${currency === "INR" ? "₹" : "$"}${amount.toFixed(2)}`;
+}
+
+function fmtDateShort(iso?: string | null) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
+}
+
+const INV_STATUS_BADGE: Record<InvoiceStatus, { dot: string; badge: string; label: string }> = {
+  paid:      { dot: "bg-green-500",             badge: "border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400",   label: "Paid" },
+  sent:      { dot: "bg-blue-500",              badge: "border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-400",       label: "Sent" },
+  overdue:   { dot: "bg-red-500",               badge: "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400",           label: "Overdue" },
+  draft:     { dot: "bg-yellow-500",            badge: "border-yellow-500/30 bg-yellow-500/10 text-yellow-700 dark:text-yellow-400", label: "Draft" },
+  cancelled: { dot: "bg-muted-foreground/40",   badge: "border-border bg-muted/50 text-muted-foreground",                          label: "Cancelled" },
+};
+
+function InvoiceStatusBadge({ status }: { status: InvoiceStatus }) {
+  const cfg = INV_STATUS_BADGE[status] ?? INV_STATUS_BADGE.draft;
+  return (
+    <Badge variant="outline" className={cn("gap-1 text-[11px] font-medium", cfg.badge)}>
+      <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
+      {cfg.label}
+    </Badge>
+  );
+}
+
+function InvoiceRow({ inv }: { inv: Invoice }) {
+  const send = useSendInvoice();
+  const cancel = useCancelInvoice();
+  const [busyAction, setBusyAction] = useState<"send" | "cancel" | null>(null);
+  const busy = busyAction !== null;
+
+  const isDraft = inv.status === "draft";
+  const canCancel = inv.status !== "paid" && inv.status !== "cancelled";
+
+  async function handleSend() {
+    setBusyAction("send");
+    try {
+      await send.mutateAsync(inv._id);
+      toast.success("Invoice sent", "Client has been notified by email.");
+    } catch (e) {
+      toast.error("Send failed", e instanceof ApiError ? e.message : "Could not send invoice.");
+    } finally {
+      setBusyAction(null);
+    }
+  }
+
+  async function handleCancel() {
+    setBusyAction("cancel");
+    try {
+      await cancel.mutateAsync(inv._id);
+      toast.success("Invoice cancelled");
+    } catch (e) {
+      toast.error("Cancel failed", e instanceof ApiError ? e.message : "Could not cancel.");
+    } finally {
+      setBusyAction(null);
+    }
+  }
+
+  const projectLabel = (inv as Invoice & { projectLabel?: string }).projectLabel;
+
+  return (
+    <div className="flex items-center gap-3 px-4 py-3 hover:bg-muted/30">
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-mono text-[13px] font-semibold">{inv.invoiceNumber}</span>
+          <InvoiceStatusBadge status={inv.status} />
+          {projectLabel && (
+            <span className="text-[11px] text-muted-foreground">{projectLabel}</span>
+          )}
+        </div>
+        <p className="mt-0.5 truncate text-[12px] text-muted-foreground">
+          {inv.title}
+          {inv.createdAt && ` · issued ${fmtDateShort(inv.createdAt)}`}
+          {inv.dueDate && ` · due ${fmtDateShort(inv.dueDate)}`}
+        </p>
+      </div>
+      <div className="flex shrink-0 items-center gap-1">
+        <span className="min-w-[80px] text-right font-semibold tabular-nums text-[14px]">
+          {money(inv.amount, inv.currency)}
+        </span>
+        <Link href={`/admin/invoices/${inv._id}`}>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground">
+            <ExternalLink className="h-3.5 w-3.5" />
+          </Button>
+        </Link>
+        {isDraft && (
+          <Button
+            size="sm"
+            className="h-7 gap-1 px-2.5 text-[12px]"
+            onClick={handleSend}
+            disabled={busy}
+          >
+            {busyAction === "send" ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              <Send className="h-3 w-3" />
+            )}
+            Send
+          </Button>
+        )}
+        {canCancel && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 text-muted-foreground hover:text-destructive"
+            onClick={handleCancel}
+            disabled={busy}
+          >
+            {busyAction === "cancel" ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              <X className="h-3.5 w-3.5" />
+            )}
+          </Button>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default function AdminClientDetailPage({
@@ -371,41 +495,74 @@ export default function AdminClientDetailPage({
 
         {/* Invoices */}
         <TabsPanel value="invoices" className="mt-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
-              <CardTitle className="text-base">Invoices</CardTitle>
-              <Link
-                href={`/admin/invoices/new?clientId=${id}`}
-                className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}
-              >
-                <Plus className="h-3.5 w-3.5" /> New invoice
-              </Link>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              {invoicesQuery.isLoading ? (
-                <div className="flex items-center justify-center py-8">
-                  <Spinner />
-                </div>
-              ) : invoices.length === 0 ? (
-                <p className="text-muted-foreground">No invoices for this client yet.</p>
-              ) : (
-                invoices.map((inv) => (
-                  <div
-                    key={inv._id}
-                    className="flex items-center justify-between border-b border-border/50 pb-2 last:border-0 last:pb-0"
-                  >
-                    <Link href={`/admin/invoices/${inv._id}`} className="font-medium hover:underline">
-                      {inv.invoiceNumber}
-                    </Link>
-                    <span className="text-muted-foreground">
-                      {inv.currency === "INR" ? "₹" : "$"}
-                      {inv.amount.toFixed(2)} · {inv.status}
-                    </span>
+          {invoicesQuery.isLoading ? (
+            <div className="flex items-center justify-center py-16">
+              <Spinner />
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {/* Summary stats */}
+              <div className="grid gap-3 sm:grid-cols-3">
+                {(() => {
+                  const outstanding = invoices
+                    .filter((i) => i.status === "sent" || i.status === "overdue")
+                    .reduce((s, i) => s + i.amount, 0);
+                  const collected = invoices
+                    .filter((i) => i.status === "paid")
+                    .reduce((s, i) => s + i.amount, 0);
+                  const drafts = invoices.filter((i) => i.status === "draft").length;
+                  const currency = invoices[0]?.currency ?? "USD";
+                  return (
+                    <>
+                      <div className="rounded-xl border border-border bg-card p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Outstanding</p>
+                        <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-tight">{money(outstanding, currency)}</p>
+                      </div>
+                      <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Collected</p>
+                        <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-tight">{money(collected, currency)}</p>
+                      </div>
+                      <div className="rounded-xl border border-border bg-card p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Drafts</p>
+                        <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-tight">{drafts}</p>
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+
+              {/* Invoice list card */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between gap-3">
+                  <div>
+                    <CardTitle className="text-base">Invoices</CardTitle>
+                    <p className="mt-0.5 text-[13px] text-muted-foreground">
+                      Create, send and track payments — the client sees sent invoices instantly.
+                    </p>
                   </div>
-                ))
-              )}
-            </CardContent>
-          </Card>
+                  <Link
+                    href={`/admin/invoices/new?clientId=${id}`}
+                    className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
+                  >
+                    <Plus className="h-3.5 w-3.5" /> New invoice
+                  </Link>
+                </CardHeader>
+                <CardContent className="p-0">
+                  {invoices.length === 0 ? (
+                    <p className="px-4 pb-6 pt-2 text-sm text-muted-foreground">
+                      No invoices for this client yet.
+                    </p>
+                  ) : (
+                    <div className="divide-y divide-border overflow-hidden rounded-b-xl">
+                      {invoices.map((inv) => (
+                        <InvoiceRow key={inv._id} inv={inv} />
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </TabsPanel>
       </Tabs>
     </div>
