@@ -301,17 +301,20 @@ export default function ClientContractPage() {
               </div>
             )}
 
-            {/* Drawing pad */}
-            <SignaturePad onSign={handleSign} />
+            {/* Drawing pad — opens full-screen overlay */}
+            <SignaturePad
+              onSign={handleSign}
+              disabled={signMutation.isPending}
+            />
 
             {/* Save for future checkbox */}
             {!savedSig && (
-              <label className="flex cursor-pointer items-center gap-2 text-[12.5px] text-muted-foreground">
+              <label className="flex cursor-pointer items-center gap-2 text-[12.5px] text-muted-foreground select-none">
                 <input
                   type="checkbox"
                   checked={saveForFuture}
                   onChange={(e) => setSaveForFuture(e.target.checked)}
-                  className="h-3.5 w-3.5 rounded border-border"
+                  className="h-3.5 w-3.5 rounded border-border accent-blue-500"
                 />
                 <Save className="h-3.5 w-3.5" />
                 Save this signature for future use
@@ -319,9 +322,10 @@ export default function ClientContractPage() {
             )}
 
             {signMutation.isPending && (
-              <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving your signature…
-              </p>
+              <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/30 px-4 py-3">
+                <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                <span className="text-[13px] text-muted-foreground">Saving your signature…</span>
+              </div>
             )}
           </CardContent>
         </Card>
