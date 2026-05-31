@@ -75,9 +75,20 @@ export default function ClientInvoicesPage() {
   // Clients never see drafts
   const invoices = allInvoices.filter((i) => i.status !== "draft");
   const outstanding = invoices.filter((i) => i.status === "sent" || i.status === "overdue");
-  const outstandingTotal = outstanding.reduce((s, i) => s + i.amount, 0);
-  const paidTotal = invoices.filter((i) => i.status === "paid").reduce((s, i) => s + i.amount, 0);
-  const currency = invoices[0]?.currency ?? "USD";
+  // Group totals by currency to avoid summing across USD + INR
+  const outstandingByCurrency = outstanding.reduce<Record<string, number>>((acc, i) => {
+    acc[i.currency] = (acc[i.currency] ?? 0) + i.amount;
+    return acc;
+  }, {});
+  const outstandingCurrencies = Object.keys(outstandingByCurrency);
+  const singleCurrency = outstandingCurrencies.length === 1;
+  const currency = outstandingCurrencies[0] ?? invoices[0]?.currency ?? "USD";
+  const outstandingTotal = singleCurrency ? outstandingByCurrency[currency] ?? 0 : 0;
+  const paidInvoices = invoices.filter((i) => i.status === "paid");
+  const paidCurrency = paidInvoices[0]?.currency ?? "USD";
+  const paidTotal = paidInvoices
+    .filter((i) => i.currency === paidCurrency)
+    .reduce((s, i) => s + i.amount, 0);
 
   if (isLoading) {
     return (
@@ -111,7 +122,9 @@ export default function ClientInvoicesPage() {
             Amount due
           </p>
           <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-tight">
-            {money(outstandingTotal, currency)}
+            {singleCurrency
+              ? money(outstandingTotal, currency)
+              : outstandingCurrencies.map((c) => money(outstandingByCurrency[c], c)).join(" + ")}
           </p>
           <p className="text-[12px] text-muted-foreground">
             {outstanding.length} open invoice{outstanding.length === 1 ? "" : "s"}
@@ -122,7 +135,7 @@ export default function ClientInvoicesPage() {
             Paid to date
           </p>
           <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-tight">
-            {money(paidTotal, currency)}
+            {money(paidTotal, paidCurrency)}
           </p>
           <p className="text-[12px] text-muted-foreground">
             {invoices.filter((i) => i.status === "paid").length} invoices

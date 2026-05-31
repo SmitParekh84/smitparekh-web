@@ -10,3 +10,7 @@ export * from "./use-admin-contacts";
 export * from "./use-admin-users";
 export * from "./use-resume-events";
 export * from "./use-social";
+export * from "./use-clients";
+export * from "./use-invoices";
+export * from "./use-contracts";
+export * from "./use-tenant";

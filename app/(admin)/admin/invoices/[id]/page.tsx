@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
-import { ArrowLeft, Ban, CheckCircle2, Clock, Download, Printer, Send } from "lucide-react";
+import { ArrowLeft, Ban, CheckCircle2, Clock, Download, Send } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +19,7 @@ const INV_FROM = {
   email: "billing@smitparekh.co.in",
   address: "Ahmedabad, Gujarat 380015, India",
   taxLabel: "GSTIN",
-  taxId: "24ABCDE1234F1Z5",
+  taxId: "",
 };
 
 function money(a: number, c: string) {
@@ -288,7 +288,7 @@ export default function AdminInvoiceDetailPage({
             <div>
               <p className="font-semibold text-foreground/70">{INV_FROM.name}</p>
               <p>{INV_FROM.address}</p>
-              <p>{INV_FROM.taxLabel}: {INV_FROM.taxId} · {INV_FROM.email}</p>
+              <p>{INV_FROM.taxId ? `${INV_FROM.taxLabel}: ${INV_FROM.taxId} · ` : ""}{INV_FROM.email}</p>
             </div>
             <div className="sm:text-right">
               <p>Questions? Email <a href={`mailto:${INV_FROM.email}`} className="text-blue-600 hover:underline">{INV_FROM.email}</a>.</p>
