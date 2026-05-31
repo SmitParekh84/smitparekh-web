@@ -28,6 +28,7 @@ import {
   Briefcase,
   ChevronsUpDown,
   ExternalLink,
+  FileSignature,
   FileText,
   LayoutDashboard,
   LogOut,
@@ -52,6 +53,7 @@ const NAV: NavItem[] = [
   { title: "Requirements", href: "/client/requirements", icon: FileText },
   { title: "Project", href: "/client/project", icon: Briefcase, lockedUntilActive: true },
   { title: "Invoices", href: "/client/invoices", icon: Receipt, lockedUntilActive: true },
+  { title: "Contract", href: "/client/contract", icon: FileSignature, lockedUntilActive: true },
   { title: "Account", href: "/client/account", icon: Settings },
 ];
 

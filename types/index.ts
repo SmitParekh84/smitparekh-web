@@ -395,3 +395,17 @@ export interface CreateOrderResponse {
   currency: InvoiceCurrency;
   keyId: string;
 }
+
+/* ─── Contract ──────────────────────────────────────────────────────────── */
+
+export type ContractStatus = "no_template" | "pending_signature" | "signed";
+
+export interface ClientContract {
+  _id: string;
+  clientId: string;
+  templateName?: string;
+  status: ContractStatus;
+  signedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
