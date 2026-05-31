@@ -63,7 +63,7 @@ export default function ClientAccountPage() {
         }}
       />
 
-      <PasswordCard />
+      <PasswordCard email={client?.email ?? ""} />
 
       <NotificationsCard />
 
@@ -169,20 +169,38 @@ function ProfileCard({
 }
 
 /* ─── Password (real, via Supabase) ───────────────────────────────────── */
-function PasswordCard() {
-  const [pwd, setPwd] = useState("");
+function PasswordCard({ email }: { email: string }) {
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
   const [busy, setBusy] = useState(false);
 
+  const canSubmit = current.length > 0 && next.length >= 12;
+
   async function updatePassword() {
-    if (pwd.length < 12) {
+    if (next.length < 12) {
       toast.error("Password too short", "Use at least 12 characters.");
       return;
     }
     setBusy(true);
     try {
-      const { error } = await createClient().auth.updateUser({ password: pwd });
-      if (error) throw error;
-      setPwd("");
+      const supabase = createClient();
+
+      // Verify current password first
+      const { error: signInErr } = await supabase.auth.signInWithPassword({
+        email,
+        password: current,
+      });
+      if (signInErr) {
+        toast.error("Incorrect password", "The current password you entered is wrong.");
+        return;
+      }
+
+      // Update to new password
+      const { error: updateErr } = await supabase.auth.updateUser({ password: next });
+      if (updateErr) throw updateErr;
+
+      setCurrent("");
+      setNext("");
       toast.success("Password updated");
     } catch (err) {
       toast.error("Update failed", err instanceof Error ? err.message : "Could not update password.");
@@ -199,19 +217,34 @@ function PasswordCard() {
           <p className="mt-0.5 text-sm text-muted-foreground">Use a long, unique password.</p>
         </div>
       </CardHeader>
-      <CardContent className="pt-0">
-        <AccRow label="New password">
+      <CardContent className="divide-y divide-border pt-0">
+        <AccRow label="Current password">
           <Input
             className="max-w-sm"
             type="password"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-            placeholder="At least 12 characters"
+            value={current}
+            onChange={(e) => setCurrent(e.target.value)}
+            placeholder="Your current password"
           />
+        </AccRow>
+        <AccRow label="New password">
+          <div className="max-w-sm space-y-1">
+            <Input
+              type="password"
+              value={next}
+              onChange={(e) => setNext(e.target.value)}
+              placeholder="At least 12 characters"
+            />
+            {next.length > 0 && next.length < 12 && (
+              <p className="text-[11.5px] text-red-500">
+                {12 - next.length} more character{12 - next.length !== 1 ? "s" : ""} needed
+              </p>
+            )}
+          </div>
         </AccRow>
       </CardContent>
       <div className="flex items-center justify-end border-t border-border bg-muted/30 px-5 py-3">
-        <Button onClick={updatePassword} disabled={busy || !pwd} className="gap-1.5">
+        <Button onClick={updatePassword} disabled={busy || !canSubmit} className="gap-1.5">
           {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
           Update password
         </Button>
