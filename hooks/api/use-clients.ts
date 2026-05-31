@@ -80,6 +80,31 @@ export function useRegenerateProject(clientId: string) {
   });
 }
 
+export function useAddProjectStep(clientId: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: { label: string; serviceLabel?: string; phase?: string }) =>
+      clientsApi.addProjectStep(clientId, payload),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
+  });
+}
+
+export function useDeleteProjectStep(clientId: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (stepKey: string) => clientsApi.deleteProjectStep(clientId, stepKey),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
+  });
+}
+
+export function useReorderProjectSteps(clientId: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (order: string[]) => clientsApi.reorderProjectSteps(clientId, order),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.clients.project(clientId) }),
+  });
+}
+
 /* ─── Onboarding (public) ─────────────────────────────────────────────── */
 
 export function useValidateInvitation(token: string) {

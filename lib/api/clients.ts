@@ -40,6 +40,26 @@ export const clientsApi = {
   regenerateProject: (clientId: string) =>
     api.post<{ success: boolean; data: ClientProject }>(`/clients/${clientId}/project/regenerate`),
 
+  addProjectStep: (
+    clientId: string,
+    payload: { label: string; serviceLabel?: string; phase?: string }
+  ) =>
+    api.post<{ success: boolean; data: ClientProject }>(
+      `/clients/${clientId}/project/steps`,
+      payload
+    ),
+
+  deleteProjectStep: (clientId: string, stepKey: string) =>
+    api.del<{ success: boolean; data: ClientProject }>(
+      `/clients/${clientId}/project/steps/${stepKey}`
+    ),
+
+  reorderProjectSteps: (clientId: string, order: string[]) =>
+    api.patch<{ success: boolean; data: ClientProject }>(
+      `/clients/${clientId}/project/steps/reorder`,
+      { order }
+    ),
+
   /* Onboarding (public — no auth token) */
   validateInvitation: (token: string) =>
     api.get<{ success: boolean; data: ClientInvitation }>(`/clients/invite/validate/${token}`),

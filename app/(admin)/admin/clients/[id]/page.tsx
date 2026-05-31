@@ -2,7 +2,7 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, Building2, RefreshCw, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye, LinkIcon } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Building2, Loader2, Send, Plus, ExternalLink, X, FileSignature, Upload, Download, CheckCircle2, Eye, LinkIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,6 +22,9 @@ import {
   useAdminClientRequirements,
   useAdminClientProject,
   useUpdateProjectStep,
+  useAddProjectStep,
+  useDeleteProjectStep,
+  useReorderProjectSteps,
   useRegenerateProject,
   useUpdateClientStatus,
 } from "@/hooks/api/use-clients";
@@ -30,7 +33,7 @@ import { useAdminContract, useUploadContractTemplate, useSendContractSigningRequ
 import { contractsApi } from "@/lib/api/contracts";
 import { DocxViewer } from "@/components/client/DocxViewer";
 import { ClientRequirementsView } from "@/components/admin/ClientRequirementsView";
-import { ClientProjectTimeline } from "@/components/client/ClientProjectTimeline";
+import { AdminWorkflowEditor } from "@/components/admin/AdminWorkflowEditor";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -221,6 +224,9 @@ export default function AdminClientDetailPage({
   const requirementsQuery = useAdminClientRequirements(id);
   const projectQuery = useAdminClientProject(id);
   const updateStep = useUpdateProjectStep(id);
+  const addStep = useAddProjectStep(id);
+  const deleteStep = useDeleteProjectStep(id);
+  const reorderSteps = useReorderProjectSteps(id);
   const regenerate = useRegenerateProject(id);
   const updateStatus = useUpdateClientStatus();
   const invoicesQuery = useClientInvoices(id);
@@ -423,59 +429,51 @@ export default function AdminClientDetailPage({
 
         {/* Workflow */}
         <TabsPanel value="workflow" className="mt-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
-              <div>
-                <CardTitle className="text-base">Project workflow</CardTitle>
-                {project && project.steps.length > 0 && (
-                  <p className="mt-0.5 text-[13px] text-muted-foreground">
-                    {projectProgress(project.steps).done} of {projectProgress(project.steps).total}{" "}
-                    steps done · {projectProgress(project.steps).pct}% — pre-sales → execution,
-                    synced to the client instantly.
-                  </p>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <label className="flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground select-none">
-                  <Checkbox
-                    checked={notifyClient}
-                    onCheckedChange={(v) => setNotifyClient(v === true)}
-                  />
-                  Notify client by email
-                </label>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleRegenerate}
-                  disabled={regenerate.isPending}
-                  className="gap-1.5"
-                >
-                  {regenerate.isPending ? (
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  ) : (
-                    <RefreshCw className="h-3.5 w-3.5" />
-                  )}
-                  Rebuild from requirements
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {projectQuery.isLoading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Spinner />
-                </div>
-              ) : project ? (
-                <ClientProjectTimeline
-                  steps={project.steps}
-                  editable
-                  onUpdateStep={handleUpdateStep}
-                  busyStepKey={updateStep.isPending ? updateStep.variables?.stepKey : null}
+          <div className="space-y-3">
+            {/* Notify client toggle */}
+            <div className="flex items-center justify-between">
+              <label className="flex cursor-pointer items-center gap-1.5 text-[12.5px] text-muted-foreground select-none">
+                <Checkbox
+                  checked={notifyClient}
+                  onCheckedChange={(v) => setNotifyClient(v === true)}
                 />
-              ) : (
-                <p className="text-sm text-muted-foreground">No workflow yet.</p>
-              )}
-            </CardContent>
-          </Card>
+                Email client on status changes
+              </label>
+            </div>
+
+            {projectQuery.isLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Spinner />
+              </div>
+            ) : (
+              <AdminWorkflowEditor
+                steps={project?.steps ?? []}
+                onUpdateStep={handleUpdateStep}
+                onAddStep={(payload) => {
+                  addStep.mutate(payload, {
+                    onSuccess: () => toast.success("Step added"),
+                    onError: (e) => toast.error("Add failed", e instanceof ApiError ? e.message : "Could not add step."),
+                  });
+                }}
+                onDeleteStep={(key) => {
+                  deleteStep.mutate(key, {
+                    onSuccess: () => toast.success("Step removed"),
+                    onError: (e) => toast.error("Delete failed", e instanceof ApiError ? e.message : "Could not remove step."),
+                  });
+                }}
+                onReorderSteps={(order) => {
+                  reorderSteps.mutate(order, {
+                    onError: (e) => toast.error("Reorder failed", e instanceof ApiError ? e.message : "Could not save order."),
+                  });
+                }}
+                onRegenerate={handleRegenerate}
+                busyStepKey={updateStep.isPending ? updateStep.variables?.stepKey : null}
+                reorderPending={reorderSteps.isPending}
+                addPending={addStep.isPending}
+                regeneratePending={regenerate.isPending}
+              />
+            )}
+          </div>
         </TabsPanel>
 
         {/* Requirements */}
