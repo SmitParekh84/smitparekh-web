@@ -778,6 +778,168 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
       answer: "Up to 1000 per click. They're generated locally — no rate limits, no signup, no captcha.",
     },
   ],
+
+  "ai-note-summarizer": [
+    {
+      question: "How does the AI summarize my notes?",
+      answer: "The tool sends your pasted text to a language model that identifies the most important concepts, definitions, relationships, and facts, then restructures them into your chosen output format — bullet summary, key terms, flashcards, or quiz. The original text is not stored after processing.",
+    },
+    {
+      question: "How long can my notes be?",
+      answer: "Up to 5,000 characters per submission for guest users. That's roughly 800–1,000 words — about a standard lecture transcript. Sign in free with Google to unlock higher limits.",
+    },
+    {
+      question: "Can it summarize a PDF or scanned textbook?",
+      answer: "The tool works with pasted plain text only. For PDFs, copy the text first (most PDF viewers support text selection), then paste it in. Scanned images and handwritten notes need an OCR step before they can be pasted.",
+    },
+    {
+      question: "Is my study material stored or used for AI training?",
+      answer: "No. Your text is sent to the AI model for the current session only and discarded immediately after. Nothing is stored on our servers or used for model training.",
+    },
+    {
+      question: "Which output format is best for exam revision?",
+      answer: "Flashcards and self-check quizzes force active recall, which research consistently shows leads to stronger long-term retention than re-reading. Use bullet summaries for a quick first pass, then switch to flashcards for the material you need to lock in.",
+    },
+    {
+      question: "Is the AI Note Summarizer free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google to unlock higher daily usage limits.",
+    },
+  ],
+
+  "ai-flashcard-generator": [
+    {
+      question: "How many flashcards can I generate at once?",
+      answer: "Up to 50 per batch. For most topics, 20–30 cards cover the essential content without becoming overwhelming. Generate a second batch for the same topic to go deeper.",
+    },
+    {
+      question: "What is the Anki CSV export for?",
+      answer: "Anki is a free, open-source spaced-repetition app used by medical students, law students, and language learners worldwide. Importing a CSV file adds all your generated cards to a new Anki deck in one step — no manual card creation needed.",
+    },
+    {
+      question: "How should I phrase my topic for the best results?",
+      answer: "Specific is better than general. 'ATP synthesis steps in cellular respiration' generates more useful cards than 'biology'. If you have notes or a passage, paste that in instead of a topic title — the AI extracts cards from real content rather than general knowledge.",
+    },
+    {
+      question: "Can I generate flashcards in a language other than English?",
+      answer: "Yes. Paste study material in French, Spanish, German, or any other language and the cards are generated in the same language. Useful for language-learning vocabulary sets.",
+    },
+    {
+      question: "Is my content stored or shared?",
+      answer: "No. Your input and the generated flashcards exist only for the duration of your session. Nothing is stored on our servers or used for model training.",
+    },
+    {
+      question: "Is the AI Flashcard Generator free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+    },
+  ],
+
+  "ai-essay-outliner": [
+    {
+      question: "Which citation styles does the essay outliner support?",
+      answer: "APA 7th Edition, MLA 9th Edition, Chicago (both Notes-Bibliography and Author-Date systems), and Harvard. The outline uses the correct in-text citation notation and reference formatting cues for the selected style.",
+    },
+    {
+      question: "Can I use this for a dissertation or thesis?",
+      answer: "Yes, though the tool works best for individual chapters rather than an entire dissertation at once. Outline each chapter separately and combine them in your word processor. The word-count targeting helps ensure each chapter section is proportionally weighted.",
+    },
+    {
+      question: "Does it write the essay for me?",
+      answer: "No — it generates a structured outline only: a thesis statement, a hook, section headings with argument previews, word-count targets per section, and evidence/source cues. You do the writing. This keeps academic integrity intact while eliminating the blank-page problem.",
+    },
+    {
+      question: "How accurate are the APA / MLA formatting suggestions?",
+      answer: "The style suggestions follow current published guidelines, but every institution has its own house style. Always cross-check the generated outline against your module handbook or your institution's style guide before submitting.",
+    },
+    {
+      question: "What essay types work best with this tool?",
+      answer: "Argumentative, analytical, compare-and-contrast, and cause-and-effect essays all work well. Highly technical or scientific papers with a fixed IMRaD structure (Introduction, Methods, Results, Discussion) may need manual adjustments to the generated outline.",
+    },
+    {
+      question: "Is the AI Essay Outliner free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+    },
+  ],
+
+  "ai-citation-generator": [
+    {
+      question: "Which citation styles are supported?",
+      answer: "APA 7th Edition, MLA 9th Edition, Chicago (Notes-Bibliography and Author-Date), Harvard, and IEEE. These cover the vast majority of undergraduate, graduate, and professional academic citation requirements worldwide.",
+    },
+    {
+      question: "What types of sources can I cite?",
+      answer: "Web pages (paste the URL), journal articles (paste the DOI), books (paste the ISBN), and other source types (enter details manually — author, title, publisher, year, etc.).",
+    },
+    {
+      question: "How accurate are the generated citations?",
+      answer: "Very accurate for clean DOIs (journal articles) and ISBNs (books), where metadata is standardised. URL-based citations depend on the page's own metadata markup — some websites have incomplete or incorrect titles and dates, so always verify the key fields before submitting.",
+    },
+    {
+      question: "Should I always double-check the citation before using it?",
+      answer: "Yes. Treat the generated citation as a well-formatted first draft. Verify the author names, publication year, and title against the actual source. For graded academic work, cross-check against your institution's style guide.",
+    },
+    {
+      question: "What is an in-text citation?",
+      answer: "An in-text citation is the shortened reference that appears inside the body of your essay immediately after quoted or paraphrased material — for example, (Smith, 2023) in APA or (Smith 45) in MLA. The tool generates both the full reference-list entry and the in-text version.",
+    },
+    {
+      question: "Is the AI Citation Generator free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+    },
+  ],
+
+  "ai-paraphraser": [
+    {
+      question: "How many tone options are available?",
+      answer: "Three: Academic (formal, hedged scholarly language — suited for essays and research papers), Formal (professional, business-appropriate prose), and Casual (plain, conversational language — suited for social media, blogs, and informal writing).",
+    },
+    {
+      question: "What is the maximum input length?",
+      answer: "Up to 1,000 characters per submission for guest users — about 150–200 words, which is the typical length of a quoted passage or evidence paragraph. Sign in free with Google to unlock longer inputs.",
+    },
+    {
+      question: "Does paraphrasing with this tool count as plagiarism?",
+      answer: "Paraphrasing itself is an expected academic skill — putting source material into your own words with proper citation. Using an AI tool to help rephrase is similar to using a thesaurus. Always add the citation for the original source, even when the wording has changed.",
+    },
+    {
+      question: "Why are three versions generated instead of one?",
+      answer: "No single paraphrase is perfect for every context. Giving you three alternatives lets you choose the version that fits the surrounding sentences best, rather than forcing you to accept the first output.",
+    },
+    {
+      question: "Is my text sent to or stored on a server?",
+      answer: "Your text is sent to the AI model for the current session and discarded immediately after. Nothing is stored on our servers or used for training.",
+    },
+    {
+      question: "Is the AI Paraphraser free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+    },
+  ],
+
+  "ai-cover-letter": [
+    {
+      question: "Does the generated cover letter actually reference the job description?",
+      answer: "Yes. The AI reads both your resume and the job description, identifies the role's key requirements, and maps your specific experience and skills to those requirements — producing a tailored letter rather than a generic template.",
+    },
+    {
+      question: "How long is the generated cover letter?",
+      answer: "Typically 250–400 words — the standard professional length that hiring managers prefer. It includes an opening that names the role, two body paragraphs mapping your experience to the job, and a clear call-to-action closing.",
+    },
+    {
+      question: "What tone options are available?",
+      answer: "Professional (measured, competent, appropriate for corporate and traditional employers), Enthusiastic (energetic and driven — suited for startups, creative roles, and cultures that value culture fit), and Concise (short and direct — suited for busy tech companies and roles where brevity is valued).",
+    },
+    {
+      question: "Should I edit the letter before sending?",
+      answer: "Yes, always. Add the hiring manager's name if you know it, verify that any facts the AI inferred are accurate, and add one personal detail — a specific project, a company reason you want to join — that the AI could not know. Ten minutes of editing lifts the letter significantly.",
+    },
+    {
+      question: "What if I don't have a resume yet?",
+      answer: "Paste a bullet-point summary of your education, relevant experience, and key skills — it doesn't need to be a formatted resume. The AI extracts the relevant details from whatever you provide.",
+    },
+    {
+      question: "Is the AI Cover Letter Generator free?",
+      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+    },
+  ],
 };
 
 export function getToolFAQ(slug: string): ToolFAQItem[] {
