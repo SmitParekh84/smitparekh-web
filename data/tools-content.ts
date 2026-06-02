@@ -141,7 +141,7 @@ export const toolContent: Record<string, ToolContent> = {
       { title: "Career Changers", description: "Ensure your resume translates your experience into the new industry's keywords and formats that ATS systems expect." },
       { title: "Fresh Graduates", description: "Avoid the most common formatting mistakes that cause ATS systems to misparse or reject graduate resumes - even strong candidates fail due to formatting issues." },
     ],
-    relatedSlugs: ["viral-linkedin-post-generator", "word-counter", "linkedin-media-downloader"],
+    relatedSlugs: ["ai-cover-letter", "viral-linkedin-post-generator", "word-counter"],
   },
 
   "meta-tag-checker": {
@@ -510,6 +510,102 @@ export const toolContent: Record<string, ToolContent> = {
       { title: "DevOps & SREs", description: "Generate request IDs, deployment IDs, or migration markers ad-hoc during incident response and runbook execution." },
     ],
     relatedSlugs: ["hash-generator", "jwt-decoder", "password-generator"],
+  },
+
+  "ai-note-summarizer": {
+    intro:
+      "Turn dense lecture notes, textbook chapters, or essay extracts into clear, structured study material in seconds. Paste up to 5,000 characters of raw notes and the AI condenses them into bullet-point summaries, highlighted key terms, ready-to-use flashcards, or a self-check quiz — whichever format fits your revision style. Built for college and university students in the US, UK, Canada, Australia, and India who need to review material faster without re-reading everything from scratch. Files and text are processed and discarded immediately — nothing is stored. Free with no account for the first uses each day.",
+    howItWorks: [
+      { title: "Paste Your Study Material", description: "Copy your lecture notes, a textbook chapter, or any study text and paste it into the input area. Up to 5,000 characters is supported per submission." },
+      { title: "Choose an Output Format", description: "Select the format you need: bullet-point summary for fast review, key terms for definition drills, flashcards for active recall, or a self-check quiz to test retention." },
+      { title: "Copy and Add to Your Notes", description: "Click Copy to paste the generated content into your revision document, learning management system, or Notion page." },
+    ],
+    useCases: [
+      { title: "Exam Revision", description: "Convert a week's worth of lecture notes into a tight bullet-point summary or a set of flashcards in minutes — stop re-reading full transcripts the night before an exam." },
+      { title: "Lecture Catch-Up", description: "If you missed a class or zoned out, paste the shared slides or a classmate's notes and get the essential points without spending an hour reading manually." },
+      { title: "Textbook Deep Dives", description: "Drop in a dense textbook chapter and extract a hierarchy of key terms and concepts to build a mental map before writing an essay or sitting an assignment." },
+    ],
+    relatedSlugs: ["ai-flashcard-generator", "ai-essay-outliner", "word-counter"],
+  },
+
+  "ai-flashcard-generator": {
+    intro:
+      "Generate up to 50 study flashcards on any topic or from any pasted text in seconds. Type a subject like 'mitosis' or 'the French Revolution', or paste a full chapter of notes, and the AI creates front-and-back question-and-answer pairs covering key facts, definitions, dates, and concepts. Export directly to Anki-compatible CSV or JSON for spaced-repetition practice, or copy individual cards into your preferred study app. Free for students in the US, UK, Canada, Australia, and India — no account needed for the first uses each day.",
+    howItWorks: [
+      { title: "Enter a Topic or Paste Text", description: "Type a specific subject — the more precise, the better (e.g. 'ATP synthesis steps' rather than 'biology') — or paste a passage from your lecture notes or textbook." },
+      { title: "Set the Number of Cards", description: "Choose how many flashcards to generate, up to 50. Start with 20–25 for a focused set on a single concept, or go to 50 for a comprehensive topic sweep." },
+      { title: "Export to Anki or Copy", description: "Download the flashcards as Anki-compatible CSV to import directly into your Anki deck, or copy individual question-answer pairs into Quizlet, Notion, or any note-taking tool." },
+    ],
+    useCases: [
+      { title: "Science and Medical Students", description: "Generate anatomy, physiology, pharmacology, or biochemistry flashcards from lecture slides — the same technique used by USMLE and MCAT top scorers without paying for premium Anki decks." },
+      { title: "History and Humanities", description: "Convert essay prompts, timelines, and source analyses into flashcards that test date recall, key figures, causation, and historical significance." },
+      { title: "Language Learning", description: "Paste a vocabulary list or a reading passage in your target language and generate definition, translation, and usage-example cards for active recall practice." },
+    ],
+    relatedSlugs: ["ai-note-summarizer", "ai-essay-outliner", "ats-resume-checker"],
+  },
+
+  "ai-essay-outliner": {
+    intro:
+      "Build a fully structured essay outline in seconds — thesis statement, hook, sectioned arguments with word-count targets, evidence cues, and suggested source types — all from a single essay question. Choose your citation style (APA 7th, MLA 9th, Chicago, or Harvard), set your target word count, and the AI tailors the structure accordingly. Works for argumentative, analytical, compare-and-contrast, and research essays at college and university level in the US, UK, Canada, Australia, and India. Free with no account for the first uses each day.",
+    howItWorks: [
+      { title: "Enter Your Essay Question", description: "Paste the exact question or write a clear description of your essay topic and any required angle or argument." },
+      { title: "Choose Citation Style and Word Target", description: "Select APA, MLA, Chicago, or Harvard and enter your word count target so the AI splits the body sections proportionally." },
+      { title: "Copy the Outline and Start Writing", description: "Review the thesis statement, hook, argument sections, and evidence cues — then copy the outline to your word processor and start filling in the content." },
+    ],
+    useCases: [
+      { title: "College Essay Assignments", description: "Break a broad prompt into a clear structure before writing — the outline keeps your argument focused and ensures you hit word count targets across introduction, body, and conclusion." },
+      { title: "Research Papers", description: "Map out a multi-section paper with literature review, methodology, and discussion sections before committing to a single direction — restructure the outline in seconds if your argument evolves." },
+      { title: "Dissertation Chapters", description: "Scaffold individual dissertation chapters with properly weighted argument sections, evidence requirements, and transition notes to maintain academic coherence across a long document." },
+    ],
+    relatedSlugs: ["ai-note-summarizer", "ai-paraphraser", "ai-citation-generator"],
+  },
+
+  "ai-citation-generator": {
+    intro:
+      "Generate accurate, properly formatted citations in APA 7th Edition, MLA 9th Edition, Chicago (Author-Date and Notes-Bibliography), Harvard, or IEEE style from a URL, DOI, ISBN, or manually entered source details. Returns both the full reference-list entry and the shortened in-text citation so you can paste both directly into your paper. Useful for students, researchers, and content writers who need correct references without memorising each style guide's exact formatting rules. No account needed for the first uses each day.",
+    howItWorks: [
+      { title: "Select a Citation Style and Source Type", description: "Choose your required citation format (APA, MLA, Chicago, Harvard, or IEEE) and the type of source — web page, journal article, book, or manual entry." },
+      { title: "Enter the Source Reference", description: "Paste the URL for web pages, the DOI for journal articles, or the ISBN for books. The tool fetches metadata automatically. For other source types, fill in the details manually." },
+      { title: "Copy Both Citations", description: "Get the full bibliography entry and the shortened in-text citation in one step — copy each separately and paste into your reference list and body text." },
+    ],
+    useCases: [
+      { title: "Research and Academic Papers", description: "Generate accurate citations for every web source, journal article, and book in your reference list without manually checking formatting rules for commas, italics, and capitalisation." },
+      { title: "Dissertation and Thesis Writing", description: "Maintain consistent citation style across a long document by generating every reference in the same format — especially useful when switching between sources mid-chapter." },
+      { title: "Content Writing and Journalism", description: "Quickly cite sources in articles, blog posts, and reports where in-text attribution is required — supports both APA and Chicago's author-date style for non-academic content." },
+    ],
+    relatedSlugs: ["ai-essay-outliner", "ai-paraphraser", "meta-tag-checker"],
+  },
+
+  "ai-paraphraser": {
+    intro:
+      "Rewrite any paragraph in Academic, Formal, or Casual tone using AI — preserving the original meaning while changing sentence structure, vocabulary, and phrasing. Paste a section of text and receive three alternative versions side by side so you can pick the one that fits your context best. Useful for students avoiding unintentional plagiarism when paraphrasing sources, professionals adapting content for different audiences, and writers varying their prose to avoid repetition. Free with no account for the first uses each day.",
+    howItWorks: [
+      { title: "Paste the Text You Want to Rewrite", description: "Copy a paragraph from your essay, a quote you need to paraphrase, or any passage you want to rephrase and paste it into the input box." },
+      { title: "Select a Tone", description: "Choose Academic for formal scholarly language with hedging phrases, Formal for professional business-appropriate prose, or Casual for plain, conversational phrasing." },
+      { title: "Review All Three Versions and Copy", description: "Three rewritten alternatives appear side by side — compare them, pick the version that fits best in context, and click Copy." },
+    ],
+    useCases: [
+      { title: "Academic Writing and Essays", description: "Paraphrase quoted evidence and source material into your own words for essays and research papers — use the Academic tone to maintain the scholarly register expected by markers." },
+      { title: "Professional Communications", description: "Rework internal reports, client emails, or proposal sections to match a different audience's expectations without rewriting from scratch." },
+      { title: "Content Repurposing", description: "Adapt a section from a long-form blog post into a concise LinkedIn caption, or transform a formal press release into a casual social media announcement, using the Casual tone." },
+    ],
+    relatedSlugs: ["word-counter", "ai-essay-outliner", "ai-cover-letter"],
+  },
+
+  "ai-cover-letter": {
+    intro:
+      "Generate a personalised, job-specific cover letter from your resume and a job description in under 30 seconds. Paste both and choose a tone — Professional (neutral and competent), Enthusiastic (energetic and driven), or Concise (short and direct) — and the AI maps your experience to the role's requirements, writes a tailored opening, body, and closing, and keeps the letter within professional length (250–400 words). Designed for students, fresh graduates, and career changers who need to apply to many roles without writing each letter from scratch. Free with no account for the first uses each day.",
+    howItWorks: [
+      { title: "Paste Your Resume", description: "Copy your resume text — plain text works best. The AI extracts your experience, skills, and achievements to match against the role." },
+      { title: "Paste the Job Description and Choose a Tone", description: "Copy the full job posting and select Professional, Enthusiastic, or Concise depending on the company culture and how formal the role is." },
+      { title: "Review, Edit, and Send", description: "Read the generated letter, personalise any details the AI could not infer (like the hiring manager's name), and paste it directly into your application." },
+    ],
+    useCases: [
+      { title: "Internship and Graduate Applications", description: "Apply to multiple internship postings in a single session — each letter is tailored to that specific role rather than a generic 'please consider my application' template." },
+      { title: "Career Changers", description: "Frame transferable skills from a previous career in language that resonates with a new industry — the AI maps what you have done to what the new employer needs." },
+      { title: "High-Volume Job Searches", description: "Maintain quality across a large number of applications without spending 45 minutes per letter — generate a strong first draft, make two or three personal edits, and move on." },
+    ],
+    relatedSlugs: ["ats-resume-checker", "viral-linkedin-post-generator", "ai-paraphraser"],
   },
 };
 
