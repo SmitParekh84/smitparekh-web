@@ -7,6 +7,7 @@ import { getToolFAQ } from "@/data/tools-faq";
 import { getToolContent } from "@/data/tools-content";
 import { howToSchema } from "@/lib/seo/schema";
 import { getToolHowToSteps } from "@/data/tools-howto";
+import { testimonials } from "@/data/testimonials";
 import ToolRenderer from "@/components/tools/ToolRenderer";
 import ToolFAQ from "@/components/tools/ToolFAQ";
 import ToolHowItWorks from "@/components/tools/ToolHowItWorks";
@@ -134,6 +135,20 @@ export default async function ToolPage({ params }: Props) {
           bestRating: siteConfig.aggregateRating.bestRating,
           worstRating: siteConfig.aggregateRating.worstRating,
         },
+        review: testimonials
+          .filter((t) => t.rating === 5)
+          .slice(0, 3)
+          .map((t) => ({
+            "@type": "Review",
+            author: { "@type": "Person", name: t.name },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: t.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            reviewBody: t.quote,
+          })),
       }
     : null;
 
