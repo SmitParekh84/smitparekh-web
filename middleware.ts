@@ -31,7 +31,13 @@ export async function middleware(request: NextRequest) {
   });
 
   // Touching getUser() refreshes/rotates the session cookies.
-  await supabase.auth.getUser();
+  // Wrapped in try/catch: a Supabase outage or cold-start timeout now degrades
+  // gracefully (request continues unauthenticated) instead of returning 5xx.
+  try {
+    await supabase.auth.getUser();
+  } catch {
+    // Non-fatal — continue without a refreshed session.
+  }
 
   return response;
 }
