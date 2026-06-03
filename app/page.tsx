@@ -147,6 +147,27 @@ const organizationSchema = {
     siteConfig.social.github,
     siteConfig.social.upwork,
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteConfig.aggregateRating.ratingValue,
+    reviewCount: siteConfig.aggregateRating.reviewCount,
+    bestRating: siteConfig.aggregateRating.bestRating,
+    worstRating: siteConfig.aggregateRating.worstRating,
+  },
+  review: testimonials
+    .filter((t) => t.rating === 5)
+    .slice(0, 5)
+    .map((t) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: t.name },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: t.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: t.quote,
+    })),
 };
 
 const websiteSchema = {
@@ -225,44 +246,6 @@ const breadcrumbSchema = {
   ],
 };
 
-// ── Client reviews as Review objects — feeds Google rich results + AI search ──
-// Using real testimonials from data/testimonials.ts (5-star ones for best signal).
-const reviewsSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Client Reviews — Smit Parekh Full-Stack Developer",
-  description: "Real client testimonials for Smit Parekh's web development services.",
-  itemListElement: testimonials
-    .filter((t) => t.rating === 5)
-    .slice(0, 5)
-    .map((t, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Review",
-        itemReviewed: {
-          "@type": "Person",
-          "@id": `${siteConfig.url}/#person`,
-          name: "Smit Parekh",
-        },
-        author: {
-          "@type": "Person",
-          name: t.name,
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: t.rating,
-          bestRating: 5,
-          worstRating: 1,
-        },
-        reviewBody: t.quote,
-        publisher: {
-          "@type": "Organization",
-          name: t.company,
-        },
-      },
-    })),
-};
 
 export default function HomePage() {
   return (
@@ -295,11 +278,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema) }}
-      />
-
       <Hero />
       <StatsBar />
       <Services />
