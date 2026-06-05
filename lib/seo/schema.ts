@@ -57,8 +57,8 @@ export function aggregateRatingSchema() {
   const cfg = siteConfig.aggregateRating;
   return {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${siteConfig.url}/#person`,
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#org`,
     name: siteConfig.name,
     url: siteConfig.url,
     aggregateRating: {
@@ -71,20 +71,12 @@ export function aggregateRatingSchema() {
   };
 }
 
-// Embedded AggregateRating + areaServed for use inside a Service node.
+// areaServed for use inside a Service node.
 // India is listed alongside Worldwide because GSC shows 95% of clicks
 // originate from India — the geo signal helps win local "hire X developer"
 // queries without hurting the worldwide audience already in `areaServed`.
 export function serviceRatingFields() {
-  const cfg = siteConfig.aggregateRating;
   return {
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: cfg.ratingValue,
-      reviewCount: cfg.reviewCount,
-      bestRating: cfg.bestRating,
-      worstRating: cfg.worstRating,
-    },
     areaServed: [
       "Worldwide",
       { "@type": "Country", name: "India" },

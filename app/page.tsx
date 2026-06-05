@@ -121,14 +121,6 @@ const personSchema = {
     "@type": "SpeakableSpecification",
     cssSelector: ["h1", ".hero-description", "meta[name='description']"],
   },
-  // ── AggregateRating: makes Google show ⭐⭐⭐⭐⭐ stars in search results ──
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: siteConfig.aggregateRating.ratingValue,
-    reviewCount: siteConfig.aggregateRating.reviewCount,
-    bestRating: siteConfig.aggregateRating.bestRating,
-    worstRating: siteConfig.aggregateRating.worstRating,
-  },
 };
 
 const organizationSchema = {
@@ -151,6 +143,13 @@ const organizationSchema = {
     siteConfig.social.github,
     siteConfig.social.upwork,
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteConfig.aggregateRating.ratingValue,
+    reviewCount: siteConfig.aggregateRating.reviewCount,
+    bestRating: siteConfig.aggregateRating.bestRating,
+    worstRating: siteConfig.aggregateRating.worstRating,
+  },
 };
 
 const websiteSchema = {
@@ -211,14 +210,6 @@ const serviceSchema = {
     "End-to-end web development services including React frontends, Node.js backends, PostgreSQL databases, and AWS cloud deployment.",
   areaServed: "Worldwide",
   url: `${siteConfig.url}/services`,
-  // ── AggregateRating on the service entity ──
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: siteConfig.aggregateRating.ratingValue,
-    reviewCount: siteConfig.aggregateRating.reviewCount,
-    bestRating: siteConfig.aggregateRating.bestRating,
-    worstRating: siteConfig.aggregateRating.worstRating,
-  },
 };
 
 const breadcrumbSchema = {
