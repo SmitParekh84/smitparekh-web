@@ -2943,3 +2943,42 @@ export function getRelatedServices(slug: string): ServicePage[] {
 export function getServicesByCategory(categoryId: ServiceCategoryId): ServicePage[] {
   return servicePages.filter((s) => s.category === categoryId);
 }
+
+// Service slugs that already ship a hand-made static OG card in
+// public/images/services-og/<slug>.png. These must NOT change. Any service
+// NOT in this set falls back to a dynamically generated OG card served from
+// /services/<slug>/og (see app/(marketing)/services/[slug]/og/route.tsx).
+export const STATIC_OG_SERVICE_SLUGS: ReadonlySet<string> = new Set([
+  "ai-integration",
+  "api-development",
+  "backend-development",
+  "devops-consulting",
+  "ecommerce-development",
+  "frontend-development",
+  "landing-page-development",
+  "local-seo",
+  "mobile-app-development",
+  "mvp-development",
+  "nextjs-development",
+  "performance-optimization",
+  "react-development",
+  "saas-development",
+  "seo",
+  "seo-audit",
+  "shopify-development",
+  "technical-seo",
+  "web-development",
+  "wordpress-development",
+]);
+
+export function hasStaticOg(slug: string): boolean {
+  return STATIC_OG_SERVICE_SLUGS.has(slug);
+}
+
+// Resolve the absolute OG image URL for a service: the existing static card
+// when one exists, otherwise the generated card route.
+export function serviceOgImageUrl(baseUrl: string, slug: string): string {
+  return hasStaticOg(slug)
+    ? `${baseUrl}/images/services-og/${slug}.png`
+    : `${baseUrl}/services/${slug}/og`;
+}

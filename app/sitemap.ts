@@ -4,7 +4,7 @@ import { toolsSEO, getToolOgImage } from "@/data/tools-seo";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
-import { servicePages } from "@/data/services-catalog";
+import { servicePages, serviceOgImageUrl } from "@/data/services-catalog";
 import { geoCountries } from "@/data/geo-pages";
 
 export const revalidate = 300; // hourly; SEO freshness at negligible write cost
@@ -98,7 +98,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
     changeFrequency: "monthly" as const,
     lastModified: STATIC_LASTMOD,
-    images: [`${base}/images/services-og/${s.slug}.png`],
+    images: [serviceOgImageUrl(base, s.slug)],
   }));
 
   // Gulf (GCC) geo hire pages — country-targeted English landing pages.
