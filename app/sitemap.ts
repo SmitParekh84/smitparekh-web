@@ -31,6 +31,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/services`,                priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-web-development-services.png`] },
     // Tier 3 — hire-intent landing pages (prioritise most-searched stacks first)
     { url: `${base}/full-stack-developer`,    priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-full-stack-developer.png`] },
+    { url: `${base}/full-stack-ai-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/ai-seo-consultant`,       priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
+    { url: `${base}/generative-engine-optimization`, priority: 0.8, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-developer`,        priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-nextjs-developer.png`] },
     { url: `${base}/react-developer`,         priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-react-developer.png`] },
     { url: `${base}/nodejs-developer`,        priority: 0.8,  changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-nodejs-developer.png`] },

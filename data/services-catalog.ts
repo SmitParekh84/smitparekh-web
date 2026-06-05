@@ -2437,6 +2437,495 @@ export const servicePages: ServicePage[] = [
     ],
     related: ["web-development", "backend-development", "api-development", "saas-development"],
   },
+
+  // ---------------------------------------------------------------- AEO & GEO
+  {
+    slug: "aeo-geo-optimization",
+    category: "marketing",
+    iconName: "Brain",
+    metaTitle: "AEO & GEO Services — Rank in ChatGPT, Perplexity & AI Overviews",
+    metaDescription:
+      "Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) services. Get cited by ChatGPT, Perplexity, Gemini, and Google AI Overviews — structured answers, entity SEO, and schema that LLMs actually read.",
+    keywords: [
+      "AEO services",
+      "GEO services",
+      "answer engine optimization",
+      "generative engine optimization",
+      "rank in ChatGPT",
+      "get cited by Perplexity",
+      "Google AI Overviews optimization",
+      "LLM SEO",
+      "AI search optimization",
+      "AEO GEO consultant",
+      "entity SEO",
+      "schema markup for AI search",
+    ],
+    eyebrow: "AEO & GEO",
+    heroTitle: "Get cited by ChatGPT, Perplexity & AI Overviews",
+    heroDescription:
+      "Answer Engine Optimization and Generative Engine Optimization — the work that gets your brand quoted inside AI answers, not just ranked on page one of ten blue links.",
+    lede: "Search is splitting in two. Half your buyers still type into Google; the other half ask ChatGPT, Perplexity, or Gemini and never click a link. AEO and GEO are how you stay visible in both. I structure your content so answer engines can extract it, attribute it, and recommend you by name.",
+    deliverables: [
+      {
+        iconName: "Brain",
+        title: "AI-answer visibility audit",
+        description:
+          "I run your priority questions through ChatGPT, Perplexity, Gemini, and Google AI Overviews, log who gets cited today, and map exactly where you're missing from the answer — and why.",
+      },
+      {
+        iconName: "Target",
+        title: "Question-first content architecture",
+        description:
+          "Pages restructured around the literal questions buyers ask, with a direct extractable answer in the first 1–2 sentences, then the depth. Answer engines lift the snippet; humans read the rest.",
+      },
+      {
+        iconName: "Sparkles",
+        title: "Schema & structured data for LLMs",
+        description:
+          "FAQPage, HowTo, Article, Organization, and Person JSON-LD wired and validated. Clean entity markup gives generative engines the machine-readable facts they prefer to cite.",
+      },
+      {
+        iconName: "FileSearch",
+        title: "Entity & knowledge-graph SEO",
+        description:
+          "Consistent entity definitions, sameAs links, Wikidata/Wikipedia alignment where relevant, and an About/author footprint so models associate your brand with the right topics and trust signals.",
+      },
+      {
+        iconName: "TrendingUp",
+        title: "Citation & statistics seeding",
+        description:
+          "Generative engines disproportionately quote original stats, direct quotes, and clearly-sourced claims. I add the quotable facts, named data points, and authoritative citations that make your page the source.",
+      },
+      {
+        iconName: "BarChart3",
+        title: "AI-share-of-voice tracking",
+        description:
+          "Monthly tracking of how often you appear (and how you're described) across ChatGPT, Perplexity, and AI Overviews for your target prompts — so AEO/GEO is measured, not hoped for.",
+      },
+    ],
+    techStack: [
+      { label: "Audit", items: ["ChatGPT", "Perplexity", "Gemini", "AI Overviews"] },
+      { label: "Structure", items: ["JSON-LD", "FAQPage", "schema.org", "llms.txt"] },
+      { label: "Entity", items: ["Knowledge Graph", "Wikidata", "sameAs", "Organization"] },
+      { label: "Tracking", items: ["Profound", "Otterly", "Peec AI", "Search Console"] },
+    ],
+    process: [
+      { title: "Prompt & citation baseline", description: "Define the 30–50 buyer questions that matter, run them across the major answer engines, and record who's cited and how you're described today." },
+      { title: "Structure & schema", description: "Rewrite the answer blocks, add extractable summaries, and ship validated JSON-LD so engines can read and attribute your content." },
+      { title: "Authority & entities", description: "Seed quotable stats, tighten entity consistency, and build the author/Organization footprint that earns model trust." },
+      { title: "Measure & iterate", description: "Monthly AI-share-of-voice report, prompt re-runs, and a punch-list of the next answers to win." },
+    ],
+    proof: [
+      { value: "30–50", label: "Buyer questions tracked across AI answer engines" },
+      { value: "100%", label: "Priority pages shipped with validated JSON-LD" },
+      { value: "4", label: "Engines monitored — ChatGPT, Perplexity, Gemini, AI Overviews" },
+      { value: "0", label: "Keyword stuffing or AI spam — extractable, factual content only" },
+    ],
+    pricing: [
+      { name: "AEO/GEO Audit", startingFrom: "$900", bestFor: "Seeing where you stand in AI answers", bullets: ["Prompt + citation baseline across 4 engines", "Schema + entity gap report", "Prioritised action plan"] },
+      { name: "AEO/GEO Sprint", startingFrom: "$3,500", popular: true, bestFor: "Getting cited in 6–8 weeks", bullets: ["Audit + answer-block rewrites shipped", "Schema + entity markup implemented", "Citation seeding on top 10 pages", "AI share-of-voice baseline"] },
+      { name: "Retainer", startingFrom: "$1,800/mo", bestFor: "Ongoing AI visibility growth", bullets: ["New answer pages each month", "Monthly prompt re-runs + reporting", "Schema + entity maintenance"] },
+    ],
+    faqs: [
+      { q: "What is the difference between AEO and GEO?", a: "AEO (Answer Engine Optimization) is about being the extractable answer in tools like Perplexity, Google AI Overviews, and featured snippets. GEO (Generative Engine Optimization) is the broader practice of getting your brand mentioned and recommended inside generative AI responses. They overlap heavily, so I run them as one engagement." },
+      { q: "Is AEO/GEO different from normal SEO?", a: "It builds on SEO — you still need to be crawlable, fast, and authoritative. The difference is structure and quotability: answer engines reward a direct answer up top, clean schema, named statistics, and consistent entities far more than keyword density. I do both so they reinforce each other." },
+      { q: "Can you guarantee I'll be cited by ChatGPT?", a: "No, and anyone who guarantees it is bluffing — model outputs are probabilistic. What I guarantee is that your content is structured, marked up, and authoritative enough to be eligible, and that we measure your citation rate month over month so the work is accountable." },
+      { q: "How do you even measure AI visibility?", a: "By running a fixed set of your buyer prompts across ChatGPT, Perplexity, Gemini, and AI Overviews on a schedule and logging whether you appear, how you're described, and who's cited instead. Tools like Profound, Otterly, and Peec AI automate parts of this; I sanity-check the rest by hand." },
+      { q: "Does this work for local or service businesses?", a: "Yes. 'Best [service] in [city]' style questions are increasingly answered by AI. Strong entity data, reviews, and a clean LocalBusiness footprint matter even more there — see /services/local-seo for the map-pack side." },
+    ],
+    related: ["seo", "technical-seo", "content-seo", "ai-integration"],
+  },
+
+  // ---------------------------------------------------------------- CONTENT SEO
+  {
+    slug: "content-seo",
+    category: "marketing",
+    iconName: "TrendingUp",
+    metaTitle: "Content SEO Services — Writing That Ranks and Converts",
+    metaDescription:
+      "Content SEO services — keyword research, search-intent mapping, and 1500–2500-word articles written by a developer who understands your product. Helpful-content-safe, AEO-ready, internally linked.",
+    keywords: [
+      "content SEO services",
+      "SEO content writing",
+      "SaaS content marketing",
+      "B2B content writing",
+      "content strategy services",
+      "blog content SEO",
+      "topic cluster strategy",
+      "search intent content",
+      "freelance SEO writer",
+      "technical content writing",
+    ],
+    eyebrow: "Content SEO",
+    heroTitle: "Content that ranks, converts, and gets quoted",
+    heroDescription:
+      "Keyword research, intent mapping, and genuinely useful long-form content — written by someone who understands your product and the search engines (classic and AI) reading it.",
+    lede: "Most SEO content is thin, generic, and increasingly AI-spam — exactly what Google's helpful-content system and the AI answer engines now demote. I write fewer, deeper articles that actually answer the question, earn links, and get extracted into AI answers. Quality over a content treadmill.",
+    deliverables: [
+      { iconName: "FileSearch", title: "Keyword & intent research", description: "Volume, difficulty, and — more importantly — search intent. I map each target to the right page type (informational, commercial, transactional) so you don't write a blog post for a buying query." },
+      { iconName: "Target", title: "Topic clusters & content map", description: "A hub-and-spoke plan: pillar pages plus supporting articles, internally linked, that build topical authority instead of a pile of disconnected posts." },
+      { iconName: "TrendingUp", title: "Long-form articles written by me", description: "1500–2500 words, structured for both readers and answer engines, with real expertise — not reworded competitor posts or raw GPT output that tanks your domain." },
+      { iconName: "Sparkles", title: "On-page & AEO formatting", description: "Title, meta, headings, FAQ blocks, schema, and extractable answer summaries baked into every piece so it's eligible for featured snippets and AI citations." },
+      { iconName: "Megaphone", title: "Internal linking on publish", description: "Every new article is wired into the existing cluster with contextual links, and your highest-authority pages get linked from new content — link equity that compounds." },
+      { iconName: "BarChart3", title: "Performance review & refresh", description: "Quarterly content audit: which pieces are decaying, which to refresh, which to consolidate. Old content is an asset to maintain, not abandon." },
+    ],
+    techStack: [
+      { label: "Research", items: ["Ahrefs", "Search Console", "ContentHarmony", "AlsoAsked"] },
+      { label: "Writing", items: ["Original drafts", "SurferSEO", "Frase", "Originality.ai"] },
+      { label: "Publishing", items: ["WordPress", "Sanity", "Contentful", "Markdown/MDX"] },
+      { label: "Reporting", items: ["Looker Studio", "GA4", "Search Console", "Ahrefs Rank"] },
+    ],
+    process: [
+      { title: "Strategy & clusters", description: "Audit current content, find the gaps, and build a prioritised topic-cluster roadmap tied to your funnel." },
+      { title: "Briefs & drafts", description: "Search-intent brief per article, then a real draft written or heavily edited by me — never auto-published GPT output." },
+      { title: "Optimise & ship", description: "On-page SEO, schema, internal links, and AEO formatting applied before publish, in whatever CMS you use." },
+      { title: "Measure & refresh", description: "Track rankings and conversions, then refresh or consolidate on a quarterly cadence." },
+    ],
+    proof: [
+      { value: "+120%", label: "Median organic traffic uplift in 6 months on content programs" },
+      { value: "1500–2500", label: "Words of genuinely useful depth per article" },
+      { value: "2–4", label: "Cluster-linked articles shipped per month" },
+      { value: "0", label: "Raw AI-spam articles published under your domain" },
+    ],
+    pricing: [
+      { name: "Content Audit", startingFrom: "$650", bestFor: "Fixing an existing blog", bullets: ["Content + cluster audit", "Decay & consolidation list", "Topic roadmap"] },
+      { name: "Content Engine", startingFrom: "$1,600/mo", popular: true, bestFor: "Consistent organic growth", bullets: ["2–4 articles per month", "Briefs, writing, on-page + schema", "Internal linking on publish", "Monthly performance report"] },
+      { name: "Pillar Project", startingFrom: "$2,800", bestFor: "Launching a new topic cluster", bullets: ["1 pillar + 5–8 supporting articles", "Full cluster interlinking", "AEO-ready formatting"] },
+    ],
+    faqs: [
+      { q: "Do you write the content with AI?", a: "I use AI for research, outlining, and first-draft scaffolding. The published article is written or substantially rewritten by me. Google's helpful-content system and the AI answer engines both demote thin auto-generated content, so I won't put your domain at that risk." },
+      { q: "Can you write technical or developer content?", a: "Yes — that's a strength. I'm a working developer, so I can write accurate content about APIs, SaaS, dev tools, and technical products without the factual errors that generic writers introduce." },
+      { q: "How long until content ranks?", a: "Informational content on low-to-mid competition terms can rank in 4–12 weeks. Competitive commercial terms take 3–6 months and depend on your domain authority. I'll tell you which targets are realistic in writing before we start." },
+      { q: "Do you handle the technical SEO too?", a: "I can. Content sits on top of a healthy technical foundation — if there are crawl, speed, or schema issues holding you back, see /services/technical-seo. Often I bundle the two." },
+    ],
+    related: ["seo", "aeo-geo-optimization", "technical-seo", "conversion-rate-optimization"],
+  },
+
+  // ---------------------------------------------------------------- CRO
+  {
+    slug: "conversion-rate-optimization",
+    category: "marketing",
+    iconName: "Target",
+    metaTitle: "Conversion Rate Optimization (CRO) Services — Data-Led, Dev-Backed",
+    metaDescription:
+      "Conversion rate optimization services. Funnel analysis, A/B testing, landing-page CRO, and friction removal — backed by a developer who can actually ship the winning variant. Free teardown in 24 hours.",
+    keywords: [
+      "conversion rate optimization services",
+      "CRO services",
+      "CRO consultant",
+      "A/B testing services",
+      "landing page optimization",
+      "funnel optimization",
+      "SaaS CRO",
+      "ecommerce CRO",
+      "checkout optimization",
+      "conversion optimization expert",
+    ],
+    eyebrow: "Conversion Rate Optimization",
+    heroTitle: "Turn the traffic you already have into revenue",
+    heroDescription:
+      "Funnel analysis, A/B testing, and friction removal — run by a developer who diagnoses the leak and ships the winning variant, instead of handing your team a slide deck.",
+    lede: "You're already paying for the traffic. CRO is the cheapest growth you'll ever buy because it multiplies everything else. I find where users drop, form a real hypothesis, test it properly, and ship the winner — design, copy, and code in one pair of hands.",
+    deliverables: [
+      { iconName: "FileSearch", title: "Funnel & analytics teardown", description: "GA4, heatmaps, session recordings, and event data combined into a clear map of where users hesitate, rage-click, and abandon — with the biggest revenue leaks ranked first." },
+      { iconName: "Target", title: "Hypothesis-driven test backlog", description: "Not random button colors. Each test is a written hypothesis tied to a real friction point, sized by expected impact and effort, so you run the experiments that actually move money." },
+      { iconName: "Zap", title: "Landing & checkout optimization", description: "Above-the-fold clarity, trust signals, form-field reduction, and mobile-first flows. For e-commerce: checkout, shipping, and abandoned-cart fixes that recover revenue." },
+      { iconName: "BarChart3", title: "Proper A/B testing", description: "Correctly powered tests with a pre-registered hypothesis and a minimum sample size, so you ship real wins — not noise dressed up as a 12% lift on 40 visitors." },
+      { iconName: "Sparkles", title: "Copy & messaging tests", description: "Headlines, value props, and CTA language tested against real users. Often the highest-ROI change on the page is words, not pixels." },
+      { iconName: "ShieldCheck", title: "Winners shipped to production", description: "Because I'm a developer, the winning variant gets implemented cleanly and permanently — no engineering backlog, no half-built test code left rotting in production." },
+    ],
+    techStack: [
+      { label: "Analytics", items: ["GA4", "PostHog", "Mixpanel", "Plausible"] },
+      { label: "Behaviour", items: ["Hotjar", "Microsoft Clarity", "FullStory"] },
+      { label: "Testing", items: ["PostHog Experiments", "GrowthBook", "VWO", "Optimizely"] },
+      { label: "Build", items: ["Next.js", "React", "Feature flags", "Edge config"] },
+    ],
+    process: [
+      { title: "Measure & diagnose", description: "Instrument the funnel properly, then find the real drop-off points with quantitative and qualitative data." },
+      { title: "Prioritise hypotheses", description: "Build a test backlog scored by impact, confidence, and effort. Run the highest-leverage experiments first." },
+      { title: "Test & ship", description: "Run powered A/B tests, call the winner with statistical honesty, and ship it to production cleanly." },
+      { title: "Compound", description: "Each win feeds the next hypothesis. CRO is a flywheel, not a one-off redesign." },
+    ],
+    proof: [
+      { value: "+18%", label: "Typical conversion uplift on landing-page programs" },
+      { value: "ICE-scored", label: "Every test prioritised by impact, confidence, effort" },
+      { value: "100%", label: "Winning variants shipped to production, not left as test code" },
+      { value: "Real stats", label: "Powered tests — no calling wins on tiny samples" },
+    ],
+    pricing: [
+      { name: "Conversion Teardown", startingFrom: "$600", bestFor: "A single page or flow", bullets: ["Funnel + heatmap + recording review", "Prioritised fix list", "Loom walkthrough"] },
+      { name: "CRO Sprint", startingFrom: "$3,200", popular: true, bestFor: "A focused 6-week push", bullets: ["Full funnel instrumentation", "Test backlog + 3–4 experiments run", "Winners shipped to production", "Results report"] },
+      { name: "CRO Retainer", startingFrom: "$2,000/mo", bestFor: "Ongoing experimentation", bullets: ["Continuous test pipeline", "Monthly experiment readouts", "Winners shipped each cycle"] },
+    ],
+    faqs: [
+      { q: "How much traffic do I need for CRO?", a: "For statistically valid A/B testing, roughly 1,000+ conversions a month per variant is ideal. Below that, I focus on qualitative research, heuristic teardowns, and bigger swings rather than tiny incremental tests — the gains are usually larger anyway." },
+      { q: "Do you do the design and development, or just advise?", a: "Both. That's the point — I diagnose, design the variant, write the copy, and ship the code. You don't need to route my recommendations through a separate engineering team that's three sprints behind." },
+      { q: "What tools do you use for testing?", a: "PostHog or GrowthBook for most product/SaaS work (open-source, dev-friendly, no flicker), VWO or Optimizely when a client already has them. I avoid client-side testing tools that hurt Core Web Vitals where I can." },
+      { q: "Can CRO and SEO conflict?", a: "Occasionally — an aggressive CRO change can strip content SEO needs. I run them together so a conversion win doesn't quietly cost you rankings. See /services/seo for the organic side." },
+    ],
+    related: ["seo", "landing-page-development", "content-seo", "frontend-development"],
+  },
+
+  // ---------------------------------------------------------------- AI AGENT DEVELOPMENT
+  {
+    slug: "ai-agent-development",
+    category: "specialized",
+    iconName: "Cpu",
+    metaTitle: "AI Agent Development Services — Autonomous Agents & Automation",
+    metaDescription:
+      "AI agent development services. Build autonomous and tool-using agents with OpenAI, Claude, and LangGraph — workflow automation, multi-step reasoning, and human-in-the-loop guardrails, production-ready.",
+    keywords: [
+      "AI agent development",
+      "autonomous agent development",
+      "LLM agent developer",
+      "AI workflow automation",
+      "LangGraph developer",
+      "tool-using AI agents",
+      "AI automation services",
+      "multi-agent systems",
+      "OpenAI agents",
+      "Claude agent development",
+      "AI agent for business",
+    ],
+    eyebrow: "AI Agent Development",
+    heroTitle: "AI agents that do the work, not just chat",
+    heroDescription:
+      "Tool-using, multi-step AI agents wired into your real systems — with the evals, guardrails, and human-in-the-loop checkpoints that make autonomy safe in production.",
+    lede: "An agent demo that books a flight in a video is easy. An agent that reliably runs a real workflow against your real data — without going off the rails, leaking secrets, or burning your token budget — is an engineering problem. That's the one I solve.",
+    deliverables: [
+      { iconName: "Cpu", title: "Agent architecture & orchestration", description: "Planner-executor, tool-calling, and multi-agent patterns built on LangGraph, the OpenAI Agents SDK, or the Claude Agent SDK — chosen for your task, not for hype." },
+      { iconName: "Webhook", title: "Real tool & system integration", description: "Agents that actually do things: call your APIs, query your database, hit Slack, send email, update a CRM. Each tool is typed, permissioned, and audited." },
+      { iconName: "ShieldCheck", title: "Guardrails & human-in-the-loop", description: "Approval checkpoints on risky actions, scoped permissions, input/output filtering, and prompt-injection defenses so an agent can't be talked into deleting prod." },
+      { iconName: "FileSearch", title: "Memory & retrieval", description: "Short-term context management plus long-term memory and RAG so the agent remembers what matters and grounds its actions in your real knowledge base." },
+      { iconName: "BarChart3", title: "Evals & observability", description: "A golden task set, automated evals on every change, full trace logging, and cost dashboards. You only ship a new prompt or model when the evals stay green." },
+      { iconName: "Zap", title: "Cost & latency control", description: "Smaller models for routine steps, strong models reserved for hard reasoning, caching, and step limits — so a runaway loop can't quietly cost you hundreds of dollars." },
+    ],
+    techStack: [
+      { label: "Frameworks", items: ["LangGraph", "OpenAI Agents SDK", "Claude Agent SDK", "Vercel AI SDK"] },
+      { label: "Models", items: ["GPT-4o", "Claude", "Llama 3.1", "Mistral"] },
+      { label: "Memory/RAG", items: ["pgvector", "Pinecone", "Redis", "Cohere Rerank"] },
+      { label: "Ops", items: ["LangSmith", "Promptfoo", "Helicone", "Inngest"] },
+    ],
+    process: [
+      { title: "Scope the workflow", description: "Map the task the agent should own, where autonomy helps vs. hurts, and which steps need a human checkpoint. Some 'agents' should just be a script." },
+      { title: "Prototype + evals", description: "A working agent against a golden task set so quality and cost are measurable from day one." },
+      { title: "Harden", description: "Guardrails, permissions, retries, fallbacks, step limits, and prompt-injection defenses — the work that separates a demo from production." },
+      { title: "Ship + monitor", description: "Trace and cost dashboards, eval gates in CI, and prompt versioning so the agent stays reliable as models change." },
+    ],
+    proof: [
+      { value: "Eval-gated", label: "No agent change ships without passing the golden task set" },
+      { value: "Human-in-loop", label: "Approval checkpoints on every high-risk action" },
+      { value: "60%", label: "Typical token-cost cut via model routing + caching" },
+      { value: "Full traces", label: "Every agent run logged and replayable" },
+    ],
+    pricing: [
+      { name: "Agent Prototype", startingFrom: "$3,500", bestFor: "Validating one agent workflow", bullets: ["Single workflow, 2–4 tools", "Golden task set + basic evals", "Delivered in 2–3 weeks"] },
+      { name: "Production Agent", startingFrom: "$11,000", popular: true, bestFor: "Shipping an agent to real users/ops", bullets: ["Multi-step agent + real integrations", "Guardrails + human-in-the-loop", "Evals, tracing, cost dashboards"] },
+      { name: "Retainer", startingFrom: "$3,500/mo", bestFor: "Evolving agents over time", bullets: ["New tools + workflows", "Model migrations + eval upkeep", "Cost + reliability monitoring"] },
+    ],
+    faqs: [
+      { q: "What's the difference between an AI agent and a chatbot?", a: "A chatbot answers questions. An agent takes actions — it uses tools, queries systems, and completes multi-step tasks, often with limited human oversight. If you mainly need Q&A over your content, a RAG chatbot (see /services/ai-chatbot-development) is simpler and cheaper." },
+      { q: "Are autonomous agents actually reliable enough for production?", a: "For narrow, well-scoped workflows with guardrails and human checkpoints — yes. For open-ended 'do anything' autonomy — not yet, and I'll tell you so. The engineering is in scoping tightly, adding approval gates, and evaluating relentlessly." },
+      { q: "How do you stop an agent from doing something harmful?", a: "Scoped tool permissions, human approval on irreversible actions, input/output filtering, prompt-injection defenses, and hard step/cost limits. An agent should be incapable of the worst outcomes, not just discouraged from them." },
+      { q: "OpenAI, Claude, or open-source for agents?", a: "Claude and GPT-4o are both strong at tool use and reasoning; I benchmark on your task. Open-source (Llama, Mistral) when privacy or cost demands it. The orchestration layer is model-agnostic so you can switch as the frontier moves." },
+    ],
+    related: ["ai-integration", "ai-chatbot-development", "backend-development", "api-development"],
+  },
+
+  // ---------------------------------------------------------------- AI CHATBOT DEVELOPMENT
+  {
+    slug: "ai-chatbot-development",
+    category: "specialized",
+    iconName: "Sparkles",
+    metaTitle: "AI Chatbot Development — Custom RAG Assistants for Your Business",
+    metaDescription:
+      "Custom AI chatbot development. RAG assistants grounded in your docs, support bots, and on-site AI search with citations, streaming, and guardrails — built on OpenAI or Claude for production reliability.",
+    keywords: [
+      "AI chatbot development",
+      "custom chatbot developer",
+      "RAG chatbot",
+      "ChatGPT for your website",
+      "AI customer support bot",
+      "chatbot for documentation",
+      "OpenAI chatbot integration",
+      "Claude chatbot",
+      "AI assistant development",
+      "conversational AI developer",
+    ],
+    eyebrow: "AI Chatbot Development",
+    heroTitle: "A chatbot that knows your business — and cites its sources",
+    heroDescription:
+      "Custom RAG assistants grounded in your docs and data, with citations, streaming, and guardrails. Not a generic widget — an assistant that answers from your knowledge, not the open internet.",
+    lede: "A bare ChatGPT widget hallucinates about your product and frustrates customers. A grounded RAG assistant answers from your actual documentation, links to the source, escalates when it doesn't know, and gets smarter as you add content. That's the difference between a gimmick and a support deflection tool.",
+    deliverables: [
+      { iconName: "FileSearch", title: "RAG grounded in your content", description: "Ingestion pipeline for docs, help center, PDFs, and database content, with chunking, embeddings, hybrid search, and reranking so answers come from your knowledge — not the model's guesses." },
+      { iconName: "Sparkles", title: "Citations & honest 'I don't know'", description: "Every answer links to the source passage, and the bot is tuned to escalate or admit uncertainty instead of confidently making things up." },
+      { iconName: "Zap", title: "Streaming chat UI", description: "A fast, on-brand chat interface with token-by-token streaming, markdown, code blocks, and suggested follow-ups — embeddable as a widget or built into your app." },
+      { iconName: "Webhook", title: "Actions & handoff", description: "Beyond answers: book a demo, create a ticket, look up an order, or hand off to a human agent with full conversation context when needed." },
+      { iconName: "ShieldCheck", title: "Safety & rate limiting", description: "Prompt-injection defenses, content filtering, per-user rate limits, and PII handling so your chat endpoint isn't an abuse vector or a data-leak risk." },
+      { iconName: "BarChart3", title: "Analytics & continuous tuning", description: "Conversation logs, unanswered-question reports, thumbs-up/down feedback, and a loop to fill content gaps — the bot improves every week." },
+    ],
+    techStack: [
+      { label: "Models", items: ["GPT-4o", "Claude", "Haiku", "Embeddings"] },
+      { label: "RAG", items: ["pgvector", "Pinecone", "Weaviate", "Cohere Rerank"] },
+      { label: "UI", items: ["Next.js", "Vercel AI SDK", "Streaming SSE", "shadcn/ui"] },
+      { label: "Ops", items: ["LangSmith", "Helicone", "Resend", "PostHog"] },
+    ],
+    process: [
+      { title: "Content & use-case scoping", description: "What should it answer, from which sources, and what should it never do. Define escalation and tone." },
+      { title: "Ingestion + retrieval", description: "Build the pipeline, tune chunking and reranking, and validate answer quality against a question set." },
+      { title: "UI + guardrails", description: "Streaming chat interface, citations, rate limits, and safety filters wired in." },
+      { title: "Launch + improve", description: "Ship the widget, watch the logs, close content gaps, and tune weekly." },
+    ],
+    proof: [
+      { value: "Cited", label: "Every answer links back to its source passage" },
+      { value: "<1s", label: "Time-to-first-token targeted on streamed replies" },
+      { value: "Deflection", label: "Built to resolve common questions before they reach support" },
+      { value: "0", label: "PII leaked — filtered inputs and scoped retrieval" },
+    ],
+    pricing: [
+      { name: "Starter Bot", startingFrom: "$2,800", bestFor: "Docs/FAQ assistant", bullets: ["RAG over one content source", "Streaming widget + citations", "Delivered in 1–2 weeks"] },
+      { name: "Support Assistant", startingFrom: "$7,500", popular: true, bestFor: "Real support deflection", bullets: ["Multi-source RAG + actions", "Human handoff + ticketing", "Analytics + safety guardrails"] },
+      { name: "Retainer", startingFrom: "$2,500/mo", bestFor: "Ongoing tuning & content", bullets: ["Weekly answer-quality tuning", "Content-gap closing", "Model + cost optimisation"] },
+    ],
+    faqs: [
+      { q: "How is this different from just embedding ChatGPT?", a: "A raw ChatGPT embed answers from the model's general training and hallucinates about your specifics. A RAG assistant retrieves your actual documentation before answering, cites the source, and stays on-topic. For anything customer-facing, grounding is non-negotiable." },
+      { q: "Where does it get its knowledge?", a: "From sources you control — help center, docs, PDFs, knowledge base, even database records. When you update the content, the bot updates. It does not invent answers from the open web unless you explicitly want that." },
+      { q: "Can it do more than answer questions?", a: "Yes — it can take actions like creating a support ticket, looking up an order, or booking a demo, and hand off to a human with full context when needed. For heavier multi-step automation, that crosses into agent territory — see /services/ai-agent-development." },
+      { q: "What does it cost to run?", a: "Usually far less than people expect. I default to smaller models like Claude Haiku or GPT-4o-mini for most turns, cache aggressively, and reserve premium models for hard questions. I'll give you a realistic monthly token estimate up front." },
+    ],
+    related: ["ai-integration", "ai-agent-development", "web-development", "api-development"],
+  },
+
+  // ---------------------------------------------------------------- WEBSITE MAINTENANCE
+  {
+    slug: "website-maintenance",
+    category: "development",
+    iconName: "ShieldCheck",
+    metaTitle: "Website Maintenance & Support Services — Updates, Security, Speed",
+    metaDescription:
+      "Website maintenance and support services. Dependency updates, security patches, performance monitoring, uptime, backups, and small feature work — a reliable developer on retainer. Cancel any time.",
+    keywords: [
+      "website maintenance services",
+      "website support retainer",
+      "Next.js maintenance",
+      "React maintenance services",
+      "website security updates",
+      "dependency updates service",
+      "ongoing web development support",
+      "website monitoring service",
+      "developer on retainer",
+      "web app maintenance",
+    ],
+    eyebrow: "Website Maintenance",
+    heroTitle: "A reliable developer on call for your site",
+    heroDescription:
+      "Dependency updates, security patches, performance monitoring, backups, and small feature work — handled on a predictable retainer so your site stays fast, secure, and current.",
+    lede: "Software rots if you ignore it. Dependencies drift, security advisories pile up, performance quietly degrades, and one day something breaks at the worst possible moment. A maintenance retainer keeps your site healthy and gives you a developer who already knows your codebase the day you need a fix.",
+    deliverables: [
+      { iconName: "ShieldCheck", title: "Security & dependency updates", description: "Regular patching of packages and frameworks, monitoring of security advisories, and tested upgrades — so you're never running a vulnerable, three-major-versions-behind stack." },
+      { iconName: "Zap", title: "Performance & Core Web Vitals watch", description: "Ongoing monitoring of LCP, INP, CLS, and bundle size with fixes before regressions hurt rankings or conversions. Speed is maintained, not allowed to decay." },
+      { iconName: "Cloud", title: "Uptime, backups & monitoring", description: "Uptime checks, error tracking, automated backups, and SSL/domain renewal reminders. You hear about problems from me, not from an angry customer." },
+      { iconName: "Code2", title: "Small features & content changes", description: "New sections, copy updates, integrations, and bug fixes within your reserved hours each month — no scoping a separate project for every small change." },
+      { iconName: "BarChart3", title: "Monthly health report", description: "A short, plain-English report each month: what was updated, what was fixed, current performance and uptime, and what I recommend next. No black box." },
+      { iconName: "FileSearch", title: "Priority response", description: "When something breaks, you're not starting from scratch with a new freelancer — I already know your stack and can triage fast. Defined response times by tier." },
+    ],
+    techStack: [
+      { label: "Stacks", items: ["Next.js", "React", "Node.js", "WordPress"] },
+      { label: "Monitoring", items: ["Sentry", "Better Uptime", "Lighthouse CI", "CrUX"] },
+      { label: "Updates", items: ["Renovate", "Dependabot", "GitHub Actions"] },
+      { label: "Hosting", items: ["Vercel", "AWS", "Supabase", "Cloudflare"] },
+    ],
+    process: [
+      { title: "Onboarding audit", description: "I review your codebase, dependencies, security posture, and performance to establish a baseline and an immediate fix list." },
+      { title: "Stabilise", description: "Clear the urgent backlog — critical updates, security patches, and the worst performance issues — in the first cycle." },
+      { title: "Maintain", description: "Scheduled updates, monitoring, backups, and your reserved hours for changes each month." },
+      { title: "Report & plan", description: "Monthly health report plus a short call to plan the next improvements." },
+    ],
+    proof: [
+      { value: "Cancel anytime", label: "No long lock-in contracts on retainers" },
+      { value: "Same dev", label: "The person who maintains it can also fix it fast" },
+      { value: "Monitored", label: "Uptime, errors, and Core Web Vitals watched continuously" },
+      { value: "Reported", label: "Plain-English monthly health report every cycle" },
+    ],
+    pricing: [
+      { name: "Essential", startingFrom: "$300/mo", bestFor: "Brochure & marketing sites", bullets: ["Monthly updates + security patches", "Uptime + backup monitoring", "Up to 2 hrs of changes/mo"] },
+      { name: "Growth", startingFrom: "$750/mo", popular: true, bestFor: "Active sites & small apps", bullets: ["Everything in Essential", "Performance + CWV watch", "Up to 6 hrs of changes/mo", "Priority response"] },
+      { name: "Business", startingFrom: "$1,500/mo", bestFor: "Revenue-critical web apps", bullets: ["Everything in Growth", "Faster response SLA", "Up to 12 hrs of work/mo", "Monthly strategy call"] },
+    ],
+    faqs: [
+      { q: "Do you maintain sites you didn't build?", a: "Yes — most maintenance clients come with an existing site. I start with an onboarding audit so I understand the codebase, then stabilise the urgent issues before moving to steady-state maintenance." },
+      { q: "What if I need more hours one month?", a: "Reserved hours don't roll over, but you can buy extra at your tier's rate or temporarily move up a tier for a big month. No surprise invoices — anything beyond your plan is agreed in advance." },
+      { q: "Which platforms do you support?", a: "Next.js, React, and Node.js apps primarily, plus WordPress and headless setups. If you're on something I don't support well, I'll tell you honestly rather than take it on." },
+      { q: "Is there a long-term contract?", a: "No. Retainers are month-to-month and you can cancel any time. I'd rather keep clients because the service is worth it than because they're locked in." },
+    ],
+    related: ["web-development", "performance-optimization", "technical-seo", "website-redesign"],
+  },
+
+  // ---------------------------------------------------------------- WEBSITE REDESIGN
+  {
+    slug: "website-redesign",
+    category: "development",
+    iconName: "Layers",
+    metaTitle: "Website Redesign & Replatform Services — Faster, Modern, SEO-Safe",
+    metaDescription:
+      "Website redesign and replatforming services. Migrate to Next.js, modernise the UI, fix Core Web Vitals, and preserve SEO with a full redirect map. From dated WordPress to fast, modern web app.",
+    keywords: [
+      "website redesign services",
+      "website redesign developer",
+      "replatform to Next.js",
+      "WordPress to Next.js migration",
+      "website migration services",
+      "SEO-safe redesign",
+      "modernise website",
+      "website rebuild",
+      "redesign without losing SEO",
+      "site speed redesign",
+    ],
+    eyebrow: "Website Redesign",
+    heroTitle: "Redesign without throwing away your SEO",
+    heroDescription:
+      "Modernise the look, replatform to a fast stack, and fix Core Web Vitals — with a full redirect map and rank-watch so your traffic survives the relaunch instead of cratering.",
+    lede: "Most redesigns tank rankings because someone forgot the redirects, changed every URL, and shipped a slower site with prettier pictures. I treat a redesign as a migration project: new design and stack, yes — but with SEO equity, performance, and content preserved by default.",
+    deliverables: [
+      { iconName: "Layers", title: "Modern design & replatform", description: "A current, accessible, on-brand UI on a fast stack — typically Next.js — replacing dated themes, slow page builders, or unmaintainable legacy code." },
+      { iconName: "Search", title: "SEO-safe migration", description: "Full URL inventory, a 1:1 redirect map for every changed path, preserved (or improved) metadata and schema, and a recrawl plan. Rankings move up, not off a cliff." },
+      { iconName: "Zap", title: "Core Web Vitals overhaul", description: "The redesign is the moment to fix speed for good — image strategy, code splitting, render-blocking removal, and a real-world LCP under 2.5s on mid-range phones." },
+      { iconName: "FileSearch", title: "Content audit & migration", description: "Decide what to keep, merge, refresh, or retire. Your best-performing content carries over cleanly instead of getting lost in the rebuild." },
+      { iconName: "ShieldCheck", title: "Accessibility & responsive rebuild", description: "WCAG 2.1 AA targets, semantic markup, and a genuinely mobile-first layout — not a desktop design squeezed onto a phone." },
+      { iconName: "BarChart3", title: "Post-launch rank watch", description: "30 days of monitoring after relaunch: rankings, crawl errors, Core Web Vitals, and conversions — with fast fixes if anything dips." },
+    ],
+    techStack: [
+      { label: "Target stack", items: ["Next.js", "React", "Tailwind", "shadcn/ui"] },
+      { label: "Migration", items: ["Redirect maps", "Screaming Frog", "Search Console"] },
+      { label: "CMS", items: ["Sanity", "Contentful", "Headless WP", "MDX"] },
+      { label: "Quality", items: ["Lighthouse CI", "axe", "CrUX", "GA4"] },
+    ],
+    process: [
+      { title: "Audit & inventory", description: "Crawl the current site, inventory every URL and top content, and baseline rankings and performance before touching anything." },
+      { title: "Design & build", description: "New UI and replatform with deployed previews per page, so you approve real screens — not static mocks." },
+      { title: "Migrate & redirect", description: "1:1 redirect map, metadata/schema parity, content migration, and a pre-launch SEO checklist signed off before go-live." },
+      { title: "Launch & watch", description: "Relaunch, submit the new sitemap, and monitor rankings and Core Web Vitals for 30 days with fast fixes on standby." },
+    ],
+    proof: [
+      { value: "100%", label: "Changed URLs covered by a 1:1 redirect map" },
+      { value: "<2.5s", label: "Real-user LCP targeted post-redesign" },
+      { value: "30 days", label: "Post-launch rank + performance watch included" },
+      { value: "Preserved", label: "Top content and SEO equity carried through the rebuild" },
+    ],
+    pricing: [
+      { name: "Refresh", startingFrom: "$3,500", bestFor: "Modernise a small site", bullets: ["Up to ~10 pages redesigned", "Same URLs or simple redirects", "CWV + accessibility pass"] },
+      { name: "Replatform", startingFrom: "$9,500", popular: true, bestFor: "Migrate to a modern stack", bullets: ["Full redesign + Next.js rebuild", "Complete redirect map + content migration", "Schema + metadata parity", "30-day rank watch"] },
+      { name: "Enterprise", startingFrom: "$20,000", bestFor: "Large or complex sites", bullets: ["100+ pages or multi-locale", "Phased migration plan", "Custom CMS + design system"] },
+    ],
+    faqs: [
+      { q: "Will a redesign hurt my Google rankings?", a: "It can — that's the #1 risk of any redesign, and it's almost always caused by missing redirects, changed URLs, lost content, or a slower site. I plan for all four with a redirect map, content audit, performance budget, and a 30-day rank watch so traffic is protected." },
+      { q: "Can you keep my existing URLs?", a: "Where it makes sense, yes — keeping URLs is the safest path. When a restructure genuinely improves the site, I build a 1:1 redirect map so link equity transfers cleanly to the new paths." },
+      { q: "I'm on WordPress — should I move off it?", a: "Not automatically. If WordPress serves you, I'll modernise within it or go headless (WP backend, Next.js frontend) for speed. I only recommend a full replatform when the current setup is actively holding back performance, security, or growth." },
+      { q: "How long does a redesign take?", a: "A small refresh is 2–4 weeks. A full replatform with migration is 6–10 weeks depending on page count and content complexity. You get a milestone plan with deployed previews so you see progress throughout." },
+    ],
+    related: ["web-development", "website-maintenance", "performance-optimization", "technical-seo"],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePage | undefined {

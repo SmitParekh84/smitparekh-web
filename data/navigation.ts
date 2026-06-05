@@ -318,12 +318,22 @@ export const navItems: NavItem[] = [
             ],
           },
           {
-            title: "Mobile",
+            title: "Mobile, Care & Redesign",
             items: [
               {
                 href: "/services/mobile-app-development",
                 label: "Mobile App Development",
                 description: "React Native + Expo — iOS & Android from one codebase",
+              },
+              {
+                href: "/services/website-redesign",
+                label: "Website Redesign",
+                description: "Modernise & replatform without losing SEO",
+              },
+              {
+                href: "/services/website-maintenance",
+                label: "Website Maintenance",
+                description: "Updates, security, speed & support on retainer",
               },
             ],
           },
@@ -350,15 +360,30 @@ export const navItems: NavItem[] = [
                 label: "Local SEO",
                 description: "Google Business Profile, citations & reviews",
               },
-            ],
-          },
-          {
-            title: "Audits",
-            items: [
               {
                 href: "/services/seo-audit",
                 label: "SEO Audit",
-                description: "Severity-ranked report delivered in 5 business days",
+                description: "Severity-ranked report in 5 business days",
+              },
+            ],
+          },
+          {
+            title: "AI Search & Growth",
+            items: [
+              {
+                href: "/services/aeo-geo-optimization",
+                label: "AEO & GEO",
+                description: "Get cited by ChatGPT, Perplexity & AI Overviews",
+              },
+              {
+                href: "/services/content-seo",
+                label: "Content SEO",
+                description: "Content that ranks, converts & gets quoted",
+              },
+              {
+                href: "/services/conversion-rate-optimization",
+                label: "Conversion Optimization",
+                description: "Funnel analysis, A/B testing & friction removal",
               },
             ],
           },
@@ -368,23 +393,33 @@ export const navItems: NavItem[] = [
         title: "Products & AI",
         subCategories: [
           {
-            title: "Digital Products",
+            title: "AI Engineering",
+            items: [
+              {
+                href: "/services/ai-integration",
+                label: "AI Integration",
+                description: "OpenAI, Claude, RAG & evals in production",
+              },
+              {
+                href: "/services/ai-agent-development",
+                label: "AI Agents",
+                description: "Tool-using autonomous agents with guardrails",
+              },
+              {
+                href: "/services/ai-chatbot-development",
+                label: "AI Chatbots",
+                description: "RAG assistants grounded in your docs, with citations",
+              },
+            ],
+          },
+          {
+            title: "Products & Programs",
             items: [
               {
                 href: "/blog-api",
                 label: "Blog API",
                 description: "Hosted headless blog API for any project",
               },
-              {
-                href: "/services/ai-integration",
-                label: "AI Integration",
-                description: "OpenAI, Claude, RAG & evals in production",
-              },
-            ],
-          },
-          {
-            title: "Programs",
-            items: [
               {
                 href: "/for-students",
                 label: "For Students",
@@ -404,6 +439,16 @@ export const navItems: NavItem[] = [
                 href: "/services",
                 label: "All Services",
                 description: "Full overview of every service & engagement model",
+              },
+              {
+                href: "/full-stack-ai-developer",
+                label: "Full-Stack AI Developer",
+                description: "Ship apps with AI built in — one engineer, full stack",
+              },
+              {
+                href: "/ai-seo-consultant",
+                label: "AI SEO Consultant",
+                description: "SEO + AEO + GEO — rank on Google and inside AI answers",
               },
               {
                 href: "/hire-me",
