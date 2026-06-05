@@ -78,7 +78,7 @@ const personSchema = {
   mainEntityOfPage: siteConfig.url,
   jobTitle: "Full-Stack Web Developer",
   description:
-    "Full-Stack Web Developer with 4+ years delivering production applications for FinTech, SaaS, and enterprise clients. Specialises in React, Next.js, Node.js, TypeScript, and AWS.",
+    "Smit Parekh is a Full-Stack Web Developer based in Gujarat, India, with 4+ years building production web applications for FinTech, SaaS, AI/ML, and enterprise clients. He holds an AWS Certified Solutions Architect credential and a Google UX Design certification, and has shipped 20+ production systems including platforms handling 10,000+ daily API requests at 99.9% uptime. His primary stack is React, Next.js, Node.js, TypeScript, and PostgreSQL. Available globally as a freelance contractor.",
   email: siteConfig.email,
   image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
   gender: "https://schema.org/Male",
@@ -117,6 +117,10 @@ const personSchema = {
     siteConfig.social.instagram,
     siteConfig.social.upwork,
   ],
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["h1", ".hero-description", "meta[name='description']"],
+  },
   // ── AggregateRating: makes Google show ⭐⭐⭐⭐⭐ stars in search results ──
   aggregateRating: {
     "@type": "AggregateRating",
@@ -259,6 +263,7 @@ const reviewsSchema = {
         publisher: {
           "@type": "Organization",
           name: t.company,
+          ...(t.companyUrl ? { url: t.companyUrl } : {}),
         },
       },
     })),

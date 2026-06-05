@@ -23,6 +23,7 @@ import { optimizeImageUrl } from "@/lib/cloudinary";
 import { normalizeMarkdown } from "@/lib/markdown";
 import { formatDate } from "@/lib/date";
 import { BookCallButton } from "@/components/cal/BookCallButton";
+import { KeyTakeawaysBox, extractKeyTakeaways } from "@/components/blog/KeyTakeawaysBox";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -175,6 +176,9 @@ export default async function BlogPostPage({ params }: Props) {
   const specialist = pickSpecialist(blog.tags, blog.category);
   const fallbackOgImage = `${url}/opengraph-image`;
   const heroImage = blog.coverImage || fallbackOgImage;
+  const { takeaways, remainder: contentWithoutTakeaways } = extractKeyTakeaways(
+    blog.content ?? ""
+  );
   const wordCount = blog.content
     ? blog.content.trim().split(/\s+/).filter(Boolean).length
     : undefined;
@@ -215,6 +219,19 @@ export default async function BlogPostPage({ params }: Props) {
     articleSection: blog.category,
     inLanguage: "en",
     ...(wordCount ? { wordCount } : {}),
+    about: {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: "Smit Parekh",
+    },
+    mentions: [
+      {
+        "@type": "Person",
+        "@id": `${siteConfig.url}/#person`,
+        name: "Smit Parekh",
+        url: siteConfig.url,
+      },
+    ],
   };
 
   const breadcrumbSchema = {
@@ -310,6 +327,8 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Content */}
       <article className="page-section pt-10">
         <div className="page-container max-w-3xl">
+          <KeyTakeawaysBox items={takeaways} />
+
           <div className="prose prose-neutral dark:prose-invert max-w-none break-words prose-headings:tracking-tight prose-headings:font-bold prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-code:text-cyan-600 dark:prose-code:text-cyan-400 prose-code:before:content-none prose-code:after:content-none prose-code:bg-blue-500/8 dark:prose-code:bg-cyan-400/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:border prose-pre:border-border prose-img:rounded-xl prose-blockquote:border-l-blue-500 prose-blockquote:text-foreground">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -339,7 +358,7 @@ export default async function BlogPostPage({ params }: Props) {
                 ),
               }}
             >
-              {normalizeMarkdown(blog.content)}
+              {normalizeMarkdown(contentWithoutTakeaways)}
             </ReactMarkdown>
           </div>
 
