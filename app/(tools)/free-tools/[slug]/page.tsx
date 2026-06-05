@@ -11,6 +11,7 @@ import ToolRenderer from "@/components/tools/ToolRenderer";
 import ToolFAQ from "@/components/tools/ToolFAQ";
 import ToolHowItWorks from "@/components/tools/ToolHowItWorks";
 import RelatedTools from "@/components/tools/RelatedTools";
+import ToolBottomContent from "@/components/tools/ToolBottomContent";
 import { ToolLoginCTA } from "@/components/tools/ToolLoginCTA";
 
 interface Props {
@@ -270,6 +271,9 @@ export default async function ToolPage({ params }: Props) {
         {content && content.relatedSlugs.length > 0 && (
           <RelatedTools relatedSlugs={content.relatedSlugs} />
         )}
+
+        {/* Bottom SEO content + lead-gen CTA (every tool page) */}
+        <ToolBottomContent slug={slug} toolName={shortTitle} />
 
         {/* Back link */}
         <section className="pb-16">

@@ -11,6 +11,17 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
+    id: 11,
+    name: "Fatima Abdulla",
+    company: "Enliven Counselling Center, Dubai",
+    companyUrl: "https://www.enlivencounsellingcenter.com",
+    quote:
+      "Smit took care of our website, SEO, and lead generation end to end. He improved the site, made it faster and easier to find on Google, and the enquiries from clients across Dubai and the UAE grew steadily. He understood what a counselling practice needs and communicated clearly throughout. A reliable partner for any business in the Gulf.",
+    rating: 5,
+    initials: "FA",
+    avatarColor: "from-teal-500 to-emerald-500",
+  },
+  {
     id: 1,
     name: "Preet Patel",
     company: "Java Heaven Pvt.",

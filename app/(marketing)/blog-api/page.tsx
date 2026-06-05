@@ -14,6 +14,8 @@ import {
   Building2,
   Briefcase,
   BookOpen,
+  Gift,
+  Heart,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
@@ -22,18 +24,21 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Headless Blog API — Add a Blog to Any Site in Minutes",
+  title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
   description:
-    "Power your Next.js project, business site, or SaaS dashboard with a fast, hosted headless blog API. JSON endpoints, Markdown content, image hosting, drafts, categories, and tags — no CMS to maintain.",
+    "A free, hosted headless blog API for any developer. Power your Next.js project, business site, or SaaS dashboard with JSON endpoints, Markdown content, image hosting, drafts, categories, and tags — no CMS to maintain, no credit card.",
   alternates: { canonical: `${siteConfig.url}/blog-api` },
   robots: { index: true, follow: true },
   keywords: [
+    "free blog API",
+    "free headless blog API",
     "headless blog API",
     "blog API",
     "blog as a service",
     "Next.js blog API",
     "JSON blog API",
     "headless CMS alternative",
+    "free headless CMS",
     "blog backend",
     "REST blog API",
     "hosted blog API",
@@ -43,15 +48,16 @@ export const metadata: Metadata = {
     "add a blog to my site",
     "headless blog for SaaS",
     "blog API X-API-Key",
+    "free blog backend for developers",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/blog-api`,
-    title: "Headless Blog API — Add a Blog to Any Site in Minutes",
+    title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
     description:
-      "Hosted headless blog API for Next.js projects, business sites, and SaaS dashboards. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags. No CMS to maintain.",
+      "A free, hosted headless blog API for any developer. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags. Plug it into Next.js, your business site, or your SaaS. No CMS to maintain.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -66,9 +72,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Headless Blog API — Add a Blog to Any Site in Minutes",
+    title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
     description:
-      "Hosted blog API with Markdown, JSON, image hosting, drafts, categories, tags. Plug it into Next.js, your business site, or your SaaS.",
+      "A free hosted blog API with Markdown, JSON, image hosting, drafts, categories, tags. Plug it into Next.js, your business site, or your SaaS.",
     images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
   },
 };
@@ -141,6 +147,55 @@ const faqSchema = {
     },
   ],
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Blog API", item: `${siteConfig.url}/blog-api` },
+  ],
+};
+
+const stats = [
+  { value: "100%", label: "Free for developers" },
+  { value: "6", label: "REST endpoints" },
+  { value: "JSON", label: "+ Markdown content" },
+  { value: "CDN", label: "image hosting included" },
+];
+
+const comparison = [
+  {
+    feature: "Setup time",
+    api: "Minutes — copy a key, fetch JSON",
+    wordpress: "Hours — host, install, secure, update",
+    cms: "An afternoon of config + billing setup",
+  },
+  {
+    feature: "Hosting & maintenance",
+    api: "None — fully hosted for you",
+    wordpress: "You own servers, updates & security",
+    cms: "Hosted, but vendor lock-in",
+  },
+  {
+    feature: "Cost",
+    api: "Free during beta, no credit card",
+    wordpress: "Hosting + plugins + your time",
+    cms: "Free tier, then per-seat pricing",
+  },
+  {
+    feature: "Frontend freedom",
+    api: "Any stack — JSON in, render anywhere",
+    wordpress: "Themes, or headless with extra work",
+    cms: "Headless, but schema-locked",
+  },
+  {
+    feature: "Best for",
+    api: "Devs adding a blog to an existing app",
+    wordpress: "Standalone content sites",
+    cms: "Large editorial teams",
+  },
+];
 
 const useCases = [
   {
@@ -312,11 +367,15 @@ export default function BlogApiLandingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       <PageHero
-        eyebrow="Blog API"
-        title="Add a blog to any site in minutes"
-        description="A hosted, headless blog API for Next.js projects, business sites, and SaaS dashboards. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags — no CMS to maintain."
+        eyebrow="Free Blog API"
+        title="Add a blog to any site in minutes — for free"
+        description="A free, hosted headless blog API for Next.js projects, business sites, and SaaS dashboards. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags — no CMS to maintain, no credit card."
         icon={BookOpen}
         align="center"
       />
@@ -346,6 +405,23 @@ export default function BlogApiLandingPage() {
           <p className="mt-3 text-center text-xs text-muted-foreground">
             Free during beta · Approval within 24 hours · No credit card required
           </p>
+
+          {/* Trust / stats strip */}
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border border-border bg-card px-4 py-3 text-center"
+              >
+                <p className="text-xl sm:text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+                  {s.value}
+                </p>
+                <p className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -544,6 +620,131 @@ export default function BlogApiLandingPage() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      {/* Comparison */}
+      <section className="page-section pt-0">
+        <div className="page-container max-w-4xl">
+          <div className="mx-auto max-w-2xl text-center mb-8">
+            <Badge variant="secondary" className="mb-3">
+              How it compares
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Blog API vs. WordPress vs. a headless CMS
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground">
+              If you just need a blog inside an app you already have, a hosted JSON
+              API beats standing up a whole CMS.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto -mx-4 px-4">
+            <table className="w-full min-w-[640px] border-separate border-spacing-0 text-sm">
+              <thead>
+                <tr>
+                  <th className="w-[160px] pb-3 text-left text-xs font-semibold uppercase tracking-widest text-muted-foreground" />
+                  <th className="pb-3 px-4">
+                    <div className="rounded-t-2xl bg-gradient-to-b from-blue-500/15 to-blue-500/5 border border-b-0 border-blue-500/30 px-4 py-3 text-center">
+                      <p className="font-bold text-base text-blue-500">Blog API</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">This product</p>
+                    </div>
+                  </th>
+                  <th className="pb-3 px-4">
+                    <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 py-3 text-center">
+                      <p className="font-semibold text-base">WordPress</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">Self-hosted</p>
+                    </div>
+                  </th>
+                  <th className="pb-3 px-4">
+                    <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 py-3 text-center">
+                      <p className="font-semibold text-base">Headless CMS</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">SaaS</p>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparison.map((row, i) => {
+                  const isLast = i === comparison.length - 1;
+                  const cellBase = "px-4 py-3.5 text-center text-xs text-muted-foreground align-top";
+                  const meCellBg = "bg-blue-500/5 border-x border-blue-500/30";
+                  const otherCellBg = "bg-card border-x border-border";
+                  return (
+                    <tr key={row.feature} className={i % 2 === 0 ? "" : "bg-muted/10"}>
+                      <td className="py-3.5 pr-4 text-xs font-medium text-foreground/80 align-top">
+                        {row.feature}
+                      </td>
+                      <td
+                        className={cn(
+                          cellBase,
+                          meCellBg,
+                          isLast && "rounded-b-2xl border-b border-blue-500/30"
+                        )}
+                      >
+                        <span className="flex flex-col items-center gap-1">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                          <span className="font-medium text-foreground/90">{row.api}</span>
+                        </span>
+                      </td>
+                      <td className={cn(cellBase, otherCellBg, isLast && "rounded-b-2xl border-b border-border")}>
+                        {row.wordpress}
+                      </td>
+                      <td className={cn(cellBase, otherCellBg, isLast && "rounded-b-2xl border-b border-border")}>
+                        {row.cms}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Why it's free */}
+      <section className="page-section pt-0">
+        <div className="page-container max-w-4xl">
+          <div className="rounded-3xl border border-border bg-card p-8 sm:p-10">
+            <div className="flex flex-col sm:flex-row gap-6 sm:items-start">
+              <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-500">
+                <Gift className="h-6 w-6" />
+              </div>
+              <div>
+                <Badge variant="secondary" className="mb-3">
+                  <Heart className="mr-1 h-3 w-3 text-rose-500" />
+                  Why it&apos;s free
+                </Badge>
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  Free for every developer — here&apos;s the honest reason
+                </h2>
+                <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  I built this Blog API for my own projects, and running it for other
+                  developers costs me almost nothing extra — so it&apos;s free for anyone to
+                  use. It&apos;s also the clearest demo of how I build: a multi-tenant,
+                  documented, production API that you can actually plug in today. If it
+                  saves you a weekend, great. And if you later need a custom API, a SaaS
+                  backend, or a full web app built the same way, you already know what
+                  you&apos;ll get.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/dashboard/blog/onboarding"
+                    className={cn(buttonVariants({ size: "default" }), "gap-1.5")}
+                  >
+                    Get your free API key
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/services/api-development"
+                    className={cn(buttonVariants({ variant: "outline", size: "default" }), "gap-1.5")}
+                  >
+                    Need a custom API?
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
