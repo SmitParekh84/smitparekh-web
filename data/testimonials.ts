@@ -2,6 +2,7 @@ export interface Testimonial {
   id: number;
   name: string;
   company: string;
+  companyUrl?: string;
   quote: string;
   rating: number;
   initials: string;
@@ -13,6 +14,7 @@ export const testimonials: Testimonial[] = [
     id: 1,
     name: "Preet Patel",
     company: "Java Heaven Pvt.",
+    companyUrl: "https://www.linkedin.com/company/java-heaven/",
     quote:
       "Smit's expertise in web development transformed our online presence. He delivered high-quality work on time and was always available for support. Highly recommended!",
     rating: 4,
@@ -23,6 +25,7 @@ export const testimonials: Testimonial[] = [
     id: 2,
     name: "Dhairya Mehata",
     company: "Techno Hub",
+    companyUrl: "https://www.linkedin.com/company/techno-hub/",
     quote:
       "Working with Smit was a game changer for our marketing strategy. His creative insights and attention to detail helped us reach our goals effectively.",
     rating: 4,
@@ -63,6 +66,7 @@ export const testimonials: Testimonial[] = [
     id: 6,
     name: "Riya Kapoor",
     company: "FinFlow",
+    companyUrl: "https://www.upwork.com/freelancers/~018877bbeb80ff2d25",
     quote:
       "Our checkout conversion jumped 23% after Smit rebuilt the funnel. He thinks in business outcomes, not just lines of code.",
     rating: 5,
