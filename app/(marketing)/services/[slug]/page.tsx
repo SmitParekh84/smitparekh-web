@@ -38,6 +38,7 @@ import {
   servicePages,
   getServiceBySlug,
   getRelatedServices,
+  serviceOgImageUrl,
   type ServicePage,
 } from "@/data/services-catalog";
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
@@ -80,6 +81,10 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
   const url = `${siteConfig.url}/services/${service.slug}`;
+  // Existing services keep their hand-made static OG card; new services that
+  // don't have one fall back to a dynamically generated card. Existing pages
+  // are unaffected.
+  const ogImage = serviceOgImageUrl(siteConfig.url, service.slug);
   return {
     title: service.metaTitle,
     description: service.metaDescription,
@@ -95,7 +100,7 @@ export async function generateMetadata({
       description: service.metaDescription,
       images: [
         {
-          url: `${siteConfig.url}/images/services-og/${service.slug}.png`,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: service.heroTitle,
@@ -109,7 +114,7 @@ export async function generateMetadata({
       creator: siteConfig.twitterHandle,
       title: service.metaTitle,
       description: service.metaDescription,
-      images: [`${siteConfig.url}/images/services-og/${service.slug}.png`],
+      images: [ogImage],
     },
   };
 }
