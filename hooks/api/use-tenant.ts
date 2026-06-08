@@ -49,6 +49,37 @@ export function useRegenerateApiKey() {
   });
 }
 
+export function useUpdateWebhook() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { url?: string; enabled?: boolean }) => tenantApi.updateWebhook(data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.tenant.me() });
+      toast.success("Webhook saved");
+    },
+    onError: (err: ApiError) => toast.error("Failed", err.message),
+  });
+}
+
+export function useRegenerateWebhookSecret() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => tenantApi.regenerateWebhookSecret(),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: queryKeys.tenant.me() });
+      toast.success("Secret generated", "Copy it into your site's REVALIDATE_SECRET.");
+    },
+    onError: (err: ApiError) => toast.error("Failed", err.message),
+  });
+}
+
+export function useTestWebhook() {
+  return useMutation({
+    mutationFn: () => tenantApi.testWebhook(),
+    onError: (err: ApiError) => toast.error("Test failed", err.message),
+  });
+}
+
 export function useMyBlogs() {
   return useQuery({
     queryKey: queryKeys.tenant.myBlogs(),

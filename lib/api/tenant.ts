@@ -19,6 +19,13 @@ export interface Tenant {
   blogPreferences?: BlogPreferences;
   // Feature keys the tenant requested but the admin hasn't granted yet.
   featureRequests?: string[];
+  webhook?: {
+    url: string;
+    enabled: boolean;
+    secretSet: boolean;
+    lastFiredAt: string | null;
+    lastStatus: number | null;
+  };
 }
 
 export interface TenantBlog {
@@ -49,6 +56,19 @@ export const tenantApi = {
     api.get<{ success: boolean; data: Tenant }>("/tenants/me"),
   regenerateKey: () =>
     api.post<{ success: boolean; data: { apiKey: string } }>("/tenants/me/regenerate-key"),
+  updateWebhook: (data: { url?: string; enabled?: boolean }) =>
+    api.put<{ success: boolean; data: { webhook: NonNullable<Tenant["webhook"]> } }>(
+      "/tenants/me/webhook",
+      data
+    ),
+  regenerateWebhookSecret: () =>
+    api.post<{ success: boolean; data: { secret: string } }>(
+      "/tenants/me/webhook/regenerate-secret"
+    ),
+  testWebhook: () =>
+    api.post<{ success: boolean; data: { ok: boolean; status: number; firedAt: string } }>(
+      "/tenants/me/webhook/test"
+    ),
 
   listMyBlogs: () =>
     api.get<{ success: boolean; count: number; data: TenantBlog[] }>("/tenants/me/blogs"),
