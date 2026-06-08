@@ -532,7 +532,7 @@ function WebhooksCard({ tenant }: { tenant: Tenant }) {
           {wh?.lastFiredAt && (
             <span className="text-[12px] text-muted-foreground">
               Last fired {new Date(wh.lastFiredAt).toLocaleString()}
-              {wh.lastStatus ? ` · HTTP ${wh.lastStatus}` : ""}
+              {wh.lastStatus ? ` · HTTP ${wh.lastStatus}` : " · no response"}
             </span>
           )}
         </div>
