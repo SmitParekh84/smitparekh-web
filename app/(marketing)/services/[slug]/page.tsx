@@ -42,6 +42,7 @@ import {
   type ServicePage,
 } from "@/data/services-catalog";
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
+import { ServiceAuthorBio } from "@/components/sections/ServiceAuthorBio";
 
 export const dynamicParams = false;
 
@@ -281,6 +282,8 @@ export default async function ServicePageRoute({
                   ))}
                 </div>
               </div>
+
+              <ServiceAuthorBio />
             </div>
 
             <div className="lg:sticky lg:top-24">
