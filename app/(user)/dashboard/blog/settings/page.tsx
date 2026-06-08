@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { BLOG_CATEGORIES, type BlogPreferences } from "@/lib/blog-categories";
@@ -39,6 +40,9 @@ import {
   useUpdateMyPreferences,
   useRequestFeature,
   useRegenerateApiKey,
+  useUpdateWebhook,
+  useRegenerateWebhookSecret,
+  useTestWebhook,
 } from "@/hooks/api/use-tenant";
 import { toast } from "@/lib/toast";
 import type { Tenant } from "@/lib/api/tenant";
@@ -84,7 +88,7 @@ export default function BlogSettingsPage() {
       <ApiKeyCard tenant={tenant} />
       <PreferencesCard key={tenant._id} preferences={tenant.blogPreferences} />
       <AiFeaturesCard tenant={tenant} />
-      <WebhooksCard />
+      <WebhooksCard tenant={tenant} />
       <DangerZoneCard />
     </div>
   );
@@ -386,33 +390,151 @@ function AiFeaturesCard({ tenant }: { tenant: Tenant }) {
   );
 }
 
-/* ─── Webhooks (coming soon) ─────────────────────────────────────────────── */
-function WebhooksCard() {
+/* ─── Webhooks (real: URL + secret + test) ──────────────────────────────── */
+function WebhooksCard({ tenant }: { tenant: Tenant }) {
+  const wh = tenant.webhook;
+  const [url, setUrl] = useState(wh?.url ?? "");
+  const [enabled, setEnabled] = useState(wh?.enabled ?? false);
+  const [revealed, setRevealed] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const save = useUpdateWebhook();
+  const regen = useRegenerateWebhookSecret();
+  const test = useTestWebhook();
+
+  async function handleSave() {
+    try {
+      await save.mutateAsync({ url: url.trim(), enabled });
+    } catch {
+      /* toast handled in hook */
+    }
+  }
+
+  async function handleGenerate() {
+    if (wh?.secretSet && !confirm("Generate a new secret? The current one stops working immediately.")) {
+      return;
+    }
+    try {
+      const res = await regen.mutateAsync();
+      setRevealed(res.data.secret);
+    } catch {
+      /* toast handled in hook */
+    }
+  }
+
+  async function copySecret() {
+    if (!revealed) return;
+    await navigator.clipboard.writeText(revealed);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }
+
+  async function handleTest() {
+    try {
+      const res = await test.mutateAsync();
+      if (res.data.ok) {
+        toast.success("Webhook delivered", `Your endpoint returned HTTP ${res.data.status}.`);
+      } else {
+        toast.error(
+          "Webhook failed",
+          res.data.status ? `Endpoint returned HTTP ${res.data.status}.` : "No response — check the URL and secret."
+        );
+      }
+    } catch {
+      /* toast handled in hook */
+    }
+  }
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
         <div>
           <CardTitle className="text-base">Webhooks</CardTitle>
           <CardDescription>
-            Notify your server when posts change so you can rebuild or invalidate caches.
+            Notify your site when posts change so it can purge its cache. We POST{" "}
+            <code className="font-mono text-[12px]">post.published</code>,{" "}
+            <code className="font-mono text-[12px]">post.updated</code> and{" "}
+            <code className="font-mono text-[12px]">post.deleted</code> with the secret in the{" "}
+            <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">x-revalidate-secret</code>{" "}
+            header.
           </CardDescription>
         </div>
-        <SoonBadge />
+        <Webhook className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
       </CardHeader>
-      <CardContent>
-        <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-10 text-center">
-          <div className="grid h-10 w-10 place-items-center rounded-full border border-border bg-muted/40 text-muted-foreground">
-            <Webhook className="h-4 w-4" />
+      <CardContent className="space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="webhook-url">Webhook URL</Label>
+          <Input
+            id="webhook-url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="https://yoursite.com/api/revalidate"
+            className="h-10 font-mono text-[12.5px]"
+          />
+        </div>
+
+        <div className="flex items-center justify-between gap-3 rounded-md border border-border bg-muted/30 p-3">
+          <div>
+            <div className="text-[13px] font-medium">Enabled</div>
+            <div className="text-[12px] text-muted-foreground">
+              Fire webhooks automatically on publish, update and delete.
+            </div>
           </div>
-          <p className="text-sm font-medium">Webhooks are coming soon</p>
-          <p className="max-w-sm text-[12.5px] text-muted-foreground">
-            You&rsquo;ll be able to fire <code className="font-mono">post.published</code>,{" "}
-            <code className="font-mono">post.updated</code> and{" "}
-            <code className="font-mono">post.deleted</code> events to your own endpoint.
-          </p>
-          <Button variant="outline" size="sm" disabled className="mt-1">
-            Add webhook
+          <Switch checked={enabled} onCheckedChange={setEnabled} />
+        </div>
+
+        {revealed ? (
+          <div className="space-y-1.5">
+            <Label>New secret (shown once — copy it now)</Label>
+            <div className="flex flex-wrap items-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-2">
+              <code className="flex-1 truncate font-mono text-[12.5px] text-foreground/90">{revealed}</code>
+              <Button variant="outline" size="sm" className="gap-1.5" onClick={copySecret}>
+                {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? "Copied" : "Copy"}
+              </Button>
+            </div>
+            <p className="text-[12px] text-muted-foreground">
+              Paste this into your site&rsquo;s <code className="font-mono">REVALIDATE_SECRET</code> env var.
+            </p>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-2 rounded-md border border-border p-3">
+            <div className="text-[12.5px] text-muted-foreground">
+              {wh?.secretSet ? "A secret is set." : "No secret yet."} Generating a new one invalidates the old.
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
+              disabled={regen.isPending}
+              onClick={handleGenerate}
+            >
+              {regen.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
+              {wh?.secretSet ? "Regenerate secret" : "Generate secret"}
+            </Button>
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-2">
+          <Button onClick={handleSave} disabled={save.isPending} className="gap-2">
+            {save.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+            Save webhook
           </Button>
+          <Button
+            variant="outline"
+            onClick={handleTest}
+            disabled={test.isPending || !wh?.secretSet || !url.trim()}
+            className="gap-2"
+          >
+            {test.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Webhook className="h-4 w-4" />}
+            Send test
+          </Button>
+          {wh?.lastFiredAt && (
+            <span className="text-[12px] text-muted-foreground">
+              Last fired {new Date(wh.lastFiredAt).toLocaleString()}
+              {wh.lastStatus ? ` · HTTP ${wh.lastStatus}` : ""}
+            </span>
+          )}
         </div>
       </CardContent>
     </Card>
