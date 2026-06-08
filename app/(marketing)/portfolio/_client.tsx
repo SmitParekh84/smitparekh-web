@@ -8,6 +8,7 @@ import { ArrowRight, Briefcase, Compass, PenTool, Hammer, Rocket } from "lucide-
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { StaggerGrid, StaggerItem } from "@/components/ui/motion";
 
 // Server-provided card shape. The parent server component fetches case studies
 // with fetchAllCaseStudies() so the grid (and its <a> links) render in the SSR
@@ -64,7 +65,7 @@ function Card({ project }: { project: PortfolioCard }) {
     <Wrapper
       {...wrapperProps}
       className={cn(
-        "group relative flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all",
+        "group relative flex h-full flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all",
         hasSlug && "hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/5"
       )}
     >
@@ -246,11 +247,16 @@ export default function PortfolioClient({
                   <p className="text-base">No projects in this category yet.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <StaggerGrid
+                  key={selectedCategory}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
                   {filtered.map((card) => (
-                    <Card key={card.slug || card.title} project={card} />
+                    <StaggerItem key={card.slug || card.title} className="h-full">
+                      <Card project={card} />
+                    </StaggerItem>
                   ))}
-                </div>
+                </StaggerGrid>
               )}
             </>
           )}
@@ -272,30 +278,29 @@ export default function PortfolioClient({
               in the loop.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {PROCESS_STEPS.map((step, i) => {
               const Icon = step.icon;
               return (
-                <div
-                  key={step.title}
-                  className="rounded-2xl border border-border bg-card p-6 hover:border-blue-500/40 transition-colors"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/15 p-2.5 text-blue-500">
-                      <Icon className="h-5 w-5" />
+                <StaggerItem key={step.title} className="h-full">
+                  <div className="h-full rounded-2xl border border-border bg-card p-6 hover:border-blue-500/40 transition-colors">
+                    <div className="flex items-start gap-3">
+                      <div className="rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/15 p-2.5 text-blue-500">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-xs font-mono text-muted-foreground/60 mt-1">
+                        0{i + 1}
+                      </span>
                     </div>
-                    <span className="text-xs font-mono text-muted-foreground/60 mt-1">
-                      0{i + 1}
-                    </span>
+                    <h3 className="text-base font-semibold mt-4">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
-                  <h3 className="text-base font-semibold mt-4">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
