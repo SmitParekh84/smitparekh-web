@@ -236,9 +236,10 @@ const reviewsSchema = {
       item: {
         "@type": "Review",
         itemReviewed: {
-          "@type": "Person",
-          "@id": `${siteConfig.url}/#person`,
-          name: "Smit Parekh",
+          "@type": "Organization",
+          "@id": `${siteConfig.url}/#org`,
+          name: "Smit Parekh - Freelance Web Development",
+          url: siteConfig.url,
         },
         author: {
           "@type": "Person",
