@@ -4,6 +4,7 @@ import StatsBar from "@/components/sections/StatsBar";
 import Services from "@/components/sections/Services";
 import FeaturedTools from "@/components/sections/FeaturedTools";
 import Portfolio from "@/components/sections/Portfolio";
+import LatestPosts from "@/components/sections/LatestPosts";
 import Skills from "@/components/sections/Skills";
 import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
@@ -302,6 +303,7 @@ export default function HomePage() {
       <Services />
       <FeaturedTools />
       <Portfolio />
+      <LatestPosts />
       <Skills />
       <Testimonials />
       <FAQ />

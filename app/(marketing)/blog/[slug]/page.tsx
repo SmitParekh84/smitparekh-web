@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { developerPages } from "@/data/developer-pages";
 import { fetchAllBlogs, fetchBlogBySlug } from "@/lib/server/blogs";
+import type { BackendBlog } from "@/types";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { normalizeMarkdown } from "@/lib/markdown";
 import { formatDate } from "@/lib/date";
@@ -155,22 +156,48 @@ function pickSpecialist(tags: string[], category: string) {
   return developerPages.find((p) => p.slug === "full-stack-developer")!;
 }
 
+// Pick related posts by relevance instead of category-only.
+// Scoring: shared tags (strongest) + same category + a small recency boost.
+// The recency term means freshly-published posts bubble into other posts'
+// related lists once those pages revalidate — so a new article gets linked
+// from more places instead of only the blog index (the orphan-page problem
+// behind "Discovered – currently not indexed").
+function pickRelated(
+  current: BackendBlog,
+  all: BackendBlog[],
+  limit: number
+): BackendBlog[] {
+  const currentTags = new Set(current.tags.map((t) => t.toLowerCase().trim()));
+  const times = all
+    .map((b) => new Date(b.publishedAt).getTime())
+    .filter((n) => Number.isFinite(n));
+  const newest = times.length ? Math.max(...times) : 0;
+  const oldest = times.length ? Math.min(...times) : 0;
+  const span = newest - oldest || 1;
+
+  return all
+    .filter((b) => b.slug !== current.slug)
+    .map((b) => {
+      const sharedTags = b.tags.filter((t) =>
+        currentTags.has(t.toLowerCase().trim())
+      ).length;
+      const sameCategory = b.category === current.category ? 1 : 0;
+      const recency = (new Date(b.publishedAt).getTime() - oldest) / span; // 0..1
+      const score = sharedTags * 3 + sameCategory * 2 + recency; // recency < 1 = tiebreak only
+      return { b, score };
+    })
+    .sort((x, y) => y.score - x.score)
+    .slice(0, limit)
+    .map((x) => x.b);
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const blog = await fetchBlogBySlug(slug);
   if (!blog) notFound();
 
   const all = await fetchAllBlogs();
-  const related = all
-    .filter((b) => b.slug !== blog.slug && b.category === blog.category)
-    .slice(0, 3);
-  const fillers = all
-    .filter(
-      (b) =>
-        b.slug !== blog.slug && !related.some((r) => r.slug === b.slug)
-    )
-    .slice(0, 3 - related.length);
-  const relatedFinal = [...related, ...fillers].slice(0, 3);
+  const relatedFinal = pickRelated(blog, all, 3);
 
   const url = `${siteConfig.url}/blog/${blog.slug}`;
   const specialist = pickSpecialist(blog.tags, blog.category);
