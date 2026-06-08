@@ -234,7 +234,7 @@ export default function Navbar({
                         <div className="flex min-h-[220px]">
 
                           {/* Column 1: Main categories */}
-                          <div className="w-40 shrink-0 bg-muted/40 dark:bg-muted/20 border-r border-border p-3 flex flex-col gap-0.5">
+                          <div className="w-60 shrink-0 bg-muted/40 dark:bg-muted/20 border-r border-border p-3 flex flex-col gap-0.5">
                             <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
                               Category
                             </p>
@@ -262,7 +262,7 @@ export default function Navbar({
                           </div>
 
                           {/* Column 2: Sub-categories */}
-                          <div className="w-44 shrink-0 border-r border-border p-3 flex flex-col gap-0.5">
+                          <div className="w-60 shrink-0 border-r border-border p-3 flex flex-col gap-0.5">
                             <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
                               {activeCat.title}
                             </p>
@@ -280,7 +280,7 @@ export default function Navbar({
                                       : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
                                   )}
                                 >
-                                  <span className="flex-1">{sub.title}</span>
+                                  <span className="flex-1 whitespace-nowrap">{sub.title}</span>
                                   <span className={cn(
                                     "text-[10px] px-1.5 py-0.5 rounded-full shrink-0 transition-colors",
                                     isActive ? "bg-blue-500/15 text-blue-600 dark:text-blue-400" : "bg-muted text-muted-foreground"
@@ -298,7 +298,7 @@ export default function Navbar({
                             <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3 px-0.5">
                               {activeSub.title}
                             </p>
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 gap-2">
                               {activeSub.items.map((item) => (
                                 <Link
                                   key={item.href}

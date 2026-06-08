@@ -472,7 +472,6 @@ export const navItems: NavItem[] = [
     ],
   },
   { href: "/blog", label: "Blog" },
-  { href: "/blog-api", label: "Blog API" },
   { href: "/about", label: "About" },
   { href: "/hire-me", label: "Hire Me" },
   { href: "/contact", label: "Contact" },

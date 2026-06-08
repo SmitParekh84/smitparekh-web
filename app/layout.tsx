@@ -19,6 +19,8 @@ import { getFeaturedNavTools } from "@/lib/featured-nav-tools";
 
 const GA_MEASUREMENT_ID = "G-X9NMSPMQPD";
 const GTM_ID = "GTM-529BP97T";
+const GOOGLE_SANS_HREF =
+  "https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -121,10 +123,24 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/*
+          Non-render-blocking webfont load. The stylesheet would otherwise block
+          first paint until Google Fonts responds (was a major FCP contributor).
+          Trick: preload the CSS, attach it as media="print" (ignored for screen
+          so it doesn't block render), then a tiny afterInteractive script flips
+          it to media="all". With display=swap the fallback paints instantly and
+          upgrades to Google Sans once loaded. <noscript> covers JS-off clients.
+        */}
+        <link rel="preload" as="style" href={GOOGLE_SANS_HREF} />
         <link
-          href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+          id="google-sans-css"
           rel="stylesheet"
+          href={GOOGLE_SANS_HREF}
+          media="print"
         />
+        <noscript>
+          <link rel="stylesheet" href={GOOGLE_SANS_HREF} />
+        </noscript>
         {/*
           GTM is loaded afterInteractive (not beforeInteractive) so it does
           NOT block the critical rendering path. This improves LCP typically
@@ -157,6 +173,10 @@ export default async function RootLayout({
             <CalProvider />
           </ThemeProvider>
         </QueryProvider>
+        {/* Promote the print-media font stylesheet to screen once parsed. */}
+        <Script id="google-sans-swap" strategy="afterInteractive">
+          {`(function(){var l=document.getElementById('google-sans-css');if(l)l.media='all';})();`}
+        </Script>
         <Analytics />
         <SpeedInsights />
         {/* GTM — afterInteractive keeps it off the critical path */}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Hero from "@/components/sections/Hero";
 import StatsBar from "@/components/sections/StatsBar";
 import Services from "@/components/sections/Services";
@@ -303,7 +304,9 @@ export default function HomePage() {
       <Services />
       <FeaturedTools />
       <Portfolio />
-      <LatestPosts />
+      <Suspense fallback={null}>
+        <LatestPosts />
+      </Suspense>
       <Skills />
       <Testimonials />
       <FAQ />

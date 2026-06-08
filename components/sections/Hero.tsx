@@ -39,15 +39,19 @@ const container = {
   visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
 };
 
+// NOTE: no `opacity` in these variants on purpose. Framer Motion serializes
+// the `hidden` state into the SSR HTML; an opacity:0 hero means FCP/LCP can't
+// fire until JS hydrates and animates it in (was costing ~4s FCP / ~9s LCP in
+// field data). Animating transform-only keeps the entrance while letting the
+// above-the-fold content paint immediately on the server.
 const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as any } },
+  hidden: { y: 24 },
+  visible: { y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as any } },
 };
 
 const imageVariant = {
-  hidden: { opacity: 0, scale: 0.88 },
+  hidden: { scale: 0.92 },
   visible: {
-    opacity: 1,
     scale: 1,
     transition: { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] as any },
   },
