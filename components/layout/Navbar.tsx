@@ -344,7 +344,7 @@ export default function Navbar({
 
             {/* Free Tools - click-to-open dropdown */}
             {showToolsDropdown && (
-              <div ref={toolsRef} className="relative">
+              <div ref={toolsRef}>
                 <button
                   onClick={() => setToolsOpen((v) => !v)}
                   className={cn(
