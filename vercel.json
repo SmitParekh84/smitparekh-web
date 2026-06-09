@@ -6,6 +6,12 @@
       "permanent": true
     },
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "smitparekh.co.in" }],
+      "destination": "https://www.smitparekh.co.in/:path*",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "hire.smitparekh.co.in" }],
       "destination": "https://www.smitparekh.co.in/contact",
