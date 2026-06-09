@@ -4,7 +4,11 @@ import { toolsSEO } from "@/data/tools-seo";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY ?? "";
+// Falls back to the production key that's served at /<key>.txt and hardcoded as
+// the default in the backend (smitparekh-api/utils/indexnow.js). Keeping the
+// same default here means this route never 500s on a missing env var, and the
+// key submitted always matches the live key file (IndexNow validates against it).
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "cb7b59c028d84fefb520f83b95862778";
 
 const STATIC_URLS = [
   siteConfig.url,
