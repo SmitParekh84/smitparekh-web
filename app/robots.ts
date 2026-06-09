@@ -31,8 +31,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "CCBot", disallow: "/" },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
-    // The robots `Host:` directive must be a bare hostname — including the
-    // scheme (https://) makes validators report "Syntax not understood".
-    host: new URL(siteConfig.url).host,
+    // No `Host:` directive — it's a Yandex-only extension that Bing and Google
+    // don't understand. Bing Webmaster Tools flags it as "Syntax not understood",
+    // which suppressed crawling/indexing. Canonical host is enforced via the
+    // www→apex (or apex→www) redirect + the canonical tag in metadata instead.
   };
 }

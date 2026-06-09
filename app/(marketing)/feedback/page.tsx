@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import { MessageSquare } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
+import { siteConfig } from "@/data/site";
 import FeedbackClientPage from "./_client";
 
 export const metadata: Metadata = {
   title: "Feedback & Bug Reports",
   description:
     "Share your feedback or report a bug on Smit Parekh's portfolio tools. All submissions are reviewed personally.",
+  alternates: { canonical: `${siteConfig.url}/feedback` },
   openGraph: {
     title: "Feedback & Bug Reports | Smit Parekh",
     description:
       "Help improve the tools — share feedback or report a bug. No login required.",
-    url: "https://www.smitparekh.co.in/feedback",
+    url: `${siteConfig.url}/feedback`,
   },
 };
 

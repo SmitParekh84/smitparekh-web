@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ResumeViewer from "@/components/sections/ResumeViewer";
+import { siteConfig } from "@/data/site";
 
 const RESUME_PDF_PATH = "/Smit_Parekh_FullStack.pdf";
 const RESUME_FILE_NAME = "Smit_Parekh_FullStack.pdf";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Resume - Smit Parekh",
   description:
     "View the resume of Smit Parekh - Full Stack Developer. React, Node.js, TypeScript, AWS.",
+  alternates: { canonical: `${siteConfig.url}/resume` },
   openGraph: {
     title: "Resume - Smit Parekh",
     description:

@@ -80,9 +80,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: siteConfig.url,
-  },
+  // NOTE: no `alternates.canonical` here on purpose. A canonical set in the
+  // root layout is inherited by every descendant route that doesn't declare
+  // its own, so any page missing a canonical would wrongly self-canonicalize
+  // to the homepage. Each indexable page sets its own canonical; the home
+  // page does so in app/page.tsx.
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "32x32" },
