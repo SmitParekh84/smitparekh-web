@@ -26,7 +26,11 @@ async function safeFetch<T>(
     const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
     const res = await fetch(url, {
       signal: controller.signal,
-      next: { revalidate: 86400, tags: ["blogs"] },
+      // 5-min ISR fallback so new posts self-heal even if the revalidate
+      // webhook never lands. The page is force-busted on publish via
+      // revalidateTag("blogs", "max"); this is the safety net, not the
+      // primary path. (A 24h value here defeated the page-level 5-min window.)
+      next: { revalidate: 300, tags: ["blogs"] },
       headers: { Accept: "application/json" },
     });
     clearTimeout(timer);
