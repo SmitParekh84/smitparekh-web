@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
-import { personNode } from "@/lib/seo/schema";
+import { personNode, aggregateRatingSchema } from "@/lib/seo/schema";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
@@ -188,13 +188,6 @@ export default async function GeoDeveloperPage({ params }: Props) {
       description: `Fixed-price and retainer engagements. Invoicing in USD or ${c.currencyCode}. Free quote within 24 hours.`,
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: siteConfig.aggregateRating.ratingValue,
-      reviewCount: siteConfig.aggregateRating.reviewCount,
-      bestRating: siteConfig.aggregateRating.bestRating,
-      worstRating: siteConfig.aggregateRating.worstRating,
-    },
   };
 
   const faqSchema = {
@@ -218,6 +211,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema()) }} />
 
       {/* Hero */}
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
