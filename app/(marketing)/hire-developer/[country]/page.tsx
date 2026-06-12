@@ -180,7 +180,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
     url,
     areaServed: [
       { "@type": "Country", name: c.country },
-      ...c.cities.map((city) => ({ "@type": "City", name: city })),
+      ...c.cities.map((city) => ({ "@type": "Place", name: city })),
     ],
     offers: {
       "@type": "Offer",
