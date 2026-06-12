@@ -11,7 +11,6 @@ const PRIVATE_PATHS = [
   "/dashboard/",
   "/login",
   "/auth/",
-  "/sitemap-html",
 ];
 
 // Major AI / answer-engine crawlers we explicitly welcome onto public pages for
