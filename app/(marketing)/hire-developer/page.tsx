@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC | Smit Parekh",
     description:
       "Remote full-stack developer for UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman. React, Next.js & Node.js on a Gulf-timezone overlap.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`,
+        width: 1200,
+        height: 630,
+        alt: "Hire a Full-Stack Developer in the Gulf — Smit Parekh",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -40,6 +48,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC",
     description: "Remote full-stack developer for the GCC. React, Next.js & Node.js on a Gulf-timezone overlap.",
+    images: [`${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`],
   },
 };
 

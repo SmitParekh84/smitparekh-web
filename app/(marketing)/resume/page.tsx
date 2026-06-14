@@ -15,12 +15,21 @@ export const metadata: Metadata = {
     description:
       "View the resume of Smit Parekh - Full Stack Developer. React, Node.js, TypeScript, AWS.",
     type: "profile",
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-resume.png`,
+        width: 1200,
+        height: 630,
+        alt: "Resume — Smit Parekh, Full Stack Developer",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Resume - Smit Parekh",
     description:
       "View the resume of Smit Parekh - Full Stack Developer. React, Node.js, TypeScript, AWS.",
+    images: [`${siteConfig.url}/images/smit-parekh-resume.png`],
   },
 };
 

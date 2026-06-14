@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Generative Engine Optimization (GEO) — Get Cited by AI | Smit Parekh",
     description:
       "What GEO is and how to get your brand recommended inside ChatGPT, Perplexity, and AI Overviews — entity SEO, structured answers, quotable stats, and schema.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, width: 1200, height: 630, alt: "Generative Engine Optimization (GEO) — Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`, width: 1200, height: 630, alt: "Generative Engine Optimization (GEO) — Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Generative Engine Optimization (GEO) — Get Cited by AI | Smit Parekh",
     description:
       "Get your brand cited inside ChatGPT, Perplexity, and AI Overviews. GEO explained and done for you.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home.png`],
+    images: [`${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`],
   },
   keywords: [
     "generative engine optimization", "GEO", "what is GEO", "GEO services", "GEO consultant",
@@ -126,7 +126,7 @@ const articleSchema = {
   publisher: personNode(),
   mainEntityOfPage: `${siteConfig.url}/generative-engine-optimization`,
   url: `${siteConfig.url}/generative-engine-optimization`,
-  image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  image: `${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`,
 };
 
 const serviceSchema = {

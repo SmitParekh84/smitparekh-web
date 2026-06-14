@@ -14,6 +14,14 @@ export const metadata: Metadata = {
     description:
       "Help improve the tools — share feedback or report a bug. No login required.",
     url: `${siteConfig.url}/feedback`,
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-feedback.png`,
+        width: 1200,
+        height: 630,
+        alt: "Feedback & Bug Reports — Smit Parekh",
+      },
+    ],
   },
 };
 

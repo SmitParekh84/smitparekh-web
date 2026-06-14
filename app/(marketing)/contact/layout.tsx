@@ -25,7 +25,7 @@ export const metadata: Metadata = {
       "Discuss your web development project with Smit Parekh. Reply within 24 hours, scoped proposal within 48.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+        url: `${siteConfig.url}/images/smit-parekh-contact.png`,
         width: 1200,
         height: 630,
         alt: "Smit Parekh - Full Stack Developer",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "Discuss your web development project - React, Next.js, Node.js. Reply within 24 hours.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+        url: `${siteConfig.url}/images/smit-parekh-contact.png`,
         width: 1200,
         height: 630,
         alt: "Smit Parekh - Full Stack Developer",

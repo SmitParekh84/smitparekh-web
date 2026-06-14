@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Hire a Full-Stack AI Developer — Web Apps with AI Built In | Smit Parekh",
     description:
       "Full-stack AI developer — Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, and agents. One engineer who builds the app and the AI inside it.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, width: 1200, height: 630, alt: "Hire a Full-Stack AI Developer — Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-full-stack-ai-developer.png`, width: 1200, height: 630, alt: "Hire a Full-Stack AI Developer — Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Hire a Full-Stack AI Developer — Web Apps with AI Built In | Smit Parekh",
     description:
       "Full-stack AI developer — Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals. One engineer, full ownership.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home.png`],
+    images: [`${siteConfig.url}/images/hire-full-stack-ai-developer.png`],
   },
   keywords: [
     "full-stack AI developer", "hire full-stack AI developer", "AI app developer",

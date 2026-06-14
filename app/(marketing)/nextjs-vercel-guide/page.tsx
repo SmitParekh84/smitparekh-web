@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Deploy your Next.js app to Vercel in 15 minutes — GitHub import, env vars, custom domain, preview deployments, and production gotchas.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+        url: `${siteConfig.url}/images/smit-parekh-nextjs-vercel-guide.png`,
         width: 1200,
         height: 630,
         alt: "How to Deploy Next.js to Vercel — Step-by-Step Guide",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "How to Deploy Next.js to Vercel: Step-by-Step Guide (2026)",
     description:
       "Deploy Next.js to Vercel in 15 min. GitHub import, env vars, custom domain, preview deploys, and gotchas.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png` }],
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-nextjs-vercel-guide.png` }],
   },
   keywords: [
     "deploy next.js to vercel",

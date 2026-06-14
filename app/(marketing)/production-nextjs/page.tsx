@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
     description:
       "App Router architecture, 95+ Lighthouse, TypeScript strict, ISR, structured data, Vercel CI/CD. Written by a developer who ships production Next.js every week.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, width: 1200, height: 630 }],
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-production-nextjs.png`, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
     description: "What separates production Next.js from a tutorial — App Router, Lighthouse 95+, TypeScript strict, ISR, and Vercel CI/CD.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png` }],
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-production-nextjs.png` }],
   },
   keywords: [
     "production next.js 2026", "next.js best practices 2026", "next.js app router guide",

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "A transparent product changelog. Every release, every new tool, every fix — in plain English.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+        url: `${siteConfig.url}/images/smit-parekh-changelog.png`,
         width: 1200,
         height: 630,
         alt: "Smit Parekh - Changelog",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Changelog - Latest Features & Updates | Smit Parekh",
     description:
       "A transparent product changelog. Every release, every new tool, every fix.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
+    images: [`${siteConfig.url}/images/smit-parekh-changelog.png`],
   },
 };
 

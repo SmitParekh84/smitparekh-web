@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     description:
       "Pick a 15-minute slot to discuss your project — scope, timeline, and tech recommendations.",
     url: `${siteConfig.url}/book`,
+    images: [
+      {
+        url: `${siteConfig.url}/images/smit-parekh-book-a-call.png`,
+        width: 1200,
+        height: 630,
+        alt: "Book a 15-min call with Smit Parekh",
+      },
+    ],
   },
   robots: { index: true, follow: true },
 };

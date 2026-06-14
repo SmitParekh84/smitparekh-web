@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "AI SEO Consultant — SEO + AEO + GEO | Smit Parekh",
     description:
       "Rank on Google and inside AI answers. SEO, AEO, and GEO from a developer who fixes Core Web Vitals, schema, and content — and measures your citation rate in ChatGPT and Perplexity.",
-    images: [{ url: `${siteConfig.url}/images/Smit-Parekh-Home.png`, width: 1200, height: 630, alt: "AI SEO Consultant — Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-ai-seo-consultant.png`, width: 1200, height: 630, alt: "AI SEO Consultant — Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "AI SEO Consultant — SEO + AEO + GEO | Smit Parekh",
     description:
       "SEO + AEO + GEO. Rank on Google and get cited by ChatGPT, Perplexity, and AI Overviews — by a developer who ships the fixes.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home.png`],
+    images: [`${siteConfig.url}/images/smit-parekh-ai-seo-consultant.png`],
   },
   keywords: [
     "AI SEO consultant", "AI SEO services", "SEO and AEO consultant", "GEO consultant",

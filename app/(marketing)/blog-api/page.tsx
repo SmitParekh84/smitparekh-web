@@ -60,7 +60,7 @@ export const metadata: Metadata = {
       "A free, hosted headless blog API for any developer. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags. Plug it into Next.js, your business site, or your SaaS. No CMS to maintain.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
+        url: `${siteConfig.url}/images/smit-parekh-blog-api.png`,
         width: 1200,
         height: 630,
         alt: "Smit Parekh — Headless Blog API",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
     description:
       "A free hosted blog API with Markdown, JSON, image hosting, drafts, categories, tags. Plug it into Next.js, your business site, or your SaaS.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
+    images: [`${siteConfig.url}/images/smit-parekh-blog-api.png`],
   },
 };
 
