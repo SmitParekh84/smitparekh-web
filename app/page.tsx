@@ -13,6 +13,7 @@ import CTABanner from "@/components/sections/CTABanner";
 import { siteConfig } from "@/data/site";
 import { faqData } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
+import { credentialNodes } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
   title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
@@ -119,6 +120,16 @@ const personSchema = {
     siteConfig.social.instagram,
     siteConfig.social.upwork,
   ],
+  hasCredential: credentialNodes(),
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Full-Stack Web Developer",
+    occupationLocation: { "@type": "Country", name: "India" },
+    skills:
+      "React, Next.js, Node.js, TypeScript, PostgreSQL, AWS, Technical SEO, SaaS development",
+    responsibilities:
+      "Designs, builds, deploys, and maintains production web applications end-to-end — frontend, backend, database, and cloud infrastructure.",
+  },
   speakable: {
     "@type": "SpeakableSpecification",
     cssSelector: ["h1", ".hero-description", "meta[name='description']"],
@@ -144,6 +155,8 @@ const organizationSchema = {
     siteConfig.social.linkedin,
     siteConfig.social.github,
     siteConfig.social.upwork,
+    siteConfig.social.x,
+    siteConfig.social.instagram,
   ],
   aggregateRating: {
     "@type": "AggregateRating",

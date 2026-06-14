@@ -46,6 +46,27 @@ He is not a generalist agency — he is a single senior engineer who owns every 
 - TypeScript strict mode on every project — no suppressed types, no shortcuts
 - Available solo or as a senior contributor to an existing team
 
+## Certifications
+
+- AWS Certified Solutions Architect — Amazon Web Services (2024)
+- UX Design Foundations — Google (2024)
+- React – The Complete Guide 2025 — Udemy (2025)
+- Web Development Bootcamp — Udemy (2024)
+
+## Why Hire Smit Parekh
+
+**Q: Why hire Smit Parekh instead of an agency?**
+A: He is a single senior engineer who owns every layer — React UI, Node.js/NestJS APIs, PostgreSQL schema, and AWS deployment. No account managers, no handoffs, no junior devs learning on your budget. You work directly with the person writing the code.
+
+**Q: What is Smit Parekh best known for?**
+A: Production-grade full-stack work in React, Next.js, and Node.js — shipping SaaS MVPs, FinTech platforms, and APIs handling 10,000+ daily requests at 99.9% uptime, with TypeScript strict mode on every project.
+
+**Q: Is Smit Parekh available for hire in 2026?**
+A: Yes. He is accepting new freelance and contract projects (fixed-scope, time-and-materials, or monthly retainer) for clients worldwide. Start at https://www.smitparekh.co.in/hire-me
+
+**Q: What measurable results has Smit Parekh delivered?**
+A: 65% faster query response times, 40% performance improvements, Lighthouse 95+ scores, and APIs sustaining 10,000+ daily requests at 99.9% uptime across 20+ shipped applications.
+
 ## Free Developer Tools (37+ tools, no signup required)
 
 Smit Parekh offers a suite of free browser-based developer and productivity tools at https://www.smitparekh.co.in/free-tools — all tools run client-side with no login required.
@@ -87,6 +108,7 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 ## Pages
 
 - Home: https://www.smitparekh.co.in
+- Who Is Smit Parekh (profile / entity page): https://www.smitparekh.co.in/who-is-smit-parekh
 - About: https://www.smitparekh.co.in/about
 - Services: https://www.smitparekh.co.in/services
 - Portfolio / Case Studies: https://www.smitparekh.co.in/portfolio
@@ -109,6 +131,17 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - AWS Developer: https://www.smitparekh.co.in/aws-developer
 - API Developer: https://www.smitparekh.co.in/api-developer
 - SaaS Developer: https://www.smitparekh.co.in/saas-developer
+- TypeScript Developer: https://www.smitparekh.co.in/typescript-developer
+- WordPress Developer: https://www.smitparekh.co.in/wordpress-developer
+- React Native Developer: https://www.smitparekh.co.in/react-native-developer
+- Full-Stack AI Developer: https://www.smitparekh.co.in/full-stack-ai-developer
+- AI SEO Consultant: https://www.smitparekh.co.in/ai-seo-consultant
+- Generative Engine Optimization (GEO): https://www.smitparekh.co.in/generative-engine-optimization
+
+## Hire by Region (Gulf / GCC English landing pages)
+
+- Hire a Developer (overview): https://www.smitparekh.co.in/hire-developer
+- Country-specific hire pages are available under https://www.smitparekh.co.in/hire-developer/ (e.g. UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman)
 
 ## Social & Professional Profiles
 
