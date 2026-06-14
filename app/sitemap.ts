@@ -47,6 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/react-native-developer`,  priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-react-native-developer.png`] },
     // Tier 4 — supporting pages
     { url: `${base}/about`,                   priority: 0.75, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
+    { url: `${base}/who-is-smit-parekh`,      priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/for-students`,            priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/for-students.png`] },
     { url: `${base}/faq`,                     priority: 0.65, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/production-nextjs`,       priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },

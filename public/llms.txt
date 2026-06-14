@@ -108,6 +108,7 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 ## Pages
 
 - Home: https://www.smitparekh.co.in
+- Who Is Smit Parekh (profile / entity page): https://www.smitparekh.co.in/who-is-smit-parekh
 - About: https://www.smitparekh.co.in/about
 - Services: https://www.smitparekh.co.in/services
 - Portfolio / Case Studies: https://www.smitparekh.co.in/portfolio
