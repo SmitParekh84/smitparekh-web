@@ -1,6 +1,19 @@
 import { siteConfig } from "@/data/site";
+import { certifications } from "@/data/about";
 import type { ToolSEO } from "@/data/tools-seo";
 import type { HowToStep } from "@/data/tools-howto";
+
+// Machine-readable certifications for E-E-A-T / AEO. Shared so the homepage
+// Person, the about-page Person, and every service-page Person all carry the
+// same credential graph instead of stating them only in prose.
+export function credentialNodes() {
+  return certifications.map((cert) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: cert.name,
+    credentialCategory: "Certificate",
+    recognizedBy: { "@type": "Organization", name: cert.issuer },
+  }));
+}
 
 export function howToSchema(slug: string, tool: ToolSEO, steps: HowToStep[]) {
   const shortTitle = tool.title.split(" - ")[0];
@@ -37,7 +50,10 @@ export function personNode() {
       siteConfig.social.linkedin,
       siteConfig.social.github,
       siteConfig.social.x,
+      siteConfig.social.instagram,
+      siteConfig.social.upwork,
     ],
+    hasCredential: credentialNodes(),
   };
 }
 
