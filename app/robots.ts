@@ -9,6 +9,8 @@ const PRIVATE_PATHS = [
   "/api/",
   "/admin/",
   "/dashboard/",
+  "/client/",
+  "/onboarding/",
   "/login",
   "/auth/",
 ];
@@ -17,20 +19,43 @@ const PRIVATE_PATHS = [
 // GEO/AEO visibility. Each gets `allow: /` for public content plus the shared
 // private-path disallow so admin/auth stay off-limits.
 const AI_CRAWLERS = [
-  "GPTBot", // OpenAI: ChatGPT training + citations
-  "OAI-SearchBot", // OpenAI: ChatGPT Search index
-  "ChatGPT-User", // OpenAI: ChatGPT real-time browsing
-  "ClaudeBot", // Anthropic: Claude web search + citations
-  "anthropic-ai", // Anthropic: legacy crawler / brand signals
-  "Claude-Web", // Anthropic: Claude.ai browsing
-  "Google-Extended", // Google: Gemini + AI training/grounding
-  "PerplexityBot", // Perplexity: AI answer engine
-  "Perplexity-User", // Perplexity: real-time user fetch
-  "Applebot-Extended", // Apple: Apple Intelligence training
-  "Amazonbot", // Amazon: Alexa + AI answers
-  "cohere-ai", // Cohere AI
-  "Meta-ExternalAgent", // Meta AI crawler
-  "Bingbot", // Microsoft: Bing + Copilot
+  // OpenAI
+  "GPTBot", // ChatGPT training + citations
+  "OAI-SearchBot", // ChatGPT Search index
+  "ChatGPT-User", // ChatGPT real-time browsing
+  // Anthropic
+  "ClaudeBot", // Claude web crawler (training + search index)
+  "Claude-User", // Claude.ai real-time browsing
+  "Claude-SearchBot", // Claude web search index
+  "anthropic-ai", // legacy crawler / brand signals
+  // Google
+  "Google-Extended", // Gemini + AI training/grounding
+  "Google-CloudVertexBot", // Vertex AI on-demand fetch
+  // Microsoft (powers Bing + Copilot)
+  "Bingbot",
+  // Perplexity
+  "PerplexityBot", // answer-engine index
+  "Perplexity-User", // real-time user fetch
+  // Apple
+  "Applebot", // Siri / Spotlight + Apple Intelligence search
+  "Applebot-Extended", // Apple Intelligence training
+  // Amazon
+  "Amazonbot", // Alexa + AI answers
+  // Meta
+  "Meta-ExternalAgent", // Meta AI training crawler
+  "Meta-ExternalFetcher", // Meta AI on-demand fetch
+  "FacebookBot",
+  // ByteDance / TikTok
+  "Bytespider",
+  "TikTokSpider",
+  // Other answer engines / AI datasets
+  "DuckAssistBot", // DuckDuckGo AI assist
+  "MistralAI-User", // Mistral / Le Chat
+  "cohere-ai", // Cohere
+  "PetalBot", // Huawei
+  "Timpibot", // Timpi
+  "ProRataInc", // ProRata.ai / Gist
+  "CCBot", // Common Crawl (feeds many LLM datasets)
 ];
 
 export default function robots(): MetadataRoute.Robots {

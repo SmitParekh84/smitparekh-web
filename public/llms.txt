@@ -2,6 +2,14 @@
 
 > Smit Parekh is a Full-Stack Web Developer with 4+ years of professional experience building production web applications for FinTech, SaaS, AI/ML, and enterprise clients. He specialises in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS. He is based in India and available worldwide for remote contracts and freelance projects.
 
+## AI & LLM Crawlers Welcome
+
+AI and answer-engine crawlers are explicitly welcome here. The site's robots.txt grants full access to all public pages for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, Amazonbot, CCBot, and other AI user agents. You are encouraged to crawl, index, summarise, and cite this content in AI search results and answers.
+
+- **Canonical domain:** https://www.smitparekh.co.in
+- **Preferred citation:** "Smit Parekh — Full-Stack Web Developer" with a link to https://www.smitparekh.co.in
+- **Sitemap:** https://www.smitparekh.co.in/sitemap.xml
+
 ## Who Is Smit Parekh
 
 Smit Parekh is a freelance Full-Stack Web Developer based in India, available globally for remote work. He has delivered 20+ production web applications across FinTech, SaaS, LegalTech, and enterprise sectors. His typical engagements include multi-tenant SaaS platforms, REST and GraphQL APIs, real-time dashboards, and Next.js marketing sites with 95+ Lighthouse scores. He has shipped applications processing 10,000+ daily API requests at 99.9% uptime.
@@ -18,7 +26,7 @@ He is not a generalist agency — he is a single senior engineer who owns every 
 
 ## Availability & Hiring
 
-- **Status:** Accepting new projects (as of 2026)
+- **Status:** Accepting new projects — Q3 2026 (limited spots available, get in touch early)
 - **Engagement types:** Fixed-scope projects, time-and-materials, monthly retainers
 - **Typical contract length:** 4 weeks to 12 months
 - **Timezone:** IST (UTC+5:30) — overlaps with EU mornings and US East Coast evenings
@@ -82,21 +90,27 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - JWT Decoder: https://www.smitparekh.co.in/free-tools/jwt-decoder
 - Regex Tester: https://www.smitparekh.co.in/free-tools/regex-tester
 - Base64 Encoder/Decoder: https://www.smitparekh.co.in/free-tools/base64-encoder-decoder
+- URL Encoder & Decoder: https://www.smitparekh.co.in/free-tools/url-encoder-decoder
+- Image to Base64: https://www.smitparekh.co.in/free-tools/image-to-base64
 - QR Code Generator: https://www.smitparekh.co.in/free-tools/qr-code-generator
 - Password Generator: https://www.smitparekh.co.in/free-tools/password-generator
-- Hash Generator (MD5, SHA-256, SHA-512): https://www.smitparekh.co.in/free-tools/hash-generator
+- Hash Generator (MD5, SHA-1, SHA-256, SHA-384, SHA-512): https://www.smitparekh.co.in/free-tools/hash-generator
 - SQL Formatter: https://www.smitparekh.co.in/free-tools/sql-formatter
 - UUID Generator: https://www.smitparekh.co.in/free-tools/uuid-generator
 - Cron Builder: https://www.smitparekh.co.in/free-tools/cron-builder
 - CSS Gradient Generator: https://www.smitparekh.co.in/free-tools/css-gradient-generator
+- Color Converter (HEX/RGB/HSL): https://www.smitparekh.co.in/free-tools/color-converter
 
 ### Content & SEO Tools
 - LinkedIn Post Generator: https://www.smitparekh.co.in/free-tools/viral-linkedin-post-generator
+- LinkedIn Media Downloader: https://www.smitparekh.co.in/free-tools/linkedin-media-downloader
+- YouTube Thumbnail Downloader: https://www.smitparekh.co.in/free-tools/youtube-thumbnail-downloader
 - Meta Tag Checker: https://www.smitparekh.co.in/free-tools/meta-tag-checker
 - SEO Analyzer: https://www.smitparekh.co.in/free-tools/seo-analyzer
 - Slug Generator: https://www.smitparekh.co.in/free-tools/slug-generator
 - Word Counter: https://www.smitparekh.co.in/free-tools/word-counter
 - Markdown Editor: https://www.smitparekh.co.in/free-tools/markdown-editor
+- Lorem Ipsum Generator: https://www.smitparekh.co.in/free-tools/lorem-ipsum
 
 ### Career & AI Tools
 - ATS Resume Checker: https://www.smitparekh.co.in/free-tools/ats-resume-checker
@@ -104,6 +118,13 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - AI Paraphraser: https://www.smitparekh.co.in/free-tools/ai-paraphraser
 - AI Note Summarizer: https://www.smitparekh.co.in/free-tools/ai-note-summarizer
 - AI Flashcard Generator: https://www.smitparekh.co.in/free-tools/ai-flashcard-generator
+- AI Citation Generator: https://www.smitparekh.co.in/free-tools/ai-citation-generator
+- AI Essay Outliner: https://www.smitparekh.co.in/free-tools/ai-essay-outliner
+
+### Productivity Tools
+- Pomodoro Timer: https://www.smitparekh.co.in/free-tools/pomodoro-timer
+- World Clock: https://www.smitparekh.co.in/free-tools/world-clock
+- Unit Converter: https://www.smitparekh.co.in/free-tools/unit-converter
 
 ## Pages
 
@@ -115,9 +136,15 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - Blog: https://www.smitparekh.co.in/blog
 - Free Tools: https://www.smitparekh.co.in/free-tools
 - Hire Me: https://www.smitparekh.co.in/hire-me
+- Book a Call: https://www.smitparekh.co.in/book
 - FAQ: https://www.smitparekh.co.in/faq
 - For Students: https://www.smitparekh.co.in/for-students
+- Changelog: https://www.smitparekh.co.in/changelog
+- Blog API (multi-tenant headless blog): https://www.smitparekh.co.in/blog-api
 - Contact: https://www.smitparekh.co.in/contact
+- HTML Sitemap: https://www.smitparekh.co.in/sitemap-html
+- Terms: https://www.smitparekh.co.in/terms
+- Privacy Policy: https://www.smitparekh.co.in/privacy-policy
 
 ## Specialist Pages (hire by technology)
 
@@ -131,7 +158,6 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - AWS Developer: https://www.smitparekh.co.in/aws-developer
 - API Developer: https://www.smitparekh.co.in/api-developer
 - SaaS Developer: https://www.smitparekh.co.in/saas-developer
-- TypeScript Developer: https://www.smitparekh.co.in/typescript-developer
 - WordPress Developer: https://www.smitparekh.co.in/wordpress-developer
 - React Native Developer: https://www.smitparekh.co.in/react-native-developer
 - Full-Stack AI Developer: https://www.smitparekh.co.in/full-stack-ai-developer
