@@ -28,6 +28,7 @@ export const footerData: FooterData = {
     { href: "/about", label: "About" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/blog", label: "Blog" },
+    { href: "/guides", label: "Guides" },
     { href: "/free-tools", label: "Free Tools" },
     { href: "/hire-developer", label: "Gulf Clients" },
     { href: "/faq", label: "FAQ" },

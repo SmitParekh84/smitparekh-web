@@ -57,6 +57,54 @@ export function personNode() {
   };
 }
 
+// Article schema for long-form guide pages. Carries datePublished/dateModified
+// (freshness for Google) and an inline Person author/publisher node so each
+// page's JSON-LD graph stands on its own for AI answer-engine citation.
+export function articleSchema(opts: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified: string;
+  section?: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.headline,
+    description: opts.description,
+    url: opts.url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": opts.url },
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    ...(opts.section ? { articleSection: opts.section } : {}),
+    image: opts.image ?? `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+    author: personNode(),
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#org`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    inLanguage: "en",
+  };
+}
+
+// BreadcrumbList from an ordered list of { name, url } crumbs.
+export function breadcrumbListSchema(crumbs: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  };
+}
+
 export function faqPageSchema(faqs: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
