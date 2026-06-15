@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Hero from "@/components/sections/Hero";
 import StatsBar from "@/components/sections/StatsBar";
+import MotionGraphicsLoop from "@/components/sections/MotionGraphicsLoop";
 import Services from "@/components/sections/Services";
 import FeaturedTools from "@/components/sections/FeaturedTools";
 import Portfolio from "@/components/sections/Portfolio";
@@ -314,6 +315,7 @@ export default function HomePage() {
 
       <Hero />
       <StatsBar />
+      <MotionGraphicsLoop />
       <Services />
       <FeaturedTools />
       <Portfolio />
