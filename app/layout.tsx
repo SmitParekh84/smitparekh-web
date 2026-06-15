@@ -30,8 +30,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
-    template: `%s | Smit Parekh`,
+    default: "Smit Parekh - Full Stack Developer (React, Next.js, Node)",
+    // Page titles stand alone - no " | Smit Parekh" suffix, which pushed nearly
+    // every page over Google's ~60-char title limit. Brand is carried in the
+    // base title text and the OG/Twitter cards instead.
+    template: `%s`,
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title: "Smit Parekh - Full Stack Developer for Hire",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title: "Smit Parekh - Full Stack Developer for Hire",
     description: siteConfig.description,
     images: [
       {
@@ -146,7 +149,7 @@ export default async function RootLayout({
         {/*
           GTM is loaded afterInteractive (not beforeInteractive) so it does
           NOT block the critical rendering path. This improves LCP typically
-          by 200–500 ms. The trade-off is that very-early sub-second events
+          by 200-500 ms. The trade-off is that very-early sub-second events
           may be missed, which is acceptable for a portfolio site.
         */}
       </head>
@@ -181,7 +184,7 @@ export default async function RootLayout({
         </Script>
         <Analytics />
         <SpeedInsights />
-        {/* GTM — afterInteractive keeps it off the critical path */}
+        {/* GTM - afterInteractive keeps it off the critical path */}
         <Script
           id="gtm-head"
           strategy="afterInteractive"
@@ -206,7 +209,7 @@ export default async function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        {/* Microsoft Clarity — afterInteractive keeps it off the critical path */}
+        {/* Microsoft Clarity - afterInteractive keeps it off the critical path */}
         <Script id="ms-clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wzak06hwaw");`}
         </Script>

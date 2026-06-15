@@ -47,13 +47,13 @@ type SlugOverride = {
 };
 const SLUG_SEO_OVERRIDES: Record<string, SlugOverride> = {
   // GSC (3-mo to 2026-05-23): 5,357 impressions / 0 clicks at pos 7.3.
-  // The DB title is stuffed with "2026" — irrelevant to real searchers.
+  // The DB title is stuffed with "2026" - irrelevant to real searchers.
   // Override to a click-worthy human title and let it re-earn CTR.
   "deploy-nextjs-on-vercel-in-2026-a-beginners-guide": {
     title:
-      "How to Deploy a Next.js App on Vercel — Beginner's Walkthrough",
+      "Deploy a Next.js App on Vercel - Beginner's Guide",
     description:
-      "Step-by-step beginner's guide to deploying a Next.js app on Vercel: GitHub import, environment variables, preview deployments, and going live. Written by a freelance Next.js developer.",
+      "Step-by-step beginner's guide to deploying a Next.js app on Vercel: GitHub import, env vars, preview deployments, and going live.",
   },
 };
 
@@ -159,9 +159,9 @@ function pickSpecialist(tags: string[], category: string) {
 // Pick related posts by relevance instead of category-only.
 // Scoring: shared tags (strongest) + same category + a small recency boost.
 // The recency term means freshly-published posts bubble into other posts'
-// related lists once those pages revalidate — so a new article gets linked
+// related lists once those pages revalidate - so a new article gets linked
 // from more places instead of only the blog index (the orphan-page problem
-// behind "Discovered – currently not indexed").
+// behind "Discovered - currently not indexed").
 function pickRelated(
   current: BackendBlog,
   all: BackendBlog[],
@@ -452,7 +452,7 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
       )}
 
-      {/* CTA — tag-aware specialist link routes equity to money pages */}
+      {/* CTA - tag-aware specialist link routes equity to money pages */}
       <section className="page-section">
         <div className="page-container max-w-2xl text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">

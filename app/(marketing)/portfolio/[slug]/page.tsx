@@ -161,7 +161,7 @@ function buildSchemas(project: Project) {
     contentUrl: image,
     width: 1200,
     height: 630,
-    caption: `${project.title} — ${project.subtitle}`,
+    caption: `${project.title} - ${project.subtitle}`,
     representativeOfPage: true,
   };
 
@@ -306,7 +306,7 @@ export default async function CaseStudyPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Cover image — renders project.imageUrl ON the case study page itself.
+      {/* Cover image - renders project.imageUrl ON the case study page itself.
           Previously this image only existed in OG meta + the homepage portfolio
           grid, so Google Images attributed it to the homepage. Showing it here
           with a descriptive alt + figcaption binds the image to this URL. */}
@@ -315,7 +315,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <figure className="rounded-2xl overflow-hidden border border-border shadow-lg bg-card">
             <Image
               src={project.imageUrl}
-              alt={`${project.title} — ${project.subtitle} (${project.industry} case study by Smit Parekh)`}
+              alt={`${project.title} - ${project.subtitle} (${project.industry} case study by Smit Parekh)`}
               width={1600}
               height={900}
               priority
@@ -323,7 +323,7 @@ export default async function CaseStudyPage({ params }: Props) {
               className="w-full aspect-[16/9] object-cover"
             />
             <figcaption className="sr-only">
-              {project.title} — {project.subtitle}. {project.summary}
+              {project.title} - {project.subtitle}. {project.summary}
             </figcaption>
           </figure>
         </section>

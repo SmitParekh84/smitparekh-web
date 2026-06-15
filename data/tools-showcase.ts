@@ -88,7 +88,7 @@ export const featuredTools: FeaturedTool[] = [
   {
     slug: "url-encoder-decoder",
     title: "URL Encoder & Decoder",
-    description: "Percent-encode and decode URLs and query strings — component or full URL.",
+    description: "Percent-encode and decode URLs and query strings - component or full URL.",
     iconName: "Link",
     category: "Dev",
     isNew: true,
@@ -104,7 +104,7 @@ export const featuredTools: FeaturedTool[] = [
   {
     slug: "world-clock",
     title: "World Clock",
-    description: "Compare live time across multiple timezones — perfect for distributed teams.",
+    description: "Compare live time across multiple timezones - perfect for distributed teams.",
     iconName: "Clock",
     category: "Productivity",
     isNew: true,
@@ -144,7 +144,7 @@ export const featuredTools: FeaturedTool[] = [
   {
     slug: "jwt-decoder",
     title: "JWT Decoder",
-    description: "Decode JSON Web Tokens, inspect claims, and check expiry — runs entirely in your browser.",
+    description: "Decode JSON Web Tokens, inspect claims, and check expiry - runs entirely in your browser.",
     iconName: "KeyRound",
     category: "Security",
     isNew: true,
@@ -192,7 +192,7 @@ export const featuredTools: FeaturedTool[] = [
   {
     slug: "uuid-generator",
     title: "UUID Generator",
-    description: "Generate UUID v4 and v7 in bulk — uppercase, no-hyphen, and braces variants supported.",
+    description: "Generate UUID v4 and v7 in bulk - uppercase, no-hyphen, and braces variants supported.",
     iconName: "Hexagon",
     category: "Dev",
     isNew: true,

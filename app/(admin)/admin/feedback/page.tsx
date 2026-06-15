@@ -223,7 +223,7 @@ export default function FeedbackPage() {
       <div className="flex flex-col gap-1">
         <h1 className="text-[22px] font-semibold tracking-tight">Feedback</h1>
         <p className="text-[13px] text-muted-foreground">
-          Visitor notes, ratings and bug reports — update status, toggle visibility, or delete.
+          Visitor notes, ratings and bug reports - update status, toggle visibility, or delete.
         </p>
       </div>
 
@@ -253,7 +253,7 @@ export default function FeedbackPage() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <CardTitle>All entries</CardTitle>
-              <CardDescription>{data ? `${data.total} total` : "—"}</CardDescription>
+              <CardDescription>{data ? `${data.total} total` : "-"}</CardDescription>
             </div>
             <div className="flex flex-wrap gap-2">
               {/* Type filter */}

@@ -128,7 +128,7 @@ export default function HelpFeedbackPage() {
       setTitle("");
       setMessage("");
       setRating(0);
-      toast.success("Thanks — we got it", "Your message is in our inbox.");
+      toast.success("Thanks - we got it", "Your message is in our inbox.");
     } catch {
       toast.error("Could not send", "Please try again in a moment.");
     }
@@ -159,7 +159,7 @@ export default function HelpFeedbackPage() {
                   <div className="mx-auto grid h-9 w-9 place-items-center rounded-full bg-emerald-500 text-white">
                     <Check className="h-4 w-4" />
                   </div>
-                  <div className="mt-2 text-[14px] font-semibold">Thanks — we got it</div>
+                  <div className="mt-2 text-[14px] font-semibold">Thanks - we got it</div>
                   <p className="mx-auto mt-1 max-w-md text-[12.5px] text-muted-foreground">
                     Your {type === "bug" ? "bug report" : "message"} is tracked below. You&rsquo;ll
                     hear back at <span className="font-medium text-foreground">{email}</span>.
@@ -247,7 +247,7 @@ export default function HelpFeedbackPage() {
                       placeholder={
                         type === "bug"
                           ? "1. Call the endpoint with…\n2. Expected 201, got 500\n3. Request ID: req_…"
-                          : "Tell us a bit more — context, examples, why it matters to you."
+                          : "Tell us a bit more - context, examples, why it matters to you."
                       }
                       className="resize-y font-mono text-[12.5px]"
                     />

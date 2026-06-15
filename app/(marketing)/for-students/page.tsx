@@ -25,18 +25,18 @@ import { siteConfig } from "@/data/site";
 import { personNode } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "Web Development for Students – Affordable Projects, Portfolios & Hackathons",
+  title: "Web Dev for Students - Projects, Portfolios & Hackathons",
   description:
-    "Hire a professional full-stack developer for your student project, final year project, hackathon, or portfolio website. Budget-friendly pricing for international students in the UK, Canada, and the US. React, Next.js, Node.js. Contact for a free quote.",
+    "Hire a full-stack developer for your student project, final-year project, hackathon, or portfolio site. Budget-friendly pricing. React and Next.js.",
   alternates: { canonical: `${siteConfig.url}/for-students` },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${siteConfig.url}/for-students`,
     siteName: siteConfig.name,
-    title: "Affordable Web Development for Students – UK, Canada, US",
+    title: "Affordable Web Development for Students - UK, Canada, US",
     description:
-      "Final year projects, hackathon apps, portfolio websites, and startup MVPs — built by a professional developer at student-friendly prices. React, Next.js, Node.js. Free quote within 24 hours.",
+      "Final year projects, hackathon apps, portfolio websites, and startup MVPs - built by a professional developer at student-friendly prices. React, Next.js, Node.js. Free quote within 24 hours.",
     images: [
       {
         url: `${siteConfig.url}/images/for-students.png`,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Affordable Web Development for Students – UK, Canada, US",
+    title: "Affordable Web Development for Students - UK, Canada, US",
     description:
       "Final year projects, hackathons, portfolios, startup MVPs. Budget-friendly pricing. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/for-students.png`, width: 1200, height: 630 }],
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     "university club website development",
     "technical documentation for student project",
 
-    // Geo — UK
+    // Geo - UK
     "web developer for students UK",
     "affordable developer for international students UK",
     "freelance developer for students United Kingdom",
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     "hackathon developer UK",
     "student web developer London",
 
-    // Geo — Canada
+    // Geo - Canada
     "web developer for students Canada",
     "affordable developer for students Canada",
     "freelance developer for international students Canada",
@@ -99,14 +99,14 @@ export const metadata: Metadata = {
     "final year project developer Canada",
     "hackathon developer Toronto",
 
-    // Geo — US
+    // Geo - US
     "web developer for students USA",
     "affordable developer for international students United States",
     "freelance developer for students US",
     "student project developer United States",
     "hackathon developer USA",
 
-    // Geo — India students abroad
+    // Geo - India students abroad
     "web developer for Indian students abroad",
     "affordable developer for Indian students UK Canada",
     "Indian developer for student project",
@@ -118,7 +118,7 @@ const services = [
     icon: GraduationCap,
     title: "Final Year / Capstone Project",
     description:
-      "Turn your project idea into a working web application — the kind that impresses examiners and goes on your CV. Full-stack delivery with clean, readable code your supervisor can actually review.",
+      "Turn your project idea into a working web application - the kind that impresses examiners and goes on your CV. Full-stack delivery with clean, readable code your supervisor can actually review.",
     tags: ["React", "Node.js", "PostgreSQL", "REST API"],
     badge: "Most requested",
   },
@@ -134,7 +134,7 @@ const services = [
     icon: Trophy,
     title: "Hackathon Project",
     description:
-      "Need a working demo built fast? Hackathon projects live or die on execution speed. I've shipped production-quality apps under real time pressure — your deadline is my problem too.",
+      "Need a working demo built fast? Hackathon projects live or die on execution speed. I've shipped production-quality apps under real time pressure - your deadline is my problem too.",
     tags: ["React", "Node.js", "MongoDB", "Rapid delivery"],
     badge: "Fast turnaround",
   },
@@ -142,7 +142,7 @@ const services = [
     icon: Lightbulb,
     title: "Startup MVP / Side Project",
     description:
-      "Got a business idea from your entrepreneurship module? Let's build a real, working product — not a slide deck. Scoped lean so your limited budget goes as far as possible.",
+      "Got a business idea from your entrepreneurship module? Let's build a real, working product - not a slide deck. Scoped lean so your limited budget goes as far as possible.",
     tags: ["Next.js", "Supabase", "Stripe", "Auth"],
     badge: null,
   },
@@ -150,7 +150,7 @@ const services = [
     icon: Globe,
     title: "Club or Society Website",
     description:
-      "Your university club deserves more than a Facebook group. A clean, low-maintenance website with events, member info, and a contact form — built once, works for years.",
+      "Your university club deserves more than a Facebook group. A clean, low-maintenance website with events, member info, and a contact form - built once, works for years.",
     tags: ["Next.js", "CMS", "Tailwind CSS"],
     badge: null,
   },
@@ -158,7 +158,7 @@ const services = [
     icon: FileText,
     title: "Technical Documentation",
     description:
-      "README files, API documentation, architecture diagrams, and technical project reports — written by the engineer who built the system, so it's actually accurate.",
+      "README files, API documentation, architecture diagrams, and technical project reports - written by the engineer who built the system, so it's actually accurate.",
     tags: ["README", "API Docs", "Markdown", "Diagrams"],
     badge: null,
   },
@@ -173,7 +173,7 @@ const whyMe = [
   },
   {
     icon: Timer,
-    title: "Fast delivery — most projects in 1–3 weeks",
+    title: "Fast delivery - most projects in 1-3 weeks",
     description:
       "Deadlines are real. Whether it's a submission date or a demo day, I plan around your schedule from the first message.",
   },
@@ -181,7 +181,7 @@ const whyMe = [
     icon: Code2,
     title: "Clean, commented code you can own",
     description:
-      "You get full source code — no subscriptions, no lock-in, no mystery framework. Written clearly enough that your supervisor or team can read and extend it.",
+      "You get full source code - no subscriptions, no lock-in, no mystery framework. Written clearly enough that your supervisor or team can read and extend it.",
   },
   {
     icon: MessageSquare,
@@ -197,7 +197,7 @@ const whyMe = [
   },
   {
     icon: Rocket,
-    title: "Deployed and working — not just on localhost",
+    title: "Deployed and working - not just on localhost",
     description:
       "Every project I deliver is running live on a real URL. Not a zip file. Not a local demo. A deployed, working product you can show to anyone.",
   },
@@ -208,7 +208,7 @@ const steps = [
     step: "01",
     title: "Send me your brief",
     description:
-      "Tell me what you need, when it's due, and what you have to spend. No commitment, no forms — just a message via the contact page.",
+      "Tell me what you need, when it's due, and what you have to spend. No commitment, no forms - just a message via the contact page.",
   },
   {
     step: "02",
@@ -227,11 +227,11 @@ const steps = [
 const faqs = [
   {
     q: "How much does a student project cost?",
-    a: "It depends on what you need. A simple portfolio site starts around $150–300. A final year project web app with a backend typically runs $400–800. A hackathon MVP can be less. Message me with your brief and I'll give you an honest number.",
+    a: "It depends on what you need. A simple portfolio site starts around $150-300. A final year project web app with a backend typically runs $400-800. A hackathon MVP can be less. Message me with your brief and I'll give you an honest number.",
   },
   {
     q: "How fast can you build my project?",
-    a: "Most student projects are delivered in 1–3 weeks. For hackathon work, I can move in 48–72 hours depending on complexity. Share your deadline in your first message.",
+    a: "Most student projects are delivered in 1-3 weeks. For hackathon work, I can move in 48-72 hours depending on complexity. Share your deadline in your first message.",
   },
   {
     q: "Will I fully own the code?",
@@ -243,7 +243,7 @@ const faqs = [
   },
   {
     q: "Do you serve students in the UK, Canada, and the US?",
-    a: "Yes — I work fully remote with students across those countries and beyond. Communication happens async over email and WhatsApp, with video calls at times that work for your timezone.",
+    a: "Yes - I work fully remote with students across those countries and beyond. Communication happens async over email and WhatsApp, with video calls at times that work for your timezone.",
   },
   {
     q: "Can you write the technical documentation too?",
@@ -255,7 +255,7 @@ const faqs = [
   },
   {
     q: "Do you work with students outside the UK, Canada, and US?",
-    a: "Yes — I work with students worldwide. Those countries are where most of my student clients are based, but location doesn't change anything about how we work together.",
+    a: "Yes - I work with students worldwide. Those countries are where most of my student clients are based, but location doesn't change anything about how we work together.",
   },
 ];
 
@@ -266,7 +266,7 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "Web Development",
   description:
-    "Affordable full-stack web development for university and college students — final year projects, hackathon apps, portfolio websites, startup MVPs, and technical documentation. Serving students in the UK, Canada, the US, and worldwide.",
+    "Affordable full-stack web development for university and college students - final year projects, hackathon apps, portfolio websites, startup MVPs, and technical documentation. Serving students in the UK, Canada, the US, and worldwide.",
   areaServed: [
     { "@type": "Country", name: "GB" },
     { "@type": "Country", name: "CA" },
@@ -312,7 +312,7 @@ export default function ForStudentsPage() {
         eyebrow="For Students"
         icon={GraduationCap}
         title="Professional Web Development at Student-Friendly Prices"
-        description="Final year projects, hackathon apps, portfolio websites, and startup MVPs — built by a professional developer who understands student budgets and hard deadlines. Serving students in the UK, Canada, the US, and worldwide."
+        description="Final year projects, hackathon apps, portfolio websites, and startup MVPs - built by a professional developer who understands student budgets and hard deadlines. Serving students in the UK, Canada, the US, and worldwide."
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/85">
           <span className="flex items-center gap-1.5">
@@ -333,7 +333,7 @@ export default function ForStudentsPage() {
           <SectionHeader
             label="What I Build for Students"
             title="From Idea to Working Product"
-            description="Every service is priced with a student budget in mind. Tell me what you need and what you have to spend — I'll make it work."
+            description="Every service is priced with a student budget in mind. Tell me what you need and what you have to spend - I'll make it work."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map(({ icon: Icon, title, description, tags, badge }) => (
@@ -374,7 +374,7 @@ export default function ForStudentsPage() {
           <SectionHeader
             label="Why Students Choose Me"
             title="Built Around Student Reality"
-            description="Tight budgets, hard deadlines, and lecturers who will look at the code. I know the constraints — and I build around them."
+            description="Tight budgets, hard deadlines, and lecturers who will look at the code. I know the constraints - and I build around them."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyMe.map(({ icon: Icon, title, description }) => (
@@ -396,7 +396,7 @@ export default function ForStudentsPage() {
           <SectionHeader
             label="How It Works"
             title="Three Steps, No Surprises"
-            description="From first message to working software — here's exactly what happens."
+            description="From first message to working software - here's exactly what happens."
           />
           <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
             {steps.map(({ step, title, description }) => (
@@ -436,7 +436,7 @@ export default function ForStudentsPage() {
               <div>
                 <p className="font-semibold text-sm">Pricing is always budget-first</p>
                 <p className="text-sm text-muted-foreground mt-0.5">
-                  Tell me your budget and deadline upfront. I'll tell you exactly what I can deliver for that number — no upsell, no surprises.
+                  Tell me your budget and deadline upfront. I'll tell you exactly what I can deliver for that number - no upsell, no surprises.
                   Portfolio sites typically start around <span className="font-medium text-foreground">$150</span>.
                   Final year project apps from <span className="font-medium text-foreground">$400</span>.
                   Hackathon MVPs from <span className="font-medium text-foreground">$200</span>.
@@ -489,7 +489,7 @@ export default function ForStudentsPage() {
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
                 Tell me what you&apos;re building, when it&apos;s due, and what budget you&apos;re working with.
-                I&apos;ll reply within 24 hours with a clear, honest quote — no sales pitch, no hidden costs.
+                I&apos;ll reply within 24 hours with a clear, honest quote - no sales pitch, no hidden costs.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <Link

@@ -22,9 +22,9 @@ import {
 } from "@/components/icons/SocialIcons";
 
 export const metadata: Metadata = {
-  title: "About Smit Parekh - Full Stack Developer | React & Node.js Expert",
+  title: "About Smit Parekh - Full Stack Developer (React, Node.js)",
   description:
-    "Meet Smit Parekh - Full Stack Developer with 4+ years building production web applications across FinTech, AI/ML, SaaS, and enterprise. Expert in React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS.",
+    "Meet Smit Parekh, a full-stack developer with 4+ years building production apps across FinTech, AI/ML, SaaS, and enterprise. React, Next.js, AWS.",
   alternates: { canonical: `${siteConfig.url}/about` },
   keywords: [
     "about Smit Parekh",

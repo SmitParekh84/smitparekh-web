@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  // Accept ?from=yyyy-mm-dd&to=yyyy-mm-dd — default to current month
+  // Accept ?from=yyyy-mm-dd&to=yyyy-mm-dd - default to current month
   const params = req.nextUrl.searchParams;
   const from = params.get("from") ?? currentMonthStart();
   const to = params.get("to") ?? todayISO();

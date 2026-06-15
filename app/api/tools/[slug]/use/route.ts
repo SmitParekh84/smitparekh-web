@@ -7,7 +7,7 @@ import { getCachedCount, incrementCounters, quotaKey } from "@/lib/quota-cache";
 /**
  * Quota gate for any tool invocation.
  *
- * Hybrid guest tracking — counts the MAX of three signals (whichever is highest):
+ * Hybrid guest tracking - counts the MAX of three signals (whichever is highest):
  *   - localStorage session UUID  (X-Session-ID header)
  *   - IP hash                    (sha256(ip + IP_HASH_SALT))
  *   - signed-in user_id          (when authenticated)
@@ -154,7 +154,7 @@ async function loadCounts(
   return { ok: true, tier: "guest", quota, used, caller, isGuest: true };
 }
 
-/** POST — consume a quota slot. */
+/** POST - consume a quota slot. */
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
@@ -217,7 +217,7 @@ export async function POST(
   });
 }
 
-/** GET — read-only quota status (does not consume). Used to show "X of Y left". */
+/** GET - read-only quota status (does not consume). Used to show "X of Y left". */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },

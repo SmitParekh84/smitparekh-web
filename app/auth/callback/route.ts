@@ -45,17 +45,17 @@ export async function GET(request: NextRequest) {
                   <h2 style="color:#2563eb">Hey ${name}, welcome!</h2>
                   <p style="color:#374151">You now have access to free AI-powered tools on <a href="https://www.smitparekh.co.in">smitparekh.co.in</a>:</p>
                   <ul style="color:#374151">
-                    <li>📄 <strong>ATS Resume Analyzer</strong> — score your resume with AI</li>
-                    <li>🖼️ <strong>Background Remover</strong> — remove image backgrounds instantly</li>
-                    <li>✍️ <strong>LinkedIn Post Generator</strong> — create viral content</li>
+                    <li>📄 <strong>ATS Resume Analyzer</strong> - score your resume with AI</li>
+                    <li>🖼️ <strong>Background Remover</strong> - remove image backgrounds instantly</li>
+                    <li>✍️ <strong>LinkedIn Post Generator</strong> - create viral content</li>
                   </ul>
                   <p style="color:#374151">Head to your <a href="https://www.smitparekh.co.in/dashboard" style="color:#2563eb">dashboard</a> to track your usage.</p>
-                  <p style="color:#6b7280;font-size:14px">— Smit Parekh</p>
+                  <p style="color:#6b7280;font-size:14px">- Smit Parekh</p>
                 </div>
               `,
             });
           } catch (mailErr) {
-            // Non-fatal — don't block redirect
+            // Non-fatal - don't block redirect
             console.error("[auth/callback] welcome email failed:", mailErr);
           }
         }

@@ -20,7 +20,7 @@ export const siteConfig = {
   availability: {
     accepting: true,
     quarter: "Q3 2026",
-    note: "Limited spots available — get in touch early.",
+    note: "Limited spots available - get in touch early.",
   },
   keywords: [
     // Personal / Brand

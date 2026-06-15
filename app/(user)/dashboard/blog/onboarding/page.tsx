@@ -108,7 +108,7 @@ export default function OnboardingPage() {
       <div>
         <h2 className="text-2xl font-bold">Blog API</h2>
         <p className="text-muted-foreground mt-1 text-sm">
-          Your request is under review. Here are your credentials — save your API key now.
+          Your request is under review. Here are your credentials - save your API key now.
         </p>
       </div>
 

@@ -99,7 +99,7 @@ export async function PATCH(
     try {
       revalidateTag(NAV_TOOLS_TAG, "max");
     } catch {
-      // best-effort — never fail the request because the tag couldn't be flushed.
+      // best-effort - never fail the request because the tag couldn't be flushed.
     }
   }
 

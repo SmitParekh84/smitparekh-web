@@ -22,7 +22,7 @@ import { BookCallButton } from "@/components/cal/BookCallButton";
 export const metadata: Metadata = {
   title: "How to Deploy Next.js to Vercel: Step-by-Step Guide (2026)",
   description:
-    "Deploy your Next.js app to Vercel in 15 minutes. Step-by-step: create app → push to GitHub → import to Vercel → configure env vars → custom domain. Includes environment variable setup, preview deployments, and production gotchas from a developer who ships Next.js every week.",
+    "Deploy your Next.js app to Vercel in 15 minutes. Push to GitHub, import to Vercel, set env vars, add a custom domain, plus production gotchas.",
   alternates: { canonical: `${siteConfig.url}/nextjs-vercel-guide` },
   openGraph: {
     type: "article",
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "How to Deploy Next.js to Vercel: Step-by-Step Guide (2026)",
     description:
-      "Deploy your Next.js app to Vercel in 15 minutes — GitHub import, env vars, custom domain, preview deployments, and production gotchas.",
+      "Deploy your Next.js app to Vercel in 15 minutes - GitHub import, env vars, custom domain, preview deployments, and production gotchas.",
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-nextjs-vercel-guide.png`,
         width: 1200,
         height: 630,
-        alt: "How to Deploy Next.js to Vercel — Step-by-Step Guide",
+        alt: "How to Deploy Next.js to Vercel - Step-by-Step Guide",
       },
     ],
   },
@@ -91,7 +91,7 @@ const steps = [
             <p className="text-sm text-muted-foreground">
               Make sure your <code className="text-cyan-500 bg-cyan-500/10 px-1 rounded">package.json</code> has a{" "}
               <code className="text-cyan-500 bg-cyan-500/10 px-1 rounded">build</code> script (Next.js adds this automatically).
-              Vercel detects Next.js projects automatically — no Dockerfile needed.
+              Vercel detects Next.js projects automatically - no Dockerfile needed.
             </p>
           </div>
         </div>
@@ -121,7 +121,7 @@ git push -u origin main`}</code>
           <Lightbulb className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
           <p className="text-sm text-muted-foreground">
             Vercel creates a <strong className="text-foreground">preview deployment</strong> for every branch and
-            pull request automatically — you don&apos;t need to configure anything for this.
+            pull request automatically - you don&apos;t need to configure anything for this.
           </p>
         </div>
       </>
@@ -143,10 +143,10 @@ git push -u origin main`}</code>
         </p>
         <ol className="space-y-3 mb-4">
           {[
-            "Vercel detects Next.js automatically — the build command and output directory are pre-filled",
+            "Vercel detects Next.js automatically - the build command and output directory are pre-filled",
             "Leave the Framework Preset as Next.js (do not change this)",
             'Add any environment variables in the "Environment Variables" section before clicking Deploy',
-            "Click Deploy — your first deployment takes 60–120 seconds",
+            "Click Deploy - your first deployment takes 60-120 seconds",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
               <span className="w-5 h-5 rounded-full bg-green-500/15 text-green-600 dark:text-green-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
@@ -161,7 +161,7 @@ git push -u origin main`}</code>
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Critical:</strong> If your app uses{" "}
             <code className="text-cyan-500 bg-cyan-500/10 px-1 rounded">process.env.SECRET_KEY</code> in server
-            code, add the variable here — not after. A deployment without required env vars will
+            code, add the variable here - not after. A deployment without required env vars will
             either fail the build or break at runtime.
           </p>
         </div>
@@ -246,7 +246,7 @@ git push -u origin main`}</code>
             "Enter your domain (e.g. myapp.com) and click Add",
             "Vercel shows you two DNS records to add: an A record for the apex domain and a CNAME for www",
             "Add those records in your domain registrar (Cloudflare, Namecheap, GoDaddy, etc.)",
-            "SSL (HTTPS) is provisioned automatically — no certificate setup required",
+            "SSL (HTTPS) is provisioned automatically - no certificate setup required",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
               <span className="w-5 h-5 rounded-full bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
@@ -259,7 +259,7 @@ git push -u origin main`}</code>
         <div className="bg-blue-500/8 border border-blue-500/20 rounded-lg p-4 flex gap-3">
           <Lightbulb className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
           <p className="text-sm text-muted-foreground">
-            Propagation usually takes 1–10 minutes on Cloudflare, up to 48 hours on other registrars.
+            Propagation usually takes 1-10 minutes on Cloudflare, up to 48 hours on other registrars.
             Vercel checks domain health automatically and sends you an email once it&apos;s active.
           </p>
         </div>
@@ -271,11 +271,11 @@ git push -u origin main`}</code>
 const faq = [
   {
     q: "How long does deploying Next.js to Vercel take?",
-    a: "Your first deployment takes about 60–120 seconds for a typical Next.js app. After that, incremental rebuilds (only changed pages) are usually under 30 seconds. Zero-config CI/CD means every git push to main triggers a new production deploy automatically.",
+    a: "Your first deployment takes about 60-120 seconds for a typical Next.js app. After that, incremental rebuilds (only changed pages) are usually under 30 seconds. Zero-config CI/CD means every git push to main triggers a new production deploy automatically.",
   },
   {
     q: "Is Vercel free for Next.js apps?",
-    a: "Yes — Vercel's Hobby plan is free forever for personal projects. It includes unlimited deployments, 100 GB bandwidth/month, preview deployments on every PR, and automatic HTTPS. The Pro plan ($20/month per member) adds team collaboration, more bandwidth, and enterprise features.",
+    a: "Yes - Vercel's Hobby plan is free forever for personal projects. It includes unlimited deployments, 100 GB bandwidth/month, preview deployments on every PR, and automatic HTTPS. The Pro plan ($20/month per member) adds team collaboration, more bandwidth, and enterprise features.",
   },
   {
     q: "Can I deploy Next.js App Router on Vercel?",
@@ -283,22 +283,22 @@ const faq = [
   },
   {
     q: "Where do I add environment variables for a Vercel Next.js deployment?",
-    a: "Go to your Vercel project → Settings → Environment Variables. Add them there before deploying. After adding variables, you must trigger a new deployment for them to take effect — env var changes alone don't redeploy. Never commit .env files to git.",
+    a: "Go to your Vercel project → Settings → Environment Variables. Add them there before deploying. After adding variables, you must trigger a new deployment for them to take effect - env var changes alone don't redeploy. Never commit .env files to git.",
   },
   {
     q: "Does Vercel create preview deployments automatically?",
-    a: "Yes. Every branch push and pull request gets its own preview URL (e.g. my-app-git-feature-xyz-username.vercel.app). The preview inherits your Preview environment variables, not Production ones — which is exactly what you want for staging databases and test API keys.",
+    a: "Yes. Every branch push and pull request gets its own preview URL (e.g. my-app-git-feature-xyz-username.vercel.app). The preview inherits your Preview environment variables, not Production ones - which is exactly what you want for staging databases and test API keys.",
   },
   {
     q: "What's the difference between Vercel and self-hosting Next.js?",
-    a: "Vercel is the zero-config path: push to git, done. Self-hosting (on a VPS, Docker, or AWS) gives you more control over infrastructure costs and data residency, but requires you to manage Node.js process management, reverse proxies (nginx), SSL renewal, and scaling. For most projects, Vercel is the right default choice — switch to self-hosting only when Vercel's pricing or data residency requirements become a constraint.",
+    a: "Vercel is the zero-config path: push to git, done. Self-hosting (on a VPS, Docker, or AWS) gives you more control over infrastructure costs and data residency, but requires you to manage Node.js process management, reverse proxies (nginx), SSL renewal, and scaling. For most projects, Vercel is the right default choice - switch to self-hosting only when Vercel's pricing or data residency requirements become a constraint.",
   },
 ];
 
 const gotchas = [
   {
     title: "Missing env vars = silent runtime failures",
-    desc: "Vercel builds succeed even when required env vars are missing — the error only shows at request time. Always check the Deployments → Runtime Logs tab after each deploy.",
+    desc: "Vercel builds succeed even when required env vars are missing - the error only shows at request time. Always check the Deployments → Runtime Logs tab after each deploy.",
   },
   {
     title: "process.env changes need a redeploy",
@@ -310,7 +310,7 @@ const gotchas = [
   },
   {
     title: "Large node_modules bloat build time",
-    desc: "Vercel caches node_modules between builds, but the initial build for a heavy project can be slow. Use package imports (barrel shaking) and audit heavy dependencies — a 50 MB node_modules is often avoidable.",
+    desc: "Vercel caches node_modules between builds, but the initial build for a heavy project can be slow. Use package imports (barrel shaking) and audit heavy dependencies - a 50 MB node_modules is often avoidable.",
   },
 ];
 
@@ -436,7 +436,7 @@ export default function NextjsVercelGuidePage() {
               5 steps to deploy Next.js on Vercel
             </h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Each step takes 2–5 minutes. The whole process is under 15 minutes on your first deployment.
+              Each step takes 2-5 minutes. The whole process is under 15 minutes on your first deployment.
             </p>
           </div>
 
@@ -538,7 +538,7 @@ export default function NextjsVercelGuidePage() {
               {
                 href: "/production-nextjs",
                 title: "Production Next.js Architecture Guide",
-                desc: "The full checklist: App Router patterns, ISR, security headers, Core Web Vitals, and structured data — everything beyond the deploy step.",
+                desc: "The full checklist: App Router patterns, ISR, security headers, Core Web Vitals, and structured data - everything beyond the deploy step.",
                 badge: "Best Practices",
               },
               {
@@ -581,7 +581,7 @@ export default function NextjsVercelGuidePage() {
             Need help with your deployment?
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
-            Skip the setup — hire a Next.js developer
+            Skip the setup - hire a Next.js developer
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
             I set up production-grade Next.js apps on Vercel every week: zero-config

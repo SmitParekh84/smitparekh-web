@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a PostgreSQL Developer – Query Optimisation, Schema Design & 99.9% Uptime",
+  title: "Hire a PostgreSQL Developer - Query Tuning & Schema Design",
   description:
-    "Hire a PostgreSQL developer with 4+ years designing production databases. Query optimisation, indexing, schema design, partitioning, and migrations. Sub-10ms p99 latency, 99.9% uptime. Free quote in 24 hours.",
+    "Hire a PostgreSQL developer with 4+ years on production databases. Query optimisation, indexing, schema design, partitioning, migrations. 99.9% uptime.",
   alternates: { canonical: `${siteConfig.url}/postgresql-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/postgresql-developer`,
     siteName: siteConfig.name,
-    title: "Hire a PostgreSQL Developer – Sub-10ms Queries, Schema Design | Smit Parekh",
-    description: "PostgreSQL database design and optimisation — indexing, partitioning, migrations, Supabase RLS. Sub-10ms p99 latency. Deployed on AWS RDS or Supabase.",
-    images: [{ url: `${siteConfig.url}/images/hire-postgresql-developer.png`, width: 1200, height: 630, alt: "Hire a PostgreSQL Developer – Smit Parekh" }],
+    title: "Hire a PostgreSQL Developer - Sub-10ms Queries, Schema Design | Smit Parekh",
+    description: "PostgreSQL database design and optimisation - indexing, partitioning, migrations, Supabase RLS. Sub-10ms p99 latency. Deployed on AWS RDS or Supabase.",
+    images: [{ url: `${siteConfig.url}/images/hire-postgresql-developer.png`, width: 1200, height: 630, alt: "Hire a PostgreSQL Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a PostgreSQL Developer – Sub-10ms Queries, 99.9% Uptime | Smit Parekh",
+    title: "Hire a PostgreSQL Developer - Sub-10ms Queries, 99.9% Uptime | Smit Parekh",
     description: "PostgreSQL database design and optimisation. Indexing, RLS, Supabase, AWS RDS. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-postgresql-developer.png`, width: 1200, height: 630 }],
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 const results = [
   { value: "<10ms", label: "p99 query latency achieved on production PostgreSQL databases through targeted indexing and query rewrites", icon: Zap },
-  { value: "99.9%", label: "Uptime across production PostgreSQL deployments — AWS RDS Multi-AZ with automated failover", icon: Globe },
+  { value: "99.9%", label: "Uptime across production PostgreSQL deployments - AWS RDS Multi-AZ with automated failover", icon: Globe },
   { value: "40%", label: "Query performance improvement on an existing production database after indexing and EXPLAIN ANALYZE work", icon: TrendingUp },
   { value: "4+", label: "Years designing and maintaining production PostgreSQL schemas in FinTech, SaaS, and enterprise products", icon: Clock },
 ];
@@ -65,13 +65,13 @@ const whatIBuild = [
   {
     icon: Zap,
     title: "Query Optimisation",
-    description: "EXPLAIN ANALYZE, index-only scans, partial indexes, covering indexes, CTE optimisation, and query rewrites. I find the slow queries, I identify why they're slow, and I fix them — with before/after numbers.",
+    description: "EXPLAIN ANALYZE, index-only scans, partial indexes, covering indexes, CTE optimisation, and query rewrites. I find the slow queries, I identify why they're slow, and I fix them - with before/after numbers.",
     tags: ["EXPLAIN ANALYZE", "Indexing", "Query Rewriting", "CTEs"],
   },
   {
     icon: ShieldCheck,
     title: "Supabase & Row-Level Security",
-    description: "RLS policies that enforce access control at the database layer without an ORM middleware layer. Auth integration, anonymous roles, service-role separation — the security model Supabase was designed for.",
+    description: "RLS policies that enforce access control at the database layer without an ORM middleware layer. Auth integration, anonymous roles, service-role separation - the security model Supabase was designed for.",
     tags: ["Supabase", "RLS", "PostgreSQL", "Auth"],
   },
   {
@@ -98,22 +98,22 @@ const differentiators = [
   {
     icon: Zap,
     title: "I read EXPLAIN ANALYZE, not guesses",
-    description: "Every optimisation starts with EXPLAIN ANALYZE output. I look at seq scans, hash joins, nested loops, and cost estimates — not assumptions. The fix follows the evidence.",
+    description: "Every optimisation starts with EXPLAIN ANALYZE output. I look at seq scans, hash joins, nested loops, and cost estimates - not assumptions. The fix follows the evidence.",
   },
   {
     icon: ShieldCheck,
     title: "Security at the database layer, not just the app",
-    description: "RLS policies, least-privilege roles, no superuser in production, secrets never in queries. The database is the last line of defence — I treat it that way.",
+    description: "RLS policies, least-privilege roles, no superuser in production, secrets never in queries. The database is the last line of defence - I treat it that way.",
   },
   {
     icon: Database,
     title: "Schema decisions that age well",
-    description: "The JOIN that's fast today can table-scan a 50M-row table in six months. I design schemas with growth in mind — partition strategies, archive tables, and indexes on columns that will be filtered on.",
+    description: "The JOIN that's fast today can table-scan a 50M-row table in six months. I design schemas with growth in mind - partition strategies, archive tables, and indexes on columns that will be filtered on.",
   },
   {
     icon: Code2,
     title: "ORM-fluent, raw-SQL comfortable",
-    description: "Prisma, Drizzle, TypeORM — I know when the ORM abstraction is fine and when raw SQL is the right tool. You don't need to choose between developer ergonomics and database performance.",
+    description: "Prisma, Drizzle, TypeORM - I know when the ORM abstraction is fine and when raw SQL is the right tool. You don't need to choose between developer ergonomics and database performance.",
   },
 ];
 
@@ -130,23 +130,23 @@ const techStack = [
 const faqs = [
   {
     q: "How much does hiring a PostgreSQL developer cost?",
-    a: "For a scoped engagement — schema design, a query optimisation audit, or a migration project — I quote a fixed price after reviewing the brief. Ongoing database work runs on a retainer. I'll send written numbers within 24 hours.",
+    a: "For a scoped engagement - schema design, a query optimisation audit, or a migration project - I quote a fixed price after reviewing the brief. Ongoing database work runs on a retainer. I'll send written numbers within 24 hours.",
   },
   {
     q: "Can you optimise an existing production database?",
-    a: "Yes — and this is one of the most common requests I get. Share your slow query log, schema, and table sizes. I'll run an audit, identify the highest-impact problems, and scope the fix. No unnecessary rebuilds.",
+    a: "Yes - and this is one of the most common requests I get. Share your slow query log, schema, and table sizes. I'll run an audit, identify the highest-impact problems, and scope the fix. No unnecessary rebuilds.",
   },
   {
     q: "Do you work with Supabase or only self-hosted PostgreSQL?",
-    a: "Both. Supabase is my primary deployment target for new projects — the RLS model, Auth integration, and edge functions make it excellent for SaaS. For clients with existing AWS infrastructure, I deploy PostgreSQL on RDS Multi-AZ.",
+    a: "Both. Supabase is my primary deployment target for new projects - the RLS model, Auth integration, and edge functions make it excellent for SaaS. For clients with existing AWS infrastructure, I deploy PostgreSQL on RDS Multi-AZ.",
   },
   {
     q: "Can you handle zero-downtime schema migrations?",
-    a: "Yes. Adding columns with defaults, building indexes CONCURRENTLY, renaming with view aliases — I know the patterns that avoid table locks on live traffic. If a migration has unavoidable downtime, I'll tell you upfront.",
+    a: "Yes. Adding columns with defaults, building indexes CONCURRENTLY, renaming with view aliases - I know the patterns that avoid table locks on live traffic. If a migration has unavoidable downtime, I'll tell you upfront.",
   },
   {
     q: "Do you write raw SQL or use an ORM?",
-    a: "Prisma for schema management and standard queries — the type safety and migration tooling are excellent. Raw SQL for complex analytics, recursive queries, window functions, or anything where the ORM generates inefficient plans.",
+    a: "Prisma for schema management and standard queries - the type safety and migration tooling are excellent. Raw SQL for complex analytics, recursive queries, window functions, or anything where the ORM generates inefficient plans.",
   },
   {
     q: "How do you handle database backups and disaster recovery?",
@@ -192,7 +192,7 @@ export default function PostgreSQLDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiPostgresql className="w-4 h-4 text-cyan-300" />
@@ -247,7 +247,7 @@ export default function PostgreSQLDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -339,7 +339,7 @@ export default function PostgreSQLDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -370,7 +370,7 @@ export default function PostgreSQLDeveloperPage() {
                 Ready to hire a PostgreSQL developer who reads EXPLAIN ANALYZE?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

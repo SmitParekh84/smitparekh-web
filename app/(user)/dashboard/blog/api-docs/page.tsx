@@ -186,7 +186,7 @@ export default function ApiDocsPage() {
           <p className="text-xs text-muted-foreground">
             Pass this in every request as the{" "}
             <code className="bg-muted px-1 rounded text-xs">X-API-Key</code> header.
-            Keep it secret — anyone with this key can manage your blogs.
+            Keep it secret - anyone with this key can manage your blogs.
           </p>
           <Button
             variant="outline"

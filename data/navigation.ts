@@ -238,7 +238,7 @@ export const navItems: NavItem[] = [
               {
                 href: "/services/mvp-development",
                 label: "MVP Development",
-                description: "Idea to live product in 4–8 weeks, fixed price",
+                description: "Idea to live product in 4-8 weeks, fixed price",
               },
               {
                 href: "/services/web-development",
@@ -323,7 +323,7 @@ export const navItems: NavItem[] = [
               {
                 href: "/services/mobile-app-development",
                 label: "Mobile App Development",
-                description: "React Native + Expo — iOS & Android from one codebase",
+                description: "React Native + Expo - iOS & Android from one codebase",
               },
               {
                 href: "/services/website-redesign",
@@ -443,12 +443,12 @@ export const navItems: NavItem[] = [
               {
                 href: "/full-stack-ai-developer",
                 label: "Full-Stack AI Developer",
-                description: "Ship apps with AI built in — one engineer, full stack",
+                description: "Ship apps with AI built in - one engineer, full stack",
               },
               {
                 href: "/ai-seo-consultant",
                 label: "AI SEO Consultant",
-                description: "SEO + AEO + GEO — rank on Google and inside AI answers",
+                description: "SEO + AEO + GEO - rank on Google and inside AI answers",
               },
               {
                 href: "/hire-me",

@@ -13,16 +13,16 @@ import { personNode } from "@/lib/seo/schema";
 import { BookCallButton } from "@/components/cal/BookCallButton";
 
 export const metadata: Metadata = {
-  title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
+  title: "Production Next.js 2026: Architecture & Performance Guide",
   description:
-    "Everything that separates a production-grade Next.js app from a tutorial project: App Router architecture, 95+ Lighthouse, TypeScript strict, ISR, structured data, Vercel deployment, and monitoring. Written by a developer who ships these every week.",
+    "What separates a production Next.js app from a tutorial: App Router architecture, 95+ Lighthouse, TypeScript strict, ISR, and Vercel deployment.",
   alternates: { canonical: `${siteConfig.url}/production-nextjs` },
   openGraph: {
     type: "article",
     locale: "en_US",
     url: `${siteConfig.url}/production-nextjs`,
     siteName: siteConfig.name,
-    title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
+    title: "Production Next.js 2026: Architecture & Performance Guide",
     description:
       "App Router architecture, 95+ Lighthouse, TypeScript strict, ISR, structured data, Vercel CI/CD. Written by a developer who ships production Next.js every week.",
     images: [{ url: `${siteConfig.url}/images/smit-parekh-production-nextjs.png`, width: 1200, height: 630 }],
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
-    description: "What separates production Next.js from a tutorial — App Router, Lighthouse 95+, TypeScript strict, ISR, and Vercel CI/CD.",
+    title: "Production Next.js 2026: Architecture & Performance Guide",
+    description: "What separates production Next.js from a tutorial - App Router, Lighthouse 95+, TypeScript strict, ISR, and Vercel CI/CD.",
     images: [{ url: `${siteConfig.url}/images/smit-parekh-production-nextjs.png` }],
   },
   keywords: [
@@ -51,9 +51,9 @@ const checklist = [
     color: "text-blue-500 bg-blue-500/10",
     items: [
       { label: "App Router with colocated layouts, loading.tsx, and error.tsx per segment", critical: true },
-      { label: "TypeScript strict mode — no any, no type assertions without comment", critical: true },
+      { label: "TypeScript strict mode - no any, no type assertions without comment", critical: true },
       { label: "Server Components by default; Client Components only when hooks are needed", critical: true },
-      { label: "Server Actions for mutations — no separate API routes for internal calls", critical: false },
+      { label: "Server Actions for mutations - no separate API routes for internal calls", critical: false },
       { label: "Parallel Routes for modals and dashboards that need independent loading states", critical: false },
       { label: "Route groups to share layouts without polluting URL structure", critical: false },
     ],
@@ -63,11 +63,11 @@ const checklist = [
     category: "Performance",
     color: "text-amber-500 bg-amber-500/10",
     items: [
-      { label: "LCP under 2.5s — hero image preloaded, above-the-fold CSS inlined", critical: true },
-      { label: "CLS = 0 — explicit width/height on all images, no layout-shifting fonts", critical: true },
-      { label: "INP under 200ms — heavy client logic moved to Server Components or Web Workers", critical: true },
-      { label: "next/image with sizes prop on every image — no raw <img> tags in production", critical: true },
-      { label: "next/font for all custom fonts — no Google Fonts CDN link in layout.tsx", critical: false },
+      { label: "LCP under 2.5s - hero image preloaded, above-the-fold CSS inlined", critical: true },
+      { label: "CLS = 0 - explicit width/height on all images, no layout-shifting fonts", critical: true },
+      { label: "INP under 200ms - heavy client logic moved to Server Components or Web Workers", critical: true },
+      { label: "next/image with sizes prop on every image - no raw <img> tags in production", critical: true },
+      { label: "next/font for all custom fonts - no Google Fonts CDN link in layout.tsx", critical: false },
       { label: "Dynamic imports for heavy client-side libraries (charts, editors, maps)", critical: false },
     ],
   },
@@ -76,11 +76,11 @@ const checklist = [
     category: "SEO",
     color: "text-green-500 bg-green-500/10",
     items: [
-      { label: "generateMetadata() on every page — unique title, description, and canonical URL", critical: true },
+      { label: "generateMetadata() on every page - unique title, description, and canonical URL", critical: true },
       { label: "generateStaticParams() for all dynamic routes you want pre-rendered", critical: true },
       { label: "JSON-LD schema: Organization/Person on root, BreadcrumbList on every page, Article on posts", critical: true },
-      { label: "Dynamic OG images via opengraph-image.tsx — not a single generic image for all pages", critical: false },
-      { label: "robots.ts and sitemap.ts in app/ root — auto-generated, revalidated with pages", critical: false },
+      { label: "Dynamic OG images via opengraph-image.tsx - not a single generic image for all pages", critical: false },
+      { label: "robots.ts and sitemap.ts in app/ root - auto-generated, revalidated with pages", critical: false },
       { label: "hreflang tags if targeting multiple languages or regions", critical: false },
     ],
   },
@@ -89,10 +89,10 @@ const checklist = [
     category: "Data & Caching",
     color: "text-purple-500 bg-purple-500/10",
     items: [
-      { label: "ISR (revalidate) for pages that change on a schedule — not all pages need real-time", critical: true },
-      { label: "fetch() cache: 'force-cache' with revalidate tags — not raw unstable_cache", critical: true },
+      { label: "ISR (revalidate) for pages that change on a schedule - not all pages need real-time", critical: true },
+      { label: "fetch() cache: 'force-cache' with revalidate tags - not raw unstable_cache", critical: true },
       { label: "revalidatePath / revalidateTag in Server Actions after mutations", critical: true },
-      { label: "Loading skeletons via loading.tsx — never leave a blank page while data loads", critical: false },
+      { label: "Loading skeletons via loading.tsx - never leave a blank page while data loads", critical: false },
       { label: "Suspense boundaries around async Server Components with specific fallbacks", critical: false },
     ],
   },
@@ -101,10 +101,10 @@ const checklist = [
     category: "Security & Config",
     color: "text-red-500 bg-red-500/10",
     items: [
-      { label: "Environment variables: NEXT_PUBLIC_ only for truly public values — never API keys", critical: true },
-      { label: "CSP headers in next.config — at minimum: no inline scripts outside LD+JSON", critical: true },
+      { label: "Environment variables: NEXT_PUBLIC_ only for truly public values - never API keys", critical: true },
+      { label: "CSP headers in next.config - at minimum: no inline scripts outside LD+JSON", critical: true },
       { label: "Server-only data access gated by auth check before any DB read", critical: true },
-      { label: "Rate limiting on public API routes — Next.js Route Handlers are wide open by default", critical: false },
+      { label: "Rate limiting on public API routes - Next.js Route Handlers are wide open by default", critical: false },
       { label: "vercel.json: no debug headers, no x-powered-by in prod", critical: false },
     ],
   },
@@ -113,11 +113,11 @@ const checklist = [
     category: "Deployment (Vercel)",
     color: "text-cyan-500 bg-cyan-500/10",
     items: [
-      { label: "Preview deployments on every PR — not merging unreviewed code to main", critical: true },
-      { label: "Environment variables scoped to Production / Preview / Development — not shared", critical: true },
-      { label: "Edge Config or Vercel KV for feature flags and A/B tests — not env var redeploys", critical: false },
+      { label: "Preview deployments on every PR - not merging unreviewed code to main", critical: true },
+      { label: "Environment variables scoped to Production / Preview / Development - not shared", critical: true },
+      { label: "Edge Config or Vercel KV for feature flags and A/B tests - not env var redeploys", critical: false },
       { label: "Vercel Analytics + Speed Insights on every production deployment", critical: false },
-      { label: "Custom domains with HSTS and automatic HTTPS — Vercel handles this by default", critical: false },
+      { label: "Custom domains with HSTS and automatic HTTPS - Vercel handles this by default", critical: false },
     ],
   },
 ];
@@ -126,7 +126,7 @@ const footguns = [
   {
     icon: AlertTriangle,
     title: "\"use client\" at the top of every file",
-    description: "This turns your Server Components back into client bundles — the exact problem App Router was designed to solve. Add it only to the file that actually needs useState, useEffect, or event handlers.",
+    description: "This turns your Server Components back into client bundles - the exact problem App Router was designed to solve. Add it only to the file that actually needs useState, useEffect, or event handlers.",
   },
   {
     icon: AlertTriangle,
@@ -146,7 +146,7 @@ const footguns = [
   {
     icon: AlertTriangle,
     title: "Missing sizes on next/image with fill or responsive layout",
-    description: "Without the sizes prop, Next.js downloads the full-resolution image at every viewport. This alone can cost 500KB–2MB on mobile — and tanks your Lighthouse score.",
+    description: "Without the sizes prop, Next.js downloads the full-resolution image at every viewport. This alone can cost 500KB-2MB on mobile - and tanks your Lighthouse score.",
   },
   {
     icon: AlertTriangle,
@@ -158,36 +158,36 @@ const footguns = [
 const faqs = [
   {
     q: "Should I use the App Router or Pages Router for a new project in 2026?",
-    a: "App Router for any new project. It's been stable since Next.js 13.4, and Next.js 15/16 invest entirely in it. Pages Router still works, but Server Components, Suspense, and the caching model are App Router-only. If you're on Pages Router and it's working, no need to migrate immediately — but new projects should start with App Router.",
+    a: "App Router for any new project. It's been stable since Next.js 13.4, and Next.js 15/16 invest entirely in it. Pages Router still works, but Server Components, Suspense, and the caching model are App Router-only. If you're on Pages Router and it's working, no need to migrate immediately - but new projects should start with App Router.",
   },
   {
     q: "How do I get 95+ Lighthouse without compromising features?",
-    a: "Most Lighthouse regressions come from three things: unoptimised images (LCP), layout shift from fonts or async components (CLS), and heavy client-side JavaScript (INP + TBT). Use next/image with explicit dimensions, next/font for typography, and move data fetching to Server Components. Remaining regressions are almost always caused by third-party scripts — load them with next/script's lazyOnload strategy.",
+    a: "Most Lighthouse regressions come from three things: unoptimised images (LCP), layout shift from fonts or async components (CLS), and heavy client-side JavaScript (INP + TBT). Use next/image with explicit dimensions, next/font for typography, and move data fetching to Server Components. Remaining regressions are almost always caused by third-party scripts - load them with next/script's lazyOnload strategy.",
   },
   {
     q: "What's the right caching strategy for Next.js in 2026?",
-    a: "Default is aggressive — Next.js 15 changed fetch() to no-store by default for Server Components in dynamic rendering contexts. For data that changes on a schedule, use export const revalidate = N at the segment level. For pages triggered by mutations, combine revalidatePath/revalidateTag with Server Actions. Avoid unstable_cache directly — use the fetch() abstraction or React's cache() instead.",
+    a: "Default is aggressive - Next.js 15 changed fetch() to no-store by default for Server Components in dynamic rendering contexts. For data that changes on a schedule, use export const revalidate = N at the segment level. For pages triggered by mutations, combine revalidatePath/revalidateTag with Server Actions. Avoid unstable_cache directly - use the fetch() abstraction or React's cache() instead.",
   },
   {
     q: "How should I structure TypeScript in a large Next.js codebase?",
-    a: "TypeScript strict: true in tsconfig — no exceptions. Put global types in types/index.ts, not global.d.ts. Co-locate component prop types with the component, not in a separate types file. Use satisfies instead of type assertions. Avoid Zod in Server Components unless you're actually validating untrusted input — TypeScript + strict generics is enough for internal data shapes.",
+    a: "TypeScript strict: true in tsconfig - no exceptions. Put global types in types/index.ts, not global.d.ts. Co-locate component prop types with the component, not in a separate types file. Use satisfies instead of type assertions. Avoid Zod in Server Components unless you're actually validating untrusted input - TypeScript + strict generics is enough for internal data shapes.",
   },
   {
     q: "What structured data does every Next.js site need?",
-    a: "At minimum: Person or Organization on the root layout (sitewide authority), BreadcrumbList on every page (navigation signal), WebPage or Article on content pages. If you have FAQs, add FAQPage. If you're a service business, add Service with offers. If you have ratings, add AggregateRating. Use JSON-LD (script type='application/ld+json') — never RDFa or Microdata in a React codebase.",
+    a: "At minimum: Person or Organization on the root layout (sitewide authority), BreadcrumbList on every page (navigation signal), WebPage or Article on content pages. If you have FAQs, add FAQPage. If you're a service business, add Service with offers. If you have ratings, add AggregateRating. Use JSON-LD (script type='application/ld+json') - never RDFa or Microdata in a React codebase.",
   },
   {
     q: "When should I use Server Actions vs Route Handlers?",
-    a: "Server Actions for mutations triggered from forms or client components in your own UI — they're colocated, type-safe, and revalidate cache automatically. Route Handlers for public APIs, webhooks, or endpoints consumed by third parties who can't call a Server Action. Never expose a Route Handler that calls a Server Action internally — pick one.",
+    a: "Server Actions for mutations triggered from forms or client components in your own UI - they're colocated, type-safe, and revalidate cache automatically. Route Handlers for public APIs, webhooks, or endpoints consumed by third parties who can't call a Server Action. Never expose a Route Handler that calls a Server Action internally - pick one.",
   },
 ];
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  headline: "Production Next.js 2026: Architecture, Performance & Deployment Guide",
+  headline: "Production Next.js 2026: Architecture & Performance Guide",
   description:
-    "Everything that separates a production-grade Next.js app from a tutorial project — App Router architecture, TypeScript strict, Lighthouse 95+, ISR, structured data, and Vercel deployment.",
+    "Everything that separates a production-grade Next.js app from a tutorial project - App Router architecture, TypeScript strict, Lighthouse 95+, ISR, structured data, and Vercel deployment.",
   url: `${siteConfig.url}/production-nextjs`,
   author: personNode(),
   publisher: personNode(),
@@ -271,7 +271,7 @@ export default function ProductionNextjsPage() {
         <div className="page-container">
           <SectionHeader
             label="Production Checklist"
-            title="Ship Confidently — Check Every Box"
+            title="Ship Confidently - Check Every Box"
             description="These aren't opinions. They're the difference between a Next.js app that works in a demo and one that stays up, ranks, and scales with real users."
           />
 
@@ -341,7 +341,7 @@ export default function ProductionNextjsPage() {
           <SectionHeader
             label="Common Questions"
             title="Next.js Production FAQ"
-            description="The questions that come up on every project — answered directly."
+            description="The questions that come up on every project - answered directly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {faqs.map(({ q, a }) => (
@@ -403,7 +403,7 @@ export default function ProductionNextjsPage() {
                 Need someone to build this right the first time?
               </h2>
               <p className="text-white/80 text-sm leading-relaxed">
-                I apply every item on this checklist to every project I take on. If you want a Next.js app that ships fast, ranks, and stays up — let&apos;s talk.
+                I apply every item on this checklist to every project I take on. If you want a Next.js app that ships fast, ranks, and stays up - let&apos;s talk.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

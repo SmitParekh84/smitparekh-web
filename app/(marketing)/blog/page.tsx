@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
 };
 
-// 5-minute ISR window — new posts appear within 5 minutes without a deploy.
+// 5-minute ISR window - new posts appear within 5 minutes without a deploy.
 // The /api/revalidate webhook busts this immediately when a post is published;
 // this short window is a safety net for when the webhook is not reachable.
 export const revalidate = 300;
@@ -140,7 +140,7 @@ export default async function BlogIndexPage() {
         description="Articles and field-notes on React, Next.js, Node.js, TypeScript, and shipping production-grade web apps."
       />
 
-      {/* Server-rendered crawlable links — guarantees Googlebot reaches every
+      {/* Server-rendered crawlable links - guarantees Googlebot reaches every
           post even before the client-side category filter hydrates. */}
       <nav aria-label="All blog posts" className="sr-only">
         <ul>

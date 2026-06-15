@@ -86,7 +86,7 @@ function LoginGateModal({ type, onClose }: { type: FeedbackType; onClose: () => 
             <div>
               <h2 className="font-semibold text-base leading-tight">Sign in to submit</h2>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Free account — takes 5 seconds
+                Free account - takes 5 seconds
               </p>
             </div>
           </div>
@@ -106,7 +106,7 @@ function LoginGateModal({ type, onClose }: { type: FeedbackType; onClose: () => 
         {/* Benefits */}
         <ul className="space-y-2">
           {[
-            { emoji: "🛡️", text: "Prevents spam — keeps all reports genuine" },
+            { emoji: "🛡️", text: "Prevents spam - keeps all reports genuine" },
             { emoji: "💌", text: "Get notified when your report is resolved" },
             { emoji: "📋", text: "View and track your past submissions" },
           ].map(({ emoji, text }) => (
@@ -216,7 +216,7 @@ function SubmitForm() {
               <Link href="/login?next=/feedback" className="text-blue-600 hover:underline dark:text-blue-400 font-medium">
                 Sign in
               </Link>
-              {" "}to submit — we follow up when bugs are fixed.
+              {" "}to submit - we follow up when bugs are fixed.
             </p>
           </div>
         )}
@@ -328,7 +328,7 @@ const HOW_IT_WORKS = [
   {
     icon: <ShieldCheck className="h-5 w-5 text-blue-500" />,
     title: "Reviewed personally",
-    desc: "Every submission lands in my inbox. I read each one — no automated filters.",
+    desc: "Every submission lands in my inbox. I read each one - no automated filters.",
   },
   {
     icon: <Clock className="h-5 w-5 text-purple-500" />,
@@ -338,7 +338,7 @@ const HOW_IT_WORKS = [
   {
     icon: <Zap className="h-5 w-5 text-yellow-500" />,
     title: "Shapes what ships next",
-    desc: "Recurring feedback directly influences the roadmap — your voice matters.",
+    desc: "Recurring feedback directly influences the roadmap - your voice matters.",
   },
   {
     icon: <HeartHandshake className="h-5 w-5 text-green-500" />,
@@ -428,7 +428,7 @@ export default function FeedbackClientPage() {
           <SubmitForm />
         </div>
 
-        {/* Right — how it works */}
+        {/* Right - how it works */}
         <HowItWorksPanel />
       </div>
     </main>

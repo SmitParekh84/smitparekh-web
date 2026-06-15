@@ -13,27 +13,27 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 
 export const metadata: Metadata = {
-  title: "AI SEO Consultant — SEO + AEO + GEO for Google and AI Search",
+  title: "AI SEO Consultant - SEO + AEO + GEO for Google and AI Search",
   description:
-    "AI SEO consultant covering classic SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO). Rank on Google and get cited by ChatGPT, Perplexity, and AI Overviews — by a developer who ships the fixes. Free audit in 24 hours.",
+    "AI SEO consultant covering SEO, AEO, and Generative Engine Optimization (GEO). Rank on Google and get cited by ChatGPT, Perplexity, and AI Overviews.",
   alternates: { canonical: `${siteConfig.url}/ai-seo-consultant` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/ai-seo-consultant`,
     siteName: siteConfig.name,
-    title: "AI SEO Consultant — SEO + AEO + GEO | Smit Parekh",
+    title: "AI SEO Consultant - SEO + AEO + GEO | Smit Parekh",
     description:
-      "Rank on Google and inside AI answers. SEO, AEO, and GEO from a developer who fixes Core Web Vitals, schema, and content — and measures your citation rate in ChatGPT and Perplexity.",
-    images: [{ url: `${siteConfig.url}/images/smit-parekh-ai-seo-consultant.png`, width: 1200, height: 630, alt: "AI SEO Consultant — Smit Parekh" }],
+      "Rank on Google and inside AI answers. SEO, AEO, and GEO from a developer who fixes Core Web Vitals, schema, and content - and measures your citation rate in ChatGPT and Perplexity.",
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-ai-seo-consultant.png`, width: 1200, height: 630, alt: "AI SEO Consultant - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "AI SEO Consultant — SEO + AEO + GEO | Smit Parekh",
+    title: "AI SEO Consultant - SEO + AEO + GEO | Smit Parekh",
     description:
-      "SEO + AEO + GEO. Rank on Google and get cited by ChatGPT, Perplexity, and AI Overviews — by a developer who ships the fixes.",
+      "SEO + AEO + GEO. Rank on Google and get cited by ChatGPT, Perplexity, and AI Overviews - by a developer who ships the fixes.",
     images: [`${siteConfig.url}/images/smit-parekh-ai-seo-consultant.png`],
   },
   keywords: [
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "3-in-1", label: "SEO + AEO + GEO in one engagement — Google rankings and AI citations together", icon: Search },
-  { value: "Dev-led", label: "I fix the Core Web Vitals, schema, and rendering bugs an audit surfaces — not just flag them", icon: Zap },
+  { value: "3-in-1", label: "SEO + AEO + GEO in one engagement - Google rankings and AI citations together", icon: Search },
+  { value: "Dev-led", label: "I fix the Core Web Vitals, schema, and rendering bugs an audit surfaces - not just flag them", icon: Zap },
   { value: "4 engines", label: "Visibility tracked across ChatGPT, Perplexity, Gemini, and Google AI Overviews", icon: Brain },
   { value: "+120%", label: "Median organic traffic uplift in 6 months on content + technical programs", icon: TrendingUp },
 ];
@@ -54,19 +54,19 @@ const results = [
 const pillars = [
   {
     icon: Search,
-    title: "SEO — Rank on Google",
+    title: "SEO - Rank on Google",
     description: "On-page, technical, and content SEO: crawlability, schema, internal linking, Core Web Vitals, and genuinely useful long-form content. The classic foundation that still drives most clicks.",
     tags: ["On-page", "Technical SEO", "Content", "Core Web Vitals"],
   },
   {
     icon: Target,
-    title: "AEO — Win the Answer",
-    description: "Answer Engine Optimization: structuring content so it becomes the extractable answer in featured snippets, Google AI Overviews, and Perplexity — direct answers up top, clean schema, named facts.",
+    title: "AEO - Win the Answer",
+    description: "Answer Engine Optimization: structuring content so it becomes the extractable answer in featured snippets, Google AI Overviews, and Perplexity - direct answers up top, clean schema, named facts.",
     tags: ["Featured snippets", "AI Overviews", "FAQ schema"],
   },
   {
     icon: Brain,
-    title: "GEO — Get Recommended by AI",
+    title: "GEO - Get Recommended by AI",
     description: "Generative Engine Optimization: getting your brand mentioned and recommended inside ChatGPT, Claude, and Gemini answers through entity SEO, quotable statistics, and authority signals models trust.",
     tags: ["Entity SEO", "Citations", "Brand mentions"],
   },
@@ -74,10 +74,10 @@ const pillars = [
 
 const deliverables = [
   { icon: FileSearch, title: "SEO + AI visibility audit", description: "One audit covering technical SEO, on-page, content, plus a baseline of who gets cited for your buyer questions across ChatGPT, Perplexity, Gemini, and AI Overviews." },
-  { icon: Sparkles, title: "Schema & structured data", description: "FAQPage, Article, HowTo, Organization, and Person JSON-LD — validated and templated. The machine-readable layer both Google and generative engines read." },
+  { icon: Sparkles, title: "Schema & structured data", description: "FAQPage, Article, HowTo, Organization, and Person JSON-LD - validated and templated. The machine-readable layer both Google and generative engines read." },
   { icon: Target, title: "Answer-first content structure", description: "Pages rewritten so the direct answer leads, followed by depth. Eligible for snippets and AI citations while still ranking the classic way." },
   { icon: TrendingUp, title: "Entity & authority signals", description: "Consistent entity definitions, sameAs links, quotable stats, and an author/Organization footprint so models associate your brand with the right topics and trust it." },
-  { icon: Zap, title: "Core Web Vitals & rendering fixes", description: "Because I'm a developer, I ship the LCP, INP, CLS, and JavaScript-rendering fixes that an audit surfaces — not a 'send this to your dev team' email." },
+  { icon: Zap, title: "Core Web Vitals & rendering fixes", description: "Because I'm a developer, I ship the LCP, INP, CLS, and JavaScript-rendering fixes that an audit surfaces - not a 'send this to your dev team' email." },
   { icon: BarChart3, title: "Search + AI share-of-voice reporting", description: "Looker Studio for Google rankings and traffic, plus monthly tracking of how often you appear in AI answers and how you're described." },
 ];
 
@@ -95,7 +95,7 @@ const faqs = [
   },
   {
     q: "What's the difference between SEO, AEO, and GEO?",
-    a: "SEO gets your page ranked in Google's blue links. AEO gets your content lifted as the direct answer in snippets and AI Overviews. GEO gets your brand named and recommended inside generative AI chat responses. They share a foundation — crawlability, authority, structure — but AEO and GEO reward extractable answers, schema, named facts, and consistent entities far more heavily.",
+    a: "SEO gets your page ranked in Google's blue links. AEO gets your content lifted as the direct answer in snippets and AI Overviews. GEO gets your brand named and recommended inside generative AI chat responses. They share a foundation - crawlability, authority, structure - but AEO and GEO reward extractable answers, schema, named facts, and consistent entities far more heavily.",
   },
   {
     q: "Why does AI search optimization matter now?",
@@ -103,11 +103,11 @@ const faqs = [
   },
   {
     q: "Can you guarantee I'll be cited by ChatGPT or rank #1 on Google?",
-    a: "No — and anyone who guarantees either is bluffing. Rankings and AI citations are influenced by factors no one fully controls. What I guarantee is that the technical fixes are correct, the content is genuinely better than what currently wins, and that both Google rankings and AI citation rate are measured month over month so the work is accountable.",
+    a: "No - and anyone who guarantees either is bluffing. Rankings and AI citations are influenced by factors no one fully controls. What I guarantee is that the technical fixes are correct, the content is genuinely better than what currently wins, and that both Google rankings and AI citation rate are measured month over month so the work is accountable.",
   },
   {
     q: "Do you actually implement the fixes?",
-    a: "Yes. That's the advantage of a developer-led consultant — I fix the Core Web Vitals, ship the schema, rewrite the answer blocks, and wire the internal links myself. The audit just explains what's being fixed; implementation is the deliverable.",
+    a: "Yes. That's the advantage of a developer-led consultant - I fix the Core Web Vitals, ship the schema, rewrite the answer blocks, and wire the internal links myself. The audit just explains what's being fixed; implementation is the deliverable.",
   },
   {
     q: "Who are you and what's your background?",
@@ -118,11 +118,11 @@ const faqs = [
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI SEO Consultant — SEO, AEO & GEO",
+  name: "AI SEO Consultant - SEO, AEO & GEO",
   provider: personNode(),
   serviceType: "AI Search Optimization (SEO, AEO, GEO)",
   description:
-    "AI SEO consulting covering classic SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO) — ranking on Google and getting cited by ChatGPT, Perplexity, and Google AI Overviews.",
+    "AI SEO consulting covering classic SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO) - ranking on Google and getting cited by ChatGPT, Perplexity, and Google AI Overviews.",
   url: `${siteConfig.url}/ai-seo-consultant`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Audit, sprint, and retainer engagements available. Free audit within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
@@ -157,7 +157,7 @@ export default function AISEOConsultantPage() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <Brain className="w-4 h-4 text-blue-600 dark:text-cyan-300" />
-                SEO · AEO · GEO — classic search + AI search
+                SEO · AEO · GEO - classic search + AI search
               </div>
 
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white">
@@ -168,18 +168,18 @@ export default function AISEOConsultantPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                Search is splitting in two — Google&apos;s blue links and AI answers from ChatGPT,
+                Search is splitting in two - Google&apos;s blue links and AI answers from ChatGPT,
                 Perplexity, and Google AI Overviews. I optimise for both: classic SEO, Answer Engine
-                Optimization, and Generative Engine Optimization — and because I&apos;m a developer,
+                Optimization, and Generative Engine Optimization - and because I&apos;m a developer,
                 I ship the fixes instead of handing you a 90-page PDF.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "SEO — on-page, technical & content that ranks on Google",
-                  "AEO — win featured snippets & Google AI Overviews",
-                  "GEO — get named and recommended inside ChatGPT & Perplexity",
-                  "Developer-led — Core Web Vitals & schema fixed, not just flagged",
+                  "SEO - on-page, technical & content that ranks on Google",
+                  "AEO - win featured snippets & Google AI Overviews",
+                  "GEO - get named and recommended inside ChatGPT & Perplexity",
+                  "Developer-led - Core Web Vitals & schema fixed, not just flagged",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
@@ -232,7 +232,7 @@ export default function AISEOConsultantPage() {
               content to become the direct answer in featured snippets and Google AI Overviews.
               <strong> GEO</strong> (Generative Engine Optimization) gets your brand mentioned and
               recommended inside generative AI tools like ChatGPT, Claude, and Perplexity. Smit Parekh
-              is an AI SEO consultant and full-stack developer who runs all three together — ranking
+              is an AI SEO consultant and full-stack developer who runs all three together - ranking
               you on Google while making your content extractable, well-structured, and authoritative
               enough to be cited by AI answer engines.
             </p>
@@ -246,7 +246,7 @@ export default function AISEOConsultantPage() {
           <SectionHeader
             label="Three Pillars"
             title="SEO + AEO + GEO, Run Together"
-            description="Visibility on Google and inside AI answers come from the same foundation — so I optimise for all three in one engagement, not three siloed retainers."
+            description="Visibility on Google and inside AI answers come from the same foundation - so I optimise for all three in one engagement, not three siloed retainers."
           />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {pillars.map(({ icon: Icon, title, description, tags }) => (
@@ -275,7 +275,7 @@ export default function AISEOConsultantPage() {
           <SectionHeader
             label="What You Get"
             title="One Engagement, Both Kinds of Search"
-            description="Everything needed to be visible on Google and inside AI answers — diagnosed, implemented, and measured."
+            description="Everything needed to be visible on Google and inside AI answers - diagnosed, implemented, and measured."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {deliverables.map(({ icon: Icon, title, description }) => (
@@ -350,8 +350,8 @@ export default function AISEOConsultantPage() {
                 Want to show up everywhere your buyers search?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your site. I&apos;ll reply within 24 hours with a free audit — what&apos;s holding back
-                your Google rankings, and where you&apos;re missing from AI answers — plus a prioritised plan.
+                Send your site. I&apos;ll reply within 24 hours with a free audit - what&apos;s holding back
+                your Google rankings, and where you&apos;re missing from AI answers - plus a prioritised plan.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}>

@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First, App Router Expert",
+  title: "Hire a Next.js Developer - App Router, 95+ Lighthouse",
   description:
-    "Hire a Next.js developer with 4+ years shipping full-stack production apps. App Router, Server Components, TypeScript strict, 95+ Lighthouse scores on every deployment. Fixed-price available. Free quote in 24 hours.",
+    "Hire a Next.js developer with 4+ years shipping full-stack production apps. App Router, Server Components, TypeScript strict, 95+ Lighthouse every deploy.",
   alternates: { canonical: `${siteConfig.url}/nextjs-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/nextjs-developer`,
     siteName: siteConfig.name,
-    title: "Hire a Next.js Developer – App Router Expert, 95+ Lighthouse | Smit Parekh",
-    description: "Full-stack Next.js development — App Router, Server Components, TypeScript, SEO-first builds, 95+ Lighthouse. Deployed to Vercel or AWS.",
-    images: [{ url: `${siteConfig.url}/images/hire-nextjs-developer.png`, width: 1200, height: 630, alt: "Hire a Next.js Developer – Smit Parekh" }],
+    title: "Hire a Next.js Developer - App Router Expert, 95+ Lighthouse | Smit Parekh",
+    description: "Full-stack Next.js development - App Router, Server Components, TypeScript, SEO-first builds, 95+ Lighthouse. Deployed to Vercel or AWS.",
+    images: [{ url: `${siteConfig.url}/images/hire-nextjs-developer.png`, width: 1200, height: 630, alt: "Hire a Next.js Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a Next.js Developer – 95+ Lighthouse, SEO-First | Smit Parekh",
+    title: "Hire a Next.js Developer - 95+ Lighthouse, SEO-First | Smit Parekh",
     description: "Full-stack Next.js. App Router, TypeScript, 95+ Lighthouse. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-nextjs-developer.png`, width: 1200, height: 630 }],
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "95+", label: "Lighthouse score on every Next.js deployment — no exceptions, no excuses", icon: Zap },
+  { value: "95+", label: "Lighthouse score on every Next.js deployment - no exceptions, no excuses", icon: Zap },
   { value: "30+", label: "Full-stack Next.js applications shipped from architecture to production deploy", icon: Star },
   { value: "40%", label: "Performance improvement on a live Next.js migration from Pages to App Router", icon: TrendingUp },
   { value: "#1", label: "SEO-first builds using metadata API, structured data, ISR, and Core Web Vitals tuning", icon: Search },
@@ -59,13 +59,13 @@ const whatIBuild = [
   {
     icon: Code2,
     title: "SaaS Products",
-    description: "Auth, billing, dashboards, multi-tenant architecture, and subscription gates — the full SaaS stack built on Next.js App Router with Supabase or PostgreSQL. Deployed and maintained.",
+    description: "Auth, billing, dashboards, multi-tenant architecture, and subscription gates - the full SaaS stack built on Next.js App Router with Supabase or PostgreSQL. Deployed and maintained.",
     tags: ["Next.js", "Supabase", "Stripe", "TypeScript"],
   },
   {
     icon: Search,
     title: "SEO-First Marketing Sites",
-    description: "Core Web Vitals A+, metadata API, structured data, dynamic OG images, and ISR for content freshness. Built to rank — not just to look good in a browser.",
+    description: "Core Web Vitals A+, metadata API, structured data, dynamic OG images, and ISR for content freshness. Built to rank - not just to look good in a browser.",
     tags: ["Next.js", "Metadata API", "Schema.org", "ISR"],
   },
   {
@@ -83,7 +83,7 @@ const whatIBuild = [
   {
     icon: Server,
     title: "Full-Stack Web Applications",
-    description: "API routes, Server Actions, middleware, Supabase or PostgreSQL, auth, and deployment — all inside a single Next.js monorepo. One codebase, full ownership.",
+    description: "API routes, Server Actions, middleware, Supabase or PostgreSQL, auth, and deployment - all inside a single Next.js monorepo. One codebase, full ownership.",
     tags: ["Next.js", "Server Actions", "PostgreSQL", "AWS"],
   },
   {
@@ -98,22 +98,22 @@ const differentiators = [
   {
     icon: Zap,
     title: "95+ Lighthouse is the floor, not the target",
-    description: "LCP under 2.5s, CLS zero, INP under 200ms — not aspirational, but delivered. I profile before I ship, not after a client flags slowness.",
+    description: "LCP under 2.5s, CLS zero, INP under 200ms - not aspirational, but delivered. I profile before I ship, not after a client flags slowness.",
   },
   {
     icon: Search,
     title: "SEO built into the architecture, not bolted on",
-    description: "Metadata API, generateStaticParams, ISR, dynamic OG images, structured data, canonical URLs, hreflang — the full stack, handled by the developer writing the code.",
+    description: "Metadata API, generateStaticParams, ISR, dynamic OG images, structured data, canonical URLs, hreflang - the full stack, handled by the developer writing the code.",
   },
   {
     icon: ShieldCheck,
     title: "App Router without the footguns",
-    description: "Server Components, Client Components, streaming, Suspense, parallel routes — I know which patterns cause silent re-renders and which ones scale. Experience from real migrations, not docs.",
+    description: "Server Components, Client Components, streaming, Suspense, parallel routes - I know which patterns cause silent re-renders and which ones scale. Experience from real migrations, not docs.",
   },
   {
     icon: Code2,
     title: "Full-stack in one codebase",
-    description: "Route Handlers, Server Actions, middleware — I own the API layer too. No hand-off to a separate backend team. One engineer, one codebase, full accountability.",
+    description: "Route Handlers, Server Actions, middleware - I own the API layer too. No hand-off to a separate backend team. One engineer, one codebase, full accountability.",
   },
 ];
 
@@ -130,27 +130,27 @@ const techStack = [
 const faqs = [
   {
     q: "How much does a Next.js developer cost?",
-    a: "Fixed-price for scoped projects — a marketing site, a SaaS MVP, an App Router migration. Retainer for ongoing product work. I quote in writing within 24 hours of receiving a brief. No verbal estimates, no surprises.",
+    a: "Fixed-price for scoped projects - a marketing site, a SaaS MVP, an App Router migration. Retainer for ongoing product work. I quote in writing within 24 hours of receiving a brief. No verbal estimates, no surprises.",
   },
   {
     q: "How long does a Next.js project take?",
-    a: "A SEO-first marketing site: 2–3 weeks. An MVP SaaS product: 4–8 weeks. A full App Router migration from Pages Router: 2–4 weeks depending on codebase size. Every engagement gets a written timeline in the proposal.",
+    a: "A SEO-first marketing site: 2-3 weeks. An MVP SaaS product: 4-8 weeks. A full App Router migration from Pages Router: 2-4 weeks depending on codebase size. Every engagement gets a written timeline in the proposal.",
   },
   {
     q: "Do you use the App Router or Pages Router?",
-    a: "App Router for all new projects — it's what Next.js is built around now and the performance and SEO benefits are significant. For existing Pages Router codebases, I can work in it or scope a migration.",
+    a: "App Router for all new projects - it's what Next.js is built around now and the performance and SEO benefits are significant. For existing Pages Router codebases, I can work in it or scope a migration.",
   },
   {
     q: "Can you handle the back-end as well?",
-    a: "Yes. Route Handlers, Server Actions, Supabase, PostgreSQL, Redis, AWS — I own the full stack. You don't need a separate back-end developer unless the scale genuinely requires a dedicated team.",
+    a: "Yes. Route Handlers, Server Actions, Supabase, PostgreSQL, Redis, AWS - I own the full stack. You don't need a separate back-end developer unless the scale genuinely requires a dedicated team.",
   },
   {
     q: "Do you guarantee specific SEO rankings?",
-    a: "No ethical developer does. I guarantee technically excellent SEO — Core Web Vitals, structured data, metadata, crawlability. Rankings depend on content, competition, and time. The technical foundation is my responsibility.",
+    a: "No ethical developer does. I guarantee technically excellent SEO - Core Web Vitals, structured data, metadata, crawlability. Rankings depend on content, competition, and time. The technical foundation is my responsibility.",
   },
   {
     q: "Which deployment platform do you use?",
-    a: "Vercel for most projects — it's the best-in-class Next.js deployment platform. AWS (EC2, CloudFront, S3) for clients with specific infra requirements or existing AWS accounts. Both include CI/CD as standard.",
+    a: "Vercel for most projects - it's the best-in-class Next.js deployment platform. AWS (EC2, CloudFront, S3) for clients with specific infra requirements or existing AWS accounts. Both include CI/CD as standard.",
   },
 ];
 
@@ -192,7 +192,7 @@ export default function NextjsDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiNextdotjs className="w-4 h-4 text-neutral-700 dark:text-white" />
@@ -209,14 +209,14 @@ export default function NextjsDeveloperPage() {
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 95+ Lighthouse. Core Web Vitals A+. SEO architecture built into every route, not retrofitted
-                after the fact. Full-stack from Server Components to PostgreSQL — deployed and monitored from day one.
+                after the fact. Full-stack from Server Components to PostgreSQL - deployed and monitored from day one.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "App Router, Server Components, and streaming — used correctly",
+                  "App Router, Server Components, and streaming - used correctly",
                   "95+ Lighthouse score on every deployment, guaranteed",
-                  "SEO metadata API, structured data, ISR — the full stack",
+                  "SEO metadata API, structured data, ISR - the full stack",
                   "Deployed to Vercel or AWS with CI/CD included",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
@@ -247,7 +247,7 @@ export default function NextjsDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -286,7 +286,7 @@ export default function NextjsDeveloperPage() {
           <SectionHeader
             label="Next.js Expertise"
             title="What I Build With Next.js"
-            description="Full-stack products, not just front-ends. From the first route to the production deploy — one engineer, full ownership."
+            description="Full-stack products, not just front-ends. From the first route to the production deploy - one engineer, full ownership."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -315,7 +315,7 @@ export default function NextjsDeveloperPage() {
           <SectionHeader
             label="Why Hire Me"
             title="Next.js Done Right Looks Different"
-            description="The App Router has footguns. ISR has edge cases. SEO has nuance. I've hit all of them — and I know how to avoid them on your project."
+            description="The App Router has footguns. ISR has edge cases. SEO has nuance. I've hit all of them - and I know how to avoid them on your project."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {differentiators.map(({ icon: Icon, title, description }) => (
@@ -339,7 +339,7 @@ export default function NextjsDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (

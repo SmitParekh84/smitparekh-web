@@ -87,7 +87,7 @@ function QuotaBar({ used, quota }: { used: number; quota: number }) {
   );
 }
 
-// Preview bars — there is no historical-usage endpoint yet (see README).
+// Preview bars - there is no historical-usage endpoint yet (see README).
 const SAMPLE_TREND = [12, 18, 14, 22, 28, 24, 31, 28, 34, 41, 38, 33, 47];
 function UsageBars({ data }: { data: number[] }) {
   const max = Math.max(...data);
@@ -160,7 +160,7 @@ export default function DashboardPage() {
   const todayTotal = data?.today.total ?? 0;
   const allTimeTotal = data?.allTime.total ?? 0;
   const toolsUsed = data?.allTime.byTool.length ?? 0;
-  const topTool = data?.allTime.byTool[0]?.slug ? toolLabel(data.allTime.byTool[0].slug) : "—";
+  const topTool = data?.allTime.byTool[0]?.slug ? toolLabel(data.allTime.byTool[0].slug) : "-";
 
   // Aggregate today's quota consumption across tools that have a finite quota.
   const capped = todayTools.filter((t) => t.quota > 0);
@@ -230,7 +230,7 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
 
-      {/* Stat cards — real data */}
+      {/* Stat cards - real data */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MiniStat label="Today" value={todayTotal} sub={`across ${todayTools.length} tools`} />
         <MiniStat label="All time" value={allTimeTotal.toLocaleString()} sub="total uses" />
@@ -362,7 +362,7 @@ export default function DashboardPage() {
             <div>
               <div className="text-[13.5px] font-medium">Explore every free tool</div>
               <div className="text-[12px] text-muted-foreground">
-                JSON, PDF, QR, image tools and more — no sign-up required.
+                JSON, PDF, QR, image tools and more - no sign-up required.
               </div>
             </div>
           </div>

@@ -697,7 +697,7 @@ function ContactDetailDrawer({
         aria-modal="true"
         className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm"
         onClick={(e) => {
-          // Only close on direct backdrop click — NOT on events bubbling from
+          // Only close on direct backdrop click - NOT on events bubbling from
           // the React portal of the nested ContactReplyDialog.
           if (e.target === e.currentTarget) onClose();
         }}
@@ -798,7 +798,7 @@ function ContactDetailDrawer({
                       </p>
                       {!contact.replies?.length && (
                         <p className="mt-2 text-[11px] italic text-emerald-700/70 dark:text-emerald-300/70">
-                          Reply body not available — view in Resend logs.
+                          Reply body not available - view in Resend logs.
                         </p>
                       )}
                     </div>

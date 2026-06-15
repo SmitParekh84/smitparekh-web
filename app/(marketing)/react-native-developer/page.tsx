@@ -15,25 +15,25 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a React Native Developer – iOS & Android from One Codebase",
+  title: "Hire a React Native Developer - iOS & Android, One Codebase",
   description:
-    "Hire a React Native developer with Expo experience. One TypeScript codebase for iOS and Android, EAS build pipeline, push notifications, offline support, and App Store submission handled. Free quote in 24 hours.",
+    "Hire a React Native developer with Expo. One TypeScript codebase for iOS and Android, EAS builds, push notifications, and App Store submission handled.",
   alternates: { canonical: `${siteConfig.url}/react-native-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/react-native-developer`,
     siteName: siteConfig.name,
-    title: "Hire a React Native Developer – iOS & Android | Smit Parekh",
+    title: "Hire a React Native Developer - iOS & Android | Smit Parekh",
     description:
-      "React Native with Expo — one TypeScript codebase, two stores, 60% cost vs native. App Store submission handled. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/hire-react-native-developer.png`, width: 1200, height: 630, alt: "Hire a React Native Developer – Smit Parekh" }],
+      "React Native with Expo - one TypeScript codebase, two stores, 60% cost vs native. App Store submission handled. Free quote in 24 hours.",
+    images: [{ url: `${siteConfig.url}/images/hire-react-native-developer.png`, width: 1200, height: 630, alt: "Hire a React Native Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a React Native Developer – iOS & Android | Smit Parekh",
+    title: "Hire a React Native Developer - iOS & Android | Smit Parekh",
     description: "React Native + Expo. iOS & Android from one codebase. App Store submission included. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-react-native-developer.png`, width: 1200, height: 630 }],
   },
@@ -59,28 +59,28 @@ const whatIBuild = [
     icon: Smartphone,
     title: "Consumer Mobile Apps",
     description:
-      "Onboarding flows, social feeds, real-time messaging, in-app purchases, and push notification campaigns — built with React Native and Expo Router for native feel on both iOS and Android without the native cost.",
+      "Onboarding flows, social feeds, real-time messaging, in-app purchases, and push notification campaigns - built with React Native and Expo Router for native feel on both iOS and Android without the native cost.",
     tags: ["React Native", "Expo Router", "Push Notifications", "IAP"],
   },
   {
     icon: Layers,
     title: "B2B & Internal Tools",
     description:
-      "Field service apps, inventory management, approval workflows, and offline-first data entry. TypeScript strict, role-based access, and a data model that syncs when connectivity returns — not when it's convenient.",
+      "Field service apps, inventory management, approval workflows, and offline-first data entry. TypeScript strict, role-based access, and a data model that syncs when connectivity returns - not when it's convenient.",
     tags: ["Offline-first", "SQLite", "Role-based", "Sync"],
   },
   {
     icon: Code2,
     title: "React Native MVP",
     description:
-      "Idea to App Store in 4–6 weeks. Auth, core flows, API integration, and EAS build + submission — the minimum that's actually shippable, not the minimum that's embarrassing.",
+      "Idea to App Store in 4-6 weeks. Auth, core flows, API integration, and EAS build + submission - the minimum that's actually shippable, not the minimum that's embarrassing.",
     tags: ["MVP", "Expo", "EAS Build", "App Store"],
   },
   {
     icon: Globe,
     title: "Web-to-Mobile Extensions",
     description:
-      "You have a web app and you need a mobile companion. I share business logic, API clients, and validation schemas between your existing Next.js codebase and the React Native app — no duplicate code, no out-of-sync behaviour.",
+      "You have a web app and you need a mobile companion. I share business logic, API clients, and validation schemas between your existing Next.js codebase and the React Native app - no duplicate code, no out-of-sync behaviour.",
     tags: ["Monorepo", "Shared Logic", "TanStack Query", "Zod"],
   },
   {
@@ -94,7 +94,7 @@ const whatIBuild = [
     icon: Sparkles,
     title: "App Store Submission & Review",
     description:
-      "Apple Developer Program setup, provisioning profiles, Play Console listing, screenshots, privacy policy, metadata, and the review submission. I handle the paperwork — you approve the release.",
+      "Apple Developer Program setup, provisioning profiles, Play Console listing, screenshots, privacy policy, metadata, and the review submission. I handle the paperwork - you approve the release.",
     tags: ["EAS Submit", "App Store", "Google Play", "Compliance"],
   },
 ];
@@ -116,13 +116,13 @@ const differentiators = [
     icon: Zap,
     title: "EAS build pipeline from day one",
     description:
-      "Expo EAS for OTA updates and store builds. CI on every commit, preview builds on PR, production release on tag. No manual Xcode archive ceremonies — just push to main.",
+      "Expo EAS for OTA updates and store builds. CI on every commit, preview builds on PR, production release on tag. No manual Xcode archive ceremonies - just push to main.",
   },
   {
     icon: TrendingUp,
-    title: "Full-stack context — app + API",
+    title: "Full-stack context - app + API",
     description:
-      "I build the API as well as the app. That means the API contracts get designed alongside the screens that consume them — no back-and-forth between a mobile dev and a backend dev who don't talk to each other.",
+      "I build the API as well as the app. That means the API contracts get designed alongside the screens that consume them - no back-and-forth between a mobile dev and a backend dev who don't talk to each other.",
   },
 ];
 
@@ -137,28 +137,28 @@ const techStack = [
 
 const faqs = [
   {
-    q: "React Native vs Flutter — which should I choose?",
-    a: "React Native if your team knows JavaScript/TypeScript or you have a web product to share code with. Flutter if you need maximum rendering control (custom UI like games or highly animated apps) or if your team is Dart-native. For most business apps, React Native is the pragmatic choice — larger ecosystem, more hire market, and Expo makes the tooling excellent.",
+    q: "React Native vs Flutter - which should I choose?",
+    a: "React Native if your team knows JavaScript/TypeScript or you have a web product to share code with. Flutter if you need maximum rendering control (custom UI like games or highly animated apps) or if your team is Dart-native. For most business apps, React Native is the pragmatic choice - larger ecosystem, more hire market, and Expo makes the tooling excellent.",
   },
   {
     q: "How long does App Store review take?",
-    a: "Typically 1–3 days for new submissions, often same-day for updates once the app has history. The most common rejection reasons are a missing privacy policy, vague app description, or a demo account that doesn't work for the reviewer. I prepare everything to avoid those.",
+    a: "Typically 1-3 days for new submissions, often same-day for updates once the app has history. The most common rejection reasons are a missing privacy policy, vague app description, or a demo account that doesn't work for the reviewer. I prepare everything to avoid those.",
   },
   {
     q: "Can you add React Native to our existing web product?",
-    a: "Yes — the most common pattern is a React Native app that talks to the same API as your web app. If your web product is built on Next.js or React, business logic, validation schemas, and API client code can be shared in a monorepo to eliminate duplication.",
+    a: "Yes - the most common pattern is a React Native app that talks to the same API as your web app. If your web product is built on Next.js or React, business logic, validation schemas, and API client code can be shared in a monorepo to eliminate duplication.",
   },
   {
     q: "What's an OTA update and why does it matter?",
-    a: "Expo EAS lets you push JavaScript bundle updates to users' devices without going through app store review. Bug fixes, copy changes, and non-native feature additions ship in minutes instead of the usual 1–3 day review window. It's a meaningful operational advantage.",
+    a: "Expo EAS lets you push JavaScript bundle updates to users' devices without going through app store review. Bug fixes, copy changes, and non-native feature additions ship in minutes instead of the usual 1-3 day review window. It's a meaningful operational advantage.",
   },
   {
     q: "How much does a React Native app cost?",
-    a: "An MVP (auth + 3–5 core flows + EAS submission) starts at $6,000 and ships in 4–6 weeks. A full production app with 10+ screens, offline support, and real-time features starts at $15,000 and ships in 8–12 weeks. I work fixed-price with a written scope.",
+    a: "An MVP (auth + 3-5 core flows + EAS submission) starts at $6,000 and ships in 4-6 weeks. A full production app with 10+ screens, offline support, and real-time features starts at $15,000 and ships in 8-12 weeks. I work fixed-price with a written scope.",
   },
   {
     q: "Do you handle the back-end API as well?",
-    a: "Yes. If you need an API built alongside the app, I can do both — see /services/backend-development or /services/api-development for what that covers. Bundling the two often saves time because the API contracts get designed alongside the screens that consume them.",
+    a: "Yes. If you need an API built alongside the app, I can do both - see /services/backend-development or /services/api-development for what that covers. Bundling the two often saves time because the API contracts get designed alongside the screens that consume them.",
   },
 ];
 
@@ -214,16 +214,16 @@ export default function ReactNativeDeveloperPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                React Native with Expo — one TypeScript codebase for both stores, native feel on
+                React Native with Expo - one TypeScript codebase for both stores, native feel on
                 every device, and 60% of the cost of going fully native. App Store submission,
                 OTA updates, and push notifications all handled.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "TypeScript strict — typed components, navigation, and API responses",
-                  "EAS build pipeline — OTA updates without App Store review delays",
-                  "Native feel — gestures, haptics, and platform-specific navigation patterns",
+                  "TypeScript strict - typed components, navigation, and API responses",
+                  "EAS build pipeline - OTA updates without App Store review delays",
+                  "Native feel - gestures, haptics, and platform-specific navigation patterns",
                   "App Store & Google Play submission handled end-to-end",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
@@ -290,7 +290,7 @@ export default function ReactNativeDeveloperPage() {
           <SectionHeader
             label="React Native Expertise"
             title="What I Build With React Native"
-            description="From consumer apps to internal tools — shipped to real stores with real users."
+            description="From consumer apps to internal tools - shipped to real stores with real users."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -343,7 +343,7 @@ export default function ReactNativeDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -374,7 +374,7 @@ export default function ReactNativeDeveloperPage() {
                 Ready to ship to the App Store and Google Play?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. One codebase, two stores, done right.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. One codebase, two stores, done right.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

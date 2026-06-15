@@ -105,7 +105,7 @@ export default function AdminWaitlistPage() {
           {[
             { label: "Total signups", value: String(totalSignups) },
             { label: "Tools", value: String(groups.length) },
-            { label: "Most wanted", value: groups[0] ? ToolLabel(groups[0].tool) : "—" },
+            { label: "Most wanted", value: groups[0] ? ToolLabel(groups[0].tool) : "-" },
           ].map((s) => (
             <Card key={s.label} className={s.label === "Most wanted" ? "col-span-2 sm:col-span-1" : undefined}>
               <CardContent className="p-4">

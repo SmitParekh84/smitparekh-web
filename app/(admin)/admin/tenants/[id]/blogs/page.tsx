@@ -44,7 +44,7 @@ export default function AdminTenantBlogsPage({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">
-              {tenant ? `${tenant.name} — Blogs` : "Tenant Blogs"}
+              {tenant ? `${tenant.name} - Blogs` : "Tenant Blogs"}
             </h2>
             {tenant && (
               <p className="text-sm text-muted-foreground">

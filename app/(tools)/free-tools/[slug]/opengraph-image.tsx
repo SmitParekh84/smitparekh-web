@@ -23,7 +23,7 @@ export default async function ToolOgImage({
         .join(" ");
 
   const description =
-    tool?.description ?? "Free online tool — no account required.";
+    tool?.description ?? "Free online tool - no account required.";
 
   return new ImageResponse(
     (

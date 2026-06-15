@@ -6,11 +6,11 @@ export interface HowToStep {
 export const toolHowToSteps: Record<string, HowToStep[]> = {
   "background-remover": [
     { name: "Upload your image", text: "Click the upload area or drag and drop a photo, logo, or product image." },
-    { name: "Wait for AI processing", text: "The AI removes the background automatically — no manual selection needed." },
+    { name: "Wait for AI processing", text: "The AI removes the background automatically - no manual selection needed." },
     { name: "Download the result", text: "Click Download to save the image with a transparent background as PNG." },
   ],
   "viral-linkedin-post-generator": [
-    { name: "Choose a post type", text: "Select the style of LinkedIn post you want — story, tips, opinion, or carousel hook." },
+    { name: "Choose a post type", text: "Select the style of LinkedIn post you want - story, tips, opinion, or carousel hook." },
     { name: "Enter your topic or idea", text: "Type a brief description of what your post is about." },
     { name: "Generate and copy", text: "Click Generate, review the output, and copy it directly to LinkedIn." },
   ],
@@ -22,7 +22,7 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   "meta-tag-checker": [
     { name: "Enter a URL", text: "Type or paste the full URL of the page you want to inspect." },
     { name: "Click Analyse", text: "The tool fetches the page and extracts all meta tags, OG tags, and Twitter cards." },
-    { name: "Review the results", text: "Check title length, meta description, Open Graph image, and Twitter card status — fix any flagged issues." },
+    { name: "Review the results", text: "Check title length, meta description, Open Graph image, and Twitter card status - fix any flagged issues." },
   ],
   "qr-code-generator": [
     { name: "Choose content type", text: "Select URL, plain text, email address, or phone number." },
@@ -30,34 +30,34 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
     { name: "Download your QR code", text: "Click Download to save the QR code as a high-resolution PNG." },
   ],
   "word-counter": [
-    { name: "Paste or type your text", text: "Enter any text into the editor — articles, essays, captions, or scripts." },
+    { name: "Paste or type your text", text: "Enter any text into the editor - articles, essays, captions, or scripts." },
     { name: "View counts instantly", text: "See word count, character count (with and without spaces), sentence count, and paragraph count update live." },
     { name: "Check reading time and keyword density", text: "Scroll down to see estimated reading time and the top keywords by frequency." },
   ],
   "image-compressor": [
     { name: "Upload your image", text: "Drag and drop or click to upload a JPEG, PNG, or WebP file." },
     { name: "Adjust quality if needed", text: "Use the quality slider to balance file size and visual fidelity." },
-    { name: "Download the compressed image", text: "Click Download to save the smaller file — no watermark, no account needed." },
+    { name: "Download the compressed image", text: "Click Download to save the smaller file - no watermark, no account needed." },
   ],
   "image-converter": [
     { name: "Upload your image", text: "Click to upload or drag and drop the source image file." },
     { name: "Choose the output format", text: "Select JPEG, PNG, or WebP as the target format." },
-    { name: "Download the converted file", text: "Click Convert then Download — the file is processed entirely in your browser." },
+    { name: "Download the converted file", text: "Click Convert then Download - the file is processed entirely in your browser." },
   ],
   "linkedin-media-downloader": [
     { name: "Copy a LinkedIn post URL", text: "Right-click a LinkedIn post and copy the link, or grab it from the browser address bar." },
     { name: "Paste the URL and click Download", text: "Paste the post URL into the input and click the Download button." },
-    { name: "Save the file", text: "The video or image downloads directly to your device — no login required." },
+    { name: "Save the file", text: "The video or image downloads directly to your device - no login required." },
   ],
   "seo-analyzer": [
     { name: "Enter a webpage URL", text: "Type or paste the full URL of the page you want to audit." },
     { name: "Click Analyse", text: "The tool fetches the page and checks title tags, headings, meta description, links, and performance signals." },
-    { name: "Review the SEO report", text: "Read each section — fix any red or amber items first for the fastest ranking improvement." },
+    { name: "Review the SEO report", text: "Read each section - fix any red or amber items first for the fastest ranking improvement." },
   ],
   "password-generator": [
     { name: "Set your length and character options", text: "Choose password length and toggle uppercase, lowercase, numbers, and symbols." },
     { name: "Click Generate", text: "A cryptographically random password is created instantly in your browser." },
-    { name: "Copy your password", text: "Click Copy — the password is never sent to any server." },
+    { name: "Copy your password", text: "Click Copy - the password is never sent to any server." },
   ],
   "youtube-thumbnail-downloader": [
     { name: "Paste a YouTube video URL", text: "Copy the URL from any YouTube video page or Shorts URL and paste it into the input." },
@@ -67,22 +67,22 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   "json-formatter": [
     { name: "Paste your JSON", text: "Paste raw or minified JSON into the input area." },
     { name: "Format or minify", text: "Click Beautify for readable indented output, or Minify to compress it." },
-    { name: "Copy the result", text: "Click Copy to get the formatted JSON — syntax errors are highlighted in red." },
+    { name: "Copy the result", text: "Click Copy to get the formatted JSON - syntax errors are highlighted in red." },
   ],
   "base64-encoder-decoder": [
     { name: "Choose a mode", text: "Select Encode to convert text to Base64, or Decode to convert Base64 back to plain text." },
     { name: "Enter your input", text: "Paste your text or Base64 string into the input area." },
-    { name: "Copy the output", text: "The result appears instantly — click Copy to use it." },
+    { name: "Copy the output", text: "The result appears instantly - click Copy to use it." },
   ],
   "url-encoder-decoder": [
     { name: "Choose a mode", text: "Select Encode to percent-encode a URL, or Decode to convert an encoded string back to readable text." },
     { name: "Paste your input", text: "Enter the URL or encoded string you want to convert." },
-    { name: "Copy the result", text: "Click Copy — you can switch between full URL encoding and component encoding." },
+    { name: "Copy the result", text: "Click Copy - you can switch between full URL encoding and component encoding." },
   ],
   "hash-generator": [
     { name: "Choose a hash algorithm", text: "Select MD5, SHA-1, SHA-256, SHA-384, or SHA-512." },
-    { name: "Type or paste your input", text: "Enter the text you want to hash — the hash updates as you type." },
-    { name: "Copy the hash", text: "Click Copy to use the hash — everything runs client-side, nothing is sent to a server." },
+    { name: "Type or paste your input", text: "Enter the text you want to hash - the hash updates as you type." },
+    { name: "Copy the hash", text: "Click Copy to use the hash - everything runs client-side, nothing is sent to a server." },
   ],
   "regex-tester": [
     { name: "Enter your regex pattern", text: "Type your regular expression in the pattern field and set any flags (g, i, m, s)." },
@@ -91,8 +91,8 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   ],
   "pomodoro-timer": [
     { name: "Set focus and break durations", text: "Adjust the focus session length (default 25 min) and short/long break durations." },
-    { name: "Click Start", text: "The timer counts down — browser notifications alert you when a session ends." },
-    { name: "Work through sessions", text: "Complete four focus sessions to earn a long break — your session count is tracked automatically." },
+    { name: "Click Start", text: "The timer counts down - browser notifications alert you when a session ends." },
+    { name: "Work through sessions", text: "Complete four focus sessions to earn a long break - your session count is tracked automatically." },
   ],
   "world-clock": [
     { name: "Search for and add cities", text: "Type a city name in the search box and click Add to display its current time." },
@@ -106,7 +106,7 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   ],
   "markdown-editor": [
     { name: "Type or paste Markdown", text: "Write or paste Markdown content into the left editor pane." },
-    { name: "Preview the rendered output", text: "The right pane shows a live HTML preview — GitHub-flavoured Markdown is fully supported." },
+    { name: "Preview the rendered output", text: "The right pane shows a live HTML preview - GitHub-flavoured Markdown is fully supported." },
     { name: "Export your content", text: "Click Copy as HTML to get the rendered markup, or Download to save the .md file." },
   ],
   "cron-builder": [
@@ -122,15 +122,15 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   "jwt-decoder": [
     { name: "Paste your JWT token", text: "Copy a JSON Web Token from your app or API response and paste it into the input." },
     { name: "View decoded sections", text: "The header, payload, and signature are decoded and displayed in readable JSON." },
-    { name: "Check expiry and claims", text: "Expiry time, issued-at, and standard claims are highlighted — your token never leaves your browser." },
+    { name: "Check expiry and claims", text: "Expiry time, issued-at, and standard claims are highlighted - your token never leaves your browser." },
   ],
   "sql-formatter": [
     { name: "Paste your SQL query", text: "Copy raw or minified SQL and paste it into the input area." },
     { name: "Choose Beautify or Minify", text: "Click Beautify for auto-indented, keyword-uppercased output, or Minify to compress." },
-    { name: "Copy the formatted SQL", text: "Click Copy to use the result — works for MySQL, PostgreSQL, SQLite, and SQL Server." },
+    { name: "Copy the formatted SQL", text: "Click Copy to use the result - works for MySQL, PostgreSQL, SQLite, and SQL Server." },
   ],
   "image-to-base64": [
-    { name: "Upload your image", text: "Click to upload a PNG, JPG, GIF, SVG, or WebP file — it never leaves your browser." },
+    { name: "Upload your image", text: "Click to upload a PNG, JPG, GIF, SVG, or WebP file - it never leaves your browser." },
     { name: "Choose output format", text: "Select Data URL, CSS background, img tag, or raw Base64." },
     { name: "Copy the result", text: "Click Copy to use the encoded string directly in your HTML or CSS." },
   ],
@@ -140,7 +140,7 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
     { name: "Copy your CSS", text: "Click Copy CSS or Copy Tailwind to get the value ready to paste into your code." },
   ],
   "slug-generator": [
-    { name: "Paste your titles", text: "Enter one title per line — paste a full list for bulk conversion." },
+    { name: "Paste your titles", text: "Enter one title per line - paste a full list for bulk conversion." },
     { name: "Configure options", text: "Choose separator (hyphen or underscore), max length, and whether to strip stop words." },
     { name: "Copy the slugs", text: "Click Copy All to get all slugs at once, or copy individual ones from the list." },
   ],
@@ -172,17 +172,17 @@ export const toolHowToSteps: Record<string, HowToStep[]> = {
   "ai-essay-outliner": [
     { name: "Enter your essay topic and style", text: "Type your essay question and choose APA, MLA, Chicago, or Harvard citation style." },
     { name: "Click Generate outline", text: "The AI creates a structured outline with thesis, hook, sectioned arguments, and word targets." },
-    { name: "Copy your plan", text: "Copy the full outline to start writing — evidence ideas and source suggestions are included." },
+    { name: "Copy your plan", text: "Copy the full outline to start writing - evidence ideas and source suggestions are included." },
   ],
   "ai-citation-generator": [
-    { name: "Paste a URL, DOI, or ISBN", text: "Enter the source reference — URL for web pages, DOI for journal articles, or ISBN for books." },
+    { name: "Paste a URL, DOI, or ISBN", text: "Enter the source reference - URL for web pages, DOI for journal articles, or ISBN for books." },
     { name: "Choose your citation format", text: "Select APA, MLA, Chicago, Harvard, or IEEE." },
     { name: "Copy the citation", text: "Get both the full reference entry and the in-text citation version in one click." },
   ],
   "ai-paraphraser": [
     { name: "Paste the text you want to rewrite", text: "Copy a paragraph from your essay, article, or notes and paste it in." },
     { name: "Choose a tone", text: "Select Academic (formal scholarly language), Formal (professional), or Casual (plain and conversational)." },
-    { name: "Copy your preferred version", text: "Three rewritten alternatives are generated — copy the one that fits best." },
+    { name: "Copy your preferred version", text: "Three rewritten alternatives are generated - copy the one that fits best." },
   ],
   "ai-cover-letter": [
     { name: "Paste your resume and the job description", text: "Copy your resume text and the full job posting into their respective input areas." },

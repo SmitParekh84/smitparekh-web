@@ -192,7 +192,7 @@ export default function ProjectsPage() {
         <div className="flex flex-col gap-1">
           <h1 className="text-[22px] font-semibold tracking-tight">Projects</h1>
           <p className="text-[13px] text-muted-foreground">
-            Your portfolio — visible on the public site.
+            Your portfolio - visible on the public site.
           </p>
         </div>
         <div className="flex gap-2 self-start sm:self-auto">

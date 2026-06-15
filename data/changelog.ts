@@ -22,7 +22,7 @@ export const changelog: ChangelogRelease[] = [
     codename: "Blog AI Studio",
     date: "2026-05-24",
     summary:
-      "AI writing tools for Blog API tenants — generate full drafts from a prompt, get topic ideas tuned to your niche and audience, and rewrite or expand content in one click. Each capability is enabled per account.",
+      "AI writing tools for Blog API tenants - generate full drafts from a prompt, get topic ideas tuned to your niche and audience, and rewrite or expand content in one click. Each capability is enabled per account.",
     highlights: [
       "AI blog draft generation from a single prompt",
       "Niche-aware topic suggestions with category tabs",
@@ -34,7 +34,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "AI blog generation",
         description:
-          "Describe a topic and get a complete, structured draft — title, excerpt, body, category and tags — ready to edit and publish.",
+          "Describe a topic and get a complete, structured draft - title, excerpt, body, category and tags - ready to edit and publish.",
         href: "/dashboard/blog/new",
       },
       {
@@ -78,7 +78,7 @@ export const changelog: ChangelogRelease[] = [
     codename: "Service Pages & Lead Gen",
     date: "2026-05-14",
     summary:
-      "Ten dedicated service landing pages built for SEO and lead generation — Web Development, Frontend, Backend, API, SaaS, E-commerce, SEO, Technical SEO, Local SEO, SEO Audit, and AI Integration. Every page has its own quote form so visitors can start a project in 30 seconds.",
+      "Ten dedicated service landing pages built for SEO and lead generation - Web Development, Frontend, Backend, API, SaaS, E-commerce, SEO, Technical SEO, Local SEO, SEO Audit, and AI Integration. Every page has its own quote form so visitors can start a project in 30 seconds.",
     highlights: [
       "10 new service landing pages with full SEO + JSON-LD",
       "Inline lead-gen form on every service page (24-hour reply target)",
@@ -103,21 +103,21 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "SEO service pages",
         description:
-          "Four SEO landing pages — SEO Services, Technical SEO, Local SEO, and SEO Audit — covering content, Core Web Vitals, Google Business Profile, and audit-only engagements.",
+          "Four SEO landing pages - SEO Services, Technical SEO, Local SEO, and SEO Audit - covering content, Core Web Vitals, Google Business Profile, and audit-only engagements.",
         href: "/services/seo",
       },
       {
         tag: "new",
         title: "AI Integration service page",
         description:
-          "Dedicated page for OpenAI, Claude, RAG, and LLM-in-production work — with evals, structured outputs, and cost-control as headline deliverables.",
+          "Dedicated page for OpenAI, Claude, RAG, and LLM-in-production work - with evals, structured outputs, and cost-control as headline deliverables.",
         href: "/services/ai-integration",
       },
       {
         tag: "improved",
         title: "Mega-menu Services dropdown",
         description:
-          "Services menu rebuilt as a 4-column mega menu — Development, Marketing & SEO, Products & Specialized, and Browse — so visitors can find the right service in one glance.",
+          "Services menu rebuilt as a 4-column mega menu - Development, Marketing & SEO, Products & Specialized, and Browse - so visitors can find the right service in one glance.",
         href: "/services",
       },
       {
@@ -130,7 +130,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "improved",
         title: "Schema.org coverage for every service page",
         description:
-          "Service, FAQPage, and BreadcrumbList JSON-LD on each landing page — eligible for rich results in Google and clear context for AI search engines.",
+          "Service, FAQPage, and BreadcrumbList JSON-LD on each landing page - eligible for rich results in Google and clear context for AI search engines.",
       },
     ],
   },
@@ -141,7 +141,7 @@ export const changelog: ChangelogRelease[] = [
     summary:
       "A polished blog dashboard, a public Blog API landing page, and full feature parity between the admin and tenant blog editors. Anyone can now plug a headless blog into their Next.js project, business site, or SaaS dashboard.",
     highlights: [
-      "New /blog-api landing page — request a tenant in one click",
+      "New /blog-api landing page - request a tenant in one click",
       "Tenant blog editor rebuilt to match the admin editor",
       "Drafts, categories, tags, read time, featured posts and scheduled publish for every tenant",
     ],
@@ -155,7 +155,7 @@ export const changelog: ChangelogRelease[] = [
       },
       {
         tag: "improved",
-        title: "Tenant blog editor — full parity with the admin editor",
+        title: "Tenant blog editor - full parity with the admin editor",
         description:
           "The dashboard blog form now matches the admin form: slug auto-generation, category dropdown, tags, read time, author, scheduled publish date, publish and featured toggles, save-draft, and a monospace Markdown editor.",
         href: "/dashboard/blog/new",
@@ -179,7 +179,7 @@ export const changelog: ChangelogRelease[] = [
     codename: "Student AI Toolkit",
     date: "2026-05-10",
     summary:
-      "Six new AI tools built for college and university students — summarize lecture notes, generate flashcards, plan essays, cite sources, paraphrase paragraphs, and write tailored cover letters. All free, no sign-up needed for the first uses.",
+      "Six new AI tools built for college and university students - summarize lecture notes, generate flashcards, plan essays, cite sources, paraphrase paragraphs, and write tailored cover letters. All free, no sign-up needed for the first uses.",
     highlights: [
       "AI Note Summarizer with built-in flashcards and quiz",
       "Flashcard generator with Anki-ready CSV export",
@@ -214,14 +214,14 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "AI Citation Generator",
         description:
-          "Paste a URL, DOI, ISBN, or reference details and get a clean citation in APA, MLA, Chicago, Harvard, or IEEE — plus the in-text version, ready to copy.",
+          "Paste a URL, DOI, ISBN, or reference details and get a clean citation in APA, MLA, Chicago, Harvard, or IEEE - plus the in-text version, ready to copy.",
         href: "/free-tools/ai-citation-generator",
       },
       {
         tag: "new",
         title: "AI Paraphraser",
         description:
-          "Three rewritten versions in one click — academic, formal, or casual. Keeps the meaning, changes the structure and wording.",
+          "Three rewritten versions in one click - academic, formal, or casual. Keeps the meaning, changes the structure and wording.",
         href: "/free-tools/ai-paraphraser",
       },
       {
@@ -238,7 +238,7 @@ export const changelog: ChangelogRelease[] = [
     codename: "Cleaner Free Tools Menu",
     date: "2026-05-03",
     summary:
-      "We simplified the Free Tools menu so the eight tools visitors use most are front and center — and the full library of 31 tools is still just one click away.",
+      "We simplified the Free Tools menu so the eight tools visitors use most are front and center - and the full library of 31 tools is still just one click away.",
     highlights: [
       "Curated 8-tool quick menu in the navbar",
       "One-click access to the full 31-tool library",
@@ -256,7 +256,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "performance",
         title: "Faster navigation, no flicker",
         description:
-          "The menu now loads instantly on every page, even on slower connections — no spinners, no layout shift.",
+          "The menu now loads instantly on every page, even on slower connections - no spinners, no layout shift.",
       },
     ],
   },
@@ -334,7 +334,7 @@ export const changelog: ChangelogRelease[] = [
     codename: "Productivity Pack",
     date: "2026-05-03",
     summary:
-      "Twelve new everyday productivity and developer utilities — all 100% free, no sign-up required for the basics.",
+      "Twelve new everyday productivity and developer utilities - all 100% free, no sign-up required for the basics.",
     highlights: [
       "Pomodoro timer, world clock, and unit converter",
       "JSON, regex, hash, and color tools",
@@ -351,7 +351,7 @@ export const changelog: ChangelogRelease[] = [
       {
         tag: "new",
         title: "World Clock",
-        description: "Track multiple time zones at a glance — perfect for distributed teams.",
+        description: "Track multiple time zones at a glance - perfect for distributed teams.",
         href: "/free-tools/world-clock",
       },
       {
@@ -444,7 +444,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "Generous free quotas, higher when you sign in",
         description:
-          "Guests get a generous free allowance out of the box. Signed-in users get even more — with full transparency on what's left.",
+          "Guests get a generous free allowance out of the box. Signed-in users get even more - with full transparency on what's left.",
       },
       {
         tag: "new",
@@ -470,7 +470,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "improved",
         title: "Self-service account deletion",
         description:
-          "Delete your account at any time from Settings. We honor deletions immediately and remove your personal data — fully GDPR and CCPA aligned.",
+          "Delete your account at any time from Settings. We honor deletions immediately and remove your personal data - fully GDPR and CCPA aligned.",
       },
       {
         tag: "improved",
@@ -507,7 +507,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "SEO Analyzer with PDF reports",
         description:
-          "Run a full SEO audit on any URL and download a polished, white-label PDF report — ready to share with clients.",
+          "Run a full SEO audit on any URL and download a polished, white-label PDF report - ready to share with clients.",
         href: "/free-tools/seo-analyzer",
       },
       {
@@ -533,7 +533,7 @@ export const changelog: ChangelogRelease[] = [
         tag: "new",
         title: "FAQ page",
         description:
-          "A searchable FAQ covering general questions and per-tool details — written for real people, not crawlers.",
+          "A searchable FAQ covering general questions and per-tool details - written for real people, not crawlers.",
         href: "/faq",
       },
       {
@@ -578,13 +578,13 @@ export const changelog: ChangelogRelease[] = [
       {
         tag: "improved",
         title: "Privacy-respecting analytics",
-        description: "Lightweight analytics across tools, blog reads, and resume downloads — with full respect for visitor privacy.",
+        description: "Lightweight analytics across tools, blog reads, and resume downloads - with full respect for visitor privacy.",
       },
       {
         tag: "performance",
         title: "Built for global speed",
         description:
-          "A modern, edge-optimized foundation delivers fast first paint and smooth navigation everywhere — North America, Europe, and beyond.",
+          "A modern, edge-optimized foundation delivers fast first paint and smooth navigation everywhere - North America, Europe, and beyond.",
       },
     ],
   },

@@ -112,7 +112,7 @@ function NewInvoiceForm() {
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Milestone 1 — Design phase"
+              placeholder="Milestone 1 - Design phase"
             />
           </div>
 
@@ -158,7 +158,7 @@ function NewInvoiceForm() {
 
           <p className="text-xs text-muted-foreground">
             USD is the default. USD live payments need Razorpay International Payments (account under
-            review) — test mode works now.
+            review) - test mode works now.
           </p>
 
           {/* Split button: primary = Create & Send, dropdown = Save draft */}

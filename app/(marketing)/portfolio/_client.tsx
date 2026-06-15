@@ -12,8 +12,8 @@ import { StaggerGrid, StaggerItem } from "@/components/ui/motion";
 
 // Server-provided card shape. The parent server component fetches case studies
 // with fetchAllCaseStudies() so the grid (and its <a> links) render in the SSR
-// HTML — Googlebot can crawl the case-study URLs without executing JS. This is
-// what fixed the "case studies Discovered – not indexed" issue: the internal
+// HTML - Googlebot can crawl the case-study URLs without executing JS. This is
+// what fixed the "case studies Discovered - not indexed" issue: the internal
 // links used to only exist after client-side hydration.
 export type PortfolioCard = {
   slug: string;
@@ -84,7 +84,7 @@ function Card({ project }: { project: PortfolioCard }) {
               src={project.imageUrl}
               alt={
                 project.subtitle
-                  ? `${project.title} — ${project.subtitle} case study`
+                  ? `${project.title} - ${project.subtitle} case study`
                   : `${project.title} case study`
               }
               fill

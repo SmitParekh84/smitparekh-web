@@ -16,16 +16,16 @@ import { credentialNodes } from "@/lib/seo/schema";
 const PAGE_URL = `${siteConfig.url}/who-is-smit-parekh`;
 
 export const metadata: Metadata = {
-  title: "Who Is Smit Parekh? — Full-Stack Developer (React, Next.js, Node.js)",
+  title: "Who Is Smit Parekh? Full-Stack Developer (React, Next.js)",
   description:
-    "Who is Smit Parekh? A Full-Stack Web Developer with 4+ years building production apps for FinTech, SaaS, and enterprise clients. AWS Certified. Bio, experience timeline, skills, certifications, and FAQs.",
+    "Who is Smit Parekh? A full-stack developer with 4+ years building apps for FinTech, SaaS, and enterprise. AWS Certified. Bio, skills, and FAQs.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: PAGE_URL,
     siteName: siteConfig.name,
-    title: "Who Is Smit Parekh? — Full-Stack Developer for Hire",
+    title: "Who Is Smit Parekh? - Full-Stack Developer for Hire",
     description:
       "The complete profile of Smit Parekh: Full-Stack Web Developer (React, Next.js, Node.js, TypeScript, AWS). Experience, skills, certifications, and how to hire him.",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
         width: 1200,
         height: 630,
-        alt: "Who is Smit Parekh — Full-Stack Developer",
+        alt: "Who is Smit Parekh - Full-Stack Developer",
         type: "image/png",
       },
     ],
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Who Is Smit Parekh? — Full-Stack Developer",
+    title: "Who Is Smit Parekh? - Full-Stack Developer",
     description:
-      "Full-Stack Web Developer — React, Next.js, Node.js, TypeScript, AWS. Bio, experience, certifications, and how to hire.",
+      "Full-Stack Web Developer - React, Next.js, Node.js, TypeScript, AWS. Bio, experience, certifications, and how to hire.",
     images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
   },
   keywords: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   ],
 };
 
-// Definitional Q&A — written to be lifted directly by answer engines for
+// Definitional Q&A - written to be lifted directly by answer engines for
 // "who is Smit Parekh" style queries. Kept distinct from /about's FAQ so the
 // two pages don't compete as duplicate content.
 const faqs: { q: string; a: string }[] = [
@@ -69,11 +69,11 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What does Smit Parekh do?",
-    a: "He designs, builds, deploys, and maintains web applications end-to-end — frontend (React/Next.js), backend (Node.js/NestJS APIs), database (PostgreSQL), and cloud infrastructure (AWS, Docker). As a single senior engineer he owns the full product lifecycle rather than working as part of a split frontend/backend team.",
+    a: "He designs, builds, deploys, and maintains web applications end-to-end - frontend (React/Next.js), backend (Node.js/NestJS APIs), database (PostgreSQL), and cloud infrastructure (AWS, Docker). As a single senior engineer he owns the full product lifecycle rather than working as part of a split frontend/backend team.",
   },
   {
     q: "What is Smit Parekh known for?",
-    a: "Production-grade full-stack work: SaaS MVPs, FinTech dashboards for the Satchel Inc suite (liquidity.io, simplici.io, equitytable.io), and APIs sustaining 10,000+ daily requests at 99.9% uptime — all shipped with TypeScript strict mode and 95+ Lighthouse scores.",
+    a: "Production-grade full-stack work: SaaS MVPs, FinTech dashboards for the Satchel Inc suite (liquidity.io, simplici.io, equitytable.io), and APIs sustaining 10,000+ daily requests at 99.9% uptime - all shipped with TypeScript strict mode and 95+ Lighthouse scores.",
   },
   {
     q: "Where is Smit Parekh based?",
@@ -81,7 +81,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Is Smit Parekh available for hire?",
-    a: "Yes. He accepts freelance and contract work — fixed-scope projects, time-and-materials, or monthly retainers — for clients globally. The fastest way to reach him is the hire page at " + `${siteConfig.url}/hire-me` + " or by email at " + siteConfig.email + ".",
+    a: "Yes. He accepts freelance and contract work - fixed-scope projects, time-and-materials, or monthly retainers - for clients globally. The fastest way to reach him is the hire page at " + `${siteConfig.url}/hire-me` + " or by email at " + siteConfig.email + ".",
   },
   {
     q: "What technologies does Smit Parekh specialise in?",
@@ -149,7 +149,7 @@ const personSchema = {
 const profilePageSchema = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  name: "Who Is Smit Parekh — Full-Stack Developer",
+  name: "Who Is Smit Parekh - Full-Stack Developer",
   url: PAGE_URL,
   dateModified: "2026-06-14T00:00:00+05:30",
   mainEntity: { "@id": `${siteConfig.url}/#person` },
@@ -186,7 +186,7 @@ export default function WhoIsSmitParekhPage() {
         eyebrow="Profile"
         icon={Sparkles}
         title={<>Who Is Smit Parekh?</>}
-        description="Full-Stack Web Developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise clients. React · Next.js · Node.js · TypeScript · AWS — based in India, available worldwide."
+        description="Full-Stack Web Developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise clients. React · Next.js · Node.js · TypeScript · AWS - based in India, available worldwide."
       />
 
       {/* Definition / bio */}
@@ -314,7 +314,7 @@ export default function WhoIsSmitParekhPage() {
         </div>
       </section>
 
-      {/* AI citation block — clean, extractable summary for answer engines */}
+      {/* AI citation block - clean, extractable summary for answer engines */}
       <section className="page-section border-t border-border bg-muted/20">
         <div className="page-container">
           <div className="max-w-3xl mx-auto rounded-2xl border border-border bg-card p-6 sm:p-8">
@@ -348,7 +348,7 @@ export default function WhoIsSmitParekhPage() {
                 Want to work with Smit Parekh?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send a brief and get a written proposal — scope, timeline, and price — within 24 hours.
+                Send a brief and get a written proposal - scope, timeline, and price - within 24 hours.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

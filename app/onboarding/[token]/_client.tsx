@@ -119,7 +119,7 @@ export function OnboardingClient({ token }: { token: string }) {
       });
 
       // Establish a real browser session so the portal is accessible right away.
-      // If this fails the account still exists — the user can sign in at /client/login.
+      // If this fails the account still exists - the user can sign in at /client/login.
       if (invitation?.email) {
         try {
           await createClient().auth.signInWithPassword({
@@ -186,7 +186,7 @@ export function OnboardingClient({ token }: { token: string }) {
             <p className="mt-2 text-sm text-muted-foreground">
               You&apos;ve been invited to{" "}
               <span className="font-medium text-foreground">smitparekh.co.in</span> client portal.
-              Let&apos;s set up your account — it takes less than a minute.
+              Let&apos;s set up your account - it takes less than a minute.
             </p>
             <p className="mt-3 text-xs text-muted-foreground">
               Invitation for <span className="font-medium text-foreground">{invitation.email}</span>

@@ -18,25 +18,25 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a TypeScript Developer – Type-Safe Apps That Ship Without Surprises",
+  title: "Hire a TypeScript Developer - Type-Safe Apps, Strict Mode",
   description:
-    "Hire a TypeScript developer with 4+ years in strict-mode TypeScript across React, Next.js, Node.js, and NestJS. Fewer runtime bugs, better DX, 30+ typed codebases delivered. Fixed-price available. Free quote in 24 hours.",
+    "Hire a TypeScript developer with 4+ years in strict-mode TypeScript across React, Next.js, Node.js, and NestJS. Fewer runtime bugs, 30+ typed codebases.",
   alternates: { canonical: `${siteConfig.url}/typescript-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/typescript-developer`,
     siteName: siteConfig.name,
-    title: "Hire a TypeScript Developer – Strict-Mode, No any, No Surprises | Smit Parekh",
+    title: "Hire a TypeScript Developer - Strict-Mode, No any, No Surprises | Smit Parekh",
     description:
-      "TypeScript development across the full stack — React, Next.js, Node.js, NestJS, PostgreSQL. Strict mode, fully typed APIs, zero suppressions. Serving clients in the UK, US, Canada, and worldwide.",
-    images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630, alt: "Hire a TypeScript Developer – Smit Parekh" }],
+      "TypeScript development across the full stack - React, Next.js, Node.js, NestJS, PostgreSQL. Strict mode, fully typed APIs, zero suppressions. Serving clients in the UK, US, Canada, and worldwide.",
+    images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630, alt: "Hire a TypeScript Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a TypeScript Developer – Strict Mode, Full Stack | Smit Parekh",
+    title: "Hire a TypeScript Developer - Strict Mode, Full Stack | Smit Parekh",
     description: "Type-safe React, Node.js, and NestJS. No any, no suppressions, no runtime surprises. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630 }],
   },
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "100%", label: "Strict-mode TypeScript across every project — no any, no workarounds, no suppressions", icon: ShieldCheck },
+  { value: "100%", label: "Strict-mode TypeScript across every project - no any, no workarounds, no suppressions", icon: ShieldCheck },
   { value: "4+", label: "Years writing TypeScript in production across React, Node.js, and NestJS stacks", icon: Clock },
-  { value: "30+", label: "Fully typed codebases delivered — frontend, backend, and shared type contracts", icon: Star },
+  { value: "30+", label: "Fully typed codebases delivered - frontend, backend, and shared type contracts", icon: Star },
   { value: "80%", label: "Fewer runtime type errors in production after migrating JS codebases to strict TS", icon: Bug },
 ];
 
@@ -68,7 +68,7 @@ const whatIBuild = [
   {
     icon: Server,
     title: "Typed NestJS & Express APIs",
-    description: "End-to-end type safety from HTTP request to database response. DTOs, decorators, response types — the entire API surface is documented by the type system itself.",
+    description: "End-to-end type safety from HTTP request to database response. DTOs, decorators, response types - the entire API surface is documented by the type system itself.",
     tags: ["TypeScript", "NestJS", "Express", "class-validator"],
   },
   {
@@ -80,19 +80,19 @@ const whatIBuild = [
   {
     icon: TrendingUp,
     title: "JavaScript to TypeScript Migrations",
-    description: "I've migrated live production codebases from JavaScript to TypeScript incrementally — without shutting down development or introducing regressions.",
+    description: "I've migrated live production codebases from JavaScript to TypeScript incrementally - without shutting down development or introducing regressions.",
     tags: ["TypeScript", "JSDoc", "Incremental Migration", "ESLint"],
   },
   {
     icon: Globe,
     title: "GraphQL With Full Type Generation",
-    description: "Schema-first GraphQL with codegen — your queries, mutations, and resolvers all type-checked automatically. No manually maintained interfaces that drift from reality.",
+    description: "Schema-first GraphQL with codegen - your queries, mutations, and resolvers all type-checked automatically. No manually maintained interfaces that drift from reality.",
     tags: ["TypeScript", "GraphQL", "codegen", "Apollo"],
   },
   {
     icon: ShieldCheck,
     title: "Runtime Validation With Compile-Time Safety",
-    description: "Zod and class-validator schemas that enforce type correctness at the boundary — parse-don't-validate at the API edge, strict types everywhere else.",
+    description: "Zod and class-validator schemas that enforce type correctness at the boundary - parse-don't-validate at the API edge, strict types everywhere else.",
     tags: ["TypeScript", "Zod", "class-validator", "Prisma"],
   },
 ];
@@ -106,17 +106,17 @@ const differentiators = [
   {
     icon: Code2,
     title: "Types that document, not just annotate",
-    description: "Well-named types and interfaces tell the next developer what a value means, not just what it contains. Discriminated unions, branded types, template literals — used where they add clarity.",
+    description: "Well-named types and interfaces tell the next developer what a value means, not just what it contains. Discriminated unions, branded types, template literals - used where they add clarity.",
   },
   {
     icon: Zap,
     title: "No type-as-documentation theatre",
-    description: "I don't write types for show. If something can be inferred, I let it. If a generic would help, I write it. The goal is a codebase that's easier to work in — not one that looks impressive on a code review.",
+    description: "I don't write types for show. If something can be inferred, I let it. If a generic would help, I write it. The goal is a codebase that's easier to work in - not one that looks impressive on a code review.",
   },
   {
     icon: CheckCircle2,
     title: "End-to-end type safety, not just the front-end",
-    description: "Most TypeScript projects have a typed front-end and an any-riddled backend. I type the full stack — API responses, database queries, environment variables, everything.",
+    description: "Most TypeScript projects have a typed front-end and an any-riddled backend. I type the full stack - API responses, database queries, environment variables, everything.",
   },
 ];
 
@@ -134,27 +134,27 @@ const techStack = [
 const faqs = [
   {
     q: "What does strict-mode TypeScript actually mean?",
-    a: "It means the compiler is configured with strictNullChecks, noImplicitAny, strictFunctionTypes, and related flags enabled. This catches entire categories of runtime errors at compile time — null dereferences, missing properties, incorrect function signatures — before they ever reach production.",
+    a: "It means the compiler is configured with strictNullChecks, noImplicitAny, strictFunctionTypes, and related flags enabled. This catches entire categories of runtime errors at compile time - null dereferences, missing properties, incorrect function signatures - before they ever reach production.",
   },
   {
     q: "Can you migrate our existing JavaScript codebase to TypeScript?",
-    a: "Yes. I do this incrementally — starting with allowJs and tsconfig paths so TypeScript and JavaScript coexist, then migrating file by file without blocking your team's feature work. A scoping call will give you a realistic timeline and a phased plan.",
+    a: "Yes. I do this incrementally - starting with allowJs and tsconfig paths so TypeScript and JavaScript coexist, then migrating file by file without blocking your team's feature work. A scoping call will give you a realistic timeline and a phased plan.",
   },
   {
     q: "Do you use TypeScript on the backend as well?",
-    a: "Yes — Node.js, Express, and NestJS with full TypeScript. DTOs, typed middleware, typed database queries via Prisma or TypeORM. The type safety runs from the HTTP request to the database and back.",
+    a: "Yes - Node.js, Express, and NestJS with full TypeScript. DTOs, typed middleware, typed database queries via Prisma or TypeORM. The type safety runs from the HTTP request to the database and back.",
   },
   {
     q: "How long does it take to set up a TypeScript monorepo?",
-    a: "A well-structured monorepo with shared types, a front-end app, and a backend API typically takes 3–5 days to scaffold properly — path aliases, build pipeline, shared packages, and CI. Getting it right upfront saves weeks of pain later.",
+    a: "A well-structured monorepo with shared types, a front-end app, and a backend API typically takes 3-5 days to scaffold properly - path aliases, build pipeline, shared packages, and CI. Getting it right upfront saves weeks of pain later.",
   },
   {
     q: "Can you add TypeScript to a project that uses Zod or Prisma?",
-    a: "Absolutely — I use both regularly. Zod for runtime validation at API boundaries with inferred types, and Prisma for type-safe database queries. They compose well and I know how to wire them so the types flow end-to-end without duplication.",
+    a: "Absolutely - I use both regularly. Zod for runtime validation at API boundaries with inferred types, and Prisma for type-safe database queries. They compose well and I know how to wire them so the types flow end-to-end without duplication.",
   },
   {
     q: "How much does hiring a TypeScript developer cost?",
-    a: "Fixed-price for scoped work — a migration, a new typed API, a frontend. Retainer for ongoing typed development. Send your brief and I'll reply with a written proposal within 24 hours.",
+    a: "Fixed-price for scoped work - a migration, a new typed API, a frontend. Retainer for ongoing typed development. Send your brief and I'll reply with a written proposal within 24 hours.",
   },
 ];
 
@@ -210,16 +210,16 @@ export default function TypeScriptDeveloperPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                Runtime errors are expensive. A proper TypeScript setup catches them at compile time — before your users do.
+                Runtime errors are expensive. A proper TypeScript setup catches them at compile time - before your users do.
                 I write strict-mode TypeScript across the full stack so the type system works for you, not against you.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "Strict mode enabled from commit one — no any, no suppressions",
-                  "End-to-end typed APIs — from HTTP request to database response",
+                  "Strict mode enabled from commit one - no any, no suppressions",
+                  "End-to-end typed APIs - from HTTP request to database response",
                   "JavaScript-to-TypeScript migrations without blocking your team",
-                  "Fixed-price proposals — scope agreed in writing before work starts",
+                  "Fixed-price proposals - scope agreed in writing before work starts",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-300 mt-0.5 shrink-0" />

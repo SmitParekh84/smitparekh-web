@@ -13,25 +13,25 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 
 export const metadata: Metadata = {
-  title: "Generative Engine Optimization (GEO) — Get Cited by ChatGPT & Perplexity",
+  title: "Generative Engine Optimization (GEO) - Get Cited by AI",
   description:
-    "Generative Engine Optimization (GEO) explained, and done for you. Get your brand mentioned and cited inside ChatGPT, Claude, Perplexity, and Google AI Overviews through entity SEO, structured answers, quotable stats, and schema. Free AI-visibility audit in 24 hours.",
+    "Generative Engine Optimization (GEO), done for you. Get your brand cited in ChatGPT, Claude, Perplexity, and Google AI Overviews via entity SEO and schema.",
   alternates: { canonical: `${siteConfig.url}/generative-engine-optimization` },
   openGraph: {
     type: "article",
     locale: "en_US",
     url: `${siteConfig.url}/generative-engine-optimization`,
     siteName: siteConfig.name,
-    title: "Generative Engine Optimization (GEO) — Get Cited by AI | Smit Parekh",
+    title: "Generative Engine Optimization (GEO) - Get Cited by AI | Smit Parekh",
     description:
-      "What GEO is and how to get your brand recommended inside ChatGPT, Perplexity, and AI Overviews — entity SEO, structured answers, quotable stats, and schema.",
-    images: [{ url: `${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`, width: 1200, height: 630, alt: "Generative Engine Optimization (GEO) — Smit Parekh" }],
+      "What GEO is and how to get your brand recommended inside ChatGPT, Perplexity, and AI Overviews - entity SEO, structured answers, quotable stats, and schema.",
+    images: [{ url: `${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`, width: 1200, height: 630, alt: "Generative Engine Optimization (GEO) - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Generative Engine Optimization (GEO) — Get Cited by AI | Smit Parekh",
+    title: "Generative Engine Optimization (GEO) - Get Cited by AI | Smit Parekh",
     description:
       "Get your brand cited inside ChatGPT, Perplexity, and AI Overviews. GEO explained and done for you.",
     images: [`${siteConfig.url}/images/smit-parekh-generative-engine-optimization.png`],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "GEO", label: "Generative Engine Optimization — being recommended inside AI answers, not just ranked", icon: Brain },
+  { value: "GEO", label: "Generative Engine Optimization - being recommended inside AI answers, not just ranked", icon: Brain },
   { value: "4 engines", label: "ChatGPT, Perplexity, Gemini, and Google AI Overviews tracked for your brand", icon: BarChart3 },
   { value: "Cited", label: "Content structured so generative engines can extract and attribute it to you", icon: Quote },
   { value: "Dev-led", label: "Schema, entities, and content shipped by a developer, not just recommended", icon: Sparkles },
@@ -59,7 +59,7 @@ const howItWorks = [
   {
     icon: Target,
     title: "Answer-first structure",
-    description: "A direct, extractable answer in the first one or two sentences — then the depth. LLMs lift the concise answer; the supporting detail earns the citation.",
+    description: "A direct, extractable answer in the first one or two sentences - then the depth. LLMs lift the concise answer; the supporting detail earns the citation.",
   },
   {
     icon: FileSearch,
@@ -69,12 +69,12 @@ const howItWorks = [
   {
     icon: Sparkles,
     title: "Machine-readable schema",
-    description: "FAQPage, Article, HowTo, Organization, and Person JSON-LD give generative engines the structured facts they prefer to read — clean, validated, and consistent.",
+    description: "FAQPage, Article, HowTo, Organization, and Person JSON-LD give generative engines the structured facts they prefer to read - clean, validated, and consistent.",
   },
 ];
 
 const checklist = [
-  "A direct answer to the target question in the first 1–2 sentences",
+  "A direct answer to the target question in the first 1-2 sentences",
   "Original statistics, named data points, and clearly-sourced claims",
   "Validated FAQPage, Article, and Organization JSON-LD",
   "Consistent entity definitions and sameAs links to authoritative profiles",
@@ -86,25 +86,25 @@ const internalLinks = [
   { href: "/services/aeo-geo-optimization", title: "AEO & GEO Services", description: "The full done-for-you engagement, with scope and pricing" },
   { href: "/ai-seo-consultant", title: "AI SEO Consultant", description: "SEO + AEO + GEO run together in one engagement" },
   { href: "/services/seo", title: "SEO Services", description: "The classic-search foundation GEO builds on" },
-  { href: "/about", title: "About Smit Parekh", description: "The developer behind the work — background & approach" },
+  { href: "/about", title: "About Smit Parekh", description: "The developer behind the work - background & approach" },
 ];
 
 const faqs = [
   {
     q: "What is Generative Engine Optimization (GEO)?",
-    a: "Generative Engine Optimization (GEO) is the practice of structuring your content and brand so that generative AI tools — ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews — mention, recommend, and cite you when they answer relevant questions. Where SEO optimises for ranking in a list of links, GEO optimises for being the source an AI quotes in its answer.",
+    a: "Generative Engine Optimization (GEO) is the practice of structuring your content and brand so that generative AI tools - ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews - mention, recommend, and cite you when they answer relevant questions. Where SEO optimises for ranking in a list of links, GEO optimises for being the source an AI quotes in its answer.",
   },
   {
     q: "How is GEO different from AEO and SEO?",
-    a: "SEO targets traditional ranked results on Google. AEO (Answer Engine Optimization) targets the extractable answer in featured snippets and AI Overviews. GEO is broader — it targets being named and recommended inside conversational AI answers. They share a foundation but GEO leans heavily on quotable facts, entity consistency, authority, and structured data.",
+    a: "SEO targets traditional ranked results on Google. AEO (Answer Engine Optimization) targets the extractable answer in featured snippets and AI Overviews. GEO is broader - it targets being named and recommended inside conversational AI answers. They share a foundation but GEO leans heavily on quotable facts, entity consistency, authority, and structured data.",
   },
   {
     q: "How do you get cited by ChatGPT or Perplexity?",
-    a: "By making your content the most useful, quotable, and machine-readable source for a question: a direct answer up top, original statistics and named facts, validated schema, consistent entity data, a credible author footprint, and fast crawlable pages. No single trick guarantees a citation — it's the combination, measured over time.",
+    a: "By making your content the most useful, quotable, and machine-readable source for a question: a direct answer up top, original statistics and named facts, validated schema, consistent entity data, a credible author footprint, and fast crawlable pages. No single trick guarantees a citation - it's the combination, measured over time.",
   },
   {
     q: "Can GEO results actually be measured?",
-    a: "Yes. I run a fixed set of your buyer questions across ChatGPT, Perplexity, Gemini, and AI Overviews on a schedule and log whether you appear, how you're described, and who's cited instead. That gives a monthly 'AI share of voice' you can track — so GEO is accountable, not hand-wavy.",
+    a: "Yes. I run a fixed set of your buyer questions across ChatGPT, Perplexity, Gemini, and AI Overviews on a schedule and log whether you appear, how you're described, and who's cited instead. That gives a monthly 'AI share of voice' you can track - so GEO is accountable, not hand-wavy.",
   },
   {
     q: "Is GEO worth it if my SEO is already good?",
@@ -112,14 +112,14 @@ const faqs = [
   },
   {
     q: "Who does the GEO work?",
-    a: "I'm Smit Parekh, a full-stack developer who runs SEO, AEO, and GEO as engineering rather than guesswork — see /about for background. Because I ship the schema, entity data, and content fixes myself, recommendations don't get stuck waiting on a separate dev team.",
+    a: "I'm Smit Parekh, a full-stack developer who runs SEO, AEO, and GEO as engineering rather than guesswork - see /about for background. Because I ship the schema, entity data, and content fixes myself, recommendations don't get stuck waiting on a separate dev team.",
   },
 ];
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Generative Engine Optimization (GEO) — Get Cited by ChatGPT, Perplexity & AI Overviews",
+  headline: "Generative Engine Optimization (GEO) - Get Cited by ChatGPT, Perplexity & AI Overviews",
   description:
     "What Generative Engine Optimization is, how it differs from SEO and AEO, and how to get your brand mentioned and cited inside generative AI answers.",
   author: personNode(),
@@ -136,7 +136,7 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "Generative Engine Optimization",
   description:
-    "Generative Engine Optimization services — getting brands mentioned and cited inside ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews through entity SEO, structured answers, quotable statistics, and schema.",
+    "Generative Engine Optimization services - getting brands mentioned and cited inside ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews through entity SEO, structured answers, quotable statistics, and schema.",
   url: `${siteConfig.url}/generative-engine-optimization`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Audit, sprint, and retainer engagements available. Free AI-visibility audit within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
@@ -172,7 +172,7 @@ export default function GenerativeEngineOptimizationPage() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <Brain className="w-4 h-4 text-blue-600 dark:text-cyan-300" />
-                GEO — Generative Engine Optimization
+                GEO - Generative Engine Optimization
               </div>
 
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white">
@@ -184,7 +184,7 @@ export default function GenerativeEngineOptimizationPage() {
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 When buyers ask ChatGPT, Perplexity, or Google&apos;s AI Overviews, do they hear your
-                name — or a competitor&apos;s? Generative Engine Optimization makes your content the
+                name - or a competitor&apos;s? Generative Engine Optimization makes your content the
                 source AI tools quote and recommend. Here&apos;s what GEO is, how it works, and how I
                 do it for you.
               </p>
@@ -229,8 +229,8 @@ export default function GenerativeEngineOptimizationPage() {
             </h2>
             <p className="mt-3 text-sm sm:text-base text-foreground/90 leading-relaxed">
               <strong>Generative Engine Optimization (GEO)</strong> is the practice of structuring your
-              content, data, and brand so that generative AI engines — such as ChatGPT, Claude,
-              Perplexity, Gemini, and Google AI Overviews — mention, recommend, and cite you when they
+              content, data, and brand so that generative AI engines - such as ChatGPT, Claude,
+              Perplexity, Gemini, and Google AI Overviews - mention, recommend, and cite you when they
               answer relevant questions. Unlike traditional SEO, which optimises for ranking in a list
               of links a person clicks, GEO optimises for being the source an AI quotes directly inside
               its generated answer. It relies on quotable original facts, an answer-first content
@@ -246,7 +246,7 @@ export default function GenerativeEngineOptimizationPage() {
           <SectionHeader
             label="How It Works"
             title="What Makes AI Cite a Page"
-            description="Generative engines reward a specific set of signals. GEO is the deliberate work of giving them those signals — across your highest-value pages."
+            description="Generative engines reward a specific set of signals. GEO is the deliberate work of giving them those signals - across your highest-value pages."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {howItWorks.map(({ icon: Icon, title, description }) => (
@@ -346,7 +346,7 @@ export default function GenerativeEngineOptimizationPage() {
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
                 Send me your site and a few buyer questions. I&apos;ll run them through ChatGPT, Perplexity,
-                and AI Overviews, show you who&apos;s cited today, and map how to make it you — free, within 24 hours.
+                and AI Overviews, show you who&apos;s cited today, and map how to make it you - free, within 24 hours.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-white text-blue-600 hover:bg-white/90 hover:text-blue-700 dark:hover:bg-white/90 dark:hover:text-blue-700 gap-2 font-semibold")}>

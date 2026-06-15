@@ -218,7 +218,7 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "linkedin-media-downloader",
-    title: "LinkedIn Media Downloader - Free LinkedIn Video & Image Downloader",
+    title: "LinkedIn Media Downloader - Free Video & Image Saver",
     description:
       "Download videos and images from LinkedIn posts for free. Fast, no login, works directly in your browser.",
     keywords: [
@@ -297,7 +297,7 @@ export const toolsSEO: ToolSEO[] = [
   {
     slug: "youtube-thumbnail-downloader",
     title: "YouTube Thumbnail Downloader - Free HD Thumbnail Saver",
-    description: "Download any YouTube video thumbnail for free in Max Resolution, HD, and standard quality. No signup, no watermark. Works on all YouTube URLs including Shorts.",
+    description: "Download any YouTube video thumbnail free in max resolution, HD, and standard quality. No signup, no watermark. Works on all URLs including Shorts.",
     keywords: [
       "youtube thumbnail downloader",
       "download youtube thumbnail",
@@ -387,7 +387,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "hash-generator",
     title: "Hash Generator - Free MD5, SHA-1, SHA-256, SHA-512 Online",
     description:
-      "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text instantly. Runs entirely in your browser using the Web Crypto API. No signup, nothing stored.",
+      "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text instantly. Runs in your browser via the Web Crypto API. No signup, nothing stored.",
     keywords: [
       "hash generator",
       "md5 generator online",
@@ -408,7 +408,7 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "regex-tester",
-    title: "Regex Tester - Free Online Regular Expression Tester & Debugger",
+    title: "Regex Tester - Free Online Regex Tester & Debugger",
     description:
       "Test regular expressions live with highlighted matches, capture groups, and replace mode. Supports all JS regex flags. Free, instant, runs in your browser.",
     keywords: [
@@ -433,7 +433,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "pomodoro-timer",
     title: "Pomodoro Timer - Free Online Focus Timer with Breaks",
     description:
-      "Boost productivity with a free online Pomodoro timer. Customizable focus and break durations, browser notifications, and session tracking. No signup, no ads, runs in your browser.",
+      "Free online Pomodoro timer with customizable focus and break durations, browser notifications, and session tracking. No signup, no ads.",
     keywords: [
       "pomodoro timer",
       "online pomodoro timer",
@@ -456,7 +456,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "world-clock",
     title: "World Clock - Free Timezone Converter & Multi-City Clock",
     description:
-      "View live time across multiple time zones at once. Compare cities side-by-side, add or remove locations, and see day/night status. Free, runs in your browser, no signup.",
+      "View live time across multiple time zones at once. Compare cities side by side, add or remove locations, see day/night status. Free, no signup.",
     keywords: [
       "world clock",
       "world clock online",
@@ -500,7 +500,7 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "markdown-editor",
-    title: "Markdown Editor - Free Online Markdown Editor with Live Preview",
+    title: "Markdown Editor - Free Online Editor with Live Preview",
     description:
       "Write and preview markdown in real time. GitHub-flavored markdown, live HTML preview, copy as HTML, and download as .md. Free, runs in your browser.",
     keywords: [
@@ -525,7 +525,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "cron-builder",
     title: "Cron Builder - Free Cron Expression Generator & Tester",
     description:
-      "Build, parse, and test cron expressions. Get human-readable descriptions, see the next 5 scheduled runs, and pick from common presets. Free, runs in your browser.",
+      "Build, parse, and test cron expressions. Get human-readable descriptions, see the next 5 runs, and pick from common presets. Free, no signup.",
     keywords: [
       "cron builder",
       "cron expression generator",
@@ -571,7 +571,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "jwt-decoder",
     title: "JWT Decoder - Free Online JWT Token Parser & Inspector",
     description:
-      "Decode and inspect JSON Web Tokens (JWT) instantly. View header, payload, signature, expiry, and standard claims. 100% client-side — your tokens never leave your browser.",
+      "Decode and inspect JSON Web Tokens (JWT) instantly. View header, payload, signature, expiry, and claims. 100% client-side, tokens stay local.",
     keywords: [
       "jwt decoder",
       "jwt parser online",
@@ -594,7 +594,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "sql-formatter",
     title: "SQL Formatter - Free Online SQL Beautifier & Minifier",
     description:
-      "Format, beautify, or minify SQL queries instantly. Auto-indent, uppercase keywords, line-break clauses. Works for MySQL, PostgreSQL, SQLite, SQL Server. Free, no signup.",
+      "Format, beautify, or minify SQL instantly. Auto-indent, uppercase keywords, break clauses. Works for MySQL, PostgreSQL, SQLite, SQL Server.",
     keywords: [
       "sql formatter",
       "sql beautifier free",
@@ -617,7 +617,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "image-to-base64",
     title: "Image to Base64 - Free Online Image to Data URL Converter",
     description:
-      "Convert PNG, JPG, GIF, SVG, or WebP images to base64 data URLs. Copy as <img> tag, CSS background, or raw base64. Runs locally in your browser — files never uploaded.",
+      "Convert PNG, JPG, GIF, SVG, or WebP images to base64 data URLs. Copy as img tag, CSS background, or raw base64. Runs locally, files never uploaded.",
     keywords: [
       "image to base64",
       "image to data url",
@@ -638,9 +638,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "css-gradient-generator",
-    title: "CSS Gradient Generator - Free Linear, Radial & Conic Gradient Tool",
+    title: "CSS Gradient Generator - Linear, Radial & Conic",
     description:
-      "Build beautiful CSS gradients visually. Linear, radial, and conic types with multi-stop colors and angle control. Copy CSS or Tailwind arbitrary values. Free, no signup.",
+      "Build CSS gradients visually. Linear, radial, and conic types with multi-stop colors and angle control. Copy CSS or Tailwind values. Free, no signup.",
     keywords: [
       "css gradient generator",
       "linear gradient generator",
@@ -663,7 +663,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "slug-generator",
     title: "Slug Generator - Free Bulk URL Slug Maker for SEO",
     description:
-      "Convert titles into clean SEO-friendly URL slugs in bulk. Strip accents, control separator and length, optionally remove stop words. Free, instant, no signup.",
+      "Convert titles into clean SEO-friendly URL slugs in bulk. Strip accents, control separator and length, remove stop words. Free and instant.",
     keywords: [
       "slug generator",
       "url slug generator",
@@ -684,9 +684,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "favicon-generator",
-    title: "Favicon Generator - Free Online Favicon Maker (PNG, ICO, Multi-Size)",
+    title: "Favicon Generator - Free PNG & ICO Favicon Maker",
     description:
-      "Create a favicon from text, emoji, or your own image. Auto-renders 16, 32, 48, 64, 128, 180, 192, 512 PNGs and copy-ready HTML link tags. Free, browser-based.",
+      "Create a favicon from text, emoji, or an image. Auto-renders 16 to 512px PNGs plus copy-ready HTML link tags. Free, browser-based, no signup.",
     keywords: [
       "favicon generator",
       "free favicon maker",
@@ -709,7 +709,7 @@ export const toolsSEO: ToolSEO[] = [
     slug: "uuid-generator",
     title: "UUID Generator - Free Online UUID v4 & v7 Generator (Bulk)",
     description:
-      "Generate UUID v4 (random) or UUID v7 (time-ordered) in bulk — up to 1000 at a time. Uppercase, no-hyphens, brace-wrapped variants supported. Cryptographically secure, in-browser.",
+      "Generate UUID v4 (random) or v7 (time-ordered) in bulk, up to 1000 at once. Uppercase, no-hyphen, brace-wrapped variants. Cryptographically secure.",
     keywords: [
       "uuid generator",
       "uuid v4 generator",
@@ -753,9 +753,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-note-summarizer",
-    title: "AI Note Summarizer — Turn Lecture Notes into Summaries, Flashcards & Quiz",
+    title: "AI Note Summarizer - Notes to Summaries & Flashcards",
     description:
-      "Free AI note summarizer for college students. Paste lecture notes or a textbook chapter and get bullet summaries, key terms, flashcards, and a self-check quiz in seconds. No sign-up needed for the first uses.",
+      "Free AI note summarizer for students. Paste lecture notes or a chapter and get bullet summaries, key terms, flashcards, and a self-check quiz in seconds.",
     keywords: [
       "ai note summarizer",
       "lecture notes summarizer",
@@ -781,9 +781,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-flashcard-generator",
-    title: "AI Flashcard Generator — Free Anki-Ready Study Cards",
+    title: "AI Flashcard Generator - Free Anki-Ready Study Cards",
     description:
-      "Generate up to 50 study flashcards on any topic with AI. Export to Anki CSV or JSON for spaced repetition. Free for students in the US, UK, Canada, Australia, and India.",
+      "Generate up to 50 study flashcards on any topic with AI. Export to Anki CSV or JSON for spaced repetition. Free for students worldwide.",
     keywords: [
       "ai flashcard generator",
       "free flashcard maker",
@@ -809,9 +809,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-essay-outliner",
-    title: "AI Essay Outline Generator — APA, MLA, Chicago & Harvard Structure",
+    title: "AI Essay Outline Generator - APA, MLA & Chicago",
     description:
-      "Build a structured essay outline in seconds. Get a thesis, hook, sectioned arguments with word targets, evidence ideas, and source suggestions. Supports APA, MLA, Chicago, and Harvard.",
+      "Build a structured essay outline in seconds. Get a thesis, hook, sectioned arguments with word targets, and evidence ideas. APA, MLA, Chicago, Harvard.",
     keywords: [
       "ai essay outline generator",
       "free essay outline maker",
@@ -837,9 +837,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-citation-generator",
-    title: "AI Citation Generator — Free APA, MLA, Chicago, Harvard & IEEE",
+    title: "AI Citation Generator - APA, MLA, Chicago & IEEE",
     description:
-      "Free citation generator for students. Paste a URL, DOI, ISBN, or reference details and get a clean citation in APA, MLA, Chicago, Harvard, or IEEE format with the in-text version.",
+      "Free citation generator for students. Paste a URL, DOI, ISBN, or details and get a clean citation in APA, MLA, Chicago, Harvard, or IEEE format.",
     keywords: [
       "ai citation generator",
       "free citation generator",
@@ -865,9 +865,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-paraphraser",
-    title: "AI Paraphraser — Rewrite Text in Academic, Formal or Casual Tone",
+    title: "AI Paraphraser - Rewrite in Academic or Casual Tone",
     description:
-      "Free AI paraphraser for students. Paste a paragraph and get three rewritten versions in academic, formal, or casual tone. Keeps the original meaning while changing the structure and wording.",
+      "Free AI paraphraser for students. Paste a paragraph and get three rewrites in academic, formal, or casual tone. Keeps the meaning, changes the wording.",
     keywords: [
       "ai paraphraser",
       "free paraphrasing tool",
@@ -893,9 +893,9 @@ export const toolsSEO: ToolSEO[] = [
   },
   {
     slug: "ai-cover-letter",
-    title: "AI Cover Letter Generator — Free, Tailored to Your Resume & Job Description",
+    title: "AI Cover Letter Generator - Tailored to Your Resume",
     description:
-      "Free AI cover letter generator for students and graduates. Paste your resume and the job description and get a tailored cover letter in professional, enthusiastic, or concise tone.",
+      "Free AI cover letter generator for students and grads. Paste your resume and the job description to get a tailored letter in professional or concise tone.",
     keywords: [
       "ai cover letter generator",
       "free cover letter generator",

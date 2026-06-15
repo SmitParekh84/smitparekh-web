@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a SaaS Developer – Multi-Tenant Apps, Stripe Billing & Auth",
+  title: "Hire a SaaS Developer - Multi-Tenant Apps & Stripe Billing",
   description:
-    "Hire a SaaS developer with 4+ years building production multi-tenant applications. Auth, Stripe billing, subscription management, onboarding flows, admin dashboards, and scalable architecture. Free quote in 24 hours.",
+    "Hire a SaaS developer with 4+ years building production multi-tenant apps. Auth, Stripe billing, subscriptions, onboarding, admin dashboards, and scaling.",
   alternates: { canonical: `${siteConfig.url}/saas-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/saas-developer`,
     siteName: siteConfig.name,
-    title: "Hire a SaaS Developer – Multi-Tenant, Stripe, Auth | Smit Parekh",
-    description: "Full-stack SaaS development — multi-tenant architecture, Stripe subscriptions, auth, onboarding flows, admin dashboards. From MVP to paying customers.",
-    images: [{ url: `${siteConfig.url}/images/hire-saas-developer.png`, width: 1200, height: 630, alt: "Hire a SaaS Developer – Smit Parekh" }],
+    title: "Hire a SaaS Developer - Multi-Tenant, Stripe, Auth | Smit Parekh",
+    description: "Full-stack SaaS development - multi-tenant architecture, Stripe subscriptions, auth, onboarding flows, admin dashboards. From MVP to paying customers.",
+    images: [{ url: `${siteConfig.url}/images/hire-saas-developer.png`, width: 1200, height: 630, alt: "Hire a SaaS Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a SaaS Developer – Multi-Tenant, Stripe Billing, Auth | Smit Parekh",
+    title: "Hire a SaaS Developer - Multi-Tenant, Stripe Billing, Auth | Smit Parekh",
     description: "SaaS apps with auth, Stripe billing, multi-tenancy, and admin dashboards. From MVP to scale. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-saas-developer.png`, width: 1200, height: 630 }],
   },
@@ -49,10 +49,10 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "30+", label: "Production SaaS applications shipped — from MVP to paying customers at scale", icon: Star },
+  { value: "30+", label: "Production SaaS applications shipped - from MVP to paying customers at scale", icon: Star },
   { value: "4+", label: "Years building multi-tenant SaaS products for FinTech, HR, and enterprise software companies", icon: Clock },
-  { value: "100%", label: "Stripe integration success rate — subscriptions, trials, metered billing, and webhook reliability", icon: TrendingUp },
-  { value: "<4wk", label: "Typical SaaS MVP timeline — auth, billing, dashboard, and first paying user in under four weeks", icon: Zap },
+  { value: "100%", label: "Stripe integration success rate - subscriptions, trials, metered billing, and webhook reliability", icon: TrendingUp },
+  { value: "<4wk", label: "Typical SaaS MVP timeline - auth, billing, dashboard, and first paying user in under four weeks", icon: Zap },
 ];
 
 const whatIBuild = [
@@ -71,7 +71,7 @@ const whatIBuild = [
   {
     icon: ShieldCheck,
     title: "Authentication & Auth Flows",
-    description: "Supabase Auth or NextAuth — email/password, Google OAuth, magic links, and SSO. Session management, protected routes, role checks, and the admin impersonation flow every SaaS team eventually needs.",
+    description: "Supabase Auth or NextAuth - email/password, Google OAuth, magic links, and SSO. Session management, protected routes, role checks, and the admin impersonation flow every SaaS team eventually needs.",
     tags: ["Supabase Auth", "NextAuth", "OAuth", "SSO"],
   },
   {
@@ -83,13 +83,13 @@ const whatIBuild = [
   {
     icon: Server,
     title: "Admin Dashboards",
-    description: "The dashboard your ops team needs to manage users, view subscription status, impersonate accounts, manage feature flags, and handle support requests — without touching the database directly.",
+    description: "The dashboard your ops team needs to manage users, view subscription status, impersonate accounts, manage feature flags, and handle support requests - without touching the database directly.",
     tags: ["Admin Panel", "User Management", "Feature Flags", "Analytics"],
   },
   {
     icon: Globe,
     title: "SaaS Marketing Sites",
-    description: "SEO-first Next.js marketing sites with pricing pages, feature comparisons, social proof, and conversion-optimised CTAs. Built to rank and built to convert — not just to look good.",
+    description: "SEO-first Next.js marketing sites with pricing pages, feature comparisons, social proof, and conversion-optimised CTAs. Built to rank and built to convert - not just to look good.",
     tags: ["Next.js", "SEO", "Pricing Page", "Conversion"],
   },
 ];
@@ -98,7 +98,7 @@ const differentiators = [
   {
     icon: Users,
     title: "Multi-tenancy designed before it's needed",
-    description: "Adding multi-tenancy to a single-tenant codebase is a rewrite. I design the tenant isolation model in the schema from day one — so scaling to enterprise accounts doesn't require starting over.",
+    description: "Adding multi-tenancy to a single-tenant codebase is a rewrite. I design the tenant isolation model in the schema from day one - so scaling to enterprise accounts doesn't require starting over.",
   },
   {
     icon: Code2,
@@ -108,12 +108,12 @@ const differentiators = [
   {
     icon: Zap,
     title: "MVPs that aren't throwaway",
-    description: "The architecture decisions you make at MVP stage are the ones you'll live with at 10,000 users. I build MVPs that are fast to ship AND structured to grow — without a full rewrite at Series A.",
+    description: "The architecture decisions you make at MVP stage are the ones you'll live with at 10,000 users. I build MVPs that are fast to ship AND structured to grow - without a full rewrite at Series A.",
   },
   {
     icon: TrendingUp,
     title: "Full-stack ownership, one point of contact",
-    description: "Database schema, API layer, frontend, Stripe integration, and deployment — all owned by one engineer. No coordination overhead, no hand-off gaps, no finger-pointing when something breaks.",
+    description: "Database schema, API layer, frontend, Stripe integration, and deployment - all owned by one engineer. No coordination overhead, no hand-off gaps, no finger-pointing when something breaks.",
   },
 ];
 
@@ -130,11 +130,11 @@ const techStack = [
 const faqs = [
   {
     q: "How much does building a SaaS product cost?",
-    a: "An MVP with auth, Stripe billing, a core feature, and admin dashboard typically runs 4–8 weeks at a fixed price. I scope it from your brief — no verbal estimates, written proposal within 24 hours.",
+    a: "An MVP with auth, Stripe billing, a core feature, and admin dashboard typically runs 4-8 weeks at a fixed price. I scope it from your brief - no verbal estimates, written proposal within 24 hours.",
   },
   {
     q: "How long does it take to build a SaaS MVP?",
-    a: "Three to six weeks for a focused MVP — auth, billing, one core workflow, and the infrastructure to support it. The scope goes in the proposal before work starts. No surprises mid-engagement.",
+    a: "Three to six weeks for a focused MVP - auth, billing, one core workflow, and the infrastructure to support it. The scope goes in the proposal before work starts. No surprises mid-engagement.",
   },
   {
     q: "Can you build on top of an existing SaaS codebase?",
@@ -142,7 +142,7 @@ const faqs = [
   },
   {
     q: "Do you handle Stripe integration end-to-end?",
-    a: "Yes — checkout, subscriptions, trials, usage-based billing, dunning, customer portal, and webhook handling with idempotency. Stripe is complex at the edges. I've handled the edges in production.",
+    a: "Yes - checkout, subscriptions, trials, usage-based billing, dunning, customer portal, and webhook handling with idempotency. Stripe is complex at the edges. I've handled the edges in production.",
   },
   {
     q: "Which stack do you use for SaaS products?",
@@ -150,7 +150,7 @@ const faqs = [
   },
   {
     q: "Do you build the marketing site too, or just the application?",
-    a: "Both. A SaaS product needs a marketing site that ranks and converts — not just an app. I build the full package: SEO-first Next.js marketing site, pricing page, and the product itself.",
+    a: "Both. A SaaS product needs a marketing site that ranks and converts - not just an app. I build the full package: SEO-first Next.js marketing site, pricing page, and the product itself.",
   },
 ];
 
@@ -192,7 +192,7 @@ export default function SaaSDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiNextdotjs className="w-4 h-4 text-neutral-700 dark:text-white" />
@@ -208,7 +208,7 @@ export default function SaaSDeveloperPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                Auth, billing, multi-tenancy, onboarding — the four things that make or break a SaaS product.
+                Auth, billing, multi-tenancy, onboarding - the four things that make or break a SaaS product.
                 I&apos;ve built all of them in production, and I know which decisions at MVP stage you&apos;ll
                 regret at 10,000 users.
               </p>
@@ -216,7 +216,7 @@ export default function SaaSDeveloperPage() {
               <ul className="space-y-2.5">
                 {[
                   "Multi-tenant architecture designed before it's needed",
-                  "Stripe billing — subscriptions, trials, usage-based, dunning",
+                  "Stripe billing - subscriptions, trials, usage-based, dunning",
                   "Auth with SSO, RBAC, and the admin impersonation flow",
                   "MVP to first paying user in under four weeks",
                 ].map((item) => (
@@ -248,7 +248,7 @@ export default function SaaSDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -287,7 +287,7 @@ export default function SaaSDeveloperPage() {
           <SectionHeader
             label="SaaS Expertise"
             title="What I Build"
-            description="The full SaaS stack — from database schema to marketing site. Every layer your product needs to acquire, retain, and monetise users."
+            description="The full SaaS stack - from database schema to marketing site. Every layer your product needs to acquire, retain, and monetise users."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -316,7 +316,7 @@ export default function SaaSDeveloperPage() {
           <SectionHeader
             label="Why Hire Me"
             title="The Difference Between a SaaS Developer and an App Developer"
-            description="Building features is easy. Building the subscription model, the tenant isolation, and the billing edge cases that keep a SaaS business alive — that's the hard part."
+            description="Building features is easy. Building the subscription model, the tenant isolation, and the billing edge cases that keep a SaaS business alive - that's the hard part."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {differentiators.map(({ icon: Icon, title, description }) => (
@@ -340,7 +340,7 @@ export default function SaaSDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -371,7 +371,7 @@ export default function SaaSDeveloperPage() {
                 Ready to hire a SaaS developer who&apos;s been to production?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

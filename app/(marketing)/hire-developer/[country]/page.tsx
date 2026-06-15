@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `${siteConfig.url}/hire-developer/${c.slug}`;
   const title = `Hire a Full-Stack Developer in ${c.primaryCity} & ${c.country}`;
-  const description = `Hire a full-stack developer for ${c.primaryCity} and ${c.country} businesses. React, Next.js, Node.js & PostgreSQL — ${c.timezoneLabel} overlap, free quote in 24 hours.`;
+  const description = `Hire a full-stack developer for ${c.primaryCity} and ${c.country} businesses. React, Next.js, Node.js & PostgreSQL - ${c.timezoneLabel} overlap, free quote in 24 hours.`;
 
   return {
     title,
@@ -64,13 +64,13 @@ const whatIBuild = [
   {
     icon: Code2,
     title: "SaaS Products",
-    description: "Multi-tenant architecture, Stripe subscriptions, auth with SSO, onboarding, and admin dashboards — the full SaaS stack from schema to marketing site.",
+    description: "Multi-tenant architecture, Stripe subscriptions, auth with SSO, onboarding, and admin dashboards - the full SaaS stack from schema to marketing site.",
     tags: ["Next.js", "Supabase", "Stripe", "Multi-Tenant"],
   },
   {
     icon: Layers,
     title: "Full-Stack Web Applications",
-    description: "Next.js App Router frontend, NestJS or Express API, PostgreSQL database, Redis caching, and cloud deployment — owned end-to-end by one engineer.",
+    description: "Next.js App Router frontend, NestJS or Express API, PostgreSQL database, Redis caching, and cloud deployment - owned end-to-end by one engineer.",
     tags: ["Next.js", "NestJS", "PostgreSQL", "AWS"],
   },
   {
@@ -99,10 +99,10 @@ const techStack = [
 
 function results(c: GeoCountry) {
   return [
-    { value: "30+", label: "Production applications shipped — frontend to database to deployment, no hand-offs", icon: Star },
+    { value: "30+", label: "Production applications shipped - frontend to database to deployment, no hand-offs", icon: Star },
     { value: "4+", label: "Years writing React, Next.js, NestJS, and PostgreSQL in production for FinTech, SaaS, and enterprise", icon: Clock },
-    { value: c.utcOffset === "+4" ? "1.5h" : "2.5h", label: `Timezone gap from ${c.country} — a shared working day, not async hand-offs across midnight`, icon: Globe },
-    { value: "95+", label: "Lighthouse score on every Next.js deployment — performance built in, not bolted on", icon: Zap },
+    { value: c.utcOffset === "+4" ? "1.5h" : "2.5h", label: `Timezone gap from ${c.country} - a shared working day, not async hand-offs across midnight`, icon: Globe },
+    { value: "95+", label: "Lighthouse score on every Next.js deployment - performance built in, not bolted on", icon: Zap },
   ];
 }
 
@@ -111,17 +111,17 @@ function differentiators(c: GeoCountry) {
     {
       icon: Clock,
       title: `Real overlap with ${c.country} hours`,
-      description: c.istOverlap + " You get same-day replies and live reviews — not a 12-hour round trip on every question.",
+      description: c.istOverlap + " You get same-day replies and live reviews - not a 12-hour round trip on every question.",
     },
     {
       icon: Banknote,
       title: "Invoicing that fits your finance team",
-      description: `Clear written proposals before any work starts. Fixed-price or retainer, invoiced in USD (or ${c.currencyCode} on request) — no surprise scope, no hourly drift.`,
+      description: `Clear written proposals before any work starts. Fixed-price or retainer, invoiced in USD (or ${c.currencyCode} on request) - no surprise scope, no hourly drift.`,
     },
     {
       icon: Code2,
       title: "One engineer who owns the whole stack",
-      description: "No hand-off between a frontend team and a backend team. I own the schema, the API, and the UI — and I'm accountable for all three.",
+      description: "No hand-off between a frontend team and a backend team. I own the schema, the API, and the UI - and I'm accountable for all three.",
     },
     {
       icon: ShieldCheck,
@@ -155,7 +155,7 @@ function buildFaqs(c: GeoCountry) {
     },
     {
       q: "Can you work with our existing codebase?",
-      a: "Yes. Share the repo and I'll assess it honestly — what to keep, what to refactor, what to rewrite. I won't recommend a rewrite unless it's genuinely the right call.",
+      a: "Yes. Share the repo and I'll assess it honestly - what to keep, what to refactor, what to rewrite. I won't recommend a rewrite unless it's genuinely the right call.",
     },
   ];
 }
@@ -176,7 +176,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
     name: `Full-Stack Developer for Hire in ${c.country}`,
     provider: personNode(),
     serviceType: "Full-Stack Web Development",
-    description: `Freelance full-stack developer working with ${c.primaryCity} and ${c.country} businesses. React, Next.js, NestJS, PostgreSQL, and AWS — one engineer from database to frontend deploy, on a ${c.timezoneLabel} overlap.`,
+    description: `Freelance full-stack developer working with ${c.primaryCity} and ${c.country} businesses. React, Next.js, NestJS, PostgreSQL, and AWS - one engineer from database to frontend deploy, on a ${c.timezoneLabel} overlap.`,
     url,
     areaServed: [
       { "@type": "Country", name: c.country },
@@ -236,10 +236,10 @@ export default async function GeoDeveloperPage({ params }: Props) {
 
               <ul className="space-y-2.5">
                 {[
-                  `${c.timezoneLabel} overlap — same-day communication, live reviews`,
-                  "React / Next.js frontend — 95+ Lighthouse, SEO-first",
-                  "NestJS or Express API — TypeScript strict, 10K+ req/day",
-                  `Invoice in USD or ${c.currencyCode} — fixed-price or retainer`,
+                  `${c.timezoneLabel} overlap - same-day communication, live reviews`,
+                  "React / Next.js frontend - 95+ Lighthouse, SEO-first",
+                  "NestJS or Express API - TypeScript strict, 10K+ req/day",
+                  `Invoice in USD or ${c.currencyCode} - fixed-price or retainer`,
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
@@ -307,7 +307,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
           <SectionHeader
             label={`For ${c.country} businesses`}
             title="What I Build"
-            description={`End-to-end products for ${c.primaryCity} teams — not just components or endpoints. From the first migration to the first paying user, one engineer with full context on every layer.`}
+            description={`End-to-end products for ${c.primaryCity} teams - not just components or endpoints. From the first migration to the first paying user, one engineer with full context on every layer.`}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -360,7 +360,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
           <SectionHeader
             label="Common Questions"
             title={`Hiring a Developer in ${c.country}`}
-            description="The questions every Gulf client asks — answered honestly."
+            description="The questions every Gulf client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -391,7 +391,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
                 Ready to hire a developer for your {c.primaryCity} project?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

@@ -10,7 +10,7 @@ import { geoCountries } from "@/data/geo-pages";
 export const revalidate = 300; // hourly; SEO freshness at negligible write cost
 
 // Stable lastModified for static routes. Bump this date only when the
-// underlying page content actually changes — Google reads a constantly
+// underlying page content actually changes - Google reads a constantly
 // updated lastModified as a noisy/spammy freshness signal and ignores it.
 const STATIC_LASTMOD = new Date("2026-06-02");
 
@@ -20,16 +20,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = STATIC_LASTMOD;
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    // Tier 1 — primary money pages
+    // Tier 1 - primary money pages
     { url: base,                              priority: 1.0, changeFrequency: "weekly",  lastModified, images: [defaultImage] },
     { url: `${base}/hire-me`,                 priority: 0.95, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/contact`,                 priority: 0.9,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    // Tier 2 — content hubs (high crawl value)
+    // Tier 2 - content hubs (high crawl value)
     { url: `${base}/free-tools`,              priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/blog`,                    priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-blog-web-development.png`] },
     { url: `${base}/portfolio`,               priority: 0.85, changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
     { url: `${base}/services`,                priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-web-development-services.png`] },
-    // Tier 3 — hire-intent landing pages (prioritise most-searched stacks first)
+    // Tier 3 - hire-intent landing pages (prioritise most-searched stacks first)
     { url: `${base}/full-stack-developer`,    priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-full-stack-developer.png`] },
     { url: `${base}/full-stack-ai-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/ai-seo-consultant`,       priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },
@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/aws-developer`,           priority: 0.75, changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-aws-developer.png`] },
     { url: `${base}/wordpress-developer`,     priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-wordpress-developer.png`] },
     { url: `${base}/react-native-developer`,  priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/hire-react-native-developer.png`] },
-    // Tier 4 — supporting pages
+    // Tier 4 - supporting pages
     { url: `${base}/about`,                   priority: 0.75, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
     { url: `${base}/who-is-smit-parekh`,      priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/for-students`,            priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/for-students.png`] },
@@ -53,9 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/production-nextjs`,       priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-vercel-guide`,     priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/blog-api`,                priority: 0.7,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
-    // Tier 5 — utility (low-value pages omitted from sitemap to concentrate
+    // Tier 5 - utility (low-value pages omitted from sitemap to concentrate
     // crawl budget on money pages. Coverage report 2026-05-23 showed 98 URLs
-    // stuck in "Discovered – not indexed" — Google is rationing crawl, so the
+    // stuck in "Discovered - not indexed" - Google is rationing crawl, so the
     // sitemap should advertise only pages we genuinely want indexed.)
     { url: `${base}/feedback`,                priority: 0.5,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/changelog`,               priority: 0.5,  changeFrequency: "weekly",  lastModified, images: [defaultImage] },
@@ -102,7 +102,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [serviceOgImageUrl(base, s.slug)],
   }));
 
-  // Gulf (GCC) geo hire pages — country-targeted English landing pages.
+  // Gulf (GCC) geo hire pages - country-targeted English landing pages.
   // The OG card is generated per route by opengraph-image.tsx.
   const geoRoutes: MetadataRoute.Sitemap = [
     { url: `${base}/hire-developer`, priority: 0.85, changeFrequency: "monthly", lastModified, images: [defaultImage] },

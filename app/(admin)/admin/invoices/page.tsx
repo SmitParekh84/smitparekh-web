@@ -47,8 +47,8 @@ function money(a: number, c: string) {
 
 function clientName(inv: Invoice) {
   return typeof inv.clientId === "object"
-    ? inv.clientId.name || inv.clientId.email || "—"
-    : "—";
+    ? inv.clientId.name || inv.clientId.email || "-"
+    : "-";
 }
 
 const STATUS_BADGE: Record<InvoiceStatus, string> = {
@@ -122,7 +122,7 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
         </Badge>
       </TableCell>
       <TableCell className="hidden md:table-cell text-[12.5px] text-muted-foreground">
-        {inv.dueDate ? new Date(inv.dueDate).toLocaleDateString() : "—"}
+        {inv.dueDate ? new Date(inv.dueDate).toLocaleDateString() : "-"}
       </TableCell>
       <TableCell>
         <div className="flex items-center justify-end gap-1">

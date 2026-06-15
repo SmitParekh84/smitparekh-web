@@ -58,7 +58,7 @@ function MiniStat({ label, value, hint, delta, loading }: MiniStatProps) {
 }
 
 /* ─── Visitors chart (PREVIEW) ───────────────────────────────────────────
-   Sample data only — there is no analytics backend wired yet. The UI is
+   Sample data only - there is no analytics backend wired yet. The UI is
    built so it's ready to drop real numbers into. See README → "Admin
    redesign · future backend work". */
 const SAMPLE_TRAFFIC: Record<string, number[]> = {
@@ -132,7 +132,7 @@ function VisitorsCard() {
             </Badge>
           </CardTitle>
           <p className="mt-0.5 text-sm text-muted-foreground">
-            Sample data — analytics wiring coming soon.
+            Sample data - analytics wiring coming soon.
           </p>
         </div>
         <RangeTabs value={range} onChange={setRange} />
@@ -257,7 +257,7 @@ export default function AdminOverviewPage() {
   const avgRating =
     ratings.length > 0
       ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
-      : "—";
+      : "-";
 
   const recentProjects = projects
     ?.slice()
@@ -288,7 +288,7 @@ export default function AdminOverviewPage() {
         </p>
       </div>
 
-      {/* Stat cards — real wired data */}
+      {/* Stat cards - real wired data */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MiniStat
           label="Projects"
@@ -322,7 +322,7 @@ export default function AdminOverviewPage() {
         <TopSourcesCard />
       </div>
 
-      {/* Recent lists — real wired data */}
+      {/* Recent lists - real wired data */}
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader className="flex flex-row items-center justify-between gap-4 space-y-0">
@@ -471,7 +471,7 @@ export default function AdminOverviewPage() {
         </Card>
       </div>
 
-      {/* Shortcuts — real links */}
+      {/* Shortcuts - real links */}
       <Card>
         <CardHeader>
           <CardTitle>Shortcuts</CardTitle>

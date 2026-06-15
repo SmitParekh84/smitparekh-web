@@ -8,7 +8,7 @@ import PortfolioClient, { type PortfolioCard } from "./_client";
 // ISR: re-fetch case studies from the backend every 5 min. Rendering the grid
 // server-side (instead of the old client-only useProjects fetch) means the
 // case-study <a> links exist in the initial HTML, so Googlebot can crawl them
-// without executing JS — the fix for "Discovered – currently not indexed".
+// without executing JS - the fix for "Discovered - currently not indexed".
 export const revalidate = 86400; // 24h; busted on-demand via revalidateTag("projects")
 
 export default async function PortfolioPage() {
@@ -87,7 +87,7 @@ export default async function PortfolioPage() {
             <li key={c.slug}>
               <Link href={`/portfolio/${c.slug}`}>
                 {c.title}
-                {c.subtitle ? ` — ${c.subtitle}` : ""}
+                {c.subtitle ? ` - ${c.subtitle}` : ""}
               </Link>
             </li>
           ))}

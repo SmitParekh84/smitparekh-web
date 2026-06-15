@@ -145,7 +145,7 @@ export default function AdminClientsPage() {
         </div>
       )}
 
-      {/* Empty state — no clients at all */}
+      {/* Empty state - no clients at all */}
       {!clientsQuery.isLoading && !clientsQuery.isError && allClients.length === 0 && (
         <div className="flex flex-col items-center gap-3 rounded-lg border border-dashed border-border py-16 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">

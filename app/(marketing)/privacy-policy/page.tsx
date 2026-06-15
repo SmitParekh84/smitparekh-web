@@ -9,7 +9,7 @@ const LAST_UPDATED = "May 8, 2026";
 export const metadata: Metadata = {
   title: "Privacy Policy - Smit Parekh",
   description:
-    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in — including contact form submissions, free tools usage, user accounts, and freelance client communications.",
+    "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in, including contact forms, tools usage, accounts, and client communications.",
   alternates: { canonical: `${siteConfig.url}/privacy-policy` },
   robots: { index: true, follow: true },
   openGraph: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/privacy-policy`,
     title: "Privacy Policy - Smit Parekh",
     description:
-      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in — including contact form submissions, free tools usage, user accounts, and freelance client communications.",
+      "How Smit Parekh collects, uses, and protects your data on smitparekh.co.in, including contact forms, tools usage, accounts, and client communications.",
     images: [
       {
         url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
@@ -87,11 +87,11 @@ export default function PrivacyPolicyPage() {
                 <strong>User account (Google sign-in):</strong> when you sign
                 in with Google via the Site, I receive your Google account email
                 address, display name, and a unique Google account identifier.
-                No password is stored — authentication is delegated entirely to
+                No password is stored - authentication is delegated entirely to
                 Google via Supabase Auth.
               </li>
               <li>
-                <strong>Free tools — file and text uploads:</strong> some tools
+                <strong>Free tools - file and text uploads:</strong> some tools
                 (e.g. background remover, ATS resume checker, image compressor)
                 accept files or text you provide. These are processed to produce
                 the requested result. Files are deleted immediately after the
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong>Usage data:</strong> pages visited, referrer URL,
                 approximate location (country and region only), device type,
-                browser, operating system, and timestamps — collected via
+                browser, operating system, and timestamps - collected via
                 privacy-friendly analytics.
               </li>
               <li>
@@ -125,10 +125,10 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong>Cookies and local storage:</strong> a small number of
                 cookies and browser storage items are used for essential
-                functionality — session state, dark/light mode preference, and
+                functionality - session state, dark/light mode preference, and
                 authentication tokens. Third-party advertising cookies (Google
                 AdSense) are also used to display ads that help keep the tools
-                free — see Section 8 for details and opt-out options.
+                free - see Section 8 for details and opt-out options.
               </li>
             </ul>
 
@@ -146,8 +146,8 @@ export default function PrivacyPolicyPage() {
 
             <h2>3. Freelance and Student Project Enquiries</h2>
             <p>
-              When you submit a project brief — whether for freelance development
-              or student project work — the information you provide (project
+              When you submit a project brief - whether for freelance development
+              or student project work - the information you provide (project
               description, budget, deadlines, and any supporting materials) is
               treated as confidential. I do not share this information with third
               parties, use it to train AI models, or reference it publicly
@@ -168,10 +168,10 @@ export default function PrivacyPolicyPage() {
               following:
             </p>
             <ul>
-              <li><strong>Consent</strong> — where you have actively provided information (e.g. contact form, account creation).</li>
-              <li><strong>Contract performance</strong> — to deliver a service you have requested or engaged me to perform.</li>
-              <li><strong>Legitimate interests</strong> — to operate, secure, and improve the Site and its tools.</li>
-              <li><strong>Legal obligation</strong> — where required by applicable law.</li>
+              <li><strong>Consent</strong> - where you have actively provided information (e.g. contact form, account creation).</li>
+              <li><strong>Contract performance</strong> - to deliver a service you have requested or engaged me to perform.</li>
+              <li><strong>Legitimate interests</strong> - to operate, secure, and improve the Site and its tools.</li>
+              <li><strong>Legal obligation</strong> - where required by applicable law.</li>
             </ul>
 
             <h2>5. Sharing and Third Parties</h2>
@@ -182,35 +182,35 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Vercel</strong> — hosting and edge network for the
+                <strong>Vercel</strong> - hosting and edge network for the
                 Site.
               </li>
               <li>
-                <strong>Supabase</strong> — user authentication (Google OAuth),
+                <strong>Supabase</strong> - user authentication (Google OAuth),
                 database (usage quotas, account data), and serverless functions.
                 Data is stored in Supabase-managed infrastructure. Supabase is
                 SOC 2 compliant.
               </li>
               <li>
-                <strong>Resend</strong> — transactional email delivery used to
+                <strong>Resend</strong> - transactional email delivery used to
                 send contact form confirmation emails and project update
                 notifications. Resend receives your email address solely to
                 deliver the email.
               </li>
               <li>
-                <strong>Cloudinary</strong> — image transformation and storage
+                <strong>Cloudinary</strong> - image transformation and storage
                 for portfolio images and blog assets. User-uploaded files for
                 tools are not sent to Cloudinary.
               </li>
               <li>
-                <strong>Hugging Face / Python tools service</strong> — certain
+                <strong>Hugging Face / Python tools service</strong> - certain
                 AI-powered tools (e.g. background remover) use a self-hosted
                 inference service deployed on Hugging Face. Files you upload for
                 these tools are sent to this service solely to generate the
                 result and are not retained.
               </li>
               <li>
-                <strong>Google AdSense</strong> — advertising network used to
+                <strong>Google AdSense</strong> - advertising network used to
                 display ads on the Site. Google may use cookies (including the
                 DoubleClick cookie) to serve ads based on your prior visits to
                 this or other websites. This helps keep the tools and content
@@ -241,7 +241,7 @@ export default function PrivacyPolicyPage() {
                 .
               </li>
               <li>
-                <strong>Analytics provider</strong> — privacy-friendly,
+                <strong>Analytics provider</strong> - privacy-friendly,
                 cookie-optional analytics that do not share data with
                 advertising networks.
               </li>
@@ -301,7 +301,7 @@ export default function PrivacyPolicyPage() {
               <li><strong>Analytics:</strong> privacy-friendly, aggregate-only analytics with no cross-site fingerprinting.</li>
               <li>
                 <strong>Advertising cookies (Google AdSense):</strong> Google
-                AdSense places cookies — including the DoubleClick cookie — to
+                AdSense places cookies - including the DoubleClick cookie - to
                 serve ads personalised to your interests based on your browsing
                 history on this and other sites. These cookies may track you
                 across websites. To opt out of personalised ads, visit{" "}

@@ -297,11 +297,11 @@ export default function ClientContractPage() {
                     </Button>
                   </div>
                 </div>
-                <p className="text-center text-[11px] text-muted-foreground">— or draw a new signature below —</p>
+                <p className="text-center text-[11px] text-muted-foreground">- or draw a new signature below -</p>
               </div>
             )}
 
-            {/* Drawing pad — opens full-screen overlay */}
+            {/* Drawing pad - opens full-screen overlay */}
             <SignaturePad
               onSign={handleSign}
               disabled={signMutation.isPending}

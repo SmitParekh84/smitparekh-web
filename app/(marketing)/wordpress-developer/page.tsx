@@ -15,25 +15,25 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a WordPress Developer – Custom Themes, WooCommerce & Headless WP",
+  title: "Hire a WordPress Developer - Themes, WooCommerce & Headless",
   description:
-    "Hire a WordPress developer who builds without page builders. Custom PHP themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js. 95+ Lighthouse on every site. Free quote in 24 hours.",
+    "Hire a WordPress developer who builds without page builders. Custom PHP themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js.",
   alternates: { canonical: `${siteConfig.url}/wordpress-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/wordpress-developer`,
     siteName: siteConfig.name,
-    title: "Hire a WordPress Developer – Custom Themes & WooCommerce | Smit Parekh",
+    title: "Hire a WordPress Developer - Custom Themes & WooCommerce | Smit Parekh",
     description:
       "Custom WordPress themes, WooCommerce stores, and headless WP + Next.js. 95+ Lighthouse, no page builders. Free quote in 24 hours.",
-    images: [{ url: `${siteConfig.url}/images/hire-wordpress-developer.png`, width: 1200, height: 630, alt: "Hire a WordPress Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-wordpress-developer.png`, width: 1200, height: 630, alt: "Hire a WordPress Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a WordPress Developer – No Page Builders | Smit Parekh",
+    title: "Hire a WordPress Developer - No Page Builders | Smit Parekh",
     description: "Custom WordPress themes, WooCommerce, headless WP. 95+ Lighthouse. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-wordpress-developer.png`, width: 1200, height: 630 }],
   },
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "50+", label: "WordPress sites shipped — brochure, WooCommerce, and headless", icon: Star },
-  { value: "95+", label: "Lighthouse score on every custom theme — no exceptions", icon: Zap },
-  { value: "0", label: "Page builders used — Elementor, Divi, Avada — ever", icon: ShieldCheck },
+  { value: "50+", label: "WordPress sites shipped - brochure, WooCommerce, and headless", icon: Star },
+  { value: "95+", label: "Lighthouse score on every custom theme - no exceptions", icon: Zap },
+  { value: "0", label: "Page builders used - Elementor, Divi, Avada - ever", icon: ShieldCheck },
   { value: "<2s", label: "LCP target on WooCommerce product pages on real 4G connections", icon: Clock },
 ];
 
@@ -59,7 +59,7 @@ const whatIBuild = [
     icon: Code2,
     title: "Bespoke WordPress Themes",
     description:
-      "Hand-coded child themes and standalone themes — clean PHP 8.2, BEM CSS, design tokens, and a template hierarchy that makes sense. No Elementor, no Avada, no 80MB theme zip. Just fast, maintainable code.",
+      "Hand-coded child themes and standalone themes - clean PHP 8.2, BEM CSS, design tokens, and a template hierarchy that makes sense. No Elementor, no Avada, no 80MB theme zip. Just fast, maintainable code.",
     tags: ["PHP 8.2", "BEM CSS", "WordPress", "Custom Theme"],
   },
   {
@@ -102,27 +102,27 @@ const whatIBuild = [
 const differentiators = [
   {
     icon: Code2,
-    title: "No page builders — ever",
+    title: "No page builders - ever",
     description:
-      "Page builders generate 10–20× more HTML than hand-coded themes, load render-blocking JS bundles, and lock your content in proprietary shortcodes. A custom theme gives you clean output, full design control, and a Lighthouse score that doesn't embarrass you.",
+      "Page builders generate 10-20× more HTML than hand-coded themes, load render-blocking JS bundles, and lock your content in proprietary shortcodes. A custom theme gives you clean output, full design control, and a Lighthouse score that doesn't embarrass you.",
   },
   {
     icon: Zap,
     title: "Performance is non-negotiable",
     description:
-      "WordPress can score 95+ on Lighthouse — most sites don't because the theme was never built with performance in mind. I treat performance as a constraint, not a post-launch optimisation.",
+      "WordPress can score 95+ on Lighthouse - most sites don't because the theme was never built with performance in mind. I treat performance as a constraint, not a post-launch optimisation.",
   },
   {
     icon: TrendingUp,
     title: "SEO baked in, not bolted on",
     description:
-      "I've seen too many WordPress sites with clean design and broken SEO — duplicate meta from plugins fighting each other, missing schema, and Lighthouse Core Web Vitals that tank organic rankings. I fix the foundation first.",
+      "I've seen too many WordPress sites with clean design and broken SEO - duplicate meta from plugins fighting each other, missing schema, and Lighthouse Core Web Vitals that tank organic rankings. I fix the foundation first.",
   },
   {
     icon: Server,
     title: "Full-stack context for headless builds",
     description:
-      "When you go headless, the WordPress developer needs to understand the Next.js frontend too. I'm a full-stack developer — I've built both sides of headless CMS architectures and know where the pitfalls live.",
+      "When you go headless, the WordPress developer needs to understand the Next.js frontend too. I'm a full-stack developer - I've built both sides of headless CMS architectures and know where the pitfalls live.",
   },
 ];
 
@@ -138,7 +138,7 @@ const techStack = [
 const faqs = [
   {
     q: "Why should I use a custom theme instead of Elementor or Divi?",
-    a: "Three reasons: performance (custom themes score 90–98 on Lighthouse; most Elementor sites score 40–65), maintainability (custom PHP is readable by any developer; Elementor data is locked in JSON blobs), and future-proofing (your content isn't held hostage by a page builder's licensing model).",
+    a: "Three reasons: performance (custom themes score 90-98 on Lighthouse; most Elementor sites score 40-65), maintainability (custom PHP is readable by any developer; Elementor data is locked in JSON blobs), and future-proofing (your content isn't held hostage by a page builder's licensing model).",
   },
   {
     q: "Is headless WordPress worth the extra cost?",
@@ -149,7 +149,7 @@ const faqs = [
     a: "Yes. I export your current content, rebuild the theme from scratch, and migrate posts, pages, products, and media. URL structure is preserved with 301 redirects. Organic traffic is protected throughout the migration.",
   },
   {
-    q: "WooCommerce or Shopify — which do you recommend?",
+    q: "WooCommerce or Shopify - which do you recommend?",
     a: "Shopify for straightforward product catalogues and teams that don't want to manage hosting or updates. WooCommerce for complex pricing rules, custom product types, or when you need deep integration with the rest of your WordPress site. Both are valid; the right choice depends on your team's capacity.",
   },
   {
@@ -158,7 +158,7 @@ const faqs = [
   },
   {
     q: "Do you provide ongoing maintenance?",
-    a: "Yes — monthly retainers cover WordPress core and plugin updates, security patches, uptime monitoring, and a monthly Lighthouse check to catch performance regressions early. Most clients stay on retainer for at least 3 months post-launch.",
+    a: "Yes - monthly retainers cover WordPress core and plugin updates, security patches, uptime monitoring, and a monthly Lighthouse check to catch performance regressions early. Most clients stay on retainer for at least 3 months post-launch.",
   },
 ];
 
@@ -214,14 +214,14 @@ export default function WordPressDeveloperPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                Custom PHP themes, WooCommerce stores, and headless WordPress with Next.js — built
+                Custom PHP themes, WooCommerce stores, and headless WordPress with Next.js - built
                 without page builders, scored 95+ on Lighthouse, and maintained with the discipline
                 of a proper engineering engagement.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "No Elementor, Divi, or Avada — ever",
+                  "No Elementor, Divi, or Avada - ever",
                   "95+ Lighthouse on every custom theme shipped",
                   "WooCommerce stores optimised for conversion, not just function",
                   "Headless WP + Next.js for maximum performance",
@@ -290,7 +290,7 @@ export default function WordPressDeveloperPage() {
           <SectionHeader
             label="WordPress Expertise"
             title="What I Build With WordPress"
-            description="50+ sites shipped — none of them built on a page builder."
+            description="50+ sites shipped - none of them built on a page builder."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -343,7 +343,7 @@ export default function WordPressDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -374,7 +374,7 @@ export default function WordPressDeveloperPage() {
                 Ready to hire a WordPress developer who won&apos;t use page builders?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. Custom theme, WooCommerce store, or headless — your call.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. Custom theme, WooCommerce store, or headless - your call.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

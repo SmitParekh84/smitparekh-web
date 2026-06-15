@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Feedback & Bug Reports | Smit Parekh",
     description:
-      "Help improve the tools — share feedback or report a bug. No login required.",
+      "Help improve the tools - share feedback or report a bug. No login required.",
     url: `${siteConfig.url}/feedback`,
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-feedback.png`,
         width: 1200,
         height: 630,
-        alt: "Feedback & Bug Reports — Smit Parekh",
+        alt: "Feedback & Bug Reports - Smit Parekh",
       },
     ],
   },
@@ -31,7 +31,7 @@ export default function FeedbackPage() {
       <PageHero
         eyebrow="Feedback & Bug Reports"
         title="Help make the site better"
-        description="Share ideas, report bugs, or rate your experience. Every submission is read personally — no bots, no filters."
+        description="Share ideas, report bugs, or rate your experience. Every submission is read personally - no bots, no filters."
         icon={MessageSquare}
         align="center"
       />

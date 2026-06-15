@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   // "max" forces immediate expiration of the tagged cache entries.
   // "default" only applies the default cache-life (stale-while-revalidate),
-  // which does NOT promptly bust the page — new posts stayed hidden.
+  // which does NOT promptly bust the page - new posts stayed hidden.
   revalidateTag(tag, "max");
   return NextResponse.json({ revalidated: true, tag });
 }

@@ -28,7 +28,7 @@ export async function GET() {
     .maybeSingle();
 
   if (!userRow) {
-    // First login — no usage yet
+    // First login - no usage yet
     const { data: configs } = await admin
       .from("tool_config")
       .select("slug,user_quota,is_active")

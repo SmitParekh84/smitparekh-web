@@ -30,7 +30,7 @@ function money(a: number, c: string) {
 }
 
 function fmtDate(iso?: string | null) {
-  if (!iso) return "—";
+  if (!iso) return "-";
   return new Date(iso).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
 }
 
@@ -124,7 +124,7 @@ export default function AdminInvoiceDetailPage({
 
   return (
     <div className="mx-auto max-w-[800px] space-y-4 print:space-y-0">
-      {/* Toolbar — hidden on print */}
+      {/* Toolbar - hidden on print */}
       <div className="flex items-center justify-between gap-3 print:hidden">
         <Link
           href="/admin/invoices"
@@ -188,7 +188,7 @@ export default function AdminInvoiceDetailPage({
                 </p>
               </>
             ) : (
-              <p className="text-[12.5px] text-muted-foreground">—</p>
+              <p className="text-[12.5px] text-muted-foreground">-</p>
             )}
             <h1 className="mt-3 text-[15px] font-semibold">{inv.title}</h1>
           </div>
@@ -298,7 +298,7 @@ export default function AdminInvoiceDetailPage({
         </div>
       </div>
 
-      {/* Status history — hidden on print */}
+      {/* Status history - hidden on print */}
       <div className="rounded-xl border border-border bg-card p-5 print:hidden">
         <h2 className="mb-4 text-sm font-semibold">Status history</h2>
         <ol className="relative space-y-0 border-l border-border pl-5">

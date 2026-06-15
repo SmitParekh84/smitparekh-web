@@ -59,7 +59,7 @@ const STATUS_CONFIG: Record<ClientStatus, { label: string; className: string }> 
 };
 
 function formatDate(iso?: string | null) {
-  if (!iso) return "—";
+  if (!iso) return "-";
   return new Date(iso).toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
@@ -93,7 +93,7 @@ function money(amount: number, currency: string) {
 }
 
 function fmtDateShort(iso?: string | null) {
-  if (!iso) return "—";
+  if (!iso) return "-";
   return new Date(iso).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
 }
 
@@ -235,7 +235,7 @@ export default function AdminClientDetailPage({
   const client = clientQuery.data?.data;
   const requirements = requirementsQuery.data?.data;
   const project = projectQuery.data?.data;
-  // Requirements endpoint 404s when none submitted — treat as "not submitted".
+  // Requirements endpoint 404s when none submitted - treat as "not submitted".
   const noRequirements =
     requirementsQuery.isError &&
     requirementsQuery.error instanceof ApiError &&
@@ -539,7 +539,7 @@ export default function AdminClientDetailPage({
                   <div>
                     <CardTitle className="text-base">Invoices</CardTitle>
                     <p className="mt-0.5 text-[13px] text-muted-foreground">
-                      Create, send and track payments — the client sees sent invoices instantly.
+                      Create, send and track payments - the client sees sent invoices instantly.
                     </p>
                   </div>
                   <Link
@@ -660,7 +660,7 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
           <div>
             <CardTitle className="text-base">Contract</CardTitle>
             <p className="mt-0.5 text-[13px] text-muted-foreground">
-              Upload a DOCX template — the client signs it in their portal.
+              Upload a DOCX template - the client signs it in their portal.
             </p>
           </div>
           {isSigned && (
@@ -734,13 +734,13 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
             <p className="text-sm text-muted-foreground">No contract template uploaded yet.</p>
           )}
 
-          {/* Send signing link — shown when template exists and not yet signed */}
+          {/* Send signing link - shown when template exists and not yet signed */}
           {hasTemplate && !isSigned && (
             <div className="flex items-center gap-3 rounded-xl border border-blue-500/20 bg-blue-500/5 px-4 py-3">
               <div className="min-w-0 flex-1">
                 <p className="text-[13px] font-medium">Ready to send?</p>
                 <p className="text-[11.5px] text-muted-foreground">
-                  Email {clientName ?? "the client"} a one-click link — they click it, get
+                  Email {clientName ?? "the client"} a one-click link - they click it, get
                   automatically signed in, and land straight on the contract page.
                 </p>
               </div>
@@ -808,9 +808,9 @@ function ContractTab({ clientId, clientName }: { clientId: string; clientName?: 
 
           <div className="rounded-lg border border-border bg-muted/20 px-3.5 py-3 text-xs text-muted-foreground space-y-1">
             <p className="font-semibold text-foreground/70">Template placeholders:</p>
-            <p><code className="font-mono text-[11px]">&#123;clientName&#125;</code> — client full name</p>
-            <p><code className="font-mono text-[11px]">&#123;date&#125;</code> — signing date</p>
-            <p><code className="font-mono text-[11px]">&#123;%signature&#125;</code> — signature image (alone in its own paragraph)</p>
+            <p><code className="font-mono text-[11px]">&#123;clientName&#125;</code> - client full name</p>
+            <p><code className="font-mono text-[11px]">&#123;date&#125;</code> - signing date</p>
+            <p><code className="font-mono text-[11px]">&#123;%signature&#125;</code> - signature image (alone in its own paragraph)</p>
           </div>
         </CardContent>
       </Card>

@@ -8,12 +8,12 @@ import { CAL } from "@/lib/cal";
 export const metadata: Metadata = {
   title: "Book a 15-min call",
   description:
-    "Pick a 15-minute slot to discuss your project — scope, timeline, and tech recommendations. No commitment, free of charge.",
+    "Pick a 15-minute slot to discuss your project - scope, timeline, and tech recommendations. No commitment, free of charge.",
   alternates: { canonical: `${siteConfig.url}/book` },
   openGraph: {
     title: "Book a 15-min call with Smit Parekh",
     description:
-      "Pick a 15-minute slot to discuss your project — scope, timeline, and tech recommendations.",
+      "Pick a 15-minute slot to discuss your project - scope, timeline, and tech recommendations.",
     url: `${siteConfig.url}/book`,
     images: [
       {
@@ -40,7 +40,7 @@ export default function BookPage() {
         eyebrow="Schedule a Call"
         icon={CalendarClock}
         title={<>Book a 15-min discovery call</>}
-        description="Pick a slot that works for you. We'll talk through your project goals, timeline and tech choices — no commitment, no sales pitch."
+        description="Pick a slot that works for you. We'll talk through your project goals, timeline and tech choices - no commitment, no sales pitch."
       />
 
       <section className="page-section">

@@ -107,7 +107,7 @@ export default function ClientProjectPage() {
           <CardContent className="space-y-2 p-4">
             <div className="text-[13px] font-medium">Have a question?</div>
             <p className="text-xs text-muted-foreground">
-              Reach your project team — replies within a few hours.
+              Reach your project team - replies within a few hours.
             </p>
             <a
               href="mailto:business.smitp@gmail.com"

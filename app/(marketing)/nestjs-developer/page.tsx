@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a NestJS Developer – TypeScript-First APIs, DI, Guards & Interceptors",
+  title: "Hire a NestJS Developer - TypeScript APIs, DI & Guards",
   description:
-    "Hire a NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, pipes, microservices, GraphQL, and AWS deployment. Free quote in 24 hours.",
+    "Hire a NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, microservices, GraphQL, AWS.",
   alternates: { canonical: `${siteConfig.url}/nestjs-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/nestjs-developer`,
     siteName: siteConfig.name,
-    title: "Hire a NestJS Developer – TypeScript APIs, DI, Microservices | Smit Parekh",
-    description: "NestJS APIs in production — dependency injection, guards, interceptors, GraphQL, microservices, TypeScript strict. Deployed on AWS or Docker.",
-    images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630, alt: "Hire a NestJS Developer – Smit Parekh" }],
+    title: "Hire a NestJS Developer - TypeScript APIs, DI, Microservices | Smit Parekh",
+    description: "NestJS APIs in production - dependency injection, guards, interceptors, GraphQL, microservices, TypeScript strict. Deployed on AWS or Docker.",
+    images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630, alt: "Hire a NestJS Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a NestJS Developer – TypeScript APIs, DI, Microservices | Smit Parekh",
+    title: "Hire a NestJS Developer - TypeScript APIs, DI, Microservices | Smit Parekh",
     description: "NestJS TypeScript APIs with DI, guards, interceptors, GraphQL, and microservices. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630 }],
   },
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
 
 const results = [
   { value: "10K+", label: "Daily requests handled by NestJS production APIs at 99.9% uptime across multiple client products", icon: Globe },
-  { value: "30+", label: "Production NestJS APIs shipped — REST, GraphQL, WebSocket, and microservice architectures", icon: Star },
-  { value: "4+", label: "Years writing production-grade NestJS in TypeScript strict mode — not side projects, real deadlines", icon: Clock },
-  { value: "100%", label: "TypeScript strict coverage across all NestJS APIs — no any, no suppressions, no runtime surprises", icon: Zap },
+  { value: "30+", label: "Production NestJS APIs shipped - REST, GraphQL, WebSocket, and microservice architectures", icon: Star },
+  { value: "4+", label: "Years writing production-grade NestJS in TypeScript strict mode - not side projects, real deadlines", icon: Clock },
+  { value: "100%", label: "TypeScript strict coverage across all NestJS APIs - no any, no suppressions, no runtime surprises", icon: Zap },
 ];
 
 const whatIBuild = [
@@ -98,22 +98,22 @@ const differentiators = [
   {
     icon: Code2,
     title: "NestJS architecture as it was intended",
-    description: "I use the module system, DI container, and decorator patterns the way the framework designers intended — not as thin wrappers around an Express app. The architecture holds as the codebase grows.",
+    description: "I use the module system, DI container, and decorator patterns the way the framework designers intended - not as thin wrappers around an Express app. The architecture holds as the codebase grows.",
   },
   {
     icon: ShieldCheck,
     title: "Security at the guard level, not the controller level",
-    description: "Auth logic in guards, not controllers. RBAC as a decorator, not a conditional. Input validation as a pipe, not inline. Security concerns live in the right abstraction layer — once, applied everywhere.",
+    description: "Auth logic in guards, not controllers. RBAC as a decorator, not a conditional. Input validation as a pipe, not inline. Security concerns live in the right abstraction layer - once, applied everywhere.",
   },
   {
     icon: Zap,
     title: "TypeScript strict from the first decorator",
-    description: "NestJS is TypeScript-native and I use it that way — strict mode, no any, decorated DTOs with full type inference, and end-to-end type safety from request to database. No type gymnastics.",
+    description: "NestJS is TypeScript-native and I use it that way - strict mode, no any, decorated DTOs with full type inference, and end-to-end type safety from request to database. No type gymnastics.",
   },
   {
     icon: TrendingUp,
     title: "Testing that's worth writing",
-    description: "Unit tests for services with mocked providers, integration tests against a real database, and e2e tests for critical flows. NestJS's testing module makes isolation clean — I use it correctly.",
+    description: "Unit tests for services with mocked providers, integration tests against a real database, and e2e tests for critical flows. NestJS's testing module makes isolation clean - I use it correctly.",
   },
 ];
 
@@ -130,7 +130,7 @@ const techStack = [
 const faqs = [
   {
     q: "How much does a NestJS developer cost?",
-    a: "For a scoped engagement — a new API, a migration from Express, a feature addition — I quote a fixed price after reviewing the brief. Ongoing NestJS work runs on a retainer. Written numbers within 24 hours.",
+    a: "For a scoped engagement - a new API, a migration from Express, a feature addition - I quote a fixed price after reviewing the brief. Ongoing NestJS work runs on a retainer. Written numbers within 24 hours.",
   },
   {
     q: "Why NestJS over Express or Fastify?",
@@ -138,15 +138,15 @@ const faqs = [
   },
   {
     q: "Can you migrate an existing Express API to NestJS?",
-    a: "Yes. NestJS can run on top of Express, so migration is incremental — new modules get the NestJS structure while existing routes keep working. I scope these migrations as phased work, not a big-bang rewrite.",
+    a: "Yes. NestJS can run on top of Express, so migration is incremental - new modules get the NestJS structure while existing routes keep working. I scope these migrations as phased work, not a big-bang rewrite.",
   },
   {
     q: "Do you use GraphQL or REST with NestJS?",
-    a: "Both — NestJS supports both elegantly. REST for standard resource APIs. GraphQL with the code-first approach for data-rich applications or multiple client types. I'll recommend the right fit based on your front-end and use case.",
+    a: "Both - NestJS supports both elegantly. REST for standard resource APIs. GraphQL with the code-first approach for data-rich applications or multiple client types. I'll recommend the right fit based on your front-end and use case.",
   },
   {
     q: "How do you handle authentication in NestJS?",
-    a: "Passport.js with the @nestjs/passport integration for JWT and OAuth2 strategies. Guards for route protection, roles decorators for RBAC, and refresh token rotation handled at the interceptor level — not scattered across controllers.",
+    a: "Passport.js with the @nestjs/passport integration for JWT and OAuth2 strategies. Guards for route protection, roles decorators for RBAC, and refresh token rotation handled at the interceptor level - not scattered across controllers.",
   },
   {
     q: "Can NestJS handle microservices?",
@@ -192,7 +192,7 @@ export default function NestJSDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiNestjs className="w-4 h-4 text-red-400" />
@@ -208,16 +208,16 @@ export default function NestJSDeveloperPage() {
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
-                Express codebases become spaghetti. NestJS doesn&apos;t have to — if the modules, DI, and guard
+                Express codebases become spaghetti. NestJS doesn&apos;t have to - if the modules, DI, and guard
                 patterns are used correctly from the start. I&apos;ve built NestJS APIs that 10-person teams
                 can navigate without a Slack message.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "TypeScript strict — no any, no suppressions across the entire API",
+                  "TypeScript strict - no any, no suppressions across the entire API",
                   "Guards, interceptors, and pipes in the right abstraction layer",
-                  "GraphQL code-first or REST — both done correctly",
+                  "GraphQL code-first or REST - both done correctly",
                   "Microservices with NATS or Redis when the architecture needs it",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
@@ -248,7 +248,7 @@ export default function NestJSDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -287,7 +287,7 @@ export default function NestJSDeveloperPage() {
           <SectionHeader
             label="NestJS Expertise"
             title="What I Build With NestJS"
-            description="Production APIs that a team can maintain, extend, and debug without the author present — because the architecture makes the intent obvious."
+            description="Production APIs that a team can maintain, extend, and debug without the author present - because the architecture makes the intent obvious."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -316,7 +316,7 @@ export default function NestJSDeveloperPage() {
           <SectionHeader
             label="Why Hire Me"
             title="NestJS Used as Designed, Not Just Installed"
-            description="Most NestJS codebases are Express with a thin NestJS wrapper. The framework's DI, guard, and module systems exist for a reason — I use them correctly."
+            description="Most NestJS codebases are Express with a thin NestJS wrapper. The framework's DI, guard, and module systems exist for a reason - I use them correctly."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {differentiators.map(({ icon: Icon, title, description }) => (
@@ -340,7 +340,7 @@ export default function NestJSDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -371,7 +371,7 @@ export default function NestJSDeveloperPage() {
                 Ready to hire a NestJS developer who knows the framework, not just the syntax?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

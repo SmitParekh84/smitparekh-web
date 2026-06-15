@@ -34,7 +34,7 @@ const BENEFITS = [
   {
     icon: ShieldCheck,
     title: "Secure & private",
-    desc: "Google Sign-In only — no password stored, no marketing emails, no data sold or shared. Ever.",
+    desc: "Google Sign-In only - no password stored, no marketing emails, no data sold or shared. Ever.",
   },
 ];
 
@@ -61,7 +61,7 @@ function GoogleIcon() {
   );
 }
 
-/** Shown when the visitor is already signed in — let them continue or switch account */
+/** Shown when the visitor is already signed in - let them continue or switch account */
 function AlreadySignedIn({
   session,
   next,
@@ -80,7 +80,7 @@ function AlreadySignedIn({
     setSigningOut(true);
     const supabase = createClient();
     await supabase.auth.signOut();
-    // Stay on login page — the useEffect will re-run and show the sign-in form
+    // Stay on login page - the useEffect will re-run and show the sign-in form
     router.refresh();
   }
 
@@ -190,7 +190,7 @@ function LoginContent() {
     );
   }
 
-  // Already signed in — show the "switch account" screen
+  // Already signed in - show the "switch account" screen
   if (existingSession) {
     return <AlreadySignedIn session={existingSession} next={next} />;
   }
@@ -209,7 +209,7 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left panel – benefits */}
+      {/* Left panel - benefits */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12 flex-col justify-between">
         <div>
           <Link href="/" className="text-white/80 text-sm hover:text-white transition-colors">
@@ -241,10 +241,10 @@ function LoginContent() {
             ))}
           </ul>
         </div>
-        <p className="text-white/40 text-xs">Google Sign-In only — no passwords, no marketing, no data sharing.</p>
+        <p className="text-white/40 text-xs">Google Sign-In only - no passwords, no marketing, no data sharing.</p>
       </div>
 
-      {/* Right panel – sign-in card */}
+      {/* Right panel - sign-in card */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12">
         {/* Mobile back link */}
         <Link

@@ -16,25 +16,25 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire an AWS Developer – Cloud Architecture, Serverless & DevOps",
+  title: "Hire an AWS Developer - Architecture, Serverless & DevOps",
   description:
-    "Hire an AWS developer with production experience across EC2, RDS, S3, Lambda, CloudFront, ECS, and CDK. CI/CD pipelines, zero-downtime deploys, 99.9% uptime. Free architecture review in 24 hours.",
+    "Hire an AWS developer experienced across EC2, RDS, S3, Lambda, CloudFront, ECS, and CDK. CI/CD pipelines, zero-downtime deploys, 99.9% uptime.",
   alternates: { canonical: `${siteConfig.url}/aws-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/aws-developer`,
     siteName: siteConfig.name,
-    title: "Hire an AWS Developer – Production Cloud Architecture | Smit Parekh",
+    title: "Hire an AWS Developer - Production Cloud Architecture | Smit Parekh",
     description:
       "AWS cloud architecture, serverless, CI/CD, and zero-downtime deploys. 99.9% uptime across deployed projects. Serving clients worldwide.",
-    images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630, alt: "Hire an AWS Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630, alt: "Hire an AWS Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire an AWS Developer – 99.9% Uptime | Smit Parekh",
+    title: "Hire an AWS Developer - 99.9% Uptime | Smit Parekh",
     description: "AWS cloud architecture, serverless APIs, CI/CD pipelines. Free architecture review in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630 }],
   },
@@ -72,9 +72,9 @@ const whatIBuild = [
   },
   {
     icon: Database,
-    title: "Managed Databases — RDS & Aurora",
+    title: "Managed Databases - RDS & Aurora",
     description:
-      "PostgreSQL on RDS or Aurora Serverless v2 — Multi-AZ for production, read replicas for reporting workloads, automated backups, and parameter group tuning for sub-100ms query times.",
+      "PostgreSQL on RDS or Aurora Serverless v2 - Multi-AZ for production, read replicas for reporting workloads, automated backups, and parameter group tuning for sub-100ms query times.",
     tags: ["RDS", "Aurora", "PostgreSQL", "Multi-AZ"],
   },
   {
@@ -88,12 +88,12 @@ const whatIBuild = [
     icon: Code2,
     title: "Infrastructure as Code with CDK & Terraform",
     description:
-      "Every resource in code — no manual console clicks, no config drift. AWS CDK for TypeScript-first shops, Terraform for multi-cloud or greenfield infra. Environments are reproducible and team-reviewable.",
+      "Every resource in code - no manual console clicks, no config drift. AWS CDK for TypeScript-first shops, Terraform for multi-cloud or greenfield infra. Environments are reproducible and team-reviewable.",
     tags: ["AWS CDK", "Terraform", "GitHub Actions", "IaC"],
   },
   {
     icon: BarChart3,
-    title: "Observability — CloudWatch, Alarms & Dashboards",
+    title: "Observability - CloudWatch, Alarms & Dashboards",
     description:
       "Structured JSON logs, CloudWatch metric filters, composite alarms on p95 latency and error rates, and SNS alerts to Slack or PagerDuty. You know something is wrong before your users do.",
     tags: ["CloudWatch", "X-Ray", "SNS", "Sentry"],
@@ -103,7 +103,7 @@ const whatIBuild = [
 const differentiators = [
   {
     icon: Code2,
-    title: "Everything in code — no console cowboys",
+    title: "Everything in code - no console cowboys",
     description:
       "I don't click around the AWS console and call it done. Every resource is Terraform or CDK, every change is a pull request, and every environment can be torn down and rebuilt in minutes.",
   },
@@ -117,13 +117,13 @@ const differentiators = [
     icon: BarChart3,
     title: "Cost-aware architecture from day one",
     description:
-      "Right-sizing matters. Reserved instances for steady-state workloads, Spot for batch, S3 lifecycle policies, and CloudFront to cut data transfer. Most projects reduce their AWS bill 30–50% in the first review.",
+      "Right-sizing matters. Reserved instances for steady-state workloads, Spot for batch, S3 lifecycle policies, and CloudFront to cut data transfer. Most projects reduce their AWS bill 30-50% in the first review.",
   },
   {
     icon: TrendingUp,
-    title: "Full-stack context — not just infrastructure",
+    title: "Full-stack context - not just infrastructure",
     description:
-      "I'm also a backend and frontend developer. That means the infrastructure I design matches how the application actually behaves — no hand-off gap between dev and ops.",
+      "I'm also a backend and frontend developer. That means the infrastructure I design matches how the application actually behaves - no hand-off gap between dev and ops.",
   },
 ];
 
@@ -139,27 +139,27 @@ const techStack = [
 const faqs = [
   {
     q: "Are you AWS certified?",
-    a: "I work with AWS daily in production and have deep hands-on experience across the core services. I prioritise real-world delivery over certification badges — though I'm in the process of formalising that with the SAA exam.",
+    a: "I work with AWS daily in production and have deep hands-on experience across the core services. I prioritise real-world delivery over certification badges - though I'm in the process of formalising that with the SAA exam.",
   },
   {
     q: "Can you migrate our existing infrastructure to AWS?",
     a: "Yes. I start with a discovery audit of your current setup, produce a migration plan with a risk-ranked change order, and run migrations environment-by-environment with zero-downtime cutovers where possible.",
   },
   {
-    q: "Terraform or CDK — which do you recommend?",
-    a: "CDK when your team is primarily TypeScript/JavaScript — you get type safety and reuse patterns from the language you already know. Terraform when you need multi-cloud flexibility or have existing Terraform state. Both are fine choices; I've shipped production infra with each.",
+    q: "Terraform or CDK - which do you recommend?",
+    a: "CDK when your team is primarily TypeScript/JavaScript - you get type safety and reuse patterns from the language you already know. Terraform when you need multi-cloud flexibility or have existing Terraform state. Both are fine choices; I've shipped production infra with each.",
   },
   {
     q: "Can you reduce our AWS bill without breaking anything?",
-    a: "Usually yes, significantly. Common wins: over-provisioned EC2 instances, missing lifecycle policies on S3 and RDS snapshots, CloudFront not in front of S3, and Lambda functions with default 1GB memory when 256MB is enough. Most audits find 30–50% in recoverable spend.",
+    a: "Usually yes, significantly. Common wins: over-provisioned EC2 instances, missing lifecycle policies on S3 and RDS snapshots, CloudFront not in front of S3, and Lambda functions with default 1GB memory when 256MB is enough. Most audits find 30-50% in recoverable spend.",
   },
   {
     q: "Do you handle the deployment pipeline as well?",
-    a: "Yes — GitHub Actions CI/CD, Docker builds, ECR pushes, and ECS/Lambda deploys are all part of the setup. Preview environments per PR and a production deploy gate on passing tests are the standard configuration.",
+    a: "Yes - GitHub Actions CI/CD, Docker builds, ECR pushes, and ECS/Lambda deploys are all part of the setup. Preview environments per PR and a production deploy gate on passing tests are the standard configuration.",
   },
   {
     q: "How long does a typical AWS infrastructure setup take?",
-    a: "A basic setup — VPC, EC2/ECS, RDS, S3, CloudFront, and CI/CD — runs 1–2 weeks. A full production-grade infra with multiple environments, monitoring, alerting, and IaC takes 2–4 weeks. Complex multi-region or multi-account setups are scoped per engagement.",
+    a: "A basic setup - VPC, EC2/ECS, RDS, S3, CloudFront, and CI/CD - runs 1-2 weeks. A full production-grade infra with multiple environments, monitoring, alerting, and IaC takes 2-4 weeks. Complex multi-region or multi-account setups are scoped per engagement.",
   },
 ];
 
@@ -217,14 +217,14 @@ export default function AwsDeveloperPage() {
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 Most cloud outages trace back to infrastructure that was clicked together, not coded.
-                I build AWS environments in CDK or Terraform — version-controlled, reproducible,
+                I build AWS environments in CDK or Terraform - version-controlled, reproducible,
                 and monitored before they go live.
               </p>
 
               <ul className="space-y-2.5">
                 {[
                   "99.9% uptime across all deployed production services",
-                  "Everything in code — AWS CDK or Terraform, no console cowboys",
+                  "Everything in code - AWS CDK or Terraform, no console cowboys",
                   "~40% average cost reduction on first infrastructure review",
                   "CI/CD pipelines with auto-rollback on test failure",
                 ].map((item) => (
@@ -345,7 +345,7 @@ export default function AwsDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -376,7 +376,7 @@ export default function AwsDeveloperPage() {
                 Ready to hire an AWS developer who ships to production?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply with a free architecture review or a written proposal — scope, timeline, and price — within 24 hours.
+                Send your brief. I&apos;ll reply with a free architecture review or a written proposal - scope, timeline, and price - within 24 hours.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

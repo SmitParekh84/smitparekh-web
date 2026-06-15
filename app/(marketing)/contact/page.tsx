@@ -148,7 +148,7 @@ export default function ContactPage() {
                   Gulf / GCC Clients
                 </p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Gulf Standard Time is just 1.5–2.5 hours behind India — a full
+                  Gulf Standard Time is just 1.5-2.5 hours behind India - a full
                   shared working day. I work with teams across UAE, Saudi Arabia,
                   Qatar, Kuwait, Bahrain &amp; Oman.{" "}
                   <Link href="/hire-developer" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:no-underline">
@@ -403,7 +403,7 @@ export default function ContactPage() {
                 icon: ClipboardCheck,
                 title: "2 - Free scoping call",
                 description:
-                  "30–45 minutes to walk through the goal, constraints, and tech. You leave with a written scope and fixed-price proposal.",
+                  "30-45 minutes to walk through the goal, constraints, and tech. You leave with a written scope and fixed-price proposal.",
               },
               {
                 icon: Hammer,
@@ -462,7 +462,7 @@ export default function ContactPage() {
               },
               {
                 q: "How soon can we start?",
-                a: "Usually within 1–2 weeks of agreeing the scope. For urgent fixes on existing projects I can often start the same week.",
+                a: "Usually within 1-2 weeks of agreeing the scope. For urgent fixes on existing projects I can often start the same week.",
               },
               {
                 q: "Do you work with teams?",
@@ -474,7 +474,7 @@ export default function ContactPage() {
               },
               {
                 q: "Where are you based? Do you work with Gulf clients?",
-                a: "I'm based in India. Gulf Standard Time is just 1.5–2.5 hours behind IST, which means a full shared working day — no midnight standups. I work with startups and businesses across UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman, and can invoice in USD or local currency (AED, SAR, QAR, etc.) on request.",
+                a: "I'm based in India. Gulf Standard Time is just 1.5-2.5 hours behind IST, which means a full shared working day - no midnight standups. I work with startups and businesses across UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman, and can invoice in USD or local currency (AED, SAR, QAR, etc.) on request.",
               },
             ].map((item) => (
               <div

@@ -24,7 +24,7 @@ export const TOOL_CATEGORIES = [
 export type ToolCategory = (typeof TOOL_CATEGORIES)[number];
 
 /**
- * Per-tool default category. Single source of truth — every UI that needs a
+ * Per-tool default category. Single source of truth - every UI that needs a
  * category for a tool slug should call `getToolCategory(slug)` rather than
  * inlining its own map.
  */
@@ -83,7 +83,7 @@ export function getToolCategory(slug: string): ToolCategory {
   return TOOL_CATEGORY_MAP[slug] ?? "Developer";
 }
 
-/** Type guard — useful when validating an incoming string from a DB row or API body. */
+/** Type guard - useful when validating an incoming string from a DB row or API body. */
 export function isToolCategory(value: unknown): value is ToolCategory {
   return typeof value === "string" && VALID_CATEGORIES.has(value as ToolCategory);
 }

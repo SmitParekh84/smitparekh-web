@@ -267,9 +267,9 @@ export default function DashboardSettingsPage() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm font-medium">{displayName || "—"}</p>
+                      <p className="text-sm font-medium">{displayName || "-"}</p>
                       <p className="mt-0.5 text-xs text-muted-foreground">
-                        Photo synced from Google — cannot be changed here.
+                        Photo synced from Google - cannot be changed here.
                       </p>
                     </div>
                   </div>
@@ -312,7 +312,7 @@ export default function DashboardSettingsPage() {
                 <CardHeader>
                   <CardTitle className="text-base text-destructive">Danger zone</CardTitle>
                   <CardDescription>
-                    Deleting your account is reversible — sign in again to restore it. Usage
+                    Deleting your account is reversible - sign in again to restore it. Usage
                     history is always kept to prevent abuse.
                   </CardDescription>
                 </CardHeader>

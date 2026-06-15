@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/smit-parekh-resume.png`,
         width: 1200,
         height: 630,
-        alt: "Resume — Smit Parekh, Full Stack Developer",
+        alt: "Resume - Smit Parekh, Full Stack Developer",
       },
     ],
   },

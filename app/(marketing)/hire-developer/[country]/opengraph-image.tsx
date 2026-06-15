@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getGeoCountry } from "@/data/geo-pages";
 
-export const alt = "Hire a Full-Stack Developer — Smit Parekh";
+export const alt = "Hire a Full-Stack Developer - Smit Parekh";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,7 +15,7 @@ export default async function GeoOgImage({
 
   const headline = c ? `Hire a Full-Stack Developer in ${c.primaryCity}` : "Hire a Full-Stack Developer";
   const sub = c
-    ? `React · Next.js · Node.js — serving ${c.country}, ${c.timezoneLabel} overlap`
+    ? `React · Next.js · Node.js - serving ${c.country}, ${c.timezoneLabel} overlap`
     : "React · Next.js · Node.js";
 
   return new ImageResponse(

@@ -1,6 +1,6 @@
 // Gulf (GCC) geo-targeting landing pages.
 //
-// These are English-language, country-targeted hire pages — NOT an i18n locale
+// These are English-language, country-targeted hire pages - NOT an i18n locale
 // system. There is deliberately no `/en/` or `/ar/` route prefix: adding one
 // would force 301s on every existing URL and burn crawl budget for zero gain,
 // because Gulf tech/business buyers search in English. Each country gets one
@@ -11,7 +11,7 @@ export interface GeoCountry {
   slug: string;          // URL segment → /hire-developer/<slug>
   country: string;       // Full country name
   countryCode: string;   // ISO 3166-1 alpha-2 (for schema areaServed)
-  primaryCity: string;   // Highest search-volume city — leads the H1/title
+  primaryCity: string;   // Highest search-volume city - leads the H1/title
   cities: string[];      // Major cities mentioned in copy + keywords
   demonym: string;       // Adjective form, e.g. "UAE-based"
   currencyCode: string;  // Local currency, mentioned for invoicing
@@ -32,9 +32,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "AED",
     utcOffset: "+4",
     timezoneLabel: "Gulf Standard Time (GST)",
-    istOverlap: "Just 1.5 hours behind India — a full working-day overlap, not a midnight-standup compromise.",
+    istOverlap: "Just 1.5 hours behind India - a full working-day overlap, not a midnight-standup compromise.",
     intro:
-      "From Dubai Internet City startups to Abu Dhabi enterprise teams, I build production web apps for UAE companies — React, Next.js, and Node.js, delivered on a near-identical timezone with same-day communication.",
+      "From Dubai Internet City startups to Abu Dhabi enterprise teams, I build production web apps for UAE companies - React, Next.js, and Node.js, delivered on a near-identical timezone with same-day communication.",
   },
   {
     slug: "saudi-arabia",
@@ -46,9 +46,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "SAR",
     utcOffset: "+3",
     timezoneLabel: "Arabia Standard Time (AST)",
-    istOverlap: "2.5 hours behind India — your afternoon is my afternoon, so reviews and standups happen live.",
+    istOverlap: "2.5 hours behind India - your afternoon is my afternoon, so reviews and standups happen live.",
     intro:
-      "Vision 2030 is moving Saudi business online fast. I help Riyadh and Jeddah companies ship modern, SEO-first web apps and SaaS products — React, Next.js, NestJS, and PostgreSQL, built to scale.",
+      "Vision 2030 is moving Saudi business online fast. I help Riyadh and Jeddah companies ship modern, SEO-first web apps and SaaS products - React, Next.js, NestJS, and PostgreSQL, built to scale.",
   },
   {
     slug: "qatar",
@@ -60,9 +60,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "QAR",
     utcOffset: "+3",
     timezoneLabel: "Arabia Standard Time (AST)",
-    istOverlap: "2.5 hours behind India — comfortable overlap for daily collaboration, no off-hours calls.",
+    istOverlap: "2.5 hours behind India - comfortable overlap for daily collaboration, no off-hours calls.",
     intro:
-      "I build production-grade web applications and SaaS platforms for Doha-based businesses — full ownership from database to deploy, with the reliability Qatar's enterprise and finance sector expects.",
+      "I build production-grade web applications and SaaS platforms for Doha-based businesses - full ownership from database to deploy, with the reliability Qatar's enterprise and finance sector expects.",
   },
   {
     slug: "kuwait",
@@ -74,9 +74,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "KWD",
     utcOffset: "+3",
     timezoneLabel: "Arabia Standard Time (AST)",
-    istOverlap: "2.5 hours behind India — a wide daytime overlap for live collaboration.",
+    istOverlap: "2.5 hours behind India - a wide daytime overlap for live collaboration.",
     intro:
-      "From e-commerce to internal business tools, I help Kuwait City companies ship fast, secure, SEO-ready web apps — React, Next.js, and Node.js, owned end-to-end by one engineer.",
+      "From e-commerce to internal business tools, I help Kuwait City companies ship fast, secure, SEO-ready web apps - React, Next.js, and Node.js, owned end-to-end by one engineer.",
   },
   {
     slug: "bahrain",
@@ -88,9 +88,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "BHD",
     utcOffset: "+3",
     timezoneLabel: "Arabia Standard Time (AST)",
-    istOverlap: "2.5 hours behind India — your working day and mine line up almost completely.",
+    istOverlap: "2.5 hours behind India - your working day and mine line up almost completely.",
     intro:
-      "Bahrain's fintech and startup scene needs developers who ship. I build production React, Next.js, and NestJS applications for Manama-based teams — full-stack ownership, from schema to deploy.",
+      "Bahrain's fintech and startup scene needs developers who ship. I build production React, Next.js, and NestJS applications for Manama-based teams - full-stack ownership, from schema to deploy.",
   },
   {
     slug: "oman",
@@ -102,9 +102,9 @@ export const geoCountries: GeoCountry[] = [
     currencyCode: "OMR",
     utcOffset: "+4",
     timezoneLabel: "Gulf Standard Time (GST)",
-    istOverlap: "1.5 hours behind India — a full shared working day for real-time collaboration.",
+    istOverlap: "1.5 hours behind India - a full shared working day for real-time collaboration.",
     intro:
-      "I help Muscat businesses move online with modern, performant web apps — React, Next.js, Node.js, and PostgreSQL — built once, built right, and built to rank.",
+      "I help Muscat businesses move online with modern, performant web apps - React, Next.js, Node.js, and PostgreSQL - built once, built right, and built to rank.",
   },
 ];
 

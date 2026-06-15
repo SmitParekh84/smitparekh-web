@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime, NestJS & Express",
+  title: "Hire a Node.js Developer - NestJS, Express, 99.9% Uptime",
   description:
-    "Hire a Node.js developer with 4+ years shipping production APIs handling 10,000+ daily requests at 99.9% uptime. NestJS, Express, GraphQL, PostgreSQL, Redis, AWS. Fixed-price available. Free quote in 24 hours.",
+    "Hire a Node.js developer with 4+ years shipping production APIs at 10,000+ daily requests and 99.9% uptime. NestJS, Express, GraphQL, PostgreSQL, AWS.",
   alternates: { canonical: `${siteConfig.url}/nodejs-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/nodejs-developer`,
     siteName: siteConfig.name,
-    title: "Hire a Node.js Developer – 10K+ Req/Day APIs, NestJS, AWS | Smit Parekh",
+    title: "Hire a Node.js Developer - 10K+ Req/Day APIs, NestJS, AWS | Smit Parekh",
     description: "Node.js APIs in production handling 10,000+ daily requests at 99.9% uptime. NestJS, GraphQL, PostgreSQL, Redis, Docker, AWS.",
-    images: [{ url: `${siteConfig.url}/images/hire-nodejs-developer.png`, width: 1200, height: 630, alt: "Hire a Node.js Developer – Smit Parekh" }],
+    images: [{ url: `${siteConfig.url}/images/hire-nodejs-developer.png`, width: 1200, height: 630, alt: "Hire a Node.js Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a Node.js Developer – 10K+ Req/Day, 99.9% Uptime | Smit Parekh",
+    title: "Hire a Node.js Developer - 10K+ Req/Day, 99.9% Uptime | Smit Parekh",
     description: "Node.js APIs in production. NestJS, GraphQL, PostgreSQL, AWS. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-nodejs-developer.png`, width: 1200, height: 630 }],
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "10K+", label: "Daily API requests handled in production — at 99.9% uptime across multiple client products", icon: Globe },
+  { value: "10K+", label: "Daily API requests handled in production - at 99.9% uptime across multiple client products", icon: Globe },
   { value: "99.9%", label: "Uptime across Node.js backends deployed on AWS EC2 with proper health checks and alerting", icon: ShieldCheck },
   { value: "65%", label: "Faster query response times delivered through indexing, Redis caching, and query optimisation", icon: Zap },
   { value: "20+", label: "NestJS service modules shipped across a single production monorepo at Monarch Innovations", icon: Layers },
@@ -58,14 +58,14 @@ const results = [
 const whatIBuild = [
   {
     icon: Server,
-    title: "REST APIs — Production-Grade",
+    title: "REST APIs - Production-Grade",
     description: "Authentication, pagination, rate limiting, input validation, Swagger documentation, and proper error handling. The APIs that stay up when the load spikes at 3am.",
     tags: ["Node.js", "Express", "NestJS", "TypeScript"],
   },
   {
     icon: Globe,
     title: "GraphQL APIs",
-    description: "Schema-first design, resolver optimisation, DataLoader for N+1 prevention, and subscriptions for real-time data. GraphQL that performs — not just a trendy tech choice.",
+    description: "Schema-first design, resolver optimisation, DataLoader for N+1 prevention, and subscriptions for real-time data. GraphQL that performs - not just a trendy tech choice.",
     tags: ["GraphQL", "Apollo Server", "DataLoader", "TypeScript"],
   },
   {
@@ -77,7 +77,7 @@ const whatIBuild = [
   {
     icon: Zap,
     title: "Real-Time Systems",
-    description: "WebSocket with Socket.io, live dashboards, real-time notifications, and collaborative features — built for FinTech platforms where lag costs money.",
+    description: "WebSocket with Socket.io, live dashboards, real-time notifications, and collaborative features - built for FinTech platforms where lag costs money.",
     tags: ["Socket.io", "Node.js", "Redis", "WebSocket"],
   },
   {
@@ -89,7 +89,7 @@ const whatIBuild = [
   {
     icon: Database,
     title: "Database-Heavy Backends",
-    description: "Complex PostgreSQL schemas, migrations, query optimisation, Redis caching layers, and Elasticsearch for full-text search. 65% faster queries — already delivered.",
+    description: "Complex PostgreSQL schemas, migrations, query optimisation, Redis caching layers, and Elasticsearch for full-text search. 65% faster queries - already delivered.",
     tags: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch"],
   },
 ];
@@ -97,23 +97,23 @@ const whatIBuild = [
 const differentiators = [
   {
     icon: ShieldCheck,
-    title: "APIs built for 3am — not just for Postman",
+    title: "APIs built for 3am - not just for Postman",
     description: "Retry logic, graceful degradation, circuit breakers, health endpoints, and structured logging. Production APIs need to handle partial failures. I build them that way from the start.",
   },
   {
     icon: Zap,
     title: "Performance tuned before it's a problem",
-    description: "Redis caching, database indexing, connection pooling, and query analysis are standard — not optional extras. The 65% query improvement was found before the client even noticed slowness.",
+    description: "Redis caching, database indexing, connection pooling, and query analysis are standard - not optional extras. The 65% query improvement was found before the client even noticed slowness.",
   },
   {
     icon: TrendingUp,
     title: "NestJS module architecture that scales",
-    description: "Not just Express with middleware. NestJS dependency injection, module boundaries, interceptors, guards, and pipes — the architecture that makes a 100K-line codebase manageable.",
+    description: "Not just Express with middleware. NestJS dependency injection, module boundaries, interceptors, guards, and pipes - the architecture that makes a 100K-line codebase manageable.",
   },
   {
     icon: Server,
     title: "Deployed on AWS, not just running locally",
-    description: "EC2, RDS, S3, Lambda, CloudWatch — I set up the infrastructure, configure the CI/CD pipeline, and hand over a system you can actually monitor and scale.",
+    description: "EC2, RDS, S3, Lambda, CloudWatch - I set up the infrastructure, configure the CI/CD pipeline, and hand over a system you can actually monitor and scale.",
   },
 ];
 
@@ -132,23 +132,23 @@ const techStack = [
 const faqs = [
   {
     q: "How much does a Node.js developer cost?",
-    a: "Fixed-price for scoped API projects — a REST API, an auth system, a microservice. Retainer for ongoing backend development. I quote in writing within 24 hours, with clear scope and no hidden costs.",
+    a: "Fixed-price for scoped API projects - a REST API, an auth system, a microservice. Retainer for ongoing backend development. I quote in writing within 24 hours, with clear scope and no hidden costs.",
   },
   {
-    q: "NestJS or Express — which do you use?",
-    a: "NestJS for projects that will grow — the module architecture, DI, and decorator patterns pay off quickly. Express for simpler APIs where overhead isn't justified. I make the call based on your requirements, not preference.",
+    q: "NestJS or Express - which do you use?",
+    a: "NestJS for projects that will grow - the module architecture, DI, and decorator patterns pay off quickly. Express for simpler APIs where overhead isn't justified. I make the call based on your requirements, not preference.",
   },
   {
     q: "Can you optimise an existing Node.js backend?",
-    a: "Yes, and it's often where the most value is. Share the codebase or describe the problem and I'll assess what's causing the slowness — whether it's missing indexes, N+1 queries, no caching, or architectural debt.",
+    a: "Yes, and it's often where the most value is. Share the codebase or describe the problem and I'll assess what's causing the slowness - whether it's missing indexes, N+1 queries, no caching, or architectural debt.",
   },
   {
     q: "Do you write API documentation?",
-    a: "Swagger/OpenAPI documentation is standard on all API projects — not an optional extra. Every endpoint gets request/response schemas, error codes, and authentication requirements documented.",
+    a: "Swagger/OpenAPI documentation is standard on all API projects - not an optional extra. Every endpoint gets request/response schemas, error codes, and authentication requirements documented.",
   },
   {
     q: "Can you handle both the front-end and back-end?",
-    a: "Yes — full-stack means full-stack. React or Next.js on the front-end, Node.js on the back-end, PostgreSQL or MongoDB, deployed to AWS or Vercel. One engineer, one invoice.",
+    a: "Yes - full-stack means full-stack. React or Next.js on the front-end, Node.js on the back-end, PostgreSQL or MongoDB, deployed to AWS or Vercel. One engineer, one invoice.",
   },
   {
     q: "How do you ensure API reliability?",
@@ -194,7 +194,7 @@ export default function NodejsDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiNodedotjs className="w-4 h-4 text-green-400" />
@@ -206,12 +206,12 @@ export default function NodejsDeveloperPage() {
                 <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 dark:from-green-300 dark:via-cyan-300 dark:to-white bg-clip-text text-transparent">
                   Handle Real Traffic
                 </span>{" "}
-                — Not Just Tests
+                - Not Just Tests
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 10,000+ daily requests. 99.9% uptime. 65% faster queries. These aren&apos;t benchmarks
-                from a side project — they&apos;re numbers from production systems already running in the wild.
+                from a side project - they&apos;re numbers from production systems already running in the wild.
               </p>
 
               <ul className="space-y-2.5">
@@ -249,7 +249,7 @@ export default function NodejsDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -288,7 +288,7 @@ export default function NodejsDeveloperPage() {
           <SectionHeader
             label="Node.js Expertise"
             title="What I Build With Node.js"
-            description="APIs that handle production load — not Postman demos. Authentication, caching, documentation, and deployment included as standard."
+            description="APIs that handle production load - not Postman demos. Authentication, caching, documentation, and deployment included as standard."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -317,7 +317,7 @@ export default function NodejsDeveloperPage() {
           <SectionHeader
             label="Why Hire Me"
             title="Backend Work That Holds Up Under Pressure"
-            description="A Node.js API that passes your test suite is table stakes. One that holds up at 3am, under load, with a partial database failure — that's what I build."
+            description="A Node.js API that passes your test suite is table stakes. One that holds up at 3am, under load, with a partial database failure - that's what I build."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {differentiators.map(({ icon: Icon, title, description }) => (
@@ -341,7 +341,7 @@ export default function NodejsDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -372,7 +372,7 @@ export default function NodejsDeveloperPage() {
                 Your backend, built to handle what production throws at it
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your API brief. I&apos;ll reply within 24 hours with a written proposal — endpoints, architecture, timeline, and a fixed price. No vague estimates.
+                Send your API brief. I&apos;ll reply within 24 hours with a written proposal - endpoints, architecture, timeline, and a fixed price. No vague estimates.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

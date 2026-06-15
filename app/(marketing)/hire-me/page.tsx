@@ -37,9 +37,9 @@ import { aboutBio, experiences, certifications } from "@/data/about";
 import { developerPages } from "@/data/developer-pages";
 
 export const metadata: Metadata = {
-  title: "Hire Smit Parekh - Full Stack Developer | React, Next.js, Node.js",
+  title: "Hire Smit Parekh - Full Stack Developer (React, Next.js)",
   description:
-    "Hire Smit Parekh - Full Stack Developer with 4+ years shipping production web apps for FinTech, SaaS & enterprise. React, Next.js, Node.js, TypeScript, AWS. Fixed price, clear scope, fast delivery.",
+    "Hire Smit Parekh, a full-stack developer with 4+ years shipping web apps for FinTech, SaaS, and enterprise. React, Next.js, Node.js. Clear scope.",
   alternates: { canonical: `${siteConfig.url}/hire-me` },
   keywords: [
     "hire full stack developer",
@@ -263,7 +263,7 @@ const faqs = [
   },
   {
     q: "Are you available right now?",
-    a: "Yes - currently accepting new projects. Typical start is within 1–2 weeks of agreeing the scope. For urgent fixes I can often start the same week.",
+    a: "Yes - currently accepting new projects. Typical start is within 1-2 weeks of agreeing the scope. For urgent fixes I can often start the same week.",
   },
   {
     q: "Can you work with my existing team?",
@@ -390,7 +390,7 @@ export default function HireMePage() {
               <div className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1.5">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-sm font-medium text-green-600 dark:text-green-400">
-                  Open to new projects — Q2 2025
+                  Open to new projects - Q2 2025
                 </span>
               </div>
 
@@ -678,7 +678,7 @@ export default function HireMePage() {
           <SectionHeader
             label="Hire by Speciality"
             title="Need a Specific Technology?"
-            description="Each page goes deep on one technology — what I build with it, the results I've delivered, and how I work."
+            description="Each page goes deep on one technology - what I build with it, the results I've delivered, and how I work."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {developerPages.map((page) => (
@@ -722,7 +722,7 @@ export default function HireMePage() {
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
                 Send a message and I&apos;ll reply within 24 hours with a free
-                scoped proposal — no commitment required.
+                scoped proposal - no commitment required.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

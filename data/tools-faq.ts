@@ -56,7 +56,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What is keyword density and why does it matter for SEO?",
       answer:
-        "Keyword density is the percentage of times a specific word appears relative to the total word count. For SEO, a density of 1–3% for your primary keyword is considered natural. Higher than 3% may look like keyword stuffing to search engines and hurt rankings.",
+        "Keyword density is the percentage of times a specific word appears relative to the total word count. For SEO, a density of 1-3% for your primary keyword is considered natural. Higher than 3% may look like keyword stuffing to search engines and hurt rankings.",
     },
     {
       question: "Is my text stored or shared?",
@@ -94,7 +94,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Which format is best for websites?",
       answer:
-        "WebP is the best choice for web images in 2025. It provides 25–35% smaller file sizes than JPEG at equivalent quality. All modern browsers support it. Use PNG only when you need transparency.",
+        "WebP is the best choice for web images in 2025. It provides 25-35% smaller file sizes than JPEG at equivalent quality. All modern browsers support it. Use PNG only when you need transparency.",
     },
     {
       question: "Is my data secure? Are images stored?",
@@ -193,12 +193,12 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "How does the image compressor work?",
       answer:
-        "The tool reduces file size by re-encoding your image at the specified quality level. Higher quality = larger file, lower quality = smaller file. A setting of 75–85% typically cuts file size by 50–70% with minimal visible quality loss.",
+        "The tool reduces file size by re-encoding your image at the specified quality level. Higher quality = larger file, lower quality = smaller file. A setting of 75-85% typically cuts file size by 50-70% with minimal visible quality loss.",
     },
     {
       question: "What is the best quality setting?",
       answer:
-        "For web images, 75–80% provides an excellent balance between quality and file size. For print or archival purposes, use 90% or higher. For social media thumbnails, 65–70% is usually fine.",
+        "For web images, 75-80% provides an excellent balance between quality and file size. For print or archival purposes, use 90% or higher. For social media thumbnails, 65-70% is usually fine.",
     },
     {
       question: "What image formats are supported?",
@@ -241,7 +241,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What is the LinkedIn character limit?",
       answer:
-        "LinkedIn allows up to 3,000 characters per post. The generator stays within this limit by default. Posts that are 800–1,500 characters (about 150–280 words) tend to perform best.",
+        "LinkedIn allows up to 3,000 characters per post. The generator stays within this limit by default. Posts that are 800-1,500 characters (about 150-280 words) tend to perform best.",
     },
     {
       question: "Is this tool free to use?",
@@ -302,7 +302,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What is the ideal length for title and description tags?",
       answer:
-        "Title tags: 50–60 characters. Meta descriptions: 150–160 characters. Going over these limits doesn't cause penalties, but Google will truncate the display in search results, which can reduce click-through rates.",
+        "Title tags: 50-60 characters. Meta descriptions: 150-160 characters. Going over these limits doesn't cause penalties, but Google will truncate the display in search results, which can reduce click-through rates.",
     },
     {
       question: "What are Open Graph tags?",
@@ -325,7 +325,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "What does the SEO Analyzer check?",
       answer:
-        "The tool audits key on-page SEO factors including title tags, meta descriptions, heading structure (H1–H3), image alt text, canonical tags, internal and external links, page load signals, mobile-friendliness indicators, and structured data - all in one report.",
+        "The tool audits key on-page SEO factors including title tags, meta descriptions, heading structure (H1-H3), image alt text, canonical tags, internal and external links, page load signals, mobile-friendliness indicators, and structured data - all in one report.",
     },
     {
       question: "How accurate is the SEO score?",
@@ -340,7 +340,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     {
       question: "Will fixing these issues improve my Google rankings?",
       answer:
-        "Yes - implementing the recommendations addresses specific signals Google uses to evaluate pages. Users typically see measurable improvements within 4–12 weeks, depending on the competitiveness of their keywords and how many issues were fixed.",
+        "Yes - implementing the recommendations addresses specific signals Google uses to evaluate pages. Users typically see measurable improvements within 4-12 weeks, depending on the competitiveness of their keywords and how many issues were fixed.",
     },
     {
       question: "Is the SEO Analyzer free?",
@@ -406,7 +406,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Why is the Max Resolution thumbnail missing?",
-      answer: "Older videos may not have a maxresdefault thumbnail. The tool hides quality options that do not exist for a given video — use High Quality as the next best option.",
+      answer: "Older videos may not have a maxresdefault thumbnail. The tool hides quality options that do not exist for a given video - use High Quality as the next best option.",
     },
   ],
 
@@ -417,7 +417,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "What is the difference between Beautify and Minify?",
-      answer: "Beautify adds indentation and line breaks to make JSON human-readable. Minify removes all whitespace to produce the smallest possible string — useful for API responses and reducing file size.",
+      answer: "Beautify adds indentation and line breaks to make JSON human-readable. Minify removes all whitespace to produce the smallest possible string - useful for API responses and reducing file size.",
     },
     {
       question: "Does this tool validate JSON?",
@@ -425,7 +425,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is my JSON data sent to a server?",
-      answer: "No. The entire tool runs in your browser. Your JSON never leaves your device — it is not transmitted or stored anywhere.",
+      answer: "No. The entire tool runs in your browser. Your JSON never leaves your device - it is not transmitted or stored anywhere.",
     },
     {
       question: "Can I change the indentation level?",
@@ -452,18 +452,18 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is Base64 the same as encryption?",
-      answer: "No. Base64 is encoding, not encryption — it is fully reversible by anyone and provides no security. Never use it to protect sensitive data. Use it only to convert binary data into a text-safe format.",
+      answer: "No. Base64 is encoding, not encryption - it is fully reversible by anyone and provides no security. Never use it to protect sensitive data. Use it only to convert binary data into a text-safe format.",
     },
   ],
 
   "url-encoder-decoder": [
     {
       question: "When should I use URL encoding?",
-      answer: "Whenever you put text inside a URL — query parameter values, path segments with special characters, or anchor fragments. Characters like spaces, &, =, ?, /, #, and non-ASCII letters must be percent-encoded so the URL is parsed correctly.",
+      answer: "Whenever you put text inside a URL - query parameter values, path segments with special characters, or anchor fragments. Characters like spaces, &, =, ?, /, #, and non-ASCII letters must be percent-encoded so the URL is parsed correctly.",
     },
     {
       question: "What is the difference between Component and Full URL mode?",
-      answer: "Component mode (encodeURIComponent) escapes everything that isn't a safe character — including ?, &, =, /, # — so it's safe to embed inside another URL as a parameter value. Full URL mode (encodeURI) preserves URL structure characters and is meant for encoding an entire URL once.",
+      answer: "Component mode (encodeURIComponent) escapes everything that isn't a safe character - including ?, &, =, /, # - so it's safe to embed inside another URL as a parameter value. Full URL mode (encodeURI) preserves URL structure characters and is meant for encoding an entire URL once.",
     },
     {
       question: "Is my input sent to a server?",
@@ -478,7 +478,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
   "hash-generator": [
     {
       question: "Which hash algorithm should I use?",
-      answer: "Use SHA-256 or SHA-512 for security-related hashing (file integrity, fingerprints, content addressing). Use MD5 only for non-security checksums or compatibility with legacy systems — it is broken for cryptographic purposes.",
+      answer: "Use SHA-256 or SHA-512 for security-related hashing (file integrity, fingerprints, content addressing). Use MD5 only for non-security checksums or compatibility with legacy systems - it is broken for cryptographic purposes.",
     },
     {
       question: "Is my text sent to a server?",
@@ -497,7 +497,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
   "regex-tester": [
     {
       question: "Which regex flavour does this tester use?",
-      answer: "JavaScript / ECMAScript regex — the same engine used in browsers and Node.js. Most patterns from PCRE, Python, and Ruby work, but some advanced features (e.g., lookbehind in older engines, possessive quantifiers, named recursion) may differ.",
+      answer: "JavaScript / ECMAScript regex - the same engine used in browsers and Node.js. Most patterns from PCRE, Python, and Ruby work, but some advanced features (e.g., lookbehind in older engines, possessive quantifiers, named recursion) may differ.",
     },
     {
       question: "What does each flag do?",
@@ -523,7 +523,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
       answer: "8-digit HEX adds two extra hex characters at the end representing alpha (00 = fully transparent, FF = fully opaque). For example, #3B82F680 is the standard blue at 50% opacity.",
     },
     {
-      question: "Why does HSL hue go from 0–360?",
+      question: "Why does HSL hue go from 0-360?",
       answer: "Hue is measured as a position on the colour wheel in degrees. 0° is red, 120° is green, 240° is blue, and the wheel wraps back to red at 360°.",
     },
     {
@@ -535,11 +535,11 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
   "pomodoro-timer": [
     {
       question: "What is the Pomodoro Technique?",
-      answer: "A time-management method created by Francesco Cirillo in the late 1980s. You work for a focused interval (traditionally 25 minutes), then take a 5-minute break. Every 4 sessions, you take a longer 15–30 minute break. The structure trains your brain to sustain attention and recover.",
+      answer: "A time-management method created by Francesco Cirillo in the late 1980s. You work for a focused interval (traditionally 25 minutes), then take a 5-minute break. Every 4 sessions, you take a longer 15-30 minute break. The structure trains your brain to sustain attention and recover.",
     },
     {
       question: "Can I customise the focus and break lengths?",
-      answer: "Yes. Open Settings to set focus duration, short break, long break, and how often a long break occurs. Some people prefer 50/10 or 90/20 cycles — the timer supports anything from 1 to 90 minutes.",
+      answer: "Yes. Open Settings to set focus duration, short break, long break, and how often a long break occurs. Some people prefer 50/10 or 90/20 cycles - the timer supports anything from 1 to 90 minutes.",
     },
     {
       question: "Will it work if I switch tabs or minimise the browser?",
@@ -566,7 +566,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Does it handle daylight saving time?",
-      answer: "Yes. Because we use the Intl API and IANA zones, DST transitions are handled automatically — no manual adjustment needed.",
+      answer: "Yes. Because we use the Intl API and IANA zones, DST transitions are handled automatically - no manual adjustment needed.",
     },
   ],
 
@@ -600,7 +600,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Does it autosave my work?",
-      answer: "No. To keep the tool 100% private, nothing is stored on a server. If you close the tab, the content is lost — download the .md file before leaving.",
+      answer: "No. To keep the tool 100% private, nothing is stored on a server. If you close the tab, the content is lost - download the .md file before leaving.",
     },
     {
       question: "Is this safe for confidential documents?",
@@ -619,7 +619,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Can I use this for AWS / Vercel / GitHub Actions cron?",
-      answer: "Yes. Most platforms (AWS EventBridge, GitHub Actions, Vercel, Kubernetes CronJobs) accept the same 5-field syntax. AWS adds a 6-field 'year' variant — for that, just paste the 5-field equivalent here to validate.",
+      answer: "Yes. Most platforms (AWS EventBridge, GitHub Actions, Vercel, Kubernetes CronJobs) accept the same 5-field syntax. AWS adds a 6-field 'year' variant - for that, just paste the 5-field equivalent here to validate.",
     },
     {
       question: "Why does my expression say 'invalid'?",
@@ -638,22 +638,22 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Should the text always start with 'Lorem ipsum'?",
-      answer: "By default, yes — that's the convention designers expect. Uncheck the option to start with random Lorem-style words instead, which is closer to a real-world variability test.",
+      answer: "By default, yes - that's the convention designers expect. Uncheck the option to start with random Lorem-style words instead, which is closer to a real-world variability test.",
     },
     {
       question: "Is it safe to use Lorem Ipsum in production?",
-      answer: "No. Lorem Ipsum is for design previews only. Always replace it with real copy before shipping — leftover Lorem Ipsum is a common cause of embarrassing production bugs.",
+      answer: "No. Lorem Ipsum is for design previews only. Always replace it with real copy before shipping - leftover Lorem Ipsum is a common cause of embarrassing production bugs.",
     },
   ],
 
   "jwt-decoder": [
     {
       question: "Is decoding a JWT the same as verifying it?",
-      answer: "No. Decoding only reads the base64url-encoded header and payload, which are not encrypted. Verifying a JWT requires checking the signature against the issuer's secret or public key — a server-side step that this tool intentionally does not perform.",
+      answer: "No. Decoding only reads the base64url-encoded header and payload, which are not encrypted. Verifying a JWT requires checking the signature against the issuer's secret or public key - a server-side step that this tool intentionally does not perform.",
     },
     {
       question: "Is it safe to paste my real production JWT here?",
-      answer: "Yes. The decoder runs entirely in your browser — your token is never sent to any server, logged, or stored. That said, treat any JWT as a credential and avoid sharing it through screenshots or chat.",
+      answer: "Yes. The decoder runs entirely in your browser - your token is never sent to any server, logged, or stored. That said, treat any JWT as a credential and avoid sharing it through screenshots or chat.",
     },
     {
       question: "Why does the tool say my token is expired?",
@@ -661,7 +661,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Which JWT algorithms are supported?",
-      answer: "All of them — the decoder treats the algorithm as informational only. HS256, RS256, ES256, EdDSA, and others all decode the same way because the header/payload encoding is identical across algorithms.",
+      answer: "All of them - the decoder treats the algorithm as informational only. HS256, RS256, ES256, EdDSA, and others all decode the same way because the header/payload encoding is identical across algorithms.",
     },
   ],
 
@@ -680,7 +680,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is my SQL sent to a server?",
-      answer: "Never. Formatting happens entirely in your browser using JavaScript — safe for confidential queries containing internal table names or business logic.",
+      answer: "Never. Formatting happens entirely in your browser using JavaScript - safe for confidential queries containing internal table names or business logic.",
     },
   ],
 
@@ -691,7 +691,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "When should I actually use a base64 image?",
-      answer: "Inline base64 is ideal for tiny icons, transactional emails, or eliminating an extra HTTP request for above-the-fold images. For anything larger than ~10 KB it's usually better to keep the file external — base64 inflates size by ~33%.",
+      answer: "Inline base64 is ideal for tiny icons, transactional emails, or eliminating an extra HTTP request for above-the-fold images. For anything larger than ~10 KB it's usually better to keep the file external - base64 inflates size by ~33%.",
     },
     {
       question: "Does it work with SVG?",
@@ -706,11 +706,11 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
   "css-gradient-generator": [
     {
       question: "What's the difference between linear, radial, and conic gradients?",
-      answer: "Linear gradients transition along a straight line at a chosen angle. Radial gradients radiate outward from a center point. Conic gradients sweep around a center point like a clock face — perfect for pie-chart effects.",
+      answer: "Linear gradients transition along a straight line at a chosen angle. Radial gradients radiate outward from a center point. Conic gradients sweep around a center point like a clock face - perfect for pie-chart effects.",
     },
     {
       question: "Are conic gradients supported in all browsers?",
-      answer: "Yes — conic-gradient() is supported in every evergreen browser (Chrome 69+, Edge 79+, Safari 12.1+, Firefox 83+). For very old browsers, fall back to a linear gradient.",
+      answer: "Yes - conic-gradient() is supported in every evergreen browser (Chrome 69+, Edge 79+, Safari 12.1+, Firefox 83+). For very old browsers, fall back to a linear gradient.",
     },
     {
       question: "Can I copy the result as Tailwind?",
@@ -718,7 +718,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "How many color stops can I add?",
-      answer: "As many as you want — the generator supports unlimited stops with individual position controls. For practical use, 2–4 stops is usually best for crisp, fast-rendering gradients.",
+      answer: "As many as you want - the generator supports unlimited stops with individual position controls. For practical use, 2-4 stops is usually best for crisp, fast-rendering gradients.",
     },
   ],
 
@@ -733,11 +733,11 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Should I remove stop words?",
-      answer: "For SEO, often yes — words like 'a', 'the', 'and' rarely add ranking value and shorter URLs perform better. For navigation breadcrumbs or human-readability, leave them in.",
+      answer: "For SEO, often yes - words like 'a', 'the', 'and' rarely add ranking value and shorter URLs perform better. For navigation breadcrumbs or human-readability, leave them in.",
     },
     {
       question: "Will the same input always produce the same slug?",
-      answer: "Yes. The transformation is purely deterministic — given the same input and options, you'll always get the same slug. That makes it safe to use for permalinks and migration scripts.",
+      answer: "Yes. The transformation is purely deterministic - given the same input and options, you'll always get the same slug. That makes it safe to use for permalinks and migration scripts.",
     },
   ],
 
@@ -748,7 +748,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Can I use an emoji as my favicon?",
-      answer: "Yes — switch to the Emoji tab and pick any emoji. It's rendered to canvas at every size, so you get crisp PNGs ready to upload to your /public folder.",
+      answer: "Yes - switch to the Emoji tab and pick any emoji. It's rendered to canvas at every size, so you get crisp PNGs ready to upload to your /public folder.",
     },
     {
       question: "Why a square / rounded / circle background?",
@@ -763,11 +763,11 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
   "uuid-generator": [
     {
       question: "What's the difference between UUID v4 and v7?",
-      answer: "UUID v4 is fully random and unsorted. UUID v7 is time-ordered — it includes a Unix-millisecond timestamp at the start, which makes it index- and sort-friendly for databases. v7 is the modern recommendation for new systems.",
+      answer: "UUID v4 is fully random and unsorted. UUID v7 is time-ordered - it includes a Unix-millisecond timestamp at the start, which makes it index- and sort-friendly for databases. v7 is the modern recommendation for new systems.",
     },
     {
       question: "Are these UUIDs safe to use as primary keys?",
-      answer: "Yes. They are generated using the Web Crypto API (crypto.randomUUID), which is cryptographically secure. Collisions are mathematically negligible — you would need ~2.71 quintillion v4 UUIDs to have a 50% chance of one duplicate.",
+      answer: "Yes. They are generated using the Web Crypto API (crypto.randomUUID), which is cryptographically secure. Collisions are mathematically negligible - you would need ~2.71 quintillion v4 UUIDs to have a 50% chance of one duplicate.",
     },
     {
       question: "What's the NIL UUID for?",
@@ -775,18 +775,18 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "How many can I generate at once?",
-      answer: "Up to 1000 per click. They're generated locally — no rate limits, no signup, no captcha.",
+      answer: "Up to 1000 per click. They're generated locally - no rate limits, no signup, no captcha.",
     },
   ],
 
   "ai-note-summarizer": [
     {
       question: "How does the AI summarize my notes?",
-      answer: "The tool sends your pasted text to a language model that identifies the most important concepts, definitions, relationships, and facts, then restructures them into your chosen output format — bullet summary, key terms, flashcards, or quiz. The original text is not stored after processing.",
+      answer: "The tool sends your pasted text to a language model that identifies the most important concepts, definitions, relationships, and facts, then restructures them into your chosen output format - bullet summary, key terms, flashcards, or quiz. The original text is not stored after processing.",
     },
     {
       question: "How long can my notes be?",
-      answer: "Up to 5,000 characters per submission for guest users. That's roughly 800–1,000 words — about a standard lecture transcript. Sign in free with Google to unlock higher limits.",
+      answer: "Up to 5,000 characters per submission for guest users. That's roughly 800-1,000 words - about a standard lecture transcript. Sign in free with Google to unlock higher limits.",
     },
     {
       question: "Can it summarize a PDF or scanned textbook?",
@@ -802,22 +802,22 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is the AI Note Summarizer free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google to unlock higher daily usage limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google to unlock higher daily usage limits.",
     },
   ],
 
   "ai-flashcard-generator": [
     {
       question: "How many flashcards can I generate at once?",
-      answer: "Up to 50 per batch. For most topics, 20–30 cards cover the essential content without becoming overwhelming. Generate a second batch for the same topic to go deeper.",
+      answer: "Up to 50 per batch. For most topics, 20-30 cards cover the essential content without becoming overwhelming. Generate a second batch for the same topic to go deeper.",
     },
     {
       question: "What is the Anki CSV export for?",
-      answer: "Anki is a free, open-source spaced-repetition app used by medical students, law students, and language learners worldwide. Importing a CSV file adds all your generated cards to a new Anki deck in one step — no manual card creation needed.",
+      answer: "Anki is a free, open-source spaced-repetition app used by medical students, law students, and language learners worldwide. Importing a CSV file adds all your generated cards to a new Anki deck in one step - no manual card creation needed.",
     },
     {
       question: "How should I phrase my topic for the best results?",
-      answer: "Specific is better than general. 'ATP synthesis steps in cellular respiration' generates more useful cards than 'biology'. If you have notes or a passage, paste that in instead of a topic title — the AI extracts cards from real content rather than general knowledge.",
+      answer: "Specific is better than general. 'ATP synthesis steps in cellular respiration' generates more useful cards than 'biology'. If you have notes or a passage, paste that in instead of a topic title - the AI extracts cards from real content rather than general knowledge.",
     },
     {
       question: "Can I generate flashcards in a language other than English?",
@@ -829,7 +829,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is the AI Flashcard Generator free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
     },
   ],
 
@@ -844,7 +844,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Does it write the essay for me?",
-      answer: "No — it generates a structured outline only: a thesis statement, a hook, section headings with argument previews, word-count targets per section, and evidence/source cues. You do the writing. This keeps academic integrity intact while eliminating the blank-page problem.",
+      answer: "No - it generates a structured outline only: a thesis statement, a hook, section headings with argument previews, word-count targets per section, and evidence/source cues. You do the writing. This keeps academic integrity intact while eliminating the blank-page problem.",
     },
     {
       question: "How accurate are the APA / MLA formatting suggestions?",
@@ -856,7 +856,7 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is the AI Essay Outliner free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
     },
   ],
 
@@ -867,11 +867,11 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "What types of sources can I cite?",
-      answer: "Web pages (paste the URL), journal articles (paste the DOI), books (paste the ISBN), and other source types (enter details manually — author, title, publisher, year, etc.).",
+      answer: "Web pages (paste the URL), journal articles (paste the DOI), books (paste the ISBN), and other source types (enter details manually - author, title, publisher, year, etc.).",
     },
     {
       question: "How accurate are the generated citations?",
-      answer: "Very accurate for clean DOIs (journal articles) and ISBNs (books), where metadata is standardised. URL-based citations depend on the page's own metadata markup — some websites have incomplete or incorrect titles and dates, so always verify the key fields before submitting.",
+      answer: "Very accurate for clean DOIs (journal articles) and ISBNs (books), where metadata is standardised. URL-based citations depend on the page's own metadata markup - some websites have incomplete or incorrect titles and dates, so always verify the key fields before submitting.",
     },
     {
       question: "Should I always double-check the citation before using it?",
@@ -879,26 +879,26 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "What is an in-text citation?",
-      answer: "An in-text citation is the shortened reference that appears inside the body of your essay immediately after quoted or paraphrased material — for example, (Smith, 2023) in APA or (Smith 45) in MLA. The tool generates both the full reference-list entry and the in-text version.",
+      answer: "An in-text citation is the shortened reference that appears inside the body of your essay immediately after quoted or paraphrased material - for example, (Smith, 2023) in APA or (Smith 45) in MLA. The tool generates both the full reference-list entry and the in-text version.",
     },
     {
       question: "Is the AI Citation Generator free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
     },
   ],
 
   "ai-paraphraser": [
     {
       question: "How many tone options are available?",
-      answer: "Three: Academic (formal, hedged scholarly language — suited for essays and research papers), Formal (professional, business-appropriate prose), and Casual (plain, conversational language — suited for social media, blogs, and informal writing).",
+      answer: "Three: Academic (formal, hedged scholarly language - suited for essays and research papers), Formal (professional, business-appropriate prose), and Casual (plain, conversational language - suited for social media, blogs, and informal writing).",
     },
     {
       question: "What is the maximum input length?",
-      answer: "Up to 1,000 characters per submission for guest users — about 150–200 words, which is the typical length of a quoted passage or evidence paragraph. Sign in free with Google to unlock longer inputs.",
+      answer: "Up to 1,000 characters per submission for guest users - about 150-200 words, which is the typical length of a quoted passage or evidence paragraph. Sign in free with Google to unlock longer inputs.",
     },
     {
       question: "Does paraphrasing with this tool count as plagiarism?",
-      answer: "Paraphrasing itself is an expected academic skill — putting source material into your own words with proper citation. Using an AI tool to help rephrase is similar to using a thesaurus. Always add the citation for the original source, even when the wording has changed.",
+      answer: "Paraphrasing itself is an expected academic skill - putting source material into your own words with proper citation. Using an AI tool to help rephrase is similar to using a thesaurus. Always add the citation for the original source, even when the wording has changed.",
     },
     {
       question: "Why are three versions generated instead of one?",
@@ -910,34 +910,34 @@ export const toolFAQs: Record<string, ToolFAQItem[]> = {
     },
     {
       question: "Is the AI Paraphraser free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
     },
   ],
 
   "ai-cover-letter": [
     {
       question: "Does the generated cover letter actually reference the job description?",
-      answer: "Yes. The AI reads both your resume and the job description, identifies the role's key requirements, and maps your specific experience and skills to those requirements — producing a tailored letter rather than a generic template.",
+      answer: "Yes. The AI reads both your resume and the job description, identifies the role's key requirements, and maps your specific experience and skills to those requirements - producing a tailored letter rather than a generic template.",
     },
     {
       question: "How long is the generated cover letter?",
-      answer: "Typically 250–400 words — the standard professional length that hiring managers prefer. It includes an opening that names the role, two body paragraphs mapping your experience to the job, and a clear call-to-action closing.",
+      answer: "Typically 250-400 words - the standard professional length that hiring managers prefer. It includes an opening that names the role, two body paragraphs mapping your experience to the job, and a clear call-to-action closing.",
     },
     {
       question: "What tone options are available?",
-      answer: "Professional (measured, competent, appropriate for corporate and traditional employers), Enthusiastic (energetic and driven — suited for startups, creative roles, and cultures that value culture fit), and Concise (short and direct — suited for busy tech companies and roles where brevity is valued).",
+      answer: "Professional (measured, competent, appropriate for corporate and traditional employers), Enthusiastic (energetic and driven - suited for startups, creative roles, and cultures that value culture fit), and Concise (short and direct - suited for busy tech companies and roles where brevity is valued).",
     },
     {
       question: "Should I edit the letter before sending?",
-      answer: "Yes, always. Add the hiring manager's name if you know it, verify that any facts the AI inferred are accurate, and add one personal detail — a specific project, a company reason you want to join — that the AI could not know. Ten minutes of editing lifts the letter significantly.",
+      answer: "Yes, always. Add the hiring manager's name if you know it, verify that any facts the AI inferred are accurate, and add one personal detail - a specific project, a company reason you want to join - that the AI could not know. Ten minutes of editing lifts the letter significantly.",
     },
     {
       question: "What if I don't have a resume yet?",
-      answer: "Paste a bullet-point summary of your education, relevant experience, and key skills — it doesn't need to be a formatted resume. The AI extracts the relevant details from whatever you provide.",
+      answer: "Paste a bullet-point summary of your education, relevant experience, and key skills - it doesn't need to be a formatted resume. The AI extracts the relevant details from whatever you provide.",
     },
     {
       question: "Is the AI Cover Letter Generator free?",
-      answer: "Yes — free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
+      answer: "Yes - free for the first uses each day without an account. Sign in free with Google for higher daily limits.",
     },
   ],
 };

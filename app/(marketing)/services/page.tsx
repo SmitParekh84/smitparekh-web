@@ -66,9 +66,9 @@ const breadcrumbSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Web Development Services - Hire Smit Parekh (React, Next.js, Node.js)",
+  title: "Web Development Services - React, Next.js & Node.js",
   description:
-    "Hire a senior full-stack developer for MVPs, SaaS, e-commerce & SEO. Fixed scope from $5K, time-and-materials from $80/hr. 50+ projects shipped, 95+ Lighthouse standard.",
+    "Hire a senior full-stack developer for MVPs, SaaS, e-commerce & SEO. Fixed scope from $5K, hourly from $80/hr. 50+ projects shipped, 95+ Lighthouse.",
   alternates: { canonical: `${siteConfig.url}/services` },
   keywords: [
     "full stack web development services",
@@ -141,7 +141,7 @@ const differentiators = [
   {
     icon: Users,
     title: "Single point of contact",
-    desc: "You work directly with me — no account managers, no junior devs, no Slack handoffs.",
+    desc: "You work directly with me - no account managers, no junior devs, no Slack handoffs.",
   },
   {
     icon: Zap,
@@ -151,12 +151,12 @@ const differentiators = [
   {
     icon: Lock,
     title: "You own the code",
-    desc: "Clean codebase, full docs, zero vendor lock-in. Your GitHub from day one — even if we part ways.",
+    desc: "Clean codebase, full docs, zero vendor lock-in. Your GitHub from day one - even if we part ways.",
   },
   {
     icon: ShieldCheck,
     title: "Senior-only work",
-    desc: "Every line is written by me — 5+ years shipping production systems at scale, not interns or offshore teams.",
+    desc: "Every line is written by me - 5+ years shipping production systems at scale, not interns or offshore teams.",
   },
   {
     icon: Eye,
@@ -175,7 +175,7 @@ const process = [
     step: "01",
     title: "Discovery & Scoping",
     description:
-      "We align on goals, constraints, and success criteria. You get a clear scope document and timeline — no surprises.",
+      "We align on goals, constraints, and success criteria. You get a clear scope document and timeline - no surprises.",
   },
   {
     step: "02",
@@ -206,14 +206,14 @@ const process = [
 const testimonials = [
   {
     quote:
-      "Smit delivered our MVP in 6 weeks and the codebase is so clean we onboarded our next engineer in a single day. Best freelance experience we've had — and we've had many.",
+      "Smit delivered our MVP in 6 weeks and the codebase is so clean we onboarded our next engineer in a single day. Best freelance experience we've had - and we've had many.",
     name: "FinTech Founder",
     role: "Series-A startup, US",
     rating: 5,
   },
   {
     quote:
-      "Lighthouse went from 62 to 98. Our organic traffic doubled in 3 months. He doesn't just push pixels — he understands what makes pages rank.",
+      "Lighthouse went from 62 to 98. Our organic traffic doubled in 3 months. He doesn't just push pixels - he understands what makes pages rank.",
     name: "Head of Growth",
     role: "B2B SaaS, EU",
     rating: 5,
@@ -269,7 +269,7 @@ const industries = [
 const faqs = [
   {
     q: "How long does a typical project take?",
-    a: "Most MVPs ship in 6–10 weeks. Full SaaS builds take 3–4 months. Marketing sites and redesigns are usually 2–4 weeks. We agree a timeline before any work starts — and you get a working demo every Friday so there are no surprises.",
+    a: "Most MVPs ship in 6-10 weeks. Full SaaS builds take 3-4 months. Marketing sites and redesigns are usually 2-4 weeks. We agree a timeline before any work starts - and you get a working demo every Friday so there are no surprises.",
   },
   {
     q: "Do you work with existing engineering teams?",
@@ -277,11 +277,11 @@ const faqs = [
   },
   {
     q: "What's included in post-launch support?",
-    a: "30 days of free bug fixes after launch. After that, a monthly retainer is the most common option — it covers maintenance, small features, performance work, and on-call support. You can also pay ad-hoc when issues come up.",
+    a: "30 days of free bug fixes after launch. After that, a monthly retainer is the most common option - it covers maintenance, small features, performance work, and on-call support. You can also pay ad-hoc when issues come up.",
   },
   {
     q: "Do you sign NDAs and IP transfer agreements?",
-    a: "Yes. I sign mutual NDAs before any sensitive details are shared. Code is yours from day one via your GitHub org — I sign IP-transfer language in the contract too, so there's zero ambiguity.",
+    a: "Yes. I sign mutual NDAs before any sensitive details are shared. Code is yours from day one via your GitHub org - I sign IP-transfer language in the contract too, so there's zero ambiguity.",
   },
   {
     q: "What time zones do you work in?",
@@ -289,11 +289,11 @@ const faqs = [
   },
   {
     q: "Do you handle hosting, infrastructure, and DevOps?",
-    a: "Yes. AWS (EC2, RDS, S3, Lambda), Vercel, Railway, Cloudflare, Docker, GitHub Actions — I set up production infra, monitoring, and CI/CD. You get a fully working production setup, not just code sitting on GitHub.",
+    a: "Yes. AWS (EC2, RDS, S3, Lambda), Vercel, Railway, Cloudflare, Docker, GitHub Actions - I set up production infra, monitoring, and CI/CD. You get a fully working production setup, not just code sitting on GitHub.",
   },
   {
     q: "What if I only need part of a project?",
-    a: "That's fine. Frontend-only builds, backend API work, SEO audits, performance optimization, code reviews — I'll scope just what you need. No minimum project size, but most engagements start at 2 weeks of work.",
+    a: "That's fine. Frontend-only builds, backend API work, SEO audits, performance optimization, code reviews - I'll scope just what you need. No minimum project size, but most engagements start at 2 weeks of work.",
   },
   {
     q: "Do you offer free consultations?",
@@ -386,7 +386,7 @@ export default function ServicesPage() {
         eyebrow="What I Offer"
         icon={Code2}
         title="Senior full-stack developer for MVPs, SaaS & growth"
-        description="One partner for the full product lifecycle — architecture to deployment. No juggling vendors, no gaps in ownership."
+        description="One partner for the full product lifecycle - architecture to deployment. No juggling vendors, no gaps in ownership."
       >
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
@@ -455,7 +455,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="Services"
             title="Everything you need to ship"
-            description="Whether you need a full product build or one specific layer of the stack — I cover it end-to-end."
+            description="Whether you need a full product build or one specific layer of the stack - I cover it end-to-end."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -532,7 +532,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="How I Work"
             title="A process built around clarity"
-            description="Predictable delivery comes from a structured process — not guesswork."
+            description="Predictable delivery comes from a structured process - not guesswork."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
@@ -609,7 +609,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="Pricing & Engagement"
             title="Transparent pricing, your way of working"
-            description="Three engagement models. Pick the one that matches your project — or talk to me and I'll recommend the right fit."
+            description="Three engagement models. Pick the one that matches your project - or talk to me and I'll recommend the right fit."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
@@ -714,7 +714,7 @@ export default function ServicesPage() {
             Shipping for teams across these industries
           </h2>
           <p className="text-muted-foreground text-sm leading-relaxed mb-8">
-            From regulated FinTech systems to high-traffic e-commerce — the patterns repeat, the stack scales.
+            From regulated FinTech systems to high-traffic e-commerce - the patterns repeat, the stack scales.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2">
             {industries.map((ind) => (
@@ -736,7 +736,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="Hire by Speciality"
             title="Looking for a specific technology?"
-            description="Each speciality page goes deep on a single technology — what I build, how I work, and the questions clients ask before hiring."
+            description="Each speciality page goes deep on a single technology - what I build, how I work, and the questions clients ask before hiring."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {developerPages.map((page) => (

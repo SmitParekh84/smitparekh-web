@@ -491,7 +491,7 @@ function DomainSettings() {
       </FieldRow>
       <FieldRow label="Hosting">
         <span className="text-[13px] text-muted-foreground">
-          Vercel — configured via Vercel dashboard.
+          Vercel - configured via Vercel dashboard.
         </span>
       </FieldRow>
     </SettingsCard>

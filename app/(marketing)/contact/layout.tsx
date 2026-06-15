@@ -4,7 +4,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact Smit Parekh - Hire a Full Stack Developer",
   description:
-    "Get in touch with Smit Parekh for full-stack web development. Discuss your project - React, Next.js, Node.js, TypeScript. Reply within 24 hours, proposal within 48.",
+    "Get in touch with Smit Parekh for full-stack web development - React, Next.js, Node.js. Reply within 24 hours, proposal within 48.",
   alternates: { canonical: `${siteConfig.url}/contact` },
   keywords: [
     "contact Smit Parekh",

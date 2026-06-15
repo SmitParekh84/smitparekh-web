@@ -305,7 +305,7 @@ export default function ToolsAdminPage() {
         <div>
           <h1 className="text-[22px] font-semibold tracking-tight">Tools</h1>
           <p className="text-[13px] text-muted-foreground">
-            Free tools published under /free-tools — quotas, usage and activity.
+            Free tools published under /free-tools - quotas, usage and activity.
           </p>
         </div>
         <DateRangeFilter value={dateRange.mode} onChange={handleRangeChange} />
@@ -338,7 +338,7 @@ export default function ToolsAdminPage() {
         <SummaryCard
           icon={<TrendingUp className="w-5 h-5" />}
           label={`Top tool ${PERIOD_LABEL[dateRange.mode]}`}
-          value={summary.topTool ? nameFromSlug(summary.topTool.slug) : "—"}
+          value={summary.topTool ? nameFromSlug(summary.topTool.slug) : "-"}
           sub={summary.topTool ? `${summary.topTool.uses} uses` : undefined}
         />
       </div>
@@ -401,7 +401,7 @@ export default function ToolsAdminPage() {
             <CardHeader>
               <CardTitle className="text-base">Per-tool config</CardTitle>
               <CardDescription>
-                Edit quotas inline — changes save on blur. Set <span className="font-semibold text-emerald-600 dark:text-emerald-400">∞</span> (0) for unlimited.
+                Edit quotas inline - changes save on blur. Set <span className="font-semibold text-emerald-600 dark:text-emerald-400">∞</span> (0) for unlimited.
                 {filteredTools.length !== data.perTool.length && (
                   <span className="ml-2 text-blue-500">
                     Showing {filteredTools.length} of {data.perTool.length}
@@ -526,7 +526,7 @@ export default function ToolsAdminPage() {
                             title={
                               t.featured_in_nav
                                 ? "Visible in the navbar dropdown"
-                                : "Hidden from navbar — toggle on to feature"
+                                : "Hidden from navbar - toggle on to feature"
                             }
                           >
                             <span
@@ -659,13 +659,13 @@ export default function ToolsAdminPage() {
                                 ))}
                                 {u.toolsToday.length === 0 && (
                                   <span className="text-xs text-muted-foreground">
-                                    —
+                                    -
                                   </span>
                                 )}
                               </div>
                             </td>
                             <td className="px-4 py-3 text-right text-xs text-muted-foreground hidden sm:table-cell">
-                              {u.lastUsedAt ? relativeTime(u.lastUsedAt) : "—"}
+                              {u.lastUsedAt ? relativeTime(u.lastUsedAt) : "-"}
                             </td>
                             <td className="px-4 py-3 text-right">
                               <button

@@ -1,4 +1,4 @@
-// Service landing pages — data-driven catalog.
+// Service landing pages - data-driven catalog.
 // Add a new entry here to ship a new /services/<slug> page.
 // Keep copy long-form and unique per page; this is what ranks.
 
@@ -110,7 +110,7 @@ export const servicePages: ServicePage[] = [
     slug: "web-development",
     category: "development",
     iconName: "Code2",
-    metaTitle: "Web Development Services — Next.js, React, Node.js",
+    metaTitle: "Web Development Services - Next.js, React, Node.js",
     metaDescription:
       "Production-grade web development services. Next.js & React frontends, Node.js APIs, PostgreSQL, AWS deploys, 95+ Lighthouse, SEO-first. From MVP to scale. Free quote in 24 hours.",
     keywords: [
@@ -130,13 +130,13 @@ export const servicePages: ServicePage[] = [
     heroTitle: "Production web apps, end to end",
     heroDescription:
       "From the database schema to the deployed Next.js frontend, I ship modern web apps designed to rank, convert, and scale. One engineer, full ownership.",
-    lede: "Most agencies hand off between 3–5 vendors. I cover the full stack — database, API, frontend, SEO, and deploy — so nothing falls between the cracks. 4+ years shipping production traffic for FinTech, SaaS, and enterprise teams.",
+    lede: "Most agencies hand off between 3-5 vendors. I cover the full stack - database, API, frontend, SEO, and deploy - so nothing falls between the cracks. 4+ years shipping production traffic for FinTech, SaaS, and enterprise teams.",
     deliverables: [
       {
         iconName: "Code2",
         title: "Modern Next.js or React frontend",
         description:
-          "Server Components, App Router, TypeScript strict, Tailwind, Framer Motion. Pixel-perfect, accessible, and fast — 95+ Lighthouse on real production data, not synthetic demos.",
+          "Server Components, App Router, TypeScript strict, Tailwind, Framer Motion. Pixel-perfect, accessible, and fast - 95+ Lighthouse on real production data, not synthetic demos.",
       },
       {
         iconName: "Server",
@@ -166,7 +166,7 @@ export const servicePages: ServicePage[] = [
         iconName: "ShieldCheck",
         title: "Tested and documented",
         description:
-          "Integration tests for every critical path, OWASP-aware security review, and a written handover doc. You don't get locked into me — you can hand the codebase to anyone.",
+          "Integration tests for every critical path, OWASP-aware security review, and a written handover doc. You don't get locked into me - you can hand the codebase to anyone.",
       },
     ],
     techStack: [
@@ -184,7 +184,7 @@ export const servicePages: ServicePage[] = [
       {
         title: "Architecture & plan",
         description:
-          "Data model, API contracts, page tree, and a milestone-by-milestone delivery plan — all written down before code is written.",
+          "Data model, API contracts, page tree, and a milestone-by-milestone delivery plan - all written down before code is written.",
       },
       {
         title: "Iterative build",
@@ -210,9 +210,9 @@ export const servicePages: ServicePage[] = [
         bestFor: "Founders shipping their first build",
         bullets: [
           "1 frontend + 1 API + 1 database",
-          "Auth, payments, and 3–5 core flows",
+          "Auth, payments, and 3-5 core flows",
           "Deployed to Vercel/Supabase",
-          "Delivered in 2–4 weeks",
+          "Delivered in 2-4 weeks",
         ],
       },
       {
@@ -224,7 +224,7 @@ export const servicePages: ServicePage[] = [
           "Multi-tenant, role-based access",
           "10+ flows, admin dashboard",
           "Tests, CI/CD, monitoring",
-          "Delivered in 4–8 weeks",
+          "Delivered in 4-8 weeks",
         ],
       },
       {
@@ -242,7 +242,7 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "What's the typical timeline for a web app?",
-        a: "An MVP with 3–5 flows usually lands in 2–4 weeks. A production app with auth, payments, and an admin dashboard takes 4–8 weeks. Larger or multi-tenant builds are scoped per milestone.",
+        a: "An MVP with 3-5 flows usually lands in 2-4 weeks. A production app with auth, payments, and an admin dashboard takes 4-8 weeks. Larger or multi-tenant builds are scoped per milestone.",
       },
       {
         q: "Do you work with existing codebases?",
@@ -254,11 +254,11 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "Do you handle deployment and CI/CD?",
-        a: "Yes — Vercel, AWS, Supabase, or your existing infra. Every project ships with GitHub Actions CI, preview environments per PR, and a documented production deploy.",
+        a: "Yes - Vercel, AWS, Supabase, or your existing infra. Every project ships with GitHub Actions CI, preview environments per PR, and a documented production deploy.",
       },
       {
         q: "Can you also handle SEO?",
-        a: "Yes, technical SEO is baked into the build — server-rendered metadata, JSON-LD, sitemap, OG images, Core Web Vitals. For deeper content/keyword work, see /services/seo.",
+        a: "Yes, technical SEO is baked into the build - server-rendered metadata, JSON-LD, sitemap, OG images, Core Web Vitals. For deeper content/keyword work, see /services/seo.",
       },
     ],
     related: ["frontend-development", "backend-development", "api-development", "technical-seo"],
@@ -269,9 +269,9 @@ export const servicePages: ServicePage[] = [
     slug: "frontend-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "Frontend Development Services — React & Next.js Specialists",
+    metaTitle: "Frontend Development Services - React & Next.js Specialists",
     metaDescription:
-      "Frontend development for React and Next.js — accessible, animated, 95+ Lighthouse, TypeScript strict, design-system driven. From single landing pages to multi-tenant dashboards.",
+      "Frontend development for React and Next.js - accessible, animated, 95+ Lighthouse, TypeScript strict, design-system driven. From single landing pages to multi-tenant dashboards.",
     keywords: [
       "frontend development services",
       "React development",
@@ -288,7 +288,7 @@ export const servicePages: ServicePage[] = [
     heroTitle: "Frontends that look great and stay fast",
     heroDescription:
       "Production-grade React and Next.js frontends with a focus on accessibility, performance, and design systems. Built to scale across teams and devices.",
-    lede: "I build frontends that don't just look polished on launch day — they stay fast and maintainable as the team and feature set grow. TypeScript strict, design tokens, and a tested component library are the defaults, not extras.",
+    lede: "I build frontends that don't just look polished on launch day - they stay fast and maintainable as the team and feature set grow. TypeScript strict, design tokens, and a tested component library are the defaults, not extras.",
     deliverables: [
       {
         iconName: "Code2",
@@ -312,7 +312,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Sparkles",
         title: "Motion & micro-interactions",
         description:
-          "Framer Motion v12 with reduced-motion respect. Page transitions, scroll-driven animations, and shared layout — the difference between 'a website' and 'a product'.",
+          "Framer Motion v12 with reduced-motion respect. Page transitions, scroll-driven animations, and shared layout - the difference between 'a website' and 'a product'.",
       },
       {
         iconName: "Globe",
@@ -350,14 +350,14 @@ export const servicePages: ServicePage[] = [
         name: "Landing / Marketing",
         startingFrom: "$1,500",
         bestFor: "Marketing teams shipping a new launch",
-        bullets: ["Single-page or short multi-page site", "Animations, SEO, analytics", "Delivered in 5–10 days"],
+        bullets: ["Single-page or short multi-page site", "Animations, SEO, analytics", "Delivered in 5-10 days"],
       },
       {
         name: "Product UI",
         startingFrom: "$4,500",
         popular: true,
         bestFor: "Teams building or rebuilding their app frontend",
-        bullets: ["Full component library", "10+ screens, dashboard UX", "Design system + Storybook", "Delivered in 3–6 weeks"],
+        bullets: ["Full component library", "10+ screens, dashboard UX", "Design system + Storybook", "Delivered in 3-6 weeks"],
       },
       {
         name: "Retainer",
@@ -367,7 +367,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     faqs: [
-      { q: "Do you work from Figma?", a: "Yes — that's the default. I also work from existing UI screenshots, hand-drawn wireframes, or written briefs when there's no design yet." },
+      { q: "Do you work from Figma?", a: "Yes - that's the default. I also work from existing UI screenshots, hand-drawn wireframes, or written briefs when there's no design yet." },
       { q: "Can you join an existing frontend team?", a: "Yes. I regularly slot into existing React/Next.js codebases, follow the team's conventions, and PR like any other engineer." },
       { q: "How do you handle animations without hurting performance?", a: "GPU-accelerated transforms only, IntersectionObserver-driven entry animations, and a hard rule of skipping motion when prefers-reduced-motion is set. Animations should add polish, not jank." },
       { q: "Do you handle email templates and OG images?", a: "Yes. Email templates with MJML or React Email, and dynamic OG images via @vercel/og or Cloudinary on-the-fly." },
@@ -380,7 +380,7 @@ export const servicePages: ServicePage[] = [
     slug: "backend-development",
     category: "development",
     iconName: "Server",
-    metaTitle: "Backend Development Services — Node.js, NestJS, PostgreSQL",
+    metaTitle: "Backend Development Services - Node.js, NestJS, PostgreSQL",
     metaDescription:
       "Backend development services for production traffic. Node.js, NestJS, PostgreSQL, Redis, AWS. Typed APIs, 99.9% uptime, sub-100ms p95, OpenAPI docs. Free architecture review in 24 hours.",
     keywords: [
@@ -399,7 +399,7 @@ export const servicePages: ServicePage[] = [
     heroTitle: "Backends built for real production traffic",
     heroDescription:
       "Typed Node.js and NestJS APIs with PostgreSQL or MongoDB, Redis caching, structured logs, and the boring discipline that keeps p95 latency under 100ms.",
-    lede: "Most backends are fine on launch day. The question is what happens in month 6 — when traffic is 10× higher, the team has tripled, and the original developer has left. That's the backend I build.",
+    lede: "Most backends are fine on launch day. The question is what happens in month 6 - when traffic is 10× higher, the team has tripled, and the original developer has left. That's the backend I build.",
     deliverables: [
       {
         iconName: "Server",
@@ -446,7 +446,7 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Architecture review", description: "Map the data model, identify hot paths, surface scale risks. Output: a written architecture doc you can share with stakeholders." },
-      { title: "Build & test", description: "TDD-friendly module structure, contract tests against the OpenAPI schema, integration tests against a real DB — not mocks." },
+      { title: "Build & test", description: "TDD-friendly module structure, contract tests against the OpenAPI schema, integration tests against a real DB - not mocks." },
       { title: "Load & harden", description: "k6 load tests at projected scale, fix the slowest endpoints first, add caching where it actually moves the needle." },
       { title: "Ship & monitor", description: "Blue/green or canary deploys, dashboards for p95 latency and error rate, on-call runbook for the team." },
     ],
@@ -461,7 +461,7 @@ export const servicePages: ServicePage[] = [
         name: "API Build",
         startingFrom: "$3,000",
         bestFor: "New product backends",
-        bullets: ["5–15 endpoints", "Auth, validation, OpenAPI docs", "Deployed to AWS or Render", "Delivered in 2–4 weeks"],
+        bullets: ["5-15 endpoints", "Auth, validation, OpenAPI docs", "Deployed to AWS or Render", "Delivered in 2-4 weeks"],
       },
       {
         name: "Scale",
@@ -479,8 +479,8 @@ export const servicePages: ServicePage[] = [
     ],
     faqs: [
       { q: "Do you work with NestJS specifically, or general Node?", a: "Both. NestJS is my default for anything past a basic CRUD because of dependency injection and guards/interceptors. Express or Fastify when minimalism matters more." },
-      { q: "Can you take over a struggling backend?", a: "Yes — I do this often. The first deliverable is a written audit covering perf hotspots, security risks, and a prioritised remediation plan before any code is touched." },
-      { q: "Do you handle background jobs and queues?", a: "Yes. BullMQ with Redis, Cloud Tasks, or AWS SQS — picked based on your infra. Always idempotent handlers and a dead-letter strategy." },
+      { q: "Can you take over a struggling backend?", a: "Yes - I do this often. The first deliverable is a written audit covering perf hotspots, security risks, and a prioritised remediation plan before any code is touched." },
+      { q: "Do you handle background jobs and queues?", a: "Yes. BullMQ with Redis, Cloud Tasks, or AWS SQS - picked based on your infra. Always idempotent handlers and a dead-letter strategy." },
       { q: "What about migrations and zero-downtime deploys?", a: "Migrations are versioned with Prisma or knex/squitch, applied in a separate step from app deploy. Schema changes use expand-then-contract so writes never break." },
     ],
     related: ["api-development", "web-development", "saas-development", "ai-integration"],
@@ -491,7 +491,7 @@ export const servicePages: ServicePage[] = [
     slug: "api-development",
     category: "development",
     iconName: "Webhook",
-    metaTitle: "API Development Services — REST, GraphQL, Webhooks",
+    metaTitle: "API Development Services - REST, GraphQL, Webhooks",
     metaDescription:
       "API development services. REST and GraphQL APIs with JWT auth, rate limiting, OpenAPI docs, webhooks, and SDKs. Built to be consumed by partners and customers, not just your own frontend.",
     keywords: [
@@ -509,10 +509,10 @@ export const servicePages: ServicePage[] = [
     eyebrow: "API Development",
     heroTitle: "APIs your partners actually enjoy using",
     heroDescription:
-      "Well-versioned, well-documented REST or GraphQL APIs with auth, rate limiting, and webhooks. Built to be consumed by partners and customers — not only your own frontend.",
-    lede: "A public API is a contract. I treat it that way — versioned cleanly, documented from day one, monitored, and designed so that the SDK practically writes itself.",
+      "Well-versioned, well-documented REST or GraphQL APIs with auth, rate limiting, and webhooks. Built to be consumed by partners and customers - not only your own frontend.",
+    lede: "A public API is a contract. I treat it that way - versioned cleanly, documented from day one, monitored, and designed so that the SDK practically writes itself.",
     deliverables: [
-      { iconName: "Webhook", title: "REST or GraphQL — picked for you", description: "Not religion. REST for resource-shaped data and CDN cacheability. GraphQL when clients need flexible shapes and there's a real schema team." },
+      { iconName: "Webhook", title: "REST or GraphQL - picked for you", description: "Not religion. REST for resource-shaped data and CDN cacheability. GraphQL when clients need flexible shapes and there's a real schema team." },
       { iconName: "FileSearch", title: "OpenAPI / GraphQL schema", description: "Generated docs that stay accurate. Type-safe clients for TypeScript, Python, Go via openapi-typescript or codegen. Postman collection on request." },
       { iconName: "ShieldCheck", title: "Auth that scales beyond your frontend", description: "API keys with rotation, OAuth 2.0 with PKCE, JWT with refresh, mTLS for partner integrations. Scoped permissions per token." },
       { iconName: "Zap", title: "Rate limiting + quotas", description: "Per-key, per-IP, per-endpoint limits with Redis. Quota dashboards your customers can self-serve. Burst tolerance + 429 with Retry-After done right." },
@@ -526,10 +526,10 @@ export const servicePages: ServicePage[] = [
       { label: "Infra", items: ["Redis", "Kong / Tyk", "Cloudflare", "AWS API Gateway"] },
     ],
     process: [
-      { title: "Design first", description: "Endpoints, resources, errors, pagination, versioning strategy — all written in OpenAPI before code." },
+      { title: "Design first", description: "Endpoints, resources, errors, pagination, versioning strategy - all written in OpenAPI before code." },
       { title: "Reference implementation", description: "Build a thin slice end-to-end: auth, one resource, full docs, one SDK. Validates the design with a real consumer." },
       { title: "Build the surface", description: "Fan out the rest of the endpoints. Contract tests against the schema run on every PR." },
-      { title: "Launch & monitor", description: "Public docs site, sandbox keys, status page, and webhook test tool — the things partners actually expect." },
+      { title: "Launch & monitor", description: "Public docs site, sandbox keys, status page, and webhook test tool - the things partners actually expect." },
     ],
     proof: [
       { value: "30+", label: "Production APIs shipped" },
@@ -542,7 +542,7 @@ export const servicePages: ServicePage[] = [
         name: "Internal API",
         startingFrom: "$3,000",
         bestFor: "Backend for your own frontend",
-        bullets: ["10–20 endpoints", "JWT auth, OpenAPI docs", "Tests, CI, deploy"],
+        bullets: ["10-20 endpoints", "JWT auth, OpenAPI docs", "Tests, CI, deploy"],
       },
       {
         name: "Public API",
@@ -561,7 +561,7 @@ export const servicePages: ServicePage[] = [
     faqs: [
       { q: "REST or GraphQL?", a: "REST for partner-facing APIs (CDN-cacheable, simple integration). GraphQL when clients need to compose responses and there's a schema team. I'll recommend based on your actual consumers, not preference." },
       { q: "Do you build SDKs?", a: "Yes. TypeScript first, then Python, Go, and Ruby on request. Generated from OpenAPI so they stay in sync with the API." },
-      { q: "How do you version an API?", a: "URL path versioning (/v1, /v2) with a documented deprecation window — typically 12 months — and a changelog endpoint for clients to subscribe to." },
+      { q: "How do you version an API?", a: "URL path versioning (/v1, /v2) with a documented deprecation window - typically 12 months - and a changelog endpoint for clients to subscribe to." },
       { q: "What about API gateway and edge?", a: "Kong, Tyk, or AWS API Gateway depending on your infra. Cloudflare Workers for edge auth and rate limiting where it makes sense." },
     ],
     related: ["backend-development", "web-development", "saas-development", "ai-integration"],
@@ -572,9 +572,9 @@ export const servicePages: ServicePage[] = [
     slug: "saas-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "SaaS Development Services — Multi-Tenant Apps, Stripe Billing",
+    metaTitle: "SaaS Development Services - Multi-Tenant Apps, Stripe Billing",
     metaDescription:
-      "SaaS development services — multi-tenant Next.js apps with Stripe billing, Supabase auth, RBAC, admin dashboards, and onboarding. From idea to paying customers.",
+      "SaaS development services - multi-tenant Next.js apps with Stripe billing, Supabase auth, RBAC, admin dashboards, and onboarding. From idea to paying customers.",
     keywords: [
       "SaaS development services",
       "SaaS developer for hire",
@@ -590,8 +590,8 @@ export const servicePages: ServicePage[] = [
     eyebrow: "SaaS Development",
     heroTitle: "Multi-tenant SaaS, billing on day one",
     heroDescription:
-      "End-to-end SaaS builds with Stripe billing, multi-tenant auth, role-based access, onboarding flows, and admin dashboards — built to take real paying customers.",
-    lede: "Most SaaS MVPs ship without billing, without admin tools, without invite flows. They look great on launch and break on first paying customer. I build with billing, tenancy, and ops from day one — because that's what survives contact with users.",
+      "End-to-end SaaS builds with Stripe billing, multi-tenant auth, role-based access, onboarding flows, and admin dashboards - built to take real paying customers.",
+    lede: "Most SaaS MVPs ship without billing, without admin tools, without invite flows. They look great on launch and break on first paying customer. I build with billing, tenancy, and ops from day one - because that's what survives contact with users.",
     deliverables: [
       { iconName: "Layers", title: "Multi-tenant from the data model up", description: "Workspace/team scoping in Postgres with RLS, no leaky queries, audit log on every cross-tenant boundary, invite + role management." },
       { iconName: "Webhook", title: "Stripe billing wired correctly", description: "Subscriptions, metered usage, proration, trials, cancellations, dunning. Webhook handlers are idempotent and signed. No silent revenue leaks." },
@@ -609,24 +609,24 @@ export const servicePages: ServicePage[] = [
     process: [
       { title: "Pricing & tiers", description: "Pricing model, feature gating, and metering decisions before writing code. Wrong tiers = wrong product." },
       { title: "Core flows", description: "Signup, invite, billing, cancel, upgrade, downgrade. Boring flows that drive 80% of revenue." },
-      { title: "Product features", description: "Whatever your app actually does — built tenant-aware from day one." },
-      { title: "Launch & iterate", description: "Closed beta with 5–10 design partners, instrument with PostHog, ship to public." },
+      { title: "Product features", description: "Whatever your app actually does - built tenant-aware from day one." },
+      { title: "Launch & iterate", description: "Closed beta with 5-10 design partners, instrument with PostHog, ship to public." },
     ],
     proof: [
       { value: "8+", label: "SaaS products shipped to paying users" },
-      { value: "Stripe", label: "Default billing — webhooks signed, idempotent" },
+      { value: "Stripe", label: "Default billing - webhooks signed, idempotent" },
       { value: "<5s", label: "Signup to first 'aha' moment targeted" },
       { value: "0", label: "Cross-tenant data leaks (RLS enforced)" },
     ],
     pricing: [
-      { name: "MVP", startingFrom: "$6,500", bestFor: "Founders validating with paying users", bullets: ["Signup, billing, 3–5 core flows", "Single-tier pricing", "Delivered in 3–5 weeks"] },
-      { name: "Production", startingFrom: "$14,000", popular: true, bestFor: "Teams scaling past 100 paying customers", bullets: ["Multi-tenant + invite + RBAC", "Tiered pricing, metering, dunning", "Admin + support tools", "Delivered in 6–10 weeks"] },
+      { name: "MVP", startingFrom: "$6,500", bestFor: "Founders validating with paying users", bullets: ["Signup, billing, 3-5 core flows", "Single-tier pricing", "Delivered in 3-5 weeks"] },
+      { name: "Production", startingFrom: "$14,000", popular: true, bestFor: "Teams scaling past 100 paying customers", bullets: ["Multi-tenant + invite + RBAC", "Tiered pricing, metering, dunning", "Admin + support tools", "Delivered in 6-10 weeks"] },
       { name: "Retainer", startingFrom: "$3,500/mo", bestFor: "Ongoing product growth", bullets: ["Reserved engineering hours", "Feature flags + experiment infra", "On-call coverage"] },
     ],
     faqs: [
       { q: "Stripe or Paddle?", a: "Stripe by default for control and ecosystem. Paddle when you want a Merchant of Record (handles VAT/sales tax globally). I'll recommend based on where your customers are." },
       { q: "How do you handle tenancy?", a: "Shared schema with tenant_id on every row, Postgres RLS for hard isolation. Schema-per-tenant only when there's a regulatory reason." },
-      { q: "Can you migrate me off no-code (Bubble, Webflow)?", a: "Yes — common path. I keep your data model intact, recreate flows in Next.js, and migrate data with a one-time import script." },
+      { q: "Can you migrate me off no-code (Bubble, Webflow)?", a: "Yes - common path. I keep your data model intact, recreate flows in Next.js, and migrate data with a one-time import script." },
       { q: "Do you handle SOC2 prep?", a: "I can wire the technical controls (audit log, MFA, access reviews, encryption) and recommend a vendor (Vanta, Drata) for the policy/evidence side." },
     ],
     related: ["web-development", "backend-development", "api-development", "ecommerce-development"],
@@ -637,7 +637,7 @@ export const servicePages: ServicePage[] = [
     slug: "ecommerce-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "E-commerce Development Services — Headless Shopify, Next.js",
+    metaTitle: "E-commerce Development Services - Headless Shopify, Next.js",
     metaDescription:
       "Headless e-commerce builds on Next.js with Shopify, Stripe, or custom backends. Sub-second product pages, SEO-first catalog, and conversion-tuned checkout. Free audit in 24 hours.",
     keywords: [
@@ -655,13 +655,13 @@ export const servicePages: ServicePage[] = [
     eyebrow: "E-commerce Development",
     heroTitle: "Storefronts that load fast and convert hard",
     heroDescription:
-      "Headless Shopify or custom commerce on Next.js — sub-second product pages, SEO-tuned catalog, and a checkout designed around the data, not the template.",
+      "Headless Shopify or custom commerce on Next.js - sub-second product pages, SEO-tuned catalog, and a checkout designed around the data, not the template.",
     lede: "On Shopify Liquid you compete on theme polish. Going headless flips it: you compete on speed, SEO, and merchandising precision. That's where Next.js plus a commerce backend wins.",
     deliverables: [
       { iconName: "Zap", title: "Sub-second product pages", description: "ISR + Cloudflare cache, image optimisation, code-splitting per route. Real-world LCP under 1.5s on mid-range phones." },
       { iconName: "Search", title: "SEO-first catalog & PLPs", description: "Server-rendered product / collection pages with Product schema, breadcrumbs, faceted URLs, and canonical handling for variants." },
-      { iconName: "Globe", title: "Headless Shopify, BigCommerce, or custom", description: "Storefront API, Hydrogen, or a custom Postgres+Stripe backend — picked on your catalog size, complexity, and team." },
-      { iconName: "ShieldCheck", title: "Conversion-tuned checkout", description: "Stripe Checkout, Shop Pay, or Bolt — A/B-ready, mobile-first, address autocomplete, abandoned-cart recovery hooks." },
+      { iconName: "Globe", title: "Headless Shopify, BigCommerce, or custom", description: "Storefront API, Hydrogen, or a custom Postgres+Stripe backend - picked on your catalog size, complexity, and team." },
+      { iconName: "ShieldCheck", title: "Conversion-tuned checkout", description: "Stripe Checkout, Shop Pay, or Bolt - A/B-ready, mobile-first, address autocomplete, abandoned-cart recovery hooks." },
       { iconName: "BarChart3", title: "Analytics & merchandising", description: "GA4 + server-side events via Stape, Klaviyo / Mailchimp wiring, Algolia / Meilisearch for instant search and merchandising rules." },
       { iconName: "Webhook", title: "Inventory, fulfilment & subscriptions", description: "Webhook handlers for orders, fulfilment, and refunds. Recharge / Stripe Subscriptions wired correctly with proration." },
     ],
@@ -689,7 +689,7 @@ export const servicePages: ServicePage[] = [
       { name: "Retainer", startingFrom: "$3,000/mo", bestFor: "Ongoing CRO + merchandising", bullets: ["Experiment infra", "PDP/PLP iterations", "Performance regression watch"] },
     ],
     faqs: [
-      { q: "Why headless instead of Shopify themes?", a: "Speed, SEO, and merchandising flexibility. You also unblock the marketing team from theme constraints. The tradeoff is more engineering — worth it for ambitious brands, not for $5k starter stores." },
+      { q: "Why headless instead of Shopify themes?", a: "Speed, SEO, and merchandising flexibility. You also unblock the marketing team from theme constraints. The tradeoff is more engineering - worth it for ambitious brands, not for $5k starter stores." },
       { q: "What about Shopify checkout?", a: "You keep Shopify checkout (PCI / Shop Pay benefits) or move to Stripe Checkout when you go fully custom. Both wired with abandoned-cart hooks." },
       { q: "Can you migrate without losing SEO?", a: "Yes. Old URL inventory, a 1:1 redirect map, server-rendered metadata identical to or better than the old site, and a 30-day rank-watch post-launch." },
       { q: "Do you support multi-region pricing & tax?", a: "Yes. Stripe Tax, Shopify Markets, or a custom currency/region matrix depending on your stack." },
@@ -702,7 +702,7 @@ export const servicePages: ServicePage[] = [
     slug: "seo",
     category: "marketing",
     iconName: "Search",
-    metaTitle: "SEO Services — Developer-Led SEO for SaaS & B2B",
+    metaTitle: "SEO Services - Developer-Led SEO for SaaS & B2B",
     metaDescription:
       "SEO services that combine on-page, technical, and content work. Built by a developer who knows Core Web Vitals, schema, and how Next.js really renders. Free SEO audit in 24 hours.",
     keywords: [
@@ -720,13 +720,13 @@ export const servicePages: ServicePage[] = [
     eyebrow: "SEO Services",
     heroTitle: "SEO done by someone who ships the code",
     heroDescription:
-      "On-page, technical, and content SEO — combined into one engagement, run by a developer who can actually fix the rendering bugs your audit will surface.",
-    lede: "Most SEO agencies hand you a 90-page audit and a 'send this to your dev team' email. I am the dev team. I audit it, fix it, write the content, and ship the schema — without a three-way handoff that loses 60% of the velocity.",
+      "On-page, technical, and content SEO - combined into one engagement, run by a developer who can actually fix the rendering bugs your audit will surface.",
+    lede: "Most SEO agencies hand you a 90-page audit and a 'send this to your dev team' email. I am the dev team. I audit it, fix it, write the content, and ship the schema - without a three-way handoff that loses 60% of the velocity.",
     deliverables: [
       { iconName: "FileSearch", title: "Full technical & content audit", description: "Crawlability, indexation, Core Web Vitals, schema, internal links, content gaps, keyword cannibalisation, backlink profile. One doc, prioritised by impact." },
       { iconName: "Sparkles", title: "On-page SEO across the site", description: "Title, meta, H1, schema (Article, Product, FAQ, Breadcrumb, Organization), OG images, canonicals, hreflang. Templated so new pages inherit it." },
       { iconName: "Zap", title: "Core Web Vitals fixes", description: "Real-user LCP, INP, CLS work. Image optimisation, code splitting, hydration cost reduction, render-blocking removal. Pass on real-world data, not Lighthouse-only." },
-      { iconName: "TrendingUp", title: "Content briefs & writing", description: "Keyword research, search-intent mapping, content briefs with target SERP features, and 1500–2500-word articles written by me — not GPT-spam." },
+      { iconName: "TrendingUp", title: "Content briefs & writing", description: "Keyword research, search-intent mapping, content briefs with target SERP features, and 1500-2500-word articles written by me - not GPT-spam." },
       { iconName: "Megaphone", title: "Internal link strategy", description: "Topic clusters, hub-and-spoke link maps, contextual links wired into the CMS or rendered pages. Your highest-authority pages funnel correctly." },
       { iconName: "BarChart3", title: "Search Console + GA4 wiring", description: "GSC verified, GA4 events for scroll/conversion, monthly reporting dashboards (Looker Studio) so you can see what's actually moving." },
     ],
@@ -738,8 +738,8 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Audit (week 1)", description: "Full crawl, content inventory, Core Web Vitals report. Output: prioritised punch-list with effort/impact estimates." },
-      { title: "Quick wins (weeks 2–3)", description: "Schema, metadata templates, broken links, redirect cleanup, lazy-loading bugs. The fastest paths to ranking change." },
-      { title: "Content engine (weeks 4+)", description: "2–4 articles per month + internal link work. Briefs match real SERP intent, not just keyword volume." },
+      { title: "Quick wins (weeks 2-3)", description: "Schema, metadata templates, broken links, redirect cleanup, lazy-loading bugs. The fastest paths to ranking change." },
+      { title: "Content engine (weeks 4+)", description: "2-4 articles per month + internal link work. Briefs match real SERP intent, not just keyword volume." },
       { title: "Iterate on data", description: "Monthly review of ranking, CTR, conversions. Cut what doesn't work, double down on what does." },
     ],
     proof: [
@@ -751,13 +751,13 @@ export const servicePages: ServicePage[] = [
     pricing: [
       { name: "Audit", startingFrom: "$750", bestFor: "One-time deep audit + plan", bullets: ["Full technical + content audit", "Prioritised action plan", "60-min review call"] },
       { name: "SEO Sprint", startingFrom: "$3,500", popular: true, bestFor: "6-week intensive", bullets: ["Audit + all quick-win fixes shipped", "Schema + metadata templates", "8 content briefs delivered"] },
-      { name: "Retainer", startingFrom: "$1,800/mo", bestFor: "Ongoing SEO growth", bullets: ["2–4 articles + internal linking", "Technical regression watch", "Monthly Looker Studio report"] },
+      { name: "Retainer", startingFrom: "$1,800/mo", bestFor: "Ongoing SEO growth", bullets: ["2-4 articles + internal linking", "Technical regression watch", "Monthly Looker Studio report"] },
     ],
     faqs: [
-      { q: "How long until I see ranking change?", a: "Technical fixes can move things in 2–4 weeks. Content-driven ranking on competitive terms takes 3–6 months. I'll be honest about which keywords are realistic and which aren't, in writing, before we start." },
-      { q: "Do you use AI to write content?", a: "I use AI for keyword research and outline drafts. The final article is written or heavily edited by me — Google's helpful-content update has tanked sites that publish raw GPT output, and I won't put your domain in that bucket." },
+      { q: "How long until I see ranking change?", a: "Technical fixes can move things in 2-4 weeks. Content-driven ranking on competitive terms takes 3-6 months. I'll be honest about which keywords are realistic and which aren't, in writing, before we start." },
+      { q: "Do you use AI to write content?", a: "I use AI for keyword research and outline drafts. The final article is written or heavily edited by me - Google's helpful-content update has tanked sites that publish raw GPT output, and I won't put your domain in that bucket." },
       { q: "Will you guarantee a #1 ranking?", a: "No. Anyone who does is lying. I will guarantee the technical fixes are correct, the content is genuinely better than what currently ranks, and the work is measurable in GSC." },
-      { q: "Do you work with my existing CMS?", a: "Yes — WordPress, Webflow, Shopify, Sanity, Contentful, custom Next.js. Schema and metadata are templated into whatever CMS you use." },
+      { q: "Do you work with my existing CMS?", a: "Yes - WordPress, Webflow, Shopify, Sanity, Contentful, custom Next.js. Schema and metadata are templated into whatever CMS you use." },
     ],
     related: ["technical-seo", "local-seo", "seo-audit", "web-development"],
   },
@@ -767,7 +767,7 @@ export const servicePages: ServicePage[] = [
     slug: "technical-seo",
     category: "marketing",
     iconName: "FileSearch",
-    metaTitle: "Technical SEO Services — Core Web Vitals, Schema, Next.js",
+    metaTitle: "Technical SEO Services - Core Web Vitals, Schema, Next.js",
     metaDescription:
       "Technical SEO services for Next.js, React, and headless sites. Core Web Vitals, structured data, indexation, rendering audits. Fixes shipped, not just recommended.",
     keywords: [
@@ -785,12 +785,12 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Technical SEO",
     heroTitle: "Technical SEO, fixed not just flagged",
     heroDescription:
-      "Core Web Vitals, schema, indexation, and JavaScript-rendering work — by someone who reads the Next.js source, not just the SEO tool report.",
-    lede: "Technical SEO is where most SaaS sites bleed traffic silently — orphan pages, client-rendered metadata, broken canonicals, schema typos. I find them in a day and ship the fixes the same week.",
+      "Core Web Vitals, schema, indexation, and JavaScript-rendering work - by someone who reads the Next.js source, not just the SEO tool report.",
+    lede: "Technical SEO is where most SaaS sites bleed traffic silently - orphan pages, client-rendered metadata, broken canonicals, schema typos. I find them in a day and ship the fixes the same week.",
     deliverables: [
       { iconName: "FileSearch", title: "Crawlability & indexation audit", description: "Robots, sitemaps, canonical chains, hreflang, parameter URLs, soft-404s, duplicate content. Coverage report cleaned to green." },
       { iconName: "Zap", title: "Core Web Vitals on real users", description: "LCP, INP, CLS attacked on real-user data from CrUX, not synthetic Lighthouse. Hydration cost, image strategy, render-blocking, font loading." },
-      { iconName: "Sparkles", title: "Structured data — Article, FAQ, Product, Organization, Breadcrumb", description: "JSON-LD templated and validated. Rich-result eligibility for every page type that qualifies." },
+      { iconName: "Sparkles", title: "Structured data - Article, FAQ, Product, Organization, Breadcrumb", description: "JSON-LD templated and validated. Rich-result eligibility for every page type that qualifies." },
       { iconName: "Layers", title: "JavaScript rendering audit", description: "Server-rendered vs client-rendered diff, prerender for SPA-only frameworks, dynamic imports without losing SEO. Googlebot sees what users see." },
       { iconName: "Webhook", title: "Server response & infra", description: "Server-Timing headers, edge-cache strategy, 5xx rates, TTFB. SEO starts at the response, not the page." },
       { iconName: "BarChart3", title: "Monitoring after the fix", description: "GSC + CrUX dashboards, regression alerts in CI (Lighthouse-CI), uptime monitoring. The fix stays fixed." },
@@ -803,7 +803,7 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Crawl + baseline", description: "Full Screaming Frog crawl, CrUX baseline, GSC export. Output: a one-page severity-ranked list." },
-      { title: "Quick wins", description: "Schema, metadata, canonicals, sitemap — the things Google reads first. Shipped in week 1." },
+      { title: "Quick wins", description: "Schema, metadata, canonicals, sitemap - the things Google reads first. Shipped in week 1." },
       { title: "Performance & rendering", description: "LCP, INP, hydration. Where most of the long-tail traffic actually unlocks." },
       { title: "Monitor & alert", description: "Lighthouse CI in your GitHub Actions, CrUX-based weekly snapshots, monthly review." },
     ],
@@ -819,9 +819,9 @@ export const servicePages: ServicePage[] = [
       { name: "Retainer", startingFrom: "$1,200/mo", bestFor: "Ongoing technical SEO", bullets: ["Monthly crawl + regression watch", "New-page schema review", "Performance budget enforcement"] },
     ],
     faqs: [
-      { q: "We're on Next.js — is it really an SEO risk?", a: "Next.js is excellent for SEO if you use it right. App Router + Server Components are SEO-friendly by default. The bugs creep in around 'use client' boundaries, lazy-loaded metadata, and dynamic OG images. That's the audit job." },
+      { q: "We're on Next.js - is it really an SEO risk?", a: "Next.js is excellent for SEO if you use it right. App Router + Server Components are SEO-friendly by default. The bugs creep in around 'use client' boundaries, lazy-loaded metadata, and dynamic OG images. That's the audit job." },
       { q: "What about React SPA / Vite?", a: "SPA-only frameworks get a prerender layer (Vercel prerender, Prerender.io) or a documented migration plan to Next.js / Astro. Both work; pick based on team capacity." },
-      { q: "How long until rankings move after a technical fix?", a: "Recrawl + reindex usually takes 2–6 weeks. CWV changes propagate to ranking signals over 28-day rolling windows. Schema typically shows in results within days." },
+      { q: "How long until rankings move after a technical fix?", a: "Recrawl + reindex usually takes 2-6 weeks. CWV changes propagate to ranking signals over 28-day rolling windows. Schema typically shows in results within days." },
       { q: "Do you fix the bugs or just write the report?", a: "I fix them. The report is just to explain what's being fixed. Implementation is the deliverable." },
     ],
     related: ["seo", "local-seo", "seo-audit", "web-development"],
@@ -832,7 +832,7 @@ export const servicePages: ServicePage[] = [
     slug: "local-seo",
     category: "marketing",
     iconName: "MapPin",
-    metaTitle: "Local SEO Services — Google Business Profile, Citations, Reviews",
+    metaTitle: "Local SEO Services - Google Business Profile, Citations, Reviews",
     metaDescription:
       "Local SEO services for service businesses and multi-location brands. Google Business Profile optimisation, citations, reviews, local schema, location pages that actually rank.",
     keywords: [
@@ -848,16 +848,16 @@ export const servicePages: ServicePage[] = [
       "local SEO for service business",
     ],
     eyebrow: "Local SEO",
-    heroTitle: "Show up in the Map Pack — for the right searches",
+    heroTitle: "Show up in the Map Pack - for the right searches",
     heroDescription:
       "Google Business Profile optimisation, citations, reviews, local schema, and location-page architecture for service businesses and multi-location brands.",
-    lede: "If you're a service business or a brand with locations, organic SEO matters less than ranking in the Map Pack. Different rules apply — proximity, prominence, relevance — and a lot of generic SEO advice actively hurts you. I do this work specifically.",
+    lede: "If you're a service business or a brand with locations, organic SEO matters less than ranking in the Map Pack. Different rules apply - proximity, prominence, relevance - and a lot of generic SEO advice actively hurts you. I do this work specifically.",
     deliverables: [
       { iconName: "MapPin", title: "Google Business Profile, fully optimised", description: "Categories, attributes, services, products, descriptions, photos, posts. Q&A seeded with real questions. UTM-tracked website link." },
       { iconName: "FileSearch", title: "NAP consistency & citations", description: "Audit + cleanup of name/address/phone across 50+ directories. Yelp, BBB, Apple Maps, Bing Places, industry-specific (Avvo, Houzz, Healthgrades, etc.)." },
       { iconName: "TrendingUp", title: "Review acquisition pipeline", description: "Review-request emails or SMS post-service, single-link landing page, response templates for both 5-star and 1-star reviews." },
       { iconName: "Sparkles", title: "Local schema markup", description: "LocalBusiness, Service, FAQ, Review, AggregateRating schema per location. ServiceArea correctly defined for SAB businesses." },
-      { iconName: "Layers", title: "Location pages that don't get penalised", description: "Unique, useful per-location pages — not doorway pages. Real photos, real staff, real reviews. Built to survive Helpful Content updates." },
+      { iconName: "Layers", title: "Location pages that don't get penalised", description: "Unique, useful per-location pages - not doorway pages. Real photos, real staff, real reviews. Built to survive Helpful Content updates." },
       { iconName: "BarChart3", title: "Map Pack rank tracking", description: "Geo-grid rank tracking for your priority keywords across the service area. Monthly delta on top 20 terms." },
     ],
     techStack: [
@@ -884,10 +884,10 @@ export const servicePages: ServicePage[] = [
       { name: "Multi-location Retainer", startingFrom: "$1,400/mo", bestFor: "Brands with 2+ locations", bullets: ["Per-location GBP management", "Monthly geo-grid scan", "Review response service"] },
     ],
     faqs: [
-      { q: "I don't have a physical address — can I still do local SEO?", a: "Yes, if you're a Service Area Business (plumber, electrician, mobile mechanic, etc.). You hide the address in GBP and define service areas instead. Same rules, slightly different setup." },
-      { q: "How many citations do I actually need?", a: "Quality over quantity. 30–50 high-authority + industry-specific citations beats 500 generic directory listings. The big-3 (Google, Apple Maps, Bing) are non-negotiable." },
+      { q: "I don't have a physical address - can I still do local SEO?", a: "Yes, if you're a Service Area Business (plumber, electrician, mobile mechanic, etc.). You hide the address in GBP and define service areas instead. Same rules, slightly different setup." },
+      { q: "How many citations do I actually need?", a: "Quality over quantity. 30-50 high-authority + industry-specific citations beats 500 generic directory listings. The big-3 (Google, Apple Maps, Bing) are non-negotiable." },
       { q: "How do you handle negative reviews?", a: "Templated empathy + action response within 24 hours, escalation flag for legitimate issues, flag-for-removal request when reviews violate Google's policies (fake, off-topic, conflict of interest)." },
-      { q: "Will you guarantee Map Pack #1?", a: "No. Map Pack ranking depends on proximity, which I can't control. I can guarantee your GBP, citations, reviews, and on-site signals are at the top of your category — that's what we control." },
+      { q: "Will you guarantee Map Pack #1?", a: "No. Map Pack ranking depends on proximity, which I can't control. I can guarantee your GBP, citations, reviews, and on-site signals are at the top of your category - that's what we control." },
     ],
     related: ["seo", "technical-seo", "seo-audit", "web-development"],
   },
@@ -897,9 +897,9 @@ export const servicePages: ServicePage[] = [
     slug: "seo-audit",
     category: "marketing",
     iconName: "FileSearch",
-    metaTitle: "SEO Audit Services — Full Technical & Content Audit",
+    metaTitle: "SEO Audit Services - Full Technical & Content Audit",
     metaDescription:
-      "Comprehensive SEO audits — technical, on-page, content, and backlink. Severity-ranked action plan with effort and impact estimates. Delivered in 5 business days.",
+      "Comprehensive SEO audits - technical, on-page, content, and backlink. Severity-ranked action plan with effort and impact estimates. Delivered in 5 business days.",
     keywords: [
       "SEO audit services",
       "website SEO audit",
@@ -915,7 +915,7 @@ export const servicePages: ServicePage[] = [
     eyebrow: "SEO Audit",
     heroTitle: "An SEO audit you can actually act on",
     heroDescription:
-      "Technical, on-page, content, and backlink — one report, severity-ranked, with effort and impact estimates on every recommendation. Delivered in 5 business days.",
+      "Technical, on-page, content, and backlink - one report, severity-ranked, with effort and impact estimates on every recommendation. Delivered in 5 business days.",
     lede: "Most audits are a 90-page PDF with no prioritisation. Mine is severity-ranked, paired with code-level instructions, and ends with a 60-minute walkthrough call so your team actually knows what to do on Monday.",
     deliverables: [
       { iconName: "FileSearch", title: "Crawl-based technical audit", description: "Screaming Frog + Sitebulb full crawl. Indexation, canonicals, redirects, broken links, hreflang, parameter URLs, soft-404s. Every issue counted." },
@@ -933,9 +933,9 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Kickoff (day 1)", description: "Goals, priority pages, current rank-tracking access. 30-min call." },
-      { title: "Crawl + analysis (days 2–4)", description: "Full crawl, GSC export, CrUX baseline, backlink pull, competitive analysis." },
+      { title: "Crawl + analysis (days 2-4)", description: "Full crawl, GSC export, CrUX baseline, backlink pull, competitive analysis." },
       { title: "Report (day 5)", description: "Severity-ranked action plan delivered as Notion doc + Loom walkthrough." },
-      { title: "Review call (day 5–7)", description: "60-min walkthrough with your team. Quotes for implementation are optional and separate." },
+      { title: "Review call (day 5-7)", description: "60-min walkthrough with your team. Quotes for implementation are optional and separate." },
     ],
     proof: [
       { value: "5 days", label: "From kickoff to delivered report" },
@@ -949,10 +949,10 @@ export const servicePages: ServicePage[] = [
       { name: "Enterprise Audit", startingFrom: "$3,500", bestFor: "Sites over 10K URLs", bullets: ["Multi-section deep dive", "Per-section workshops", "Custom Looker Studio dashboard"] },
     ],
     faqs: [
-      { q: "Can you also implement the fixes?", a: "Yes — that's offered as a separate engagement (see /services/seo and /services/technical-seo). I will quote it after the audit so you can decide based on the actual findings." },
+      { q: "Can you also implement the fixes?", a: "Yes - that's offered as a separate engagement (see /services/seo and /services/technical-seo). I will quote it after the audit so you can decide based on the actual findings." },
       { q: "Do I need to give you GSC access?", a: "Highly recommended. GSC data dramatically improves the content + opportunity sections. Read-only access is fine." },
-      { q: "Will you audit a site that isn't live yet?", a: "Yes — pre-launch audits cover information architecture, URL strategy, metadata templates, schema plan, and a CWV-aware tech-stack review." },
-      { q: "How is this different from a free SEO audit tool?", a: "Tools give you 200 issues with no prioritisation. The audit ranks issues by traffic impact, ties them to specific pages, and includes the implementation instructions — not just 'add alt text'." },
+      { q: "Will you audit a site that isn't live yet?", a: "Yes - pre-launch audits cover information architecture, URL strategy, metadata templates, schema plan, and a CWV-aware tech-stack review." },
+      { q: "How is this different from a free SEO audit tool?", a: "Tools give you 200 issues with no prioritisation. The audit ranks issues by traffic impact, ties them to specific pages, and includes the implementation instructions - not just 'add alt text'." },
     ],
     related: ["seo", "technical-seo", "local-seo", "web-development"],
   },
@@ -962,7 +962,7 @@ export const servicePages: ServicePage[] = [
     slug: "ai-integration",
     category: "specialized",
     iconName: "Brain",
-    metaTitle: "AI Integration Services — OpenAI, Claude, RAG, LLM in Production",
+    metaTitle: "AI Integration Services - OpenAI, Claude, RAG, LLM in Production",
     metaDescription:
       "AI integration services for SaaS and web apps. OpenAI, Claude, Llama, RAG, vector search, evals. Built to be reliable in production, not just demo-able.",
     keywords: [
@@ -981,10 +981,10 @@ export const servicePages: ServicePage[] = [
     heroTitle: "LLMs in production, not just demos",
     heroDescription:
       "OpenAI, Anthropic Claude, and open-source LLMs wired into your app with RAG, structured outputs, evals, and the discipline that keeps it cheap and reliable at scale.",
-    lede: "A demo with GPT-4 takes an afternoon. An LLM feature that doesn't hallucinate on edge cases, doesn't leak prompts, costs less than your hosting bill, and doesn't break when the model is deprecated — that's a real engineering project. That's the project I take.",
+    lede: "A demo with GPT-4 takes an afternoon. An LLM feature that doesn't hallucinate on edge cases, doesn't leak prompts, costs less than your hosting bill, and doesn't break when the model is deprecated - that's a real engineering project. That's the project I take.",
     deliverables: [
-      { iconName: "Brain", title: "Model selection that fits the job", description: "GPT-4o, Claude Sonnet, Haiku, Llama 3.1, Mistral — picked on cost, latency, and the actual task. Often Haiku or Llama 70B in production with GPT-4 reserved for retries." },
-      { iconName: "FileSearch", title: "RAG done right", description: "Chunking strategy, embedding model selection, reranking, hybrid (BM25 + vector) search. Pinecone, pgvector, or Weaviate — picked by data size and ops capacity." },
+      { iconName: "Brain", title: "Model selection that fits the job", description: "GPT-4o, Claude Sonnet, Haiku, Llama 3.1, Mistral - picked on cost, latency, and the actual task. Often Haiku or Llama 70B in production with GPT-4 reserved for retries." },
+      { iconName: "FileSearch", title: "RAG done right", description: "Chunking strategy, embedding model selection, reranking, hybrid (BM25 + vector) search. Pinecone, pgvector, or Weaviate - picked by data size and ops capacity." },
       { iconName: "Sparkles", title: "Structured outputs & function calling", description: "Tool use, JSON schema enforcement, OpenAI structured outputs, Claude tool_use. No more 'parse the markdown the LLM hopefully returned'." },
       { iconName: "ShieldCheck", title: "Prompt injection & safety", description: "Input sanitisation, output filtering, rate limiting per user, abuse detection. Your LLM endpoint isn't a back door to your prod database." },
       { iconName: "BarChart3", title: "Evals & regression testing", description: "Golden dataset, automated eval suite, A/B between models on every PR. You upgrade the model only when the evals say it's safe." },
@@ -999,7 +999,7 @@ export const servicePages: ServicePage[] = [
     process: [
       { title: "Feature scoping", description: "Where does the LLM actually help vs hurt? Some 'AI features' should not exist. We answer that first." },
       { title: "Prototype + eval set", description: "Working prototype + a golden dataset to measure quality. You can compare models objectively from day one." },
-      { title: "Productionise", description: "Streaming, retries, fallback model, cost budget, observability — the boring stuff that makes the demo a product." },
+      { title: "Productionise", description: "Streaming, retries, fallback model, cost budget, observability - the boring stuff that makes the demo a product." },
       { title: "Ship + monitor", description: "Cost dashboards, eval dashboards, prompt versioning. New model? Re-run evals, deploy if green." },
     ],
     proof: [
@@ -1009,15 +1009,15 @@ export const servicePages: ServicePage[] = [
       { value: "0", label: "Prompts leaked in production endpoints" },
     ],
     pricing: [
-      { name: "Prototype", startingFrom: "$2,500", bestFor: "Validating one AI feature", bullets: ["Single feature, single model", "Golden dataset + basic eval", "Delivered in 1–2 weeks"] },
+      { name: "Prototype", startingFrom: "$2,500", bestFor: "Validating one AI feature", bullets: ["Single feature, single model", "Golden dataset + basic eval", "Delivered in 1-2 weeks"] },
       { name: "Production AI", startingFrom: "$8,500", popular: true, bestFor: "Shipping AI to real users", bullets: ["RAG + structured outputs", "Streaming, retries, fallback model", "Cost + eval dashboards"] },
       { name: "Retainer", startingFrom: "$3,000/mo", bestFor: "Ongoing LLM evolution", bullets: ["Model migrations + evals", "Prompt iteration", "Cost watch + optimisation"] },
     ],
     faqs: [
       { q: "OpenAI or Anthropic?", a: "Depends on the task. Claude is currently stronger at long-context reasoning and tool use; GPT-4o at multimodal and tight latency. I'll benchmark both on your golden dataset." },
-      { q: "Can you build a ChatGPT for our docs?", a: "Yes — that's a classic RAG project. Embedding pipeline + vector store + grounded retrieval + citations in the UI so users know where answers come from." },
+      { q: "Can you build a ChatGPT for our docs?", a: "Yes - that's a classic RAG project. Embedding pipeline + vector store + grounded retrieval + citations in the UI so users know where answers come from." },
       { q: "How do you control costs?", a: "Smaller model by default, GPT-4 / Claude Opus only on retry. Prompt caching, response caching where safe, streaming so you bail early. Monthly budget alerts." },
-      { q: "What about open-source / self-hosted LLMs?", a: "Yes — Llama 3.1, Mistral, Qwen via Together AI, Groq, or self-hosted on AWS. Right when privacy, cost, or compliance demands it. Often slower to integrate than OpenAI/Anthropic, so we measure tradeoffs honestly." },
+      { q: "What about open-source / self-hosted LLMs?", a: "Yes - Llama 3.1, Mistral, Qwen via Together AI, Groq, or self-hosted on AWS. Right when privacy, cost, or compliance demands it. Often slower to integrate than OpenAI/Anthropic, so we measure tradeoffs honestly." },
     ],
     related: ["api-development", "backend-development", "web-development", "saas-development"],
   },
@@ -1027,9 +1027,9 @@ export const servicePages: ServicePage[] = [
     slug: "mvp-development",
     category: "development",
     iconName: "Zap",
-    metaTitle: "MVP Development Service — Idea to Live Product in 4–8 Weeks",
+    metaTitle: "MVP Development Service - Idea to Live Product in 4-8 Weeks",
     metaDescription:
-      "Investor-ready MVPs built in 4–8 weeks. Full-stack Next.js + Node.js, auth, payments, admin dashboard. Fixed price, no scope creep. Free 24-hour quote.",
+      "Investor-ready MVPs built in 4-8 weeks. Full-stack Next.js + Node.js, auth, payments, admin dashboard. Fixed price, no scope creep. Free 24-hour quote.",
     keywords: [
       "MVP development service",
       "minimum viable product development",
@@ -1045,10 +1045,10 @@ export const servicePages: ServicePage[] = [
       "startup product development",
     ],
     eyebrow: "MVP Development",
-    heroTitle: "From idea to live product in 4–8 weeks",
+    heroTitle: "From idea to live product in 4-8 weeks",
     heroDescription:
       "Investor-ready MVPs built with the right stack, the right scope, and a fixed price. Ship fast, validate with real users, and raise with confidence.",
-    lede: "Most MVPs fail because they're either over-engineered (takes 6 months, costs $50K) or under-engineered (can't scale past 100 users). I've shipped 20+ MVPs and know exactly where to cut scope without cutting quality — auth, payments, core flows, and a deploy that doesn't embarrass you in a demo.",
+    lede: "Most MVPs fail because they're either over-engineered (takes 6 months, costs $50K) or under-engineered (can't scale past 100 users). I've shipped 20+ MVPs and know exactly where to cut scope without cutting quality - auth, payments, core flows, and a deploy that doesn't embarrass you in a demo.",
     deliverables: [
       {
         iconName: "Code2",
@@ -1060,7 +1060,7 @@ export const servicePages: ServicePage[] = [
         iconName: "ShieldCheck",
         title: "Authentication & role-based access",
         description:
-          "Email/password, Google OAuth, or magic links via Supabase Auth or Clerk. User roles and permission guards included — you don't have to bolt them on post-launch.",
+          "Email/password, Google OAuth, or magic links via Supabase Auth or Clerk. User roles and permission guards included - you don't have to bolt them on post-launch.",
       },
       {
         iconName: "Webhook",
@@ -1072,7 +1072,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Layers",
         title: "Admin dashboard",
         description:
-          "Internal dashboard to manage users, view signups, toggle flags, and handle support tasks — without needing direct DB access. Saves hours every week from day one.",
+          "Internal dashboard to manage users, view signups, toggle flags, and handle support tasks - without needing direct DB access. Saves hours every week from day one.",
       },
       {
         iconName: "Cloud",
@@ -1105,20 +1105,20 @@ export const servicePages: ServicePage[] = [
           "Data model, API contracts, and page-level wireframes. Every decision written down before code starts. No re-architecture surprises mid-build.",
       },
       {
-        title: "Iterative build (Weeks 2–6)",
+        title: "Iterative build (Weeks 2-6)",
         description:
-          "Weekly deployed previews. Loom walkthroughs at each milestone. Feedback in the PR — nothing waits for a big reveal at the end.",
+          "Weekly deployed previews. Loom walkthroughs at each milestone. Feedback in the PR - nothing waits for a big reveal at the end.",
       },
       {
-        title: "Launch & handover (Week 7–8)",
+        title: "Launch & handover (Week 7-8)",
         description:
           "Final QA, Lighthouse audit, production deploy, and codebase walkthrough. 30 days of post-launch bug fixes included.",
       },
     ],
     proof: [
       { value: "20+", label: "MVPs shipped to real users" },
-      { value: "4–8 wks", label: "Average time from kickoff to live" },
-      { value: "Fixed", label: "Price — no scope creep surprises" },
+      { value: "4-8 wks", label: "Average time from kickoff to live" },
+      { value: "Fixed", label: "Price - no scope creep surprises" },
       { value: "30 days", label: "Post-launch bug-fix support" },
     ],
     pricing: [
@@ -1127,10 +1127,10 @@ export const servicePages: ServicePage[] = [
         startingFrom: "$3,500",
         bestFor: "Validate a single core loop",
         bullets: [
-          "1 user type, 3–5 core screens",
+          "1 user type, 3-5 core screens",
           "Auth + 1 payment flow",
           "Deployed to Vercel / Supabase",
-          "Delivered in 2–3 weeks",
+          "Delivered in 2-3 weeks",
         ],
       },
       {
@@ -1141,8 +1141,8 @@ export const servicePages: ServicePage[] = [
         bullets: [
           "2 user types (e.g. user + admin)",
           "Auth, payments, dashboard, onboarding",
-          "5–10 core flows, mobile responsive",
-          "Delivered in 4–6 weeks",
+          "5-10 core flows, mobile responsive",
+          "Delivered in 4-6 weeks",
         ],
       },
       {
@@ -1160,15 +1160,15 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "How is an MVP different from a full product?",
-        a: "An MVP has exactly one core user journey — the thing that proves your value. Everything else (settings, reports, integrations, secondary flows) is cut. I help you decide what that core is, and we build only that. You can always add more after validation.",
+        a: "An MVP has exactly one core user journey - the thing that proves your value. Everything else (settings, reports, integrations, secondary flows) is cut. I help you decide what that core is, and we build only that. You can always add more after validation.",
       },
       {
         q: "Can we add features after the MVP ships?",
-        a: "Yes — most clients continue on a monthly retainer after launch to iterate based on real user feedback. The codebase is structured for extension from the start.",
+        a: "Yes - most clients continue on a monthly retainer after launch to iterate based on real user feedback. The codebase is structured for extension from the start.",
       },
       {
         q: "What if requirements change mid-build?",
-        a: "Small changes are absorbed. Significant scope changes (new entities, new flows) are scoped separately and quoted. Nothing gets added silently — every change is a written decision.",
+        a: "Small changes are absorbed. Significant scope changes (new entities, new flows) are scoped separately and quoted. Nothing gets added silently - every change is a written decision.",
       },
       {
         q: "Do you help with the product itself, or just the code?",
@@ -1187,7 +1187,7 @@ export const servicePages: ServicePage[] = [
     slug: "nextjs-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "Next.js Development Service — App Router, RSC, Vercel",
+    metaTitle: "Next.js Development Service - App Router, RSC, Vercel",
     metaDescription:
       "Next.js 14+ development service. App Router, React Server Components, TypeScript, Tailwind, SEO-first builds. 95+ Lighthouse, fast deploys, full-stack or frontend-only.",
     keywords: [
@@ -1205,20 +1205,20 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Next.js Development",
     heroTitle: "Next.js 14+ built the way the framework was meant to be used",
     heroDescription:
-      "App Router, React Server Components, TypeScript strict, Tailwind, and a 95+ Lighthouse score on real data. Frontend-only or full-stack — I'll fit your team.",
+      "App Router, React Server Components, TypeScript strict, Tailwind, and a 95+ Lighthouse score on real data. Frontend-only or full-stack - I'll fit your team.",
     lede: "I've shipped 15+ Next.js apps since the App Router launched and know exactly where its strengths are (server-first data fetching, ISR, edge middleware) and where teams burn hours needlessly. No config archaeology, no client-side waterfalls, no layout shift.",
     deliverables: [
       {
         iconName: "Code2",
         title: "App Router with server-first data fetching",
         description:
-          "Layouts, loading states, error boundaries, route groups, and parallel routes done correctly. Zero client-side waterfalls — data arrives before paint.",
+          "Layouts, loading states, error boundaries, route groups, and parallel routes done correctly. Zero client-side waterfalls - data arrives before paint.",
       },
       {
         iconName: "Search",
         title: "SEO built into the framework",
         description:
-          "generateMetadata per page, JSON-LD schema, dynamic OG images, sitemap.xml, robots.txt, and canonical URLs. No plugin layer — native Next.js APIs only.",
+          "generateMetadata per page, JSON-LD schema, dynamic OG images, sitemap.xml, robots.txt, and canonical URLs. No plugin layer - native Next.js APIs only.",
       },
       {
         iconName: "Zap",
@@ -1288,7 +1288,7 @@ export const servicePages: ServicePage[] = [
           "App Router + TypeScript + Tailwind",
           "SEO metadata + Lighthouse audit",
           "Vercel deploy + preview environments",
-          "Delivered in 1–3 weeks",
+          "Delivered in 1-3 weeks",
         ],
       },
       {
@@ -1300,7 +1300,7 @@ export const servicePages: ServicePage[] = [
           "App Router + API routes or separate Node.js API",
           "Auth, DB, edge caching, CI/CD",
           "95+ Lighthouse + FAQPage / JSON-LD schema",
-          "Delivered in 3–6 weeks",
+          "Delivered in 3-6 weeks",
         ],
       },
       {
@@ -1318,7 +1318,7 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "Should I use the App Router or Pages Router?",
-        a: "App Router for all new projects — it's where Next.js investment is going. If you're on Pages Router and your app works, migrating just to migrate isn't worth it unless you're hitting specific limitations (ISR granularity, layouts, streaming). I'll tell you honestly.",
+        a: "App Router for all new projects - it's where Next.js investment is going. If you're on Pages Router and your app works, migrating just to migrate isn't worth it unless you're hitting specific limitations (ISR granularity, layouts, streaming). I'll tell you honestly.",
       },
       {
         q: "Can you migrate our existing React / CRA app to Next.js?",
@@ -1341,7 +1341,7 @@ export const servicePages: ServicePage[] = [
     slug: "react-development",
     category: "development",
     iconName: "Layers",
-    metaTitle: "React Development Service — SPAs, Dashboards, Component Libraries",
+    metaTitle: "React Development Service - SPAs, Dashboards, Component Libraries",
     metaDescription:
       "React development service for SPAs, admin dashboards, design systems, and component libraries. TypeScript, TanStack Query, Vite, Tailwind. Senior-only work.",
     keywords: [
@@ -1361,19 +1361,19 @@ export const servicePages: ServicePage[] = [
     heroTitle: "React apps that ship fast and stay maintainable",
     heroDescription:
       "SPAs, data-heavy dashboards, and component libraries in React with TypeScript, TanStack Query, and a component architecture your team can extend without fear.",
-    lede: "Most React codebases become unmaintainable within 12 months — not because React is bad, but because prop drilling, inconsistent state patterns, and no component boundaries. I've refactored enough of these to know what to build right the first time: clear data-fetching boundaries, a typed component API, and a design system that doesn't fight the product.",
+    lede: "Most React codebases become unmaintainable within 12 months - not because React is bad, but because prop drilling, inconsistent state patterns, and no component boundaries. I've refactored enough of these to know what to build right the first time: clear data-fetching boundaries, a typed component API, and a design system that doesn't fight the product.",
     deliverables: [
       {
         iconName: "Layers",
         title: "Component library with typed API",
         description:
-          "Atomic components (Button, Input, Modal, Table) up to feature-level blocks (DataTable, FilterBar, DashboardCard). Props documented with TypeScript — no reading source code to understand usage.",
+          "Atomic components (Button, Input, Modal, Table) up to feature-level blocks (DataTable, FilterBar, DashboardCard). Props documented with TypeScript - no reading source code to understand usage.",
       },
       {
         iconName: "Zap",
         title: "TanStack Query data layer",
         description:
-          "Typed query hooks per resource, optimistic updates, background refresh, and error boundaries. Every loading and error state handled — no empty screens or silent failures.",
+          "Typed query hooks per resource, optimistic updates, background refresh, and error boundaries. Every loading and error state handled - no empty screens or silent failures.",
       },
       {
         iconName: "ShieldCheck",
@@ -1431,7 +1431,7 @@ export const servicePages: ServicePage[] = [
     proof: [
       { value: "5+", label: "Years of React in production" },
       { value: "10+", label: "React apps from scratch or refactored" },
-      { value: "TypeScript", label: "Strict mode — no implicit any anywhere" },
+      { value: "TypeScript", label: "Strict mode - no implicit any anywhere" },
       { value: "0", label: "Redux installs in the last 3 years" },
     ],
     pricing: [
@@ -1443,7 +1443,7 @@ export const servicePages: ServicePage[] = [
           "Typed component API with Tailwind",
           "Storybook stories + usage docs",
           "Published to your npm org or monorepo",
-          "Delivered in 1–2 weeks",
+          "Delivered in 1-2 weeks",
         ],
       },
       {
@@ -1455,7 +1455,7 @@ export const servicePages: ServicePage[] = [
           "TanStack Query data layer + auth",
           "Role-based views + optimistic updates",
           "Responsive, tested, Lighthouse-audited",
-          "Delivered in 3–5 weeks",
+          "Delivered in 3-5 weeks",
         ],
       },
       {
@@ -1472,12 +1472,12 @@ export const servicePages: ServicePage[] = [
     ],
     faqs: [
       {
-        q: "Next.js or plain React — which should I use?",
-        a: "If you need SEO, server-side rendering, or an API layer — use Next.js. If you're building a fully authenticated SPA (dashboard, admin tool, internal app) where SEO doesn't matter and you already have an API — plain React with Vite is simpler and ships faster.",
+        q: "Next.js or plain React - which should I use?",
+        a: "If you need SEO, server-side rendering, or an API layer - use Next.js. If you're building a fully authenticated SPA (dashboard, admin tool, internal app) where SEO doesn't matter and you already have an API - plain React with Vite is simpler and ships faster.",
       },
       {
         q: "Can you refactor our existing React codebase?",
-        a: "Yes. I start with a component and data-flow audit, identify the worst pain points, and refactor incrementally. No big-bang rewrites — you ship features throughout the engagement.",
+        a: "Yes. I start with a component and data-flow audit, identify the worst pain points, and refactor incrementally. No big-bang rewrites - you ship features throughout the engagement.",
       },
       {
         q: "Do you build Storybook design systems?",
@@ -1485,7 +1485,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "We're using Redux, should we migrate to Zustand / TanStack Query?",
-        a: "Often yes — most Redux in 2024 is managing server state that TanStack Query handles better, and local UI state that Zustand handles with a tenth of the boilerplate. I'll audit your Redux usage and recommend only the parts worth migrating.",
+        a: "Often yes - most Redux in 2024 is managing server state that TanStack Query handles better, and local UI state that Zustand handles with a tenth of the boilerplate. I'll audit your Redux usage and recommend only the parts worth migrating.",
       },
     ],
     related: ["frontend-development", "nextjs-development", "web-development", "performance-optimization"],
@@ -1496,7 +1496,7 @@ export const servicePages: ServicePage[] = [
     slug: "performance-optimization",
     category: "development",
     iconName: "TrendingUp",
-    metaTitle: "Web Performance Optimization — Core Web Vitals, 95+ Lighthouse",
+    metaTitle: "Web Performance Optimization - Core Web Vitals, 95+ Lighthouse",
     metaDescription:
       "Fix slow websites. Core Web Vitals (LCP, CLS, INP), 95+ Lighthouse, bundle size reduction, image optimization, server response time. Written report + implementation included.",
     keywords: [
@@ -1514,16 +1514,16 @@ export const servicePages: ServicePage[] = [
       "PageSpeed Insights improvement",
     ],
     eyebrow: "Performance Optimization",
-    heroTitle: "From slow to 95+ Lighthouse — with a written plan and real results",
+    heroTitle: "From slow to 95+ Lighthouse - with a written plan and real results",
     heroDescription:
-      "Core Web Vitals fixed, bundle sizes cut, LCP under 2.5 seconds. I audit, prioritize, and implement — or give you the plan to do it yourself.",
-    lede: "A slow site doesn't just frustrate users — it costs you ranking positions and conversion rate. Studies consistently show a 100ms increase in page load time drops conversions by 1%. I've taken sites from 38 → 97 Lighthouse and know the exact sequence: measure on real users, find the 20% of fixes that unlock 80% of the score, and implement without regressions.",
+      "Core Web Vitals fixed, bundle sizes cut, LCP under 2.5 seconds. I audit, prioritize, and implement - or give you the plan to do it yourself.",
+    lede: "A slow site doesn't just frustrate users - it costs you ranking positions and conversion rate. Studies consistently show a 100ms increase in page load time drops conversions by 1%. I've taken sites from 38 → 97 Lighthouse and know the exact sequence: measure on real users, find the 20% of fixes that unlock 80% of the score, and implement without regressions.",
     deliverables: [
       {
         iconName: "FileSearch",
         title: "Performance audit report",
         description:
-          "Full analysis with Lighthouse, WebPageTest, and Chrome UX Report (real-user CrUX data). Every issue severity-ranked by impact on LCP, CLS, INP, and TTFB — with implementation instructions.",
+          "Full analysis with Lighthouse, WebPageTest, and Chrome UX Report (real-user CrUX data). Every issue severity-ranked by impact on LCP, CLS, INP, and TTFB - with implementation instructions.",
       },
       {
         iconName: "Zap",
@@ -1576,7 +1576,7 @@ export const servicePages: ServicePage[] = [
       {
         title: "Implementation",
         description:
-          "Fixes shipped in small PRs with before/after Lighthouse diffs. No regressions — Lighthouse CI gates every PR.",
+          "Fixes shipped in small PRs with before/after Lighthouse diffs. No regressions - Lighthouse CI gates every PR.",
       },
       {
         title: "Evidence report",
@@ -1629,11 +1629,11 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "Our Lighthouse score is good in the tool, but real users report it's slow. Why?",
-        a: "Lighthouse desktop emulates a fast CPU and fast network. Real users on mobile 4G see different results. I always measure with CrUX (28-day real-user data) and WebPageTest on a throttled mobile connection. The lab score and field score often diverge significantly — field data is what actually affects your Search ranking.",
+        a: "Lighthouse desktop emulates a fast CPU and fast network. Real users on mobile 4G see different results. I always measure with CrUX (28-day real-user data) and WebPageTest on a throttled mobile connection. The lab score and field score often diverge significantly - field data is what actually affects your Search ranking.",
       },
       {
         q: "Will improving performance affect our SEO?",
-        a: "Yes, directly. Core Web Vitals are a confirmed Google ranking signal. Improving LCP, CLS, and INP to 'Good' thresholds on the CrUX field data removes a ranking suppressor. The effect is usually visible in Search Console within 4–6 weeks.",
+        a: "Yes, directly. Core Web Vitals are a confirmed Google ranking signal. Improving LCP, CLS, and INP to 'Good' thresholds on the CrUX field data removes a ranking suppressor. The effect is usually visible in Search Console within 4-6 weeks.",
       },
       {
         q: "Can you optimize a WordPress / PHP site, or only React/Next.js?",
@@ -1641,7 +1641,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "How long do the improvements last?",
-        a: "Performance regresses when new code ships without measurement gates. As part of the engagement I add Lighthouse CI to your pipeline so every PR shows a Lighthouse delta — regressions get caught before they reach production.",
+        a: "Performance regresses when new code ships without measurement gates. As part of the engagement I add Lighthouse CI to your pipeline so every PR shows a Lighthouse delta - regressions get caught before they reach production.",
       },
     ],
     related: ["web-development", "nextjs-development", "technical-seo", "frontend-development"],
@@ -1652,7 +1652,7 @@ export const servicePages: ServicePage[] = [
     slug: "shopify-development",
     category: "development",
     iconName: "Smartphone",
-    metaTitle: "Headless Shopify Development — Next.js + Storefront API",
+    metaTitle: "Headless Shopify Development - Next.js + Storefront API",
     metaDescription:
       "Headless Shopify development with Next.js and the Storefront API. Custom storefronts, Hydrogen migrations, 95+ Lighthouse, faster checkouts. Free quote in 24 hours.",
     keywords: [
@@ -1672,7 +1672,7 @@ export const servicePages: ServicePage[] = [
     heroTitle: "Headless Shopify storefront that actually converts",
     heroDescription:
       "Custom Next.js frontend on top of Shopify's battle-tested checkout and inventory. The flexibility of a bespoke storefront, the reliability of Shopify's backend.",
-    lede: "Shopify's built-in themes are fast to set up but hit a wall when you need custom UX, specific performance targets, or design that doesn't look like every other Shopify store. Going headless gives you a React frontend you fully control — while keeping Shopify's checkout, payments, inventory, and fulfilment working exactly as they do today.",
+    lede: "Shopify's built-in themes are fast to set up but hit a wall when you need custom UX, specific performance targets, or design that doesn't look like every other Shopify store. Going headless gives you a React frontend you fully control - while keeping Shopify's checkout, payments, inventory, and fulfilment working exactly as they do today.",
     deliverables: [
       {
         iconName: "Code2",
@@ -1682,7 +1682,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         iconName: "Zap",
-        title: "95+ Lighthouse — faster than any Shopify theme",
+        title: "95+ Lighthouse - faster than any Shopify theme",
         description:
           "Server-rendered product pages with ISR, next/image for every product photo, and a Time to Interactive under 3 seconds on real mobile hardware. Themes can't match this.",
       },
@@ -1690,7 +1690,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Layers",
         title: "Custom UI that matches your brand",
         description:
-          "Pixel-perfect product pages, collection filters, search, wishlist, and cart drawer — designed to your spec, not limited by a theme's section schema.",
+          "Pixel-perfect product pages, collection filters, search, wishlist, and cart drawer - designed to your spec, not limited by a theme's section schema.",
       },
       {
         iconName: "Search",
@@ -1702,7 +1702,7 @@ export const servicePages: ServicePage[] = [
         iconName: "ShieldCheck",
         title: "Shopify checkout & payments untouched",
         description:
-          "Shopify Checkout handles payments, fraud protection, Shop Pay, and local payment methods. Nothing custom here — you keep everything Shopify already does well.",
+          "Shopify Checkout handles payments, fraud protection, Shop Pay, and local payment methods. Nothing custom here - you keep everything Shopify already does well.",
       },
       {
         iconName: "Webhook",
@@ -1740,7 +1740,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     proof: [
-      { value: "95+", label: "Lighthouse — faster than any theme" },
+      { value: "95+", label: "Lighthouse - faster than any theme" },
       { value: "TypeSafe", label: "GraphQL with auto-generated types" },
       { value: "0", label: "Changes to Shopify checkout or payments" },
       { value: "30 days", label: "Post-launch support included" },
@@ -1754,7 +1754,7 @@ export const servicePages: ServicePage[] = [
           "Home, collection, product, cart pages",
           "Storefront API integration",
           "Mobile responsive, 95+ Lighthouse",
-          "Delivered in 3–4 weeks",
+          "Delivered in 3-4 weeks",
         ],
       },
       {
@@ -1766,7 +1766,7 @@ export const servicePages: ServicePage[] = [
           "All pages + search + account + wishlist",
           "Algolia or Shopify search",
           "International markets + hreflang",
-          "Delivered in 6–10 weeks",
+          "Delivered in 6-10 weeks",
         ],
       },
       {
@@ -1784,11 +1784,11 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "Why go headless instead of using a Shopify theme?",
-        a: "Three main reasons: performance (95+ Lighthouse vs typical theme scores of 40–65), design control (not limited by a theme's section schema), and flexibility (integrate any CMS, loyalty program, or search provider). The trade-off is complexity — it's more expensive to build and maintain. For high-traffic, high-AOV, or design-led brands, the conversion lift justifies it.",
+        a: "Three main reasons: performance (95+ Lighthouse vs typical theme scores of 40-65), design control (not limited by a theme's section schema), and flexibility (integrate any CMS, loyalty program, or search provider). The trade-off is complexity - it's more expensive to build and maintain. For high-traffic, high-AOV, or design-led brands, the conversion lift justifies it.",
       },
       {
         q: "Does headless Shopify affect checkout?",
-        a: "No — Shopify Checkout (and all its payment methods, Shop Pay, fraud protection) remains completely untouched. The cart is built on your Next.js frontend; checkout happens on Shopify's hosted checkout page.",
+        a: "No - Shopify Checkout (and all its payment methods, Shop Pay, fraud protection) remains completely untouched. The cart is built on your Next.js frontend; checkout happens on Shopify's hosted checkout page.",
       },
       {
         q: "Will we lose SEO rankings when we migrate?",
@@ -1796,11 +1796,11 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "Can you integrate with Shopify Plus features?",
-        a: "Yes — checkout extensibility, custom B2B pricing, market-specific content, and Shopify Functions are all available via the API layer. Plus features are supported but not required.",
+        a: "Yes - checkout extensibility, custom B2B pricing, market-specific content, and Shopify Functions are all available via the API layer. Plus features are supported but not required.",
       },
       {
         q: "What about Hydrogen (Shopify's official headless framework)?",
-        a: "Hydrogen is great if you want to stay in the Shopify ecosystem long-term. I prefer Next.js when clients want more framework familiarity, better hiring market, and Vercel's ecosystem — but I can also build in Hydrogen if that's the preference.",
+        a: "Hydrogen is great if you want to stay in the Shopify ecosystem long-term. I prefer Next.js when clients want more framework familiarity, better hiring market, and Vercel's ecosystem - but I can also build in Hydrogen if that's the preference.",
       },
     ],
     related: ["ecommerce-development", "web-development", "performance-optimization", "frontend-development"],
@@ -1811,9 +1811,9 @@ export const servicePages: ServicePage[] = [
     slug: "devops-consulting",
     category: "development",
     iconName: "Cloud",
-    metaTitle: "DevOps & Cloud Consulting — CI/CD, AWS, Docker",
+    metaTitle: "DevOps & Cloud Consulting - CI/CD, AWS, Docker",
     metaDescription:
-      "DevOps consulting for growing web products. GitHub Actions CI/CD, Docker containerisation, AWS architecture, monitoring, and zero-downtime deploys. Audit your infra or build it from scratch — free review in 24 hours.",
+      "DevOps consulting for growing web products. GitHub Actions CI/CD, Docker containerisation, AWS architecture, monitoring, and zero-downtime deploys. Audit your infra or build it from scratch - free review in 24 hours.",
     keywords: [
       "devops consulting services",
       "CI/CD setup developer",
@@ -1829,8 +1829,8 @@ export const servicePages: ServicePage[] = [
     eyebrow: "DevOps & Cloud",
     heroTitle: "Infrastructure that ships fast and doesn't page you at 3am",
     heroDescription:
-      "CI/CD pipelines, Docker, AWS, monitoring, and zero-downtime deploys — set up once, maintained to production standards. From a one-person startup to a 50-engineer team.",
-    lede: "Most outages are not caused by bad code — they're caused by missing observability, manual deploys, and infrastructure configured by whoever happened to be there at the time. I set up the boring-but-critical layer: repeatable deploys, automatic rollbacks, secrets management, and alerts that fire before users notice.",
+      "CI/CD pipelines, Docker, AWS, monitoring, and zero-downtime deploys - set up once, maintained to production standards. From a one-person startup to a 50-engineer team.",
+    lede: "Most outages are not caused by bad code - they're caused by missing observability, manual deploys, and infrastructure configured by whoever happened to be there at the time. I set up the boring-but-critical layer: repeatable deploys, automatic rollbacks, secrets management, and alerts that fire before users notice.",
     deliverables: [
       {
         iconName: "Cloud",
@@ -1854,7 +1854,7 @@ export const servicePages: ServicePage[] = [
         iconName: "BarChart3",
         title: "Monitoring, logging & alerting",
         description:
-          "Structured logging, uptime checks, error rate alerts, and p95 latency dashboards. Sentry for exceptions, Datadog or Grafana for metrics — you know what's happening before users report it.",
+          "Structured logging, uptime checks, error rate alerts, and p95 latency dashboards. Sentry for exceptions, Datadog or Grafana for metrics - you know what's happening before users report it.",
       },
       {
         iconName: "ShieldCheck",
@@ -1866,7 +1866,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Zap",
         title: "Cost & performance optimisation",
         description:
-          "Right-sizing EC2 instances, S3 lifecycle policies, CloudFront caching, and autoscaling policies. Most teams cut their AWS bill 30–50% in the first review.",
+          "Right-sizing EC2 instances, S3 lifecycle policies, CloudFront caching, and autoscaling policies. Most teams cut their AWS bill 30-50% in the first review.",
       },
     ],
     techStack: [
@@ -1884,12 +1884,12 @@ export const servicePages: ServicePage[] = [
       {
         title: "Architecture design",
         description:
-          "A written infrastructure plan covering environments, networking, deploy strategy, and rollback procedures — agreed before any changes are made.",
+          "A written infrastructure plan covering environments, networking, deploy strategy, and rollback procedures - agreed before any changes are made.",
       },
       {
         title: "Incremental rollout",
         description:
-          "Changes staged and tested in a non-production environment first. Every infrastructure change is a pull request — reviewed, tested, and merged, not SSHed in at midnight.",
+          "Changes staged and tested in a non-production environment first. Every infrastructure change is a pull request - reviewed, tested, and merged, not SSHed in at midnight.",
       },
       {
         title: "Handover & runbooks",
@@ -1924,7 +1924,7 @@ export const servicePages: ServicePage[] = [
           "CI/CD pipelines + Docker + AWS setup",
           "Staging & production environments",
           "Monitoring, alerting & runbooks",
-          "Delivered in 2–3 weeks",
+          "Delivered in 2-3 weeks",
         ],
       },
       {
@@ -1941,12 +1941,12 @@ export const servicePages: ServicePage[] = [
     ],
     faqs: [
       {
-        q: "We already have a deployment process — do we need this?",
-        a: "If your deploys are manual, undocumented, or cause anxiety — yes. The goal isn't to replace what works; it's to add the safety net: auto-rollback, preview environments, and observability that tells you when something is wrong before a user tweets about it.",
+        q: "We already have a deployment process - do we need this?",
+        a: "If your deploys are manual, undocumented, or cause anxiety - yes. The goal isn't to replace what works; it's to add the safety net: auto-rollback, preview environments, and observability that tells you when something is wrong before a user tweets about it.",
       },
       {
         q: "Which cloud providers do you work with?",
-        a: "Primarily AWS — it's where most production workloads live. I also work with Vercel, Railway, Cloudflare Workers, Fly.io, and Google Cloud. The right choice depends on your team's familiarity and the workload type.",
+        a: "Primarily AWS - it's where most production workloads live. I also work with Vercel, Railway, Cloudflare Workers, Fly.io, and Google Cloud. The right choice depends on your team's familiarity and the workload type.",
       },
       {
         q: "Will you touch our production environment directly?",
@@ -1954,11 +1954,11 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "How long does a typical DevOps setup take?",
-        a: "A CI/CD pipeline and Docker setup for an existing app takes 3–5 days. Full infrastructure from scratch — AWS VPC, RDS, EC2, CloudFront, monitoring, and IaC — takes 2–3 weeks depending on complexity.",
+        a: "A CI/CD pipeline and Docker setup for an existing app takes 3-5 days. Full infrastructure from scratch - AWS VPC, RDS, EC2, CloudFront, monitoring, and IaC - takes 2-3 weeks depending on complexity.",
       },
       {
         q: "Can you train our team on the infrastructure you build?",
-        a: "Yes — written runbooks, architecture diagrams, and a video walkthrough are part of every engagement. The goal is for your team to own the infrastructure, not to create a dependency on me.",
+        a: "Yes - written runbooks, architecture diagrams, and a video walkthrough are part of every engagement. The goal is for your team to own the infrastructure, not to create a dependency on me.",
       },
     ],
     related: ["backend-development", "web-development", "performance-optimization", "api-development"],
@@ -1969,7 +1969,7 @@ export const servicePages: ServicePage[] = [
     slug: "landing-page-development",
     category: "development",
     iconName: "Target",
-    metaTitle: "Landing Page Development — Next.js, 95+ Lighthouse, High-Converting",
+    metaTitle: "Landing Page Development - Next.js, 95+ Lighthouse, High-Converting",
     metaDescription:
       "High-converting landing pages built with Next.js and Tailwind. 95+ Lighthouse, sub-1.2s LCP, SEO metadata, schema markup, and analytics wired in. Simple pages delivered in 48 hours. Free quote.",
     keywords: [
@@ -1987,14 +1987,14 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Landing Pages",
     heroTitle: "Landing pages that rank, load in under a second, and convert",
     heroDescription:
-      "Conversion-first copy structure, 95+ Lighthouse, SEO metadata, schema, and analytics — built in Next.js and ready to A/B test from day one.",
+      "Conversion-first copy structure, 95+ Lighthouse, SEO metadata, schema, and analytics - built in Next.js and ready to A/B test from day one.",
     lede: "A slow, badly structured landing page is invisible to Google and ignored by visitors. I build pages the other way: performance budget enforced from line one, copy architected around the visitor's intent, and tracking wired in before launch. Most clients see their organic impressions climb within 6 weeks.",
     deliverables: [
       {
         iconName: "Target",
         title: "Conversion-first copy architecture",
         description:
-          "Hero headline, value prop, social proof, objection handling, and CTA — structured to match the visitor's intent signal. No guessing; modelled on what converts in your category.",
+          "Hero headline, value prop, social proof, objection handling, and CTA - structured to match the visitor's intent signal. No guessing; modelled on what converts in your category.",
       },
       {
         iconName: "Zap",
@@ -2018,13 +2018,13 @@ export const servicePages: ServicePage[] = [
         iconName: "TrendingUp",
         title: "A/B variant ready",
         description:
-          "Component structure designed for easy A/B testing — swap headlines, CTAs, or hero sections without touching the page template. Integrates with your split-testing tool of choice.",
+          "Component structure designed for easy A/B testing - swap headlines, CTAs, or hero sections without touching the page template. Integrates with your split-testing tool of choice.",
       },
       {
         iconName: "Smartphone",
         title: "Mobile-first & accessible",
         description:
-          "Designed for the viewport where most of your traffic lands. WCAG 2.1 AA, semantic HTML, keyboard navigable, and tested on real devices — not just Chrome DevTools.",
+          "Designed for the viewport where most of your traffic lands. WCAG 2.1 AA, semantic HTML, keyboard navigable, and tested on real devices - not just Chrome DevTools.",
       },
     ],
     techStack: [
@@ -2042,7 +2042,7 @@ export const servicePages: ServicePage[] = [
       {
         title: "Copy outline & wireframe",
         description:
-          "A section-by-section content outline — headlines, sub-copy, social proof placement, and CTAs — agreed in writing before any design or code.",
+          "A section-by-section content outline - headlines, sub-copy, social proof placement, and CTAs - agreed in writing before any design or code.",
       },
       {
         title: "Build & optimise",
@@ -2070,7 +2070,7 @@ export const servicePages: ServicePage[] = [
           "Up to 6 sections",
           "SEO metadata & schema",
           "Analytics setup",
-          "Delivered in 2–4 days",
+          "Delivered in 2-4 days",
         ],
       },
       {
@@ -2079,10 +2079,10 @@ export const servicePages: ServicePage[] = [
         popular: true,
         bestFor: "SaaS, agency, or product-led growth teams",
         bullets: [
-          "3–5 landing pages with shared design system",
+          "3-5 landing pages with shared design system",
           "A/B variant per page",
           "Full analytics funnel tracking",
-          "Delivered in 1–2 weeks",
+          "Delivered in 1-2 weeks",
         ],
       },
       {
@@ -2090,33 +2090,33 @@ export const servicePages: ServicePage[] = [
         startingFrom: "$5,000",
         bestFor: "Paid ads + SEO teams needing a full funnel",
         bullets: [
-          "5–10 pages: ads, organic, and retargeting",
+          "5-10 pages: ads, organic, and retargeting",
           "Lead capture + CRM integration",
           "Split-test framework wired in",
-          "Delivered in 2–4 weeks",
+          "Delivered in 2-4 weeks",
         ],
       },
     ],
     faqs: [
       {
         q: "How long does a landing page take to build?",
-        a: "A single-section waitlist or event page: 24–48 hours. A full product landing page with 6 sections, animations, and analytics: 3–5 days. A multi-page campaign: 1–2 weeks. Timelines start from the moment copy is agreed.",
+        a: "A single-section waitlist or event page: 24-48 hours. A full product landing page with 6 sections, animations, and analytics: 3-5 days. A multi-page campaign: 1-2 weeks. Timelines start from the moment copy is agreed.",
       },
       {
         q: "Do you write the copy or do I provide it?",
-        a: "Both options work. I can write the copy structure based on your brief and product positioning — or you can provide copy and I'll build around it. Copy-first delivery is faster; I recommend you provide at least bullet points for each section if you have them.",
+        a: "Both options work. I can write the copy structure based on your brief and product positioning - or you can provide copy and I'll build around it. Copy-first delivery is faster; I recommend you provide at least bullet points for each section if you have them.",
       },
       {
         q: "Can you match our existing brand/design?",
-        a: "Yes — I work from Figma files, brand guidelines, or an existing site to match style and feel. If you have no design, I build using a clean design system and can match any style direction you describe.",
+        a: "Yes - I work from Figma files, brand guidelines, or an existing site to match style and feel. If you have no design, I build using a clean design system and can match any style direction you describe.",
       },
       {
         q: "Will the page rank on Google?",
-        a: "Technical SEO is handled: server-rendered markup, valid schema, fast load, and proper metadata. Ranking also depends on domain authority, content quality, and link building — I handle the on-page foundation; broader SEO strategy is a separate engagement.",
+        a: "Technical SEO is handled: server-rendered markup, valid schema, fast load, and proper metadata. Ranking also depends on domain authority, content quality, and link building - I handle the on-page foundation; broader SEO strategy is a separate engagement.",
       },
       {
         q: "Can you integrate with our CRM or email tool?",
-        a: "Yes — HubSpot, Mailchimp, ConvertKit, ActiveCampaign, Klaviyo, or a custom API integration. Form submissions can go directly into your CRM, trigger an automation, or land in a spreadsheet. You decide.",
+        a: "Yes - HubSpot, Mailchimp, ConvertKit, ActiveCampaign, Klaviyo, or a custom API integration. Form submissions can go directly into your CRM, trigger an automation, or land in a spreadsheet. You decide.",
       },
     ],
     related: ["frontend-development", "web-development", "seo", "performance-optimization"],
@@ -2127,7 +2127,7 @@ export const servicePages: ServicePage[] = [
     slug: "wordpress-development",
     category: "development",
     iconName: "Globe",
-    metaTitle: "WordPress Development Services — Custom Themes, WooCommerce",
+    metaTitle: "WordPress Development Services - Custom Themes, WooCommerce",
     metaDescription:
       "Custom WordPress development: bespoke themes, WooCommerce stores, Gutenberg blocks, and headless WordPress with Next.js. 95+ Lighthouse, no bloated page builders. Free quote in 24 hours.",
     keywords: [
@@ -2145,14 +2145,14 @@ export const servicePages: ServicePage[] = [
     eyebrow: "WordPress Development",
     heroTitle: "Custom WordPress that actually performs",
     heroDescription:
-      "Bespoke themes, WooCommerce stores, Gutenberg blocks, and headless setups with Next.js — no page builder bloat, no 50-plugin stacks, no compromises on speed.",
-    lede: "Most WordPress sites score 40–60 on Lighthouse because they're built on themes that prioritise aesthetics over engineering. I build WordPress differently: clean PHP, purpose-built Gutenberg blocks, and a deployment workflow that catches regressions before they reach production. If you're ready for headless, I can wire WordPress as a CMS to a Next.js frontend — best of both worlds.",
+      "Bespoke themes, WooCommerce stores, Gutenberg blocks, and headless setups with Next.js - no page builder bloat, no 50-plugin stacks, no compromises on speed.",
+    lede: "Most WordPress sites score 40-60 on Lighthouse because they're built on themes that prioritise aesthetics over engineering. I build WordPress differently: clean PHP, purpose-built Gutenberg blocks, and a deployment workflow that catches regressions before they reach production. If you're ready for headless, I can wire WordPress as a CMS to a Next.js frontend - best of both worlds.",
     deliverables: [
       {
         iconName: "Code2",
         title: "Bespoke theme development",
         description:
-          "No Elementor, Divi, or Avada. A hand-coded child theme or standalone theme with a clean PHP architecture, BEM CSS, and design tokens — maintainable by any developer who comes after me.",
+          "No Elementor, Divi, or Avada. A hand-coded child theme or standalone theme with a clean PHP architecture, BEM CSS, and design tokens - maintainable by any developer who comes after me.",
       },
       {
         iconName: "Database",
@@ -2164,7 +2164,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Layers",
         title: "Custom Gutenberg blocks",
         description:
-          "React-based Gutenberg blocks registered with block.json, full editor preview, and typed attributes. Your content team gets a drag-and-drop interface; the output is clean, semantic HTML — not div soup.",
+          "React-based Gutenberg blocks registered with block.json, full editor preview, and typed attributes. Your content team gets a drag-and-drop interface; the output is clean, semantic HTML - not div soup.",
       },
       {
         iconName: "Search",
@@ -2176,7 +2176,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Zap",
         title: "Performance-tuned to 95+ Lighthouse",
         description:
-          "Critical CSS inlined, images served via next-gen formats, lazy loading everywhere, a CDN layer via Cloudflare, and object caching on Redis. WordPress can be fast — it just takes intention.",
+          "Critical CSS inlined, images served via next-gen formats, lazy loading everywhere, a CDN layer via Cloudflare, and object caching on Redis. WordPress can be fast - it just takes intention.",
       },
       {
         iconName: "Server",
@@ -2195,12 +2195,12 @@ export const servicePages: ServicePage[] = [
       {
         title: "Discovery & architecture",
         description:
-          "I review your current site (if any), content structure, and goals. You get a written recommendation: custom theme, WooCommerce build, or headless — with a rationale for each.",
+          "I review your current site (if any), content structure, and goals. You get a written recommendation: custom theme, WooCommerce build, or headless - with a rationale for each.",
       },
       {
         title: "Theme & component build",
         description:
-          "Core templates, header/footer, Gutenberg blocks, and post types built in sequence. Deployed to a staging environment — your team can review and edit content in real time.",
+          "Core templates, header/footer, Gutenberg blocks, and post types built in sequence. Deployed to a staging environment - your team can review and edit content in real time.",
       },
       {
         title: "Content migration & SEO",
@@ -2216,7 +2216,7 @@ export const servicePages: ServicePage[] = [
     proof: [
       { value: "50+", label: "WordPress sites shipped since 2019" },
       { value: "95+", label: "Lighthouse score on every custom theme" },
-      { value: "0", label: "Page builders used — ever" },
+      { value: "0", label: "Page builders used - ever" },
       { value: "<2s", label: "LCP target on WooCommerce product pages" },
     ],
     pricing: [
@@ -2228,7 +2228,7 @@ export const servicePages: ServicePage[] = [
           "Fully custom PHP theme, no page builder",
           "Up to 8 templates",
           "SEO plugin config + schema",
-          "Delivered in 1–2 weeks",
+          "Delivered in 1-2 weeks",
         ],
       },
       {
@@ -2240,7 +2240,7 @@ export const servicePages: ServicePage[] = [
           "Custom theme + WooCommerce setup",
           "Stripe & PayPal integration",
           "Product import, shipping & tax config",
-          "Delivered in 2–4 weeks",
+          "Delivered in 2-4 weeks",
         ],
       },
       {
@@ -2251,14 +2251,14 @@ export const servicePages: ServicePage[] = [
           "Next.js frontend + WordPress CMS",
           "WPGraphQL or REST API layer",
           "ISR, preview mode, Vercel deploy",
-          "Delivered in 3–5 weeks",
+          "Delivered in 3-5 weeks",
         ],
       },
     ],
     faqs: [
       {
         q: "Why custom theme over Elementor or Divi?",
-        a: "Page builders generate 10–20× more HTML than hand-coded themes, block the render thread with large JS bundles, and create content that's nearly impossible to migrate away from. A custom theme gives you clean output, full design control, and a Lighthouse score that doesn't embarrass you.",
+        a: "Page builders generate 10-20× more HTML than hand-coded themes, block the render thread with large JS bundles, and create content that's nearly impossible to migrate away from. A custom theme gives you clean output, full design control, and a Lighthouse score that doesn't embarrass you.",
       },
       {
         q: "Can you migrate my existing site to a custom theme?",
@@ -2274,7 +2274,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "Do you provide ongoing maintenance?",
-        a: "Yes — monthly retainers cover WordPress core/plugin updates, security patches, uptime monitoring, and a monthly Lighthouse audit to catch performance regressions early. Most clients sign on for at least 3 months post-launch.",
+        a: "Yes - monthly retainers cover WordPress core/plugin updates, security patches, uptime monitoring, and a monthly Lighthouse audit to catch performance regressions early. Most clients sign on for at least 3 months post-launch.",
       },
     ],
     related: ["web-development", "ecommerce-development", "seo", "performance-optimization"],
@@ -2285,7 +2285,7 @@ export const servicePages: ServicePage[] = [
     slug: "mobile-app-development",
     category: "development",
     iconName: "Smartphone",
-    metaTitle: "Mobile App Development — React Native, iOS & Android",
+    metaTitle: "Mobile App Development - React Native, iOS & Android",
     metaDescription:
       "Cross-platform mobile app development with React Native and Expo. One codebase for iOS and Android, TypeScript strict, Expo EAS build pipeline, and App Store submission handled. Free quote in 24 hours.",
     keywords: [
@@ -2303,20 +2303,20 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Mobile App Development",
     heroTitle: "iOS & Android apps built once, shipped twice",
     heroDescription:
-      "React Native with Expo — one TypeScript codebase, two stores, 60% of the cost of going native. From MVP to production with EAS builds, push notifications, and offline support.",
-    lede: "Building separate native apps is rarely justified until you have a team of 10+ engineers. React Native with Expo gives you native performance and platform-specific UI conventions from a single codebase — with the same React patterns your web team already uses. I've shipped apps to both stores and know where the edge cases live.",
+      "React Native with Expo - one TypeScript codebase, two stores, 60% of the cost of going native. From MVP to production with EAS builds, push notifications, and offline support.",
+    lede: "Building separate native apps is rarely justified until you have a team of 10+ engineers. React Native with Expo gives you native performance and platform-specific UI conventions from a single codebase - with the same React patterns your web team already uses. I've shipped apps to both stores and know where the edge cases live.",
     deliverables: [
       {
         iconName: "Code2",
         title: "React Native & Expo codebase",
         description:
-          "TypeScript strict, Expo SDK, and a file-based routing with Expo Router. Clean architecture with separated concerns — UI, state, and API layers don't leak into each other.",
+          "TypeScript strict, Expo SDK, and a file-based routing with Expo Router. Clean architecture with separated concerns - UI, state, and API layers don't leak into each other.",
       },
       {
         iconName: "Smartphone",
         title: "iOS & Android native feel",
         description:
-          "Platform-specific navigation patterns, native gestures via React Native Gesture Handler, and haptic feedback. The app feels at home on both platforms — not like a web view in a shell.",
+          "Platform-specific navigation patterns, native gestures via React Native Gesture Handler, and haptic feedback. The app feels at home on both platforms - not like a web view in a shell.",
       },
       {
         iconName: "Webhook",
@@ -2328,7 +2328,7 @@ export const servicePages: ServicePage[] = [
         iconName: "Zap",
         title: "Push notifications",
         description:
-          "Expo Notifications wired to your back-end with FCM and APNs. Targeted, scheduled, and silent push notifications — with deep linking so a tap takes the user exactly where they need to be.",
+          "Expo Notifications wired to your back-end with FCM and APNs. Targeted, scheduled, and silent push notifications - with deep linking so a tap takes the user exactly where they need to be.",
       },
       {
         iconName: "ShieldCheck",
@@ -2358,7 +2358,7 @@ export const servicePages: ServicePage[] = [
       {
         title: "Core flows first",
         description:
-          "Auth, primary user journey, and data fetching built and running on a real device. You test the app on your phone within the first week — not a simulator demo.",
+          "Auth, primary user journey, and data fetching built and running on a real device. You test the app on your phone within the first week - not a simulator demo.",
       },
       {
         title: "Feature build & polish",
@@ -2368,7 +2368,7 @@ export const servicePages: ServicePage[] = [
       {
         title: "Store submission",
         description:
-          "Screenshots, store descriptions, privacy policy, and compliance checklist. I handle the submission and manage reviewer questions — first-time approval rate is high when metadata is done right.",
+          "Screenshots, store descriptions, privacy policy, and compliance checklist. I handle the submission and manage reviewer questions - first-time approval rate is high when metadata is done right.",
       },
     ],
     proof: [
@@ -2384,9 +2384,9 @@ export const servicePages: ServicePage[] = [
         bestFor: "Founders validating an idea in market",
         bullets: [
           "iOS + Android from one codebase",
-          "Auth, 3–5 core flows, basic push notifications",
+          "Auth, 3-5 core flows, basic push notifications",
           "EAS build + store submission",
-          "Delivered in 4–6 weeks",
+          "Delivered in 4-6 weeks",
         ],
       },
       {
@@ -2398,7 +2398,7 @@ export const servicePages: ServicePage[] = [
           "10+ screens, offline support, real-time features",
           "Design system + animations",
           "Backend API or integration with existing API",
-          "Delivered in 8–12 weeks",
+          "Delivered in 8-12 weeks",
         ],
       },
       {
@@ -2415,16 +2415,16 @@ export const servicePages: ServicePage[] = [
     ],
     faqs: [
       {
-        q: "React Native vs native Swift/Kotlin — which should I choose?",
+        q: "React Native vs native Swift/Kotlin - which should I choose?",
         a: "React Native is the right call for most startups: one team, one codebase, 60% of the cost, and near-identical performance for CRUD-heavy apps. Go native if you need deep hardware access (AR, Bluetooth LE, custom camera pipelines) or if your team's background is exclusively iOS/Android.",
       },
       {
         q: "How long does Apple App Store review take?",
-        a: "Typically 1–3 days for new submissions, often same-day for updates once the app has history. The most common rejection reasons are missing privacy policy, vague app description, or a broken review account. I prepare everything to avoid those.",
+        a: "Typically 1-3 days for new submissions, often same-day for updates once the app has history. The most common rejection reasons are missing privacy policy, vague app description, or a broken review account. I prepare everything to avoid those.",
       },
       {
         q: "Can you add a mobile app to our existing web product?",
-        a: "Yes — the most common pattern is a React Native app that talks to the same API as your web app. If your web app is in Next.js or React, a significant portion of the business logic and state patterns can be shared.",
+        a: "Yes - the most common pattern is a React Native app that talks to the same API as your web app. If your web app is in Next.js or React, a significant portion of the business logic and state patterns can be shared.",
       },
       {
         q: "What's an OTA update and why does it matter?",
@@ -2432,7 +2432,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "Do you handle backend development too?",
-        a: "Yes — if you need an API built alongside the app, I can do both. See /services/backend-development or /services/api-development for what that covers. Bundling the two often saves time since API contracts get designed alongside the screens that consume them.",
+        a: "Yes - if you need an API built alongside the app, I can do both. See /services/backend-development or /services/api-development for what that covers. Bundling the two often saves time since API contracts get designed alongside the screens that consume them.",
       },
     ],
     related: ["web-development", "backend-development", "api-development", "saas-development"],
@@ -2443,9 +2443,9 @@ export const servicePages: ServicePage[] = [
     slug: "aeo-geo-optimization",
     category: "marketing",
     iconName: "Brain",
-    metaTitle: "AEO & GEO Services — Rank in ChatGPT, Perplexity & AI Overviews",
+    metaTitle: "AEO & GEO Services - Rank in ChatGPT, Perplexity & AI Overviews",
     metaDescription:
-      "Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) services. Get cited by ChatGPT, Perplexity, Gemini, and Google AI Overviews — structured answers, entity SEO, and schema that LLMs actually read.",
+      "Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) services. Get cited by ChatGPT, Perplexity, Gemini, and Google AI Overviews - structured answers, entity SEO, and schema that LLMs actually read.",
     keywords: [
       "AEO services",
       "GEO services",
@@ -2463,20 +2463,20 @@ export const servicePages: ServicePage[] = [
     eyebrow: "AEO & GEO",
     heroTitle: "Get cited by ChatGPT, Perplexity & AI Overviews",
     heroDescription:
-      "Answer Engine Optimization and Generative Engine Optimization — the work that gets your brand quoted inside AI answers, not just ranked on page one of ten blue links.",
+      "Answer Engine Optimization and Generative Engine Optimization - the work that gets your brand quoted inside AI answers, not just ranked on page one of ten blue links.",
     lede: "Search is splitting in two. Half your buyers still type into Google; the other half ask ChatGPT, Perplexity, or Gemini and never click a link. AEO and GEO are how you stay visible in both. I structure your content so answer engines can extract it, attribute it, and recommend you by name.",
     deliverables: [
       {
         iconName: "Brain",
         title: "AI-answer visibility audit",
         description:
-          "I run your priority questions through ChatGPT, Perplexity, Gemini, and Google AI Overviews, log who gets cited today, and map exactly where you're missing from the answer — and why.",
+          "I run your priority questions through ChatGPT, Perplexity, Gemini, and Google AI Overviews, log who gets cited today, and map exactly where you're missing from the answer - and why.",
       },
       {
         iconName: "Target",
         title: "Question-first content architecture",
         description:
-          "Pages restructured around the literal questions buyers ask, with a direct extractable answer in the first 1–2 sentences, then the depth. Answer engines lift the snippet; humans read the rest.",
+          "Pages restructured around the literal questions buyers ask, with a direct extractable answer in the first 1-2 sentences, then the depth. Answer engines lift the snippet; humans read the rest.",
       },
       {
         iconName: "Sparkles",
@@ -2500,7 +2500,7 @@ export const servicePages: ServicePage[] = [
         iconName: "BarChart3",
         title: "AI-share-of-voice tracking",
         description:
-          "Monthly tracking of how often you appear (and how you're described) across ChatGPT, Perplexity, and AI Overviews for your target prompts — so AEO/GEO is measured, not hoped for.",
+          "Monthly tracking of how often you appear (and how you're described) across ChatGPT, Perplexity, and AI Overviews for your target prompts - so AEO/GEO is measured, not hoped for.",
       },
     ],
     techStack: [
@@ -2510,28 +2510,28 @@ export const servicePages: ServicePage[] = [
       { label: "Tracking", items: ["Profound", "Otterly", "Peec AI", "Search Console"] },
     ],
     process: [
-      { title: "Prompt & citation baseline", description: "Define the 30–50 buyer questions that matter, run them across the major answer engines, and record who's cited and how you're described today." },
+      { title: "Prompt & citation baseline", description: "Define the 30-50 buyer questions that matter, run them across the major answer engines, and record who's cited and how you're described today." },
       { title: "Structure & schema", description: "Rewrite the answer blocks, add extractable summaries, and ship validated JSON-LD so engines can read and attribute your content." },
       { title: "Authority & entities", description: "Seed quotable stats, tighten entity consistency, and build the author/Organization footprint that earns model trust." },
       { title: "Measure & iterate", description: "Monthly AI-share-of-voice report, prompt re-runs, and a punch-list of the next answers to win." },
     ],
     proof: [
-      { value: "30–50", label: "Buyer questions tracked across AI answer engines" },
+      { value: "30-50", label: "Buyer questions tracked across AI answer engines" },
       { value: "100%", label: "Priority pages shipped with validated JSON-LD" },
-      { value: "4", label: "Engines monitored — ChatGPT, Perplexity, Gemini, AI Overviews" },
-      { value: "0", label: "Keyword stuffing or AI spam — extractable, factual content only" },
+      { value: "4", label: "Engines monitored - ChatGPT, Perplexity, Gemini, AI Overviews" },
+      { value: "0", label: "Keyword stuffing or AI spam - extractable, factual content only" },
     ],
     pricing: [
       { name: "AEO/GEO Audit", startingFrom: "$900", bestFor: "Seeing where you stand in AI answers", bullets: ["Prompt + citation baseline across 4 engines", "Schema + entity gap report", "Prioritised action plan"] },
-      { name: "AEO/GEO Sprint", startingFrom: "$3,500", popular: true, bestFor: "Getting cited in 6–8 weeks", bullets: ["Audit + answer-block rewrites shipped", "Schema + entity markup implemented", "Citation seeding on top 10 pages", "AI share-of-voice baseline"] },
+      { name: "AEO/GEO Sprint", startingFrom: "$3,500", popular: true, bestFor: "Getting cited in 6-8 weeks", bullets: ["Audit + answer-block rewrites shipped", "Schema + entity markup implemented", "Citation seeding on top 10 pages", "AI share-of-voice baseline"] },
       { name: "Retainer", startingFrom: "$1,800/mo", bestFor: "Ongoing AI visibility growth", bullets: ["New answer pages each month", "Monthly prompt re-runs + reporting", "Schema + entity maintenance"] },
     ],
     faqs: [
       { q: "What is the difference between AEO and GEO?", a: "AEO (Answer Engine Optimization) is about being the extractable answer in tools like Perplexity, Google AI Overviews, and featured snippets. GEO (Generative Engine Optimization) is the broader practice of getting your brand mentioned and recommended inside generative AI responses. They overlap heavily, so I run them as one engagement." },
-      { q: "Is AEO/GEO different from normal SEO?", a: "It builds on SEO — you still need to be crawlable, fast, and authoritative. The difference is structure and quotability: answer engines reward a direct answer up top, clean schema, named statistics, and consistent entities far more than keyword density. I do both so they reinforce each other." },
-      { q: "Can you guarantee I'll be cited by ChatGPT?", a: "No, and anyone who guarantees it is bluffing — model outputs are probabilistic. What I guarantee is that your content is structured, marked up, and authoritative enough to be eligible, and that we measure your citation rate month over month so the work is accountable." },
+      { q: "Is AEO/GEO different from normal SEO?", a: "It builds on SEO - you still need to be crawlable, fast, and authoritative. The difference is structure and quotability: answer engines reward a direct answer up top, clean schema, named statistics, and consistent entities far more than keyword density. I do both so they reinforce each other." },
+      { q: "Can you guarantee I'll be cited by ChatGPT?", a: "No, and anyone who guarantees it is bluffing - model outputs are probabilistic. What I guarantee is that your content is structured, marked up, and authoritative enough to be eligible, and that we measure your citation rate month over month so the work is accountable." },
       { q: "How do you even measure AI visibility?", a: "By running a fixed set of your buyer prompts across ChatGPT, Perplexity, Gemini, and AI Overviews on a schedule and logging whether you appear, how you're described, and who's cited instead. Tools like Profound, Otterly, and Peec AI automate parts of this; I sanity-check the rest by hand." },
-      { q: "Does this work for local or service businesses?", a: "Yes. 'Best [service] in [city]' style questions are increasingly answered by AI. Strong entity data, reviews, and a clean LocalBusiness footprint matter even more there — see /services/local-seo for the map-pack side." },
+      { q: "Does this work for local or service businesses?", a: "Yes. 'Best [service] in [city]' style questions are increasingly answered by AI. Strong entity data, reviews, and a clean LocalBusiness footprint matter even more there - see /services/local-seo for the map-pack side." },
     ],
     related: ["seo", "technical-seo", "content-seo", "ai-integration"],
   },
@@ -2541,9 +2541,9 @@ export const servicePages: ServicePage[] = [
     slug: "content-seo",
     category: "marketing",
     iconName: "TrendingUp",
-    metaTitle: "Content SEO Services — Writing That Ranks and Converts",
+    metaTitle: "Content SEO Services - Writing That Ranks and Converts",
     metaDescription:
-      "Content SEO services — keyword research, search-intent mapping, and 1500–2500-word articles written by a developer who understands your product. Helpful-content-safe, AEO-ready, internally linked.",
+      "Content SEO services - keyword research, search-intent mapping, and 1500-2500-word articles written by a developer who understands your product. Helpful-content-safe, AEO-ready, internally linked.",
     keywords: [
       "content SEO services",
       "SEO content writing",
@@ -2559,14 +2559,14 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Content SEO",
     heroTitle: "Content that ranks, converts, and gets quoted",
     heroDescription:
-      "Keyword research, intent mapping, and genuinely useful long-form content — written by someone who understands your product and the search engines (classic and AI) reading it.",
-    lede: "Most SEO content is thin, generic, and increasingly AI-spam — exactly what Google's helpful-content system and the AI answer engines now demote. I write fewer, deeper articles that actually answer the question, earn links, and get extracted into AI answers. Quality over a content treadmill.",
+      "Keyword research, intent mapping, and genuinely useful long-form content - written by someone who understands your product and the search engines (classic and AI) reading it.",
+    lede: "Most SEO content is thin, generic, and increasingly AI-spam - exactly what Google's helpful-content system and the AI answer engines now demote. I write fewer, deeper articles that actually answer the question, earn links, and get extracted into AI answers. Quality over a content treadmill.",
     deliverables: [
-      { iconName: "FileSearch", title: "Keyword & intent research", description: "Volume, difficulty, and — more importantly — search intent. I map each target to the right page type (informational, commercial, transactional) so you don't write a blog post for a buying query." },
+      { iconName: "FileSearch", title: "Keyword & intent research", description: "Volume, difficulty, and - more importantly - search intent. I map each target to the right page type (informational, commercial, transactional) so you don't write a blog post for a buying query." },
       { iconName: "Target", title: "Topic clusters & content map", description: "A hub-and-spoke plan: pillar pages plus supporting articles, internally linked, that build topical authority instead of a pile of disconnected posts." },
-      { iconName: "TrendingUp", title: "Long-form articles written by me", description: "1500–2500 words, structured for both readers and answer engines, with real expertise — not reworded competitor posts or raw GPT output that tanks your domain." },
+      { iconName: "TrendingUp", title: "Long-form articles written by me", description: "1500-2500 words, structured for both readers and answer engines, with real expertise - not reworded competitor posts or raw GPT output that tanks your domain." },
       { iconName: "Sparkles", title: "On-page & AEO formatting", description: "Title, meta, headings, FAQ blocks, schema, and extractable answer summaries baked into every piece so it's eligible for featured snippets and AI citations." },
-      { iconName: "Megaphone", title: "Internal linking on publish", description: "Every new article is wired into the existing cluster with contextual links, and your highest-authority pages get linked from new content — link equity that compounds." },
+      { iconName: "Megaphone", title: "Internal linking on publish", description: "Every new article is wired into the existing cluster with contextual links, and your highest-authority pages get linked from new content - link equity that compounds." },
       { iconName: "BarChart3", title: "Performance review & refresh", description: "Quarterly content audit: which pieces are decaying, which to refresh, which to consolidate. Old content is an asset to maintain, not abandon." },
     ],
     techStack: [
@@ -2577,26 +2577,26 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Strategy & clusters", description: "Audit current content, find the gaps, and build a prioritised topic-cluster roadmap tied to your funnel." },
-      { title: "Briefs & drafts", description: "Search-intent brief per article, then a real draft written or heavily edited by me — never auto-published GPT output." },
+      { title: "Briefs & drafts", description: "Search-intent brief per article, then a real draft written or heavily edited by me - never auto-published GPT output." },
       { title: "Optimise & ship", description: "On-page SEO, schema, internal links, and AEO formatting applied before publish, in whatever CMS you use." },
       { title: "Measure & refresh", description: "Track rankings and conversions, then refresh or consolidate on a quarterly cadence." },
     ],
     proof: [
       { value: "+120%", label: "Median organic traffic uplift in 6 months on content programs" },
-      { value: "1500–2500", label: "Words of genuinely useful depth per article" },
-      { value: "2–4", label: "Cluster-linked articles shipped per month" },
+      { value: "1500-2500", label: "Words of genuinely useful depth per article" },
+      { value: "2-4", label: "Cluster-linked articles shipped per month" },
       { value: "0", label: "Raw AI-spam articles published under your domain" },
     ],
     pricing: [
       { name: "Content Audit", startingFrom: "$650", bestFor: "Fixing an existing blog", bullets: ["Content + cluster audit", "Decay & consolidation list", "Topic roadmap"] },
-      { name: "Content Engine", startingFrom: "$1,600/mo", popular: true, bestFor: "Consistent organic growth", bullets: ["2–4 articles per month", "Briefs, writing, on-page + schema", "Internal linking on publish", "Monthly performance report"] },
-      { name: "Pillar Project", startingFrom: "$2,800", bestFor: "Launching a new topic cluster", bullets: ["1 pillar + 5–8 supporting articles", "Full cluster interlinking", "AEO-ready formatting"] },
+      { name: "Content Engine", startingFrom: "$1,600/mo", popular: true, bestFor: "Consistent organic growth", bullets: ["2-4 articles per month", "Briefs, writing, on-page + schema", "Internal linking on publish", "Monthly performance report"] },
+      { name: "Pillar Project", startingFrom: "$2,800", bestFor: "Launching a new topic cluster", bullets: ["1 pillar + 5-8 supporting articles", "Full cluster interlinking", "AEO-ready formatting"] },
     ],
     faqs: [
       { q: "Do you write the content with AI?", a: "I use AI for research, outlining, and first-draft scaffolding. The published article is written or substantially rewritten by me. Google's helpful-content system and the AI answer engines both demote thin auto-generated content, so I won't put your domain at that risk." },
-      { q: "Can you write technical or developer content?", a: "Yes — that's a strength. I'm a working developer, so I can write accurate content about APIs, SaaS, dev tools, and technical products without the factual errors that generic writers introduce." },
-      { q: "How long until content ranks?", a: "Informational content on low-to-mid competition terms can rank in 4–12 weeks. Competitive commercial terms take 3–6 months and depend on your domain authority. I'll tell you which targets are realistic in writing before we start." },
-      { q: "Do you handle the technical SEO too?", a: "I can. Content sits on top of a healthy technical foundation — if there are crawl, speed, or schema issues holding you back, see /services/technical-seo. Often I bundle the two." },
+      { q: "Can you write technical or developer content?", a: "Yes - that's a strength. I'm a working developer, so I can write accurate content about APIs, SaaS, dev tools, and technical products without the factual errors that generic writers introduce." },
+      { q: "How long until content ranks?", a: "Informational content on low-to-mid competition terms can rank in 4-12 weeks. Competitive commercial terms take 3-6 months and depend on your domain authority. I'll tell you which targets are realistic in writing before we start." },
+      { q: "Do you handle the technical SEO too?", a: "I can. Content sits on top of a healthy technical foundation - if there are crawl, speed, or schema issues holding you back, see /services/technical-seo. Often I bundle the two." },
     ],
     related: ["seo", "aeo-geo-optimization", "technical-seo", "conversion-rate-optimization"],
   },
@@ -2606,9 +2606,9 @@ export const servicePages: ServicePage[] = [
     slug: "conversion-rate-optimization",
     category: "marketing",
     iconName: "Target",
-    metaTitle: "Conversion Rate Optimization (CRO) Services — Data-Led, Dev-Backed",
+    metaTitle: "Conversion Rate Optimization (CRO) Services - Data-Led, Dev-Backed",
     metaDescription:
-      "Conversion rate optimization services. Funnel analysis, A/B testing, landing-page CRO, and friction removal — backed by a developer who can actually ship the winning variant. Free teardown in 24 hours.",
+      "Conversion rate optimization services. Funnel analysis, A/B testing, landing-page CRO, and friction removal - backed by a developer who can actually ship the winning variant. Free teardown in 24 hours.",
     keywords: [
       "conversion rate optimization services",
       "CRO services",
@@ -2624,15 +2624,15 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Conversion Rate Optimization",
     heroTitle: "Turn the traffic you already have into revenue",
     heroDescription:
-      "Funnel analysis, A/B testing, and friction removal — run by a developer who diagnoses the leak and ships the winning variant, instead of handing your team a slide deck.",
-    lede: "You're already paying for the traffic. CRO is the cheapest growth you'll ever buy because it multiplies everything else. I find where users drop, form a real hypothesis, test it properly, and ship the winner — design, copy, and code in one pair of hands.",
+      "Funnel analysis, A/B testing, and friction removal - run by a developer who diagnoses the leak and ships the winning variant, instead of handing your team a slide deck.",
+    lede: "You're already paying for the traffic. CRO is the cheapest growth you'll ever buy because it multiplies everything else. I find where users drop, form a real hypothesis, test it properly, and ship the winner - design, copy, and code in one pair of hands.",
     deliverables: [
-      { iconName: "FileSearch", title: "Funnel & analytics teardown", description: "GA4, heatmaps, session recordings, and event data combined into a clear map of where users hesitate, rage-click, and abandon — with the biggest revenue leaks ranked first." },
+      { iconName: "FileSearch", title: "Funnel & analytics teardown", description: "GA4, heatmaps, session recordings, and event data combined into a clear map of where users hesitate, rage-click, and abandon - with the biggest revenue leaks ranked first." },
       { iconName: "Target", title: "Hypothesis-driven test backlog", description: "Not random button colors. Each test is a written hypothesis tied to a real friction point, sized by expected impact and effort, so you run the experiments that actually move money." },
       { iconName: "Zap", title: "Landing & checkout optimization", description: "Above-the-fold clarity, trust signals, form-field reduction, and mobile-first flows. For e-commerce: checkout, shipping, and abandoned-cart fixes that recover revenue." },
-      { iconName: "BarChart3", title: "Proper A/B testing", description: "Correctly powered tests with a pre-registered hypothesis and a minimum sample size, so you ship real wins — not noise dressed up as a 12% lift on 40 visitors." },
+      { iconName: "BarChart3", title: "Proper A/B testing", description: "Correctly powered tests with a pre-registered hypothesis and a minimum sample size, so you ship real wins - not noise dressed up as a 12% lift on 40 visitors." },
       { iconName: "Sparkles", title: "Copy & messaging tests", description: "Headlines, value props, and CTA language tested against real users. Often the highest-ROI change on the page is words, not pixels." },
-      { iconName: "ShieldCheck", title: "Winners shipped to production", description: "Because I'm a developer, the winning variant gets implemented cleanly and permanently — no engineering backlog, no half-built test code left rotting in production." },
+      { iconName: "ShieldCheck", title: "Winners shipped to production", description: "Because I'm a developer, the winning variant gets implemented cleanly and permanently - no engineering backlog, no half-built test code left rotting in production." },
     ],
     techStack: [
       { label: "Analytics", items: ["GA4", "PostHog", "Mixpanel", "Plausible"] },
@@ -2650,18 +2650,18 @@ export const servicePages: ServicePage[] = [
       { value: "+18%", label: "Typical conversion uplift on landing-page programs" },
       { value: "ICE-scored", label: "Every test prioritised by impact, confidence, effort" },
       { value: "100%", label: "Winning variants shipped to production, not left as test code" },
-      { value: "Real stats", label: "Powered tests — no calling wins on tiny samples" },
+      { value: "Real stats", label: "Powered tests - no calling wins on tiny samples" },
     ],
     pricing: [
       { name: "Conversion Teardown", startingFrom: "$600", bestFor: "A single page or flow", bullets: ["Funnel + heatmap + recording review", "Prioritised fix list", "Loom walkthrough"] },
-      { name: "CRO Sprint", startingFrom: "$3,200", popular: true, bestFor: "A focused 6-week push", bullets: ["Full funnel instrumentation", "Test backlog + 3–4 experiments run", "Winners shipped to production", "Results report"] },
+      { name: "CRO Sprint", startingFrom: "$3,200", popular: true, bestFor: "A focused 6-week push", bullets: ["Full funnel instrumentation", "Test backlog + 3-4 experiments run", "Winners shipped to production", "Results report"] },
       { name: "CRO Retainer", startingFrom: "$2,000/mo", bestFor: "Ongoing experimentation", bullets: ["Continuous test pipeline", "Monthly experiment readouts", "Winners shipped each cycle"] },
     ],
     faqs: [
-      { q: "How much traffic do I need for CRO?", a: "For statistically valid A/B testing, roughly 1,000+ conversions a month per variant is ideal. Below that, I focus on qualitative research, heuristic teardowns, and bigger swings rather than tiny incremental tests — the gains are usually larger anyway." },
-      { q: "Do you do the design and development, or just advise?", a: "Both. That's the point — I diagnose, design the variant, write the copy, and ship the code. You don't need to route my recommendations through a separate engineering team that's three sprints behind." },
+      { q: "How much traffic do I need for CRO?", a: "For statistically valid A/B testing, roughly 1,000+ conversions a month per variant is ideal. Below that, I focus on qualitative research, heuristic teardowns, and bigger swings rather than tiny incremental tests - the gains are usually larger anyway." },
+      { q: "Do you do the design and development, or just advise?", a: "Both. That's the point - I diagnose, design the variant, write the copy, and ship the code. You don't need to route my recommendations through a separate engineering team that's three sprints behind." },
       { q: "What tools do you use for testing?", a: "PostHog or GrowthBook for most product/SaaS work (open-source, dev-friendly, no flicker), VWO or Optimizely when a client already has them. I avoid client-side testing tools that hurt Core Web Vitals where I can." },
-      { q: "Can CRO and SEO conflict?", a: "Occasionally — an aggressive CRO change can strip content SEO needs. I run them together so a conversion win doesn't quietly cost you rankings. See /services/seo for the organic side." },
+      { q: "Can CRO and SEO conflict?", a: "Occasionally - an aggressive CRO change can strip content SEO needs. I run them together so a conversion win doesn't quietly cost you rankings. See /services/seo for the organic side." },
     ],
     related: ["seo", "landing-page-development", "content-seo", "frontend-development"],
   },
@@ -2671,9 +2671,9 @@ export const servicePages: ServicePage[] = [
     slug: "ai-agent-development",
     category: "specialized",
     iconName: "Cpu",
-    metaTitle: "AI Agent Development Services — Autonomous Agents & Automation",
+    metaTitle: "AI Agent Development Services - Autonomous Agents & Automation",
     metaDescription:
-      "AI agent development services. Build autonomous and tool-using agents with OpenAI, Claude, and LangGraph — workflow automation, multi-step reasoning, and human-in-the-loop guardrails, production-ready.",
+      "AI agent development services. Build autonomous and tool-using agents with OpenAI, Claude, and LangGraph - workflow automation, multi-step reasoning, and human-in-the-loop guardrails, production-ready.",
     keywords: [
       "AI agent development",
       "autonomous agent development",
@@ -2690,15 +2690,15 @@ export const servicePages: ServicePage[] = [
     eyebrow: "AI Agent Development",
     heroTitle: "AI agents that do the work, not just chat",
     heroDescription:
-      "Tool-using, multi-step AI agents wired into your real systems — with the evals, guardrails, and human-in-the-loop checkpoints that make autonomy safe in production.",
-    lede: "An agent demo that books a flight in a video is easy. An agent that reliably runs a real workflow against your real data — without going off the rails, leaking secrets, or burning your token budget — is an engineering problem. That's the one I solve.",
+      "Tool-using, multi-step AI agents wired into your real systems - with the evals, guardrails, and human-in-the-loop checkpoints that make autonomy safe in production.",
+    lede: "An agent demo that books a flight in a video is easy. An agent that reliably runs a real workflow against your real data - without going off the rails, leaking secrets, or burning your token budget - is an engineering problem. That's the one I solve.",
     deliverables: [
-      { iconName: "Cpu", title: "Agent architecture & orchestration", description: "Planner-executor, tool-calling, and multi-agent patterns built on LangGraph, the OpenAI Agents SDK, or the Claude Agent SDK — chosen for your task, not for hype." },
+      { iconName: "Cpu", title: "Agent architecture & orchestration", description: "Planner-executor, tool-calling, and multi-agent patterns built on LangGraph, the OpenAI Agents SDK, or the Claude Agent SDK - chosen for your task, not for hype." },
       { iconName: "Webhook", title: "Real tool & system integration", description: "Agents that actually do things: call your APIs, query your database, hit Slack, send email, update a CRM. Each tool is typed, permissioned, and audited." },
       { iconName: "ShieldCheck", title: "Guardrails & human-in-the-loop", description: "Approval checkpoints on risky actions, scoped permissions, input/output filtering, and prompt-injection defenses so an agent can't be talked into deleting prod." },
       { iconName: "FileSearch", title: "Memory & retrieval", description: "Short-term context management plus long-term memory and RAG so the agent remembers what matters and grounds its actions in your real knowledge base." },
       { iconName: "BarChart3", title: "Evals & observability", description: "A golden task set, automated evals on every change, full trace logging, and cost dashboards. You only ship a new prompt or model when the evals stay green." },
-      { iconName: "Zap", title: "Cost & latency control", description: "Smaller models for routine steps, strong models reserved for hard reasoning, caching, and step limits — so a runaway loop can't quietly cost you hundreds of dollars." },
+      { iconName: "Zap", title: "Cost & latency control", description: "Smaller models for routine steps, strong models reserved for hard reasoning, caching, and step limits - so a runaway loop can't quietly cost you hundreds of dollars." },
     ],
     techStack: [
       { label: "Frameworks", items: ["LangGraph", "OpenAI Agents SDK", "Claude Agent SDK", "Vercel AI SDK"] },
@@ -2709,7 +2709,7 @@ export const servicePages: ServicePage[] = [
     process: [
       { title: "Scope the workflow", description: "Map the task the agent should own, where autonomy helps vs. hurts, and which steps need a human checkpoint. Some 'agents' should just be a script." },
       { title: "Prototype + evals", description: "A working agent against a golden task set so quality and cost are measurable from day one." },
-      { title: "Harden", description: "Guardrails, permissions, retries, fallbacks, step limits, and prompt-injection defenses — the work that separates a demo from production." },
+      { title: "Harden", description: "Guardrails, permissions, retries, fallbacks, step limits, and prompt-injection defenses - the work that separates a demo from production." },
       { title: "Ship + monitor", description: "Trace and cost dashboards, eval gates in CI, and prompt versioning so the agent stays reliable as models change." },
     ],
     proof: [
@@ -2719,13 +2719,13 @@ export const servicePages: ServicePage[] = [
       { value: "Full traces", label: "Every agent run logged and replayable" },
     ],
     pricing: [
-      { name: "Agent Prototype", startingFrom: "$3,500", bestFor: "Validating one agent workflow", bullets: ["Single workflow, 2–4 tools", "Golden task set + basic evals", "Delivered in 2–3 weeks"] },
+      { name: "Agent Prototype", startingFrom: "$3,500", bestFor: "Validating one agent workflow", bullets: ["Single workflow, 2-4 tools", "Golden task set + basic evals", "Delivered in 2-3 weeks"] },
       { name: "Production Agent", startingFrom: "$11,000", popular: true, bestFor: "Shipping an agent to real users/ops", bullets: ["Multi-step agent + real integrations", "Guardrails + human-in-the-loop", "Evals, tracing, cost dashboards"] },
       { name: "Retainer", startingFrom: "$3,500/mo", bestFor: "Evolving agents over time", bullets: ["New tools + workflows", "Model migrations + eval upkeep", "Cost + reliability monitoring"] },
     ],
     faqs: [
-      { q: "What's the difference between an AI agent and a chatbot?", a: "A chatbot answers questions. An agent takes actions — it uses tools, queries systems, and completes multi-step tasks, often with limited human oversight. If you mainly need Q&A over your content, a RAG chatbot (see /services/ai-chatbot-development) is simpler and cheaper." },
-      { q: "Are autonomous agents actually reliable enough for production?", a: "For narrow, well-scoped workflows with guardrails and human checkpoints — yes. For open-ended 'do anything' autonomy — not yet, and I'll tell you so. The engineering is in scoping tightly, adding approval gates, and evaluating relentlessly." },
+      { q: "What's the difference between an AI agent and a chatbot?", a: "A chatbot answers questions. An agent takes actions - it uses tools, queries systems, and completes multi-step tasks, often with limited human oversight. If you mainly need Q&A over your content, a RAG chatbot (see /services/ai-chatbot-development) is simpler and cheaper." },
+      { q: "Are autonomous agents actually reliable enough for production?", a: "For narrow, well-scoped workflows with guardrails and human checkpoints - yes. For open-ended 'do anything' autonomy - not yet, and I'll tell you so. The engineering is in scoping tightly, adding approval gates, and evaluating relentlessly." },
       { q: "How do you stop an agent from doing something harmful?", a: "Scoped tool permissions, human approval on irreversible actions, input/output filtering, prompt-injection defenses, and hard step/cost limits. An agent should be incapable of the worst outcomes, not just discouraged from them." },
       { q: "OpenAI, Claude, or open-source for agents?", a: "Claude and GPT-4o are both strong at tool use and reasoning; I benchmark on your task. Open-source (Llama, Mistral) when privacy or cost demands it. The orchestration layer is model-agnostic so you can switch as the frontier moves." },
     ],
@@ -2737,9 +2737,9 @@ export const servicePages: ServicePage[] = [
     slug: "ai-chatbot-development",
     category: "specialized",
     iconName: "Sparkles",
-    metaTitle: "AI Chatbot Development — Custom RAG Assistants for Your Business",
+    metaTitle: "AI Chatbot Development - Custom RAG Assistants for Your Business",
     metaDescription:
-      "Custom AI chatbot development. RAG assistants grounded in your docs, support bots, and on-site AI search with citations, streaming, and guardrails — built on OpenAI or Claude for production reliability.",
+      "Custom AI chatbot development. RAG assistants grounded in your docs, support bots, and on-site AI search with citations, streaming, and guardrails - built on OpenAI or Claude for production reliability.",
     keywords: [
       "AI chatbot development",
       "custom chatbot developer",
@@ -2753,17 +2753,17 @@ export const servicePages: ServicePage[] = [
       "conversational AI developer",
     ],
     eyebrow: "AI Chatbot Development",
-    heroTitle: "A chatbot that knows your business — and cites its sources",
+    heroTitle: "A chatbot that knows your business - and cites its sources",
     heroDescription:
-      "Custom RAG assistants grounded in your docs and data, with citations, streaming, and guardrails. Not a generic widget — an assistant that answers from your knowledge, not the open internet.",
+      "Custom RAG assistants grounded in your docs and data, with citations, streaming, and guardrails. Not a generic widget - an assistant that answers from your knowledge, not the open internet.",
     lede: "A bare ChatGPT widget hallucinates about your product and frustrates customers. A grounded RAG assistant answers from your actual documentation, links to the source, escalates when it doesn't know, and gets smarter as you add content. That's the difference between a gimmick and a support deflection tool.",
     deliverables: [
-      { iconName: "FileSearch", title: "RAG grounded in your content", description: "Ingestion pipeline for docs, help center, PDFs, and database content, with chunking, embeddings, hybrid search, and reranking so answers come from your knowledge — not the model's guesses." },
+      { iconName: "FileSearch", title: "RAG grounded in your content", description: "Ingestion pipeline for docs, help center, PDFs, and database content, with chunking, embeddings, hybrid search, and reranking so answers come from your knowledge - not the model's guesses." },
       { iconName: "Sparkles", title: "Citations & honest 'I don't know'", description: "Every answer links to the source passage, and the bot is tuned to escalate or admit uncertainty instead of confidently making things up." },
-      { iconName: "Zap", title: "Streaming chat UI", description: "A fast, on-brand chat interface with token-by-token streaming, markdown, code blocks, and suggested follow-ups — embeddable as a widget or built into your app." },
+      { iconName: "Zap", title: "Streaming chat UI", description: "A fast, on-brand chat interface with token-by-token streaming, markdown, code blocks, and suggested follow-ups - embeddable as a widget or built into your app." },
       { iconName: "Webhook", title: "Actions & handoff", description: "Beyond answers: book a demo, create a ticket, look up an order, or hand off to a human agent with full conversation context when needed." },
       { iconName: "ShieldCheck", title: "Safety & rate limiting", description: "Prompt-injection defenses, content filtering, per-user rate limits, and PII handling so your chat endpoint isn't an abuse vector or a data-leak risk." },
-      { iconName: "BarChart3", title: "Analytics & continuous tuning", description: "Conversation logs, unanswered-question reports, thumbs-up/down feedback, and a loop to fill content gaps — the bot improves every week." },
+      { iconName: "BarChart3", title: "Analytics & continuous tuning", description: "Conversation logs, unanswered-question reports, thumbs-up/down feedback, and a loop to fill content gaps - the bot improves every week." },
     ],
     techStack: [
       { label: "Models", items: ["GPT-4o", "Claude", "Haiku", "Embeddings"] },
@@ -2781,17 +2781,17 @@ export const servicePages: ServicePage[] = [
       { value: "Cited", label: "Every answer links back to its source passage" },
       { value: "<1s", label: "Time-to-first-token targeted on streamed replies" },
       { value: "Deflection", label: "Built to resolve common questions before they reach support" },
-      { value: "0", label: "PII leaked — filtered inputs and scoped retrieval" },
+      { value: "0", label: "PII leaked - filtered inputs and scoped retrieval" },
     ],
     pricing: [
-      { name: "Starter Bot", startingFrom: "$2,800", bestFor: "Docs/FAQ assistant", bullets: ["RAG over one content source", "Streaming widget + citations", "Delivered in 1–2 weeks"] },
+      { name: "Starter Bot", startingFrom: "$2,800", bestFor: "Docs/FAQ assistant", bullets: ["RAG over one content source", "Streaming widget + citations", "Delivered in 1-2 weeks"] },
       { name: "Support Assistant", startingFrom: "$7,500", popular: true, bestFor: "Real support deflection", bullets: ["Multi-source RAG + actions", "Human handoff + ticketing", "Analytics + safety guardrails"] },
       { name: "Retainer", startingFrom: "$2,500/mo", bestFor: "Ongoing tuning & content", bullets: ["Weekly answer-quality tuning", "Content-gap closing", "Model + cost optimisation"] },
     ],
     faqs: [
       { q: "How is this different from just embedding ChatGPT?", a: "A raw ChatGPT embed answers from the model's general training and hallucinates about your specifics. A RAG assistant retrieves your actual documentation before answering, cites the source, and stays on-topic. For anything customer-facing, grounding is non-negotiable." },
-      { q: "Where does it get its knowledge?", a: "From sources you control — help center, docs, PDFs, knowledge base, even database records. When you update the content, the bot updates. It does not invent answers from the open web unless you explicitly want that." },
-      { q: "Can it do more than answer questions?", a: "Yes — it can take actions like creating a support ticket, looking up an order, or booking a demo, and hand off to a human with full context when needed. For heavier multi-step automation, that crosses into agent territory — see /services/ai-agent-development." },
+      { q: "Where does it get its knowledge?", a: "From sources you control - help center, docs, PDFs, knowledge base, even database records. When you update the content, the bot updates. It does not invent answers from the open web unless you explicitly want that." },
+      { q: "Can it do more than answer questions?", a: "Yes - it can take actions like creating a support ticket, looking up an order, or booking a demo, and hand off to a human with full context when needed. For heavier multi-step automation, that crosses into agent territory - see /services/ai-agent-development." },
       { q: "What does it cost to run?", a: "Usually far less than people expect. I default to smaller models like Claude Haiku or GPT-4o-mini for most turns, cache aggressively, and reserve premium models for hard questions. I'll give you a realistic monthly token estimate up front." },
     ],
     related: ["ai-integration", "ai-agent-development", "web-development", "api-development"],
@@ -2802,9 +2802,9 @@ export const servicePages: ServicePage[] = [
     slug: "website-maintenance",
     category: "development",
     iconName: "ShieldCheck",
-    metaTitle: "Website Maintenance & Support Services — Updates, Security, Speed",
+    metaTitle: "Website Maintenance & Support Services - Updates, Security, Speed",
     metaDescription:
-      "Website maintenance and support services. Dependency updates, security patches, performance monitoring, uptime, backups, and small feature work — a reliable developer on retainer. Cancel any time.",
+      "Website maintenance and support services. Dependency updates, security patches, performance monitoring, uptime, backups, and small feature work - a reliable developer on retainer. Cancel any time.",
     keywords: [
       "website maintenance services",
       "website support retainer",
@@ -2820,15 +2820,15 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Website Maintenance",
     heroTitle: "A reliable developer on call for your site",
     heroDescription:
-      "Dependency updates, security patches, performance monitoring, backups, and small feature work — handled on a predictable retainer so your site stays fast, secure, and current.",
+      "Dependency updates, security patches, performance monitoring, backups, and small feature work - handled on a predictable retainer so your site stays fast, secure, and current.",
     lede: "Software rots if you ignore it. Dependencies drift, security advisories pile up, performance quietly degrades, and one day something breaks at the worst possible moment. A maintenance retainer keeps your site healthy and gives you a developer who already knows your codebase the day you need a fix.",
     deliverables: [
-      { iconName: "ShieldCheck", title: "Security & dependency updates", description: "Regular patching of packages and frameworks, monitoring of security advisories, and tested upgrades — so you're never running a vulnerable, three-major-versions-behind stack." },
+      { iconName: "ShieldCheck", title: "Security & dependency updates", description: "Regular patching of packages and frameworks, monitoring of security advisories, and tested upgrades - so you're never running a vulnerable, three-major-versions-behind stack." },
       { iconName: "Zap", title: "Performance & Core Web Vitals watch", description: "Ongoing monitoring of LCP, INP, CLS, and bundle size with fixes before regressions hurt rankings or conversions. Speed is maintained, not allowed to decay." },
       { iconName: "Cloud", title: "Uptime, backups & monitoring", description: "Uptime checks, error tracking, automated backups, and SSL/domain renewal reminders. You hear about problems from me, not from an angry customer." },
-      { iconName: "Code2", title: "Small features & content changes", description: "New sections, copy updates, integrations, and bug fixes within your reserved hours each month — no scoping a separate project for every small change." },
+      { iconName: "Code2", title: "Small features & content changes", description: "New sections, copy updates, integrations, and bug fixes within your reserved hours each month - no scoping a separate project for every small change." },
       { iconName: "BarChart3", title: "Monthly health report", description: "A short, plain-English report each month: what was updated, what was fixed, current performance and uptime, and what I recommend next. No black box." },
-      { iconName: "FileSearch", title: "Priority response", description: "When something breaks, you're not starting from scratch with a new freelancer — I already know your stack and can triage fast. Defined response times by tier." },
+      { iconName: "FileSearch", title: "Priority response", description: "When something breaks, you're not starting from scratch with a new freelancer - I already know your stack and can triage fast. Defined response times by tier." },
     ],
     techStack: [
       { label: "Stacks", items: ["Next.js", "React", "Node.js", "WordPress"] },
@@ -2838,7 +2838,7 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Onboarding audit", description: "I review your codebase, dependencies, security posture, and performance to establish a baseline and an immediate fix list." },
-      { title: "Stabilise", description: "Clear the urgent backlog — critical updates, security patches, and the worst performance issues — in the first cycle." },
+      { title: "Stabilise", description: "Clear the urgent backlog - critical updates, security patches, and the worst performance issues - in the first cycle." },
       { title: "Maintain", description: "Scheduled updates, monitoring, backups, and your reserved hours for changes each month." },
       { title: "Report & plan", description: "Monthly health report plus a short call to plan the next improvements." },
     ],
@@ -2854,8 +2854,8 @@ export const servicePages: ServicePage[] = [
       { name: "Business", startingFrom: "$1,500/mo", bestFor: "Revenue-critical web apps", bullets: ["Everything in Growth", "Faster response SLA", "Up to 12 hrs of work/mo", "Monthly strategy call"] },
     ],
     faqs: [
-      { q: "Do you maintain sites you didn't build?", a: "Yes — most maintenance clients come with an existing site. I start with an onboarding audit so I understand the codebase, then stabilise the urgent issues before moving to steady-state maintenance." },
-      { q: "What if I need more hours one month?", a: "Reserved hours don't roll over, but you can buy extra at your tier's rate or temporarily move up a tier for a big month. No surprise invoices — anything beyond your plan is agreed in advance." },
+      { q: "Do you maintain sites you didn't build?", a: "Yes - most maintenance clients come with an existing site. I start with an onboarding audit so I understand the codebase, then stabilise the urgent issues before moving to steady-state maintenance." },
+      { q: "What if I need more hours one month?", a: "Reserved hours don't roll over, but you can buy extra at your tier's rate or temporarily move up a tier for a big month. No surprise invoices - anything beyond your plan is agreed in advance." },
       { q: "Which platforms do you support?", a: "Next.js, React, and Node.js apps primarily, plus WordPress and headless setups. If you're on something I don't support well, I'll tell you honestly rather than take it on." },
       { q: "Is there a long-term contract?", a: "No. Retainers are month-to-month and you can cancel any time. I'd rather keep clients because the service is worth it than because they're locked in." },
     ],
@@ -2867,7 +2867,7 @@ export const servicePages: ServicePage[] = [
     slug: "website-redesign",
     category: "development",
     iconName: "Layers",
-    metaTitle: "Website Redesign & Replatform Services — Faster, Modern, SEO-Safe",
+    metaTitle: "Website Redesign & Replatform Services - Faster, Modern, SEO-Safe",
     metaDescription:
       "Website redesign and replatforming services. Migrate to Next.js, modernise the UI, fix Core Web Vitals, and preserve SEO with a full redirect map. From dated WordPress to fast, modern web app.",
     keywords: [
@@ -2885,15 +2885,15 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Website Redesign",
     heroTitle: "Redesign without throwing away your SEO",
     heroDescription:
-      "Modernise the look, replatform to a fast stack, and fix Core Web Vitals — with a full redirect map and rank-watch so your traffic survives the relaunch instead of cratering.",
-    lede: "Most redesigns tank rankings because someone forgot the redirects, changed every URL, and shipped a slower site with prettier pictures. I treat a redesign as a migration project: new design and stack, yes — but with SEO equity, performance, and content preserved by default.",
+      "Modernise the look, replatform to a fast stack, and fix Core Web Vitals - with a full redirect map and rank-watch so your traffic survives the relaunch instead of cratering.",
+    lede: "Most redesigns tank rankings because someone forgot the redirects, changed every URL, and shipped a slower site with prettier pictures. I treat a redesign as a migration project: new design and stack, yes - but with SEO equity, performance, and content preserved by default.",
     deliverables: [
-      { iconName: "Layers", title: "Modern design & replatform", description: "A current, accessible, on-brand UI on a fast stack — typically Next.js — replacing dated themes, slow page builders, or unmaintainable legacy code." },
+      { iconName: "Layers", title: "Modern design & replatform", description: "A current, accessible, on-brand UI on a fast stack - typically Next.js - replacing dated themes, slow page builders, or unmaintainable legacy code." },
       { iconName: "Search", title: "SEO-safe migration", description: "Full URL inventory, a 1:1 redirect map for every changed path, preserved (or improved) metadata and schema, and a recrawl plan. Rankings move up, not off a cliff." },
-      { iconName: "Zap", title: "Core Web Vitals overhaul", description: "The redesign is the moment to fix speed for good — image strategy, code splitting, render-blocking removal, and a real-world LCP under 2.5s on mid-range phones." },
+      { iconName: "Zap", title: "Core Web Vitals overhaul", description: "The redesign is the moment to fix speed for good - image strategy, code splitting, render-blocking removal, and a real-world LCP under 2.5s on mid-range phones." },
       { iconName: "FileSearch", title: "Content audit & migration", description: "Decide what to keep, merge, refresh, or retire. Your best-performing content carries over cleanly instead of getting lost in the rebuild." },
-      { iconName: "ShieldCheck", title: "Accessibility & responsive rebuild", description: "WCAG 2.1 AA targets, semantic markup, and a genuinely mobile-first layout — not a desktop design squeezed onto a phone." },
-      { iconName: "BarChart3", title: "Post-launch rank watch", description: "30 days of monitoring after relaunch: rankings, crawl errors, Core Web Vitals, and conversions — with fast fixes if anything dips." },
+      { iconName: "ShieldCheck", title: "Accessibility & responsive rebuild", description: "WCAG 2.1 AA targets, semantic markup, and a genuinely mobile-first layout - not a desktop design squeezed onto a phone." },
+      { iconName: "BarChart3", title: "Post-launch rank watch", description: "30 days of monitoring after relaunch: rankings, crawl errors, Core Web Vitals, and conversions - with fast fixes if anything dips." },
     ],
     techStack: [
       { label: "Target stack", items: ["Next.js", "React", "Tailwind", "shadcn/ui"] },
@@ -2903,7 +2903,7 @@ export const servicePages: ServicePage[] = [
     ],
     process: [
       { title: "Audit & inventory", description: "Crawl the current site, inventory every URL and top content, and baseline rankings and performance before touching anything." },
-      { title: "Design & build", description: "New UI and replatform with deployed previews per page, so you approve real screens — not static mocks." },
+      { title: "Design & build", description: "New UI and replatform with deployed previews per page, so you approve real screens - not static mocks." },
       { title: "Migrate & redirect", description: "1:1 redirect map, metadata/schema parity, content migration, and a pre-launch SEO checklist signed off before go-live." },
       { title: "Launch & watch", description: "Relaunch, submit the new sitemap, and monitor rankings and Core Web Vitals for 30 days with fast fixes on standby." },
     ],
@@ -2919,10 +2919,10 @@ export const servicePages: ServicePage[] = [
       { name: "Enterprise", startingFrom: "$20,000", bestFor: "Large or complex sites", bullets: ["100+ pages or multi-locale", "Phased migration plan", "Custom CMS + design system"] },
     ],
     faqs: [
-      { q: "Will a redesign hurt my Google rankings?", a: "It can — that's the #1 risk of any redesign, and it's almost always caused by missing redirects, changed URLs, lost content, or a slower site. I plan for all four with a redirect map, content audit, performance budget, and a 30-day rank watch so traffic is protected." },
-      { q: "Can you keep my existing URLs?", a: "Where it makes sense, yes — keeping URLs is the safest path. When a restructure genuinely improves the site, I build a 1:1 redirect map so link equity transfers cleanly to the new paths." },
-      { q: "I'm on WordPress — should I move off it?", a: "Not automatically. If WordPress serves you, I'll modernise within it or go headless (WP backend, Next.js frontend) for speed. I only recommend a full replatform when the current setup is actively holding back performance, security, or growth." },
-      { q: "How long does a redesign take?", a: "A small refresh is 2–4 weeks. A full replatform with migration is 6–10 weeks depending on page count and content complexity. You get a milestone plan with deployed previews so you see progress throughout." },
+      { q: "Will a redesign hurt my Google rankings?", a: "It can - that's the #1 risk of any redesign, and it's almost always caused by missing redirects, changed URLs, lost content, or a slower site. I plan for all four with a redirect map, content audit, performance budget, and a 30-day rank watch so traffic is protected." },
+      { q: "Can you keep my existing URLs?", a: "Where it makes sense, yes - keeping URLs is the safest path. When a restructure genuinely improves the site, I build a 1:1 redirect map so link equity transfers cleanly to the new paths." },
+      { q: "I'm on WordPress - should I move off it?", a: "Not automatically. If WordPress serves you, I'll modernise within it or go headless (WP backend, Next.js frontend) for speed. I only recommend a full replatform when the current setup is actively holding back performance, security, or growth." },
+      { q: "How long does a redesign take?", a: "A small refresh is 2-4 weeks. A full replatform with migration is 6-10 weeks depending on page count and content complexity. You get a milestone plan with deployed previews so you see progress throughout." },
     ],
     related: ["web-development", "website-maintenance", "performance-optimization", "technical-seo"],
   },

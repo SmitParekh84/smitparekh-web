@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Hero from "@/components/sections/Hero";
 import StatsBar from "@/components/sections/StatsBar";
-import MotionGraphicsLoop from "@/components/sections/MotionGraphicsLoop";
+// Hidden for now - restore this import and the <MotionGraphicsLoop /> below to re-enable the hero video loop.
+// import MotionGraphicsLoop from "@/components/sections/MotionGraphicsLoop";
 import Services from "@/components/sections/Services";
 import FeaturedTools from "@/components/sections/FeaturedTools";
 import Portfolio from "@/components/sections/Portfolio";
@@ -17,16 +18,16 @@ import { testimonials } from "@/data/testimonials";
 import { credentialNodes } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
-  title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+  title: "Smit Parekh - Full Stack Developer (React, Next.js, Node)",
   description:
-    "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS. Also offers free online tools.",
+    "Hire Smit Parekh, a full stack developer with 4+ years building production web apps for FinTech, SaaS, and enterprise. React, Next.js, Node.js, AWS.",
   alternates: { canonical: siteConfig.url },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title: "Smit Parekh - Full Stack Developer for Hire",
     description:
       "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps for FinTech, SaaS, and enterprise clients. React, Next.js, Node.js, TypeScript, PostgreSQL, AWS.",
     images: [
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Smit Parekh - Full Stack Developer for Hire | React, Next.js & Node.js",
+    title: "Smit Parekh - Full Stack Developer for Hire",
     description:
       "Hire Smit Parekh - Full Stack Developer with 4+ years building production web apps. React, Next.js, Node.js, TypeScript, AWS.",
     images: [
@@ -129,7 +130,7 @@ const personSchema = {
     skills:
       "React, Next.js, Node.js, TypeScript, PostgreSQL, AWS, Technical SEO, SaaS development",
     responsibilities:
-      "Designs, builds, deploys, and maintains production web applications end-to-end — frontend, backend, database, and cloud infrastructure.",
+      "Designs, builds, deploys, and maintains production web applications end-to-end - frontend, backend, database, and cloud infrastructure.",
   },
   speakable: {
     "@type": "SpeakableSpecification",
@@ -236,12 +237,12 @@ const breadcrumbSchema = {
   ],
 };
 
-// ── Client reviews as Review objects — feeds Google rich results + AI search ──
+// ── Client reviews as Review objects - feeds Google rich results + AI search ──
 // Using real testimonials from data/testimonials.ts (5-star ones for best signal).
 const reviewsSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Client Reviews — Smit Parekh Full-Stack Developer",
+  name: "Client Reviews - Smit Parekh Full-Stack Developer",
   description: "Real client testimonials for Smit Parekh's web development services.",
   itemListElement: testimonials
     .filter((t) => t.rating === 5)
@@ -315,7 +316,7 @@ export default function HomePage() {
 
       <Hero />
       <StatsBar />
-      <MotionGraphicsLoop />
+      {/* <MotionGraphicsLoop /> hidden for now - restore to bring back the hero video loop. */}
       <Services />
       <FeaturedTools />
       <Portfolio />

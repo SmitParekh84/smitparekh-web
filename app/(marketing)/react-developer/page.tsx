@@ -15,25 +15,25 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a React Developer – Production-Grade UI That Scales",
+  title: "Hire a React Developer - Production-Grade UI That Scales",
   description:
-    "Hire a React developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise. Redux Toolkit, TypeScript strict, 40% performance gains, 30+ products delivered. Fixed-price available. Free quote in 24 hours.",
+    "Hire a React developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise. Redux Toolkit, TypeScript strict, 30+ products delivered.",
   alternates: { canonical: `${siteConfig.url}/react-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/react-developer`,
     siteName: siteConfig.name,
-    title: "Hire a React Developer – 4+ Years, 30+ Products Shipped | Smit Parekh",
+    title: "Hire a React Developer - 4+ Years, 30+ Products Shipped | Smit Parekh",
     description:
-      "React development that holds up at scale — Redux Toolkit, TypeScript, 40% performance improvements, 30+ products shipped. Serving clients in the UK, US, Canada, and worldwide.",
-    images: [{ url: `${siteConfig.url}/images/hire-react-developer.png`, width: 1200, height: 630, alt: "Hire a React Developer – Smit Parekh" }],
+      "React development that holds up at scale - Redux Toolkit, TypeScript, 40% performance improvements, 30+ products shipped. Serving clients in the UK, US, Canada, and worldwide.",
+    images: [{ url: `${siteConfig.url}/images/hire-react-developer.png`, width: 1200, height: 630, alt: "Hire a React Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a React Developer – 30+ Products Shipped | Smit Parekh",
+    title: "Hire a React Developer - 30+ Products Shipped | Smit Parekh",
     description: "React development built for scale. TypeScript, Redux, 40% performance gains. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-react-developer.png`, width: 1200, height: 630 }],
   },
@@ -53,7 +53,7 @@ const results = [
   { value: "40%", label: "Performance boost delivered on a live React + Redux codebase", icon: TrendingUp },
   { value: "30+", label: "Production React applications shipped across FinTech, SaaS & enterprise", icon: Star },
   { value: "50+", label: "Redux-managed components shipped in a single production state tree", icon: Layers },
-  { value: "4+", label: "Years writing React in anger — not tutorials, real deadline-driven products", icon: Clock },
+  { value: "4+", label: "Years writing React in anger - not tutorials, real deadline-driven products", icon: Clock },
 ];
 
 const whatIBuild = [
@@ -66,7 +66,7 @@ const whatIBuild = [
   {
     icon: Code2,
     title: "SaaS Product UIs",
-    description: "Multi-tenant interfaces, subscription gates, onboarding flows, and billing integrations — the full UI stack a SaaS product needs to go from beta to paying customers.",
+    description: "Multi-tenant interfaces, subscription gates, onboarding flows, and billing integrations - the full UI stack a SaaS product needs to go from beta to paying customers.",
     tags: ["React", "Next.js", "Stripe", "Auth"],
   },
   {
@@ -78,13 +78,13 @@ const whatIBuild = [
   {
     icon: Globe,
     title: "Performance Turnarounds",
-    description: "Inherited a slow React codebase? Render waterfalls, missing memoisation, bundle bloat — I've diagnosed and fixed all of it. 40% improvement is a floor, not a ceiling.",
+    description: "Inherited a slow React codebase? Render waterfalls, missing memoisation, bundle bloat - I've diagnosed and fixed all of it. 40% improvement is a floor, not a ceiling.",
     tags: ["React Profiler", "Lighthouse", "Code Splitting", "Memoisation"],
   },
   {
     icon: Server,
     title: "Component Libraries",
-    description: "Reusable, tested, documented UI components your whole team can use without a Slack message. Built on shadcn/ui or from scratch — your call.",
+    description: "Reusable, tested, documented UI components your whole team can use without a Slack message. Built on shadcn/ui or from scratch - your call.",
     tags: ["React", "Storybook", "Radix UI", "Tailwind CSS"],
   },
   {
@@ -104,17 +104,17 @@ const differentiators = [
   {
     icon: Zap,
     title: "Performance is a feature, not an afterthought",
-    description: "useCallback, useMemo, React.memo — I use them when they matter and skip them when they don't. Every component is profiled before it ships. No guessing.",
+    description: "useCallback, useMemo, React.memo - I use them when they matter and skip them when they don't. Every component is profiled before it ships. No guessing.",
   },
   {
     icon: Code2,
     title: "TypeScript strict, from day one",
-    description: "No any, no workarounds, no suppressed errors. Every React component I write is fully typed — props, state, API responses, event handlers. All of it.",
+    description: "No any, no workarounds, no suppressed errors. Every React component I write is fully typed - props, state, API responses, event handlers. All of it.",
   },
   {
     icon: CheckCircle2,
     title: "Tests that actually catch regressions",
-    description: "React Testing Library, component-level unit tests, and integration tests for critical user flows. Not 100% coverage for the sake of it — tests that prevent real bugs.",
+    description: "React Testing Library, component-level unit tests, and integration tests for critical user flows. Not 100% coverage for the sake of it - tests that prevent real bugs.",
   },
 ];
 
@@ -132,19 +132,19 @@ const techStack = [
 const faqs = [
   {
     q: "How much does a React developer cost?",
-    a: "For a scoped project — an MVP, a dashboard, a component library — I work on a fixed price agreed upfront. For ongoing React work I offer a weekly or monthly retainer. Send me your brief and I'll turn around a written quote within 24 hours, no commitment required.",
+    a: "For a scoped project - an MVP, a dashboard, a component library - I work on a fixed price agreed upfront. For ongoing React work I offer a weekly or monthly retainer. Send me your brief and I'll turn around a written quote within 24 hours, no commitment required.",
   },
   {
     q: "How long does it take to build a React application?",
-    a: "A focused MVP front-end typically takes 2–4 weeks. A full-featured SaaS dashboard with auth, billing, and admin panel runs 6–10 weeks. The timeline goes into the proposal before any work starts.",
+    a: "A focused MVP front-end typically takes 2-4 weeks. A full-featured SaaS dashboard with auth, billing, and admin panel runs 6-10 weeks. The timeline goes into the proposal before any work starts.",
   },
   {
     q: "Can you work with my existing React codebase?",
-    a: "Yes — and I prefer it when there's already a base to improve. Share the repo and I'll give you an honest assessment of what needs fixing, what can stay, and what the full scope looks like.",
+    a: "Yes - and I prefer it when there's already a base to improve. Share the repo and I'll give you an honest assessment of what needs fixing, what can stay, and what the full scope looks like.",
   },
   {
     q: "Do you use class components or function components?",
-    a: "Function components with hooks exclusively. Class components are a maintenance burden I don't take on for new work — if your existing codebase has them, migration is scoped and priced as part of the engagement.",
+    a: "Function components with hooks exclusively. Class components are a maintenance burden I don't take on for new work - if your existing codebase has them, migration is scoped and priced as part of the engagement.",
   },
   {
     q: "Which state management library do you use?",
@@ -152,7 +152,7 @@ const faqs = [
   },
   {
     q: "Do you handle the back-end as well, or just React?",
-    a: "Both. I'm a full-stack developer — React front-end, Node.js backend, PostgreSQL/MongoDB, and AWS deployment. You can hire me for React alone or for the full stack. Either works.",
+    a: "Both. I'm a full-stack developer - React front-end, Node.js backend, PostgreSQL/MongoDB, and AWS deployment. You can hire me for React alone or for the full stack. Either works.",
   },
 ];
 
@@ -194,7 +194,7 @@ export default function ReactDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiReact className="w-4 h-4 text-cyan-300" />
@@ -211,15 +211,15 @@ export default function ReactDeveloperPage() {
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 Most React codebases look fine until they hit 50 components, real users, or a deadline. I&apos;ve shipped
-                through all three — and I know exactly where things fall apart and how to prevent it.
+                through all three - and I know exactly where things fall apart and how to prevent it.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "TypeScript strict-mode — no any, no suppressions",
+                  "TypeScript strict-mode - no any, no suppressions",
                   "Redux Toolkit state management that doesn't become a liability",
                   "40% performance improvement delivered on a live production codebase",
-                  "Fixed-price proposals — no scope creep surprises",
+                  "Fixed-price proposals - no scope creep surprises",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
@@ -249,7 +249,7 @@ export default function ReactDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -341,7 +341,7 @@ export default function ReactDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -372,7 +372,7 @@ export default function ReactDeveloperPage() {
                 Ready to hire a React developer who&apos;s done it before?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

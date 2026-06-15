@@ -342,7 +342,7 @@ export default async function ServicePageRoute({
               The tools I actually use in production
             </h2>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground">
-              Modern, battle-tested, and chosen for fit — not hype.
+              Modern, battle-tested, and chosen for fit - not hype.
             </p>
           </div>
 
@@ -503,19 +503,19 @@ export default async function ServicePageRoute({
                         <Star className="h-2.5 w-2.5" /> Best value
                       </span>
                       <p className="font-bold text-base text-blue-500">Solo Dev (me)</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">$80–$120 /hr or fixed</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$80-$120 /hr or fixed</p>
                     </div>
                   </th>
                   <th className="pb-4 px-4">
                     <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 pt-5 pb-3 text-center">
                       <p className="font-semibold text-base">Agency</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">$150–$300 /hr blended</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$150-$300 /hr blended</p>
                     </div>
                   </th>
                   <th className="pb-4 px-4">
                     <div className="rounded-t-2xl border border-b-0 border-border bg-card px-4 pt-5 pb-3 text-center">
                       <p className="font-semibold text-base">In-house hire</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">$80–$120K /yr + benefits</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">$80-$120K /yr + benefits</p>
                     </div>
                   </th>
                 </tr>
@@ -524,21 +524,21 @@ export default async function ServicePageRoute({
                 {([
                   {
                     label: "Start date",
-                    me: "1–2 weeks from quote",
-                    agency: "4–8 weeks onboarding",
-                    inhouse: "8–16 weeks to hire",
+                    me: "1-2 weeks from quote",
+                    agency: "4-8 weeks onboarding",
+                    inhouse: "8-16 weeks to hire",
                     meGood: true, agencyGood: false, inhouseGood: false,
                   },
                   {
                     label: "Who writes the code",
-                    me: "Senior dev — every single line",
+                    me: "Senior dev - every single line",
                     agency: "Junior assigned to your account",
                     inhouse: "Whoever you manage to hire",
                     meGood: true, agencyGood: false, inhouseGood: null,
                   },
                   {
                     label: "Communication",
-                    me: "Direct — you talk to who codes",
+                    me: "Direct - you talk to who codes",
                     agency: "Via account manager first",
                     inhouse: "Direct, but management overhead",
                     meGood: true, agencyGood: false, inhouseGood: null,
@@ -655,7 +655,7 @@ export default async function ServicePageRoute({
             </h2>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground">
               Tell me what you&apos;re building. I&apos;ll reply with a written estimate
-              within 24 hours — no sales call required.
+              within 24 hours - no sales call required.
             </p>
           </div>
           <ServiceLeadForm serviceTitle={service.eyebrow} />

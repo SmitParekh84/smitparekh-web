@@ -239,7 +239,7 @@ export default function AdminBlogsPage() {
               <div>
                 <DialogTitle>Generate blog draft</DialogTitle>
                 <DialogDescription>
-                  Describe the topic. The AI fills the new post — you review &amp; edit before saving.
+                  Describe the topic. The AI fills the new post - you review &amp; edit before saving.
                 </DialogDescription>
               </div>
             </div>

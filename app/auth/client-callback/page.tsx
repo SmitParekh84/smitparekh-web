@@ -45,7 +45,7 @@ function ClientCallbackInner() {
     const next = searchParams.get("next") ?? "/client/dashboard";
     const code = searchParams.get("code");
 
-    // Hash fragment — Supabase puts otp_expired etc. here (client-side only)
+    // Hash fragment - Supabase puts otp_expired etc. here (client-side only)
     const hashErr = parseHashError();
     if (hashErr) {
       setAuthError(hashErr);
@@ -67,7 +67,7 @@ function ClientCallbackInner() {
       return;
     }
 
-    // No code — already signed in?
+    // No code - already signed in?
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         router.replace(next);
@@ -125,7 +125,7 @@ function ClientCallbackInner() {
             <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-[13px] text-amber-700 dark:text-amber-400">
               <p className="font-medium">What to do next</p>
               <p className="mt-0.5 text-[12px] opacity-80">
-                Ask your project contact (Smit) to send a fresh signing link — it takes
+                Ask your project contact (Smit) to send a fresh signing link - it takes
                 just a few seconds from the admin panel.
               </p>
             </div>
@@ -158,7 +158,7 @@ function ClientCallbackInner() {
   );
 }
 
-/* ─── Page — wraps inner in Suspense (required by Next.js 16) ─────────────── */
+/* ─── Page - wraps inner in Suspense (required by Next.js 16) ─────────────── */
 
 export default function ClientCallbackPage() {
   return (

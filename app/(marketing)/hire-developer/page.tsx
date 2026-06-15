@@ -12,9 +12,9 @@ import { geoCountries } from "@/data/geo-pages";
 const url = `${siteConfig.url}/hire-developer`;
 
 export const metadata: Metadata = {
-  title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC",
+  title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi & GCC",
   description:
-    "Hire a remote full-stack developer for the Gulf — UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman. React, Next.js, Node.js & PostgreSQL on a Gulf-timezone overlap. Free quote in 24 hours.",
+    "Hire a remote full-stack developer for the Gulf - UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman. React, Next.js, Node.js on a Gulf-timezone overlap.",
   keywords: [
     "hire full stack developer Gulf",
     "hire developer UAE",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url,
     siteName: siteConfig.name,
-    title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC | Smit Parekh",
+    title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi Arabia & GCC | Smit Parekh",
     description:
       "Remote full-stack developer for UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman. React, Next.js & Node.js on a Gulf-timezone overlap.",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`,
         width: 1200,
         height: 630,
-        alt: "Hire a Full-Stack Developer in the Gulf — Smit Parekh",
+        alt: "Hire a Full-Stack Developer in the Gulf - Smit Parekh",
       },
     ],
   },
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a Full-Stack Developer in the Gulf — UAE, Saudi Arabia & GCC",
+    title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi & GCC",
     description: "Remote full-stack developer for the GCC. React, Next.js & Node.js on a Gulf-timezone overlap.",
     images: [`${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`],
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Full-Stack Developer for Hire — Gulf / GCC",
+  name: "Full-Stack Developer for Hire - Gulf / GCC",
   provider: personNode(),
   serviceType: "Full-Stack Web Development",
   description:
@@ -88,7 +88,7 @@ export default function HireDeveloperHubPage() {
       <PageHero
         eyebrow="Gulf · GCC"
         title="Hire a Full-Stack Developer in the Gulf"
-        description="Remote React, Next.js & Node.js development for businesses across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman — on a Gulf-timezone overlap, with same-day communication."
+        description="Remote React, Next.js & Node.js development for businesses across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman - on a Gulf-timezone overlap, with same-day communication."
         icon={MapPin}
         align="center"
       />
@@ -128,7 +128,7 @@ export default function HireDeveloperHubPage() {
 
           <div className="mt-12 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Not in the Gulf? I work with clients worldwide — including the US, UK, Canada, and India.
+              Not in the Gulf? I work with clients worldwide - including the US, UK, Canada, and India.
             </p>
             <Link
               href="/contact"

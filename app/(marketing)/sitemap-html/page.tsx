@@ -10,9 +10,9 @@ import { developerPages } from "@/data/developer-pages";
 import { geoCountries } from "@/data/geo-pages";
 
 export const metadata: Metadata = {
-  title: "Site Map – All Pages",
+  title: "Site Map - All Pages",
   description:
-    "Complete directory of all pages on smitparekh.co.in — developer hire pages, portfolio, free tools, blog, and more.",
+    "Complete directory of all pages on smitparekh.co.in - developer hire pages, portfolio, free tools, blog, and more.",
   alternates: { canonical: `${siteConfig.url}/sitemap-html` },
   robots: { index: false, follow: true },
 };
@@ -20,19 +20,19 @@ export const metadata: Metadata = {
 type Page = { href: string; title: string; desc: string };
 
 const corePages: Page[] = [
-  { href: "/", title: "Home", desc: "Overview of Smit Parekh — full-stack developer for hire" },
+  { href: "/", title: "Home", desc: "Overview of Smit Parekh - full-stack developer for hire" },
   { href: "/about", title: "About", desc: "Background, experience, certifications, and how I work" },
   { href: "/portfolio", title: "Portfolio & Case Studies", desc: "Production projects shipped for FinTech, SaaS, and enterprise" },
-  { href: "/services", title: "Services", desc: "End-to-end web development — frontend, backend, database, and deployment" },
+  { href: "/services", title: "Services", desc: "End-to-end web development - frontend, backend, database, and deployment" },
   { href: "/hire-me", title: "Hire Me", desc: "Availability, engagement models, tech stack, and FAQs" },
-  { href: "/contact", title: "Contact", desc: "Send a project brief — reply within 24 hours" },
+  { href: "/contact", title: "Contact", desc: "Send a project brief - reply within 24 hours" },
 ];
 
 const contentPages: Page[] = [
   { href: "/blog", title: "Blog", desc: "Technical articles on full-stack development, performance, and SEO" },
-  { href: "/changelog", title: "Changelog", desc: "What's new on smitparekh.co.in — features and updates" },
+  { href: "/changelog", title: "Changelog", desc: "What's new on smitparekh.co.in - features and updates" },
   { href: "/for-students", title: "For Students", desc: "Resources and guidance for developers starting their career" },
-  { href: "/production-nextjs", title: "Production Next.js", desc: "Shipping Next.js apps to production — checklist, config, and lessons learned" },
+  { href: "/production-nextjs", title: "Production Next.js", desc: "Shipping Next.js apps to production - checklist, config, and lessons learned" },
   { href: "/nextjs-vercel-guide", title: "Next.js & Vercel Guide", desc: "Step-by-step guide to deploying Next.js on Vercel with zero downtime" },
 ];
 
@@ -56,7 +56,7 @@ const devPages: Page[] = developerPages.map((p) => ({
 const geoPages: Page[] = [
   {
     href: "/hire-developer",
-    title: "Hire a Developer in the Gulf — GCC Hub",
+    title: "Hire a Developer in the Gulf - GCC Hub",
     desc: "Overview page for all GCC country-targeted hire pages.",
   },
   ...geoCountries.map((c) => ({
@@ -78,7 +78,7 @@ const sections = [
   { label: "Hire a Developer", icon: Code2, description: "Speciality pages for every technology I work with", pages: devPages },
   { label: "Hire by Region", icon: MapPin, description: "Country-targeted hire pages for the Gulf (GCC)", pages: geoPages },
   { label: "Core Pages", icon: Globe, description: "Main sections of the site", pages: corePages },
-  { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools — no signup required`, pages: toolPages },
+  { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools - no signup required`, pages: toolPages },
   { label: "Content & Guides", icon: BookOpen, description: "Articles, guides, changelogs, and learning resources", pages: contentPages },
   { label: "Info", icon: HelpCircle, description: "Support and informational pages", pages: infoPages },
   { label: "Legal", icon: FileText, description: "Legal and policy documents", pages: legalPages },

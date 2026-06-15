@@ -14,27 +14,27 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { SectionHeader } from "@/components/ui/section-header";
 
 export const metadata: Metadata = {
-  title: "Hire a Full-Stack AI Developer — Next.js, Node.js, OpenAI & Claude",
+  title: "Hire a Full-Stack AI Developer - Next.js, OpenAI & Claude",
   description:
-    "Hire a full-stack AI developer who ships production web apps with AI built in. Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals — one engineer from database to deployed AI feature. Free quote in 24 hours.",
+    "Hire a full-stack AI developer shipping production web apps with AI built in. Next.js, Node.js, OpenAI, Claude, RAG, and agents - one engineer end to end.",
   alternates: { canonical: `${siteConfig.url}/full-stack-ai-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/full-stack-ai-developer`,
     siteName: siteConfig.name,
-    title: "Hire a Full-Stack AI Developer — Web Apps with AI Built In | Smit Parekh",
+    title: "Hire a Full-Stack AI Developer - Web Apps with AI Built In | Smit Parekh",
     description:
-      "Full-stack AI developer — Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, and agents. One engineer who builds the app and the AI inside it.",
-    images: [{ url: `${siteConfig.url}/images/hire-full-stack-ai-developer.png`, width: 1200, height: 630, alt: "Hire a Full-Stack AI Developer — Smit Parekh" }],
+      "Full-stack AI developer - Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, and agents. One engineer who builds the app and the AI inside it.",
+    images: [{ url: `${siteConfig.url}/images/hire-full-stack-ai-developer.png`, width: 1200, height: 630, alt: "Hire a Full-Stack AI Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a Full-Stack AI Developer — Web Apps with AI Built In | Smit Parekh",
+    title: "Hire a Full-Stack AI Developer - Web Apps with AI Built In | Smit Parekh",
     description:
-      "Full-stack AI developer — Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals. One engineer, full ownership.",
+      "Full-stack AI developer - Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals. One engineer, full ownership.",
     images: [`${siteConfig.url}/images/hire-full-stack-ai-developer.png`],
   },
   keywords: [
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "Full-stack", label: "App and AI in one pair of hands — schema, API, UI, and the LLM layer, no hand-offs", icon: Code2 },
+  { value: "Full-stack", label: "App and AI in one pair of hands - schema, API, UI, and the LLM layer, no hand-offs", icon: Code2 },
   { value: "4+", label: "Years shipping production web apps for FinTech, SaaS, and enterprise teams", icon: Clock },
-  { value: "Eval-gated", label: "AI features ship behind a golden dataset and automated evals — not vibes", icon: ShieldCheck },
+  { value: "Eval-gated", label: "AI features ship behind a golden dataset and automated evals - not vibes", icon: ShieldCheck },
   { value: "60%", label: "Typical token-cost reduction via model routing, caching, and right-sizing", icon: Zap },
 ];
 
@@ -57,7 +57,7 @@ const whatIBuild = [
   {
     icon: MessageSquare,
     title: "AI Chat & RAG Assistants",
-    description: "Support bots and on-site assistants grounded in your docs — with citations, streaming, and honest 'I don't know' instead of confident hallucination.",
+    description: "Support bots and on-site assistants grounded in your docs - with citations, streaming, and honest 'I don't know' instead of confident hallucination.",
     tags: ["RAG", "OpenAI", "Claude", "pgvector"],
   },
   {
@@ -75,19 +75,19 @@ const whatIBuild = [
   {
     icon: Code2,
     title: "AI-Native SaaS, End to End",
-    description: "The whole product — multi-tenant Next.js app, Stripe billing, auth, admin tools — with the AI capability as a first-class, metered, monitored part of it.",
+    description: "The whole product - multi-tenant Next.js app, Stripe billing, auth, admin tools - with the AI capability as a first-class, metered, monitored part of it.",
     tags: ["Next.js", "Supabase", "Stripe", "Multi-Tenant"],
   },
   {
     icon: Server,
     title: "AI-Ready Backends & APIs",
-    description: "Typed Node.js APIs, vector stores, queues for async generation, webhook handlers, and usage metering — the plumbing that makes an AI feature reliable at scale.",
+    description: "Typed Node.js APIs, vector stores, queues for async generation, webhook handlers, and usage metering - the plumbing that makes an AI feature reliable at scale.",
     tags: ["NestJS", "PostgreSQL", "Redis", "Queues"],
   },
   {
     icon: Brain,
     title: "Evals, Guardrails & Cost Control",
-    description: "Golden datasets, automated evals on every change, prompt-injection defenses, and cost dashboards — so your AI stays accurate, safe, and affordable in production.",
+    description: "Golden datasets, automated evals on every change, prompt-injection defenses, and cost dashboards - so your AI stays accurate, safe, and affordable in production.",
     tags: ["Promptfoo", "LangSmith", "Guardrails"],
   },
 ];
@@ -96,7 +96,7 @@ const differentiators = [
   {
     icon: Code2,
     title: "I build the app and the AI inside it",
-    description: "Most 'AI consultants' can prototype a prompt but can't ship the product around it. I own the database, the API, the UI, and the LLM layer — so the AI feature is actually wired into a real, deployed application, not a Streamlit demo.",
+    description: "Most 'AI consultants' can prototype a prompt but can't ship the product around it. I own the database, the API, the UI, and the LLM layer - so the AI feature is actually wired into a real, deployed application, not a Streamlit demo.",
   },
   {
     icon: ShieldCheck,
@@ -111,7 +111,7 @@ const differentiators = [
   {
     icon: Brain,
     title: "Model-agnostic, future-proof",
-    description: "OpenAI, Anthropic Claude, or open-source — chosen per task and benchmarked on your data. The orchestration layer is built so you can switch models as the frontier moves, without a rewrite.",
+    description: "OpenAI, Anthropic Claude, or open-source - chosen per task and benchmarked on your data. The orchestration layer is built so you can switch models as the frontier moves, without a rewrite.",
   },
 ];
 
@@ -128,13 +128,13 @@ const internalLinks = [
   { href: "/services/ai-integration", title: "AI Integration", description: "OpenAI, Claude, RAG & evals wired into your app" },
   { href: "/services/ai-agent-development", title: "AI Agent Development", description: "Tool-using autonomous agents with guardrails" },
   { href: "/services/ai-chatbot-development", title: "AI Chatbot Development", description: "RAG assistants grounded in your docs, with citations" },
-  { href: "/full-stack-developer", title: "Full-Stack Developer", description: "The non-AI full-stack work — React, Next.js, Node.js" },
+  { href: "/full-stack-developer", title: "Full-Stack Developer", description: "The non-AI full-stack work - React, Next.js, Node.js" },
 ];
 
 const faqs = [
   {
     q: "What is a full-stack AI developer?",
-    a: "A full-stack AI developer builds the complete web application and the AI capability inside it — database, API, frontend, and the LLM layer (prompts, RAG, agents, evals). Instead of one person prototyping a prompt and a separate team shipping the app, one engineer owns both, so the AI feature is actually integrated into a production product.",
+    a: "A full-stack AI developer builds the complete web application and the AI capability inside it - database, API, frontend, and the LLM layer (prompts, RAG, agents, evals). Instead of one person prototyping a prompt and a separate team shipping the app, one engineer owns both, so the AI feature is actually integrated into a production product.",
   },
   {
     q: "Which AI models and tools do you work with?",
@@ -146,15 +146,15 @@ const faqs = [
   },
   {
     q: "Will running AI in production be expensive?",
-    a: "Usually far less than people fear. I default to smaller models for routine turns, reserve premium models for hard reasoning, cache aggressively, and keep context tight — typically a 60% cost reduction versus a naive GPT-4-everywhere build. You get a realistic monthly token estimate before we start.",
+    a: "Usually far less than people fear. I default to smaller models for routine turns, reserve premium models for hard reasoning, cache aggressively, and keep context tight - typically a 60% cost reduction versus a naive GPT-4-everywhere build. You get a realistic monthly token estimate before we start.",
   },
   {
     q: "Can you add AI to my existing app instead of building from scratch?",
-    a: "Yes — that's common. Share the repo and I'll assess where AI genuinely helps (and where it doesn't), then wire the feature into your existing stack with the same evals, guardrails, and cost controls I'd use on a greenfield build.",
+    a: "Yes - that's common. Share the repo and I'll assess where AI genuinely helps (and where it doesn't), then wire the feature into your existing stack with the same evals, guardrails, and cost controls I'd use on a greenfield build.",
   },
   {
     q: "Do you also handle the non-AI parts of the product?",
-    a: "Yes. I'm a full-stack developer first — see /full-stack-developer for the core web work. The advantage of one engineer is that the AI layer and the product around it are designed together, not bolted on afterward.",
+    a: "Yes. I'm a full-stack developer first - see /full-stack-developer for the core web work. The advantage of one engineer is that the AI layer and the product around it are designed together, not bolted on afterward.",
   },
 ];
 
@@ -165,7 +165,7 @@ const serviceSchema = {
   provider: personNode(),
   serviceType: "Full-Stack AI Development",
   description:
-    "Freelance full-stack AI developer who ships production web apps with AI built in — Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals.",
+    "Freelance full-stack AI developer who ships production web apps with AI built in - Next.js, Node.js, PostgreSQL plus OpenAI, Claude, RAG, agents, and evals.",
   url: `${siteConfig.url}/full-stack-ai-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
@@ -208,19 +208,19 @@ export default function FullStackAIDeveloperPage() {
                 <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 dark:from-cyan-300 dark:via-blue-300 dark:to-white bg-clip-text text-transparent">
                   AI Built In
                 </span>
-                {" "}— By One Engineer
+                {" "}- By One Engineer
               </h1>
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 Most teams split the people who build the product from the people who add the AI.
-                I do both. I own the database, API, and UI <em>and</em> the LLM layer — so the AI
+                I do both. I own the database, API, and UI <em>and</em> the LLM layer - so the AI
                 feature is genuinely wired into a production app, with evals, guardrails, and a
                 bill that doesn&apos;t surprise you.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "RAG assistants & chatbots grounded in your docs — with citations",
+                  "RAG assistants & chatbots grounded in your docs - with citations",
                   "Tool-using AI agents with guardrails and human-in-the-loop",
                   "AI features inside a full Next.js + Node.js + PostgreSQL app",
                   "Evals, prompt-injection defenses & cost control by default",
@@ -293,11 +293,11 @@ export default function FullStackAIDeveloperPage() {
             </h2>
             <p className="mt-3 text-sm sm:text-base text-foreground/90 leading-relaxed">
               A full-stack AI developer builds the entire web application and the AI capability inside
-              it — database, backend API, frontend, and the LLM layer (prompts, retrieval-augmented
+              it - database, backend API, frontend, and the LLM layer (prompts, retrieval-augmented
               generation, agents, and evaluations). Smit Parekh is a full-stack AI developer with 4+
               years of production experience who builds AI chatbots, agents, and AI-native SaaS using
               Next.js, Node.js, and PostgreSQL together with OpenAI, Anthropic Claude, and open-source
-              models — shipping AI features that are grounded, evaluated, guard-railed, and cost-controlled,
+              models - shipping AI features that are grounded, evaluated, guard-railed, and cost-controlled,
               not just demoable.
             </p>
           </div>
@@ -310,7 +310,7 @@ export default function FullStackAIDeveloperPage() {
           <SectionHeader
             label="AI, End to End"
             title="What I Build With AI"
-            description="From a grounded support chatbot to an AI-native SaaS product — the AI capability and the application around it, owned by one engineer."
+            description="From a grounded support chatbot to an AI-native SaaS product - the AI capability and the application around it, owned by one engineer."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whatIBuild.map(({ icon: Icon, title, description, tags }) => (
@@ -339,7 +339,7 @@ export default function FullStackAIDeveloperPage() {
           <SectionHeader
             label="Why Hire Me"
             title="Why a Full-Stack AI Developer Beats a Split Team"
-            description="When the same engineer owns the product and the AI layer, the feature actually ships — grounded, evaluated, and affordable."
+            description="When the same engineer owns the product and the AI layer, the feature actually ships - grounded, evaluated, and affordable."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {differentiators.map(({ icon: Icon, title, description }) => (
@@ -413,10 +413,10 @@ export default function FullStackAIDeveloperPage() {
                 <span className="text-sm font-medium">Available for new AI projects</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                Ready to add AI to your product — properly?
+                Ready to add AI to your product - properly?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline,
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline,
                 model recommendation, and a realistic cost estimate. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">

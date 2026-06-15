@@ -3,7 +3,7 @@ import { siteConfig } from "@/data/site";
 
 // Private/sensitive paths kept out of every crawler's index. A user agent that
 // matches its OWN group in robots.txt ignores the wildcard `*` group entirely,
-// so every named AI bot below must restate these — otherwise allowing it on `/`
+// so every named AI bot below must restate these - otherwise allowing it on `/`
 // would also expose /admin, /auth, the API, etc.
 const PRIVATE_PATHS = [
   "/api/",
@@ -11,7 +11,6 @@ const PRIVATE_PATHS = [
   "/dashboard/",
   "/client/",
   "/onboarding/",
-  "/login",
   "/auth/",
 ];
 
@@ -67,7 +66,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: PRIVATE_PATHS,
       },
-      // Named AI crawlers — same access as `*`, restated so they don't fall
+      // Named AI crawlers - same access as `*`, restated so they don't fall
       // through to an unrestricted group.
       ...AI_CRAWLERS.map((userAgent) => ({
         userAgent,
@@ -76,7 +75,7 @@ export default function robots(): MetadataRoute.Robots {
       })),
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
-    // No `Host:` directive — it's a Yandex-only extension that Bing and Google
+    // No `Host:` directive - it's a Yandex-only extension that Bing and Google
     // don't understand. Bing Webmaster Tools flags it as "Syntax not understood",
     // which suppressed crawling/indexing. Canonical host is enforced via the
     // www→apex (or apex→www) redirect + the canonical tag in metadata instead.

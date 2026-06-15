@@ -16,24 +16,24 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire an API Developer – REST & GraphQL APIs, 10K+ Req/Day, TypeScript",
+  title: "Hire an API Developer - REST & GraphQL, 10K+ Req/Day",
   description:
-    "Hire an API developer with 4+ years building production REST and GraphQL APIs handling 10,000+ daily requests at 99.9% uptime. TypeScript strict, JWT auth, rate limiting, OpenAPI docs. Free quote in 24 hours.",
+    "Hire an API developer with 4+ years building production REST and GraphQL APIs at 10,000+ daily requests, 99.9% uptime. JWT auth, rate limiting, OpenAPI.",
   alternates: { canonical: `${siteConfig.url}/api-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/api-developer`,
     siteName: siteConfig.name,
-    title: "Hire an API Developer – REST & GraphQL, 10K+ Req/Day | Smit Parekh",
-    description: "Production REST and GraphQL APIs — TypeScript, JWT auth, rate limiting, Redis caching, OpenAPI documentation. 10K+ daily requests, 99.9% uptime.",
-    images: [{ url: `${siteConfig.url}/images/hire-api-developer.png`, width: 1200, height: 630, alt: "Hire an API Developer – Smit Parekh" }],
+    title: "Hire an API Developer - REST & GraphQL, 10K+ Req/Day | Smit Parekh",
+    description: "Production REST and GraphQL APIs - TypeScript, JWT auth, rate limiting, Redis caching, OpenAPI documentation. 10K+ daily requests, 99.9% uptime.",
+    images: [{ url: `${siteConfig.url}/images/hire-api-developer.png`, width: 1200, height: 630, alt: "Hire an API Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire an API Developer – REST & GraphQL, 10K+ Req/Day | Smit Parekh",
+    title: "Hire an API Developer - REST & GraphQL, 10K+ Req/Day | Smit Parekh",
     description: "REST and GraphQL APIs in production. TypeScript, JWT, rate limiting, OpenAPI. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-api-developer.png`, width: 1200, height: 630 }],
   },
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
 const results = [
   { value: "10K+", label: "Daily API requests handled in production at 99.9% uptime across multiple client products", icon: Globe },
   { value: "<50ms", label: "p95 response time on production REST APIs with Redis caching and connection pooling", icon: Zap },
-  { value: "30+", label: "Production APIs shipped — REST, GraphQL, WebSocket, and webhook integrations", icon: Star },
-  { value: "4+", label: "Years building API layers for FinTech, SaaS, and enterprise — not prototypes, real production traffic", icon: Clock },
+  { value: "30+", label: "Production APIs shipped - REST, GraphQL, WebSocket, and webhook integrations", icon: Star },
+  { value: "4+", label: "Years building API layers for FinTech, SaaS, and enterprise - not prototypes, real production traffic", icon: Clock },
 ];
 
 const whatIBuild = [
@@ -65,7 +65,7 @@ const whatIBuild = [
   {
     icon: Layers,
     title: "GraphQL APIs",
-    description: "Schema-first GraphQL with Apollo Server or Pothos — type-safe resolvers, DataLoader for N+1 elimination, subscriptions for real-time data, and persisted queries for performance.",
+    description: "Schema-first GraphQL with Apollo Server or Pothos - type-safe resolvers, DataLoader for N+1 elimination, subscriptions for real-time data, and persisted queries for performance.",
     tags: ["GraphQL", "Apollo Server", "DataLoader", "Subscriptions"],
   },
   {
@@ -98,7 +98,7 @@ const differentiators = [
   {
     icon: Code2,
     title: "TypeScript strict, end-to-end",
-    description: "Request bodies, query params, path params, response shapes — all typed with Zod validation. The TypeScript types and the runtime validation are the same schema, not two different things to keep in sync.",
+    description: "Request bodies, query params, path params, response shapes - all typed with Zod validation. The TypeScript types and the runtime validation are the same schema, not two different things to keep in sync.",
   },
   {
     icon: ShieldCheck,
@@ -108,7 +108,7 @@ const differentiators = [
   {
     icon: Zap,
     title: "APIs designed for the client that calls them",
-    description: "A good API isn't just technically correct — it's ergonomic for the front-end team using it. I design response shapes, pagination conventions, and error formats around how clients actually consume data.",
+    description: "A good API isn't just technically correct - it's ergonomic for the front-end team using it. I design response shapes, pagination conventions, and error formats around how clients actually consume data.",
   },
   {
     icon: TrendingUp,
@@ -130,27 +130,27 @@ const techStack = [
 const faqs = [
   {
     q: "How much does an API developer cost?",
-    a: "For a defined scope — a new API, an integration, a performance audit — I quote a fixed price. For ongoing API work I offer a weekly or monthly retainer. You'll have written numbers within 24 hours of sending a brief.",
+    a: "For a defined scope - a new API, an integration, a performance audit - I quote a fixed price. For ongoing API work I offer a weekly or monthly retainer. You'll have written numbers within 24 hours of sending a brief.",
   },
   {
     q: "Do you build REST or GraphQL APIs?",
-    a: "Both — the choice depends on the use case. REST for simple resource APIs and mobile apps where payload size matters. GraphQL for complex data graphs, multiple client types, or rapid iteration. I'll recommend the right fit for your requirements.",
+    a: "Both - the choice depends on the use case. REST for simple resource APIs and mobile apps where payload size matters. GraphQL for complex data graphs, multiple client types, or rapid iteration. I'll recommend the right fit for your requirements.",
   },
   {
     q: "Can you integrate with third-party APIs?",
-    a: "Yes. Stripe, Resend, Twilio, Plaid, HubSpot, Shopify — I've integrated with most common SaaS APIs. I handle webhook signature verification, retry logic, idempotency, and the edge cases that SDKs don't document.",
+    a: "Yes. Stripe, Resend, Twilio, Plaid, HubSpot, Shopify - I've integrated with most common SaaS APIs. I handle webhook signature verification, retry logic, idempotency, and the edge cases that SDKs don't document.",
   },
   {
     q: "Do you write API documentation?",
-    a: "Always. OpenAPI 3.1 spec generated from the TypeScript types — so the docs and the implementation can't drift apart. Swagger UI deployed alongside the API for your front-end team to reference without asking questions.",
+    a: "Always. OpenAPI 3.1 spec generated from the TypeScript types - so the docs and the implementation can't drift apart. Swagger UI deployed alongside the API for your front-end team to reference without asking questions.",
   },
   {
     q: "How do you handle authentication?",
-    a: "JWT for most projects — access tokens with short expiry and refresh tokens stored in httpOnly cookies. OAuth2 with Google and GitHub for social login. API keys for machine-to-machine. Supabase Auth for projects already on Supabase.",
+    a: "JWT for most projects - access tokens with short expiry and refresh tokens stored in httpOnly cookies. OAuth2 with Google and GitHub for social login. API keys for machine-to-machine. Supabase Auth for projects already on Supabase.",
   },
   {
     q: "Can you improve an existing slow API?",
-    a: "Yes. Share the slow endpoints and I'll audit the queries, caching strategy, payload sizes, and middleware stack. Most performance problems have a known cause — missing indexes, no caching, N+1 queries, or serialisation overhead.",
+    a: "Yes. Share the slow endpoints and I'll audit the queries, caching strategy, payload sizes, and middleware stack. Most performance problems have a known cause - missing indexes, no caching, N+1 queries, or serialisation overhead.",
   },
 ];
 
@@ -192,7 +192,7 @@ export default function APIDeveloperPage() {
       <AuroraBackground as="section" className="min-h-[75vh] flex items-center pt-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-cyan-50/30 dark:bg-none dark:bg-neutral-950">
         <div className="page-container py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiNodedotjs className="w-4 h-4 text-cyan-300" />
@@ -209,16 +209,16 @@ export default function APIDeveloperPage() {
 
               <p className="text-lg text-neutral-600 leading-relaxed max-w-lg dark:text-white/80">
                 Most APIs look fine until they hit real traffic, rate limits, or an adversarial request.
-                I&apos;ve shipped APIs handling 10,000+ daily requests at 99.9% uptime — and I know exactly
+                I&apos;ve shipped APIs handling 10,000+ daily requests at 99.9% uptime - and I know exactly
                 where the failure modes are.
               </p>
 
               <ul className="space-y-2.5">
                 {[
-                  "TypeScript strict end-to-end — Zod validation on every request",
+                  "TypeScript strict end-to-end - Zod validation on every request",
                   "OpenAPI documentation auto-generated from your types",
-                  "JWT auth, RBAC, rate limiting — security baked in from route one",
-                  "Redis caching and connection pooling — performance that scales",
+                  "JWT auth, RBAC, rate limiting - security baked in from route one",
+                  "Redis caching and connection pooling - performance that scales",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
@@ -248,7 +248,7 @@ export default function APIDeveloperPage() {
               </p>
             </div>
 
-            {/* Right — result cards */}
+            {/* Right - result cards */}
             <div className="grid grid-cols-2 gap-4">
               {results.map(({ value, label, icon: Icon }) => (
                 <div key={value} className="rounded-2xl border border-neutral-200 bg-white/90 backdrop-blur-sm dark:border-white/15 dark:bg-white/8 p-5 flex flex-col gap-3">
@@ -340,7 +340,7 @@ export default function APIDeveloperPage() {
           <SectionHeader
             label="Common Questions"
             title="Before You Reach Out"
-            description="The questions every client asks — answered honestly."
+            description="The questions every client asks - answered honestly."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (
@@ -371,7 +371,7 @@ export default function APIDeveloperPage() {
                 Ready to hire an API developer who&apos;s shipped at scale?
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
-                Send your brief. I&apos;ll reply within 24 hours with a written proposal — scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
+                Send your brief. I&apos;ll reply within 24 hours with a written proposal - scope, timeline, and price. No discovery calls until you&apos;ve seen the numbers.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link

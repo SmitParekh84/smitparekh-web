@@ -44,10 +44,10 @@ const SERVICE_ICONS: Record<string, React.ElementType> = {
 
 const BUDGET_LABELS: Record<string, string> = {
   "under-500": "Under $500",
-  "500-2000": "$500 – $2,000",
-  "2000-5000": "$2,000 – $5,000",
-  "5000-15000": "$5,000 – $15,000",
-  "15000-50000": "$15,000 – $50,000",
+  "500-2000": "$500 - $2,000",
+  "2000-5000": "$2,000 - $5,000",
+  "5000-15000": "$5,000 - $15,000",
+  "15000-50000": "$15,000 - $50,000",
   "50000-plus": "$50,000+",
   "not-sure": "Not sure / Flexible",
 };
@@ -55,8 +55,8 @@ const BUDGET_LABELS: Record<string, string> = {
 const TIMELINE_LABELS: Record<string, string> = {
   asap: "ASAP (within 2 weeks)",
   "1-month": "1 month",
-  "2-3-months": "2–3 months",
-  "3-6-months": "3–6 months",
+  "2-3-months": "2-3 months",
+  "3-6-months": "3-6 months",
   "6-plus-months": "6+ months",
   flexible: "Flexible",
 };
@@ -94,7 +94,7 @@ export default function ClientDashboardPage() {
   );
 }
 
-/* ─── New client — no requirements yet ────────────────────────────────── */
+/* ─── New client - no requirements yet ────────────────────────────────── */
 function DashboardNew({ firstName }: { firstName: string }) {
   return (
     <div className="space-y-6">
@@ -112,8 +112,8 @@ function DashboardNew({ firstName }: { firstName: string }) {
               Let&apos;s scope your project
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Tell us what you need — website, SEO, AI automation, or custom software — and
-              we&apos;ll put together the right plan and a proposal within 24–48 hours.
+              Tell us what you need - website, SEO, AI automation, or custom software - and
+              we&apos;ll put together the right plan and a proposal within 24-48 hours.
             </p>
             <Link href="/client/requirements" className={cn(buttonVariants(), "mt-4 gap-2")}>
               Submit requirements <ArrowRight className="h-3.5 w-3.5" />
@@ -135,7 +135,7 @@ function DashboardNew({ firstName }: { firstName: string }) {
               {[
                 { n: 1, t: "Submit requirements", s: "Pick services, budget and timeline." },
                 { n: 2, t: "We scope & assign", s: "Right team, clear plan, fixed quote." },
-                { n: 3, t: "Proposal in 24–48h", s: "Review, approve, and we kick off." },
+                { n: 3, t: "Proposal in 24-48h", s: "Review, approve, and we kick off." },
               ].map((step) => (
                 <li key={step.n} className="rounded-xl border border-border p-4">
                   <div className="grid h-7 w-7 place-items-center rounded-full bg-foreground text-[12px] font-semibold text-background">
@@ -280,7 +280,7 @@ function DashboardWithRequirements({
               Requirements submitted
             </p>
             <p className="text-xs text-green-600/80 dark:text-green-500/80">
-              Our team is reviewing — you&apos;ll get a proposal within 24–48 hours.
+              Our team is reviewing - you&apos;ll get a proposal within 24-48 hours.
             </p>
           </div>
           <Link
@@ -308,7 +308,7 @@ function DashboardWithRequirements({
             value={String(stats.inProgress.length)}
             sub="active steps"
           />
-          <DashStat label="Next up" value={stats.next ? stats.next.label : "—"} small />
+          <DashStat label="Next up" value={stats.next ? stats.next.label : "-"} small />
           <DashStat
             label="Workstreams"
             value={String(categories.length)}
@@ -394,7 +394,7 @@ function DashboardWithRequirements({
               {[
                 { d: true, l: "Requirements submitted" },
                 { d: false, l: "We review & assign a team" },
-                { d: false, l: "You receive a proposal (24–48h)" },
+                { d: false, l: "You receive a proposal (24-48h)" },
                 { d: false, l: "Approve & kick off" },
               ].map((s) => (
                 <div key={s.l} className="flex items-center gap-3">

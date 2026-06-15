@@ -24,9 +24,9 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
+  title: "Free Headless Blog API - Add a Blog to Any Site in Minutes",
   description:
-    "A free, hosted headless blog API for any developer. Power your Next.js project, business site, or SaaS dashboard with JSON endpoints, Markdown content, image hosting, drafts, categories, and tags — no CMS to maintain, no credit card.",
+    "A free, hosted headless blog API for any developer. Power your Next.js project, business site, or SaaS with JSON endpoints, Markdown, and image hosting.",
   alternates: { canonical: `${siteConfig.url}/blog-api` },
   robots: { index: true, follow: true },
   keywords: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: siteConfig.name,
     url: `${siteConfig.url}/blog-api`,
-    title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
+    title: "Free Headless Blog API - Add a Blog to Any Site in Minutes",
     description:
       "A free, hosted headless blog API for any developer. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags. Plug it into Next.js, your business site, or your SaaS. No CMS to maintain.",
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/smit-parekh-blog-api.png`,
         width: 1200,
         height: 630,
-        alt: "Smit Parekh — Headless Blog API",
+        alt: "Smit Parekh - Headless Blog API",
         type: "image/png",
       },
     ],
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Free Headless Blog API — Add a Blog to Any Site in Minutes",
+    title: "Free Headless Blog API - Add a Blog to Any Site in Minutes",
     description:
       "A free hosted blog API with Markdown, JSON, image hosting, drafts, categories, tags. Plug it into Next.js, your business site, or your SaaS.",
     images: [`${siteConfig.url}/images/smit-parekh-blog-api.png`],
@@ -110,7 +110,7 @@ const faqSchema = {
       name: "What is a headless blog API?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "A headless blog API exposes your blog posts as JSON over HTTP. You manage posts in our dashboard (or via the API itself) and render them however you want on your own site — Next.js, Astro, Nuxt, plain HTML, a SaaS dashboard, anywhere.",
+        text: "A headless blog API exposes your blog posts as JSON over HTTP. You manage posts in our dashboard (or via the API itself) and render them however you want on your own site - Next.js, Astro, Nuxt, plain HTML, a SaaS dashboard, anywhere.",
       },
     },
     {
@@ -118,7 +118,7 @@ const faqSchema = {
       name: "Do I need to sign up to use the Blog API?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Sign in, request a tenant in your dashboard, and once approved you get an API key. Every request you make is scoped to your tenant — your posts never mix with anyone else's.",
+        text: "Yes. Sign in, request a tenant in your dashboard, and once approved you get an API key. Every request you make is scoped to your tenant - your posts never mix with anyone else's.",
       },
     },
     {
@@ -167,13 +167,13 @@ const stats = [
 const comparison = [
   {
     feature: "Setup time",
-    api: "Minutes — copy a key, fetch JSON",
-    wordpress: "Hours — host, install, secure, update",
+    api: "Minutes - copy a key, fetch JSON",
+    wordpress: "Hours - host, install, secure, update",
     cms: "An afternoon of config + billing setup",
   },
   {
     feature: "Hosting & maintenance",
-    api: "None — fully hosted for you",
+    api: "None - fully hosted for you",
     wordpress: "You own servers, updates & security",
     cms: "Hosted, but vendor lock-in",
   },
@@ -185,7 +185,7 @@ const comparison = [
   },
   {
     feature: "Frontend freedom",
-    api: "Any stack — JSON in, render anywhere",
+    api: "Any stack - JSON in, render anywhere",
     wordpress: "Themes, or headless with extra work",
     cms: "Headless, but schema-locked",
   },
@@ -202,7 +202,7 @@ const useCases = [
     icon: Rocket,
     title: "Your Next.js side project",
     description:
-      "Add a /blog route to your Next.js, Astro, or Nuxt app in an afternoon. Fetch posts at build time for ISR, or at request time — both work.",
+      "Add a /blog route to your Next.js, Astro, or Nuxt app in an afternoon. Fetch posts at build time for ISR, or at request time - both work.",
     cta: "Build pattern",
     href: "#how-it-works",
   },
@@ -218,7 +218,7 @@ const useCases = [
     icon: Briefcase,
     title: "Your SaaS or product dashboard",
     description:
-      "Surface release notes, tutorials, or a 'What's new' panel inside your app. The API is stateless and CDN-friendly — drop it anywhere.",
+      "Surface release notes, tutorials, or a 'What's new' panel inside your app. The API is stateless and CDN-friendly - drop it anywhere.",
     cta: "See endpoints",
     href: "#endpoints",
   },
@@ -241,13 +241,13 @@ const features = [
     icon: ImageIcon,
     title: "Image hosting included",
     description:
-      "Upload cover images via the dashboard or the upload endpoint. Stored on a CDN and returned as optimized URLs — no S3 to wire up.",
+      "Upload cover images via the dashboard or the upload endpoint. Stored on a CDN and returned as optimized URLs - no S3 to wire up.",
   },
   {
     icon: Sparkles,
     title: "Drafts, categories & tags",
     description:
-      "Save drafts, toggle publish state, tag posts, group by category, and mark featured posts — all from a clean dashboard.",
+      "Save drafts, toggle publish state, tag posts, group by category, and mark featured posts - all from a clean dashboard.",
   },
   {
     icon: Zap,
@@ -332,7 +332,7 @@ const methodColor: Record<string, string> = {
 const faqs = [
   {
     q: "What is a headless blog API?",
-    a: "A headless blog API exposes your blog posts as JSON over HTTP. You manage posts in our dashboard (or via the API itself) and render them on any frontend you want — Next.js, Astro, Nuxt, plain HTML, or a SaaS dashboard.",
+    a: "A headless blog API exposes your blog posts as JSON over HTTP. You manage posts in our dashboard (or via the API itself) and render them on any frontend you want - Next.js, Astro, Nuxt, plain HTML, or a SaaS dashboard.",
   },
   {
     q: "Do I need to sign up to use it?",
@@ -374,8 +374,8 @@ export default function BlogApiLandingPage() {
 
       <PageHero
         eyebrow="Free Blog API"
-        title="Add a blog to any site in minutes — for free"
-        description="A free, hosted headless blog API for Next.js projects, business sites, and SaaS dashboards. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags — no CMS to maintain, no credit card."
+        title="Add a blog to any site in minutes - for free"
+        description="A free, hosted headless blog API for Next.js projects, business sites, and SaaS dashboards. Markdown content, JSON endpoints, image hosting, drafts, categories, and tags - no CMS to maintain, no credit card."
         icon={BookOpen}
         align="center"
       />
@@ -437,7 +437,7 @@ export default function BlogApiLandingPage() {
             </h2>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground">
               You write posts in the dashboard. We hand back JSON. You render it
-              however your stack wants — at build time, at request time, or on
+              however your stack wants - at build time, at request time, or on
               the edge.
             </p>
           </div>
@@ -716,11 +716,11 @@ export default function BlogApiLandingPage() {
                   Why it&apos;s free
                 </Badge>
                 <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
-                  Free for every developer — here&apos;s the honest reason
+                  Free for every developer - here&apos;s the honest reason
                 </h2>
                 <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
                   I built this Blog API for my own projects, and running it for other
-                  developers costs me almost nothing extra — so it&apos;s free for anyone to
+                  developers costs me almost nothing extra - so it&apos;s free for anyone to
                   use. It&apos;s also the clearest demo of how I build: a multi-tenant,
                   documented, production API that you can actually plug in today. If it
                   saves you a weekend, great. And if you later need a custom API, a SaaS

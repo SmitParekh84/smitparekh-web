@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const tool = toolsSEO.find((t) => t.slug === slug);
   const name = tool?.title.split(" - ")[0] ?? slug;
-  return { title: `${name} — Dashboard`, robots: { index: false } };
+  return { title: `${name} - Dashboard`, robots: { index: false } };
 }
 
 export default async function DashboardToolPage({ params }: Props) {

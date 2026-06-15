@@ -108,7 +108,7 @@ function TenantIdentityCard({ tenant }: { tenant: Tenant }) {
         <div>
           <CardTitle className="text-base">Tenant identity</CardTitle>
           <CardDescription>
-            Internal details for your blog tenant. We never host a public page — your site
+            Internal details for your blog tenant. We never host a public page - your site
             renders posts however it wants.
           </CardDescription>
         </div>
@@ -173,7 +173,7 @@ function ApiKeyCard({ tenant }: { tenant: Tenant }) {
             <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px] text-foreground/80">
               X-API-Key
             </code>{" "}
-            header. Anyone with this key can manage your blog — keep it secret.
+            header. Anyone with this key can manage your blog - keep it secret.
           </CardDescription>
         </div>
         <Link
@@ -334,7 +334,7 @@ function AiFeaturesCard({ tenant }: { tenant: Tenant }) {
       <CardHeader>
         <CardTitle className="text-base">AI features</CardTitle>
         <CardDescription>
-          Features enabled for your account are ready to use. Request any others — the admin
+          Features enabled for your account are ready to use. Request any others - the admin
           reviews each request.
         </CardDescription>
       </CardHeader>
@@ -437,7 +437,7 @@ function WebhooksCard({ tenant }: { tenant: Tenant }) {
       } else {
         toast.error(
           "Webhook failed",
-          res.data.status ? `Endpoint returned HTTP ${res.data.status}.` : "No response — check the URL and secret."
+          res.data.status ? `Endpoint returned HTTP ${res.data.status}.` : "No response - check the URL and secret."
         );
       }
     } catch {
@@ -485,7 +485,7 @@ function WebhooksCard({ tenant }: { tenant: Tenant }) {
 
         {revealed ? (
           <div className="space-y-1.5">
-            <Label>New secret (shown once — copy it now)</Label>
+            <Label>New secret (shown once - copy it now)</Label>
             <div className="flex flex-wrap items-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-2">
               <code className="flex-1 truncate font-mono text-[12.5px] text-foreground/90">{revealed}</code>
               <Button variant="outline" size="sm" className="gap-1.5" onClick={copySecret}>

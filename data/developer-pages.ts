@@ -2,7 +2,7 @@ export const developerPages = [
   {
     slug: "full-stack-developer",
     title: "Full-Stack Developer",
-    description: "React, Next.js, NestJS, PostgreSQL & AWS — one engineer, full ownership from database to deploy",
+    description: "React, Next.js, NestJS, PostgreSQL & AWS - one engineer, full ownership from database to deploy",
     tags: ["React", "Next.js", "NestJS", "PostgreSQL"],
   },
   {
@@ -14,13 +14,13 @@ export const developerPages = [
   {
     slug: "nextjs-developer",
     title: "Next.js Developer",
-    description: "95+ Lighthouse, SEO-first App Router builds — from Server Components to production deploy",
+    description: "95+ Lighthouse, SEO-first App Router builds - from Server Components to production deploy",
     tags: ["Next.js", "App Router", "SEO", "Vercel"],
   },
   {
     slug: "nodejs-developer",
     title: "Node.js Developer",
-    description: "10K+ req/day APIs at 99.9% uptime — NestJS, Express, GraphQL, Redis, and AWS",
+    description: "10K+ req/day APIs at 99.9% uptime - NestJS, Express, GraphQL, Redis, and AWS",
     tags: ["Node.js", "NestJS", "Express", "AWS"],
   },
   {
@@ -32,7 +32,7 @@ export const developerPages = [
   {
     slug: "api-developer",
     title: "API Developer",
-    description: "REST & GraphQL APIs — typed, documented, secured, rate-limited, and cached from day one",
+    description: "REST & GraphQL APIs - typed, documented, secured, rate-limited, and cached from day one",
     tags: ["REST", "GraphQL", "JWT", "Redis"],
   },
   {
@@ -50,19 +50,19 @@ export const developerPages = [
   {
     slug: "typescript-developer",
     title: "TypeScript Developer",
-    description: "Strict-mode TypeScript across the full stack — no any, no suppressions, no runtime surprises",
+    description: "Strict-mode TypeScript across the full stack - no any, no suppressions, no runtime surprises",
     tags: ["TypeScript", "React", "Node.js", "Zod"],
   },
   {
     slug: "aws-developer",
     title: "AWS Developer",
-    description: "99.9% uptime cloud infrastructure — EC2, Lambda, RDS, CloudFront, CDK, and zero-trust IAM",
+    description: "99.9% uptime cloud infrastructure - EC2, Lambda, RDS, CloudFront, CDK, and zero-trust IAM",
     tags: ["AWS", "Lambda", "EC2", "Terraform"],
   },
   {
     slug: "wordpress-developer",
     title: "WordPress Developer",
-    description: "50+ sites shipped — custom themes, WooCommerce, headless WordPress, and 95+ Lighthouse scores",
+    description: "50+ sites shipped - custom themes, WooCommerce, headless WordPress, and 95+ Lighthouse scores",
     tags: ["WordPress", "WooCommerce", "PHP", "Headless"],
   },
   {

@@ -168,7 +168,7 @@ export default function TenantBlogListPage() {
         <PostStat label="Total posts" value={allBlogs.length} />
         <PostStat label="Published" value={publishedCount} />
         <PostStat label="Drafts" value={draftCount} />
-        <PostStat label="Views" value="—" sub="analytics soon" />
+        <PostStat label="Views" value="-" sub="analytics soon" />
       </div>
 
       {/* Tabs + search + new */}
@@ -219,7 +219,7 @@ export default function TenantBlogListPage() {
           <CardDescription>
             {blogs
               ? `${filtered.length} of ${allBlogs.length} post${allBlogs.length !== 1 ? "s" : ""}`
-              : "—"}
+              : "-"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">

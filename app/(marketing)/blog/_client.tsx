@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/date";
 import { BLOG_CATEGORIES } from "@/lib/blog-categories";
 import { StaggerGrid, StaggerItem } from "@/components/ui/motion";
 
-// Lean card shape — the parent server component maps the full blog records to
+// Lean card shape - the parent server component maps the full blog records to
 // this so we never ship every post's full markdown `content` to the client.
 export type BlogCardData = {
   _id: string;
@@ -134,7 +134,7 @@ export default function BlogClient({ posts }: { posts: BlogCardData[] }) {
         <div className="page-container max-w-2xl text-center">
           <h2 className="text-2xl font-bold tracking-tight mb-3">No posts yet</h2>
           <p className="text-sm text-muted-foreground mb-6">
-            I&apos;m drafting the first batch — check back soon, or follow me on
+            I&apos;m drafting the first batch - check back soon, or follow me on
             socials for updates.
           </p>
           <Link

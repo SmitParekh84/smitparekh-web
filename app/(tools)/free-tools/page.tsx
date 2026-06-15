@@ -13,7 +13,7 @@ import ToolsCategoryFilter from "@/components/tools/ToolsCategoryFilter";
 const TOOLS_COUNT = toolsSEO.length;
 
 export const metadata: Metadata = {
-  title: "Free Online Tools - Background Remover, Resume Checker, QR Code Generator & More",
+  title: "Free Online Tools - Background Remover, ATS Checker & More",
   description:
     `${TOOLS_COUNT} free browser-based tools - AI background remover, ATS resume checker, LinkedIn post generator, QR code generator, JSON formatter, base64 encoder/decoder, YouTube thumbnail downloader, SEO analyzer, and more. No signup, no cost. Available worldwide.`,
   alternates: { canonical: `${siteConfig.url}/free-tools` },
@@ -99,14 +99,14 @@ export const metadata: Metadata = {
 const features = [
   { icon: CheckCircle, title: "Zero Paywalls, Ever", description: "No trial countdown, no 'feature locked' banners, no credit card required. Every tool is free today and will still be free next year." },
   { icon: ShieldCheck, title: "Files Deleted Immediately", description: "Uploads are processed in memory and deleted the moment your result is ready. Nothing is stored, logged, or used for AI training. Ever." },
-  { icon: Users, title: "No Signup to Start", description: "Open any tool and start working in seconds. If you want 10× more daily uses and a personal dashboard, one Google sign-in takes 5 seconds — still free." },
-  { icon: Brain, title: "Production-Grade AI", description: "Background removal, ATS scoring, LinkedIn post generation, and SEO analysis — the same quality as paid tools, at zero cost." },
-  { icon: Zap, title: `All ${TOOLS_COUNT} Tools, One Place`, description: "Stop bookmarking a different site for each task. Image, Content, SEO, Career, and Dev tools — all here, all free, searchable by category." },
-  { icon: RefreshCw, title: "Built & Maintained by a Developer", description: "Not a VC-backed tool farm. Built by a full-stack developer who uses these tools weekly. Feedback actually ships — usually within days." },
+  { icon: Users, title: "No Signup to Start", description: "Open any tool and start working in seconds. If you want 10× more daily uses and a personal dashboard, one Google sign-in takes 5 seconds - still free." },
+  { icon: Brain, title: "Production-Grade AI", description: "Background removal, ATS scoring, LinkedIn post generation, and SEO analysis - the same quality as paid tools, at zero cost." },
+  { icon: Zap, title: `All ${TOOLS_COUNT} Tools, One Place`, description: "Stop bookmarking a different site for each task. Image, Content, SEO, Career, and Dev tools - all here, all free, searchable by category." },
+  { icon: RefreshCw, title: "Built & Maintained by a Developer", description: "Not a VC-backed tool farm. Built by a full-stack developer who uses these tools weekly. Feedback actually ships - usually within days." },
 ];
 
 const steps = [
-  { step: "01", title: "Choose Your Tool", description: `Browse ${TOOLS_COUNT} tools by category — Image, Content, SEO, Career, or Dev. Use the filter or scroll the full list. No account needed to start.` },
+  { step: "01", title: "Choose Your Tool", description: `Browse ${TOOLS_COUNT} tools by category - Image, Content, SEO, Career, or Dev. Use the filter or scroll the full list. No account needed to start.` },
   { step: "02", title: "Paste or Upload", description: "Drop a file, paste a URL, or type your input. No complex setup, no documentation to read, no waiting in a queue." },
   { step: "03", title: "Copy or Download", description: "One click to copy your text or download your file. Sign in free for a personal dashboard and 10× higher daily limits across all tools." },
 ];
@@ -226,7 +226,7 @@ export default function FreeToolsPage() {
         eyebrow="Free Tools"
         icon={Wrench}
         title="Stop Paying for Tools You Use Twice a Week"
-        description={`${toolsSEO.length} browser-based tools — background remover, ATS resume checker, LinkedIn post generator, and more. Open it, use it, done. No account, no cost, no nonsense.`}
+        description={`${toolsSEO.length} browser-based tools - background remover, ATS resume checker, LinkedIn post generator, and more. Open it, use it, done. No account, no cost, no nonsense.`}
       >
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/85">
           <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-green-300" /> No account required</span>
@@ -242,7 +242,7 @@ export default function FreeToolsPage() {
             <div className="flex items-center gap-3 text-sm">
               <Zap className="w-4 h-4 text-blue-500 shrink-0" />
               <span>
-                <span className="font-semibold">You&apos;re on the free plan — 3 uses per tool per day.</span>
+                <span className="font-semibold">You&apos;re on the free plan - 3 uses per tool per day.</span>
                 <span className="text-muted-foreground ml-1.5">Sign in with Google for 10× more daily uses + a personal dashboard. No password, no cost, 5 seconds.</span>
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function FreeToolsPage() {
         <div className="max-w-3xl">
           <p className="text-[15px] leading-relaxed text-muted-foreground">
             A growing collection of {TOOLS_COUNT} free, browser-based utilities for developers,
-            marketers, designers, and job seekers. Most tools run entirely on your device — files
+            marketers, designers, and job seekers. Most tools run entirely on your device - files
             and text never leave the browser, so your data stays private. AI-powered tools (background
             removal, ATS resume scoring, LinkedIn post generation, SEO audits) are processed
             securely and deleted immediately after the result is returned. No signup required to
@@ -280,7 +280,7 @@ export default function FreeToolsPage() {
       </section>
 
       {/* Server-rendered list of every tool - guarantees crawlers see all internal links
-          even before the client filter hydrates. Doubles as an A–Z index for users. */}
+          even before the client filter hydrates. Doubles as an A-Z index for users. */}
       <section className="page-section border-t border-border bg-muted/10" id="all-tools">
         <div className="page-container">
           <div className="text-center mb-8">
@@ -291,7 +291,7 @@ export default function FreeToolsPage() {
               All {TOOLS_COUNT} Free Tools
             </h2>
             <p className="text-muted-foreground mt-3 text-sm max-w-xl mx-auto">
-              Every tool on this site, in one alphabetical list — open any one to start using it
+              Every tool on this site, in one alphabetical list - open any one to start using it
               immediately.
             </p>
           </div>
@@ -380,10 +380,10 @@ export default function FreeToolsPage() {
           <div className="rounded-3xl border border-border bg-muted/30 px-8 py-12 text-center max-w-2xl mx-auto">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3">No credit card. No expiry. No catch.</p>
             <h2 className="text-2xl font-bold tracking-tight mb-3">
-              Every tool is free — today and always
+              Every tool is free - today and always
             </h2>
             <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
-              Sign in free with Google for 10× more daily uses and a personal dashboard that tracks everything. Or just start using tools right now — no account needed.
+              Sign in free with Google for 10× more daily uses and a personal dashboard that tracks everything. Or just start using tools right now - no account needed.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
