@@ -71,18 +71,25 @@ export const developerPages = [
     description: "Cross-platform iOS & Android apps with Expo, TypeScript strict, and OTA updates via EAS",
     tags: ["React Native", "Expo", "iOS", "Android"],
   },
+  {
+    slug: "web-application-development",
+    title: "Web Application Development",
+    description: "SaaS solutions, real-time systems & production deployments - custom web applications owned end to end by one engineer",
+    tags: ["SaaS", "Real-Time", "Next.js", "Production"],
+  },
 ] as const;
 
 export type DeveloperPageSlug = (typeof developerPages)[number]["slug"];
 
 export const relatedPages: Record<DeveloperPageSlug, DeveloperPageSlug[]> = {
-  "full-stack-developer": ["react-developer", "nextjs-developer", "nodejs-developer", "nestjs-developer"],
+  "full-stack-developer": ["web-application-development", "react-developer", "nextjs-developer", "nodejs-developer"],
   "react-developer": ["nextjs-developer", "typescript-developer", "full-stack-developer", "saas-developer"],
   "nextjs-developer": ["react-developer", "typescript-developer", "saas-developer", "full-stack-developer"],
   "nodejs-developer": ["nestjs-developer", "api-developer", "postgresql-developer", "full-stack-developer"],
   "nestjs-developer": ["nodejs-developer", "api-developer", "typescript-developer", "full-stack-developer"],
   "api-developer": ["nodejs-developer", "nestjs-developer", "postgresql-developer", "full-stack-developer"],
-  "saas-developer": ["nextjs-developer", "react-developer", "postgresql-developer", "full-stack-developer"],
+  "saas-developer": ["web-application-development", "nextjs-developer", "react-developer", "full-stack-developer"],
+  "web-application-development": ["full-stack-developer", "saas-developer", "nextjs-developer", "nodejs-developer"],
   "postgresql-developer": ["nodejs-developer", "api-developer", "saas-developer", "full-stack-developer"],
   "typescript-developer": ["react-developer", "nextjs-developer", "nestjs-developer", "full-stack-developer"],
   "aws-developer": ["nodejs-developer", "full-stack-developer", "api-developer", "saas-developer"],

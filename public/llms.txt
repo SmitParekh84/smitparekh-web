@@ -153,6 +153,7 @@ Smit Parekh offers a suite of free browser-based developer and productivity tool
 - Node.js Developer: https://www.smitparekh.co.in/nodejs-developer
 - NestJS Developer: https://www.smitparekh.co.in/nestjs-developer
 - Full-Stack Developer: https://www.smitparekh.co.in/full-stack-developer
+- Web Application Development (SaaS solutions, real-time systems, production deployments): https://www.smitparekh.co.in/web-application-development
 - TypeScript Developer: https://www.smitparekh.co.in/typescript-developer
 - PostgreSQL Developer: https://www.smitparekh.co.in/postgresql-developer
 - AWS Developer: https://www.smitparekh.co.in/aws-developer

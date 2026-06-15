@@ -55,6 +55,8 @@ const AI_CRAWLERS = [
   "Timpibot", // Timpi
   "ProRataInc", // ProRata.ai / Gist
   "CCBot", // Common Crawl (feeds many LLM datasets)
+  "Diffbot", // Diffbot knowledge-graph crawler (feeds LLM/KG datasets)
+  "Omgilibot", // Omgili / webz.io dataset crawler
 ];
 
 export default function robots(): MetadataRoute.Robots {
