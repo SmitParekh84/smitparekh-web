@@ -43,6 +43,7 @@ import {
 } from "@/data/services-catalog";
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
 import { ServiceAuthorBio } from "@/components/sections/ServiceAuthorBio";
+import { ServiceMeetDeveloper } from "@/components/sections/ServiceMeetDeveloper";
 
 export const dynamicParams = false;
 
@@ -404,6 +405,9 @@ export default async function ServicePageRoute({
           </ol>
         </div>
       </section>
+
+      {/* Meet the developer */}
+      <ServiceMeetDeveloper />
 
       {/* Pricing */}
       <section className="page-section">
