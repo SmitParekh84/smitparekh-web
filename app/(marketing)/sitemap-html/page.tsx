@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Code2, Server, Database, Globe, Users, BookOpen,
-  Wrench, FileText, HelpCircle, MessageSquare, ArrowRight, MapPin,
+  Code2, Globe, BookOpen,
+  Wrench, FileText, HelpCircle, ArrowRight, MapPin, Layers,
 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import { developerPages } from "@/data/developer-pages";
 import { geoCountries } from "@/data/geo-pages";
 import { guides } from "@/data/guides";
+import { servicePages } from "@/data/services-catalog";
 
 export const metadata: Metadata = {
   title: "Site Map - All Pages",
@@ -23,14 +24,17 @@ type Page = { href: string; title: string; desc: string };
 const corePages: Page[] = [
   { href: "/", title: "Home", desc: "Overview of Smit Parekh - full-stack developer for hire" },
   { href: "/about", title: "About", desc: "Background, experience, certifications, and how I work" },
+  { href: "/who-is-smit-parekh", title: "Who Is Smit Parekh?", desc: "Bio, skills, experience, and FAQs about Smit Parekh - full-stack developer" },
   { href: "/portfolio", title: "Portfolio & Case Studies", desc: "Production projects shipped for FinTech, SaaS, and enterprise" },
   { href: "/services", title: "Services", desc: "End-to-end web development - frontend, backend, database, and deployment" },
   { href: "/hire-me", title: "Hire Me", desc: "Availability, engagement models, tech stack, and FAQs" },
   { href: "/contact", title: "Contact", desc: "Send a project brief - reply within 24 hours" },
+  { href: "/book", title: "Book a 15-min Call", desc: "Pick a free slot to discuss your project - scope, timeline, tech recommendations" },
 ];
 
 const contentPages: Page[] = [
   { href: "/blog", title: "Blog", desc: "Technical articles on full-stack development, performance, and SEO" },
+  { href: "/blog-api", title: "Free Headless Blog API", desc: "A free hosted blog API for any developer - JSON endpoints, Markdown, image hosting" },
   { href: "/changelog", title: "Changelog", desc: "What's new on smitparekh.co.in - features and updates" },
   { href: "/for-students", title: "For Students", desc: "Resources and guidance for developers starting their career" },
   { href: "/production-nextjs", title: "Production Next.js", desc: "Shipping Next.js apps to production - checklist, config, and lessons learned" },
@@ -76,20 +80,30 @@ const guidePages: Page[] = [
   })),
 ];
 
-const toolPages: Page[] = [...toolsSEO]
-  .sort((a, b) => a.slug.localeCompare(b.slug))
-  .map((t) => ({
-    href: `/free-tools/${t.slug}`,
-    title: t.title.split(" - ")[0],
-    desc: t.description,
-  }));
+const serviceDetailPages: Page[] = servicePages.map((s) => ({
+  href: `/services/${s.slug}`,
+  title: s.heroTitle,
+  desc: s.metaDescription,
+}));
+
+const toolPages: Page[] = [
+  { href: "/free-tools", title: "Free Tools Hub", desc: `${toolsSEO.length} free browser-based developer tools - no signup required` },
+  ...[...toolsSEO]
+    .sort((a, b) => a.slug.localeCompare(b.slug))
+    .map((t) => ({
+      href: `/free-tools/${t.slug}`,
+      title: t.title.split(" - ")[0],
+      desc: t.description,
+    })),
+];
 
 const sections = [
-  { label: "Hire a Developer", icon: Code2, description: "Speciality pages for every technology I work with", pages: devPages },
-  { label: "Hire by Region", icon: MapPin, description: "Country-targeted hire pages for the Gulf (GCC)", pages: geoPages },
   { label: "Core Pages", icon: Globe, description: "Main sections of the site", pages: corePages },
-  { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools - no signup required`, pages: toolPages },
+  { label: "Hire a Developer", icon: Code2, description: "Speciality pages for every technology I work with", pages: devPages },
+  { label: "Services", icon: Layers, description: `${servicePages.length} service pages covering the full scope of what I offer`, pages: serviceDetailPages },
+  { label: "Hire by Region", icon: MapPin, description: "Country-targeted hire pages for the Gulf (GCC)", pages: geoPages },
   { label: "Guides", icon: BookOpen, description: "Cost guides, hiring guides, and technology comparisons", pages: guidePages },
+  { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools - no signup required`, pages: toolPages },
   { label: "Content", icon: BookOpen, description: "Articles, changelogs, and learning resources", pages: contentPages },
   { label: "Info", icon: HelpCircle, description: "Support and informational pages", pages: infoPages },
   { label: "Legal", icon: FileText, description: "Legal and policy documents", pages: legalPages },
