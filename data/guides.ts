@@ -816,6 +816,425 @@ export const guides: Guide[] = [
     ctaText:
       "Tell me what you're building and I'll recommend the right approach — React, Next.js, or something else — with no jargon and no sales pressure. Reply within 24 hours.",
   },
+
+  // ──────────────────────────────────────── Technical guide: Deploy on Vercel
+  {
+    slug: "deploy-nextjs-on-vercel-2026",
+    category: "Technical Guide",
+    iconName: "Layers",
+    updated: "2026-06-16",
+    readingTime: "10 min read",
+    metaTitle: "How to Deploy a Next.js App on Vercel in 2026 (Step-by-Step Guide)",
+    metaDescription:
+      "A complete step-by-step guide to deploying a Next.js app on Vercel in 2026 — GitHub import, environment variables, custom domains, preview deployments, and production best practices.",
+    keywords: [
+      "deploy next.js on vercel",
+      "how to deploy next.js app to vercel",
+      "vercel next.js deployment guide 2026",
+      "vercel deploy next.js 2026",
+      "vercel next.js deployment documentation 2026",
+      "deploy next.js to vercel step by step",
+      "vercel deployment best practices 2026",
+      "next.js vercel deployment",
+      "vercel environment variables next.js",
+      "vercel deployment guide for beginners 2026",
+    ],
+    eyebrow: "Technical Guide",
+    heroTitle: "How to Deploy a Next.js App on Vercel in 2026",
+    heroDescription:
+      "A complete walkthrough — from pushing your code to GitHub through environment variables, custom domains, and production best practices — with zero config required for most Next.js projects.",
+    tldr: "To deploy a Next.js app on Vercel in 2026: push your project to GitHub, import it in the Vercel dashboard, add your environment variables under Project Settings, and click Deploy. Vercel auto-detects Next.js, sets Node.js version automatically, and gives you a live preview URL in 2–4 minutes. Production deploys to your custom domain trigger automatically on every push to main.",
+    takeaways: [
+      "Vercel detects Next.js automatically — no vercel.json needed for most projects.",
+      "Environment variables live in Project Settings → Environment Variables, not in .env files committed to Git.",
+      "Every pull request gets its own preview URL — test before you merge to production.",
+      "Custom domains: add in Vercel dashboard, then point your DNS A/CNAME records at Vercel's IPs.",
+      "The free Hobby plan is generous for side projects; Pro ($20/month) removes limits for teams.",
+    ],
+    sections: [
+      {
+        id: "prerequisites",
+        heading: "Before you start",
+        paragraphs: [
+          "You need three things: a Next.js project in a GitHub (or GitLab or Bitbucket) repository, a Vercel account (free to create at vercel.com using your GitHub login), and your environment variable names and values written down. You don't need the Vercel CLI for a basic deploy — the dashboard handles everything.",
+          "Vercel supports Node.js 20 and 22 for Next.js in 2026. If your project has an .nvmrc or an \"engines\" field in package.json, Vercel reads it automatically. If not, it defaults to the current LTS — usually fine unless your project has pinned an older version.",
+        ],
+      },
+      {
+        id: "step-1-push-to-github",
+        heading: "Step 1: Push your project to GitHub",
+        paragraphs: [
+          "Vercel deploys from a Git repository. If your project isn't already in one, create a new repository on GitHub (public or private — Vercel works with both), then push your local code:",
+        ],
+        bullets: [
+          "git init (if not already a git repo)",
+          "git remote add origin https://github.com/your-username/your-repo.git",
+          "git add . && git commit -m \"Initial commit\"",
+          "git push -u origin main",
+        ],
+      },
+      {
+        id: "step-2-import-on-vercel",
+        heading: "Step 2: Import the project on Vercel",
+        paragraphs: [
+          "Go to vercel.com → New Project → Import Git Repository. Vercel lists your GitHub repositories — select your Next.js project and click Import. On the configuration screen, Vercel detects Next.js automatically and pre-fills the framework, build command (next build), output directory (.next), and install command based on your lockfile (npm, yarn, or pnpm).",
+          "Leave everything as-is for a standard Next.js project. The only thing you might adjust is the root directory if your Next.js app is in a subdirectory of a monorepo.",
+        ],
+      },
+      {
+        id: "step-3-environment-variables",
+        heading: "Step 3: Add environment variables",
+        paragraphs: [
+          "This is the step most people get wrong. Do not commit your environment variables to Git in a .env file — that exposes secrets. Instead, add them in Vercel's UI during the import step (or afterwards in Project Settings → Environment Variables).",
+          "Vercel scopes variables per environment: Production, Preview, and Development. NEXT_PUBLIC_ prefixed variables are baked into the client bundle — everything else stays server-only and encrypted at rest.",
+        ],
+        bullets: [
+          "Add database URLs, API keys, and secrets here — never in .env files committed to Git.",
+          "NEXT_PUBLIC_ variables are visible to browsers — only use this prefix for safe-to-expose values.",
+          "After adding or changing variables, redeploy for them to take effect.",
+          "Your local .env.local file is for local development only — Vercel does not read it.",
+        ],
+      },
+      {
+        id: "step-4-deploy",
+        heading: "Step 4: Deploy and verify",
+        paragraphs: [
+          "Click Deploy. Vercel runs your install command, then next build, and packages the output as serverless functions and static assets. A typical Next.js app builds in 2–5 minutes on the first deploy; subsequent deploys are faster because Vercel caches dependencies and build artifacts.",
+          "When the build finishes, Vercel gives you a .vercel.app URL. Every deployment — including this first one — gets its own immutable URL. Test it thoroughly before wiring up your custom domain.",
+        ],
+      },
+      {
+        id: "custom-domain",
+        heading: "Step 5: Add a custom domain",
+        paragraphs: [
+          "In your project's Settings → Domains, type your domain and click Add. Vercel shows you two DNS records to create at your domain registrar: an A record pointing to 76.76.21.21 for the root domain, and a CNAME pointing to cname.vercel-dns.com for www.",
+          "DNS propagation takes up to 24 hours but is usually minutes. Vercel provisions your TLS certificate automatically via Let's Encrypt once propagation completes — no manual SSL setup required.",
+        ],
+      },
+      {
+        id: "preview-deployments",
+        heading: "Preview deployments — test before you merge",
+        paragraphs: [
+          "Every pull request on your repository automatically gets a unique preview URL. You can share it with a client for review, run end-to-end tests against it, or check a visual diff before merging to production. Preview deployments use Preview environment variables, so they can point at a staging database rather than your live one.",
+          "This is one of Vercel's most valuable features — teams that use preview deployments essentially never break production accidentally, because the entire change is tested in isolation first.",
+        ],
+        links: [
+          { href: "/nextjs-developer", label: "Hire a Next.js developer" },
+          { href: "/production-nextjs", label: "Production Next.js checklist" },
+        ],
+      },
+      {
+        id: "production-best-practices",
+        heading: "Production best practices for 2026",
+        paragraphs: [
+          "Once your app is live, a few settings separate a production deployment from a side project:",
+        ],
+        bullets: [
+          "Enable Vercel Speed Insights and Analytics — surfaces Core Web Vitals per page route with one line of code.",
+          "Use next/image for all images — Vercel's CDN serves the right size and format (WebP/AVIF) automatically.",
+          "Use Next.js ISR (revalidate) or on-demand revalidation to avoid unnecessary serverless function invocations on static-ish pages.",
+          "Set your main branch as protected in GitHub — Vercel only deploys to production from main, so PRs always go through preview first.",
+          "Check function cold-start times in Vercel Analytics — routes that are slow on first request benefit from edge runtime or static generation.",
+          "Use Vercel's built-in DDoS protection and middleware for rate limiting, auth checks, and redirects without a separate service.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How long does Vercel take to deploy a Next.js app?",
+        a: "A typical Next.js app builds and deploys in 2–4 minutes on the first deploy. Subsequent deploys are faster — often 60–90 seconds — because Vercel caches node_modules and build artifacts. Large apps with many SSG pages can take longer; use next build locally first and fix any warnings before your first production push.",
+      },
+      {
+        q: "What are Vercel's free tier limits for Next.js in 2026?",
+        a: "Vercel's Hobby (free) plan includes 100 GB bandwidth/month, 6,000 serverless function invocations per day, 100 deployments/day, and unlimited preview deployments. It's enough for most side projects and personal apps. The Pro plan ($20/month per team member) removes daily limits and adds team collaboration, more function execution time, and advanced analytics.",
+      },
+      {
+        q: "How do I add environment variables to Vercel?",
+        a: "Go to your project on vercel.com → Settings → Environment Variables. Add each variable with its name and value, then select which environment it applies to (Production, Preview, Development). Variables are encrypted at rest. After adding or changing them, trigger a new deploy — existing deployments don't automatically pick up variable changes.",
+      },
+      {
+        q: "Can I deploy Next.js to Vercel for free?",
+        a: "Yes. Vercel's Hobby plan is free with no time limit and supports all core Next.js features: serverless functions, edge functions, preview deployments, and custom domains with automatic TLS. The main limitations are bandwidth, daily function invocations, and solo-use only (no team members on free).",
+      },
+      {
+        q: "What is the difference between Vercel preview and production deployments?",
+        a: "A production deployment runs on your main branch and serves traffic to your custom domain. A preview deployment is created automatically for every pull request — it gets its own URL, can use different environment variables (e.g. staging database), and is completely isolated from production. Previews are immutable and persist after the PR closes, so you can always revisit any historical state.",
+      },
+      {
+        q: "How do I add a custom domain on Vercel?",
+        a: "In your Vercel project → Settings → Domains, add your domain. Vercel shows you DNS records to create: an A record pointing to 76.76.21.21 for the apex domain, and a CNAME pointing to cname.vercel-dns.com for www. Create these at your domain registrar. Vercel provisions TLS automatically once DNS propagates, usually within minutes.",
+      },
+      {
+        q: "Does Vercel work with Next.js 15 and 16?",
+        a: "Yes. Vercel maintains and funds Next.js, so every version is supported on or before release day. Next.js 15 and 16 features — App Router, partial prerendering, Server Actions, streaming — all work out of the box on Vercel with zero configuration.",
+      },
+    ],
+    related: ["nextjs-vs-react", "how-much-does-a-website-cost", "cost-to-build-a-saas"],
+    ctaHeading: "Want a production-ready Next.js setup done for you?",
+    ctaText:
+      "I configure Next.js deployments on Vercel with CI/CD, environment management, preview environments, and performance monitoring — ready to hand over. Free quote within 24 hours.",
+  },
+
+  // ──────────────────────────────────── Technical guide: Website performance
+  {
+    slug: "website-performance-optimization",
+    category: "Technical Guide",
+    iconName: "Rocket",
+    updated: "2026-06-16",
+    readingTime: "9 min read",
+    metaTitle: "Why Is My Website Loading Slowly? 7 Causes + Fixes (2026)",
+    metaDescription:
+      "Clear diagnosis of why your website is slow and how to fix it — unoptimized images, render-blocking scripts, slow hosting, large JS bundles, and more. Free Lighthouse checklist included.",
+    keywords: [
+      "why is my website loading slowly",
+      "website loading slow",
+      "how to speed up my website",
+      "website performance optimization",
+      "slow website fix",
+      "improve website loading speed",
+      "website performance 2026",
+      "real estate website loading slow",
+      "core web vitals improve",
+      "lighthouse score improve",
+    ],
+    eyebrow: "Technical Guide",
+    heroTitle: "Why Is My Website Loading Slowly?",
+    heroDescription:
+      "The 7 most common causes of a slow website in 2026, how to diagnose each one with free tools, and whether it's worth fixing or rebuilding.",
+    tldr: "Most slow websites have one of these seven problems: images not compressed or converted to WebP, no CDN serving assets to global users, render-blocking JavaScript in the page head, cheap shared hosting with slow server response times, a bloated JavaScript bundle, missing caching headers, or slow database queries. Start with a free Lighthouse audit in Chrome DevTools — it pinpoints exactly which issue is costing you the most load time.",
+    takeaways: [
+      "Run a free Lighthouse audit (Chrome DevTools → Lighthouse → Mobile) — it identifies the specific issues and their impact.",
+      "Unoptimized images are the #1 cause of slow websites — serving WebP at the correct size typically cuts 60–80% of image payload.",
+      "Cheap shared hosting creates slow server response times (high TTFB) that no front-end fix can overcome.",
+      "Render-blocking JavaScript in <head> delays the first pixel on screen — defer or async all non-critical scripts.",
+      "A Lighthouse score below 50 usually means the architecture is the problem, and a rebuild is cheaper than patching.",
+    ],
+    sections: [
+      {
+        id: "how-to-diagnose",
+        heading: "Start here: how to diagnose your website speed",
+        paragraphs: [
+          "Before you fix anything, measure. Open Chrome, navigate to your website, press F12 to open DevTools, click the Lighthouse tab, select Performance and Mobile mode, then click Analyze. Lighthouse gives you a score from 0–100 and flags the specific issues costing you points — it is free, takes 30 seconds, and is the same tool Google uses to evaluate Core Web Vitals.",
+          "Alternatively, go to pagespeed.web.dev and enter your URL for the same test without needing DevTools. A score below 50 is Poor; 50–89 is Needs Improvement; 90+ is Good. Users bounce at a measurably higher rate when pages take more than 3 seconds to load, so a low Lighthouse score has a direct impact on conversions and search rankings.",
+        ],
+      },
+      {
+        id: "cause-1-images",
+        heading: "Cause 1: Unoptimized images",
+        paragraphs: [
+          "Images account for the majority of page weight on most websites. Serving large JPEGs or PNGs at their original resolution and format is the single most common cause of slow load times. A real estate listing page with 10 full-resolution property photos can easily load 8–15 MB of images. The same photos as properly sized WebPs would be under 600 KB — a 20× difference from one change.",
+          "The fix: convert all images to WebP (30–50% smaller than JPEG at equal quality), serve them at the size they actually display (a 300px thumbnail doesn't need a 2000px source), add lazy loading for images below the fold, and use a CDN to serve them from a server geographically close to the user.",
+        ],
+        bullets: [
+          "Convert images to WebP — 30–50% smaller than JPEG at equal quality.",
+          "Serve images at display size, not original resolution.",
+          "Add loading=\"lazy\" to all images below the fold.",
+          "Use a CDN (Cloudflare free tier, Vercel's built-in CDN) for fast global delivery.",
+        ],
+      },
+      {
+        id: "cause-2-hosting",
+        heading: "Cause 2: Cheap or wrong hosting",
+        paragraphs: [
+          "TTFB (Time to First Byte) measures how long your server takes to respond to a request. On cheap shared hosting, TTFB is often 1–3 seconds before the page even begins loading. The Lighthouse target is under 600ms; under 200ms is ideal.",
+          "Shared hosting puts hundreds of websites on one server. When another site gets a traffic spike, your TTFB suffers. The fix is faster infrastructure: a VPS, a managed platform like Vercel, Netlify, or Railway, or a CDN-fronted static deployment. For a Next.js site, Vercel is zero-config and free for most projects.",
+        ],
+        links: [
+          { href: "/guides/deploy-nextjs-on-vercel-2026", label: "Deploy Next.js on Vercel — step-by-step" },
+        ],
+      },
+      {
+        id: "cause-3-javascript",
+        heading: "Cause 3: Too much JavaScript, or JavaScript in the wrong place",
+        paragraphs: [
+          "JavaScript blocks rendering. Script tags in the page <head> without defer or async attributes force the browser to pause rendering until the script downloads and executes. A WordPress site with 15 plugins — each adding its own JS file — commonly has 500 KB–2 MB of render-blocking scripts.",
+          "The fix is to add defer or async to non-critical script tags, or to eliminate the scripts entirely. Modern frameworks like Next.js handle this automatically through code-splitting and deferred hydration. On a legacy site, manually auditing every plugin's JavaScript impact is time-consuming — this is one of the main reasons a rebuild on a modern framework is sometimes cheaper than patching.",
+        ],
+      },
+      {
+        id: "cause-4-no-cdn",
+        heading: "Cause 4: No content delivery network (CDN)",
+        paragraphs: [
+          "If your server is in London and a visitor is in Dubai, every asset they request must travel that distance. A CDN solves this by caching assets on servers worldwide so users get files from the nearest location. The round-trip from Dubai to London is roughly 120ms; from Dubai to a CDN node in the UAE it is under 10ms — that difference compounds across every asset on the page.",
+          "Cloudflare's free tier is the easiest CDN to add — you change your domain's nameservers and Cloudflare caches static assets automatically. For Next.js on Vercel, CDN is built in across 100+ edge locations at no extra cost.",
+        ],
+      },
+      {
+        id: "cause-5-caching",
+        heading: "Cause 5: Missing or broken caching",
+        paragraphs: [
+          "Without proper cache headers, browsers re-download every asset on every visit. Static assets — images, fonts, CSS, JavaScript — should be cached aggressively with a Cache-Control header of max-age=31536000 (one year) combined with versioned filenames, so browsers only fetch them when they genuinely change. Dynamic HTML should use shorter or no caching.",
+          "Modern frameworks (Next.js, Astro) handle asset cache headers correctly by default. Older WordPress or custom PHP sites often serve assets with no caching at all — meaning a returning visitor loads the entire page from scratch every time.",
+        ],
+      },
+      {
+        id: "rebuild-vs-fix",
+        heading: "When to patch it vs. when to rebuild",
+        paragraphs: [
+          "Targeted fixes work when Lighthouse identifies 2–4 specific problems — image compression, a slow third-party widget, deferred scripts. You can address those in a day or two without touching the underlying platform.",
+          "A rebuild is usually more cost-effective when the Lighthouse score is consistently below 50 on a WordPress or legacy site, because the cause is architectural: a framework not designed for performance, a plugin ecosystem with compounding dependencies, or a template not built for speed. A rebuild on Next.js typically delivers a 40–60 point Lighthouse improvement and pays for itself through better conversion rates and search rankings within 6 months.",
+        ],
+        links: [
+          { href: "/guides/website-redesign-cost", label: "Website redesign cost guide" },
+          { href: "/contact", label: "Get a free Lighthouse audit" },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Why is my real estate website loading so slowly?",
+        a: "Real estate websites slow down for three common reasons: large property photos served at full resolution without WebP compression; a plugin-heavy CMS (usually WordPress) loading many scripts that block rendering; and shared hosting with slow server response times. Run a free Lighthouse audit in Chrome DevTools or at pagespeed.web.dev to pinpoint the exact cause. Images and hosting are almost always the fastest wins.",
+      },
+      {
+        q: "How do I check why my website is slow?",
+        a: "Open Chrome, go to your site, press F12 to open DevTools, click Lighthouse, select Performance and Mobile mode, and click Analyze. It produces a scored report with each issue and its estimated impact. Alternatively, use pagespeed.web.dev — same test, no DevTools required. Both are free and take under a minute.",
+      },
+      {
+        q: "What is a good Lighthouse performance score?",
+        a: "90–100 is Good and correlates with fast, comfortable user experience and better Google rankings. 50–89 is Needs Improvement — users notice the slowness and bounce rates rise. Below 50 is Poor — the performance problem is likely hurting conversions directly and should be treated as a business issue, not a technical nicety.",
+      },
+      {
+        q: "Will a faster website improve my Google rankings?",
+        a: "Yes. Google uses Core Web Vitals — Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift (CLS) — as direct ranking signals. Sites that pass Core Web Vitals thresholds get a ranking advantage over equivalent-content sites that don't. Beyond rankings, faster pages convert better: a 1-second improvement in load time increases e-commerce conversions by roughly 7%.",
+      },
+      {
+        q: "Is it cheaper to fix a slow website or rebuild it?",
+        a: "Fix it when there are 2–4 specific issues (image compression, a slow plugin, deferred scripts) with the rest of the site performing well. Rebuild when the Lighthouse score is consistently below 50, the site runs on an outdated platform, or every fix you make gets undone by the CMS or theme. A modern rebuild pays for itself within 6–12 months through improved conversion rates and reduced maintenance cost.",
+      },
+    ],
+    related: ["how-much-does-a-website-cost", "deploy-nextjs-on-vercel-2026", "website-redesign-cost"],
+    ctaHeading: "Is your website too slow? Get a free audit.",
+    ctaText:
+      "I'll run a full Lighthouse and Core Web Vitals audit on your site and send you a prioritised fix list — free, no commitment. If a rebuild makes more sense than patching, I'll tell you that too with honest numbers.",
+  },
+
+  // ──────────────────────────────────────────── Cost guide: Website redesign
+  {
+    slug: "website-redesign-cost",
+    category: "Cost Guide",
+    iconName: "DollarSign",
+    updated: "2026-06-16",
+    readingTime: "8 min read",
+    metaTitle: "How Much Does a Website Redesign Cost in 2026? (Real Ranges)",
+    metaDescription:
+      "A clear breakdown of website redesign costs in 2026 — from a visual refresh to a full performance rebuild. What's included, what drives the price, and when a redesign pays for itself.",
+    keywords: [
+      "website redesign cost",
+      "how much does a website redesign cost",
+      "website redesign 2026",
+      "cost to redesign website",
+      "website refresh cost",
+      "website overhaul cost",
+      "redesign my website cost",
+      "professional website redesign price",
+    ],
+    eyebrow: "Cost Guide",
+    heroTitle: "How Much Does a Website Redesign Cost in 2026?",
+    heroDescription:
+      "Real price ranges for a professional website redesign — from a light visual refresh to a full performance rebuild — and the four questions that decide where you land.",
+    tldr: "A website redesign in 2026 costs $3,000–$8,000 for a visual refresh on the same platform, $8,000–$25,000 for a full redesign with a new tech stack and improved performance, and $25,000+ for a complex e-commerce or web app redesign with rebuilt functionality. The biggest cost drivers are how many pages need new design, whether you're switching platforms or frameworks, and how much custom functionality needs rebuilding.",
+    takeaways: [
+      "Visual refresh (same platform, new design): $3,000–$8,000.",
+      "Full redesign with new tech stack and performance improvements: $8,000–$25,000.",
+      "Complex e-commerce or web app redesign with rebuilt features: $25,000+.",
+      "Switching from WordPress to Next.js typically improves Lighthouse mobile score by 40–60 points.",
+      "A redesign pays for itself fastest when it improves conversion rate, organic rankings, or cuts ongoing maintenance cost.",
+    ],
+    sections: [
+      {
+        id: "refresh-vs-redesign-vs-rebuild",
+        heading: "Refresh vs. redesign vs. rebuild — what are you buying?",
+        paragraphs: [
+          "These three words get used interchangeably but describe very different scopes. A refresh is cosmetic: new colours, updated fonts, perhaps a layout tweak — on the same platform with the same codebase. A redesign rethinks the structure and user experience: new information architecture, new layouts, and new design from scratch. A rebuild moves to a different platform or framework, usually driven by performance, SEO, or maintainability problems with the existing stack.",
+          "The right scope depends on what problem you are trying to solve. If the issue is 'it looks dated,' a refresh may be enough. If the issue is 'it doesn't convert,' 'it is too slow,' or 'it costs too much to maintain,' a redesign or rebuild is the more effective investment.",
+        ],
+      },
+      {
+        id: "cost-by-scope",
+        heading: "Website redesign cost by scope",
+        paragraphs: [
+          "The price range is wide because 'website redesign' spans a colour-scheme update to a full platform migration with new features. The practical breakdown by scope is shown in the table below.",
+        ],
+        links: [
+          { href: "/guides/how-much-does-a-website-cost", label: "Full website cost guide" },
+        ],
+      },
+      {
+        id: "cost-drivers",
+        heading: "What drives the cost of a redesign",
+        paragraphs: [
+          "Four factors move the price more than anything else:",
+        ],
+        bullets: [
+          "Number of unique page designs — a 5-page brochure site is very different from a 50-page product catalogue.",
+          "Platform change — staying on the same CMS is cheaper than migrating to a new framework.",
+          "Custom features — contact forms are cheap; booking systems, member areas, or product configurators are not.",
+          "Content migration — moving existing content to a new structure adds time proportional to how much there is.",
+        ],
+      },
+      {
+        id: "wordpress-to-nextjs",
+        heading: "WordPress to Next.js — is it worth it?",
+        paragraphs: [
+          "This is one of the most common redesign requests, and for most content and marketing sites the answer is yes. A typical WordPress site scores 35–60 on Lighthouse mobile. The same content as a Next.js static site scores 90–98. That difference translates directly to faster load times, better Core Web Vitals, and measurably improved search rankings.",
+          "The main trade-off is the upfront rebuild cost and losing the WordPress admin editor. If your team needs to update content regularly, you can pair Next.js with a headless CMS (Contentful, Sanity, or Payload CMS) for a non-technical editor with a performance-first frontend — the best of both worlds.",
+        ],
+        links: [
+          { href: "/guides/website-performance-optimization", label: "Website performance optimization guide" },
+          { href: "/nextjs-developer", label: "Hire a Next.js developer" },
+        ],
+      },
+      {
+        id: "roi-of-redesign",
+        heading: "When does a redesign pay for itself?",
+        paragraphs: [
+          "A redesign is worth the cost when the current site is actively costing you money: through slow load times that increase bounce rates, a design visitors don't trust, a CMS that is expensive to maintain and update, or poor mobile experience that hurts conversions. If your site gets traffic but doesn't convert, or you are paying a developer monthly just to keep it running, those are strong signals the current investment is not working.",
+          "For a business website generating leads, a 1–2% improvement in conversion rate often covers the cost of a redesign within the first quarter. For an e-commerce site, improved mobile UX, faster pages, and stronger SEO commonly deliver measurable revenue uplift within 3–6 months of relaunch.",
+        ],
+        links: [
+          { href: "/contact", label: "Get a free redesign quote" },
+          { href: "/portfolio", label: "View website case studies" },
+        ],
+      },
+    ],
+    costTable: {
+      caption: "Website redesign cost by scope — 2026 (senior developer / small team)",
+      columns: ["Scope", "What's included", "Typical timeline", "Typical cost"],
+      rows: [
+        ["Visual refresh", "New design, same platform and structure", "1–3 weeks", "$3,000–$8,000"],
+        ["Full redesign", "New UX, new design, same or updated platform", "4–8 weeks", "$8,000–$20,000"],
+        ["Rebuild (new stack)", "New framework (e.g. Next.js), full migration", "6–12 weeks", "$12,000–$30,000"],
+        ["E-commerce / web app", "Custom redesign with rebuilt functionality", "8–16 weeks", "$25,000+"],
+      ],
+      footnote: "Agencies typically quote 1.5–2.5× these figures for the same scope due to overhead.",
+    },
+    faqs: [
+      {
+        q: "How much does it cost to redesign a small business website?",
+        a: "A professional redesign of a small business website — up to 10 pages, new visual design, and improved performance — typically costs $5,000–$15,000 in 2026. A light refresh on the same platform sits at the lower end; a rebuild on a modern framework with performance optimisation sits higher. The biggest variable is whether you stay on the current platform or migrate.",
+      },
+      {
+        q: "How long does a website redesign take?",
+        a: "A visual refresh typically takes 1–3 weeks. A full redesign with new UX and design takes 4–8 weeks. A platform rebuild (e.g. WordPress to Next.js) with content migration usually takes 6–12 weeks. The timeline depends on the number of unique page layouts, content migration volume, and how quickly feedback rounds are completed.",
+      },
+      {
+        q: "Should I redesign or rebuild my website?",
+        a: "Redesign (same platform, new look and structure) when the aesthetics and user experience are the problem and the platform is performing well. Rebuild (new framework) when the site is slow, the Lighthouse score is below 60, maintenance is expensive, or the platform limits what you want to do. If your site loads in more than 3 seconds on mobile, a rebuild almost always returns more value than patching the existing one.",
+      },
+      {
+        q: "Will a website redesign improve my Google rankings?",
+        a: "If the redesign includes performance improvements, better mobile UX, and proper technical SEO — structured data, Core Web Vitals optimisation, clean URL structure — yes. A rebuild from WordPress to Next.js commonly delivers a 20–40 position improvement on targeted queries within 3–6 months, driven by improved Lighthouse scores, lower bounce rates, and better crawlability.",
+      },
+      {
+        q: "What do I need to provide to get a redesign quote?",
+        a: "The essentials: your current website URL, how many pages it has, which platform it runs on (WordPress, Squarespace, custom code), a list of key features that must work on the new site (contact forms, CMS, booking, accounts, payments), and examples of websites you like. The more specific you can be, the more accurate and useful the quote.",
+      },
+    ],
+    related: ["how-much-does-a-website-cost", "website-performance-optimization", "freelance-developer-vs-agency"],
+    ctaHeading: "Ready to redesign your website?",
+    ctaText:
+      "Send me your current site URL and what you want to change. I'll audit the performance, review the design, and send a written quote within 24 hours — no sales call required.",
+  },
 ];
 
 export type GuideSlug = (typeof guides)[number]["slug"];

@@ -136,6 +136,9 @@ In-depth guides with direct, quotable answers on software cost, hiring, and tech
 - Freelance Developer vs Agency: https://www.smitparekh.co.in/guides/freelance-developer-vs-agency — A senior freelancer suits focused MVPs and V1s (lower cost, direct communication); an agency suits large multi-team programs.
 - How to Hire a Full-Stack Developer: https://www.smitparekh.co.in/guides/how-to-hire-a-full-stack-developer — Define scope first, weight shipped production work over interviews, ask judgement questions, and start with a small paid trial.
 - Next.js vs React: https://www.smitparekh.co.in/guides/nextjs-vs-react — Next.js is a framework built on React; choose plain React for apps behind a login, Next.js for anything needing SEO or fast first loads.
+- How to Deploy a Next.js App on Vercel in 2026: https://www.smitparekh.co.in/guides/deploy-nextjs-on-vercel-2026 — Push to GitHub, import in Vercel dashboard, add environment variables in Project Settings, click Deploy; Vercel auto-detects Next.js and every pull request gets a preview URL automatically.
+- Why Is My Website Loading Slowly (and how to fix it): https://www.smitparekh.co.in/guides/website-performance-optimization — The 7 main causes are unoptimized images, slow shared hosting, render-blocking JavaScript, no CDN, missing caching, large JS bundles, and slow database queries; start with a free Lighthouse audit in Chrome DevTools to identify which is costing you the most.
+- How Much Does a Website Redesign Cost in 2026: https://www.smitparekh.co.in/guides/website-redesign-cost — A visual refresh costs $3,000–$8,000; a full redesign with new tech stack $8,000–$25,000; a complex e-commerce or web app rebuild $25,000+; switching from WordPress to Next.js typically improves Lighthouse mobile score by 40–60 points.
 - All Guides: https://www.smitparekh.co.in/guides
 
 ## Pages

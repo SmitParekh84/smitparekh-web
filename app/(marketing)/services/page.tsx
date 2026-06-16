@@ -37,6 +37,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 import { developerPages } from "@/data/developer-pages";
+import { aggregateRatingSchema } from "@/lib/seo/schema";
 
 const servicesSchema = {
   "@context": "https://schema.org",
@@ -380,6 +381,10 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema()) }}
+      />
 
       {/* Hero */}
       <PageHero
@@ -446,6 +451,27 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* What is a full-stack developer — standalone answer block for AI citation */}
+      <section className="page-section bg-muted/20 border-b border-border">
+        <div className="page-container max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+            What does a full-stack developer do?
+          </h2>
+          <p className="text-base text-foreground/90 leading-relaxed mb-4">
+            A full-stack developer designs, builds, and deploys both the client-facing frontend (the UI a user sees) and the server-side backend (APIs, databases, business logic) of a web application. They own the entire vertical slice — from a React or Next.js user interface, through a Node.js or NestJS API layer, down to a PostgreSQL or MongoDB database, and out to cloud infrastructure on AWS or Vercel.
+          </p>
+          <p className="text-base text-foreground/90 leading-relaxed mb-4">
+            In practice, hiring a single senior full-stack developer instead of separate frontend and backend specialists eliminates the coordination overhead and integration bugs that appear at every handoff boundary. One person who can write the API contract and the component that consumes it ships faster, debugs faster, and produces a more coherent codebase.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Smit Parekh is a full-stack developer with 4+ years building production web applications — React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS — for FinTech, SaaS, and enterprise clients.{" "}
+            <Link href="/hire-me" className="text-blue-500 hover:underline">
+              See engagement models and availability →
+            </Link>
+          </p>
         </div>
       </section>
 

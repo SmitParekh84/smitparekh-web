@@ -44,6 +44,7 @@ import {
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
 import { ServiceAuthorBio } from "@/components/sections/ServiceAuthorBio";
 import { ServiceMeetDeveloper } from "@/components/sections/ServiceMeetDeveloper";
+import { aggregateRatingSchema } from "@/lib/seo/schema";
 
 export const dynamicParams = false;
 
@@ -191,6 +192,10 @@ export default async function ServicePageRoute({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema()) }}
       />
 
       <PageHero
