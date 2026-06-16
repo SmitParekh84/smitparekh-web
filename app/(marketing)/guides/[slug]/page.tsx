@@ -135,36 +135,40 @@ export default async function GuidePage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
-      {/* Hero */}
-      <section className="border-b border-border bg-gradient-to-b from-blue-500/5 to-transparent">
-        <div className="page-container py-12 lg:py-16">
-          {/* Breadcrumb */}
+      {/* Hero — dark gradient matching PageHero style */}
+      <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20" aria-hidden />
+        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-cyan-300/20 blur-3xl pointer-events-none" aria-hidden />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-blue-400/20 blur-3xl pointer-events-none" aria-hidden />
+
+        <div className="page-container relative">
+          {/* Breadcrumb — white text on dark bg */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-6 flex items-center gap-1 text-xs text-muted-foreground"
+            className="mb-5 flex items-center gap-1 text-xs text-white/60"
           >
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="h-3 w-3" />
-            <Link href="/guides" className="hover:text-foreground transition-colors">Guides</Link>
+            <Link href="/guides" className="hover:text-white transition-colors">Guides</Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-foreground line-clamp-1">{guide.eyebrow}</span>
+            <span className="text-white/90 line-clamp-1">{guide.eyebrow}</span>
           </nav>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm text-blue-700 dark:border-white/15 dark:bg-white/10 dark:text-white/90">
-              <HeroIcon className="h-4 w-4 text-blue-500 dark:text-cyan-300" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 backdrop-blur-sm px-3 py-1.5 text-sm text-white">
+              <HeroIcon className="h-4 w-4" />
               {guide.category}
             </div>
 
-            <h1 className="mt-5 text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
+            <h1 className="mt-5 text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-white">
               {guide.heroTitle}
             </h1>
 
-            <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-lg text-white/85 leading-relaxed">
               {guide.heroDescription}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/70">
               <span className="inline-flex items-center gap-1.5">
                 <CalendarDays className="h-3.5 w-3.5" />
                 Updated {formatDate(guide.updated)}
