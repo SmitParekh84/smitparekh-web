@@ -67,7 +67,9 @@ export async function generateMetadata({
   const guide = getGuideBySlug(slug);
   if (!guide) return {};
   const url = `${siteConfig.url}/guides/${guide.slug}`;
-  const ogImage = `${url}/opengraph-image`;
+  // Static designed banner in public/images/guides-og/{slug}.png. Replaces the
+  // old dynamic /opengraph-image route (which has been removed).
+  const ogImage = `${siteConfig.url}/images/guides-og/${guide.slug}.png`;
   return {
     title: guide.metaTitle,
     description: guide.metaDescription,
@@ -118,7 +120,7 @@ export default async function GuidePage({
     datePublished: guide.updated,
     dateModified: guide.updated,
     section: guide.category,
-    image: `${url}/opengraph-image`,
+    image: `${siteConfig.url}/images/guides-og/${guide.slug}.png`,
   });
 
   const faq = faqPageSchema(guide.faqs.map((f) => ({ q: f.q, a: f.a })));

@@ -36,8 +36,8 @@ export default async function BlogOgImage({
           flexDirection: "column",
           justifyContent: "space-between",
           background:
-            "linear-gradient(135deg, #0a0a0a 0%, #1c1917 60%, #422006 100%)",
-          color: "#fafafa",
+            "linear-gradient(135deg, #ffffff 0%, #f5f7ff 55%, #eef2ff 100%)",
+          color: "#0a0a1a",
           padding: "64px 72px",
           fontFamily: "sans-serif",
         }}
@@ -55,28 +55,29 @@ export default async function BlogOgImage({
                 width: 44,
                 height: 44,
                 borderRadius: 12,
-                background: "#f59e0b",
+                background: "#0628FF",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: 20,
                 fontWeight: 700,
-                color: "#0a0a0a",
+                color: "#ffffff",
               }}
             >
               SP
             </div>
-            <span style={{ fontSize: 20, fontWeight: 600 }}>Smit Parekh</span>
+            <span style={{ fontSize: 20, fontWeight: 600, color: "#0f172a" }}>Smit Parekh</span>
           </div>
           <span
             style={{
               fontSize: 14,
               letterSpacing: 3,
               textTransform: "uppercase",
-              color: "#fcd34d",
-              border: "1px solid rgba(252, 211, 77, 0.4)",
+              color: "#0628FF",
+              border: "1px solid rgba(6, 40, 255, 0.25)",
               padding: "8px 14px",
               borderRadius: 999,
+              background: "rgba(6, 40, 255, 0.06)",
             }}
           >
             {tag}
@@ -103,7 +104,7 @@ export default async function BlogOgImage({
             style={{
               fontSize: 22,
               lineHeight: 1.4,
-              color: "#d6d3d1",
+              color: "#475569",
               margin: 0,
               maxWidth: 1000,
               display: "-webkit-box",
@@ -122,7 +123,7 @@ export default async function BlogOgImage({
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 16,
-            color: "#a8a29e",
+            color: "#64748b",
           }}
         >
           <span>smitparekh.co.in/blog</span>

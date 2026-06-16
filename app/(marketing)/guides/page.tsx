@@ -43,6 +43,15 @@ export const metadata: Metadata = {
     title: "Web Development Guides - Cost, Hiring & Tech Comparisons | Smit Parekh",
     description:
       "No-hype guides on software cost, hiring developers, and choosing the right technology. Real 2026 price ranges and honest comparisons.",
+    images: [
+      {
+        url: `${siteConfig.url}/images/guides-og/smit-parekh-guides.png`,
+        width: 1200,
+        height: 630,
+        alt: "Web Development Guides — Smit Parekh",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -50,6 +59,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: "Web Development Guides | Smit Parekh",
     description: "No-hype guides on software cost, hiring developers, and choosing the right technology.",
+    images: [`${siteConfig.url}/images/guides-og/smit-parekh-guides.png`],
   },
 };
 

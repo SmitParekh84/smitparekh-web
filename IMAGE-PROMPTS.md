@@ -97,6 +97,94 @@ The 13 dedicated banners below have been **generated, added to `public/images/`,
 
 ---
 
+## 📚 Guides — OG banners for `/guides/[slug]`
+
+> **Status:** every guide page already ships an **auto-generated dark OG image** via `app/(marketing)/guides/[slug]/opengraph-image.tsx` (built from each guide's title + category). The banners below are an **optional upgrade** to the light house style. After generating one: save to `public/images/guides-og/{slug}.png`, then set `openGraph.images` (+ `twitter.images`) in `guides/[slug]/page.tsx` to override the dynamic route for that slug.
+>
+> **Already done — do NOT regenerate:** `/nextjs-vercel-guide` (`smit-parekh-nextjs-vercel-guide.png`) and `/production-nextjs` (`smit-parekh-production-nextjs.png`) are standalone guide-style pages and already have banners (see _Already Generated_). They are **not** part of the `/guides/[slug]` set below.
+
+All **1200 × 630**, built from the **Banner template** above. Each prompt below is complete and paste-ready — it spells out the full layout (background plate, wordmark, headline, subhead, 4 pills, photo placement) in one block. Same `--seed 1200` across the batch. Reminder: AI rarely renders text cleanly, so the most reliable workflow is still **generate the plate → overlay the headline/subhead/pills in Canva or Figma** using the copy written into each prompt.
+
+### `/guides` → `smit-parekh-guides.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the top-left and bottom corners, faint thin concentric arc lines, lots of empty space, bright airy modern editorial tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" with "Parekh" in blue #0628FF and a short blue underline. Big bold near-black #0a0a1a headline reading "Web Dev Guides" with "Guides" in blue #0628FF. Grey subhead "No-hype answers on cost, hiring and tech" with "cost, hiring and tech" in blue. A row of 4 small rounded feature pills with blue line-icons: "Cost · Guides", "Compare · Tech", "Hiring · Help", "Quote · 24h". Keep the left third clear for text. No clutter, no stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/cost-to-build-a-saas` → `guides-og/cost-to-build-a-saas.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "SaaS Build Cost" with "SaaS" in blue #0628FF. Grey subhead "What it really costs to build a SaaS in 2026" with "2026" in blue. A row of 4 rounded feature pills with blue line-icons: "MVP · $15–40k", "V1 · $40–120k", "Drivers · Scope", "Quote · Fixed". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/cost-to-build-an-mvp` → `guides-og/cost-to-build-an-mvp.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "MVP Build Cost" with "MVP" in blue #0628FF. Grey subhead "Validate your idea for the smallest sensible budget" with "smallest sensible budget" in blue. A row of 4 rounded feature pills with blue line-icons: "Simple · $8–20k", "Standard · $20–32k", "Ship · 4–8 wks", "Scope · Tight". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/how-much-does-a-website-cost` → `guides-og/how-much-does-a-website-cost.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Website Cost" with "Website" in blue #0628FF. Grey subhead "Real 2026 price ranges by website type" with "website type" in blue. A row of 4 rounded feature pills with blue line-icons: "Landing · $0.5–3k", "Business · $3–15k", "E-com · $8–40k", "Web app · $25k+". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/website-redesign-cost` → `guides-og/website-redesign-cost.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Redesign Cost" with "Redesign" in blue #0628FF. Grey subhead "Refresh, redesign or rebuild — what each costs" with "what each costs" in blue. A row of 4 rounded feature pills with blue line-icons: "Refresh · $3–8k", "Redesign · $8–25k", "Rebuild · $25k+", "ROI · Faster". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/freelance-web-developer-rates` → `guides-og/   .png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Freelance Rates" with "Freelance" in blue #0628FF. Grey subhead "What web developers actually charge in 2026" with "2026" in blue. A row of 4 rounded feature pills with blue line-icons: "Hourly · By tier", "Project · Fixed", "Region · Varies", "Fair · vs Risky". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/freelance-developer-vs-agency` → `guides-og/freelance-developer-vs-agency.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Freelancer vs Agency" with "vs Agency" in blue #0628FF. Grey subhead "Cost, speed and risk compared honestly" with "compared honestly" in blue. A row of 4 rounded feature pills with blue line-icons: "Cost · Lower", "Comms · Direct", "Start · Days", "Best for · MVPs". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/nextjs-vs-react` → `guides-og/nextjs-vs-react.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Next.js vs React" with "vs React" in blue #0628FF. Grey subhead "When to choose which — without the hype" with "without the hype" in blue. A row of 4 rounded feature pills with blue line-icons: "React · UI library", "Next.js · Framework", "SEO · Strong", "Pick · By use". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/wordpress-vs-nextjs` → `guides-og/wordpress-vs-nextjs.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "WordPress vs Next.js" with "vs Next.js" in blue #0628FF. Grey subhead "Speed, SEO, cost and maintenance compared" with "maintenance" in blue. A row of 4 rounded feature pills with blue line-icons: "Speed · Faster", "SEO · Built-in", "Security · Lower risk", "Migrate · Worth it". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/how-to-hire-a-full-stack-developer` → `guides-og/how-to-hire-a-full-stack-developer.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Hire a Full-Stack Dev" with "Full-Stack Dev" in blue #0628FF. Grey subhead "Find, evaluate and hire the right developer" with "the right developer" in blue. A row of 4 rounded feature pills with blue line-icons: "Source · Referrals", "Proof · Shipped", "Ask · Judgement", "Trial · Paid". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/how-to-hire-a-react-developer` → `guides-og/how-to-hire-a-react-developer.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Hire a React Dev" with "React Dev" in blue #0628FF. Grey subhead "Skills, rates and the red flags that matter" with "red flags" in blue. A row of 4 rounded feature pills with blue line-icons: "Skills · Hooks", "Rates · Real", "Flags · Spot", "Seniors · vs Juniors". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/deploy-nextjs-on-vercel-2026` → `guides-og/deploy-nextjs-on-vercel-2026.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Deploy on Vercel" with "Vercel" in blue #0628FF. Grey subhead "Ship a Next.js app to production step by step" with "step by step" in blue. A row of 4 rounded feature pills with blue line-icons: "GitHub · Import", "Env · Vars", "Domain · Custom", "Live · 2–4 min". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+### `/guides/website-performance-optimization` → `guides-og/website-performance-optimization.png`
+
+```
+Clean minimal light OG banner, 1200x630, off-white #fafafa background with a large soft pale-blue glow blob (#0628FF) on the right behind a photo-cutout area, subtle dotted-grid texture in the corners, faint concentric arc lines, lots of empty space, bright airy modern tech branding, flat soft shadows, cyan #00C5EC accents. Top-left wordmark "Smit Parekh" ("Parekh" in blue #0628FF) with a short blue underline. Big bold near-black headline "Why Is My Site Slow?" with "Slow?" in blue #0628FF. Grey subhead "7 common causes and how to fix them" with "how to fix them" in blue. A row of 4 rounded feature pills with blue line-icons: "Images · WebP", "CDN · Global", "JS · Defer", "Audit · Lighthouse". Keep the left third clear for text. No stock-photo people. --ar 1200:630 --seed 1200
+```
+
+---
+
 ## Already Generated (do not regenerate)
 
 | Preview                                                       | File                                         | Page                                      |
@@ -162,6 +250,7 @@ The 13 dedicated banners below have been **generated, added to `public/images/`,
 ## Notes
 
 - Service OG images → `public/images/services-og/{slug}.png`
+- Guide OG images → `public/images/guides-og/{slug}.png` (optional — `guides/[slug]/opengraph-image.tsx` auto-generates one already; a static PNG overrides it only once you wire `openGraph.images` in the page)
 - Hire page OG images → `public/images/hire-{slug}.png`
 - Other page OG images → `public/images/{name}.png`
 - When adding new images: drop in the correct folder, add a row to the table above, then commit.

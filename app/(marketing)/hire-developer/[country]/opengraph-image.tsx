@@ -27,8 +27,8 @@ export default async function GeoOgImage({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(135deg, #060915 0%, #0d1540 55%, #071030 100%)",
-          color: "#fafafa",
+          background: "linear-gradient(135deg, #ffffff 0%, #f5f7ff 55%, #eef2ff 100%)",
+          color: "#0a0a1a",
           padding: "64px 72px",
           fontFamily: "sans-serif",
           position: "relative",
@@ -42,7 +42,7 @@ export default async function GeoOgImage({
             width: 360,
             height: 360,
             borderRadius: "50%",
-            background: "rgba(6, 40, 255, 0.15)",
+            background: "rgba(6, 40, 255, 0.10)",
             filter: "blur(80px)",
             display: "flex",
           }}
@@ -66,7 +66,7 @@ export default async function GeoOgImage({
             >
               SP
             </div>
-            <span style={{ fontSize: 20, fontWeight: 600, color: "#e2e8f0" }}>Smit Parekh</span>
+            <span style={{ fontSize: 20, fontWeight: 600, color: "#0f172a" }}>Smit Parekh</span>
           </div>
 
           <span
@@ -74,11 +74,11 @@ export default async function GeoOgImage({
               fontSize: 13,
               letterSpacing: 3,
               textTransform: "uppercase",
-              color: "#00C5EC",
-              border: "1px solid rgba(0, 197, 236, 0.35)",
+              color: "#0628FF",
+              border: "1px solid rgba(6, 40, 255, 0.25)",
               padding: "8px 16px",
               borderRadius: 999,
-              background: "rgba(0, 197, 236, 0.07)",
+              background: "rgba(6, 40, 255, 0.06)",
             }}
           >
             Hire Me
@@ -93,7 +93,7 @@ export default async function GeoOgImage({
               lineHeight: 1.08,
               margin: 0,
               maxWidth: 1040,
-              color: "#f8fafc",
+              color: "#0a0a1a",
               display: "-webkit-box",
               WebkitLineClamp: 2,
               WebkitBoxOrient: "vertical",
@@ -117,7 +117,7 @@ export default async function GeoOgImage({
             style={{
               fontSize: 22,
               lineHeight: 1.45,
-              color: "#94a3b8",
+              color: "#475569",
               margin: 0,
               maxWidth: 980,
               display: "-webkit-box",
