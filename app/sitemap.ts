@@ -6,6 +6,7 @@ import { fetchAllBlogs } from "@/lib/server/blogs";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { servicePages, serviceOgImageUrl } from "@/data/services-catalog";
 import { geoCountries } from "@/data/geo-pages";
+import { guides } from "@/data/guides";
 
 export const revalidate = 300; // hourly; SEO freshness at negligible write cost
 
@@ -27,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Tier 2 - content hubs (high crawl value)
     { url: `${base}/free-tools`,              priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/blog`,                    priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-blog-web-development.png`] },
+    { url: `${base}/guides`,                  priority: 0.85, changeFrequency: "weekly",  lastModified, images: [defaultImage] },
     { url: `${base}/portfolio`,               priority: 0.85, changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
     { url: `${base}/services`,                priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-web-development-services.png`] },
     // Tier 3 - hire-intent landing pages (prioritise most-searched stacks first)
@@ -124,6 +126,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [`${base}${getToolOgImage(slug)}`],
   }));
 
+  // Long-form guides — Article-schema content hub. lastModified tracks each
+  // guide's own `updated` date so genuinely-revised guides signal freshness.
+  const guideRoutes: MetadataRoute.Sitemap = guides.map((g) => ({
+    url: `${base}/guides/${g.slug}`,
+    priority: 0.75,
+    changeFrequency: "monthly" as const,
+    lastModified: new Date(g.updated),
+    images: [`${base}/guides/${g.slug}/opengraph-image`],
+  }));
+
   return [
     ...staticRoutes,
     ...serviceRoutes,
@@ -131,5 +143,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...caseStudyRoutes,
     ...blogRoutes,
     ...toolRoutes,
+    ...guideRoutes,
   ];
 }

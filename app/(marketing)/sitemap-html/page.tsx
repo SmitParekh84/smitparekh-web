@@ -8,6 +8,7 @@ import { siteConfig } from "@/data/site";
 import { toolsSEO } from "@/data/tools-seo";
 import { developerPages } from "@/data/developer-pages";
 import { geoCountries } from "@/data/geo-pages";
+import { guides } from "@/data/guides";
 
 export const metadata: Metadata = {
   title: "Site Map - All Pages",
@@ -66,6 +67,15 @@ const geoPages: Page[] = [
   })),
 ];
 
+const guidePages: Page[] = [
+  { href: "/guides", title: "All Guides", desc: "Cost guides, hiring guides, and tech comparisons" },
+  ...guides.map((g) => ({
+    href: `/guides/${g.slug}`,
+    title: g.heroTitle,
+    desc: g.metaDescription,
+  })),
+];
+
 const toolPages: Page[] = [...toolsSEO]
   .sort((a, b) => a.slug.localeCompare(b.slug))
   .map((t) => ({
@@ -79,7 +89,8 @@ const sections = [
   { label: "Hire by Region", icon: MapPin, description: "Country-targeted hire pages for the Gulf (GCC)", pages: geoPages },
   { label: "Core Pages", icon: Globe, description: "Main sections of the site", pages: corePages },
   { label: "Free Tools", icon: Wrench, description: `${toolsSEO.length} free browser-based tools - no signup required`, pages: toolPages },
-  { label: "Content & Guides", icon: BookOpen, description: "Articles, guides, changelogs, and learning resources", pages: contentPages },
+  { label: "Guides", icon: BookOpen, description: "Cost guides, hiring guides, and technology comparisons", pages: guidePages },
+  { label: "Content", icon: BookOpen, description: "Articles, changelogs, and learning resources", pages: contentPages },
   { label: "Info", icon: HelpCircle, description: "Support and informational pages", pages: infoPages },
   { label: "Legal", icon: FileText, description: "Legal and policy documents", pages: legalPages },
 ];

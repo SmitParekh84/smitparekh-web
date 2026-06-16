@@ -126,7 +126,8 @@ Last updated: 2026-05-16
 ### Medium effort
 - [ ] Add `HowTo` schema to tutorial blog posts
 - [ ] Add `Review`/`AggregateRating` schema to services pages (if testimonials exist)
-- [ ] Create `/llms-full.txt` with full blog post summaries
+- [x] Create `/llms-full.txt` (2026-06-15) — full quick-answer + FAQ blocks from every guide, plus the complete specialist + service catalog. Built from local data so it renders even if the backend is down.
+- [x] Add long-form `/guides` hub with standalone answer blocks (2026-06-15) — 6 Article+FAQ+Breadcrumb guides (SaaS/MVP/website cost, freelancer-vs-agency, how-to-hire, Next.js-vs-React). Each opens with a 40-70 word "quick answer" block engineered for featured snippets + AI citation, closing the "Content Citability" gap on cost/hire/comparison queries.
 
 ### Ongoing (off-site)
 - [ ] Post weekly answers on Reddit in r/webdev, r/reactjs, r/nextjs (Perplexity cites Reddit heavily — 46.7%)
