@@ -1235,6 +1235,419 @@ export const guides: Guide[] = [
     ctaText:
       "Send me your current site URL and what you want to change. I'll audit the performance, review the design, and send a written quote within 24 hours — no sales call required.",
   },
+
+  // ──────────────────────────────────────── Hiring guide: hire a React developer
+  {
+    slug: "how-to-hire-a-react-developer",
+    category: "Hiring Guide",
+    iconName: "Users",
+    updated: "2026-06-16",
+    readingTime: "9 min read",
+    metaTitle: "How to Hire a React Developer in 2026 (Skills, Rates & Red Flags)",
+    metaDescription:
+      "A practical guide to hiring a React developer in 2026 — the skills that actually matter, real rate ranges, where to find good ones, and the interview questions that separate seniors from juniors.",
+    keywords: [
+      "how to hire a react developer",
+      "hire react developer",
+      "hire react js developer",
+      "react developer rates",
+      "react developer interview questions",
+      "freelance react developer",
+      "react developer skills",
+      "hire react developer 2026",
+    ],
+    eyebrow: "Hiring Guide",
+    heroTitle: "How to Hire a React Developer",
+    heroDescription:
+      "The skills that actually matter, what good React developers cost in 2026, where to find them, and the questions that separate a senior from someone who just finished a tutorial.",
+    tldr: "To hire a React developer in 2026, define whether you need plain React (apps behind a login) or React inside Next.js (public-facing, SEO-heavy sites), then screen for fundamentals — component design, hooks, state management, and performance — not framework trivia. Freelance React developers typically charge $30–$80/hour in emerging markets and $80–$180/hour in the US/EU. Always review real production code and run a short paid trial task before committing.",
+    takeaways: [
+      "Decide first: plain React (Vite) for apps behind a login, or React + Next.js for anything public-facing and SEO-driven.",
+      "Screen for fundamentals — hooks, component design, state, and performance — over memorised trivia.",
+      "Freelance React rates run roughly $30–$80/hour (emerging markets) and $80–$180/hour (US/EU) in 2026.",
+      "A senior React developer who also knows the backend removes an entire coordination layer.",
+      "Always review real production code and run a small paid trial task before a long contract.",
+    ],
+    sections: [
+      {
+        id: "what-react-developer-does",
+        heading: "What a React developer actually does",
+        paragraphs: [
+          "A React developer builds the interactive part of your product — the components users click, type into, and navigate. Good ones do more than render UI: they design a component architecture that stays maintainable as features pile up, manage state without turning the app into spaghetti, and keep the interface fast on real devices and slow networks.",
+          "The strongest React developers in 2026 also understand the layer just beneath the UI: data fetching, caching, authentication flows, and how the frontend talks to an API. Many work in Next.js rather than plain React, because most public-facing products need server rendering and SEO — so \"React developer\" and \"Next.js developer\" increasingly overlap.",
+        ],
+        links: [
+          { href: "/react-developer", label: "Hire a React developer" },
+          { href: "/guides/nextjs-vs-react", label: "Next.js vs. React explained" },
+        ],
+      },
+      {
+        id: "skills-that-matter",
+        heading: "The skills that actually matter",
+        paragraphs: [
+          "Job posts often list a dozen libraries, but only a handful of fundamentals predict whether someone will build something maintainable. Prioritise these:",
+        ],
+        bullets: [
+          "Component design — breaking a UI into reusable, composable pieces without over-engineering.",
+          "Hooks and state — confident use of useState, useEffect, and knowing when to reach for context or a state library versus when not to.",
+          "Performance — understanding re-renders, memoisation, code-splitting, and why the app feels slow.",
+          "TypeScript — typed components and props are the norm in 2026; untyped React is a warning sign for anything serious.",
+          "Data fetching — React Query / SWR patterns, loading and error states, and caching.",
+          "Testing and accessibility — at least a working habit of both, not an afterthought.",
+        ],
+      },
+      {
+        id: "plain-react-vs-nextjs-hire",
+        heading: "Do you need plain React or React + Next.js?",
+        paragraphs: [
+          "This single decision narrows your candidate pool and shapes the brief. If you're building an internal tool, an admin dashboard, or a single-page app that lives behind a login and doesn't need to rank in search, plain React with a build tool like Vite is enough.",
+          "If your product is public-facing — a marketing site, e-commerce, a content platform, or anything that needs SEO and fast first loads — you want someone who works in Next.js, which renders on the server and ships crawlable HTML. Hiring a plain-React developer for an SEO-critical site is one of the most common and expensive mismatches.",
+        ],
+        links: [
+          { href: "/nextjs-developer", label: "Hire a Next.js developer" },
+          { href: "/full-stack-developer", label: "Hire a full-stack developer" },
+        ],
+      },
+      {
+        id: "where-to-find",
+        heading: "Where to find good React developers",
+        paragraphs: [
+          "Each channel trades off cost, speed, and vetting. Freelance marketplaces (Upwork, Toptal) are fast but noisy — you do the vetting. Specialist agencies cost more but de-risk delivery. Independent senior freelancers found through referrals or direct outreach often give you agency-level quality at a freelance rate, with the bonus of talking directly to the person doing the work.",
+          "Wherever you source, the vetting matters more than the channel. The best signal is real production code and a short paid trial, not a polished CV or a portfolio of demos.",
+        ],
+        links: [
+          { href: "/guides/freelance-developer-vs-agency", label: "Freelancer vs. agency" },
+          { href: "/portfolio", label: "See production work" },
+        ],
+      },
+      {
+        id: "interview-questions",
+        heading: "Interview questions that separate seniors from juniors",
+        paragraphs: [
+          "Skip trivia like \"what does useMemo do\" — anyone can memorise that. Ask questions that reveal judgement:",
+        ],
+        bullets: [
+          "\"Walk me through how you'd structure the components for this screen.\" — tests architecture instinct.",
+          "\"This list re-renders on every keystroke. How would you find and fix it?\" — tests real performance debugging.",
+          "\"When would you NOT reach for a state-management library?\" — seniors know restraint; juniors over-engineer.",
+          "\"How do you handle loading, error, and empty states for data fetching?\" — reveals production maturity.",
+          "\"Show me a piece of code you're proud of and one you'd rewrite.\" — honesty and self-awareness beat bravado.",
+        ],
+      },
+      {
+        id: "rates",
+        heading: "What React developers cost in 2026",
+        paragraphs: [
+          "Rates vary mostly by location and seniority. The table below shows typical 2026 freelance hourly ranges. A senior developer at a higher rate is frequently cheaper overall than a cheap junior, because they ship the right thing faster and leave less rework behind.",
+        ],
+      },
+    ],
+    costTable: {
+      caption: "Typical freelance React developer rates (2026)",
+      columns: ["Level", "Emerging markets", "US / Western Europe"],
+      rows: [
+        ["Junior (0–2 yrs)", "$15–$30 / hr", "$40–$70 / hr"],
+        ["Mid (2–4 yrs)", "$30–$55 / hr", "$70–$110 / hr"],
+        ["Senior (4–7 yrs)", "$50–$80 / hr", "$110–$180 / hr"],
+        ["Specialist / lead", "$70–$120 / hr", "$150–$250+ / hr"],
+      ],
+      footnote:
+        "Indicative freelance ranges for 2026. Fixed-price project quotes often work out cheaper than hourly for well-scoped work.",
+    },
+    faqs: [
+      {
+        q: "How much does it cost to hire a React developer?",
+        a: "In 2026, freelance React developers typically charge $15–$80/hour in emerging markets and $40–$180/hour in the US and Western Europe, depending on seniority. A senior developer at a higher rate is often cheaper overall than a junior, because they ship the right solution faster with less rework. For well-scoped projects, a fixed-price quote is usually more predictable than hourly billing.",
+      },
+      {
+        q: "What skills should a good React developer have?",
+        a: "Beyond writing components, look for strong fundamentals: component architecture, confident use of hooks and state, performance awareness (re-renders, code-splitting), TypeScript, and solid data-fetching patterns with proper loading and error states. For public-facing products, Next.js experience matters too. Testing and accessibility habits are a sign of someone who builds for production, not demos.",
+      },
+      {
+        q: "Should I hire a React developer or a Next.js developer?",
+        a: "It depends on what you're building. For internal tools, dashboards, or apps behind a login where SEO doesn't matter, a plain-React developer is fine. For public-facing sites that need SEO and fast first loads, hire someone who works in Next.js — it renders on the server and ships crawlable HTML. Since Next.js is built on React, a strong Next.js developer is also a strong React developer.",
+      },
+      {
+        q: "How do I verify a React developer is actually good?",
+        a: "Review real production code, not just a portfolio of demos, and run a small paid trial task that mirrors your actual work. Ask judgement-based interview questions about architecture and performance debugging rather than syntax trivia. The combination of real code, a trial task, and a direct conversation tells you far more than a CV or a take-home puzzle.",
+      },
+      {
+        q: "Is it cheaper to hire one full-stack React developer or separate frontend and backend developers?",
+        a: "For most small-to-mid projects, a single senior developer who handles both React and the backend is cheaper and faster, because it removes the coordination overhead between two people and a whole class of \"that's a frontend/backend problem\" handoffs. Separate specialists make sense at larger scale where the workload genuinely justifies two roles.",
+      },
+    ],
+    related: ["how-to-hire-a-full-stack-developer", "nextjs-vs-react", "freelance-web-developer-rates"],
+    ctaHeading: "Need a senior React developer who ships?",
+    ctaText:
+      "I build production React and Next.js apps end to end — frontend, backend, and deploy. Tell me what you're building and I'll send a clear, written proposal within 24 hours. No sales call required.",
+  },
+
+  // ──────────────────────────────────────── Cost guide: freelance developer rates
+  {
+    slug: "freelance-web-developer-rates",
+    category: "Cost Guide",
+    iconName: "DollarSign",
+    updated: "2026-06-16",
+    readingTime: "8 min read",
+    metaTitle: "Freelance Web Developer Rates in 2026 (Hourly & Project Pricing)",
+    metaDescription:
+      "What freelance web developers actually charge in 2026 — hourly and fixed-price ranges by experience and region, what drives the number, and how to tell a fair quote from an overpriced or risky one.",
+    keywords: [
+      "freelance web developer rates",
+      "freelance developer hourly rate",
+      "how much does a freelance web developer cost",
+      "web developer hourly rate 2026",
+      "freelance developer pricing",
+      "freelance web developer cost",
+      "hourly rate web developer",
+      "freelance programmer rates",
+    ],
+    eyebrow: "Cost Guide",
+    heroTitle: "Freelance Web Developer Rates in 2026",
+    heroDescription:
+      "What freelancers actually charge — hourly and fixed-price — by experience and region, what moves the number, and how to spot a fair quote versus an overpriced or risky one.",
+    tldr: "In 2026, freelance web developers typically charge $15–$50/hour in emerging markets, $50–$100/hour in Eastern Europe and Latin America, and $80–$200/hour in the US, UK, and Western Europe. Rates rise with seniority and specialisation. For well-defined projects, most experienced freelancers prefer fixed-price quotes, which give you a predictable total instead of an open-ended hourly meter.",
+    takeaways: [
+      "Freelance hourly rates in 2026 span roughly $15–$200/hour, driven mostly by region and seniority.",
+      "Specialisation (SaaS, payments, performance, AI) commands a premium over generalist work.",
+      "Fixed-price quotes are usually safer than hourly for well-scoped projects — you know the total upfront.",
+      "The cheapest quote is rarely the cheapest outcome; rework and rebuilds erase the savings.",
+      "A senior freelancer often beats an agency on price for the same scope, with direct communication as a bonus.",
+    ],
+    sections: [
+      {
+        id: "hourly-rates",
+        heading: "What freelance developers charge per hour",
+        paragraphs: [
+          "Hourly rate is driven first by region, then by seniority and specialisation. A capable mid-level developer might bill $35/hour in South Asia, $70/hour in Eastern Europe, and $130/hour in the US — for broadly similar work. Those gaps reflect local cost of living and market rates, not necessarily a quality difference.",
+          "Within any region, seniority and niche matter. A developer who specialises in something high-stakes — payment systems, performance optimisation, SaaS architecture, or AI integration — charges more than a generalist, because the work is harder to get wrong and more expensive when it is.",
+        ],
+      },
+      {
+        id: "rate-table",
+        heading: "2026 freelance rate ranges by region and level",
+        paragraphs: [
+          "The table below gives realistic 2026 hourly ranges. Treat them as orientation, not gospel — an exceptional senior in an \"emerging market\" may rightly charge Western rates, and vice versa.",
+        ],
+      },
+      {
+        id: "hourly-vs-fixed",
+        heading: "Hourly vs. fixed-price: which protects you?",
+        paragraphs: [
+          "Hourly billing suits open-ended or evolving work where the scope genuinely can't be pinned down — ongoing development, exploratory builds, or maintenance. Its risk is the open meter: you carry the uncertainty.",
+          "For a clearly defined project — a marketing site, an MVP, a redesign — a fixed-price quote is usually safer. The developer absorbs the estimation risk and you know the total before work starts. Most experienced freelancers will happily quote fixed-price once the scope is clear, which is itself a good sign: it means they understand the work well enough to commit to it.",
+        ],
+        links: [
+          { href: "/guides/how-much-does-a-website-cost", label: "What a website costs" },
+          { href: "/guides/cost-to-build-an-mvp", label: "What an MVP costs" },
+        ],
+      },
+      {
+        id: "what-drives-rate",
+        heading: "What actually drives the rate you're quoted",
+        paragraphs: [
+          "Two freelancers can quote very differently for the same brief. The factors that explain the gap:",
+        ],
+        bullets: [
+          "Seniority — years of shipping production code, not years since first \"hello world\".",
+          "Specialisation — niche, high-stakes work (payments, SaaS, performance, AI) costs more.",
+          "Scope clarity — a vague brief gets a padded quote to cover the unknowns.",
+          "Region — local cost of living sets the baseline rate.",
+          "Risk and support — testing, documentation, and post-launch support are real work that fair quotes include.",
+        ],
+      },
+      {
+        id: "fair-vs-risky",
+        heading: "How to tell a fair quote from a risky one",
+        paragraphs: [
+          "A suspiciously cheap quote is the most expensive mistake in this market. It usually means the developer has underestimated the work, skipped testing and security, or plans to cut corners that resurface as a rebuild later. The pattern is predictable: you pay once to build it cheap, then again to build it properly.",
+          "A fair quote comes from someone who asked questions before pricing — about your users, your existing code, and what success looks like — because scope determines price. It includes the unglamorous essentials: testing, security, documentation, and some post-launch support. Pay for judgement and reliability, not just keystrokes.",
+        ],
+        links: [
+          { href: "/guides/freelance-developer-vs-agency", label: "Freelancer vs. agency" },
+          { href: "/contact", label: "Get a written quote" },
+        ],
+      },
+    ],
+    costTable: {
+      caption: "Freelance web developer hourly rates by region (2026)",
+      columns: ["Region", "Mid-level", "Senior"],
+      rows: [
+        ["South / Southeast Asia", "$20–$45 / hr", "$45–$90 / hr"],
+        ["Eastern Europe / LatAm", "$40–$70 / hr", "$70–$120 / hr"],
+        ["UK / Western Europe", "$60–$110 / hr", "$110–$180 / hr"],
+        ["US / Canada / Australia", "$70–$130 / hr", "$130–$200+ / hr"],
+      ],
+      footnote:
+        "Indicative 2026 freelance ranges. Specialist work (payments, SaaS, performance, AI) and fixed-price project quotes sit outside these bands.",
+    },
+    faqs: [
+      {
+        q: "How much does a freelance web developer cost in 2026?",
+        a: "Freelance web developers typically charge $15–$50/hour in emerging markets, $50–$100/hour in Eastern Europe and Latin America, and $80–$200/hour in the US, UK, and Western Europe. Rates rise with seniority and specialisation. For a defined project, many freelancers quote fixed-price instead, which gives you a predictable total rather than an open-ended hourly bill.",
+      },
+      {
+        q: "Is hourly or fixed-price better when hiring a freelancer?",
+        a: "Fixed-price is usually safer for well-scoped projects like a website, MVP, or redesign — you know the total before work begins and the developer carries the estimation risk. Hourly suits open-ended or evolving work where the scope genuinely can't be pinned down, such as ongoing development or maintenance. If a developer can quote fixed-price confidently, it's a sign they understand the work.",
+      },
+      {
+        q: "Why are some freelance developers so much cheaper than others?",
+        a: "Mostly region and seniority. A developer in South Asia has a lower cost of living than one in the US, so their baseline rate is lower for similar work. Within a region, juniors charge less than seniors, and generalists less than specialists. But a very low quote can also signal underestimated scope or skipped testing and security — which often costs more later in rework.",
+      },
+      {
+        q: "Is a cheaper freelancer a false economy?",
+        a: "Often, yes. The cheapest quote is rarely the cheapest outcome. If it comes from underestimating the work or cutting testing, security, and documentation, you typically pay twice — once to build it cheaply and again to fix or rebuild it. Pay for judgement, reliability, and someone who scoped the work properly, not just the lowest hourly number.",
+      },
+      {
+        q: "Can a freelancer be cheaper than an agency?",
+        a: "Frequently. A senior independent freelancer can deliver agency-level quality for the same scope at a lower total cost, because you're not paying for account managers, sales overhead, or layers of project management. You also talk directly to the person doing the work. Agencies earn their premium on very large or multi-team projects where that structure genuinely adds value.",
+      },
+    ],
+    related: ["how-much-does-a-website-cost", "freelance-developer-vs-agency", "how-to-hire-a-react-developer"],
+    ctaHeading: "Want a clear, fixed-price quote?",
+    ctaText:
+      "Tell me what you need built and I'll send a written, fixed-price proposal within 24 hours — scope, timeline, and total, with no open-ended hourly surprises and no sales call.",
+  },
+
+  // ──────────────────────────────────────── Comparison: WordPress vs Next.js
+  {
+    slug: "wordpress-vs-nextjs",
+    category: "Comparison",
+    iconName: "GitCompareArrows",
+    updated: "2026-06-16",
+    readingTime: "9 min read",
+    metaTitle: "WordPress vs. Next.js in 2026: Which Is Right for Your Site?",
+    metaDescription:
+      "WordPress vs. Next.js compared without bias — speed, SEO, cost, security, and maintenance. When to keep WordPress, when to move to Next.js, and what migrating actually involves.",
+    keywords: [
+      "wordpress vs nextjs",
+      "next.js vs wordpress",
+      "wordpress or nextjs",
+      "should i use wordpress or nextjs",
+      "migrate wordpress to nextjs",
+      "wordpress vs next.js performance",
+      "is nextjs better than wordpress",
+      "wordpress alternative 2026",
+    ],
+    eyebrow: "Comparison",
+    heroTitle: "WordPress vs. Next.js",
+    heroDescription:
+      "Speed, SEO, cost, security, and maintenance compared honestly — when WordPress is still the right call, when Next.js wins, and what a migration actually involves.",
+    tldr: "WordPress is faster and cheaper to launch and lets non-technical people edit content, which is why it still powers a huge share of the web. Next.js is significantly faster, more secure, and more flexible, but needs a developer to build and update. Choose WordPress for simple content sites a non-developer must manage; choose Next.js for performance-critical, custom, or fast-growing sites where speed and SEO directly affect revenue. Migrating from WordPress to Next.js typically lifts mobile Lighthouse scores by 40–60 points.",
+    takeaways: [
+      "WordPress wins on launch speed, cost, and non-technical editing for simple content sites.",
+      "Next.js wins on performance, security, flexibility, and Core Web Vitals.",
+      "WordPress carries ongoing plugin/security maintenance; Next.js has a near-zero attack surface by comparison.",
+      "Moving from WordPress to Next.js typically improves mobile Lighthouse scores by 40–60 points.",
+      "The right choice depends on who edits the site and how much performance affects your revenue.",
+    ],
+    sections: [
+      {
+        id: "what-they-are",
+        heading: "What each one is",
+        paragraphs: [
+          "WordPress is a content management system: an all-in-one platform where you install themes and plugins, and edit pages through a visual dashboard without touching code. That convenience is why it still powers a large share of the web — a non-technical person can run the whole site.",
+          "Next.js is a React framework for building custom websites and apps. There's no dashboard out of the box; a developer builds the site, often pairing it with a headless CMS so content editors still get a friendly interface. In exchange for that build effort, you get a site that's faster, more secure, and bespoke to your needs.",
+        ],
+        links: [
+          { href: "/guides/nextjs-vs-react", label: "Next.js vs. React" },
+        ],
+      },
+      {
+        id: "performance",
+        heading: "Performance and Core Web Vitals",
+        paragraphs: [
+          "This is where the gap is widest. A typical WordPress site loads a theme, a stack of plugins, and their combined CSS and JavaScript on every visit — which is why so many WordPress sites feel sluggish on mobile, especially on cheaper hosting. You can tune it with caching and optimisation, but you're fighting the platform's overhead.",
+          "Next.js renders pages on the server or at build time and ships lean, optimised HTML, so first loads are fast and Core Web Vitals pass on real devices. In practice, migrating a content site from WordPress to Next.js commonly lifts the mobile Lighthouse score by 40–60 points — and since Google uses page experience as a ranking signal, that speed often translates into rankings and conversions.",
+        ],
+        links: [
+          { href: "/guides/website-performance-optimization", label: "Why your site is slow (and fixes)" },
+          { href: "/services/technical-seo", label: "Technical SEO" },
+        ],
+      },
+      {
+        id: "seo",
+        heading: "SEO and content",
+        paragraphs: [
+          "Both can rank well — WordPress has mature SEO plugins (Yoast, Rank Math) and Next.js gives you full control over metadata, structured data, and rendering. The practical difference is speed and control: Next.js makes it trivial to ship clean server-rendered HTML, perfect Core Web Vitals, and custom structured data, while WordPress depends on plugins and hosting quality to get there.",
+          "For content-heavy sites where editors publish daily, WordPress's editing experience is hard to beat unless you pair Next.js with a good headless CMS. For sites where technical SEO and speed are the priority, Next.js gives you a higher ceiling.",
+        ],
+      },
+      {
+        id: "security-maintenance",
+        heading: "Security and maintenance",
+        paragraphs: [
+          "WordPress's plugin ecosystem is its strength and its weakness. Every plugin is third-party code and a potential vulnerability, which is why WordPress sites need regular updates and are a frequent target for automated attacks. Maintenance is an ongoing, non-optional cost.",
+          "A Next.js site, especially a statically generated one, has a tiny attack surface by comparison — there's no admin login or plugin stack sitting on a public server to exploit. Maintenance is mostly dependency updates rather than constant security firefighting. For many business owners, that peace of mind is a deciding factor on its own.",
+        ],
+        links: [
+          { href: "/services/website-redesign", label: "Website redesign service" },
+        ],
+      },
+      {
+        id: "cost",
+        heading: "Cost: upfront and ongoing",
+        paragraphs: [
+          "WordPress is cheaper to launch — a theme and a developer to configure it, or a DIY build. Next.js costs more upfront because it's custom-built by a developer. But the comparison flips over time: WordPress accrues ongoing costs in plugins, premium themes, security maintenance, and performance fixes, while a well-built Next.js site is cheap to host (often free or near-free on platforms like Vercel) and cheap to keep secure.",
+          "The honest summary: WordPress is cheaper to start, Next.js is often cheaper to own over several years — particularly once you factor in what slow performance costs you in lost conversions and rankings.",
+        ],
+        links: [
+          { href: "/guides/website-redesign-cost", label: "What a redesign costs" },
+        ],
+      },
+      {
+        id: "migrating",
+        heading: "What migrating from WordPress to Next.js involves",
+        paragraphs: [
+          "A migration isn't a copy-paste. It means rebuilding the front end in Next.js, moving content into either the codebase or a headless CMS, mapping every old URL to its new equivalent with redirects so you keep your SEO, and rebuilding any forms, search, or interactive features. Done carefully, you keep your rankings and gain the speed; done carelessly, you can lose both.",
+          "For a typical content or business site, a migration runs a few weeks. The payoff is a dramatically faster, more secure site that's cheaper to run — which is why performance-conscious businesses increasingly make the move.",
+        ],
+        links: [
+          { href: "/nextjs-developer", label: "Hire a Next.js developer" },
+          { href: "/contact", label: "Discuss a migration" },
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "WordPress vs. Next.js at a glance",
+      columns: ["Factor", "WordPress", "Next.js"],
+      rows: [
+        ["Setup speed", "Fast — themes & plugins", "Slower — custom build"],
+        ["Performance", "Heavier, needs tuning", "Fast by default"],
+        ["Non-technical editing", "Built-in dashboard", "Needs a headless CMS"],
+        ["Security", "Plugin attack surface", "Minimal attack surface"],
+        ["Upfront cost", "Lower", "Higher"],
+        ["Cost to own (3+ yrs)", "Higher (maintenance)", "Lower"],
+        ["Best for", "Simple content sites", "Performance & custom sites"],
+      ],
+    },
+    faqs: [
+      {
+        q: "Is Next.js better than WordPress?",
+        a: "Neither is universally better — it depends on your needs. Next.js is faster, more secure, and more flexible, but needs a developer to build and update. WordPress is cheaper to launch and lets non-technical people edit content through a dashboard. Choose Next.js for performance-critical or custom sites where speed affects revenue; choose WordPress for simple content sites a non-developer must manage day to day.",
+      },
+      {
+        q: "Is Next.js faster than WordPress?",
+        a: "Yes, usually by a wide margin. WordPress loads a theme and multiple plugins on every visit, which adds overhead, while Next.js ships lean server-rendered or pre-built HTML. Migrating a content site from WordPress to Next.js commonly improves the mobile Lighthouse score by 40–60 points, and because Google uses page experience as a ranking factor, that speed often helps rankings and conversions too.",
+      },
+      {
+        q: "Can I move my WordPress site to Next.js without losing SEO?",
+        a: "Yes, if the migration is done properly. The key is mapping every existing URL to its new equivalent with redirects, preserving your metadata and structured data, and keeping your content intact. Done carefully, you retain your rankings and gain the speed boost. Done carelessly — broken redirects, lost metadata — you can lose traffic, which is why migration is worth handing to someone experienced.",
+      },
+      {
+        q: "Is WordPress cheaper than Next.js?",
+        a: "Cheaper to launch, often more expensive to own. WordPress has lower upfront cost but accrues ongoing expenses in plugins, premium themes, security maintenance, and performance fixes. A well-built Next.js site costs more to build but is cheap to host and maintain. Over three or more years — and factoring in what slow performance costs in lost conversions — Next.js is frequently the cheaper option overall.",
+      },
+      {
+        q: "Who should stay on WordPress?",
+        a: "Sites where a non-technical person needs to publish and edit content daily, where the budget is tight, and where performance isn't critical to revenue — a small blog, a local business brochure site, or a simple content site. WordPress's built-in editing and low launch cost are genuine advantages there. The case for Next.js gets stronger as speed, security, customisation, and scale start to matter.",
+      },
+    ],
+    related: ["nextjs-vs-react", "website-redesign-cost", "website-performance-optimization"],
+    ctaHeading: "Thinking about moving off WordPress?",
+    ctaText:
+      "Send me your current site URL and I'll tell you honestly whether a Next.js rebuild is worth it for you — with real performance numbers and a written quote within 24 hours. If WordPress is the right call, I'll say so.",
+  },
 ];
 
 export type GuideSlug = (typeof guides)[number]["slug"];
