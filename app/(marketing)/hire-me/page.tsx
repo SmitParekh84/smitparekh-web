@@ -351,6 +351,37 @@ export default function HireMePage() {
         </div>
       </PageHero>
 
+      {/* How to hire a freelance developer — standalone citability answer for AI engines */}
+      <section className="page-section bg-muted/20 border-b border-border">
+        <div className="page-container max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+            How to hire a freelance developer
+          </h2>
+          <p className="text-base text-foreground/90 leading-relaxed mb-4">
+            To hire a freelance developer, start by defining the scope — what you need built, the
+            tech stack required, and your timeline. Then review the developer&apos;s portfolio for
+            projects similar in complexity to yours. Request a written proposal with a fixed price
+            or weekly rate, clear milestones, and ownership terms. Before signing, confirm
+            communication style, availability overlap with your timezone, and post-launch support
+            terms.
+          </p>
+          <p className="text-base text-foreground/90 leading-relaxed mb-4">
+            Red flags to avoid: developers who quote without asking questions, portfolios with only
+            template work, no written contract, and vague delivery estimates. A good freelance
+            developer will ask about your users, your existing codebase, and your success metrics
+            before quoting — because the scope determines the price.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Smit Parekh is a full-stack developer (React, Next.js, Node.js, TypeScript) with 4+
+            years shipping production web apps. Every engagement starts with a free scoping call
+            and a written proposal — no commitment.{" "}
+            <Link href="/contact" className="text-blue-500 hover:underline">
+              Send a message to get started →
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* Profile strip */}
       <section className="page-section">
         <div className="page-container">
