@@ -8,6 +8,7 @@ import {
   SiVercel, SiNetlify,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FadeInSection, StaggerGrid, StaggerItem } from "@/components/ui/motion";
 import type { ComponentType } from "react";
@@ -116,6 +117,54 @@ export default function Skills() {
             </StaggerItem>
           ))}
         </StaggerGrid>
+
+        <FadeInSection delay={0.08}>
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Built to a higher bar
+            </p>
+            <h3 className="mt-2 text-xl sm:text-2xl font-semibold tracking-tight">
+              Fast by Default, Clean Under the Hood
+            </h3>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground leading-relaxed">
+              Perfect Lighthouse scores and strongly-typed, maintainable code aren&apos;t
+              extras — they&apos;re the baseline on every build.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <div className="flex flex-col rounded-2xl border border-border bg-card p-6">
+              <div className="flex flex-1 items-center justify-center">
+                <Image
+                  src="/images/home/performance.png"
+                  alt="Lighthouse 100 scores — Performance, SEO, and Best Practices"
+                  width={1200}
+                  height={900}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="h-auto w-full"
+                />
+              </div>
+              <p className="mt-4 text-center text-sm font-medium">
+                100/100 Core Web Vitals &amp; SEO
+              </p>
+            </div>
+            <div className="flex flex-col rounded-2xl border border-border bg-card p-6">
+              <div className="flex flex-1 items-center justify-center">
+                <Image
+                  src="/images/home/code-window.png"
+                  alt="Clean, strongly-typed React and TypeScript code"
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="h-auto w-full"
+                />
+              </div>
+              <p className="mt-4 text-center text-sm font-medium">
+                Typed, tested, production-ready code
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
 
         <FadeInSection delay={0.1}>
           <div className="text-center mb-8">

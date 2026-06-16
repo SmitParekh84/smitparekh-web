@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -39,6 +40,19 @@ export default function Services() {
             title="End-to-End Web Development"
             description="One partner for the full product lifecycle - no juggling multiple vendors, no gaps in ownership."
           />
+        </FadeInSection>
+
+        <FadeInSection delay={0.1}>
+          <div className="mx-auto mb-12 max-w-4xl">
+            <Image
+              src="/images/home/app-mockup.png"
+              alt="Example SaaS dashboard built by Smit Parekh — desktop and mobile"
+              width={1600}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, 56rem"
+              className="h-auto w-full"
+            />
+          </div>
         </FadeInSection>
 
         <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10" delay={0.05}>
@@ -73,6 +87,24 @@ export default function Services() {
             );
           })}
         </StaggerGrid>
+
+        <FadeInSection delay={0.15}>
+          <div className="mx-auto mb-10 max-w-4xl">
+            <p className="mb-1 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              One owner, end to end
+            </p>
+            {/* Crop the PNG's transparent vertical padding via a wide aspect box. */}
+            <div className="relative mx-auto aspect-[7/2] w-full overflow-hidden">
+              <Image
+                src="/images/home/architecture.png"
+                alt="Full-stack flow built end to end: frontend, API, database, and cloud"
+                fill
+                sizes="(max-width: 768px) 100vw, 56rem"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+        </FadeInSection>
 
         <FadeInSection className="text-center" delay={0.2}>
           <Link

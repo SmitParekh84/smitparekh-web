@@ -25,6 +25,8 @@ import { normalizeMarkdown } from "@/lib/markdown";
 import { formatDate } from "@/lib/date";
 import { BookCallButton } from "@/components/cal/BookCallButton";
 import { KeyTakeawaysBox, extractKeyTakeaways } from "@/components/blog/KeyTakeawaysBox";
+import { extractBlogFaqs } from "@/lib/blog-faq";
+import { faqPageSchema } from "@/lib/seo/schema";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -210,6 +212,12 @@ export default async function BlogPostPage({ params }: Props) {
     ? blog.content.trim().split(/\s+/).filter(Boolean).length
     : undefined;
 
+  // FAQPage rich result — derived from the post's visible "## FAQ" markdown
+  // (the FAQ Q&A is rendered on the page, so this is Google-compliant). Posts
+  // without a parseable FAQ section simply don't emit it.
+  const faqs = extractBlogFaqs(blog.content ?? "");
+  const faqSchema = faqs.length >= 2 ? faqPageSchema(faqs) : null;
+
   const personNode = {
     "@type": "Person",
     "@id": `${siteConfig.url}/#person`,
@@ -286,6 +294,12 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero */}
       <section className="relative pt-24 sm:pt-28 pb-10 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 text-white overflow-hidden">
