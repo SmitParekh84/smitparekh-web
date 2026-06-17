@@ -42,6 +42,7 @@ const contentPages: Page[] = [
 ];
 
 const infoPages: Page[] = [
+  { href: "/testimonials", title: "Client Reviews", desc: "Verified reviews from founders and teams who hired Smit Parekh for full-stack projects" },
   { href: "/faq", title: "FAQ", desc: "Frequently asked questions about working with me" },
   { href: "/resume", title: "Resume", desc: "View or download my full CV" },
   { href: "/feedback", title: "Feedback", desc: "Share feedback about your experience" },
