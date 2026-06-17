@@ -52,6 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/about`,                   priority: 0.75, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-about-full-stack-developer.png`] },
     { url: `${base}/who-is-smit-parekh`,      priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/for-students`,            priority: 0.7,  changeFrequency: "monthly", lastModified, images: [`${base}/images/for-students.png`] },
+    { url: `${base}/testimonials`,             priority: 0.7,  changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/faq`,                     priority: 0.65, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/production-nextjs`,       priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },
     { url: `${base}/nextjs-vercel-guide`,     priority: 0.75, changeFrequency: "monthly", lastModified, images: [defaultImage] },

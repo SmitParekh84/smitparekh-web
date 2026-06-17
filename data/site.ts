@@ -151,8 +151,8 @@ export const siteConfig = {
     "free tools no registration",
   ],
   aggregateRating: {
-    ratingValue: 5.0,
-    reviewCount: 12,
+    ratingValue: 4.8,
+    reviewCount: 11,
     bestRating: 5,
     worstRating: 1,
   },
