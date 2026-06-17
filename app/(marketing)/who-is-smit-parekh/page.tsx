@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight, MapPin, Briefcase, GraduationCap, Code2, Sparkles,
   CheckCircle2, Quote,
@@ -30,9 +31,9 @@ export const metadata: Metadata = {
       "The complete profile of Smit Parekh: Full-Stack Web Developer (React, Next.js, Node.js, TypeScript, AWS). Experience, skills, certifications, and how to hire him.",
     images: [
       {
-        url: `${siteConfig.url}/images/Smit-Parekh-Home-og.png`,
-        width: 1200,
-        height: 630,
+        url: `${siteConfig.url}/images/who-is-smit-parekh.png`,
+        width: 1731,
+        height: 909,
         alt: "Who is Smit Parekh - Full-Stack Developer",
         type: "image/png",
       },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     title: "Who Is Smit Parekh? - Full-Stack Developer",
     description:
       "Full-Stack Web Developer - React, Next.js, Node.js, TypeScript, AWS. Bio, experience, certifications, and how to hire.",
-    images: [`${siteConfig.url}/images/Smit-Parekh-Home-og.png`],
+    images: [`${siteConfig.url}/images/who-is-smit-parekh.png`],
   },
   keywords: [
     "who is Smit Parekh",
@@ -110,7 +111,7 @@ const personSchema = {
   jobTitle: "Full-Stack Web Developer",
   description: aboutBio,
   email: siteConfig.email,
-  image: `${siteConfig.url}/images/Smit-Parekh-Home.png`,
+  image: `${siteConfig.url}/images/who-is-smit-parekh-hero.png`,
   nationality: { "@type": "Country", name: "India" },
   address: {
     "@type": "PostalAddress",
@@ -191,22 +192,40 @@ export default function WhoIsSmitParekhPage() {
 
       {/* Definition / bio */}
       <section className="page-section">
-        <div className="page-container max-w-3xl">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <MapPin className="w-4 h-4 text-blue-500" />
-            <span>Gujarat, India · Available Worldwide</span>
-          </div>
-          <p className="text-lg leading-relaxed text-foreground/90 hero-description">
-            <strong>Smit Parekh</strong> is a freelance Full-Stack Web Developer based in Gujarat, India,
-            available globally for remote work. {aboutBio}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/hire-me" className={cn(buttonVariants({ size: "lg" }), "gap-2 font-semibold")}>
-              Hire Smit Parekh <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/portfolio" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
-              See the Work
-            </Link>
+        <div className="page-container">
+          <div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-14 max-w-5xl mx-auto">
+            {/* Portrait */}
+            <div className="lg:col-span-2">
+              <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-xl shadow-blue-500/5">
+                <Image
+                  src="/images/who-is-smit-parekh-hero.png"
+                  alt="Smit Parekh - Full-Stack Web Developer based in Gujarat, India"
+                  fill
+                  sizes="(max-width: 1024px) 24rem, 40vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+            {/* Bio */}
+            <div className="lg:col-span-3">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                <MapPin className="w-4 h-4 text-blue-500" />
+                <span>Gujarat, India · Available Worldwide</span>
+              </div>
+              <p className="text-lg leading-relaxed text-foreground/90 hero-description">
+                <strong>Smit Parekh</strong> is a freelance Full-Stack Web Developer based in Gujarat, India,
+                available globally for remote work. {aboutBio}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/hire-me" className={cn(buttonVariants({ size: "lg" }), "gap-2 font-semibold")}>
+                  Hire Smit Parekh <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/portfolio" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+                  See the Work
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
