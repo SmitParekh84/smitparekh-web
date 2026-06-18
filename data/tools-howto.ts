@@ -4,6 +4,11 @@ export interface HowToStep {
 }
 
 export const toolHowToSteps: Record<string, HowToStep[]> = {
+  "audio-to-text": [
+    { name: "Upload your audio", text: "Drag and drop or click to upload an MP3, WAV, M4A, AAC, FLAC, OGG, or WebM file up to 10 MB." },
+    { name: "Transcribe with AI", text: "Click Transcribe - the Whisper AI model converts the speech to text and auto-detects the language." },
+    { name: "Copy or download", text: "Copy the transcript to your clipboard or download it as a .txt file." },
+  ],
   "background-remover": [
     { name: "Upload your image", text: "Click the upload area or drag and drop a photo, logo, or product image." },
     { name: "Wait for AI processing", text: "The AI removes the background automatically - no manual selection needed." },

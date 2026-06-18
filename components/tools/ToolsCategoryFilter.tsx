@@ -35,6 +35,7 @@ import {
   Slice,
   Star,
   Hexagon,
+  AudioLines,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toolsSEO } from "@/data/tools-seo";
@@ -42,6 +43,7 @@ import { TOOL_CATEGORIES, getToolCategory, type ToolCategory } from "@/data/tool
 
 const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
   "background-remover": Eraser,
+  "audio-to-text": AudioLines,
   "viral-linkedin-post-generator": PenLine,
   "ats-resume-checker": FileText,
   "meta-tag-checker": Globe,
@@ -77,6 +79,7 @@ const toolIconMap: Record<string, React.FC<{ className?: string }>> = {
 const popularSlugs = new Set(["background-remover", "viral-linkedin-post-generator"]);
 const trendingSlugs = new Set(["ats-resume-checker"]);
 const newSlugs = new Set([
+  "audio-to-text",
   "youtube-thumbnail-downloader",
   "json-formatter",
   "base64-encoder-decoder",

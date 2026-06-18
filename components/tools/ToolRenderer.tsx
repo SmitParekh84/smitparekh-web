@@ -15,6 +15,7 @@ const toolMap: Record<string, React.ComponentType> = {
   "image-converter": dynamic(() => import("./ImageConverter"), { loading: Loading }),
   "qr-code-generator": dynamic(() => import("./QRCodeGenerator"), { loading: Loading }),
   "background-remover": dynamic(() => import("./BackgroundRemover"), { loading: Loading }),
+  "audio-to-text": dynamic(() => import("./AudioTranscriber"), { loading: Loading }),
   "image-compressor": dynamic(() => import("./ImageCompressor"), { loading: Loading }),
   "viral-linkedin-post-generator": dynamic(() => import("./LinkedInPostGenerator"), { loading: Loading }),
   "ats-resume-checker": dynamic(() => import("./ATSResumeChecker"), { loading: Loading }),

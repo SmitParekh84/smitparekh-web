@@ -54,6 +54,7 @@ export {
 } from "./meta";
 export { qrCodeApi, type QrCodePayload, type QrCodeResponse } from "./qr-code";
 export { removeBgApi, type CompressOptions } from "./remove-bg";
+export { transcribeApi, type TranscriptionResult } from "./transcribe";
 export { resumeApi, type ResumeAnalysisResponse } from "./resume";
 export {
   resumeEventsApi,

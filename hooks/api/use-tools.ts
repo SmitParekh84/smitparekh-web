@@ -7,6 +7,7 @@ import {
   resumeApi,
   generatePostApi,
   removeBgApi,
+  transcribeApi,
   toolsApi,
   studentToolsApi,
   type QrCodePayload,
@@ -64,6 +65,10 @@ export function useCompressBulk() {
     mutationFn: ({ images, options }: { images: File[]; options?: CompressOptions }) =>
       removeBgApi.compressBulk(images, options),
   });
+}
+
+export function useTranscribeAudio() {
+  return useMutation({ mutationFn: (file: File) => transcribeApi.transcribe(file) });
 }
 
 export function useNotifyTool() {

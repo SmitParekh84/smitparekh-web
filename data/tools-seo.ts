@@ -7,6 +7,23 @@ export interface ToolSEO {
 
 export const toolsSEO: ToolSEO[] = [
   {
+    slug: "audio-to-text",
+    title: "Audio to Text - Free Online Audio Transcription",
+    description:
+      "Transcribe audio to text free online. Upload MP3, WAV, M4A and more - get an accurate transcript with one-click copy and download. No signup, powered by Whisper AI.",
+    keywords: [
+      "audio to text free",
+      "transcribe audio to text",
+      "audio transcription online free",
+      "mp3 to text converter",
+      "speech to text online",
+      "convert audio to text free",
+      "voice to text transcription",
+      "free audio transcriber no signup",
+      "whisper transcription online",
+    ],
+  },
+  {
     slug: "background-remover",
     title: "Background Remover - Free AI Image Background Removal",
     description:

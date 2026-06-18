@@ -4,6 +4,38 @@ export interface ToolFAQItem {
 }
 
 export const toolFAQs: Record<string, ToolFAQItem[]> = {
+  "audio-to-text": [
+    {
+      question: "Is this audio-to-text tool free?",
+      answer:
+        "Yes, transcription is completely free. There's no signup required for casual use, though a generous daily limit applies and signing in raises it. No watermarks, no credit card.",
+    },
+    {
+      question: "What audio formats are supported?",
+      answer:
+        "MP3, WAV, M4A, AAC, FLAC, OGG, and WebM are all supported, up to 10 MB per file (roughly 5-7 minutes of audio). Most voice notes, interview clips, and meeting snippets fit comfortably.",
+    },
+    {
+      question: "How accurate is the transcription?",
+      answer:
+        "It uses OpenAI's Whisper model (via faster-whisper), which is highly accurate for clear speech across many languages. Accuracy drops with heavy background noise, overlapping speakers, or very strong accents - clean audio gives the best results.",
+    },
+    {
+      question: "Which languages are supported?",
+      answer:
+        "Whisper supports 90+ languages and detects the spoken language automatically, showing it as a label above the transcript. You don't need to select a language manually.",
+    },
+    {
+      question: "Is my audio stored or shared?",
+      answer:
+        "No. Your file is sent securely to the transcription service, processed in memory, and not saved or shared. The transcript stays in your browser until you copy or download it.",
+    },
+    {
+      question: "Why does transcription sometimes take a while?",
+      answer:
+        "Transcription runs on a free CPU server, so processing time scales with audio length - longer clips take longer. The very first request after a period of inactivity can also be slower while the service wakes up.",
+    },
+  ],
   "password-generator": [
     {
       question: "Is this password generator truly random?",

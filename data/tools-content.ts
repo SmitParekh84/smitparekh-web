@@ -16,6 +16,21 @@ export interface ToolContent {
 }
 
 export const toolContent: Record<string, ToolContent> = {
+  "audio-to-text": {
+    intro:
+      "Turn any audio recording into accurate text in your browser - no signup, no software to install. Upload an MP3, WAV, M4A, AAC, FLAC, OGG, or WebM file and the tool transcribes the speech using OpenAI's Whisper model (via faster-whisper), auto-detecting the spoken language. When it's done you get a clean transcript you can copy to your clipboard with one click or download as a .txt file. It's ideal for turning voice notes, interviews, meetings, lectures, and podcast clips into searchable, editable text. Audio is processed securely and not stored - and the whole thing is completely free.",
+    howItWorks: [
+      { title: "Upload Your Audio", description: "Drag and drop or click to upload an audio file up to 10 MB (MP3, WAV, M4A, AAC, FLAC, OGG, or WebM). A built-in player lets you preview it." },
+      { title: "Transcribe with AI", description: "Click Transcribe. The Whisper AI model processes your audio on the server, auto-detects the language, and converts speech to text - usually within a minute or two." },
+      { title: "Copy or Download", description: "Read the transcript with its detected-language label, then copy it to your clipboard or download it as a .txt file ready for editing." },
+    ],
+    useCases: [
+      { title: "Interviews and Meetings", description: "Transcribe recorded interviews, client calls, and team meetings into text you can search, quote, and turn into notes or minutes." },
+      { title: "Content Creators", description: "Convert podcast episodes, YouTube voiceovers, and video clips into transcripts for show notes, captions, blog posts, and accessibility." },
+      { title: "Students and Researchers", description: "Turn recorded lectures and voice memos into written notes you can review, highlight, and study from later." },
+    ],
+    relatedSlugs: ["word-counter", "ai-note-summarizer", "viral-linkedin-post-generator"],
+  },
   "password-generator": {
     intro:
       "Generate strong, random passwords directly in your browser using the Web Crypto API. Choose any length from 4 to 64 characters and pick which character types you want - uppercase, lowercase, numbers, and symbols. The password is never sent to a server: every value is created locally so your secrets stay on your device. Use it for new accounts, API keys, encryption tokens, or admin resets - completely free, no signup, no rate limits, and no logging.",

@@ -37,6 +37,7 @@ const TOOL_CATEGORY_MAP: Record<string, ToolCategory> = {
   "favicon-generator": "Image",
 
   // Content
+  "audio-to-text": "Content",
   "word-counter": "Content",
   "viral-linkedin-post-generator": "Content",
   "markdown-editor": "Content",
