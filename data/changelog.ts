@@ -588,6 +588,430 @@ export const changelog: ChangelogRelease[] = [
       },
     ],
   },
+  {
+    version: "1.0.0",
+    codename: "A New Home",
+    date: "2026-04-26",
+    summary:
+      "The big move. After more than eighteen months of building in the open on smitparekh.studio, the whole experience was rebuilt from the ground up and given a permanent new home at smitparekh.co.in. Same craft, faster site, sharper brand, ready for everything that comes next.",
+    highlights: [
+      "Moved to a permanent home at smitparekh.co.in",
+      "Full rebuild on a modern, edge-ready foundation",
+      "Every project and free tool carried over and polished",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "A brand new home at smitparekh.co.in",
+        description:
+          "The portfolio graduated from smitparekh.studio to its own dedicated domain, with a refreshed identity and a cleaner, faster experience on every page.",
+        href: "/portfolio",
+      },
+      {
+        tag: "improved",
+        title: "Rebuilt from the ground up",
+        description:
+          "Years of features were rewritten on a modern stack for better speed, accessibility, and reliability for visitors anywhere in the world.",
+      },
+      {
+        tag: "improved",
+        title: "A sharper personal brand",
+        description:
+          "A new visual identity, refined typography, and a consistent tone across the site, all built to make a strong first impression with clients and recruiters.",
+      },
+    ],
+  },
+  {
+    version: "0.9.0",
+    codename: "Motion & Branding",
+    date: "2026-04-24",
+    summary:
+      "The final chapter on smitparekh.studio was all about feel and finish. Smooth scroll animations, a redesigned navigation bar, two handy new tools, and a full personal branding refresh brought the original site to its most polished state yet.",
+    highlights: [
+      "Site-wide scroll animations for a more premium feel",
+      "Redesigned navigation with a smoother mobile menu",
+      "New Word Counter and Password Generator tools",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Word Counter",
+        description:
+          "Instant word, character, sentence, and reading-time counts for writers, students, and marketers.",
+        href: "/free-tools/word-counter",
+      },
+      {
+        tag: "new",
+        title: "Password Generator",
+        description:
+          "Strong, fully customizable passwords generated right in the browser, with nothing ever sent to a server.",
+        href: "/free-tools/password-generator",
+      },
+      {
+        tag: "improved",
+        title: "Smooth scroll animations everywhere",
+        description:
+          "Sections now ease gracefully into view as you scroll, giving the whole site a more considered, premium feel.",
+      },
+      {
+        tag: "improved",
+        title: "Redesigned navigation",
+        description:
+          "A cleaner desktop menu and a smooth slide-in mobile panel made it far easier to move around the site.",
+      },
+      {
+        tag: "improved",
+        title: "Branded splash screen",
+        description:
+          "A polished loading screen with full dark and light mode support replaced the plain spinner.",
+      },
+    ],
+  },
+  {
+    version: "0.8.0",
+    codename: "Open & Accessible",
+    date: "2026-04-20",
+    summary:
+      "A milestone built on trust. The project went open source under an MIT license, and a full accessibility pass made the site easier to use for everyone, with better contrast, stronger keyboard support, and faster fonts.",
+    highlights: [
+      "Released open source under the MIT license",
+      "Accessibility improvements across the whole site",
+      "Faster fonts and fewer layout shifts",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Open source under MIT",
+        description:
+          "The full source was published openly with a complete README, so anyone can learn from it or build on top of it.",
+      },
+      {
+        tag: "improved",
+        title: "Accessibility pass",
+        description:
+          "Fixed contrast issues, added ARIA labels, and improved keyboard navigation so the site works well with screen readers and assistive technology.",
+      },
+      {
+        tag: "performance",
+        title: "Faster, non-blocking fonts",
+        description:
+          "Reworked font loading to remove render-blocking requests and speed up the first paint on every page.",
+      },
+    ],
+  },
+  {
+    version: "0.7.0",
+    codename: "Career Tools",
+    date: "2026-04-16",
+    summary:
+      "A focus on tools that help people get hired. The ATS Resume Checker and an AI resume analyzer arrived together, sharing a clean new layout that every tool page would go on to use.",
+    highlights: [
+      "New ATS Resume Checker with section-by-section scoring",
+      "AI-powered resume analysis and suggestions",
+      "Shared, consistent layout across every tool page",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "ATS Resume Checker",
+        description:
+          "Upload a resume and get a clear score, keyword matches, and practical suggestions to help it pass applicant tracking systems.",
+        href: "/free-tools/ats-resume-checker",
+      },
+      {
+        tag: "new",
+        title: "AI resume analyzer",
+        description:
+          "Smart, section-aware feedback to sharpen bullet points and surface the right skills for the role.",
+      },
+      {
+        tag: "improved",
+        title: "Consistent tool page layout",
+        description:
+          "A shared hero and page structure brought every tool in line for a cleaner, more familiar experience.",
+      },
+    ],
+  },
+  {
+    version: "0.6.0",
+    codename: "Growing the Toolbox",
+    date: "2025-08-17",
+    summary:
+      "The toolbox kept growing with a LinkedIn media downloader, alongside behind-the-scenes work on responsive ads and steady SEO improvements to reach more people.",
+    highlights: [
+      "New LinkedIn media downloader",
+      "Responsive, better-placed ad units",
+      "Ongoing SEO and structured data improvements",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "LinkedIn Media Downloader",
+        description:
+          "Save videos and images from LinkedIn posts in just a couple of clicks.",
+        href: "/free-tools/linkedin-media-downloader",
+      },
+      {
+        tag: "improved",
+        title: "Smarter ad placements",
+        description:
+          "Responsive ad units that adapt to every screen size without getting in the way of the content.",
+      },
+      {
+        tag: "improved",
+        title: "SEO and structured data",
+        description:
+          "Cleaner metadata and schema across the site to help the right people find the tools.",
+      },
+    ],
+  },
+  {
+    version: "0.5.0",
+    codename: "Reach & Polish",
+    date: "2025-05-06",
+    summary:
+      "A season of polish and reach. A built-in help assistant, detailed project case-study pages, friendlier loading states, and the first ad placements turned a simple portfolio into a proper product.",
+    highlights: [
+      "Detailed project case-study pages",
+      "In-page help assistant",
+      "Smooth skeleton loading states",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Project case-study pages",
+        description:
+          "Each project earned its own detailed page with the story, the context, and the links behind the work.",
+        href: "/portfolio",
+      },
+      {
+        tag: "new",
+        title: "In-page help assistant",
+        description:
+          "A friendly helper to answer common questions without ever leaving the page.",
+      },
+      {
+        tag: "new",
+        title: "Custom error pages",
+        description:
+          "Clear, on-brand 404 and 500 pages so visitors never hit a dead end.",
+      },
+      {
+        tag: "improved",
+        title: "Skeleton loading states",
+        description:
+          "Pages now show clean placeholders while content loads, instead of blank screens.",
+      },
+    ],
+  },
+  {
+    version: "0.4.0",
+    codename: "Built to Scale",
+    date: "2025-04-06",
+    summary:
+      "The biggest expansion yet. The site was rebuilt around clean, data-driven content and shipped a whole wave of new tools, from a QR code generator to image utilities and an SEO analyzer, alongside fresh services, skills, and testimonials sections.",
+    highlights: [
+      "Wave of new tools: QR Code, Image Compressor, Image Converter, SEO Analyzer",
+      "Data-driven rebuild for faster updates",
+      "New Services, Skills, and Testimonials sections",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "QR Code Generator",
+        description:
+          "Create custom QR codes for links, text, and contact details in seconds.",
+        href: "/free-tools/qr-code-generator",
+      },
+      {
+        tag: "new",
+        title: "Image Compressor and Converter",
+        description:
+          "Shrink and convert images right in the browser, with no quality guesswork.",
+        href: "/free-tools/image-compressor",
+      },
+      {
+        tag: "new",
+        title: "SEO Analyzer",
+        description:
+          "Check any page for on-page SEO issues and get clear, actionable fixes.",
+        href: "/free-tools/seo-analyzer",
+      },
+      {
+        tag: "improved",
+        title: "Data-driven rebuild",
+        description:
+          "Reworked the site around structured content so new projects and tools could ship far faster.",
+      },
+      {
+        tag: "new",
+        title: "Services, Skills, and Testimonials",
+        description:
+          "New sections to tell the full story of the work, the skills behind it, and the people it helped.",
+      },
+    ],
+  },
+  {
+    version: "0.3.0",
+    codename: "The Toolbox Opens",
+    date: "2025-01-19",
+    summary:
+      "The portfolio started becoming a destination. The first free tools arrived, including a background remover, a text-to-speech tool, and a meta tag checker, giving visitors a real reason to come back.",
+    highlights: [
+      "First free tools go live",
+      "Background Remover and Text to Speech",
+      "Meta Tag Checker for quick SEO checks",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Background Remover",
+        description:
+          "Remove image backgrounds instantly, free and right in the browser.",
+        href: "/free-tools/background-remover",
+      },
+      {
+        tag: "new",
+        title: "Text to Speech",
+        description:
+          "Turn written text into natural-sounding audio in a single click.",
+      },
+      {
+        tag: "new",
+        title: "Meta Tag Checker",
+        description:
+          "Preview and validate a page's meta tags for search results and social sharing.",
+        href: "/free-tools/meta-tag-checker",
+      },
+    ],
+  },
+  {
+    version: "0.2.0",
+    codename: "The First Tool",
+    date: "2024-12-23",
+    summary:
+      "The very first free tool shipped, a LinkedIn post generator, marking the moment the portfolio started giving something genuinely useful back to its visitors.",
+    highlights: [
+      "First free tool: LinkedIn Post Generator",
+      "The shift from portfolio to platform begins",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "LinkedIn Post Generator",
+        description:
+          "Draft engaging, ready-to-publish LinkedIn posts from a simple prompt.",
+      },
+      {
+        tag: "improved",
+        title: "Groundwork for a growing toolbox",
+        description:
+          "Laid the foundations that every future tool would go on to build on.",
+      },
+    ],
+  },
+  {
+    version: "0.1.0",
+    codename: "First Light",
+    date: "2024-09-23",
+    summary:
+      "A major leap forward. The portfolio was rebuilt as a modern React application and launched on smitparekh.studio, bringing web development, design, and video work together in one place, with SEO and a working contact form built in from day one.",
+    highlights: [
+      "Rebuilt in React, launched on smitparekh.studio",
+      "First projects across web, design, and video",
+      "SEO, sitemap, and contact form from day one",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "Rebuilt in React",
+        description:
+          "Rebuilt as a modern React app and launched on smitparekh.studio, bringing web development, design, and video projects together in one place.",
+      },
+      {
+        tag: "new",
+        title: "Featured projects",
+        description:
+          "Early work including an e-commerce landing page, a Connect Four game, a coffee shop app, and motion graphics.",
+      },
+      {
+        tag: "new",
+        title: "Contact form and SEO foundation",
+        description:
+          "A working contact form, sitemap, and robots setup so the right people could find the site and get in touch.",
+      },
+    ],
+  },
+  {
+    version: "0.0.2",
+    codename: "Going Dynamic",
+    date: "2024-05-28",
+    summary:
+      "The portfolio grew up from a static page into a real web application. Rebuilt on Node.js, Express, and EJS with Tailwind CSS, it gained reusable templates, a structured projects section, and its first live deployment on Vercel.",
+    highlights: [
+      "Rebuilt on Node.js, Express, and EJS",
+      "Styled with Tailwind CSS",
+      "First live deployment on Vercel",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "A server-rendered rebuild",
+        description:
+          "Moved from a single static page to a Node.js and Express app with EJS templates, so the site could grow without copying markup around.",
+      },
+      {
+        tag: "new",
+        title: "Structured projects and testimonials",
+        description:
+          "Projects moved into their own data layer, with a dedicated testimonials section to add social proof.",
+      },
+      {
+        tag: "improved",
+        title: "Tailwind CSS styling",
+        description:
+          "Adopted Tailwind CSS for faster, more consistent styling across every section.",
+      },
+      {
+        tag: "new",
+        title: "Live on Vercel",
+        description:
+          "The portfolio earned its first proper deployment on Vercel, complete with custom 404 handling.",
+      },
+    ],
+  },
+  {
+    version: "0.0.1",
+    codename: "Day One",
+    date: "2024-01-19",
+    summary:
+      "Where the whole journey started. The first live portfolio went online in January 2024, built on a Next.js foundation and personalized through a clean, structured data file, with sections for about, projects, skills, and social links.",
+    highlights: [
+      "The first live portfolio, online in January 2024",
+      "Built on a Next.js foundation",
+      "About, projects, skills, and social links",
+    ],
+    changes: [
+      {
+        tag: "new",
+        title: "The first live portfolio",
+        description:
+          "Got a personal site online for the very first time, built on a Next.js foundation and configured through a single, tidy data file.",
+      },
+      {
+        tag: "new",
+        title: "Projects and skills",
+        description:
+          "Showcased early projects and a skills badge grid, all in one clean, scannable layout.",
+      },
+      {
+        tag: "new",
+        title: "Social links front and center",
+        description:
+          "Quick links to LinkedIn, GitHub, Kaggle, and LeetCode so people could connect right away.",
+      },
+    ],
+  },
 ];
 
 export function getLatestRelease(): ChangelogRelease | undefined {
