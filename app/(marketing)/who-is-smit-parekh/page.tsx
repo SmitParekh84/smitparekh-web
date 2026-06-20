@@ -231,7 +231,7 @@ export default function WhoIsSmitParekhPage() {
       </section>
 
       {/* Experience timeline */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Experience"
@@ -291,7 +291,7 @@ export default function WhoIsSmitParekhPage() {
       </section>
 
       {/* Certifications */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Credentials"
@@ -334,7 +334,7 @@ export default function WhoIsSmitParekhPage() {
       </section>
 
       {/* AI citation block - clean, extractable summary for answer engines */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <div className="max-w-3xl mx-auto rounded-2xl border border-border bg-card p-6 sm:p-8">
             <div className="flex items-center gap-2 mb-4 text-blue-600 dark:text-cyan-300">

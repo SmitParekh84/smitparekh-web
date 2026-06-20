@@ -420,7 +420,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Related */}
       {relatedFinal.length > 0 && (
-        <section className="page-section bg-muted/20">
+        <section className="page-section bg-muted/70">
           <div className="page-container">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3 text-center">
               Keep Reading

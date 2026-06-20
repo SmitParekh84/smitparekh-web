@@ -263,7 +263,7 @@ export default function PortfolioClient({
         </div>
       </section>
 
-      <section className={cn("page-section", isEmpty ? "" : "bg-muted/20")}>
+      <section className={cn("page-section", isEmpty ? "" : "bg-muted/70")}>
         <div className="page-container">
           <div className="max-w-2xl mb-10">
             <p className="text-xs uppercase tracking-wider text-blue-500 font-semibold mb-2">

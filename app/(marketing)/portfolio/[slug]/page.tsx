@@ -376,7 +376,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Approach */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container max-w-3xl">
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="w-4 h-4 text-blue-500" />
@@ -441,7 +441,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Outcomes */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container max-w-4xl">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="w-4 h-4 text-blue-500" />
@@ -496,7 +496,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
       {/* Related */}
       {relatedFinal.length > 0 && (
-        <section className="page-section bg-muted/20">
+        <section className="page-section bg-muted/70">
           <div className="page-container">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3 text-center">
               More Case Studies

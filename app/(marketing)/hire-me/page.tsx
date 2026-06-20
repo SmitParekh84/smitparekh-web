@@ -352,7 +352,7 @@ export default function HireMePage() {
       </PageHero>
 
       {/* How to hire a freelance developer — standalone citability answer for AI engines */}
-      <section className="page-section bg-muted/20 border-b border-border">
+      <section className="page-section bg-muted/70 border-b border-border">
         <div className="page-container max-w-3xl">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
             How to hire a freelance developer
@@ -464,7 +464,7 @@ export default function HireMePage() {
       </section>
 
       {/* Track record */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {metrics.map(({ value, label, icon: Icon }) => (
@@ -518,7 +518,7 @@ export default function HireMePage() {
       </section>
 
       {/* Why me */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Why Hire Me"
@@ -590,7 +590,7 @@ export default function HireMePage() {
       </section>
 
       {/* Experience timeline */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader label="Track Record" title="Work History" align="left" />
           <div className="space-y-5">
@@ -652,7 +652,7 @@ export default function HireMePage() {
       </section>
 
       {/* Engagement models */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Engagement"
@@ -738,7 +738,7 @@ export default function HireMePage() {
       </section>
 
       {/* CTA */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 px-8 py-14 sm:px-12 text-white text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />

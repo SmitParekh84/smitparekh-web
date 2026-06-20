@@ -312,7 +312,7 @@ export default function ProductionNextjsPage() {
       </section>
 
       {/* Footguns */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Common Mistakes"
@@ -355,7 +355,7 @@ export default function ProductionNextjsPage() {
       </section>
 
       {/* Reading links */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader label="Go Deeper" title="Related Reading" align="left" />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">

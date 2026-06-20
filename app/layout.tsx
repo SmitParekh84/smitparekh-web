@@ -123,6 +123,7 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${geistMono.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>

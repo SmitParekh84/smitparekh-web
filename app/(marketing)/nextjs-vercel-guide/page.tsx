@@ -479,7 +479,7 @@ export default function NextjsVercelGuidePage() {
       </section>
 
       {/* Common Gotchas */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container max-w-4xl">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-500 mb-2">Watch Out</p>
@@ -525,7 +525,7 @@ export default function NextjsVercelGuidePage() {
       </section>
 
       {/* Related reading */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container max-w-4xl">
           <div className="text-center mb-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">Go Deeper</p>

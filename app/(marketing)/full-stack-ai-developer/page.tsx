@@ -306,7 +306,7 @@ export default function FullStackAIDeveloperPage() {
       </section>
 
       {/* What I build */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="AI, End to End"
@@ -359,7 +359,7 @@ export default function FullStackAIDeveloperPage() {
       </section>
 
       {/* Internal links */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Related Services"
@@ -402,7 +402,7 @@ export default function FullStackAIDeveloperPage() {
       </section>
 
       {/* CTA */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 px-8 py-14 sm:px-12 text-white text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />

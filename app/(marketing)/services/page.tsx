@@ -455,7 +455,7 @@ export default function ServicesPage() {
       </section>
 
       {/* What is a full-stack developer — standalone answer block for AI citation */}
-      <section className="page-section bg-muted/20 border-b border-border">
+      <section className="page-section bg-muted/70 border-b border-border">
         <div className="page-container max-w-3xl">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
             What does a full-stack developer do?
@@ -522,7 +522,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Why work with me - Differentiators */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted/70 border-y border-border">
         <div className="page-container">
           <SectionHeader
             label="Why Hire Me"
@@ -581,7 +581,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted/70 border-y border-border">
         <div className="page-container">
           <SectionHeader
             label="Social Proof"
@@ -684,7 +684,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Tech Stack */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted/70 border-y border-border">
         <div className="page-container">
           <div className="text-center mb-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -757,7 +757,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Developer specialty pages */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted/70 border-y border-border">
         <div className="page-container">
           <SectionHeader
             label="Hire by Speciality"

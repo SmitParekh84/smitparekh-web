@@ -196,7 +196,7 @@ export default async function ToolPage({ params }: Props) {
 
       <main className="min-h-screen pt-16">
         {/* Hero */}
-        <section className="border-b border-border bg-muted/20">
+        <section className="border-b border-border bg-muted/70">
           <div className="page-container py-10">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-1 text-xs text-muted-foreground mb-5" aria-label="Breadcrumb">

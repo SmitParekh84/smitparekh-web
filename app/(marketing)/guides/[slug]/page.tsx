@@ -266,7 +266,7 @@ export default async function GuidePage({
       </article>
 
       {/* FAQ */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted/70 border-y border-border">
         <div className="page-container max-w-3xl">
           <div className="mb-8">
             <Badge variant="secondary" className="mb-3">FAQ</Badge>
@@ -321,7 +321,7 @@ export default async function GuidePage({
 
       {/* Related guides */}
       {related.length > 0 && (
-        <section className="page-section bg-muted/20 border-t border-border">
+        <section className="page-section bg-muted/70 border-t border-border">
           <div className="page-container">
             <div className="mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">Related guides</h2>

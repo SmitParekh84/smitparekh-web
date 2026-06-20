@@ -156,7 +156,7 @@ export default function GuidesHubPage() {
       </section>
 
       {/* CTA */}
-      <section className="page-section bg-muted/20 border-t border-border">
+      <section className="page-section bg-muted/70 border-t border-border">
         <div className="page-container">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">

@@ -319,7 +319,7 @@ export default function FreeToolsPage() {
       </section>
 
       {/* Features */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">Why These Tools Are Different</p>
@@ -364,7 +364,7 @@ export default function FreeToolsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <div className="text-center mb-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">FAQ</p>

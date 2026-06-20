@@ -369,7 +369,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* Why me */}
-      <section className="page-section border-t border-border bg-muted/20">
+      <section className="page-section border-t border-border bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="Why Students Choose Me"
@@ -455,7 +455,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
           <SectionHeader
             label="FAQ"

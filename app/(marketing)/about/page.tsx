@@ -12,6 +12,7 @@ import { siteConfig } from "@/data/site";
 import { faqPageSchema } from "@/lib/seo/schema";
 import { aboutBio, experiences, certifications } from "@/data/about";
 import { homeData, aboutStats } from "@/data/home";
+import { FadeInSection, StaggerGrid, StaggerItem } from "@/components/ui/motion";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -189,11 +190,11 @@ export default function AboutPage() {
       />
 
       {/* Profile */}
-      <section className="page-section">
+      <section className="page-section ">
         <div className="page-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text */}
-            <div className="space-y-6">
+            <FadeInSection direction="left" className="space-y-6">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-blue-500" />
                 <span>India · Available Worldwide</span>
@@ -241,10 +242,10 @@ export default function AboutPage() {
                   );
                 })}
               </div>
-            </div>
+            </FadeInSection>
 
             {/* Photo + Stats */}
-            <div className="flex flex-col items-center lg:items-end gap-8">
+            <FadeInSection direction="right" delay={0.15} className="flex flex-col items-center lg:items-end gap-8">
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl overflow-hidden border border-border bg-muted shadow-2xl">
                 <Image
                   src={homeData.imageSrc}
@@ -273,23 +274,25 @@ export default function AboutPage() {
               </div>
 
               {/* <LinkedInBadge className="w-full lg:justify-end" /> */}
-            </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
 
       {/* Experience */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
-          <SectionHeader
-            label="Experience"
-            title="Work History"
-            align="left"
-          />
+          <FadeInSection>
+            <SectionHeader
+              label="Experience"
+              title="Work History"
+              align="left"
+            />
+          </FadeInSection>
 
-          <div className="space-y-6">
+          <StaggerGrid className="space-y-6">
             {experiences.map((exp, i) => (
-              <div
+              <StaggerItem
                 key={i}
                 className="flex flex-col sm:flex-row gap-6 rounded-2xl border border-border bg-card p-6 sm:p-8"
               >
@@ -326,24 +329,26 @@ export default function AboutPage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* Certifications */}
       <section className="page-section">
         <div className="page-container">
-          <SectionHeader
-            label="Credentials"
-            title="Certifications"
-            align="left"
-          />
+          <FadeInSection>
+            <SectionHeader
+              label="Credentials"
+              title="Certifications"
+              align="left"
+            />
+          </FadeInSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {certifications.map((cert) => (
-              <div
+              <StaggerItem
                 key={cert.name}
                 className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-5"
               >
@@ -359,9 +364,9 @@ export default function AboutPage() {
                     {cert.year}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
@@ -369,15 +374,17 @@ export default function AboutPage() {
       {/* FAQ */}
       <section className="page-section">
         <div className="page-container max-w-3xl">
-          <SectionHeader
-            label="Frequently Asked"
-            title="Common questions"
-            description="What clients usually ask before working with me."
-          />
-          <div className="mt-10 space-y-4">
+          <FadeInSection>
+            <SectionHeader
+              label="Frequently Asked"
+              title="Common questions"
+              description="What clients usually ask before working with me."
+            />
+          </FadeInSection>
+          <StaggerGrid className="mt-10 space-y-4">
             {aboutFaqs.map((item) => (
+              <StaggerItem key={item.q}>
               <details
-                key={item.q}
                 className="group rounded-xl border border-border bg-card p-5 open:border-blue-500/40 open:shadow-sm transition-all"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-base leading-snug list-none">
@@ -390,14 +397,15 @@ export default function AboutPage() {
                   {item.a}
                 </p>
               </details>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
-      <section className="page-section bg-muted/20">
+      <section className="page-section bg-muted/70">
         <div className="page-container">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 px-8 py-14 sm:px-12 text-white text-center">
+          <FadeInSection className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 px-8 py-14 sm:px-12 text-white text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
             <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
             <div className="relative space-y-4 max-w-2xl mx-auto">
@@ -433,7 +441,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-          </div>
+          </FadeInSection>
         </div>
       </section>
     </>
