@@ -31,8 +31,10 @@ function MetricGlyph({ visual }: { visual: MetricVisual }) {
       return (
         <svg viewBox="0 0 100 60" className={common} fill="none" aria-hidden>
           {grad}
-          <circle cx="50" cy="42" r="26" stroke="currentColor" strokeWidth="7" className="text-muted/40" />
-          <circle cx="50" cy="42" r="26" stroke={`url(#${gid})`} strokeWidth="7" strokeLinecap="round" strokeDasharray="163" strokeDashoffset="34" transform="rotate(-90 50 42)" />
+          {/* 270° track centered at (50,30) r=22 — fits fully within viewBox */}
+          <circle cx="50" cy="30" r="22" stroke="currentColor" strokeWidth="6" className="text-muted/40" strokeDasharray="104 35" transform="rotate(135 50 30)" />
+          {/* ~87% filled arc representing high uptime */}
+          <circle cx="50" cy="30" r="22" stroke={`url(#${gid})`} strokeWidth="6" strokeLinecap="round" strokeDasharray="91 47" transform="rotate(135 50 30)" />
         </svg>
       );
     case "counter":

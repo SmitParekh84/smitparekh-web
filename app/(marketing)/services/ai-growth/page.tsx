@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, TrendingUp, Bot, BarChart3, Target } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, TrendingUp, Bot, BarChart3, Target } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -56,6 +56,19 @@ export default function AIGrowthPage() {
           </Link>
         </div>
       </PageHero>
+
+      {/* Breadcrumb */}
+      <div className="page-container pt-6">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-xs text-muted-foreground">
+          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/services" className="hover:text-foreground transition-colors">Services</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/services/marketing-and-seo" className="hover:text-foreground transition-colors">Marketing &amp; SEO</Link>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-foreground">AI Growth</span>
+        </nav>
+      </div>
 
       <ServiceCol3Layout
         badge="4 services"

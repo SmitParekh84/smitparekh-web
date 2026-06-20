@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles, Bot, MessageSquare, Cpu, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, Sparkles, Bot, MessageSquare, Cpu, Shield } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -56,6 +56,19 @@ export default function AIEngineeringPage() {
           </Link>
         </div>
       </PageHero>
+
+      {/* Breadcrumb */}
+      <div className="page-container pt-6">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-xs text-muted-foreground">
+          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/services" className="hover:text-foreground transition-colors">Services</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/services/products-and-ai" className="hover:text-foreground transition-colors">Products &amp; AI</Link>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-foreground">AI Engineering</span>
+        </nav>
+      </div>
 
       <ServiceCol3Layout
         badge="4 services"
