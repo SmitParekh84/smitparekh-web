@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 const results = [
   { value: "95+", label: "Lighthouse score on every Next.js deployment - no exceptions, no excuses", icon: Zap },
-  { value: "30+", label: "Full-stack Next.js applications shipped from architecture to production deploy", icon: Star },
+  { value: "10+", label: "Full-stack Next.js applications shipped from architecture to production deploy", icon: Star },
   { value: "40%", label: "Performance improvement on a live Next.js migration from Pages to App Router", icon: TrendingUp },
   { value: "#1", label: "SEO-first builds using metadata API, structured data, ISR, and Core Web Vitals tuning", icon: Search },
 ];
@@ -244,7 +244,7 @@ export default function NextjsDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

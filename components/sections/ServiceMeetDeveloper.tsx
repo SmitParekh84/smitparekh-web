@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 const HIGHLIGHTS = [
   {
     icon: Code2,
-    label: "30+ production apps shipped",
+    label: "10+ production apps shipped",
     sub: "FinTech, SaaS, AI startups & e-commerce",
   },
   {
@@ -49,7 +49,7 @@ const STACK_LABELS = [
 
 export function ServiceMeetDeveloper() {
   return (
-    <section className="page-section">
+    <section className="page-section bg-muted">
       <div className="page-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Photo column */}

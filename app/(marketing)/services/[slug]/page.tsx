@@ -44,6 +44,8 @@ import {
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
 import { ServiceAuthorBio } from "@/components/sections/ServiceAuthorBio";
 import { ServiceMeetDeveloper } from "@/components/sections/ServiceMeetDeveloper";
+import { ServiceResults } from "@/components/sections/ServiceResults";
+import { GridGlowBackground } from "@/components/ui/GridGlowBackground";
 import { aggregateRatingSchema } from "@/lib/seo/schema";
 
 export const dynamicParams = false;
@@ -180,7 +182,9 @@ export default async function ServicePageRoute({
   };
 
   return (
-    <>
+    <div className="relative">
+      <GridGlowBackground className="fixed" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -300,7 +304,7 @@ export default async function ServicePageRoute({
       </section>
 
       {/* What you get */}
-      <section id="what-you-get" className="page-section bg-muted/20">
+      <section id="what-you-get" className="page-section bg-muted">
         <div className="page-container">
           <div className="mx-auto max-w-2xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">
@@ -336,8 +340,11 @@ export default async function ServicePageRoute({
         </div>
       </section>
 
+      {/* Proven results — analytics metric cards */}
+      <ServiceResults service={service} />
+
       {/* Tech stack */}
-      <section className="page-section">
+      <section className="page-section bg-muted">
         <div className="page-container">
           <div className="mx-auto max-w-2xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">
@@ -378,7 +385,7 @@ export default async function ServicePageRoute({
       </section>
 
       {/* Process */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section">
         <div className="page-container">
           <div className="mx-auto max-w-2xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">
@@ -485,7 +492,7 @@ export default async function ServicePageRoute({
       </section>
 
       {/* Me vs Agency vs In-house */}
-      <section className="page-section bg-muted/20 border-y border-border">
+      <section className="page-section bg-muted border-y border-border">
         <div className="page-container">
           <div className="mx-auto max-w-2xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">Why solo dev</Badge>
@@ -615,7 +622,7 @@ export default async function ServicePageRoute({
       </section>
 
       {/* FAQ */}
-      <section className="page-section bg-muted/20">
+      <section className="page-section">
         <div className="page-container max-w-3xl">
           <div className="mx-auto max-w-2xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">
@@ -648,7 +655,7 @@ export default async function ServicePageRoute({
       </section>
 
       {/* Final lead form */}
-      <section className="page-section">
+      <section className="page-section bg-muted">
         <div className="page-container max-w-3xl">
           <div className="mx-auto max-w-2xl text-center mb-8">
             <Badge variant="secondary" className="mb-3">
@@ -669,7 +676,7 @@ export default async function ServicePageRoute({
 
       {/* Related services */}
       {related.length > 0 && (
-        <section className="page-section bg-muted/20 border-t border-border">
+        <section className="page-section border-t border-border">
           <div className="page-container">
             <div className="mx-auto max-w-2xl text-center mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
@@ -705,6 +712,6 @@ export default async function ServicePageRoute({
           </div>
         </section>
       )}
-    </>
+    </div>
   );
 }

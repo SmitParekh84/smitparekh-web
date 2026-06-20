@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Hero from "@/components/sections/Hero";
+import { GridGlowBackground } from "@/components/ui/GridGlowBackground";
 import StatsBar from "@/components/sections/StatsBar";
 // Hidden for now - restore this import and the <MotionGraphicsLoop /> below to re-enable the hero video loop.
 // import MotionGraphicsLoop from "@/components/sections/MotionGraphicsLoop";
@@ -315,6 +316,7 @@ export default function HomePage() {
       />
 
       <Hero />
+      <GridGlowBackground className="fixed" />
       <StatsBar />
       {/* <MotionGraphicsLoop /> hidden for now - restore to bring back the hero video loop. */}
       <Services />

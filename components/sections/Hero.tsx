@@ -2,7 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Briefcase, Workflow, Boxes, Network, GitBranch, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  Workflow,
+  Boxes,
+  Network,
+  GitBranch,
+  Check,
+  BadgeCheck,
+  Package,
+  Zap,
+  Star,
+} from "lucide-react";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
   SiNodedotjs, SiNestjs, SiExpress, SiPython, SiGraphql,
@@ -22,8 +34,7 @@ import {
   UpworkIcon,
   WebsiteIcon,
 } from "@/components/icons/SocialIcons";
-import { AuroraBackground } from "@/components/ui/aurora-background";
-import { useTrackResumeEvent } from "@/hooks/api/use-resume-events";
+import { GridGlowBackground } from "@/components/ui/GridGlowBackground";
 
 const socialIcons = {
   email: MailIcon,
@@ -46,14 +57,14 @@ const container = {
 // above-the-fold content paint immediately on the server.
 const item = {
   hidden: { y: 24 },
-  visible: { y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as any } },
+  visible: { y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 };
 
 const imageVariant = {
   hidden: { scale: 0.92 },
   visible: {
     scale: 1,
-    transition: { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] as any },
+    transition: { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   },
 };
 
@@ -68,89 +79,126 @@ const floatCard = (delay: number) => ({
 });
 
 export default function Hero() {
-  const trackResumeEvent = useTrackResumeEvent();
-
   return (
-    <AuroraBackground as="section" className="min-h-screen flex items-center pt-16">
+    <section className="relative min-h-screen flex items-center  overflow-hidden bg-background">
+      <GridGlowBackground />
       <div className="page-container py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Content */}
           <motion.div
-            className="space-y-6 text-center lg:text-left"
+            className="text-center lg:text-left"
             variants={container}
             initial="hidden"
             animate="visible"
           >
+            {/* Availability + scarcity */}
             <motion.div variants={item}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted/50 text-sm text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shrink-0" />
-                Available for new projects
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-card/70 backdrop-blur text-sm font-medium text-muted-foreground">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                </span>
+                Available now · 1 project slot open this month
               </div>
             </motion.div>
 
+            {/* Headline */}
             <motion.h1
-              className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight"
+              className="mt-5 text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.05]"
               variants={item}
             >
+              Ship your product with{" "}
               <span className="bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
-                Hi, I&apos;m
-              </span>{" "}
-              Smit Parekh
+                one senior developer
+              </span>
+              , not a slow agency.
             </motion.h1>
 
+            {/* Subhead */}
             <motion.p
-              className="text-base sm:text-lg font-medium text-primary/90 leading-relaxed"
+              className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
               variants={item}
             >
-              {homeData.subtitle}
+              I build and ship production web apps end-to-end — React &amp; Next.js front end,
+              Node/NestJS APIs, PostgreSQL, and AWS. One engineer who owns the whole stack, for
+              founders across the Gulf, US, UK &amp; India.
             </motion.p>
 
-            <motion.p
-              className="text-muted-foreground text-base leading-relaxed max-w-lg mx-auto lg:mx-0"
+            {/* Trust ticks */}
+            <motion.ul
+              className="mt-5 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 list-none p-0"
               variants={item}
             >
-              {homeData.description}
-            </motion.p>
+              {[
+                "10+ production apps shipped",
+                "95+ Lighthouse, real data",
+                "Written quote in 24 hours",
+              ].map((t) => (
+                <li
+                  key={t}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80"
+                >
+                  <Check className="h-4 w-4 text-blue-500 shrink-0" />
+                  {t}
+                </li>
+              ))}
+            </motion.ul>
 
             {/* CTAs */}
-            <motion.div
-              className="flex flex-col gap-3 pt-1"
-              variants={item}
-            >
+            <motion.div className="mt-7 flex flex-col gap-3" variants={item}>
               <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                 <Link
                   href="/contact"
-                  className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "gap-2 border-0 bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-500/25 hover:opacity-95 hover:shadow-blue-500/40"
+                  )}
                 >
-                  Let&apos;s Work Together
+                  Get a free quote in 24h
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/portfolio"
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "lg" }),
-                    "gap-2"
-                  )}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "gap-2")}
                 >
                   <Briefcase className="w-4 h-4" />
-                  See My Work
+                  See my work
                 </Link>
               </div>
               <p className="text-xs text-muted-foreground text-center lg:text-left">
-                <Link
-                  href="/free-tools"
-                  onClick={() => trackResumeEvent.mutate("button_click")}
-                  className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-                >
-                  <Wrench className="w-3 h-3" />
-                  Or try 14 free online tools — no account needed
-                </Link>
+                No commitment to enquire · You talk to the person who writes every line of code.
               </p>
+            </motion.div>
+
+            {/* Social proof */}
+            <motion.div
+              className="mt-7 flex items-center justify-center lg:justify-start gap-3.5"
+              variants={item}
+            >
+              <div className="flex">
+                {[0, 1, 2, 3].map((i) => (
+                  <span
+                    key={i}
+                    className="-ml-2 first:ml-0 h-9 w-9 rounded-full border-2 border-background bg-gradient-to-br from-blue-200 to-cyan-100 dark:from-blue-500/40 dark:to-cyan-400/30"
+                  />
+                ))}
+              </div>
+              <div className="text-left">
+                <div className="flex items-center gap-0.5 text-amber-400">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  <span className="font-semibold text-foreground">Rated 5.0</span> · trusted by
+                  founders in FinTech, SaaS &amp; e-commerce
+                </p>
+              </div>
             </motion.div>
 
             {/* Social links */}
             <motion.div
-              className="flex items-center justify-center lg:justify-start gap-4 pt-1"
+              className="mt-6 flex items-center justify-center lg:justify-start gap-4"
               variants={item}
             >
               {homeData.socialLinks.map((social) => {
@@ -172,53 +220,84 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Image + Stats */}
+          {/* Right: Photo + results combo */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative">
+            <div className="relative w-full max-w-sm">
+              {/* Brand halo */}
+              <div className="absolute -inset-5 rounded-[2.25rem] bg-gradient-to-br from-blue-500/20 via-sky-500/10 to-cyan-400/20 blur-2xl" />
+
+              {/* AWS certification badge */}
               <motion.div
-                className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-border bg-muted shadow-2xl"
+                className="absolute -top-4 right-6 z-20 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 shadow-lg text-xs font-semibold"
+                variants={floatCard(0.5)}
+                initial="hidden"
+                animate="visible"
+              >
+                <BadgeCheck className="h-4 w-4 text-cyan-400" />
+                AWS Certified · Solutions Architect
+              </motion.div>
+
+              {/* Photo */}
+              <motion.div
+                className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-border bg-muted shadow-2xl"
                 variants={imageVariant}
                 initial="hidden"
                 animate="visible"
               >
                 <Image
                   src={homeData.imageSrc}
-                  alt="Smit Parekh - Full Stack Developer"
+                  alt="Smit Parekh — Full-Stack Developer"
                   fill
-                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 320px"
+                  sizes="(max-width: 640px) 90vw, 380px"
                   className="object-cover"
                   priority
                 />
               </motion.div>
 
+              {/* Floating proof chips */}
               <motion.div
-                className="absolute -bottom-5 -left-6 bg-card border border-border rounded-2xl px-4 py-3 shadow-xl"
+                className="absolute top-8 -left-5 sm:-left-8 z-20 flex items-center gap-2.5 rounded-2xl border border-border bg-card/90 backdrop-blur px-3.5 py-2.5 shadow-xl"
                 variants={floatCard(0.6)}
                 initial="hidden"
                 animate="visible"
               >
-                <p className="text-2xl font-bold leading-none">{aboutStats.years}</p>
-                <p className="text-xs text-muted-foreground mt-1">Years Experience</p>
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white">
+                  <Package className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-lg font-bold leading-none">10+</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">Apps shipped</p>
+                </div>
               </motion.div>
 
               <motion.div
-                className="absolute -top-5 -right-6 bg-card border border-border rounded-2xl px-4 py-3 shadow-xl"
+                className="absolute bottom-24 -right-4 sm:-right-8 z-20 flex items-center gap-2.5 rounded-2xl border border-border bg-card/90 backdrop-blur px-3.5 py-2.5 shadow-xl"
                 variants={floatCard(0.75)}
                 initial="hidden"
                 animate="visible"
               >
-                <p className="text-2xl font-bold leading-none">{aboutStats.certifications}</p>
-                <p className="text-xs text-muted-foreground mt-1">Certifications</p>
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white">
+                  <Zap className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-lg font-bold leading-none">95+</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">Lighthouse score</p>
+                </div>
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 -translate-y-1/2 -right-10 hidden lg:block bg-card border border-border rounded-2xl px-4 py-3 shadow-xl"
+                className="absolute -bottom-4 left-6 z-20 flex items-center gap-2.5 rounded-2xl border border-border bg-card/90 backdrop-blur px-3.5 py-2.5 shadow-xl"
                 variants={floatCard(0.9)}
                 initial="hidden"
                 animate="visible"
               >
-                <p className="text-2xl font-bold leading-none">{aboutStats.companies}</p>
-                <p className="text-xs text-muted-foreground mt-1">Clients</p>
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white">
+                  <Star className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-lg font-bold leading-none">{aboutStats.years}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">In production</p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -297,6 +376,6 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
-    </AuroraBackground>
+    </section>
   );
 }

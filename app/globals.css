@@ -163,6 +163,11 @@
   --sidebar-accent-foreground:  oklch(0.432 0.277 264.1);
   --sidebar-border:       oklch(0.910 0.010 240);
   --sidebar-ring:         oklch(0.761 0.141 204.6);
+
+  /* Grid + corner-glow page background (components/ui/GridGlowBackground.tsx) */
+  --grid-line:   rgba(15, 23, 42, 0.09);
+  --grid-glow-1: #cdd9ff;
+  --grid-glow-2: #c6eefb;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -200,6 +205,11 @@
   --sidebar-accent-foreground:  oklch(0.960 0 0);
   --sidebar-border:       oklch(1 0 0 / 9%);
   --sidebar-ring:         oklch(0.761 0.141 204.6);
+
+  /* Grid + corner-glow page background — dark variant */
+  --grid-line:   rgba(255, 255, 255, 0.08);
+  --grid-glow-1: rgba(6, 40, 255, 0.20);
+  --grid-glow-2: rgba(0, 197, 236, 0.16);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -213,6 +223,21 @@
 @keyframes marquee-reverse {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   METRIC VALUE SHEEN  (components/sections/ServiceResults.tsx)
+   A slow gradient sweep across the big metric numbers — subtle "alive" feel.
+───────────────────────────────────────────────────────────────────────── */
+.metric-value {
+  background-size: 220% auto;
+  animation: metric-sheen 5s linear infinite;
+}
+@keyframes metric-sheen {
+  to { background-position: 220% center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metric-value { animation: none; }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────

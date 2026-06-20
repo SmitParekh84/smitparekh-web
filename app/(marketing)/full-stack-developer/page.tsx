@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "30+", label: "Full-stack production applications shipped - frontend to database to deployment, no hand-offs", icon: Star },
+  { value: "10+", label: "Full-stack production applications shipped - frontend to database to deployment, no hand-offs", icon: Star },
   { value: "4+", label: "Years writing React, Next.js, NestJS, and PostgreSQL in production for FinTech, SaaS, and enterprise", icon: Clock },
   { value: "95+", label: "Lighthouse score on every Next.js deployment - performance built in, not bolted on after the fact", icon: Zap },
   { value: "99.9%", label: "API uptime across production Node.js deployments handling 10,000+ daily requests at scale", icon: Globe },
@@ -246,7 +246,7 @@ export default function FullStackDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

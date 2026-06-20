@@ -99,9 +99,9 @@ const techStack = [
 
 function results(c: GeoCountry) {
   return [
-    { value: "30+", label: "Production applications shipped - frontend to database to deployment, no hand-offs", icon: Star },
+    { value: "10+", label: "Production applications shipped - frontend to database to deployment, no hand-offs", icon: Star },
     { value: "4+", label: "Years writing React, Next.js, NestJS, and PostgreSQL in production for FinTech, SaaS, and enterprise", icon: Clock },
-    { value: c.utcOffset === "+4" ? "1.5h" : "2.5h", label: `Timezone gap from ${c.country} - a shared working day, not async hand-offs across midnight`, icon: Globe },
+    { value: c.istGapLabel, label: `Working-hours overlap with ${c.country} - live calls and same-day replies, scheduled around the gap`, icon: Globe },
     { value: "95+", label: "Lighthouse score on every Next.js deployment - performance built in, not bolted on", icon: Zap },
   ];
 }
@@ -110,13 +110,13 @@ function differentiators(c: GeoCountry) {
   return [
     {
       icon: Clock,
-      title: `Real overlap with ${c.country} hours`,
-      description: c.istOverlap + " You get same-day replies and live reviews - not a 12-hour round trip on every question.",
+      title: `Working hours that line up with ${c.country}`,
+      description: `${c.istOverlap} Same-day replies and live reviews scheduled around the overlap - the gap stops being your problem.`,
     },
     {
       icon: Banknote,
       title: "Invoicing that fits your finance team",
-      description: `Clear written proposals before any work starts. Fixed-price or retainer, invoiced in USD (or ${c.currencyCode} on request) - no surprise scope, no hourly drift.`,
+      description: `Clear written proposals before any work starts. Fixed-price or retainer, invoiced in USD${c.currencyCode === "USD" ? "" : ` or ${c.currencyCode}`} - no surprise scope, no hourly drift.`,
     },
     {
       icon: Code2,
@@ -139,11 +139,14 @@ function buildFaqs(c: GeoCountry) {
     },
     {
       q: `What are your working hours relative to ${c.timezoneLabel}?`,
-      a: `I work on India time (IST), which sits very close to ${c.timezoneLabel}. ${c.istOverlap} That means real-time standups, live screen-shares, and same-day turnaround instead of overnight delays.`,
+      a: `I work on India Standard Time (IST). ${c.istOverlap}`,
     },
     {
       q: `Can you invoice in ${c.currencyCode}?`,
-      a: `I quote in USD by default since it's the simplest for cross-border work, and I can invoice in ${c.currencyCode} on request. You get a written proposal with scope, timeline, and a fixed price before any work begins.`,
+      a:
+        c.currencyCode === "USD"
+          ? "Yes - I quote and invoice in USD by default, which keeps cross-border billing simple. You get a written proposal with scope, timeline, and a fixed price before any work begins."
+          : `I quote in USD by default since it's the simplest for cross-border work, and I can invoice in ${c.currencyCode} on request. You get a written proposal with scope, timeline, and a fixed price before any work begins.`,
     },
     {
       q: "What do you build, exactly?",
@@ -239,7 +242,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
                   `${c.timezoneLabel} overlap - same-day communication, live reviews`,
                   "React / Next.js frontend - 95+ Lighthouse, SEO-first",
                   "NestJS or Express API - TypeScript strict, 10K+ req/day",
-                  `Invoice in USD or ${c.currencyCode} - fixed-price or retainer`,
+                  `Invoice in ${c.currencyCode === "USD" ? "USD" : `USD or ${c.currencyCode}`} - fixed-price or retainer`,
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-600 dark:text-white/80">
                     <CheckCircle2 className="w-4 h-4 text-blue-500 dark:text-cyan-300 mt-0.5 shrink-0" />
@@ -360,7 +363,7 @@ export default async function GeoDeveloperPage({ params }: Props) {
           <SectionHeader
             label="Common Questions"
             title={`Hiring a Developer in ${c.country}`}
-            description="The questions every Gulf client asks - answered honestly."
+            description={`The questions ${c.country} clients ask most - answered honestly.`}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {faqs.map((item) => (

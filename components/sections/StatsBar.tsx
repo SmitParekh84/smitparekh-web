@@ -5,7 +5,7 @@ import { StaggerGrid, StaggerItem } from "@/components/ui/motion";
 
 const stats = [
   { icon: TrendingUp, value: "4+", label: "Years in Production" },
-  { icon: CheckCircle2, value: "30+", label: "Products Shipped" },
+  { icon: CheckCircle2, value: "10+", label: "Products Shipped" },
   { icon: Layers, value: "15+", label: "Happy Clients" },
   { icon: Clock, value: "0", label: "Missed Deadlines" },
 ];

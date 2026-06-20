@@ -136,9 +136,9 @@ export function aggregateRatingSchema() {
 }
 
 // areaServed for use inside a Service node.
-// India is listed alongside Worldwide because GSC shows 95% of clicks
-// originate from India — the geo signal helps win local "hire X developer"
-// queries without hurting the worldwide audience already in `areaServed`.
+// The four target client markets are the Gulf (GCC), US, UK, and India.
+// Listing them as explicit Country nodes (alongside Worldwide) strengthens the
+// geo signal for "hire X developer <country>" queries in those markets.
 export function serviceRatingFields() {
   return {
     areaServed: [
@@ -146,7 +146,10 @@ export function serviceRatingFields() {
       { "@type": "Country", name: "India" },
       { "@type": "Country", name: "United States" },
       { "@type": "Country", name: "United Kingdom" },
-      { "@type": "Country", name: "Canada" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Saudi Arabia" },
+      { "@type": "Country", name: "Qatar" },
+      { "@type": "Country", name: "Bahrain" },
     ],
   };
 }

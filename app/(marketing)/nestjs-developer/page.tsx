@@ -16,35 +16,35 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPages";
 
 export const metadata: Metadata = {
-  title: "Hire a NestJS Developer - TypeScript APIs, DI & Guards",
+  title: "Hire a NestJS Developer - TypeScript APIs & Microservices",
   description:
-    "Hire a NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, microservices, GraphQL, AWS.",
+    "Hire a freelance NestJS developer with 4+ years building production TypeScript APIs - dependency injection, guards, interceptors, GraphQL, microservices, AWS. Remote, working with startups across the Gulf, US, UK & India. Free quote in 24h.",
   alternates: { canonical: `${siteConfig.url}/nestjs-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/nestjs-developer`,
     siteName: siteConfig.name,
-    title: "Hire a NestJS Developer - TypeScript APIs, DI, Microservices | Smit Parekh",
-    description: "NestJS APIs in production - dependency injection, guards, interceptors, GraphQL, microservices, TypeScript strict. Deployed on AWS or Docker.",
+    title: "Hire a NestJS Developer - TypeScript APIs & Microservices | Smit Parekh",
+    description: "Freelance NestJS developer - production TypeScript APIs with dependency injection, guards, interceptors, GraphQL, and microservices. Remote across the Gulf, US, UK & India, deployed on AWS or Docker.",
     images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630, alt: "Hire a NestJS Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a NestJS Developer - TypeScript APIs, DI, Microservices | Smit Parekh",
-    description: "NestJS TypeScript APIs with DI, guards, interceptors, GraphQL, and microservices. Free quote in 24 hours.",
+    title: "Hire a NestJS Developer - TypeScript APIs & Microservices | Smit Parekh",
+    description: "Freelance NestJS developer - TypeScript APIs with DI, guards, interceptors, GraphQL, and microservices. Remote across the Gulf, US, UK & India. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-nestjs-developer.png`, width: 1200, height: 630 }],
   },
   keywords: [
-    "hire NestJS developer", "NestJS developer for hire", "freelance NestJS developer",
-    "NestJS developer UK", "NestJS developer Canada", "NestJS developer USA",
-    "hire NestJS developer UK", "NestJS TypeScript developer", "NestJS API developer",
-    "NestJS GraphQL developer", "NestJS microservices developer", "hire NestJS backend developer",
+    "hire NestJS developer", "freelance NestJS developer", "NestJS developer for hire",
+    "remote NestJS developer", "hire NestJS developer Dubai", "hire NestJS developer UAE",
+    "hire NestJS developer UK", "hire NestJS developer USA", "hire NestJS developer India",
+    "NestJS TypeScript developer", "NestJS API developer", "NestJS GraphQL developer",
+    "NestJS microservices developer", "hire NestJS backend developer",
     "NestJS dependency injection developer", "NestJS Express developer", "NestJS Fastify developer",
-    "NestJS PostgreSQL developer", "NestJS MongoDB developer", "NestJS AWS developer",
-    "hire TypeScript backend developer", "freelance Node.js NestJS developer",
+    "NestJS PostgreSQL developer", "NestJS AWS developer", "hire TypeScript backend developer",
   ],
 };
 
@@ -129,8 +129,12 @@ const techStack = [
 
 const faqs = [
   {
-    q: "How much does a NestJS developer cost?",
-    a: "For a scoped engagement - a new API, a migration from Express, a feature addition - I quote a fixed price after reviewing the brief. Ongoing NestJS work runs on a retainer. Written numbers within 24 hours.",
+    q: "How much does it cost to hire a NestJS developer?",
+    a: "For a scoped engagement - a new API, a migration from Express, a feature addition - I quote a fixed price after reviewing the brief. Invoiced in USD by default, or AED, GBP, or INR on request. Ongoing NestJS work runs on a monthly retainer. Written numbers within 24 hours, either way.",
+  },
+  {
+    q: "Do you work remotely with teams in the Gulf, US, UK, and India?",
+    a: "Yes - those are my core markets. I work remotely with founders and teams across the Gulf (Dubai, Riyadh, Doha), the US, the UK, and India. Based on India time, I overlap a full working day with the Gulf and the UK afternoon, and your mornings in the US - async updates, weekly demos, and a written scope so timezone gaps never slow delivery.",
   },
   {
     q: "Why NestJS over Express or Fastify?",
@@ -160,10 +164,10 @@ const serviceSchema = {
   name: "NestJS Developer for Hire",
   provider: personNode(),
   serviceType: "NestJS API Development",
-  description: "Freelance NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, GraphQL, microservices, and AWS deployment.",
+  description: "Freelance NestJS developer with 4+ years building production TypeScript APIs. Dependency injection, guards, interceptors, GraphQL, microservices, and AWS deployment. Remote, working with startups across the Gulf, US, UK, and India.",
   url: `${siteConfig.url}/nestjs-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
-  ...serviceRatingFields(),
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available, invoiced in USD (or AED, GBP, INR on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  ...serviceRatingFields(), // areaServed: Gulf + US + UK + India + Worldwide
 };
 
 const faqSchema = {
@@ -245,7 +249,7 @@ export default function NestJSDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

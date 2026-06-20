@@ -126,6 +126,16 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/*
+          Mark the document as JS-enabled before first paint. The scroll-reveal
+          hidden start-state is gated on `html.js`, so sections only start hidden
+          when JS can reveal them — no flash, and no-JS users see content.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/*

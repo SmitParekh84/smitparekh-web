@@ -12,6 +12,13 @@ export interface ServiceFAQ {
 export interface ServiceProofStat {
   value: string;
   label: string;
+  // Optional real analytics image (1:1) shown on the results card. Drop the
+  // generated file at `/public/service-metrics/<slug>-<n>.png` and Next picks
+  // it up by convention, or set an explicit path here. Until it exists, a
+  // styled placeholder renders (with the gen prompt shown in dev).
+  image?: string;
+  // Optional override for the auto-derived image-generation prompt.
+  imagePrompt?: string;
 }
 
 export interface ServicePricingTier {

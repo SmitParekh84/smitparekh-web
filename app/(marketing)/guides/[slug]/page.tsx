@@ -189,7 +189,7 @@ export default async function GuidePage({
       </section>
 
       {/* TL;DR — the standalone answer block built for featured snippets + AI citation */}
-      <section className="page-container pt-10">
+      <section className="reveal-item page-container pt-10">
         <div className="rounded-2xl border border-blue-500/30 bg-blue-500/5 p-6 sm:p-7">
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">
             Quick answer
@@ -201,7 +201,7 @@ export default async function GuidePage({
       </section>
 
       {/* Key takeaways */}
-      <section className="page-container pt-8">
+      <section className="reveal-item page-container pt-8">
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
           <h2 className="text-lg font-semibold tracking-tight mb-4">Key takeaways</h2>
           <ul className="space-y-2.5">
@@ -219,7 +219,7 @@ export default async function GuidePage({
       <article className="page-container py-10">
         <div className="max-w-3xl space-y-12">
           {guide.sections.map((sec) => (
-            <section key={sec.id} id={sec.id} className="scroll-mt-24">
+            <section key={sec.id} id={sec.id} className="reveal-item scroll-mt-24">
               <h2 className="text-2xl font-semibold tracking-tight mb-4">{sec.heading}</h2>
               <div className="space-y-4">
                 {sec.paragraphs.map((p, i) => (

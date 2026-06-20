@@ -245,7 +245,7 @@ export default function APIDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

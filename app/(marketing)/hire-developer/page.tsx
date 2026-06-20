@@ -12,17 +12,18 @@ import { geoCountries } from "@/data/geo-pages";
 const url = `${siteConfig.url}/hire-developer`;
 
 export const metadata: Metadata = {
-  title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi & GCC",
+  title: "Hire a Full-Stack Developer - Gulf, US, UK & India",
   description:
-    "Hire a remote full-stack developer for the Gulf - UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman. React, Next.js, Node.js on a Gulf-timezone overlap.",
+    "Hire a remote full-stack developer for the Gulf, US, UK & India. React, Next.js, Node.js & PostgreSQL - timezone-aware delivery, free quote in 24 hours.",
   keywords: [
-    "hire full stack developer Gulf",
+    "hire full stack developer",
     "hire developer UAE",
-    "hire developer Saudi Arabia",
+    "hire developer USA",
+    "hire developer UK",
+    "hire developer India",
     "hire React developer Dubai",
-    "freelance web developer GCC",
-    "remote developer for hire Gulf",
-    "hire Next.js developer Middle East",
+    "remote developer for hire",
+    "hire Next.js developer",
   ],
   alternates: { canonical: url },
   openGraph: {
@@ -30,15 +31,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url,
     siteName: siteConfig.name,
-    title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi Arabia & GCC | Smit Parekh",
+    title: "Hire a Full-Stack Developer - Gulf, US, UK & India | Smit Parekh",
     description:
-      "Remote full-stack developer for UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman. React, Next.js & Node.js on a Gulf-timezone overlap.",
+      "Remote full-stack developer for the Gulf, US, UK & India. React, Next.js & Node.js with timezone-aware delivery and same-day communication.",
     images: [
       {
         url: `${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`,
         width: 1200,
         height: 630,
-        alt: "Hire a Full-Stack Developer in the Gulf - Smit Parekh",
+        alt: "Hire a Full-Stack Developer - Smit Parekh",
       },
     ],
   },
@@ -46,8 +47,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a Full-Stack Developer in the Gulf - UAE, Saudi & GCC",
-    description: "Remote full-stack developer for the GCC. React, Next.js & Node.js on a Gulf-timezone overlap.",
+    title: "Hire a Full-Stack Developer - Gulf, US, UK & India",
+    description: "Remote full-stack developer for the Gulf, US, UK & India. React, Next.js & Node.js, timezone-aware delivery.",
     images: [`${siteConfig.url}/images/smit-parekh-hire-developer-gulf.png`],
   },
 };
@@ -55,11 +56,11 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Full-Stack Developer for Hire - Gulf / GCC",
+  name: "Full-Stack Developer for Hire - Gulf, US, UK & India",
   provider: personNode(),
   serviceType: "Full-Stack Web Development",
   description:
-    "Freelance full-stack developer working remotely with Gulf businesses across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman. React, Next.js, NestJS, PostgreSQL, and AWS.",
+    "Freelance full-stack developer working remotely with businesses across the Gulf (UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman), the United States, the United Kingdom, and India. React, Next.js, NestJS, PostgreSQL, and AWS.",
   url,
   areaServed: geoCountries.map((c) => ({ "@type": "Country", name: c.country })),
   offers: {
@@ -86,9 +87,9 @@ export default function HireDeveloperHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <PageHero
-        eyebrow="Gulf · GCC"
-        title="Hire a Full-Stack Developer in the Gulf"
-        description="Remote React, Next.js & Node.js development for businesses across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman - on a Gulf-timezone overlap, with same-day communication."
+        eyebrow="Gulf · US · UK · India"
+        title="Hire a Full-Stack Developer"
+        description="Remote React, Next.js & Node.js development for businesses across the Gulf, the US, the UK, and India - timezone-aware delivery with same-day communication. Pick your region below."
         icon={MapPin}
         align="center"
       />
@@ -128,7 +129,7 @@ export default function HireDeveloperHubPage() {
 
           <div className="mt-12 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Not in the Gulf? I work with clients worldwide - including the US, UK, Canada, and India.
+              Outside these regions? I work with clients worldwide - send a brief and I&apos;ll reply within 24 hours.
             </p>
             <Link
               href="/contact"

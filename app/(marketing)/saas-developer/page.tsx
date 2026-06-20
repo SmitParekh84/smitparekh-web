@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "30+", label: "Production SaaS applications shipped - from MVP to paying customers at scale", icon: Star },
+  { value: "10+", label: "Production SaaS applications shipped - from MVP to paying customers at scale", icon: Star },
   { value: "4+", label: "Years building multi-tenant SaaS products for FinTech, HR, and enterprise software companies", icon: Clock },
   { value: "100%", label: "Stripe integration success rate - subscriptions, trials, metered billing, and webhook reliability", icon: TrendingUp },
   { value: "<4wk", label: "Typical SaaS MVP timeline - auth, billing, dashboard, and first paying user in under four weeks", icon: Zap },
@@ -245,7 +245,7 @@ export default function SaaSDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

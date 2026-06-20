@@ -14,7 +14,7 @@ export const homeData: HomeData = {
   title: "Hi, I'm Smit Parekh",
   subtitle: "I Ship Production-Ready Web Apps - On Time, Every Time",
   description:
-    "From scoped requirements to live, monitored deployment - I own the full stack so you never juggle multiple vendors. 30+ products shipped across FinTech, SaaS, and e-commerce. React · Node.js · TypeScript · AWS.",
+    "From scoped requirements to live, monitored deployment - I own the full stack so you never juggle multiple vendors. 10+ products shipped across FinTech, SaaS, and e-commerce. React · Node.js · TypeScript · AWS.",
   imageSrc: "/images/Smit-Parekh-Home.png",
   socialLinks: [
     {

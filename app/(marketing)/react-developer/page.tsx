@@ -17,23 +17,23 @@ import { RelatedDeveloperPages } from "@/components/sections/RelatedDeveloperPag
 export const metadata: Metadata = {
   title: "Hire a React Developer - Production-Grade UI That Scales",
   description:
-    "Hire a React developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise. Redux Toolkit, TypeScript strict, 30+ products delivered.",
+    "Hire a React developer with 4+ years shipping production apps for FinTech, SaaS, and enterprise. Redux Toolkit, TypeScript strict, 10+ products delivered.",
   alternates: { canonical: `${siteConfig.url}/react-developer` },
   openGraph: {
     type: "profile",
     locale: "en_US",
     url: `${siteConfig.url}/react-developer`,
     siteName: siteConfig.name,
-    title: "Hire a React Developer - 4+ Years, 30+ Products Shipped | Smit Parekh",
+    title: "Hire a React Developer - 4+ Years, 10+ Products Shipped | Smit Parekh",
     description:
-      "React development that holds up at scale - Redux Toolkit, TypeScript, 40% performance improvements, 30+ products shipped. Serving clients in the UK, US, Canada, and worldwide.",
+      "React development that holds up at scale - Redux Toolkit, TypeScript, 40% performance improvements, 10+ products shipped. Based in India, working remotely with founders in India and worldwide.",
     images: [{ url: `${siteConfig.url}/images/hire-react-developer.png`, width: 1200, height: 630, alt: "Hire a React Developer - Smit Parekh" }],
   },
   twitter: {
     card: "summary_large_image",
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
-    title: "Hire a React Developer - 30+ Products Shipped | Smit Parekh",
+    title: "Hire a React Developer - 10+ Products Shipped | Smit Parekh",
     description: "React development built for scale. TypeScript, Redux, 40% performance gains. Free quote in 24 hours.",
     images: [{ url: `${siteConfig.url}/images/hire-react-developer.png`, width: 1200, height: 630 }],
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 
 const results = [
   { value: "40%", label: "Performance boost delivered on a live React + Redux codebase", icon: TrendingUp },
-  { value: "30+", label: "Production React applications shipped across FinTech, SaaS & enterprise", icon: Star },
+  { value: "10+", label: "Production React applications shipped across FinTech, SaaS & enterprise", icon: Star },
   { value: "50+", label: "Redux-managed components shipped in a single production state tree", icon: Layers },
   { value: "4+", label: "Years writing React in anger - not tutorials, real deadline-driven products", icon: Clock },
 ];
@@ -162,7 +162,7 @@ const serviceSchema = {
   name: "React Developer for Hire",
   provider: personNode(),
   serviceType: "React.js Frontend Development",
-  description: "Freelance React developer with 4+ years shipping production applications for FinTech, SaaS, and enterprise. TypeScript strict, Redux Toolkit, 40% performance improvements, 30+ products delivered.",
+  description: "Freelance React developer with 4+ years shipping production applications for FinTech, SaaS, and enterprise. TypeScript strict, Redux Toolkit, 40% performance improvements, 10+ products delivered.",
   url: `${siteConfig.url}/react-developer`,
   offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
@@ -199,7 +199,7 @@ export default function ReactDeveloperPage() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-sm text-blue-700 dark:border-white/20 dark:bg-white/10 dark:text-white/90 backdrop-blur-sm">
                 <SiReact className="w-4 h-4 text-cyan-300" />
-                React.js Expert · AWS Certified · 30+ Products Shipped
+                React.js Expert · AWS Certified · 10+ Products Shipped
               </div>
 
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-neutral-900 dark:text-white">
@@ -246,7 +246,7 @@ export default function ReactDeveloperPage() {
               </div>
 
               <p className="text-xs text-neutral-400 dark:text-white/50">
-                No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide
+                No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India
               </p>
             </div>
 

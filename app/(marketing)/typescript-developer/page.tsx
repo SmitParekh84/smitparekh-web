@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a TypeScript Developer - Strict-Mode, No any, No Surprises | Smit Parekh",
     description:
-      "TypeScript development across the full stack - React, Next.js, Node.js, NestJS, PostgreSQL. Strict mode, fully typed APIs, zero suppressions. Serving clients in the UK, US, Canada, and worldwide.",
+      "TypeScript development across the full stack - React, Next.js, Node.js, NestJS, PostgreSQL. Strict mode, fully typed APIs, zero suppressions. Based in India, working remotely with founders in India and worldwide.",
     images: [{ url: `${siteConfig.url}/images/hire-typescript-developer.png`, width: 1200, height: 630, alt: "Hire a TypeScript Developer - Smit Parekh" }],
   },
   twitter: {
@@ -244,7 +244,7 @@ export default function TypeScriptDeveloperPage() {
                   See the Work
                 </Link>
               </div>
-              <p className="text-xs text-neutral-400 dark:text-white/50">No commitment to enquire · Reply within 24 hours · UK, US, Canada & worldwide</p>
+              <p className="text-xs text-neutral-400 dark:text-white/50">No commitment to enquire · Reply within 24 hours · Remote-friendly · working with startups across the Gulf, US, UK & India</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
