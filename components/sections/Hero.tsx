@@ -171,7 +171,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Social proof */}
-            <motion.div
+            {/* <motion.div
               className="mt-7 flex items-center justify-center lg:justify-start gap-3.5"
               variants={item}
             >
@@ -194,7 +194,7 @@ export default function Hero() {
                   founders in FinTech, SaaS &amp; e-commerce
                 </p>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Social links */}
             <motion.div
