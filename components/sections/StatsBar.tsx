@@ -12,7 +12,7 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="border-y border-border bg-muted/30">
+    <section className="border-y border-border bg-muted/80">
       <div className="page-container py-10">
         <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-8" delay={0.1}>
           {stats.map(({ icon: Icon, value, label }) => (

@@ -10,10 +10,22 @@ import ShapeGrid from "@/components/ui/ShapeGrid";
 // none) so it never blocks clicks. Pass `className="fixed"` to pin it to the
 // viewport so content scrolls over it (more depth); default is `absolute`.
 //
+// `showGlow` (default true) toggles the two radial corner glows. For a single
+// page-wide `fixed` background, render it with `showGlow={false}` so the glows
+// don't stay pinned to the top of the viewport and light up every section on
+// scroll — that keeps lower sections as muted as the hero. Keep the glow on the
+// hero's own (absolute) instance so it only appears at the top.
+//
 // Brand colors follow the theme. The corner glows use the
 // --grid-glow-1 / --grid-glow-2 tokens from globals.css.
 
-export function GridGlowBackground({ className }: { className?: string }) {
+export function GridGlowBackground({
+  className,
+  showGlow = true,
+}: {
+  className?: string;
+  showGlow?: boolean;
+}) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -30,15 +42,17 @@ export function GridGlowBackground({ className }: { className?: string }) {
       )}
     >
       {/* Corner glows behind the grid */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle 600px at 0% 200px, var(--grid-glow-1), transparent),
-            radial-gradient(circle 600px at 100% 200px, var(--grid-glow-2), transparent)
-          `,
-        }}
-      />
+      {showGlow && (
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle 600px at 0% 200px, var(--grid-glow-1), transparent),
+              radial-gradient(circle 600px at 100% 200px, var(--grid-glow-2), transparent)
+            `,
+          }}
+        />
+      )}
       {/* Animated brand grid */}
       <ShapeGrid
         direction="diagonal"

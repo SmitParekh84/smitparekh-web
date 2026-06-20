@@ -80,7 +80,7 @@ const floatCard = (delay: number) => ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center  overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center  overflow-hidden ">
       <GridGlowBackground />
       <div className="page-container py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

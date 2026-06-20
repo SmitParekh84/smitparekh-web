@@ -12,7 +12,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="page-section bg-muted/20">
+    <section className="page-section bg-muted/70">
       <div className="page-container">
         <FadeInSection>
           <SectionHeader

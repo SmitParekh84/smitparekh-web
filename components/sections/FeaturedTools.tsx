@@ -40,7 +40,7 @@ type IconName = keyof typeof iconMap;
 
 export default function FeaturedTools() {
   return (
-    <section className="page-section bg-muted/20">
+    <section className="page-section bg-muted/70">
       <div className="page-container">
         <FadeInSection>
           <SectionHeader

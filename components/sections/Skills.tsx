@@ -90,7 +90,7 @@ const techCategories: {
 
 export default function Skills() {
   return (
-    <section className="page-section bg-muted/20">
+    <section className="page-section bg-muted/70">
       <div className="page-container">
         <FadeInSection>
           <SectionHeader

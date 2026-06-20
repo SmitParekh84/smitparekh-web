@@ -316,7 +316,7 @@ export default function HomePage() {
       />
 
       <Hero />
-      <GridGlowBackground className="fixed" />
+      <GridGlowBackground className="fixed" showGlow={false} />
       <StatsBar />
       {/* <MotionGraphicsLoop /> hidden for now - restore to bring back the hero video loop. */}
       <Services />
