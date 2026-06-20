@@ -31,7 +31,7 @@ export function CalProvider() {
           layout: CAL.layout,
         });
       } catch {
-        // Cal SDK failed to load (offline, blocked) — silent: BookCallButton
+        // Cal SDK failed to load (offline, blocked) - silent: BookCallButton
         // falls back to opening publicUrl in a new tab.
       }
     })();

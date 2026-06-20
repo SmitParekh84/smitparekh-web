@@ -8,7 +8,7 @@ function toDate(value: string | Date | null | undefined): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
-/** "7 May 2025" — for authored content dates (blog, portfolio) shown publicly */
+/** "7 May 2025" - for authored content dates (blog, portfolio) shown publicly */
 export function formatDate(value: string | Date | null | undefined): string {
   const d = toDate(value);
   if (!d) return "";
@@ -20,7 +20,7 @@ export function formatDate(value: string | Date | null | undefined): string {
   });
 }
 
-/** "7 May 2025, 20:02" — for admin UIs (IST) */
+/** "7 May 2025, 20:02" - for admin UIs (IST) */
 export function formatDateTime(value: string | Date | null | undefined): string {
   const d = toDate(value);
   if (!d) return "";
@@ -34,7 +34,7 @@ export function formatDateTime(value: string | Date | null | undefined): string 
   });
 }
 
-/** "20:02" — for chat message timestamps (IST) */
+/** "20:02" - for chat message timestamps (IST) */
 export function formatTime(value: string | Date | null | undefined): string {
   const d = toDate(value);
   if (!d) return "";
@@ -61,7 +61,7 @@ export function formatRelative(value: string | Date | null | undefined): string 
   return formatDateTime(d);
 }
 
-/** "2025-05-07" — UTC date string for quota keys; intentionally UTC */
+/** "2025-05-07" - UTC date string for quota keys; intentionally UTC */
 export function todayUTC(): string {
   return new Date().toISOString().slice(0, 10);
 }

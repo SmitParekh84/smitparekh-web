@@ -37,7 +37,7 @@ export function howToSchema(slug: string, tool: ToolSEO, steps: HowToStep[]) {
 
 // Shared inline Person node for use as author/provider/publisher on
 // individual pages. Avoids dangling @id refs to a Person defined only
-// on the homepage — Google evaluates each page's JSON-LD graph alone.
+// on the homepage - Google evaluates each page's JSON-LD graph alone.
 export function personNode() {
   return {
     "@type": "Person",

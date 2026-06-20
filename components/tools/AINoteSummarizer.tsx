@@ -96,7 +96,7 @@ export default function AINoteSummarizer() {
           onChange={(e) => setText(e.target.value)}
           rows={10}
           maxLength={30000}
-          placeholder="Paste up to 30,000 characters — a chapter, lecture transcript, study guide…"
+          placeholder="Paste up to 30,000 characters - a chapter, lecture transcript, study guide…"
           className="w-full rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 placeholder:text-muted-foreground"
         />
         <div className="flex justify-between text-xs text-muted-foreground">

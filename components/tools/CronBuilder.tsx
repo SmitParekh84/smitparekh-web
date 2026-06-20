@@ -237,7 +237,7 @@ export default function CronBuilder() {
         {FIELD_NAMES.map((label, i) => (
           <div key={label} className="rounded-lg border border-border bg-muted/20 p-2">
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
-            <div className="font-mono text-sm mt-1">{fields[i] ?? "—"}</div>
+            <div className="font-mono text-sm mt-1">{fields[i] ?? " - "}</div>
             <div className="text-[10px] text-muted-foreground">
               {FIELD_RANGES[i][0]}–{FIELD_RANGES[i][1]}
             </div>

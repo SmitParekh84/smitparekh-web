@@ -6,7 +6,7 @@ export interface Col3Service {
   href: string;
   label: string;
   description: string;
-  /** Per-item icon — if omitted, `sharedIcon` on the layout is used */
+  /** Per-item icon - if omitted, `sharedIcon` on the layout is used */
   icon?: LucideIcon;
   /** Optional accent badge (e.g. "Ready to use", "50% off") */
   badge?: string;
@@ -22,7 +22,7 @@ interface ServiceCol3LayoutProps {
 }
 
 /**
- * Col3 service card grid — compact, action-oriented layout.
+ * Col3 service card grid - compact, action-oriented layout.
  * Used by: web-ecommerce, frontend-performance, backend-apis, mobile-care,
  *           seo-services, ai-growth, ai-engineering, products-programs
  *

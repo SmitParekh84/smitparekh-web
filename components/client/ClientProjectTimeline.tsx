@@ -305,7 +305,7 @@ export function ClientProjectTimeline({ steps, editable, onUpdateStep, busyStepK
                               <div className="mt-1 space-y-0.5 text-xs text-muted-foreground">
                                 {(start || end) && (
                                   <p>
-                                    {start ?? "—"}
+                                    {start ?? " - "}
                                     {" → "}
                                     {end ?? "ongoing"}
                                   </p>

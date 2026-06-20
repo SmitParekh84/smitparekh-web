@@ -120,7 +120,7 @@ function SortableStepRow({
     transition: transition ?? undefined,
   };
 
-  // Expand/collapse — notes closed by default
+  // Expand/collapse - notes closed by default
   const [open, setOpen] = useState(false);
   // Local state for add-link form
   const [newLink, setNewLink] = useState({ label: "", url: "" });
@@ -288,7 +288,7 @@ function SortableStepRow({
         </button>
       </div>
 
-      {/* ── Expanded panel — dates, links, note ── */}
+      {/* ── Expanded panel - dates, links, note ── */}
       {open && (
         <div className="grid gap-3 border-t border-border bg-muted/20 px-3 pb-3 pt-3 pl-[52px] sm:grid-cols-2">
           {/* Start date */}

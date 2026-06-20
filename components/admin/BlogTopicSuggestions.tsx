@@ -114,7 +114,7 @@ export function BlogTopicSuggestions({
         </div>
       ) : (
         <p className="text-xs text-muted-foreground">
-          No ideas yet — hit refresh.
+          No ideas yet - hit refresh.
         </p>
       )}
     </div>

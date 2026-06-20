@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
   try {
     await supabase.auth.getUser();
   } catch {
-    // Non-fatal — continue without a refreshed session.
+    // Non-fatal - continue without a refreshed session.
   }
 
   return response;

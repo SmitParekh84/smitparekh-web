@@ -18,7 +18,7 @@ export function getClientIp(request: NextRequest): string {
 /**
  * Hash an IP with the server-side salt. Returns first 32 hex chars.
  * If the salt isn't configured we still hash (with empty salt) so quotas keep
- * working — but operators should set IP_HASH_SALT to make hashes non-rainbow-attackable.
+ * working - but operators should set IP_HASH_SALT to make hashes non-rainbow-attackable.
  */
 export function hashIp(ip: string): string {
   const salt = process.env.IP_HASH_SALT ?? "";

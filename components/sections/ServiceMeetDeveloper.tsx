@@ -58,7 +58,7 @@ export function ServiceMeetDeveloper() {
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-blue-500/20 via-sky-500/10 to-cyan-400/20 blur-2xl" />
               <Image
                 src="/images/smit-parekh-about-full-stack-developer.png"
-                alt="Smit Parekh — Full-Stack Web Developer based in Gujarat, India"
+                alt="Smit Parekh - Full-Stack Web Developer based in Gujarat, India"
                 width={480}
                 height={560}
                 sizes="(max-width: 768px) 90vw, 480px"
@@ -90,7 +90,7 @@ export function ServiceMeetDeveloper() {
             </Badge>
 
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
-              I&apos;m Smit Parekh — a full-stack developer who writes{" "}
+              I&apos;m Smit Parekh - a full-stack developer who writes{" "}
               <span className="bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
                 every single line of your code
               </span>
@@ -98,13 +98,13 @@ export function ServiceMeetDeveloper() {
 
             <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               With 4+ years of experience shipping production systems for FinTech, SaaS, and
-              AI startups, I work as a senior individual contributor — no juniors on your
+              AI startups, I work as a senior individual contributor - no juniors on your
               project, no account managers between you and the work. Every commit, every
               architecture decision, every deployment lands on my machine first.
             </p>
 
             <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
-              I specialise in the TypeScript ecosystem — React & Next.js on the frontend,
+              I specialise in the TypeScript ecosystem - React & Next.js on the frontend,
               Node.js / NestJS on the backend, PostgreSQL for data, and AWS for infrastructure.
               I&apos;ve built headless e-commerce stores, multi-tenant SaaS platforms, real-time
               dashboards, AI-powered tools, and performance-first marketing sites. The common

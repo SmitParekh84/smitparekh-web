@@ -16,7 +16,7 @@ interface TenantAiToolsProps {
 /**
  * Auto-loading AI topic suggestions for the blog editor. Reads the tenant's
  * saved niche/categories (configured on the Blog Settings page) and fetches
- * ideas on mount — the tenant never has to type a seed. Category tabs come from
+ * ideas on mount - the tenant never has to type a seed. Category tabs come from
  * the saved categories; Refresh re-rolls the current tab.
  */
 export function TenantAiTools({ preferences, onApplyTopic }: TenantAiToolsProps) {
@@ -126,7 +126,7 @@ export function TenantAiTools({ preferences, onApplyTopic }: TenantAiToolsProps)
               ))}
             </div>
           ) : (
-            <p className="text-xs text-muted-foreground">No ideas yet — hit refresh.</p>
+            <p className="text-xs text-muted-foreground">No ideas yet - hit refresh.</p>
           )}
         </>
       )}

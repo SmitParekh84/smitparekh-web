@@ -81,7 +81,7 @@ export default function AIEssayOutliner() {
 
         <div className="space-y-2">
           <label className="text-sm font-medium">
-            Your stance (optional — AI will pick one if blank)
+            Your stance (optional - AI will pick one if blank)
           </label>
           <input
             value={stance}

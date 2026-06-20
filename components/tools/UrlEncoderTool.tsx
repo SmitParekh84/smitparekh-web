@@ -29,7 +29,7 @@ export default function UrlEncoderTool() {
     } catch {
       setError(
         m === "decode"
-          ? "Invalid URL-encoded string — check for malformed % sequences."
+          ? "Invalid URL-encoded string - check for malformed % sequences."
           : "Encoding failed.",
       );
       setOutput("");

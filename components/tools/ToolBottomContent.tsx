@@ -46,7 +46,7 @@ export default function ToolBottomContent({ slug, toolName }: Props) {
           </div>
         )}
 
-        {/* Lead-gen CTA — appears on every tool page */}
+        {/* Lead-gen CTA - appears on every tool page */}
         <div className="relative overflow-hidden rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-cyan-400/10 p-6 sm:p-8 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-background/60 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 mb-3">
             <Sparkles className="w-3.5 h-3.5" />

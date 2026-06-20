@@ -75,7 +75,7 @@ function buildIntentUrl(platform: SharePlatform, url: string, caption: string) {
     // X intent uses `text` (which can already include the URL); auto-link works either way.
     return `https://twitter.com/intent/tweet?text=${encodeURIComponent(caption)}`;
   }
-  // LinkedIn share-offsite ignores any text param — caption goes via clipboard.
+  // LinkedIn share-offsite ignores any text param - caption goes via clipboard.
   return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
 }
 
@@ -234,7 +234,7 @@ export function SocialShareDialog({
             <Sparkles className="mx-auto mb-2 h-5 w-5 text-blue-500" />
             <p className="text-sm font-medium">Pick a platform</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              AI writes a tailored caption — long-form with bullet points for
+              AI writes a tailored caption - long-form with bullet points for
               LinkedIn, ≤280 chars for X.
             </p>
           </div>

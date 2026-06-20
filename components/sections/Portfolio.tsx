@@ -99,7 +99,7 @@ export default function Portfolio() {
                           src={project.imageUrl}
                           alt={
                             project.subtitle
-                              ? `${project.title} — ${project.subtitle} case study`
+                              ? `${project.title} - ${project.subtitle} case study`
                               : `${project.title} case study`
                           }
                           fill

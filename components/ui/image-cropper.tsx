@@ -193,7 +193,7 @@ async function loadImageSource(
     });
     return img;
   } finally {
-    // Don't revoke immediately — the canvas drawImage call needs the URL until the image is decoded.
+    // Don't revoke immediately - the canvas drawImage call needs the URL until the image is decoded.
     // Defer to the next tick.
     setTimeout(() => URL.revokeObjectURL(url), 0);
   }

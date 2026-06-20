@@ -13,7 +13,7 @@ import ShapeGrid from "@/components/ui/ShapeGrid";
 // `showGlow` (default true) toggles the two radial corner glows. For a single
 // page-wide `fixed` background, render it with `showGlow={false}` so the glows
 // don't stay pinned to the top of the viewport and light up every section on
-// scroll — that keeps lower sections as muted as the hero. Keep the glow on the
+// scroll - that keeps lower sections as muted as the hero. Keep the glow on the
 // hero's own (absolute) instance so it only appears at the top.
 //
 // Brand colors follow the theme. The corner glows use the

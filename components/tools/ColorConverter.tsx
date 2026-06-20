@@ -93,7 +93,7 @@ export default function ColorConverter() {
   const hex = useMemo(() => rgbToHex(rgb), [rgb]);
 
   // Keep hexInput in sync when rgb changes via non-hex inputs.
-  // We avoid useEffect by deriving instead — only update local state
+  // We avoid useEffect by deriving instead - only update local state
   // when the user is NOT actively typing in the hex field.
   function setRgbAndHex(next: RGB) {
     setRgb(next);

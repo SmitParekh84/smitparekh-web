@@ -32,7 +32,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
           const me = await api.get<{ user?: { role?: string } }>("/auth/me");
           role = me?.user?.role;
         } catch {
-          // backend unreachable — fall through to forbidden
+          // backend unreachable - fall through to forbidden
         }
       }
       if (!mounted) return;
@@ -40,7 +40,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
         setForbidden(false);
         setChecking(false);
       } else {
-        // Logged in but not admin — show forbidden (NOT redirect to login, that causes a loop)
+        // Logged in but not admin - show forbidden (NOT redirect to login, that causes a loop)
         setForbidden(true);
         setChecking(false);
       }

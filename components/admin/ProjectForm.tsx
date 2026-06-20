@@ -58,7 +58,7 @@ function slugify(value: string) {
   return value
     .toLowerCase()
     .replace(/&/g, "and")
-    .replace(/[–—]/g, "-")
+    .replace(/[– - ]/g, "-")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")

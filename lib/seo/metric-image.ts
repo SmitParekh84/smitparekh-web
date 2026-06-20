@@ -7,15 +7,15 @@
 // tailored prompts with zero per-page authoring.
 
 export type MetricVisual =
-  | "trend" // upward line/area chart — growth %, multipliers, "x→y"
-  | "gauge" // circular progress ring — scores like 95+, 100, 99.9%
-  | "counter" // ascending bars + big number — "N+" counts
-  | "speed" // speedometer — "<100ms", "<2.5s" latency targets
-  | "duration" // clock/timeline — "5 days", "48h", "4-8 wks"
-  | "shield" // check/shield — "0" (zero bad things) + security badges
-  | "rank" // podium — "Top 3"
-  | "rating" // stars — "4.5★"
-  | "badge"; // labeled chip — text values like "Stripe", "Geo-grid"
+  | "trend" // upward line/area chart - growth %, multipliers, "x→y"
+  | "gauge" // circular progress ring - scores like 95+, 100, 99.9%
+  | "counter" // ascending bars + big number - "N+" counts
+  | "speed" // speedometer - "<100ms", "<2.5s" latency targets
+  | "duration" // clock/timeline - "5 days", "48h", "4-8 wks"
+  | "shield" // check/shield - "0" (zero bad things) + security badges
+  | "rank" // podium - "Top 3"
+  | "rating" // stars - "4.5★"
+  | "badge"; // labeled chip - text values like "Stripe", "Geo-grid"
 
 /** Classify a proof stat into a visual archetype for its analytics card. */
 export function classifyMetric(value: string, label = ""): MetricVisual {

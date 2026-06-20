@@ -102,7 +102,7 @@ function OnPageValue({ value }: { value: unknown }) {
               {sk.replace(/([A-Z])/g, " $1")}:
             </span>
             <span className="break-all">
-              {Array.isArray(sv) ? (sv.length === 0 ? "None" : sv.join(", ")) : String(sv ?? "—")}
+              {Array.isArray(sv) ? (sv.length === 0 ? "None" : sv.join(", ")) : String(sv ?? " - ")}
             </span>
           </div>
         ))}
@@ -138,7 +138,7 @@ export default function SEOAnalyzer() {
       },
       {
         onSuccess: (res) => {
-          // api.post returns res.data directly — use `res`, not `res.data`
+          // api.post returns res.data directly - use `res`, not `res.data`
           setResult(res as unknown as SeoData);
           setActiveTab("overview");
           toast.success("Analysis complete!", sendReport && email ? "Report sent to your email." : undefined);
@@ -387,7 +387,7 @@ export default function SEOAnalyzer() {
                           { label: "Request Count", value: result.performanceMetrics.requestCount },
                         ].map(({ label, value }) => (
                           <div key={label} className="rounded-xl border border-border bg-muted/20 p-4 text-center">
-                            <p className="text-2xl font-bold text-blue-500 mb-1">{value ?? "—"}</p>
+                            <p className="text-2xl font-bold text-blue-500 mb-1">{value ?? " - "}</p>
                             <p className="text-xs text-muted-foreground">{label}</p>
                           </div>
                         ))}

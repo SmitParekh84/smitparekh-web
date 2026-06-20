@@ -1,5 +1,5 @@
 /**
- * Cal.com booking config — single source of truth so we can swap event
+ * Cal.com booking config - single source of truth so we can swap event
  * types or links without hunting through the codebase.
  *
  * Used by:

@@ -30,7 +30,7 @@ function toOption(o: string | SelectOption): SelectOption {
 }
 
 /**
- * AppSelect — project-standard select built on shadcn/ui Select.
+ * AppSelect - project-standard select built on shadcn/ui Select.
  *
  * Use this instead of a native <select> for all form fields and filter bars.
  * Pass `options` as a string[] or SelectOption[] for the dropdown items.

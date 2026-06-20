@@ -197,7 +197,7 @@ export default function ATSResumeChecker() {
         </button>
       </div>
 
-      {/* Stepper — Desktop horizontal */}
+      {/* Stepper - Desktop horizontal */}
       <div className="hidden md:flex items-center justify-between">
         {STEPS.map((s, i) => (
           <div key={s.id} className="flex items-center flex-1 last:flex-none">
@@ -226,7 +226,7 @@ export default function ATSResumeChecker() {
         ))}
       </div>
 
-      {/* Stepper — Mobile vertical */}
+      {/* Stepper - Mobile vertical */}
       <div className="md:hidden flex items-center gap-3">
         {STEPS.map((s, i) => (
           <div key={s.id} className="flex items-center flex-1 last:flex-none">

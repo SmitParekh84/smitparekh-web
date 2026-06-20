@@ -5,7 +5,7 @@ import { Redis } from "@upstash/redis";
  *
  * Returns `null` when the REST env vars are absent so every caller can fall
  * back to the Supabase source of truth. This keeps the Redis layer **purely
- * additive** — tool quotas keep working with Redis disabled, and the fast
+ * additive** - tool quotas keep working with Redis disabled, and the fast
  * path simply switches on once `UPSTASH_REDIS_REST_URL` /
  * `UPSTASH_REDIS_REST_TOKEN` are set (Vercel + local `.env`).
  */

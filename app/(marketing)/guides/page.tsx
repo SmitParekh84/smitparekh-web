@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.url}/images/guides-og/smit-parekh-guides.png`,
         width: 1200,
         height: 630,
-        alt: "Web Development Guides — Smit Parekh",
+        alt: "Web Development Guides - Smit Parekh",
         type: "image/png",
       },
     ],
@@ -107,7 +107,7 @@ export default function GuidesHubPage() {
         eyebrow="Guides"
         icon={BookOpen}
         title="Web Development Guides"
-        description="No-hype answers to the questions founders and teams actually ask — what things cost, how to hire well, and which technology fits. Written by the developer who builds them."
+        description="No-hype answers to the questions founders and teams actually ask - what things cost, how to hire well, and which technology fits. Written by the developer who builds them."
         align="center"
       />
 
@@ -163,7 +163,7 @@ export default function GuidesHubPage() {
               Have a project these guides didn&apos;t answer?
             </h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              Tell me what you&apos;re building and I&apos;ll send a written, fixed-price estimate within 24 hours — scope, timeline, and price, with no sales pressure.
+              Tell me what you&apos;re building and I&apos;ll send a written, fixed-price estimate within 24 hours - scope, timeline, and price, with no sales pressure.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link

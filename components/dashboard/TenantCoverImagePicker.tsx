@@ -96,7 +96,7 @@ export function TenantCoverImagePicker({ value, onChange }: TenantCoverImagePick
             <>
               <ImageIcon className="h-6 w-6" />
               <span className="font-medium text-foreground">Click to upload, or drag and drop</span>
-              <span className="text-xs">PNG, JPG, WEBP — up to 5 MB · Recommended: 1600 × 900</span>
+              <span className="text-xs">PNG, JPG, WEBP - up to 5 MB · Recommended: 1600 × 900</span>
             </>
           )}
         </button>

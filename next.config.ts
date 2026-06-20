@@ -76,10 +76,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Legacy /projects path returns 404 and is linked from an old blog post —
-      // 308 to /portfolio so the link equity (and crawl budget) is preserved.
+      // Legacy /projects path returns 404 and is linked from an old blog post - // 308 to /portfolio so the link equity (and crawl budget) is preserved.
       { source: "/projects", destination: "/portfolio", permanent: true },
-      // /project (singular) was indexed by Google as a 5xx — redirect to stop
+      // /project (singular) was indexed by Google as a 5xx - redirect to stop
       // the crawl error and recover any residual link equity.
       { source: "/project", destination: "/portfolio", permanent: true },
     ]

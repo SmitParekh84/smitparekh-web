@@ -4,7 +4,7 @@
  * Posts written via the blog-generation prompt include a "## FAQ" section with
  * "### Q: … / A: …" pairs. That content is rendered visible on the page (only
  * the Key Takeaways block is stripped before render), so deriving FAQPage
- * JSON-LD from it is Google-compliant — no hidden/markup-only FAQ.
+ * JSON-LD from it is Google-compliant - no hidden/markup-only FAQ.
  *
  * Returns [] when there is no confident FAQ section (fewer than 2 clean pairs),
  * so the caller can skip emitting FAQPage schema for posts without one.

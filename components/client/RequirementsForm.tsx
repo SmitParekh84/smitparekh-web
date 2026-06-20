@@ -360,14 +360,14 @@ export function RequirementsForm() {
     }
   }
 
-  /* Already submitted — show full read-only requirements */
+  /* Already submitted - show full read-only requirements */
   if (existingData?.data) {
     return (
       <div className="space-y-6">
         <div className="flex items-center gap-2.5 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
           <CheckCircle2 className="h-5 w-5 shrink-0 text-green-500" />
           <p className="text-sm font-medium text-green-700 dark:text-green-400">
-            Requirements submitted — our team will review and get back to you shortly.
+            Requirements submitted - our team will review and get back to you shortly.
           </p>
         </div>
         <ClientRequirementsView data={existingData.data} />
@@ -381,7 +381,7 @@ export function RequirementsForm() {
     );
   }
 
-  /* Just submitted — data not yet available from refetch */
+  /* Just submitted - data not yet available from refetch */
   if (submitted) {
     return (
       <div className="flex flex-col items-center gap-5 py-16 text-center">
@@ -536,7 +536,7 @@ function DetailsStep({
       <div>
         <h2 className="text-lg font-semibold">Tell us more about your project</h2>
         <p className="text-sm text-muted-foreground">
-          Answer what&apos;s relevant — optional fields are marked.
+          Answer what&apos;s relevant - optional fields are marked.
         </p>
       </div>
 
@@ -790,7 +790,7 @@ function LogisticsStep({
         <div className="flex flex-col gap-2.5">
           {(
             [
-              { value: "us", label: "You — Smit Parekh & team", desc: "We handle everything" },
+              { value: "us", label: "You - Smit Parekh & team", desc: "We handle everything" },
               {
                 value: "vendor",
                 label: "Another vendor / agency",
@@ -903,10 +903,10 @@ function ReviewStep({ form }: { form: FormState }) {
           </div>
         </ReviewRow>
         <ReviewRow label="Budget">
-          <span>{budgetLabel ?? "—"}</span>
+          <span>{budgetLabel ?? " - "}</span>
         </ReviewRow>
         <ReviewRow label="Timeline">
-          <span>{timelineLabel ?? "—"}</span>
+          <span>{timelineLabel ?? " - "}</span>
         </ReviewRow>
         <ReviewRow label="Working with">
           <span className="capitalize">
@@ -915,8 +915,8 @@ function ReviewStep({ form }: { form: FormState }) {
               : form.workPreference === "vendor"
               ? `Vendor: ${form.vendorCompanyName}`
               : form.workPreference === "freelancer"
-              ? `Freelancer${form.freelancerProfileUrl ? ` — ${form.freelancerProfileUrl}` : ""}`
-              : "—"}
+              ? `Freelancer${form.freelancerProfileUrl ? ` - ${form.freelancerProfileUrl}` : ""}`
+              : " - "}
           </span>
         </ReviewRow>
         {form.website_hasExisting !== null && form.categories.includes("website") && (

@@ -137,14 +137,14 @@ export default async function GuidePage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
-      {/* Hero — dark gradient matching PageHero style */}
+      {/* Hero - dark gradient matching PageHero style */}
       <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20" aria-hidden />
         <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-cyan-300/20 blur-3xl pointer-events-none" aria-hidden />
         <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-blue-400/20 blur-3xl pointer-events-none" aria-hidden />
 
         <div className="page-container relative">
-          {/* Breadcrumb — white text on dark bg */}
+          {/* Breadcrumb - white text on dark bg */}
           <nav
             aria-label="Breadcrumb"
             className="mb-5 flex items-center gap-1 text-xs text-white/60"
@@ -188,7 +188,7 @@ export default async function GuidePage({
         </div>
       </section>
 
-      {/* TL;DR — the standalone answer block built for featured snippets + AI citation */}
+      {/* TL;DR - the standalone answer block built for featured snippets + AI citation */}
       <section className="reveal-item page-container pt-10">
         <div className="rounded-2xl border border-blue-500/30 bg-blue-500/5 p-6 sm:p-7">
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">

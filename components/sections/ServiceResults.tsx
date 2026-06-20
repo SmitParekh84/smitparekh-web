@@ -112,7 +112,7 @@ function MetricCard({ stat }: { stat: ServicePage["proof"][number] }) {
       <div className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/10">
         <Image
           src={stat.image}
-          alt={`${stat.value} — ${stat.label}`}
+          alt={`${stat.value} - ${stat.label}`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
@@ -150,7 +150,7 @@ export function ServiceResults({ service }: { service: ServicePage }) {
             Results that build trust
           </h2>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            The numbers behind the work — measured on real production data, not demos.
+            The numbers behind the work - measured on real production data, not demos.
           </p>
         </div>
 

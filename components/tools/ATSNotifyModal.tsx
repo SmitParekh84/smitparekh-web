@@ -41,7 +41,7 @@ export function ATSNotifyModal({ open, onClose }: ATSNotifyModalProps) {
       { email, tool: "ats-job-match" },
       {
         onSuccess: () => setSubmitted(true),
-        onError: () => toast.error("Failed", "Couldn't save your email — please try again."),
+        onError: () => toast.error("Failed", "Couldn't save your email - please try again."),
       }
     );
   }
@@ -52,7 +52,7 @@ export function ATSNotifyModal({ open, onClose }: ATSNotifyModalProps) {
         <DialogHeader>
           <DialogTitle>Job Match Check 🚀</DialogTitle>
           <DialogDescription>
-            We&apos;re building a smarter ATS check — paste any job description and we match it
+            We&apos;re building a smarter ATS check - paste any job description and we match it
             against your resume for a tailored score.
           </DialogDescription>
         </DialogHeader>

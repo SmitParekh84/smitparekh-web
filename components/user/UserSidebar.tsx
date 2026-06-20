@@ -80,7 +80,7 @@ export function UserSidebar() {
     .slice(0, 2)
     .toUpperCase();
 
-  // Blog section adapts to the tenant's onboarding status — same logic as before,
+  // Blog section adapts to the tenant's onboarding status - same logic as before,
   // just rendered as a flat section to match the redesign.
   const blogItems: NavItem[] | null = (() => {
     if (tenantLoading) return null;

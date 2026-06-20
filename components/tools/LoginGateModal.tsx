@@ -45,7 +45,7 @@ export function LoginGateModal({
       if (error) {
         setSigningIn(false);
       }
-      // On success, browser is redirected to Google — no further action.
+      // On success, browser is redirected to Google - no further action.
     } catch {
       setSigningIn(false);
     }
@@ -58,8 +58,8 @@ export function LoginGateModal({
           <DialogTitle>You&apos;ve used your free quota for today</DialogTitle>
           <DialogDescription>
             {toolName
-              ? `Sign in with Google to keep using ${toolName} — `
-              : "Sign in with Google to keep going — "}
+              ? `Sign in with Google to keep using ${toolName} - `
+              : "Sign in with Google to keep going - "}
             you&apos;ll get 10× more uses, free, and it takes 5 seconds.
           </DialogDescription>
         </DialogHeader>
@@ -109,7 +109,7 @@ export function LoginGateModal({
         </div>
 
         <p className="text-[11px] text-muted-foreground text-center pt-1">
-          We only use your email to track your daily quota — never for marketing.
+          We only use your email to track your daily quota - never for marketing.
         </p>
       </DialogContent>
     </Dialog>

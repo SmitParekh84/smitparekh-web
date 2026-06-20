@@ -21,11 +21,11 @@ export default function CTABanner() {
                 Let&apos;s Build Together
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                Your Next Product, Built Right — On Time
+                Your Next Product, Built Right - On Time
               </h2>
               <p className="text-white/80 text-base leading-relaxed">
                 Most clients receive a scoped proposal within 48 hours of their first message.
-                No sales cycles, no handoffs, no surprises — just clean code delivered on schedule.
+                No sales cycles, no handoffs, no surprises - just clean code delivered on schedule.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">

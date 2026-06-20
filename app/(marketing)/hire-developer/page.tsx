@@ -130,7 +130,7 @@ export default function HireDeveloperHubPage() {
           {/* Gulf hub shortcut */}
           <div className="mt-6 rounded-2xl border border-blue-500/20 bg-blue-500/[0.04] p-5 max-w-xl mx-auto text-center">
             <p className="text-sm font-medium mb-2">Looking for the Gulf / GCC region?</p>
-            <p className="text-xs text-muted-foreground mb-4">UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman — all on one page.</p>
+            <p className="text-xs text-muted-foreground mb-4">UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman - all on one page.</p>
             <Link href="/hire-developer/gulf" className={cn(buttonVariants({ size: "sm" }), "gap-1.5 bg-blue-600 text-white hover:bg-blue-700")}>
               View Gulf Hub <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -138,7 +138,7 @@ export default function HireDeveloperHubPage() {
 
           <div className="mt-10 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Outside these regions? I work with clients worldwide — send a brief and I&apos;ll reply within 24 hours.
+              Outside these regions? I work with clients worldwide - send a brief and I&apos;ll reply within 24 hours.
             </p>
             <Link
               href="/contact"
@@ -157,7 +157,7 @@ export default function HireDeveloperHubPage() {
           <div className="mx-auto max-w-xl text-center mb-10">
             <Badge variant="secondary" className="mb-3">Services</Badge>
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">What I can build for you</h2>
-            <p className="mt-2 text-sm text-muted-foreground">Full-stack development, SEO, and AI — one engineer across the whole stack.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Full-stack development, SEO, and AI - one engineer across the whole stack.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {[
@@ -165,21 +165,21 @@ export default function HireDeveloperHubPage() {
                 icon: Code2,
                 href: "/services/development",
                 label: "Web Development",
-                description: "React, Next.js, Node.js — MVP to enterprise. Fixed price, written scope.",
+                description: "React, Next.js, Node.js - MVP to enterprise. Fixed price, written scope.",
                 services: ["MVPs & SaaS", "E-commerce", "APIs & Backend", "Mobile Apps"],
               },
               {
                 icon: Search,
                 href: "/services/marketing-and-seo",
                 label: "SEO & Marketing",
-                description: "Technical SEO, local SEO, AEO, GEO — done in code, not in a PDF.",
+                description: "Technical SEO, local SEO, AEO, GEO - done in code, not in a PDF.",
                 services: ["Technical SEO", "Local SEO", "AI Search (AEO/GEO)", "CRO"],
               },
               {
                 icon: Sparkles,
                 href: "/services/products-and-ai",
                 label: "AI Engineering",
-                description: "LLM integration, RAG chatbots, AI agents — shipped with evals.",
+                description: "LLM integration, RAG chatbots, AI agents - shipped with evals.",
                 services: ["AI Integration", "AI Agents", "RAG Chatbots", "Full-stack AI"],
               },
             ].map((s) => {
@@ -230,12 +230,11 @@ export default function HireDeveloperHubPage() {
               <div>
                 <p className="text-sm leading-relaxed text-foreground/90 mb-4">
                   I&apos;m a full-stack developer specialising in React, Next.js, Node.js, and production AI engineering.
-                  I work directly with founders, product teams, and agencies across the Gulf, UK, US, and India —
-                  no middlemen, no hand-offs, one engineer accountable for the whole project.
+                  I work directly with founders, product teams, and agencies across the Gulf, UK, US, and India - no middlemen, no hand-offs, one engineer accountable for the whole project.
                 </p>
                 <p className="text-sm leading-relaxed text-muted-foreground mb-4">
                   Projects are fixed-price with a written scope before work starts. You know exactly what you&apos;re
-                  getting, when it ships, and what it costs — before I write a single line of code.
+                  getting, when it ships, and what it costs - before I write a single line of code.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "AWS", "OpenAI", "SEO"].map((tag) => (

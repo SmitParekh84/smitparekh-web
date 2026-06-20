@@ -14,7 +14,7 @@ export default function ToolFAQ({ faqs, toolName }: Props) {
         <div className="text-center mb-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-2">FAQ</p>
           <h2 className="text-2xl font-bold tracking-tight">
-            {toolName} — Frequently Asked Questions
+            {toolName} - Frequently Asked Questions
           </h2>
           <p className="text-sm text-muted-foreground mt-2">
             Everything you need to know before you start.

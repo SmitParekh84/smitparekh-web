@@ -19,7 +19,7 @@ interface ServiceCol2LayoutProps {
 }
 
 /**
- * Col2 category card grid — hub-style exploratory layout.
+ * Col2 category card grid - hub-style exploratory layout.
  * Used by: /services/development, /services/marketing-and-seo, /services/products-and-ai
  *
  * Visual identity: large cards (p-7), gradient icon well, hover-reveal CTA row.

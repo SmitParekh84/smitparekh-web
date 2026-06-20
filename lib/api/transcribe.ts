@@ -13,7 +13,7 @@ export interface TranscriptionResult {
 export const transcribeApi = {
   /**
    * Transcribe an uploaded audio file to text via the Python tools service
-   * (`POST /api/transcribe`, faster-whisper). Python-only — there is no Node
+   * (`POST /api/transcribe`, faster-whisper). Python-only - there is no Node
    * fallback, so this throws a clear error when the service isn't configured.
    */
   transcribe: async (file: File): Promise<TranscriptionResult> => {

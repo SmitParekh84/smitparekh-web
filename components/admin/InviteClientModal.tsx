@@ -78,7 +78,7 @@ export function InviteClientModal({ open, onOpenChange }: InviteClientModalProps
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email — required */}
+          {/* Email - required */}
           <div className="space-y-1.5">
             <Label htmlFor="invite-email">
               Email <span className="text-destructive">*</span>
@@ -97,7 +97,7 @@ export function InviteClientModal({ open, onOpenChange }: InviteClientModalProps
             )}
           </div>
 
-          {/* Name + Company — optional */}
+          {/* Name + Company - optional */}
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label htmlFor="invite-name">Name</Label>
@@ -119,7 +119,7 @@ export function InviteClientModal({ open, onOpenChange }: InviteClientModalProps
             </div>
           </div>
 
-          {/* Personal note — optional */}
+          {/* Personal note - optional */}
           <div className="space-y-1.5">
             <Label htmlFor="invite-message">Personal note</Label>
             <Textarea

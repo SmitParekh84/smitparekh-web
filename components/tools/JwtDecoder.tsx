@@ -154,16 +154,16 @@ export default function JwtDecoder() {
                 )}
               </div>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                exp: {fmtUnix(exp) ?? "—"}
+                exp: {fmtUnix(exp) ?? " - "}
               </p>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
               <p className="text-xs font-medium text-muted-foreground">Issued at</p>
-              <p className="mt-1 text-[11px]">{fmtUnix(iat) ?? "—"}</p>
+              <p className="mt-1 text-[11px]">{fmtUnix(iat) ?? " - "}</p>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
               <p className="text-xs font-medium text-muted-foreground">Not before</p>
-              <p className="mt-1 text-[11px]">{fmtUnix(nbf) ?? "—"}</p>
+              <p className="mt-1 text-[11px]">{fmtUnix(nbf) ?? " - "}</p>
             </div>
           </div>
 
@@ -188,7 +188,7 @@ export default function JwtDecoder() {
               {(decoded as Decoded).parts[2]}
             </pre>
             <p className="border-t border-border px-4 py-2 text-[11px] text-muted-foreground">
-              The signature can only be verified server-side using the secret or public key. This tool only decodes — it never validates the signature.
+              The signature can only be verified server-side using the secret or public key. This tool only decodes - it never validates the signature.
             </p>
           </div>
         </>

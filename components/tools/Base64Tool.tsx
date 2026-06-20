@@ -23,7 +23,7 @@ export default function Base64Tool() {
       }
       setError("");
     } catch {
-      setError(m === "decode" ? "Invalid Base64 string — check your input." : "Encoding failed.");
+      setError(m === "decode" ? "Invalid Base64 string - check your input." : "Encoding failed.");
       setOutput("");
     }
   }

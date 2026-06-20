@@ -22,8 +22,8 @@ export interface UseToolQuota {
 
 /**
  * Manages quota for a tool slug.
- * - `checkQuota()`: POST /use — consumes a slot, returns result.
- * - `refreshStatus()`: GET /use — reads current remaining without consuming.
+ * - `checkQuota()`: POST /use - consumes a slot, returns result.
+ * - `refreshStatus()`: GET /use - reads current remaining without consuming.
  * - `status`: cached read-only status (auto-fetched on mount).
  */
 export function useToolQuota(slug: string): UseToolQuota {
@@ -47,7 +47,7 @@ export function useToolQuota(slug: string): UseToolQuota {
         unlimited: data.unlimited,
       });
     } catch {
-      /* silent — UI just won't show remaining */
+      /* silent - UI just won't show remaining */
     }
   }, [slug]);
 

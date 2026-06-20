@@ -10,7 +10,7 @@ import { CAL } from "@/lib/cal";
  *   1. Wait for next-themes to hydrate before rendering the iframe so the
  *      booking page's first paint matches the visitor's actual theme.
  *   2. Re-key the <Cal /> on theme change to force the iframe to reload
- *      with the new theme baked into its initial URL — the runtime
+ *      with the new theme baked into its initial URL - the runtime
  *      cal("ui", { theme }) postMessage update is unreliable across all
  *      Cal embed versions, especially for the slot-list panel.
  */
@@ -39,7 +39,7 @@ export function InlineCalEmbed() {
           layout: CAL.layout,
         });
       } catch {
-        /* offline / blocked — the <Cal> component still renders an iframe */
+        /* offline / blocked - the <Cal> component still renders an iframe */
       }
     })();
   }, [theme, mounted]);

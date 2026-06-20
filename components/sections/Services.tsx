@@ -46,7 +46,7 @@ export default function Services() {
           <div className="mx-auto mb-12 max-w-4xl">
             <Image
               src="/images/home/architecture.png"
-              alt="End-to-end web architecture by Smit Parekh — browser frontend, API server, database, and cloud platform"
+              alt="End-to-end web architecture by Smit Parekh - browser frontend, API server, database, and cloud platform"
               width={1429}
               height={313}
               sizes="(max-width: 768px) 100vw, 56rem"

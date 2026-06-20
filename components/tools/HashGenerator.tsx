@@ -13,7 +13,7 @@ function bufToHex(buf: ArrayBuffer): string {
     .join("");
 }
 
-// Tiny pure-JS MD5 (RFC 1321) — kept inline so the tool works fully client-side
+// Tiny pure-JS MD5 (RFC 1321) - kept inline so the tool works fully client-side
 // without a build dep. Returns lowercase hex.
 function md5(input: string): string {
   function rh(n: number) {

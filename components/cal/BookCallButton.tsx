@@ -44,7 +44,7 @@ export function BookCallButton({
         // If the SDK is loaded it will intercept the click and open the
         // modal. We add a manual fallback for the case where it isn't:
         // detect "no cal" by checking whether window.Cal exists shortly
-        // after the click — if not, open the public URL.
+        // after the click - if not, open the public URL.
         onClick?.(e);
         if (e.defaultPrevented) return;
         if (typeof window !== "undefined" && !("Cal" in window)) {

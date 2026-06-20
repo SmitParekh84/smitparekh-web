@@ -12,7 +12,7 @@ async function revalidateBlogs() {
       body: JSON.stringify({ tag: "blogs" }),
     });
   } catch {
-    // non-critical — ISR will expire on its own
+    // non-critical - ISR will expire on its own
   }
 }
 

@@ -46,14 +46,14 @@ export function TenantFeaturesDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>AI features — {tenantName}</DialogTitle>
+          <DialogTitle>AI features - {tenantName}</DialogTitle>
           <DialogDescription>
             Enable or disable AI capabilities for this tenant.
           </DialogDescription>
         </DialogHeader>
 
         {/* Inner form mounts only while open, so its draft state starts fresh
-            from the latest `features` on each open — no syncing effect needed. */}
+            from the latest `features` on each open - no syncing effect needed. */}
         {open && (
           <FeaturesForm
             tenantId={tenantId}

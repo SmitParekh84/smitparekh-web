@@ -93,7 +93,7 @@ export function UserTopbar() {
       </nav>
 
       <div className="ml-auto flex items-center gap-1.5">
-        {/* Search — UI only; wiring is future work. */}
+        {/* Search - UI only; wiring is future work. */}
         <div className="relative hidden w-52 md:block">
           <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input

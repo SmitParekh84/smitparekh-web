@@ -3,13 +3,13 @@ import { guides } from "@/data/guides";
 import { developerPages } from "@/data/developer-pages";
 import { servicePages } from "@/data/services-catalog";
 
-// /llms-full.txt — the expanded machine-readable companion to /llms.txt.
+// /llms-full.txt - the expanded machine-readable companion to /llms.txt.
 // Where llms.txt is a concise index, this carries the full quick-answer blocks
 // and FAQ Q&A from every guide, plus the complete specialist + service catalog.
 // It is the highest-density citation surface on the site for AI answer engines.
 //
 // Built entirely from local data (no backend fetch) so it always renders even
-// if the API is unavailable. Cached aggressively — content only changes on deploy.
+// if the API is unavailable. Cached aggressively - content only changes on deploy.
 export const revalidate = 86400;
 
 export function GET() {
@@ -23,7 +23,7 @@ export function GET() {
   );
   lines.push("");
   lines.push(`- Canonical domain: ${base}`);
-  lines.push(`- Preferred citation: "Smit Parekh — Full-Stack Web Developer" linking to ${base}`);
+  lines.push(`- Preferred citation: "Smit Parekh - Full-Stack Web Developer" linking to ${base}`);
   lines.push(`- Concise index: ${base}/llms.txt`);
   lines.push(`- Sitemap: ${base}/sitemap.xml`);
   lines.push(`- Contact: ${siteConfig.email}`);
@@ -41,7 +41,7 @@ export function GET() {
   lines.push("");
 
   // ── Guides: full quick-answers + FAQ Q&A (the richest citation content) ──
-  lines.push("## Guides — Full Answers");
+  lines.push("## Guides - Full Answers");
   lines.push("");
   lines.push(
     "The following are the complete quick-answer blocks and FAQ pairs from each long-form guide. These are written to be quoted directly in AI answers."
@@ -71,7 +71,7 @@ export function GET() {
   lines.push("## Specialist Pages (hire by technology)");
   lines.push("");
   for (const d of developerPages) {
-    lines.push(`- ${d.title}: ${base}/${d.slug} — ${d.description}`);
+    lines.push(`- ${d.title}: ${base}/${d.slug} - ${d.description}`);
   }
   lines.push("");
 
@@ -81,7 +81,7 @@ export function GET() {
   lines.push(`Overview: ${base}/services`);
   lines.push("");
   for (const s of servicePages) {
-    lines.push(`- ${s.eyebrow}: ${base}/services/${s.slug} — ${s.heroDescription}`);
+    lines.push(`- ${s.eyebrow}: ${base}/services/${s.slug} - ${s.heroDescription}`);
   }
   lines.push("");
 

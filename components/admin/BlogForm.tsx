@@ -34,11 +34,11 @@ Target audience: small business owners, marketing managers, e-commerce operators
 
 Topic: [REPLACE WITH YOUR TOPIC]
 
-Return ONLY a valid JSON object — no prose, no code fence, no markdown around it.
+Return ONLY a valid JSON object - no prose, no code fence, no markdown around it.
 
 CRITICAL JSON RULES (the import will fail if you break these):
 - Inside any string value, EVERY double quote must be escaped as \\". No exceptions.
-- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" — never raw " marks.
+- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" - never raw " marks.
 - Use \\n for paragraph breaks inside "content".
 - Do not wrap the response in triple backtick fences.
 
@@ -58,11 +58,11 @@ Target audience: developers, founders, CTOs, hiring managers in US, CA, UK, IN.
 
 Topic: [REPLACE WITH YOUR TOPIC]
 
-Return ONLY a valid JSON object — no prose, no code fence, no markdown around it.
+Return ONLY a valid JSON object - no prose, no code fence, no markdown around it.
 
 CRITICAL JSON RULES (the import will fail if you break these):
 - Inside any string value, EVERY double quote must be escaped as \\". No exceptions.
-- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" — e.g. \\"Explain @Injectable()\\" — never raw " marks.
+- Inside the "content" field, dialogue, quoted phrases, and quoted code must use \\" - e.g. \\"Explain @Injectable()\\" - never raw " marks.
 - Use \\n for paragraph breaks inside "content".
 - Do not wrap the response in triple backtick fences.
 
@@ -191,7 +191,7 @@ function tolerantJsonParse(input: string): unknown {
 }
 
 // Single-line fields (title, excerpt) should never contain newlines or
-// runs of whitespace — these creep in when JSON is copied from a chat
+// runs of whitespace - these creep in when JSON is copied from a chat
 // transcript that hard-wraps long lines.
 function collapseWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
@@ -206,7 +206,7 @@ function normalizeMarkdown(value: string): string {
   const parts = value.replace(/\r\n/g, "\n").split(/(```[\s\S]*?```)/g);
   return parts
     .map((part, i) => {
-      if (i % 2 === 1) return part; // fenced code — preserve verbatim
+      if (i % 2 === 1) return part; // fenced code - preserve verbatim
       return part
         .replace(/([^\n])\n(?![\n#\-*>|`\s\d])/g, "$1 ")
         .replace(/[ \t]{2,}/g, " ");
@@ -219,7 +219,7 @@ function slugify(value: string) {
   return value
     .toLowerCase()
     .replace(/&/g, "and")
-    .replace(/[–—]/g, "-")
+    .replace(/[– - ]/g, "-")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
@@ -371,7 +371,7 @@ export function BlogForm({
 
   // Snapshot the current form into the JSON shape the Import JSON dialog
   // (and the Claude prompt) expect. Slug, cover image, author, isPublished
-  // and dates are intentionally excluded — those are owned by the form,
+  // and dates are intentionally excluded - those are owned by the form,
   // not the SEO content the LLM rewrites.
   function handleCopyAsJson() {
     const tags = form.tagsCsv
@@ -412,7 +412,7 @@ export function BlogForm({
       setJsonError(null);
     } catch (err) {
       const detail = err instanceof Error ? err.message : "unknown error";
-      setJsonError(`Cannot beautify — ${detail}`);
+      setJsonError(`Cannot beautify - ${detail}`);
     }
   }
 
@@ -462,7 +462,7 @@ export function BlogForm({
     }));
     const note =
       rawCat && !siteOptions.includes(rawCat)
-        ? `Category "${rawCat}" not in this site's list — defaulted to "${defaultCat}". Change if needed.`
+        ? `Category "${rawCat}" not in this site's list - defaulted to "${defaultCat}". Change if needed.`
         : "Add a cover image and review before publishing.";
     toast.success("JSON imported", note);
     setJsonOpen(false);
@@ -999,7 +999,7 @@ export function BlogForm({
 
       {blockPublish && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
-          Cover image is required to publish. Use <strong>Save draft</strong> below to save your progress — you can add the image and publish later.
+          Cover image is required to publish. Use <strong>Save draft</strong> below to save your progress - you can add the image and publish later.
         </div>
       )}
 

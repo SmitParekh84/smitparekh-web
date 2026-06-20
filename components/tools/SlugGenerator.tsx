@@ -110,7 +110,7 @@ export default function SlugGenerator() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div>
-          <label className="mb-2 block text-sm font-medium">Input — one per line</label>
+          <label className="mb-2 block text-sm font-medium">Input - one per line</label>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}

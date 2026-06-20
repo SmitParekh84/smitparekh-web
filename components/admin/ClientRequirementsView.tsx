@@ -37,12 +37,12 @@ const WORK_PREF_LABELS: Record<string, string> = {
 };
 
 function humanize(slug?: string | null): string {
-  if (!slug) return "—";
+  if (!slug) return " - ";
   return slug.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function yesNo(v?: boolean): string {
-  return v === true ? "Yes" : v === false ? "No" : "—";
+  return v === true ? "Yes" : v === false ? "No" : " - ";
 }
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -93,15 +93,15 @@ export function ClientRequirementsView({ data }: { data: ClientRequirements }) {
             ))}
           </div>
         </Row>
-        <Row label="Budget">{BUDGET_LABELS[data.budget] ?? data.budget ?? "—"}</Row>
-        <Row label="Timeline">{TIMELINE_LABELS[data.timeline] ?? data.timeline ?? "—"}</Row>
+        <Row label="Budget">{BUDGET_LABELS[data.budget] ?? data.budget ?? " - "}</Row>
+        <Row label="Timeline">{TIMELINE_LABELS[data.timeline] ?? data.timeline ?? " - "}</Row>
         <Row label="Working with">
-          {WORK_PREF_LABELS[data.workPreference] ?? data.workPreference ?? "—"}
+          {WORK_PREF_LABELS[data.workPreference] ?? data.workPreference ?? " - "}
           {data.workPreference === "vendor" && data.vendorCompanyName
-            ? ` — ${data.vendorCompanyName}`
+            ? ` - ${data.vendorCompanyName}`
             : ""}
           {data.workPreference === "freelancer" && data.freelancerProfileUrl
-            ? ` — ${data.freelancerProfileUrl}`
+            ? ` - ${data.freelancerProfileUrl}`
             : ""}
         </Row>
         {data.hasUxDesigner !== undefined && (

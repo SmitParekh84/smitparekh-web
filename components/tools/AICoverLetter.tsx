@@ -116,7 +116,7 @@ export default function AICoverLetter() {
             onChange={(e) => setResume(e.target.value)}
             rows={10}
             maxLength={10000}
-            placeholder="Paste your resume in plain text — skills, experience, projects, education…"
+            placeholder="Paste your resume in plain text - skills, experience, projects, education…"
             className="w-full rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 placeholder:text-muted-foreground"
           />
           <p className="text-xs text-muted-foreground">{resume.length.toLocaleString()} / 10,000</p>

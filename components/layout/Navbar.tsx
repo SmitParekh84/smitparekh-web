@@ -432,7 +432,7 @@ export default function Navbar({
                     }}
                   >
                     <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5 animate-in fade-in-0 slide-in-from-top-2 duration-150 ease-out">
-                      {/* Header row — links to the full landing page */}
+                      {/* Header row - links to the full landing page */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
                         <div>
                           <p className="text-sm font-semibold text-foreground">Most Popular Tools</p>

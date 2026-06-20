@@ -84,7 +84,7 @@ export function SignaturePad({ onSign, disabled, className }: Props) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (screen.orientation as any).lock?.("landscape");
       } catch {
-        // Not available in all browsers — graceful degradation
+        // Not available in all browsers - graceful degradation
       }
     };
     tryLock();

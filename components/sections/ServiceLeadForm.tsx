@@ -12,11 +12,11 @@ import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 
 const PROJECT_TYPES = [
-  "New project — building from scratch",
-  "Existing project — needs help / take-over",
-  "Audit only — diagnose then decide",
+  "New project - building from scratch",
+  "Existing project - needs help / take-over",
+  "Audit only - diagnose then decide",
   "Retainer / ongoing engagement",
-  "Not sure yet — exploring",
+  "Not sure yet - exploring",
 ];
 
 const BUDGETS = [
@@ -29,7 +29,7 @@ const BUDGETS = [
 ];
 
 const TIMELINES = [
-  "ASAP — within 2 weeks",
+  "ASAP - within 2 weeks",
   "1 month",
   "2–3 months",
   "3+ months",
@@ -72,7 +72,7 @@ export function ServiceLeadForm({
       toast.error("Missing fields", "Name, email, and message are required.");
       return;
     }
-    const subject = `[${serviceTitle}] ${form.projectType} — ${form.budget}`;
+    const subject = `[${serviceTitle}] ${form.projectType} - ${form.budget}`;
     const description = [
       `Service: ${serviceTitle}`,
       form.company.trim() ? `Company: ${form.company.trim()}` : null,
@@ -267,9 +267,9 @@ export function ServiceLeadForm({
           </p>
           <ol className="space-y-2">
             {[
-              "I read your message — usually within a few hours",
+              "I read your message - usually within a few hours",
               "I reply with 1–2 clarifying questions or a written estimate",
-              "We align on scope, timeline & price — no pressure",
+              "We align on scope, timeline & price - no pressure",
             ].map((step, i) => (
               <li key={i} className="flex items-start gap-2.5 text-xs text-muted-foreground">
                 <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/15 text-blue-500 font-semibold text-[10px]">

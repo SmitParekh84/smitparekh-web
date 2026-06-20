@@ -43,7 +43,7 @@ export interface FeaturedNavTool {
   order: number;
 }
 
-/** Fallback list — used when Supabase is unreachable or column is missing. */
+/** Fallback list - used when Supabase is unreachable or column is missing. */
 const STATIC_DEFAULTS: FeaturedNavTool[] = [
   { slug: "background-remover",            group: "Image",        order: 10, label: "Bg Remover",                description: "Remove image backgrounds in seconds",       href: "/free-tools/background-remover" },
   { slug: "image-compressor",              group: "Image",        order: 20, label: "Image Compressor",          description: "Shrink images without losing quality",      href: "/free-tools/image-compressor" },

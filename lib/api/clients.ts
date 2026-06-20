@@ -60,7 +60,7 @@ export const clientsApi = {
       { order }
     ),
 
-  /* Onboarding (public — no auth token) */
+  /* Onboarding (public - no auth token) */
   validateInvitation: (token: string) =>
     api.get<{ success: boolean; data: ClientInvitation }>(`/clients/invite/validate/${token}`),
 

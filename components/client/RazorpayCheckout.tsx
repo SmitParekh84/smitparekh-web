@@ -52,7 +52,7 @@ export function usePayInvoice(onPaid: () => void) {
           amount: order.amount,
           currency: order.currency,
           name: "Smit Parekh",
-          description: `${invoice.invoiceNumber} — ${invoice.title}`,
+          description: `${invoice.invoiceNumber} - ${invoice.title}`,
           prefill: { name: client.name ?? "", email: client.email ?? "" },
           theme: { color: "#0628FF" },
           handler: async (resp: unknown) => {
@@ -69,8 +69,8 @@ export function usePayInvoice(onPaid: () => void) {
               });
               onPaid();
             } catch {
-              // Payment captured but verify lagged — webhook will reconcile.
-              setError("Payment received — confirmation is updating, please refresh in a moment.");
+              // Payment captured but verify lagged - webhook will reconcile.
+              setError("Payment received - confirmation is updating, please refresh in a moment.");
               onPaid();
             } finally {
               setPaying(null);

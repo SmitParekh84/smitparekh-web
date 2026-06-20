@@ -127,7 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [`${base}${getToolOgImage(slug)}`],
   }));
 
-  // Long-form guides — Article-schema content hub. lastModified tracks each
+  // Long-form guides - Article-schema content hub. lastModified tracks each
   // guide's own `updated` date so genuinely-revised guides signal freshness.
   const guideRoutes: MetadataRoute.Sitemap = guides.map((g) => ({
     url: `${base}/guides/${g.slug}`,

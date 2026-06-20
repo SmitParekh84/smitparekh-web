@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Client Reviews & Testimonials - Smit Parekh",
   description:
-    "Real reviews from founders and engineering teams who have hired Smit Parekh for full-stack web development — React, Next.js, Node.js, and TypeScript projects.",
+    "Real reviews from founders and engineering teams who have hired Smit Parekh for full-stack web development - React, Next.js, Node.js, and TypeScript projects.",
   alternates: { canonical: `${siteConfig.url}/testimonials` },
   openGraph: {
     title: "Client Reviews & Testimonials - Smit Parekh",
@@ -206,7 +206,7 @@ export default function TestimonialsPage() {
           </h2>
           <p className="text-muted-foreground text-base mb-6">
             Every engagement starts with a free scoping call and a written
-            proposal — no commitment required.
+            proposal - no commitment required.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link href="/contact" className={buttonVariants({ variant: "default" })}>

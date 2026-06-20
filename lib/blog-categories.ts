@@ -1,4 +1,4 @@
-// UI mirror of the API's config/blog-categories.js — keep in sync.
+// UI mirror of the API's config/blog-categories.js - keep in sync.
 export const BLOG_CATEGORIES = [
   "SEO",
   "Marketing",

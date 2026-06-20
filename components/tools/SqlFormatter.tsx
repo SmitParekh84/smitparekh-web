@@ -280,7 +280,7 @@ export default function SqlFormatter() {
             </button>
           </div>
           <pre className="m-0 max-h-[28rem] overflow-auto rounded-lg border border-border bg-muted/30 p-3 font-mono text-xs">
-            {formatted || "—"}
+            {formatted || " - "}
           </pre>
         </div>
       </div>

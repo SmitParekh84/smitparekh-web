@@ -37,7 +37,7 @@ function slugify(value: string) {
   return value
     .toLowerCase()
     .replace(/&/g, "and")
-    .replace(/[–—]/g, "-")
+    .replace(/[– - ]/g, "-")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
@@ -371,7 +371,7 @@ export function TenantBlogForm({
           rows={20}
           value={form.content}
           onChange={(e) => setField("content", e.target.value)}
-          placeholder={`# Heading\n\nWrite your post in **Markdown**.\n\n- Lists\n- Code blocks\n- Links, images, tables — all supported.`}
+          placeholder={`# Heading\n\nWrite your post in **Markdown**.\n\n- Lists\n- Code blocks\n- Links, images, tables - all supported.`}
           className="resize-y font-mono text-xs leading-relaxed"
         />
         <p className="text-xs text-muted-foreground mt-1">
@@ -440,7 +440,7 @@ export function TenantBlogForm({
             <p className="text-xs font-normal text-muted-foreground">
               {form.isPublished
                 ? "Visible via your public API and feed"
-                : "Hidden — only you can see it"}
+                : "Hidden - only you can see it"}
             </p>
           </Label>
         </div>
@@ -466,7 +466,7 @@ export function TenantBlogForm({
 
       {blockPublish && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
-          Cover image is required to publish. Use <strong>Save draft</strong> below to save your progress — you can add the image and publish later.
+          Cover image is required to publish. Use <strong>Save draft</strong> below to save your progress - you can add the image and publish later.
         </div>
       )}
 

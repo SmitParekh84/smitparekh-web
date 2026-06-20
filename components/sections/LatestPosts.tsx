@@ -7,14 +7,14 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { fetchAllBlogs } from "@/lib/server/blogs";
 
 /**
- * "Latest from the blog" — homepage section linking to the 3 newest posts.
+ * "Latest from the blog" - homepage section linking to the 3 newest posts.
  *
  * SEO purpose: the homepage is the highest-authority, most-crawled page on the
  * site. Surfacing recent posts here gives every new article a contextual link
  * from that page (instead of only the navbar → /blog hop), which is the single
  * biggest lever against "Discovered – currently not indexed" on new posts.
  *
- * Server component on purpose — the post links must be in the server-rendered
+ * Server component on purpose - the post links must be in the server-rendered
  * HTML for crawlers, not hydrated client-side.
  */
 export default async function LatestPosts() {

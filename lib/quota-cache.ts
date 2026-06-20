@@ -6,7 +6,7 @@ import { redis } from "@/lib/redis";
  * Supabase `tool_usage` stays the source of truth (durable history, admin
  * stats). Redis holds per-day counters so the badge `GET` and the consume
  * `POST` avoid SQL `COUNT` queries on the hot path. Every counter expires at
- * UTC midnight — the same boundary the `date` column rolls over on.
+ * UTC midnight - the same boundary the `date` column rolls over on.
  *
  * All helpers fail safe: any Redis error (or Redis disabled) falls through to
  * the Supabase fallback, preserving the original behaviour exactly.
@@ -25,7 +25,7 @@ function secondsUntilUtcMidnight(): number {
   return Math.max(60, Math.ceil((next - now.getTime()) / 1000));
 }
 
-/** `q:{slug}:{date}:{kind}:{id}` — e.g. `q:ats-resume-checker:2026-05-23:i:ab12…`. */
+/** `q:{slug}:{date}:{kind}:{id}` - e.g. `q:ats-resume-checker:2026-05-23:i:ab12…`. */
 export function quotaKey(
   slug: string,
   date: string,
@@ -55,7 +55,7 @@ export async function getCachedCount(
       await redis.set(key, dbCount, { ex: secondsUntilUtcMidnight(), nx: true });
       return dbCount;
     } catch {
-      /* Redis unavailable — fall through to the DB. */
+      /* Redis unavailable - fall through to the DB. */
     }
   }
   return countFromDb();
@@ -77,6 +77,6 @@ export async function incrementCounters(keys: string[]): Promise<void> {
     }
     await pipe.exec();
   } catch {
-    /* Source of truth is already in Supabase — safe to ignore. */
+    /* Source of truth is already in Supabase - safe to ignore. */
   }
 }

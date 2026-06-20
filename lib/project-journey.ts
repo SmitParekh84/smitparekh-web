@@ -1,4 +1,4 @@
-/* Project journey helpers — map backend workflow phases into the 3-stage
+/* Project journey helpers - map backend workflow phases into the 3-stage
    client-facing journey (Discovery → Proposal → Execution) and flag milestones.
 
    The backend (`config/project-templates.js`) emits per-service phases such as
@@ -26,7 +26,7 @@ export function toJourneyStage(phase?: string | null): JourneyStage {
   return "Execution";
 }
 
-/** "Deal closed" steps are milestones — backend keys end in `-deal`. */
+/** "Deal closed" steps are milestones - backend keys end in `-deal`. */
 export function isMilestone(step: ProjectStep): boolean {
   return step.key.endsWith("-deal") || /deal closed/i.test(step.label);
 }

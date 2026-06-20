@@ -12,7 +12,7 @@ import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
 const url = `${siteConfig.url}/hire-developer/gulf`;
 
 export const metadata: Metadata = {
-  title: "Hire a Developer in the Gulf / GCC — UAE, Saudi Arabia, Qatar, Kuwait",
+  title: "Hire a Developer in the Gulf / GCC - UAE, Saudi Arabia, Qatar, Kuwait",
   description:
     "Hire a remote full-stack developer for the Gulf and GCC region. React, Next.js, Node.js development for Dubai, Riyadh, Doha, Kuwait City, Manama & Muscat. Same-day communication, Gulf timezone overlap.",
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire a Full-Stack Developer in the Gulf / GCC | Smit Parekh",
     description:
-      "Remote React, Next.js & Node.js development for Gulf and GCC businesses. UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman — timezone-aligned, same-day communication.",
+      "Remote React, Next.js & Node.js development for Gulf and GCC businesses. UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman - timezone-aligned, same-day communication.",
   },
 };
 
@@ -44,9 +44,9 @@ const gulfCountries = geoCountries.filter((c) =>
 );
 
 const reasons = [
-  { title: "Gulf timezone — full working-day overlap", body: "UTC+3 to UTC+4 across the GCC means your afternoon and my afternoon overlap completely. Reviews, standups, and quick pivots happen live, not on a 12-hour delay." },
-  { title: "GCC business culture understood", body: "Vision 2030, UAE digital economy, fast-decision fintech — I understand the pace, the approval hierarchies, and the need for reliable, on-time delivery that Gulf clients expect." },
-  { title: "USD, AED, SAR, QAR — any currency", body: "Fixed-price projects and retainers invoiced in any GCC currency or USD. No payment friction, no hidden FX charges." },
+  { title: "Gulf timezone - full working-day overlap", body: "UTC+3 to UTC+4 across the GCC means your afternoon and my afternoon overlap completely. Reviews, standups, and quick pivots happen live, not on a 12-hour delay." },
+  { title: "GCC business culture understood", body: "Vision 2030, UAE digital economy, fast-decision fintech - I understand the pace, the approval hierarchies, and the need for reliable, on-time delivery that Gulf clients expect." },
+  { title: "USD, AED, SAR, QAR - any currency", body: "Fixed-price projects and retainers invoiced in any GCC currency or USD. No payment friction, no hidden FX charges." },
   { title: "One engineer, end-to-end", body: "No agency middlemen, no junior proxies. The developer you scope the project with writes every line of code and handles deployment." },
 ];
 
@@ -160,7 +160,7 @@ export default function HireDeveloperGulfPage() {
             <Badge variant="secondary" className="mb-3">Free quote · 24h</Badge>
             <h2 className="text-2xl font-semibold tracking-tight">Tell me what you are building</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Share your project brief. I will reply with a written estimate within 24 hours — no sales call needed.
+              Share your project brief. I will reply with a written estimate within 24 hours - no sales call needed.
             </p>
           </div>
           <ServiceLeadForm serviceTitle="Gulf / GCC Development" />

@@ -130,7 +130,7 @@ export default async function RootLayout({
         {/*
           Mark the document as JS-enabled before first paint. The scroll-reveal
           hidden start-state is gated on `html.js`, so sections only start hidden
-          when JS can reveal them — no flash, and no-JS users see content.
+          when JS can reveal them - no flash, and no-JS users see content.
         */}
         <script
           dangerouslySetInnerHTML={{

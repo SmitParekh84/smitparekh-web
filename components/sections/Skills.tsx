@@ -128,7 +128,7 @@ export default function Skills() {
             </h3>
             <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground leading-relaxed">
               Perfect Lighthouse scores and strongly-typed, maintainable code aren&apos;t
-              extras — they&apos;re the baseline on every build.
+              extras - they&apos;re the baseline on every build.
             </p>
           </div>
 
@@ -137,7 +137,7 @@ export default function Skills() {
               <div className="flex flex-1 items-center justify-center">
                 <Image
                   src="/images/home/performance.png"
-                  alt="Lighthouse 100 scores — Performance, SEO, and Best Practices"
+                  alt="Lighthouse 100 scores - Performance, SEO, and Best Practices"
                   width={1200}
                   height={900}
                   sizes="(max-width: 768px) 100vw, 50vw"

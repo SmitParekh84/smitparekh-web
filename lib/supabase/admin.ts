@@ -3,7 +3,7 @@ import { createClient as createSupabaseClient, type SupabaseClient } from "@supa
 let adminClient: SupabaseClient | null = null;
 
 /**
- * Service-role Supabase client. **Server-only** — bypasses RLS.
+ * Service-role Supabase client. **Server-only** - bypasses RLS.
  * Never import from a Client Component or expose to the browser.
  *
  * Returns `null` if `SUPABASE_SERVICE_ROLE_KEY` is not configured so callers

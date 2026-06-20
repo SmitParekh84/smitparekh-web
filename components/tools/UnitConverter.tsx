@@ -114,7 +114,7 @@ function convert(value: number, from: Unit, to: Unit): number {
 }
 
 function formatNum(n: number): string {
-  if (!Number.isFinite(n)) return "—";
+  if (!Number.isFinite(n)) return " - ";
   if (n === 0) return "0";
   const abs = Math.abs(n);
   if (abs >= 1e12 || (abs < 1e-4 && abs > 0)) return n.toExponential(6);

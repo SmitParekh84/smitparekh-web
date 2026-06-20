@@ -417,7 +417,7 @@ export function ServiceStats({
   stats,
   eyebrow = "Proven results",
   title = "Results that build trust",
-  description = "The numbers behind the work — measured on real production data, not demos.",
+  description = "The numbers behind the work - measured on real production data, not demos.",
 }: ServiceStatsProps) {
   return (
     <section

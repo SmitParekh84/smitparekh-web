@@ -50,7 +50,7 @@ import { useSupabaseSession } from "@/hooks/api/use-auth";
 import { useAdminContactsUnreadCount } from "@/hooks/api/use-admin-contacts";
 import { siteConfig } from "@/data/site";
 
-// Grouped nav — mirrors the redesign's Workspace / Team / Account sections.
+// Grouped nav - mirrors the redesign's Workspace / Team / Account sections.
 const NAV_SECTIONS = [
   {
     label: "Workspace",

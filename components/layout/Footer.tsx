@@ -233,7 +233,7 @@ export default function Footer() {
 
         <Separator className="my-10" />
 
-        {/* HTML sitemap — internal links from every page boost crawl + ranking
+        {/* HTML sitemap - internal links from every page boost crawl + ranking
             for deep service pages that have no nav links. */}
         <nav aria-label="Site map" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
           <div className="space-y-3">

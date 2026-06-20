@@ -216,7 +216,7 @@ export function useRestoreAdminContact() {
 }
 
 
-/* AI draft reply (no cache mutation — caller decides what to do with result) */
+/* AI draft reply (no cache mutation - caller decides what to do with result) */
 export function useAiDraftContactReply() {
   return useMutation({
     mutationFn: ({

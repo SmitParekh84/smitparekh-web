@@ -126,7 +126,7 @@ export function ContactReplyDialog({ contact, open, onClose }: Props) {
           {/* Original message preview (collapsed) */}
           <details className="rounded-lg border border-border bg-muted/30 px-3 py-2">
             <summary className="cursor-pointer text-xs font-medium text-muted-foreground">
-              Original message — {contact.subject}
+              Original message - {contact.subject}
             </summary>
             <p className="mt-2 whitespace-pre-line text-xs text-foreground/80">
               {contact.description}

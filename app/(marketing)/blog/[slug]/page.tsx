@@ -212,7 +212,7 @@ export default async function BlogPostPage({ params }: Props) {
     ? blog.content.trim().split(/\s+/).filter(Boolean).length
     : undefined;
 
-  // FAQPage rich result — derived from the post's visible "## FAQ" markdown
+  // FAQPage rich result - derived from the post's visible "## FAQ" markdown
   // (the FAQ Q&A is rendered on the page, so this is Google-compliant). Posts
   // without a parseable FAQ section simply don't emit it.
   const faqs = extractBlogFaqs(blog.content ?? "");

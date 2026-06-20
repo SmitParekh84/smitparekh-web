@@ -5,13 +5,13 @@ import { ArrowUpRight, BadgeCheck, MapPin } from "lucide-react";
 /**
  * Author / authority block shown in the left column of every service page,
  * beside the sticky lead form. Two jobs:
- *  1. UX — fills the vertical gap left by the tall sticky form so the column
+ *  1. UX - fills the vertical gap left by the tall sticky form so the column
  *     reads as balanced instead of empty below the "trusted by" chips.
- *  2. SEO / E-E-A-T — puts a real person, photo, and credentials on the page
+ *  2. SEO / E-E-A-T - puts a real person, photo, and credentials on the page
  *     (Google rewards demonstrable authorship), plus internal links to
  *     /portfolio and /about that strengthen the page's quality signal.
  *
- * Facts here mirror the published Person schema on the homepage — no new
+ * Facts here mirror the published Person schema on the homepage - no new
  * metrics are invented.
  */
 
@@ -28,7 +28,7 @@ export function ServiceAuthorBio() {
         <div className="relative shrink-0">
           <Image
             src="/images/Smit-Parekh-Home.png"
-            alt="Smit Parekh — Full-Stack Web Developer"
+            alt="Smit Parekh - Full-Stack Web Developer"
             width={72}
             height={72}
             sizes="72px"
@@ -54,7 +54,7 @@ export function ServiceAuthorBio() {
 
       <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
         I&apos;m the only person who touches your code. You talk directly to the
-        senior developer writing every line — no account managers, no juniors,
+        senior developer writing every line - no account managers, no juniors,
         no handoffs. React, Next.js, Node.js, TypeScript and PostgreSQL, end to
         end.
       </p>

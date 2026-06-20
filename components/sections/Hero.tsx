@@ -119,7 +119,7 @@ export default function Hero() {
               className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
               variants={item}
             >
-              I build and ship production web apps end-to-end — React &amp; Next.js front end,
+              I build and ship production web apps end-to-end - React &amp; Next.js front end,
               Node/NestJS APIs, PostgreSQL, and AWS. One engineer who owns the whole stack, for
               founders across the Gulf, US, UK &amp; India.
             </motion.p>
@@ -246,7 +246,7 @@ export default function Hero() {
               >
                 <Image
                   src={homeData.imageSrc}
-                  alt="Smit Parekh — Full-Stack Developer"
+                  alt="Smit Parekh - Full-Stack Developer"
                   fill
                   sizes="(max-width: 640px) 90vw, 380px"
                   className="object-cover"

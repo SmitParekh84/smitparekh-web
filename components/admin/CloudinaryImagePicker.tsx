@@ -424,7 +424,7 @@ function UploadPanel({
             <span className="font-medium text-foreground">
               Click to upload, or drag and drop
             </span>
-            <span className="text-xs">PNG, JPG, WEBP — up to ~5 MB</span>
+            <span className="text-xs">PNG, JPG, WEBP - up to ~5 MB</span>
           </>
         )}
       </button>

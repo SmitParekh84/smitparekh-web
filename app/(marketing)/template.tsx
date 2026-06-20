@@ -7,7 +7,7 @@ import { useRef } from "react";
 // route change, so each page fades + lifts in instead of snapping in at the top
 // after the instant ScrollToTop jump. The transform is cleared once the
 // animation finishes so any `sticky`/`fixed` children inside a page (e.g. the
-// changelog rail, the /services/[slug] sidebar) keep working — a lingering
+// changelog rail, the /services/[slug] sidebar) keep working - a lingering
 // transform would turn them into a containing block and break them.
 export default function MarketingTemplate({
   children,

@@ -68,7 +68,7 @@ function CharBar({ value, min, max }: { value: string; min: number; max: number 
         />
       </div>
       <p className={cn("text-xs", good ? "text-emerald-600" : over ? "text-red-400" : "text-amber-500")}>
-        {len} chars — {good ? "optimal" : over ? `${len - max} over limit` : `aim for ${min}–${max}`}
+        {len} chars - {good ? "optimal" : over ? `${len - max} over limit` : `aim for ${min}–${max}`}
       </p>
     </div>
   );
@@ -438,8 +438,8 @@ export default function MetaTagChecker() {
                     ok: !!title,
                     pass: `Optimal length (${title.length} chars).`,
                     warn: title.length >= 60
-                      ? "Title too long — keep under 60 characters."
-                      : "Title too short — aim for 30–60 characters.",
+                      ? "Title too long - keep under 60 characters."
+                      : "Title too short - aim for 30–60 characters.",
                     fail: "No title tag found. Add one for better SEO.",
                   },
                   {
@@ -448,8 +448,8 @@ export default function MetaTagChecker() {
                     ok: !!description,
                     pass: `Optimal length (${description.length} chars).`,
                     warn: description.length > 160
-                      ? "Description too long — keep under 160 characters."
-                      : "Description too short — aim for 70–160 characters.",
+                      ? "Description too long - keep under 160 characters."
+                      : "Description too short - aim for 70–160 characters.",
                     fail: "No meta description. Add one to improve click-through rate.",
                   },
                   {
