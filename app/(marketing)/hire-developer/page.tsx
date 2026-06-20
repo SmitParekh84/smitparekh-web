@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPin, Clock } from "lucide-react";
+import { ArrowRight, MapPin, Clock, Code2, Search, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -127,9 +127,18 @@ export default function HireDeveloperHubPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          {/* Gulf hub shortcut */}
+          <div className="mt-6 rounded-2xl border border-blue-500/20 bg-blue-500/[0.04] p-5 max-w-xl mx-auto text-center">
+            <p className="text-sm font-medium mb-2">Looking for the Gulf / GCC region?</p>
+            <p className="text-xs text-muted-foreground mb-4">UAE, Saudi Arabia, Qatar, Kuwait, Bahrain & Oman — all on one page.</p>
+            <Link href="/hire-developer/gulf" className={cn(buttonVariants({ size: "sm" }), "gap-1.5 bg-blue-600 text-white hover:bg-blue-700")}>
+              View Gulf Hub <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="mt-10 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Outside these regions? I work with clients worldwide - send a brief and I&apos;ll reply within 24 hours.
+              Outside these regions? I work with clients worldwide — send a brief and I&apos;ll reply within 24 hours.
             </p>
             <Link
               href="/contact"
@@ -138,6 +147,117 @@ export default function HireDeveloperHubPage() {
               Get a Free Quote
               <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* What I can build for you */}
+      <section className="page-section bg-muted">
+        <div className="page-container">
+          <div className="mx-auto max-w-xl text-center mb-10">
+            <Badge variant="secondary" className="mb-3">Services</Badge>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">What I can build for you</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Full-stack development, SEO, and AI — one engineer across the whole stack.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {[
+              {
+                icon: Code2,
+                href: "/services/development",
+                label: "Web Development",
+                description: "React, Next.js, Node.js — MVP to enterprise. Fixed price, written scope.",
+                services: ["MVPs & SaaS", "E-commerce", "APIs & Backend", "Mobile Apps"],
+              },
+              {
+                icon: Search,
+                href: "/services/marketing-and-seo",
+                label: "SEO & Marketing",
+                description: "Technical SEO, local SEO, AEO, GEO — done in code, not in a PDF.",
+                services: ["Technical SEO", "Local SEO", "AI Search (AEO/GEO)", "CRO"],
+              },
+              {
+                icon: Sparkles,
+                href: "/services/products-and-ai",
+                label: "AI Engineering",
+                description: "LLM integration, RAG chatbots, AI agents — shipped with evals.",
+                services: ["AI Integration", "AI Agents", "RAG Chatbots", "Full-stack AI"],
+              },
+            ].map((s) => {
+              const Icon = s.icon;
+              return (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group flex flex-col rounded-2xl border border-border bg-card p-5 hover:border-blue-500/50 hover:bg-blue-500/[0.03] transition-all duration-200"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="h-9 w-9 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                      <Icon className="h-4 w-4 text-blue-500" />
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground/30 transition-all duration-200 group-hover:text-blue-500 group-hover:translate-x-1" />
+                  </div>
+                  <p className="text-sm font-semibold text-foreground group-hover:text-blue-500 transition-colors mb-1">{s.label}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">{s.description}</p>
+                  <ul className="mt-auto space-y-1">
+                    {s.services.map((item) => (
+                      <li key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <span className="h-1 w-1 rounded-full bg-cyan-400 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/services" className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}>
+              View all services <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About Smit */}
+      <section className="page-section">
+        <div className="page-container max-w-3xl">
+          <div className="mx-auto max-w-xl text-center mb-8">
+            <Badge variant="secondary" className="mb-3">About</Badge>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">Who is Smit Parekh?</h2>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-6 items-start">
+              <div>
+                <p className="text-sm leading-relaxed text-foreground/90 mb-4">
+                  I&apos;m a full-stack developer specialising in React, Next.js, Node.js, and production AI engineering.
+                  I work directly with founders, product teams, and agencies across the Gulf, UK, US, and India —
+                  no middlemen, no hand-offs, one engineer accountable for the whole project.
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                  Projects are fixed-price with a written scope before work starts. You know exactly what you&apos;re
+                  getting, when it ships, and what it costs — before I write a single line of code.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "AWS", "OpenAI", "SEO"].map((tag) => (
+                    <span key={tag} className="inline-flex items-center rounded-full border border-border bg-muted/60 px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 min-w-[140px]">
+                {[
+                  { value: "20+", label: "MVPs shipped" },
+                  { value: "4-8 wks", label: "Avg. time to live" },
+                  { value: "Fixed", label: "Price, always" },
+                ].map((s) => (
+                  <div key={s.label} className="rounded-xl border border-border bg-muted/50 p-3 text-center">
+                    <p className="text-lg font-bold text-blue-500">{s.value}</p>
+                    <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

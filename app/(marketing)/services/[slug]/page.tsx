@@ -40,6 +40,7 @@ import {
   getRelatedServices,
   serviceOgImageUrl,
   type ServicePage,
+  type ServiceCategoryId,
 } from "@/data/services-catalog";
 import { ServiceLeadForm } from "@/components/sections/ServiceLeadForm";
 import { ServiceAuthorBio } from "@/components/sections/ServiceAuthorBio";
@@ -124,6 +125,13 @@ export async function generateMetadata({
   };
 }
 
+const categoryParent: Record<ServiceCategoryId, { href: string; label: string } | null> = {
+  development: { href: "/services/development", label: "Development" },
+  marketing: { href: "/services/marketing-and-seo", label: "Marketing & SEO" },
+  products: { href: "/services/products-and-ai", label: "Products & AI" },
+  specialized: null,
+};
+
 export default async function ServicePageRoute({
   params,
 }: {
@@ -171,13 +179,17 @@ export default async function ServicePageRoute({
     })),
   };
 
+  const parent = categoryParent[service.category];
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
       { "@type": "ListItem", position: 2, name: "Services", item: `${siteConfig.url}/services` },
-      { "@type": "ListItem", position: 3, name: service.eyebrow, item: url },
+      ...(parent
+        ? [{ "@type": "ListItem", position: 3, name: parent.label, item: `${siteConfig.url}${parent.href}` }]
+        : []),
+      { "@type": "ListItem", position: parent ? 4 : 3, name: service.eyebrow, item: url },
     ],
   };
 
@@ -244,6 +256,14 @@ export default async function ServicePageRoute({
           <Link href="/services" className="hover:text-foreground transition-colors">
             Services
           </Link>
+          {parent && (
+            <>
+              <ChevronRight className="h-3 w-3" />
+              <Link href={parent.href} className="hover:text-foreground transition-colors">
+                {parent.label}
+              </Link>
+            </>
+          )}
           <ChevronRight className="h-3 w-3" />
           <span className="text-foreground">{service.eyebrow}</span>
         </nav>
@@ -340,7 +360,7 @@ export default async function ServicePageRoute({
         </div>
       </section>
 
-      {/* Proven results — analytics metric cards */}
+      {/* Proven results - analytics metric cards */}
       <ServiceResults service={service} />
 
       {/* Tech stack */}

@@ -21,11 +21,13 @@ export interface NavFeatured {
 
 export interface NavSubCategory {
   title: string;
+  href?: string;
   items: NavDropdownItem[];
 }
 
 export interface NavCategory {
   title: string;
+  href?: string;
   subCategories: NavSubCategory[];
 }
 
@@ -37,7 +39,7 @@ export interface NavItem extends NavLink {
 
 export const navItems: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/portfolio", label: "Case Study" },
   {
     href: "/free-tools",
     label: "Free Tools",
@@ -231,9 +233,11 @@ export const navItems: NavItem[] = [
     categories: [
       {
         title: "Development",
+        href: "/services/development",
         subCategories: [
           {
             title: "Web & E-commerce",
+            href: "/services/web-ecommerce",
             items: [
               {
                 href: "/services/mvp-development",
@@ -274,6 +278,7 @@ export const navItems: NavItem[] = [
           },
           {
             title: "Frontend & Performance",
+            href: "/services/frontend-performance",
             items: [
               {
                 href: "/services/nextjs-development",
@@ -299,6 +304,7 @@ export const navItems: NavItem[] = [
           },
           {
             title: "Backend & APIs",
+            href: "/services/backend-apis",
             items: [
               {
                 href: "/services/backend-development",
@@ -319,6 +325,7 @@ export const navItems: NavItem[] = [
           },
           {
             title: "Mobile, Care & Redesign",
+            href: "/services/mobile-care",
             items: [
               {
                 href: "/services/mobile-app-development",
@@ -341,9 +348,11 @@ export const navItems: NavItem[] = [
       },
       {
         title: "Marketing & SEO",
+        href: "/services/marketing-and-seo",
         subCategories: [
           {
             title: "SEO Services",
+            href: "/services/seo-services",
             items: [
               {
                 href: "/services/seo",
@@ -361,6 +370,11 @@ export const navItems: NavItem[] = [
                 description: "Google Business Profile, citations & reviews",
               },
               {
+                href: "/services/on-page-seo",
+                label: "On-Page SEO",
+                description: "Title tags, headings, internal links & content optimisation",
+              },
+              {
                 href: "/services/seo-audit",
                 label: "SEO Audit",
                 description: "Severity-ranked report in 5 business days",
@@ -369,11 +383,17 @@ export const navItems: NavItem[] = [
           },
           {
             title: "AI Search & Growth",
+            href: "/services/ai-growth",
             items: [
               {
-                href: "/services/aeo-geo-optimization",
-                label: "AEO & GEO",
-                description: "Get cited by ChatGPT, Perplexity & AI Overviews",
+                href: "/services/aeo-optimization",
+                label: "AEO Optimization",
+                description: "Get cited in ChatGPT, Perplexity, Claude & Gemini",
+              },
+              {
+                href: "/services/geo-optimization",
+                label: "GEO Optimization",
+                description: "Rank in Google AI Overviews & Bing Copilot",
               },
               {
                 href: "/services/content-seo",
@@ -391,9 +411,11 @@ export const navItems: NavItem[] = [
       },
       {
         title: "Products & AI",
+        href: "/services/products-and-ai",
         subCategories: [
           {
             title: "AI Engineering",
+            href: "/services/ai-engineering",
             items: [
               {
                 href: "/services/ai-integration",
@@ -410,10 +432,16 @@ export const navItems: NavItem[] = [
                 label: "AI Chatbots",
                 description: "RAG assistants grounded in your docs, with citations",
               },
+              {
+                href: "/full-stack-ai-developer",
+                label: "Full-Stack AI Developer",
+                description: "Ship apps with AI built in - one engineer, full stack",
+              },
             ],
           },
           {
             title: "Products & Programs",
+            href: "/services/products-programs",
             items: [
               {
                 href: "/blog-api",
@@ -430,40 +458,68 @@ export const navItems: NavItem[] = [
         ],
       },
       {
-        title: "Browse",
+        title: "Hire a Developer",
+        href: "/hire-developer",
         subCategories: [
           {
-            title: "Quick Links",
+            title: "Gulf / GCC",
+            href: "/hire-developer",
             items: [
               {
-                href: "/services",
-                label: "All Services",
-                description: "Full overview of every service & engagement model",
+                href: "/hire-developer/uae",
+                label: "United Arab Emirates",
+                description: "Hire a developer in Dubai, Abu Dhabi & UAE",
               },
               {
-                href: "/full-stack-ai-developer",
-                label: "Full-Stack AI Developer",
-                description: "Ship apps with AI built in - one engineer, full stack",
+                href: "/hire-developer/saudi-arabia",
+                label: "Saudi Arabia",
+                description: "Hire a developer in Riyadh, Jeddah & KSA",
               },
               {
-                href: "/ai-seo-consultant",
-                label: "AI SEO Consultant",
-                description: "SEO + AEO + GEO - rank on Google and inside AI answers",
+                href: "/hire-developer/qatar",
+                label: "Qatar",
+                description: "Hire a developer in Doha & Qatar",
               },
               {
-                href: "/hire-me",
-                label: "Hire Me",
-                description: "Availability, rates & how engagements work",
+                href: "/hire-developer/kuwait",
+                label: "Kuwait",
+                description: "Hire a developer in Kuwait City",
               },
               {
-                href: "/portfolio",
-                label: "Case Studies",
-                description: "See past projects, tech stacks & outcomes",
+                href: "/hire-developer/bahrain",
+                label: "Bahrain",
+                description: "Hire a developer in Manama & Bahrain",
+              },
+              {
+                href: "/hire-developer/oman",
+                label: "Oman",
+                description: "Hire a developer in Muscat & Oman",
+              },
+            ],
+          },
+          {
+            title: "US, UK & India",
+            href: "/hire-developer",
+            items: [
+              {
+                href: "/hire-developer/usa",
+                label: "United States",
+                description: "Hire a full-stack developer for US-based companies",
+              },
+              {
+                href: "/hire-developer/uk",
+                label: "United Kingdom",
+                description: "Hire a full-stack developer for UK-based companies",
+              },
+              {
+                href: "/hire-developer/india",
+                label: "India",
+                description: "Hire a full-stack developer based in India",
               },
               {
                 href: "/hire-developer",
-                label: "Gulf / GCC Clients",
-                description: "Hire a developer in UAE, Saudi Arabia, Qatar & GCC",
+                label: "All Regions",
+                description: "Full overview of all hire-a-developer pages",
               },
             ],
           },
@@ -485,7 +541,7 @@ export const mobileNavItems: NavLink[] = [
   { href: "/hire-developer", label: "Gulf / GCC Clients" },
   { href: "/services", label: "Services" },
   { href: "/for-students", label: "For Students" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/portfolio", label: "Case Study" },
   { href: "/blog", label: "Blog" },
   { href: "/guides", label: "Guides" },
   { href: "/blog-api", label: "Blog API" },

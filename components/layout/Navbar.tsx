@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, LayoutDashboard, LogOut, User, Code2, TrendingUp, Package, LayoutGrid } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Sun, Moon, LayoutDashboard, LogOut, User, Code2, TrendingUp, Package, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ const SERVICE_CAT_ICONS: Record<string, typeof Code2> = {
   "Development": Code2,
   "Marketing & SEO": TrendingUp,
   "Products & AI": Package,
-  "Browse": LayoutGrid,
+  "Hire a Developer": Globe,
 };
 
 const linkItems = navItems.filter(
@@ -72,6 +72,8 @@ export default function Navbar({
   const toolsRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const servicesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const toolsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { session } = useSupabaseSession();
 
   const toolsGroups = useMemo(() => groupTools(featuredNavTools), [featuredNavTools]);
@@ -203,51 +205,80 @@ export default function Navbar({
 
             {/* Services - 3-level mega menu */}
             {servicesNavItem?.categories && (
-              <div ref={servicesRef} className="relative">
-                <button
-                  onClick={() => setServicesOpen((v) => !v)}
-                  className={cn(
-                    "flex items-center gap-1 px-2.5 py-1.5 text-sm rounded-xl transition-colors",
-                    servicesNavItem.categories
-                      .flatMap((c) => c.subCategories)
-                      .flatMap((s) => s.items)
-                      .some((i) => pathname.startsWith(i.href))
-                      ? "text-foreground font-medium bg-accent"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
-                  )}
-                >
-                  Services
-                  <ChevronDown
-                    className={cn(
-                      "w-3.5 h-3.5 transition-transform duration-200",
-                      servicesOpen && "rotate-180"
-                    )}
-                  />
-                </button>
+              <div
+                ref={servicesRef}
+                className="flex items-center"
+                onMouseEnter={() => {
+                  if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+                  setServicesOpen(true);
+                }}
+                onMouseLeave={() => {
+                  servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 150);
+                }}
+              >
+                {/* Split button: text = link to /services, chevron = toggle */}
+                {(() => {
+                  const isActive = servicesNavItem.categories
+                    .flatMap((c) => c.subCategories)
+                    .flatMap((s) => s.items)
+                    .some((i) => pathname.startsWith(i.href));
+                  const baseClass = cn(
+                    "py-1.5 text-sm transition-colors",
+                    isActive
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  );
+                  return (
+                    <div className="group flex">
+                      <Link
+                        href="/services"
+                        className={cn(baseClass, "px-2.5 rounded-l-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-l-xl")}
+                      >
+                        Services
+                      </Link>
+                      <button
+                        onClick={() => setServicesOpen((v) => !v)}
+                        aria-label="Toggle services menu"
+                        className={cn(baseClass, "px-1 pr-2 rounded-r-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-r-xl")}
+                      >
+                        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", servicesOpen && "rotate-180")} />
+                      </button>
+                    </div>
+                  );
+                })()}
 
                 {servicesOpen && (() => {
                   const activeCat = servicesNavItem.categories[activeServiceGroup] ?? servicesNavItem.categories[0];
                   const activeSub = activeCat.subCategories[activeServiceSub] ?? activeCat.subCategories[0];
                   return (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[min(96vw,900px)]">
-                      <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 overflow-hidden">
+                    <div
+                      className="fixed top-[60px] left-1/2 -translate-x-1/2 pt-2 w-[min(96vw,900px)] z-50"
+                      onMouseEnter={() => {
+                        if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+                      }}
+                      onMouseLeave={() => {
+                        servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 150);
+                      }}
+                    >
+                      <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-150 ease-out">
                         <div className="flex min-h-[220px]">
 
                           {/* Column 1: Main categories */}
-                          <div className="w-60 shrink-0 bg-muted/40 dark:bg-muted/20 border-r border-border p-3 flex flex-col gap-0.5">
+                          <div className="w-52 shrink-0 bg-muted/40 dark:bg-muted/20 border-r border-border p-3 flex flex-col gap-0.5">
                             <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
                               Category
                             </p>
                             {servicesNavItem.categories.map((cat, i) => {
-                              const Icon = SERVICE_CAT_ICONS[cat.title] ?? LayoutGrid;
+                              const Icon = SERVICE_CAT_ICONS[cat.title] ?? Globe;
                               const isActive = activeServiceGroup === i;
                               return (
-                                <button
+                                <Link
                                   key={cat.title}
+                                  href={cat.href ?? "/services"}
                                   onMouseEnter={() => { setActiveServiceGroup(i); setActiveServiceSub(0); }}
-                                  onClick={() => { setActiveServiceGroup(i); setActiveServiceSub(0); }}
+                                  onClick={() => setServicesOpen(false)}
                                   className={cn(
-                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm text-left transition-all duration-150",
+                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm transition-all duration-150",
                                     isActive
                                       ? "bg-background text-foreground font-medium shadow-sm ring-1 ring-border"
                                       : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
@@ -255,45 +286,44 @@ export default function Navbar({
                                 >
                                   <Icon className={cn("w-4 h-4 shrink-0", isActive ? "text-blue-500" : "")} />
                                   <span className="flex-1">{cat.title}</span>
-                                  {isActive && <ChevronDown className="w-3 h-3 -rotate-90 text-blue-500 shrink-0" />}
-                                </button>
+                                  {cat.href && (
+                                    <ChevronDown className={cn("w-3 h-3 -rotate-90 shrink-0 transition-colors", isActive ? "text-blue-500" : "text-muted-foreground/40")} />
+                                  )}
+                                </Link>
                               );
                             })}
                           </div>
 
                           {/* Column 2: Sub-categories */}
-                          <div className="w-60 shrink-0 border-r border-border p-3 flex flex-col gap-0.5">
+                          <div className="w-52 shrink-0 border-r border-border p-3 flex flex-col gap-0.5">
                             <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 pb-2">
                               {activeCat.title}
                             </p>
                             {activeCat.subCategories.map((sub, i) => {
                               const isActive = activeServiceSub === i;
                               return (
-                                <button
+                                <Link
                                   key={sub.title}
+                                  href={sub.href ?? "#"}
                                   onMouseEnter={() => setActiveServiceSub(i)}
-                                  onClick={() => setActiveServiceSub(i)}
+                                  onClick={() => setServicesOpen(false)}
                                   className={cn(
-                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm text-left transition-all duration-150",
+                                    "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm transition-all duration-150",
                                     isActive
                                       ? "bg-accent text-foreground font-medium"
                                       : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
                                   )}
                                 >
                                   <span className="flex-1 whitespace-nowrap">{sub.title}</span>
-                                  <span className={cn(
-                                    "text-[10px] px-1.5 py-0.5 rounded-full shrink-0 transition-colors",
-                                    isActive ? "bg-blue-500/15 text-blue-600 dark:text-blue-400" : "bg-muted text-muted-foreground"
-                                  )}>
-                                    {sub.items.length}
-                                  </span>
-                                  {isActive && <ChevronDown className="w-3 h-3 -rotate-90 text-blue-500 shrink-0" />}
-                                </button>
+                                  {sub.href && (
+                                    <ChevronDown className={cn("w-3 h-3 -rotate-90 shrink-0 transition-colors", isActive ? "text-blue-500" : "text-muted-foreground/40")} />
+                                  )}
+                                </Link>
                               );
                             })}
                           </div>
 
-                          {/* Column 3: Pages — 3-col card grid */}
+                          {/* Column 3: Service pages */}
                           <div className="flex-1 p-4">
                             <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3 px-0.5">
                               {activeSub.title}
@@ -323,9 +353,13 @@ export default function Navbar({
 
                         {/* Footer */}
                         <div className="px-5 py-3 border-t border-border bg-muted/20 flex items-center justify-between gap-3">
-                          <p className="text-xs text-muted-foreground">
-                            Free quote in 24 hours — no sales call required.
-                          </p>
+                          <Link
+                            href="/services"
+                            onClick={() => setServicesOpen(false)}
+                            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            All Services →
+                          </Link>
                           <Link
                             href="/contact"
                             onClick={() => setServicesOpen(false)}
@@ -342,26 +376,45 @@ export default function Navbar({
               </div>
             )}
 
-            {/* Free Tools - click-to-open dropdown */}
+            {/* Free Tools - split button + hover-to-open dropdown */}
             {showToolsDropdown && (
-              <div ref={toolsRef}>
-                <button
-                  onClick={() => setToolsOpen((v) => !v)}
-                  className={cn(
-                    "flex items-center gap-1 px-2.5 py-1.5 text-sm rounded-xl transition-colors",
-                    pathname.startsWith("/free-tools")
-                      ? "text-foreground font-medium bg-accent"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
-                  )}
-                >
-                  Free Tools
-                  <ChevronDown
-                    className={cn(
-                      "w-3.5 h-3.5 transition-transform duration-200",
-                      toolsOpen && "rotate-180"
-                    )}
-                  />
-                </button>
+              <div
+                ref={toolsRef}
+                className="flex items-center"
+                onMouseEnter={() => {
+                  if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
+                  setToolsOpen(true);
+                }}
+                onMouseLeave={() => {
+                  toolsCloseTimer.current = setTimeout(() => setToolsOpen(false), 150);
+                }}
+              >
+                {(() => {
+                  const isActive = pathname.startsWith("/free-tools");
+                  const baseClass = cn(
+                    "py-1.5 text-sm transition-colors",
+                    isActive
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  );
+                  return (
+                    <div className="group flex">
+                      <Link
+                        href="/free-tools"
+                        className={cn(baseClass, "px-2.5 rounded-l-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-l-xl")}
+                      >
+                        Free Tools
+                      </Link>
+                      <button
+                        onClick={() => setToolsOpen((v) => !v)}
+                        aria-label="Toggle tools menu"
+                        className={cn(baseClass, "px-1 pr-2 rounded-r-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-r-xl")}
+                      >
+                        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", toolsOpen && "rotate-180")} />
+                      </button>
+                    </div>
+                  );
+                })()}
 
                 {toolsOpen && (() => {
                   const groupCount = Math.max(toolsGroups.length, 1);
@@ -369,10 +422,16 @@ export default function Navbar({
                   const cols = groupCount <= 4 ? groupCount : 3;
                   return (
                   <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 max-w-[calc(100vw-2rem)]"
+                    className="fixed top-[60px] left-1/2 -translate-x-1/2 pt-2 max-w-[calc(100vw-2rem)] z-50"
                     style={{ width: `${cols * 240 + 40}px` }}
+                    onMouseEnter={() => {
+                      if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
+                    }}
+                    onMouseLeave={() => {
+                      toolsCloseTimer.current = setTimeout(() => setToolsOpen(false), 150);
+                    }}
                   >
-                    <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5">
+                    <div className="bg-popover border border-border rounded-2xl shadow-2xl shadow-black/25 p-5 animate-in fade-in-0 slide-in-from-top-2 duration-150 ease-out">
                       {/* Header row — links to the full landing page */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
                         <div>
