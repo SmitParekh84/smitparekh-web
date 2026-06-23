@@ -34,6 +34,8 @@ export const invoicesApi = {
     api.patch<Ok<Invoice>>(`/invoices/${id}`, input),
   send: (id: string) => api.post<Ok<Invoice>>(`/invoices/${id}/send`, {}),
   cancel: (id: string) => api.post<Ok<Invoice>>(`/invoices/${id}/cancel`, {}),
+  markOverdue: (id: string) => api.post<Ok<Invoice>>(`/invoices/${id}/overdue`, {}),
+  checkOverdue: () => api.post<Ok<{ marked: number }>>("/invoices/check-overdue", {}),
   forClient: (clientId: string) => api.get<Ok<Invoice[]>>(`/clients/${clientId}/invoices`),
 
   /* Client self */

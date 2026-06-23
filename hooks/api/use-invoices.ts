@@ -37,6 +37,15 @@ export function useCreateInvoice() {
   });
 }
 
+export function useUpdateInvoice() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, input }: { id: string; input: Partial<CreateInvoiceInput> }) =>
+      invoicesApi.update(id, input),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.invoices.all }),
+  });
+}
+
 export function useSendInvoice() {
   const qc = useQueryClient();
   return useMutation({
@@ -49,6 +58,22 @@ export function useCancelInvoice() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => invoicesApi.cancel(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.invoices.all }),
+  });
+}
+
+export function useMarkOverdue() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => invoicesApi.markOverdue(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.invoices.all }),
+  });
+}
+
+export function useCheckOverdue() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => invoicesApi.checkOverdue(),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.invoices.all }),
   });
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  AlertTriangle,
   Ban,
   ChevronRight,
   Loader2,
@@ -35,6 +36,7 @@ import {
   useAdminInvoices,
   useSendInvoice,
   useCancelInvoice,
+  useMarkOverdue,
 } from "@/hooks/api/use-invoices";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
@@ -70,11 +72,14 @@ const STATUS_DOT: Record<InvoiceStatus, string> = {
 function InvoiceRow({ inv }: { inv: Invoice }) {
   const send = useSendInvoice();
   const cancel = useCancelInvoice();
-  const [busyAction, setBusyAction] = useState<"send" | "cancel" | null>(null);
+  const markOverdue = useMarkOverdue();
+  const [busyAction, setBusyAction] = useState<"send" | "cancel" | "overdue" | null>(null);
 
   const canSend = ["draft", "sent", "overdue"].includes(inv.status);
   const canCancel = inv.status !== "paid" && inv.status !== "cancelled";
   const isDraft = inv.status === "draft";
+  const canMarkOverdue =
+    inv.status === "sent" && !!inv.dueDate && new Date(inv.dueDate) < new Date();
   const busy = busyAction !== null;
 
   async function handleSend() {
@@ -96,6 +101,18 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
       toast.success("Invoice cancelled");
     } catch (e) {
       toast.error("Cancel failed", e instanceof ApiError ? e.message : "Could not cancel.");
+    } finally {
+      setBusyAction(null);
+    }
+  }
+
+  async function handleMarkOverdue() {
+    setBusyAction("overdue");
+    try {
+      await markOverdue.mutateAsync(inv._id);
+      toast.success("Marked overdue");
+    } catch (e) {
+      toast.error("Failed", e instanceof ApiError ? e.message : "Could not mark overdue.");
     } finally {
       setBusyAction(null);
     }
@@ -170,6 +187,12 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
                 <DropdownMenuItem onClick={handleSend} className="gap-2" disabled={busy}>
                   <Send className="h-3.5 w-3.5 text-blue-500" />
                   {inv.status === "draft" ? "Send to client" : "Resend"}
+                </DropdownMenuItem>
+              )}
+              {canMarkOverdue && (
+                <DropdownMenuItem onClick={handleMarkOverdue} className="gap-2 text-orange-600 focus:text-orange-600" disabled={busy}>
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                  Mark overdue
                 </DropdownMenuItem>
               )}
               {canCancel && (

@@ -2,12 +2,12 @@
 
 import { use } from "react";
 import Link from "next/link";
-import { ArrowLeft, Ban, CheckCircle2, Clock, Download, Printer, Send } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Ban, CheckCircle2, Clock, Download, Send } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
-import { useAdminInvoice, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
+import { useAdminInvoice, useSendInvoice, useCancelInvoice, useMarkOverdue } from "@/hooks/api/use-invoices";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -72,6 +72,7 @@ export default function AdminInvoiceDetailPage({
   const { data, isLoading } = useAdminInvoice(id);
   const send = useSendInvoice();
   const cancel = useCancelInvoice();
+  const markOverdue = useMarkOverdue();
   const inv = data?.data;
 
   async function handleSend() {
@@ -89,6 +90,15 @@ export default function AdminInvoiceDetailPage({
       toast.success("Invoice cancelled");
     } catch (e) {
       toast.error("Cancel failed", e instanceof ApiError ? e.message : "Could not cancel invoice.");
+    }
+  }
+
+  async function handleMarkOverdue() {
+    try {
+      await markOverdue.mutateAsync(id);
+      toast.success("Marked overdue", "Client will see this as overdue.");
+    } catch (e) {
+      toast.error("Failed", e instanceof ApiError ? e.message : "Could not mark overdue.");
     }
   }
 
@@ -118,6 +128,8 @@ export default function AdminInvoiceDetailPage({
   const canSend = ["draft", "sent", "overdue"].includes(inv.status);
   const canCancel = inv.status !== "paid" && inv.status !== "cancelled";
   const isOverdue = inv.status === "overdue";
+  const canMarkOverdue =
+    inv.status === "sent" && !!inv.dueDate && new Date(inv.dueDate) < new Date();
 
   const subtotal = inv.lineItems.reduce((s, li) => s + li.amount, 0);
   const total = subtotal;
@@ -142,6 +154,18 @@ export default function AdminInvoiceDetailPage({
               {send.isPending ? "Sending…" : inv.status === "draft" ? "Send to client" : "Resend"}
             </Button>
           )}
+          {canMarkOverdue && (
+            <Button
+              variant="outline"
+              onClick={handleMarkOverdue}
+              disabled={markOverdue.isPending}
+              size="sm"
+              className="gap-1.5 border-orange-500/40 text-orange-600 hover:bg-orange-500/10 dark:text-orange-400"
+            >
+              <AlertTriangle className="h-3.5 w-3.5" />
+              {markOverdue.isPending ? "Updating…" : "Mark overdue"}
+            </Button>
+          )}
           {canCancel && (
             <Button variant="outline" onClick={handleCancel} disabled={cancel.isPending} size="sm" className="gap-1.5">
               <Ban className="h-3.5 w-3.5" />
@@ -152,7 +176,7 @@ export default function AdminInvoiceDetailPage({
       </div>
 
       {/* Invoice sheet */}
-      <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm print:border-0 print:shadow-none print:rounded-none">
+      <div data-print-invoice className="overflow-hidden rounded-xl border border-border bg-white shadow-sm print:border-0 print:shadow-none print:rounded-none">
 
         {/* Header */}
         <div className="border-b border-border px-8 py-7">

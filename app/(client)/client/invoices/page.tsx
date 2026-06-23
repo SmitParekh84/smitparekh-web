@@ -203,7 +203,8 @@ export default function ClientInvoicesPage() {
                 return (
                   <div
                     key={inv._id}
-                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted/30"
+                    id={`inv-${inv._id}`}
+                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted/30 scroll-mt-24"
                   >
                     {/* Icon */}
                     <div
