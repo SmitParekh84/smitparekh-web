@@ -13,7 +13,6 @@ import {
   Users,
   ShieldCheck,
   Clock,
-  Download,
   Star,
   TrendingUp,
   Globe,
@@ -326,16 +325,6 @@ export default function HireMePage() {
             label="Book a 15-min call"
             className="gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
           />
-          <Link
-            href="/resume"
-            className={cn(
-              buttonVariants({ variant: "outline", size: "lg" }),
-              "gap-2 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
-            )}
-          >
-            <Download className="w-4 h-4" />
-            View Resume
-          </Link>
           <a
             href={siteConfig.social.upwork}
             target="_blank"

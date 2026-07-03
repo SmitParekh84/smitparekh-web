@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, MapPin, Briefcase, Award, User } from "lucide-react";
+import { ArrowRight, MapPin, Briefcase, Award, User } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -211,16 +211,6 @@ export default function AboutPage() {
                 >
                   Work With Me
                   <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/resume"
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "lg" }),
-                    "gap-2"
-                  )}
-                >
-                  <Download className="w-4 h-4" />
-                  View Resume
                 </Link>
               </div>
 

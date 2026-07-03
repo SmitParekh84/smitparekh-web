@@ -55,5 +55,3 @@ export const aboutStats = {
   certifications: "4+",
   companies: "15+",
 };
-
-export const cvLink = "https://www.smitparekh.co.in/Smit_Parekh_FullStack.pdf";
