@@ -21,6 +21,15 @@ export function useAdminInvoice(id: string) {
   });
 }
 
+export function useNextInvoiceNumber(clientId: string, prefix?: string) {
+  return useQuery({
+    queryKey: queryKeys.invoices.nextNumber(clientId, prefix),
+    queryFn: () => invoicesApi.nextNumber(clientId, prefix),
+    enabled: !!clientId,
+    staleTime: 0,
+  });
+}
+
 export function useClientInvoices(clientId: string) {
   return useQuery({
     queryKey: queryKeys.invoices.forClient(clientId),

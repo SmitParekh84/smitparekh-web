@@ -165,7 +165,7 @@ export default function AINoteSummarizer() {
             </div>
           </div>
 
-          <div className="flex gap-1 border-b border-border">
+          <div className="flex gap-1 border-b border-border overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {[
               { id: "summary", label: "Summary", icon: BookOpen },
               { id: "flashcards", label: `Flashcards (${result.flashcards.length})`, icon: FileText },

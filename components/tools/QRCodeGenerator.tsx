@@ -241,7 +241,7 @@ export default function QRCodeGenerator() {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex flex-col items-center gap-4 rounded-xl border border-border p-6" style={{ background: transparent ? 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGklEQVQoU2NkYGD4z8BQDwAEgAF/QualIQAAAABJRU5ErkJggg==") repeat' : bgColor }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={qrUrl} alt="Generated QR Code" className="max-w-56 w-full rounded-lg" />
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               <button onClick={copyImage} className="flex items-center gap-2 rounded-lg border border-border bg-card hover:bg-muted/40 text-sm font-medium px-4 py-2.5 transition-colors">
                 {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                 {copied ? "Copied!" : "Copy"}

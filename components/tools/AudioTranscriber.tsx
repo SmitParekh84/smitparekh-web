@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Upload, X, Copy, Check, Download, FileAudio, Languages } from "lucide-react";
+import { Upload, X, Copy, Check, Download, FileAudio, Languages, Loader2, RotateCcw, AlertTriangle } from "lucide-react";
 import { useTranscribeAudio } from "@/hooks/api/use-tools";
 import { useToolQuota } from "@/hooks/api/use-tool-quota";
+import { transcribeApi, ApiError } from "@/lib/api";
 import { toast } from "@/lib/toast";
 import { LoginGateModal } from "@/components/tools/LoginGateModal";
 import { QuotaBadge } from "@/components/tools/QuotaBadge";
@@ -24,6 +25,9 @@ const LANGUAGE_NAMES: Record<string, string> = {
   ko: "Korean", zh: "Chinese", ar: "Arabic", nl: "Dutch", tr: "Turkish",
 };
 
+// Phase drives the loading UI so a slow/cold Hugging Face Space never looks frozen.
+type Phase = "idle" | "warming" | "transcribing";
+
 export default function AudioTranscriber() {
   const [file, setFile] = useState<File | null>(null);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -32,9 +36,15 @@ export default function AudioTranscriber() {
   const [dragging, setDragging] = useState(false);
   const [copied, setCopied] = useState(false);
   const [loginGateOpen, setLoginGateOpen] = useState(false);
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [elapsed, setElapsed] = useState(0);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [coldStart, setColdStart] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mutation = useTranscribeAudio();
   const { checkQuota, isChecking, status } = useToolQuota("audio-to-text");
+
+  const busy = phase !== "idle";
 
   // Revoke the object URL when it changes or the component unmounts.
   useEffect(() => {
@@ -42,6 +52,18 @@ export default function AudioTranscriber() {
       if (audioUrl) URL.revokeObjectURL(audioUrl);
     };
   }, [audioUrl]);
+
+  // Tick an elapsed-seconds counter while the request is in flight so the user
+  // always sees forward motion, even during a long cold start.
+  useEffect(() => {
+    if (!busy) return;
+    setElapsed(0);
+    const started = performance.now();
+    const id = setInterval(() => {
+      setElapsed(Math.floor((performance.now() - started) / 1000));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [busy]);
 
   const handleFile = (f: File) => {
     if (!f.type.startsWith("audio/")) {
@@ -60,14 +82,24 @@ export default function AudioTranscriber() {
   };
 
   const transcribe = async () => {
-    if (!file) return;
+    if (!file || busy) return;
+    setErrorMsg(null);
+    setColdStart(false);
     const quota = await checkQuota();
     if (!quota.allowed) {
       setLoginGateOpen(true);
       return;
     }
+
+    // Warm the (possibly asleep) Space first so the transcription request
+    // doesn't get stuck waiting through the container's whole cold start.
+    setPhase("warming");
+    await transcribeApi.warmUp();
+
+    setPhase("transcribing");
     mutation.mutate(file, {
       onSuccess: (result) => {
+        setPhase("idle");
         if (!result.text) {
           toast.error("No speech detected", "We couldn't find any spoken words in this audio.");
           setTranscript("");
@@ -79,7 +111,19 @@ export default function AudioTranscriber() {
         toast.success("Transcription complete!", "Your text is ready to copy.");
       },
       onError: (err) => {
-        toast.error("Transcription failed", err instanceof Error ? err.message : "Please try again.");
+        setPhase("idle");
+        // A timeout / network drop / 5xx almost always means the free Space was
+        // waking up or briefly overloaded — a second attempt usually succeeds.
+        const message = err instanceof Error ? err.message : "";
+        const isWakeUp =
+          /timeout|network|ECONNAB|ETIMEDOUT/i.test(message) ||
+          (err instanceof ApiError && [0, 502, 503, 504].includes(err.status));
+        setColdStart(isWakeUp);
+        setErrorMsg(
+          isWakeUp
+            ? "The transcription service was waking up and didn't respond in time. It's usually ready on a second try."
+            : message || "Something went wrong. Please try again.",
+        );
       },
     });
   };
@@ -103,16 +147,33 @@ export default function AudioTranscriber() {
   };
 
   const reset = () => {
+    if (busy) return;
     if (audioUrl) URL.revokeObjectURL(audioUrl);
     setFile(null);
     setAudioUrl(null);
     setTranscript(null);
     setLanguage(null);
+    setErrorMsg(null);
+    setColdStart(false);
   };
 
   const languageLabel = language
     ? LANGUAGE_NAMES[language] ?? language.toUpperCase()
     : null;
+
+  // What we tell the user right now — shifts as time passes so it never reads
+  // as a hung request during a cold start.
+  const statusText =
+    phase === "warming"
+      ? "Waking up the transcription service — the first run after idle can take up to a minute…"
+      : elapsed < 8
+        ? "Uploading your audio…"
+        : elapsed < 30
+          ? "Transcribing on CPU — this can take a little while for longer clips…"
+          : "Still working — almost there. Longer clips take a few minutes…";
+
+  // Reassuring, unknown-duration progress that eases toward ~92% and never stalls.
+  const progressPct = Math.min(92, Math.round(100 * (1 - Math.exp(-elapsed / 22))));
 
   return (
     <div className="space-y-6">
@@ -167,26 +228,61 @@ export default function AudioTranscriber() {
             )}
             <button
               onClick={reset}
-              className="absolute top-3 right-3 w-7 h-7 rounded-full bg-card/80 backdrop-blur border border-border flex items-center justify-center text-muted-foreground hover:text-foreground"
+              disabled={busy}
+              className="absolute top-3 right-3 w-7 h-7 rounded-full bg-card/80 backdrop-blur border border-border flex items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed"
               aria-label="Remove file"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          {/* Transcribe button */}
-          <button
-            onClick={transcribe}
-            disabled={mutation.isPending || isChecking}
-            className="w-full rounded-xl bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 transition-colors flex items-center justify-center gap-2"
-          >
-            <FileAudio className="w-4 h-4" />
-            {isChecking ? "Checking…" : mutation.isPending ? "Transcribing…" : "Transcribe Audio"}
-          </button>
-          {mutation.isPending && (
-            <p className="text-xs text-muted-foreground text-center">
-              Transcribing on CPU - this can take up to a few minutes for longer clips. The first run after idle may be slower while the service wakes up.
-            </p>
+          {busy ? (
+            /* Live progress — keeps a slow / cold service from ever looking frozen */
+            <div className="rounded-xl border border-blue-500/25 bg-blue-500/[0.06] p-4 space-y-3">
+              <div className="flex items-center gap-2.5">
+                <Loader2 className="w-4 h-4 shrink-0 animate-spin text-blue-500" />
+                <span className="text-sm font-medium">
+                  {phase === "warming" ? "Waking up the service…" : "Transcribing your audio…"}
+                </span>
+                <span className="ml-auto text-xs tabular-nums text-muted-foreground">{elapsed}s</span>
+              </div>
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-blue-500/15">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-[width] duration-1000 ease-out"
+                  style={{ width: `${Math.max(6, progressPct)}%` }}
+                />
+              </div>
+              <p className="text-xs leading-relaxed text-muted-foreground">{statusText}</p>
+            </div>
+          ) : (
+            /* Transcribe button */
+            <button
+              onClick={transcribe}
+              disabled={isChecking}
+              className="w-full rounded-xl bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 transition-colors flex items-center justify-center gap-2"
+            >
+              <FileAudio className="w-4 h-4" />
+              {isChecking ? "Checking…" : errorMsg ? "Try Again" : "Transcribe Audio"}
+            </button>
+          )}
+
+          {/* Inline error with a clear retry path */}
+          {!busy && errorMsg && (
+            <div className="flex items-start gap-3 rounded-xl border border-amber-500/30 bg-amber-500/[0.07] p-4">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-foreground">
+                  {coldStart ? "Service was waking up" : "Transcription failed"}
+                </p>
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{errorMsg}</p>
+                <button
+                  onClick={transcribe}
+                  className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium transition-colors hover:bg-muted"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" /> Try again
+                </button>
+              </div>
+            </div>
           )}
         </div>
       )}

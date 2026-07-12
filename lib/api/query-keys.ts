@@ -70,6 +70,8 @@ export const queryKeys = {
     list: (params?: { status?: string; clientId?: string }) =>
       [...queryKeys.invoices.all, "list", params ?? {}] as const,
     byId: (id: string) => [...queryKeys.invoices.all, "id", id] as const,
+    nextNumber: (clientId: string, prefix?: string) =>
+      [...queryKeys.invoices.all, "nextNumber", clientId, prefix ?? ""] as const,
     mine: () => [...queryKeys.invoices.all, "mine"] as const,
     forClient: (clientId: string) => [...queryKeys.invoices.all, "forClient", clientId] as const,
   },

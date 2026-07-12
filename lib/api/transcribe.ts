@@ -10,7 +10,29 @@ export interface TranscriptionResult {
   duration: number;
 }
 
+// The Python service runs on a free Hugging Face Space that sleeps when idle.
+// A cold start = container boot + whisper model load, which can take well over
+// a minute. We warm the Space via the cheap /api/health endpoint first so the
+// actual transcription request doesn't have to wait through the whole boot.
+const WARMUP_TIMEOUT_MS = 180_000; // patient: covers a full cold start
+const TRANSCRIBE_TIMEOUT_MS = 180_000; // CPU transcription of longer clips
+
 export const transcribeApi = {
+  /**
+   * Wake the Python tools Space (if asleep) and wait until it responds healthy.
+   * Never throws — returns `true` if the service is reachable, `false` if the
+   * warm-up ping itself failed (caller can still attempt, or surface a hint).
+   */
+  warmUp: async (): Promise<boolean> => {
+    if (!isPythonApiEnabled || !pythonApiClient) return false;
+    try {
+      await pythonApiClient.get("/api/health", { timeout: WARMUP_TIMEOUT_MS });
+      return true;
+    } catch {
+      return false;
+    }
+  },
+
   /**
    * Transcribe an uploaded audio file to text via the Python tools service
    * (`POST /api/transcribe`, faster-whisper). Python-only - there is no Node
@@ -27,6 +49,7 @@ export const transcribeApi = {
     form.append("file", file);
     const res = await pythonApiClient.post<TranscriptionResult>("/api/transcribe", form, {
       headers: { "Content-Type": "multipart/form-data" },
+      timeout: TRANSCRIBE_TIMEOUT_MS,
     });
     return res.data;
   },

@@ -139,7 +139,7 @@ export default function AIEssayOutliner() {
 
       {result && (
         <div className="space-y-4 pt-2 border-t border-border">
-          <div className="flex justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <h3 className="text-base font-semibold">{result.topic}</h3>
             <button
               onClick={copyOutline}

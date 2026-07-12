@@ -27,8 +27,11 @@ import {
   useReorderProjectSteps,
   useRegenerateProject,
   useUpdateClientStatus,
+  useUpdateClientBilling,
 } from "@/hooks/api/use-clients";
 import { useClientInvoices, useSendInvoice, useCancelInvoice } from "@/hooks/api/use-invoices";
+import { useUsdInrRate } from "@/hooks/api/use-fx-rate";
+import { formatMoney, sumInDisplayCurrency, type Currency } from "@/lib/currency";
 import { useAdminContract, useUploadContractTemplate, useSendContractSigningRequest, useGenerateSigningLink } from "@/hooks/api/use-contracts";
 import { contractsApi } from "@/lib/api/contracts";
 import { DocxViewer } from "@/components/client/DocxViewer";
@@ -88,9 +91,7 @@ function projectProgress(steps: { status: string }[]) {
 
 /* ─── Invoice helpers ─────────────────────────────────────────────────── */
 
-function money(amount: number, currency: string) {
-  return `${currency === "INR" ? "₹" : "$"}${amount.toFixed(2)}`;
-}
+const money = (amount: number, currency: string) => formatMoney(amount, currency as Currency);
 
 function fmtDateShort(iso?: string | null) {
   if (!iso) return "-";
@@ -229,6 +230,8 @@ export default function AdminClientDetailPage({
   const reorderSteps = useReorderProjectSteps(id);
   const regenerate = useRegenerateProject(id);
   const updateStatus = useUpdateClientStatus();
+  const updateBilling = useUpdateClientBilling();
+  const usdInrRate = useUsdInrRate();
   const invoicesQuery = useClientInvoices(id);
   const invoices = invoicesQuery.data?.data ?? [];
 
@@ -275,6 +278,16 @@ export default function AdminClientDetailPage({
     } catch (err) {
       const msg = err instanceof ApiError ? err.message : "Could not resend invitation.";
       toast.error("Resend failed", msg);
+    }
+  }
+
+  async function handleSetCurrency(preferredCurrency: Currency) {
+    try {
+      await updateBilling.mutateAsync({ id, preferredCurrency });
+      toast.success("Display currency updated", `Portal totals now shown in ${preferredCurrency}.`);
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Could not update currency.";
+      toast.error("Update failed", msg);
     }
   }
 
@@ -503,17 +516,43 @@ export default function AdminClientDetailPage({
             </div>
           ) : (
             <div className="space-y-4">
+              {/* Portal display currency — controls how the client's totals convert */}
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border bg-card px-4 py-3">
+                <div>
+                  <p className="text-[13px] font-medium">Portal display currency</p>
+                  <p className="text-[12px] text-muted-foreground">
+                    The client&apos;s summary totals are converted to this currency.
+                  </p>
+                </div>
+                <Select
+                  value={client.preferredCurrency ?? "USD"}
+                  onValueChange={(v) => handleSetCurrency(v as Currency)}
+                >
+                  <SelectTrigger className="h-8 w-28 text-xs">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="USD" className="text-xs">USD ($)</SelectItem>
+                    <SelectItem value="INR" className="text-xs">INR (₹)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
               {/* Summary stats */}
               <div className="grid gap-3 sm:grid-cols-3">
                 {(() => {
-                  const outstanding = invoices
-                    .filter((i) => i.status === "sent" || i.status === "overdue")
-                    .reduce((s, i) => s + i.amount, 0);
-                  const collected = invoices
-                    .filter((i) => i.status === "paid")
-                    .reduce((s, i) => s + i.amount, 0);
+                  const currency: Currency = client.preferredCurrency ?? "USD";
+                  const outstanding = sumInDisplayCurrency(
+                    invoices.filter((i) => i.status === "sent" || i.status === "overdue"),
+                    currency,
+                    usdInrRate
+                  );
+                  const collected = sumInDisplayCurrency(
+                    invoices.filter((i) => i.status === "paid"),
+                    currency,
+                    usdInrRate
+                  );
                   const drafts = invoices.filter((i) => i.status === "draft").length;
-                  const currency = invoices[0]?.currency ?? "USD";
                   return (
                     <>
                       <div className="rounded-xl border border-border bg-card p-4">

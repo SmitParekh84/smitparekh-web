@@ -174,7 +174,7 @@ export default function AICoverLetter() {
 
       {result && (
         <div className="space-y-3 pt-2 border-t border-border">
-          <div className="flex justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <h3 className="text-base font-semibold">Your cover letter</h3>
             <div className="flex gap-2">
               <button

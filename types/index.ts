@@ -219,6 +219,8 @@ export interface Client {
   mobile?: string;
   company?: string;
   status: ClientStatus;
+  invoicePrefix?: string | null;
+  preferredCurrency?: InvoiceCurrency;
   invitedAt: string;
   onboardedAt?: string | null;
   invitationExpiresAt?: string | null;

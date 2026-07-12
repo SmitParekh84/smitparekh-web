@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ChevronDown, Send } from "lucide-react";
@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AppSelect } from "@/components/ui/app-select";
 import { useAdminClients } from "@/hooks/api/use-clients";
-import { useCreateInvoice, useSendInvoice } from "@/hooks/api/use-invoices";
+import { useCreateInvoice, useSendInvoice, useNextInvoiceNumber } from "@/hooks/api/use-invoices";
 import { toast } from "@/lib/toast";
 import { ApiError } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -47,6 +47,41 @@ function NewInvoiceForm() {
   const [notes, setNotes] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
+  // Invoice-number prefix: pre-filled from the client's saved/derived prefix,
+  // editable, and previewed live via the (non-consuming) next-number endpoint.
+  const [prefix, setPrefix] = useState("");
+  const [prefixTouched, setPrefixTouched] = useState(false);
+  const [debouncedPrefix, setDebouncedPrefix] = useState("");
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedPrefix(prefix), 300);
+    return () => clearTimeout(t);
+  }, [prefix]);
+
+  const nextNumberQuery = useNextInvoiceNumber(
+    clientId,
+    prefixTouched ? debouncedPrefix : undefined
+  );
+  const nextNumber = nextNumberQuery.data?.data;
+
+  // Once the server resolves a prefix (saved or derived), reflect it in the
+  // input — but never overwrite what the admin has started typing.
+  useEffect(() => {
+    if (!prefixTouched && nextNumber?.prefix) setPrefix(nextNumber.prefix);
+  }, [nextNumber?.prefix, prefixTouched]);
+
+  function handleClientChange(v: string) {
+    setClientId(v);
+    setPrefix("");
+    setPrefixTouched(false);
+    setDebouncedPrefix("");
+  }
+
+  function handlePrefixChange(v: string) {
+    setPrefix(v.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6));
+    setPrefixTouched(true);
+  }
+
   async function submit(andSend = false) {
     setErr(null);
     if (!clientId || !title || !amount) {
@@ -62,6 +97,7 @@ function NewInvoiceForm() {
         lineItems: [{ description: title, amount: Number(amount) }],
         notes: notes || undefined,
         dueDate: dueDate || null,
+        invoicePrefix: prefix || undefined,
       });
       if (andSend) {
         await sendInvoice.mutateAsync(res.data._id);
@@ -100,11 +136,44 @@ function NewInvoiceForm() {
             <Label>Client</Label>
             <AppSelect
               value={clientId}
-              onValueChange={setClientId}
+              onValueChange={handleClientChange}
               options={clients.map((c: Client) => ({ value: c._id, label: c.name || c.email }))}
               placeholder="Select a client…"
               triggerClassName="w-full"
             />
+          </div>
+
+          {/* Invoice number: editable prefix + live, non-consuming preview */}
+          <div className="space-y-1.5">
+            <Label>Invoice number prefix</Label>
+            <div className="flex items-center gap-2">
+              <Input
+                value={prefix}
+                onChange={(e) => handlePrefixChange(e.target.value)}
+                placeholder="INV"
+                disabled={!clientId}
+                className="w-32 font-mono uppercase"
+                maxLength={6}
+              />
+              <span className="text-sm text-muted-foreground">
+                {!clientId ? (
+                  "Select a client first"
+                ) : nextNumber ? (
+                  <>
+                    Next:{" "}
+                    <span className="font-mono font-medium text-foreground">
+                      {nextNumber.invoiceNumber}
+                    </span>
+                  </>
+                ) : (
+                  "…"
+                )}
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Saved to this client and auto-increments on each invoice. Edit once to change it (e.g.{" "}
+              <span className="font-mono">ENLV</span> for Enliven Counselling).
+            </p>
           </div>
 
           <div className="space-y-1.5">

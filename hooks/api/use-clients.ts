@@ -40,6 +40,21 @@ export function useUpdateClientStatus() {
   });
 }
 
+export function useUpdateClientBilling() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      id,
+      ...payload
+    }: {
+      id: string;
+      preferredCurrency?: "USD" | "INR";
+      invoicePrefix?: string;
+    }) => clientsApi.updateBilling(id, payload),
+    onSuccess: (_res, { id }) => qc.invalidateQueries({ queryKey: queryKeys.clients.byId(id) }),
+  });
+}
+
 export function useAdminClientRequirements(clientId: string) {
   return useQuery({
     queryKey: queryKeys.clients.requirements(clientId),

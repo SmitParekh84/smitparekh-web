@@ -7,16 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useMyInvoices } from "@/hooks/api/use-invoices";
 import { useClientMe } from "@/hooks/api/use-clients";
+import { useUsdInrRate } from "@/hooks/api/use-fx-rate";
 import { usePayInvoice } from "@/components/client/RazorpayCheckout";
 import { cn } from "@/lib/utils";
+import { formatMoney, sumInDisplayCurrency, type Currency } from "@/lib/currency";
 import type { Invoice, InvoiceStatus } from "@/types";
 
-function money(amount: number, currency: string) {
-  return `${currency === "INR" ? "₹" : "$"}${amount.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
-}
+const money = (amount: number, currency: string) => formatMoney(amount, currency as Currency);
 
 function fmtDate(iso?: string | null) {
   if (!iso) return "-";
@@ -68,6 +65,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
 export default function ClientInvoicesPage() {
   const { data, isLoading, refetch } = useMyInvoices();
   const { data: meData } = useClientMe();
+  const usdInrRate = useUsdInrRate();
   const allInvoices = data?.data ?? [];
   const me = meData?.data;
   const { pay, paying, error } = usePayInvoice(() => refetch());
@@ -75,9 +73,15 @@ export default function ClientInvoicesPage() {
   // Clients never see drafts
   const invoices = allInvoices.filter((i) => i.status !== "draft");
   const outstanding = invoices.filter((i) => i.status === "sent" || i.status === "overdue");
-  const outstandingTotal = outstanding.reduce((s, i) => s + i.amount, 0);
-  const paidTotal = invoices.filter((i) => i.status === "paid").reduce((s, i) => s + i.amount, 0);
-  const currency = invoices[0]?.currency ?? "USD";
+  // Totals are shown in the client's preferred currency (default $). Each invoice
+  // is converted from its own currency first, so USD + INR never get summed raw.
+  const currency: Currency = me?.preferredCurrency ?? "USD";
+  const outstandingTotal = sumInDisplayCurrency(outstanding, currency, usdInrRate);
+  const paidTotal = sumInDisplayCurrency(
+    invoices.filter((i) => i.status === "paid"),
+    currency,
+    usdInrRate
+  );
 
   if (isLoading) {
     return (

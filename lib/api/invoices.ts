@@ -10,6 +10,14 @@ export interface CreateInvoiceInput {
   amount: number;
   notes?: string;
   dueDate?: string | null;
+  invoicePrefix?: string;
+}
+
+export interface NextInvoiceNumber {
+  prefix: string;
+  year: number;
+  seq: number;
+  invoiceNumber: string;
 }
 
 export interface VerifyPaymentInput {
@@ -29,6 +37,10 @@ export const invoicesApi = {
     return api.get<Ok<Invoice[]>>(`/invoices${qs ? `?${qs}` : ""}`);
   },
   getById: (id: string) => api.get<Ok<Invoice>>(`/invoices/${id}`),
+  nextNumber: (clientId: string, prefix?: string) => {
+    const qs = new URLSearchParams({ clientId, ...(prefix ? { prefix } : {}) }).toString();
+    return api.get<Ok<NextInvoiceNumber>>(`/invoices/next-number?${qs}`);
+  },
   create: (input: CreateInvoiceInput) => api.post<Ok<Invoice>>("/invoices", input),
   update: (id: string, input: Partial<CreateInvoiceInput>) =>
     api.patch<Ok<Invoice>>(`/invoices/${id}`, input),

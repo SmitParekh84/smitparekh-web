@@ -20,6 +20,11 @@ export const clientsApi = {
   updateStatus: (id: string, status: string) =>
     api.patch<{ success: boolean; data: Client }>(`/clients/${id}/status`, { status }),
 
+  updateBilling: (
+    id: string,
+    payload: { preferredCurrency?: "USD" | "INR"; invoicePrefix?: string }
+  ) => api.patch<{ success: boolean; data: Client }>(`/clients/${id}/billing`, payload),
+
   getRequirements: (clientId: string) =>
     api.get<{ success: boolean; data: ClientRequirements }>(`/clients/${clientId}/requirements`),
 

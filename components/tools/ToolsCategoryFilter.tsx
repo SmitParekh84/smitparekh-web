@@ -36,8 +36,10 @@ import {
   Star,
   Hexagon,
   AudioLines,
+  X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { toolsSEO } from "@/data/tools-seo";
 import { TOOL_CATEGORIES, getToolCategory, type ToolCategory } from "@/data/tool-categories";
 
@@ -90,6 +92,7 @@ type Category = "All" | ToolCategory;
 
 export default function ToolsCategoryFilter() {
   const [active, setActive] = useState<Category>("All");
+  const [query, setQuery] = useState("");
 
   const counts = useMemo(() => {
     const map: Record<string, number> = { All: toolsSEO.length };
@@ -101,12 +104,47 @@ export default function ToolsCategoryFilter() {
   }, []);
 
   const visibleTools = useMemo(() => {
-    if (active === "All") return toolsSEO;
-    return toolsSEO.filter((t) => getToolCategory(t.slug) === active);
-  }, [active]);
+    const q = query.trim().toLowerCase();
+    return toolsSEO.filter((t) => {
+      const matchesCat = active === "All" || getToolCategory(t.slug) === active;
+      if (!matchesCat) return false;
+      if (!q) return true;
+      const name = t.title.split(" - ")[0].toLowerCase();
+      return (
+        name.includes(q) ||
+        t.slug.includes(q) ||
+        (t.description ?? "").toLowerCase().includes(q)
+      );
+    });
+  }, [active, query]);
 
   return (
     <>
+      {/* Search box */}
+      <div className="mb-4">
+        <div className="relative max-w-md">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search tools by name or keyword…"
+            aria-label="Search tools"
+            className="h-11 pl-10 pr-10"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Sticky filter bar */}
       <div className="sticky top-16 z-10 -mx-4 sm:-mx-6 lg:mx-0 mb-8 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
         <div
@@ -197,9 +235,25 @@ export default function ToolsCategoryFilter() {
       </div>
 
       {visibleTools.length === 0 && (
-        <p className="text-center text-sm text-muted-foreground py-12">
-          No tools in this category yet.
-        </p>
+        <div className="py-12 text-center">
+          <p className="text-sm text-muted-foreground">
+            {query.trim()
+              ? `No tools match “${query.trim()}”.`
+              : "No tools in this category yet."}
+          </p>
+          {query.trim() && (
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setActive("All");
+              }}
+              className="mt-3 text-sm font-medium text-blue-500 hover:underline"
+            >
+              Clear search
+            </button>
+          )}
+        </div>
       )}
     </>
   );
