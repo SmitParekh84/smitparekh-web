@@ -21,7 +21,15 @@ export function ClientGuard({ children }: { children: React.ReactNode }) {
 
     const supabase = createClient();
     let mounted = true;
-    const loginHref = `${LOGIN_PATH}?next=${encodeURIComponent(pathname)}`;
+    // Preserve the FULL intended location - path + query + hash - not just the
+    // pathname. Invoice deep links carry the target in the hash (`#inv-<id>`),
+    // which `usePathname()` drops; without this the client lands on the generic
+    // invoices page after signing in instead of the specific invoice.
+    const intended =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search + window.location.hash
+        : pathname;
+    const loginHref = `${LOGIN_PATH}?next=${encodeURIComponent(intended)}`;
 
     function resolve(hasSession: boolean) {
       if (!mounted) return;

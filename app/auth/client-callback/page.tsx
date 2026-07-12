@@ -41,8 +41,16 @@ function ClientCallbackInner() {
   const [phase, setPhase] = useState<"loading" | "error">("loading");
   const [authError, setAuthError] = useState<AuthError | null>(null);
 
+  // Carry the intended destination onto the manual-login fallback so an expired
+  // or reused magic link (e.g. an invoice link opened days later) still lands
+  // the client on the exact page after they sign in.
+  const next = searchParams.get("next") ?? "/client/dashboard";
+  const loginHref =
+    next && next !== "/client/dashboard"
+      ? `/client/login?next=${encodeURIComponent(next)}`
+      : "/client/login";
+
   useEffect(() => {
-    const next = searchParams.get("next") ?? "/client/dashboard";
     const code = searchParams.get("code");
 
     // Hash fragment - Supabase puts otp_expired etc. here (client-side only)
@@ -79,7 +87,7 @@ function ClientCallbackInner() {
         setPhase("error");
       }
     });
-  }, [router, searchParams]);
+  }, [router, searchParams, next]);
 
   if (phase === "loading") {
     return (
@@ -140,7 +148,7 @@ function ClientCallbackInner() {
           </a>
 
           <Link
-            href="/client/login"
+            href={loginHref}
             className={cn(buttonVariants({ variant: "outline" }), "w-full gap-2")}
           >
             <RefreshCw className="h-4 w-4" />

@@ -1,22 +1,26 @@
 "use client";
 
-import { use } from "react";
-import Link from "next/link";
-import { AlertTriangle, ArrowLeft, Ban, CheckCircle2, Clock, Download, Send } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
-import { useAdminInvoice, useSendInvoice, useCancelInvoice, useMarkOverdue } from "@/hooks/api/use-invoices";
-import { toast } from "@/lib/toast";
+import {
+  useAdminInvoice,
+  useCancelInvoice,
+  useMarkOverdue,
+  useSendInvoice,
+} from "@/hooks/api/use-invoices";
 import { ApiError } from "@/lib/api";
+import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import type { InvoiceStatus } from "@/types";
+import { AlertTriangle, ArrowLeft, Ban, CheckCircle2, Clock, Download, Send } from "lucide-react";
+import Link from "next/link";
+import { use } from "react";
 
 const INV_FROM = {
   name: "Smit Parekh",
   org: "Smit Parekh Technologies",
-  email: "billing@smitparekh.co.in",
+  email: "business.smitp@gmail.com",
   address: "Ahmedabad, Gujarat 380015, India",
   taxLabel: "GSTIN",
   taxId: "24ABCDE1234F1Z5",
@@ -31,26 +35,57 @@ function money(a: number, c: string) {
 
 function fmtDate(iso?: string | null) {
   if (!iso) return "-";
-  return new Date(iso).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 function fmtDateTime(iso: string) {
   return new Date(iso).toLocaleString("en-US", {
-    day: "numeric", month: "short", year: "numeric",
-    hour: "2-digit", minute: "2-digit",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 
 const STATUS_CONFIG: Record<InvoiceStatus, { label: string; dot: string; badge: string }> = {
-  paid:      { label: "Paid",      dot: "bg-green-500",           badge: "border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400" },
-  sent:      { label: "Sent",      dot: "bg-blue-500",            badge: "border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-400" },
-  overdue:   { label: "Overdue",   dot: "bg-red-500",             badge: "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400" },
-  cancelled: { label: "Cancelled", dot: "bg-muted-foreground/40", badge: "border-border bg-muted/50 text-muted-foreground" },
-  draft:     { label: "Draft",     dot: "bg-yellow-500",          badge: "border-yellow-500/30 bg-yellow-500/10 text-yellow-700 dark:text-yellow-400" },
+  paid: {
+    label: "Paid",
+    dot: "bg-green-500",
+    badge: "border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400",
+  },
+  sent: {
+    label: "Sent",
+    dot: "bg-blue-500",
+    badge: "border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-400",
+  },
+  overdue: {
+    label: "Overdue",
+    dot: "bg-red-500",
+    badge: "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400",
+  },
+  cancelled: {
+    label: "Cancelled",
+    dot: "bg-muted-foreground/40",
+    badge: "border-border bg-muted/50 text-muted-foreground",
+  },
+  draft: {
+    label: "Draft",
+    dot: "bg-yellow-500",
+    badge: "border-yellow-500/30 bg-yellow-500/10 text-yellow-700 dark:text-yellow-400",
+  },
 };
 
 const HISTORY_ICONS: Record<string, React.ElementType> = {
-  paid: CheckCircle2, sent: Send, overdue: Clock, cancelled: Ban, draft: Clock,
+  paid: CheckCircle2,
+  sent: Send,
+  overdue: Clock,
+  cancelled: Ban,
+  draft: Clock,
 };
 
 function StatusBadge({ status }: { status: InvoiceStatus }) {
@@ -63,11 +98,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
   );
 }
 
-export default function AdminInvoiceDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function AdminInvoiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const { data, isLoading } = useAdminInvoice(id);
   const send = useSendInvoice();
@@ -167,7 +198,13 @@ export default function AdminInvoiceDetailPage({
             </Button>
           )}
           {canCancel && (
-            <Button variant="outline" onClick={handleCancel} disabled={cancel.isPending} size="sm" className="gap-1.5">
+            <Button
+              variant="outline"
+              onClick={handleCancel}
+              disabled={cancel.isPending}
+              size="sm"
+              className="gap-1.5"
+            >
               <Ban className="h-3.5 w-3.5" />
               {cancel.isPending ? "Cancelling…" : "Cancel"}
             </Button>
@@ -176,8 +213,10 @@ export default function AdminInvoiceDetailPage({
       </div>
 
       {/* Invoice sheet */}
-      <div data-print-invoice className="overflow-hidden rounded-xl border border-border bg-white shadow-sm print:border-0 print:shadow-none print:rounded-none">
-
+      <div
+        data-print-invoice
+        className="overflow-hidden rounded-xl border border-border bg-white shadow-sm print:border-0 print:shadow-none print:rounded-none"
+      >
         {/* Header */}
         <div className="border-b border-border px-8 py-7">
           <div className="flex flex-wrap items-start justify-between gap-4">
@@ -192,7 +231,9 @@ export default function AdminInvoiceDetailPage({
             </div>
             <div className="text-right">
               <div className="text-[22px] font-semibold tracking-tight">Invoice</div>
-              <div className="font-mono text-[12.5px] text-muted-foreground">{inv.invoiceNumber}</div>
+              <div className="font-mono text-[12.5px] text-muted-foreground">
+                {inv.invoiceNumber}
+              </div>
               <div className="mt-1.5">
                 <StatusBadge status={inv.status} />
               </div>
@@ -203,12 +244,17 @@ export default function AdminInvoiceDetailPage({
         {/* Bill-to / meta */}
         <div className="grid gap-6 px-8 py-6 sm:grid-cols-2">
           <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Billed to</p>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Billed to
+            </p>
             {clientObj ? (
               <>
-                {clientObj.company && <p className="text-[13.5px] font-medium">{clientObj.company}</p>}
+                {clientObj.company && (
+                  <p className="text-[13.5px] font-medium">{clientObj.company}</p>
+                )}
                 <p className="text-[12.5px] text-muted-foreground">
-                  {clientObj.name && `${clientObj.name} · `}{clientObj.email}
+                  {clientObj.name && `${clientObj.name} · `}
+                  {clientObj.email}
                 </p>
               </>
             ) : (
@@ -218,18 +264,31 @@ export default function AdminInvoiceDetailPage({
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:justify-items-end sm:text-right">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Issued</p>
-              <p className="mt-0.5 text-[13px] font-medium tabular-nums">{fmtDate(inv.createdAt)}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Issued
+              </p>
+              <p className="mt-0.5 text-[13px] font-medium tabular-nums">
+                {fmtDate(inv.createdAt)}
+              </p>
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Due</p>
-              <p className={cn("mt-0.5 text-[13px] font-medium tabular-nums", isOverdue && "text-red-600")}>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Due
+              </p>
+              <p
+                className={cn(
+                  "mt-0.5 text-[13px] font-medium tabular-nums",
+                  isOverdue && "text-red-600",
+                )}
+              >
                 {fmtDate(inv.dueDate)}
               </p>
             </div>
             {inv.status === "paid" && inv.paidAt && (
               <div className="col-span-2 sm:col-span-1">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Paid on</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Paid on
+                </p>
                 <p className="mt-0.5 text-[13px] font-medium tabular-nums">{fmtDate(inv.paidAt)}</p>
               </div>
             )}
@@ -256,7 +315,9 @@ export default function AdminInvoiceDetailPage({
                 inv.lineItems.map((li, i) => (
                   <tr key={i} className="border-b border-border/60">
                     <td className="py-3 pr-4 text-foreground/90">{li.description}</td>
-                    <td className="py-3 text-right tabular-nums font-medium">{money(li.amount, inv.currency)}</td>
+                    <td className="py-3 text-right tabular-nums font-medium">
+                      {money(li.amount, inv.currency)}
+                    </td>
                   </tr>
                 ))
               )}
@@ -285,7 +346,9 @@ export default function AdminInvoiceDetailPage({
               <div className="flex items-center justify-end gap-1.5 pt-1 text-[12px] font-medium text-green-600">
                 <CheckCircle2 className="h-3.5 w-3.5" /> Paid in full
                 {inv.razorpayPaymentId && (
-                  <span className="ml-1 font-mono text-[11px] text-muted-foreground">· {inv.razorpayPaymentId}</span>
+                  <span className="ml-1 font-mono text-[11px] text-muted-foreground">
+                    · {inv.razorpayPaymentId}
+                  </span>
                 )}
               </div>
             )}
@@ -312,10 +375,18 @@ export default function AdminInvoiceDetailPage({
             <div>
               <p className="font-semibold text-foreground/70">{INV_FROM.name}</p>
               <p>{INV_FROM.address}</p>
-              <p>{INV_FROM.taxLabel}: {INV_FROM.taxId} · {INV_FROM.email}</p>
+              <p>
+                {INV_FROM.taxLabel}: {INV_FROM.taxId} · {INV_FROM.email}
+              </p>
             </div>
             <div className="sm:text-right">
-              <p>Questions? Email <a href={`mailto:${INV_FROM.email}`} className="text-blue-600 hover:underline">{INV_FROM.email}</a>.</p>
+              <p>
+                Questions? Email{" "}
+                <a href={`mailto:${INV_FROM.email}`} className="text-blue-600 hover:underline">
+                  {INV_FROM.email}
+                </a>
+                .
+              </p>
               <p className="mt-1">Secure payments processed by Razorpay.</p>
             </div>
           </div>
@@ -331,7 +402,12 @@ export default function AdminInvoiceDetailPage({
             const Icon = HISTORY_ICONS[h.status] ?? Clock;
             return (
               <li key={i} className="relative pb-5 last:pb-0">
-                <span className={cn("absolute -left-[22px] flex h-4 w-4 items-center justify-center rounded-full border-2 border-background", cfg.dot)} />
+                <span
+                  className={cn(
+                    "absolute -left-[22px] flex h-4 w-4 items-center justify-center rounded-full border-2 border-background",
+                    cfg.dot,
+                  )}
+                />
                 <div className="flex items-baseline justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <Icon className="h-3.5 w-3.5 text-muted-foreground" />

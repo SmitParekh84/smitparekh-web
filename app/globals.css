@@ -269,6 +269,11 @@
     @apply font-sans;
     scrollbar-width: none;
     scroll-behavior: smooth;
+    /* Site-wide guard against horizontal scroll from decorative spill (e.g. the
+       chat launcher's animate-ping ring, hero glows near the viewport edge).
+       `clip` - not `hidden` - so it never becomes a scroll container and thus
+       can't break `position: sticky` descendants. */
+    overflow-x: clip;
   }
   html::-webkit-scrollbar {
     display: none;

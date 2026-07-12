@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { CheckCircle2, ChevronRight, Clock, CreditCard, FileText, Receipt } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -82,6 +83,25 @@ export default function ClientInvoicesPage() {
     currency,
     usdInrRate
   );
+
+  // Deep-link scroll: an invoice email (magic link) lands here as
+  // `/client/invoices#inv-<id>`. Native hash scroll fires before the async list
+  // exists, so scroll once the invoices have loaded, then briefly highlight the
+  // target row. Runs a single time per mount via the ref guard.
+  const didScrollToHash = useRef(false);
+  useEffect(() => {
+    if (isLoading || didScrollToHash.current) return;
+    const hash = window.location.hash;
+    if (!hash.startsWith("#inv-")) return;
+    const el = document.getElementById(hash.slice(1));
+    if (!el) return;
+    didScrollToHash.current = true;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    const HL = ["ring-2", "ring-blue-500", "ring-offset-2", "ring-offset-background", "rounded-lg"];
+    el.classList.add(...HL);
+    const t = window.setTimeout(() => el.classList.remove(...HL), 2400);
+    return () => window.clearTimeout(t);
+  }, [isLoading, data]);
 
   if (isLoading) {
     return (
