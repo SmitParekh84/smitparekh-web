@@ -51,8 +51,6 @@ function ClientCallbackInner() {
       : "/client/login";
 
   useEffect(() => {
-    const code = searchParams.get("code");
-
     // Hash fragment - Supabase puts otp_expired etc. here (client-side only)
     const hashErr = parseHashError();
     if (hashErr) {
@@ -63,6 +61,33 @@ function ClientCallbackInner() {
 
     const supabase = createClient();
 
+    // Implicit flow: admin-generated magic links (generateLink) return the
+    // session as tokens in the URL hash - `#access_token=...&refresh_token=...`
+    // - NOT as a PKCE `?code=`. The @supabase/ssr browser client is PKCE-shaped
+    // and does not auto-consume these, so set the session explicitly. Without
+    // this every fresh magic link fails with "no valid sign-in code".
+    const hashParams =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.hash.slice(1))
+        : new URLSearchParams();
+    const accessToken = hashParams.get("access_token");
+    const refreshToken = hashParams.get("refresh_token");
+    if (accessToken && refreshToken) {
+      supabase.auth
+        .setSession({ access_token: accessToken, refresh_token: refreshToken })
+        .then(({ error }) => {
+          if (error) {
+            setAuthError({ code: error.name, description: error.message });
+            setPhase("error");
+          } else {
+            router.replace(next);
+          }
+        });
+      return;
+    }
+
+    // PKCE flow: OAuth / links that come back with a `?code=`.
+    const code = searchParams.get("code");
     if (code) {
       supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
         if (error) {
@@ -75,7 +100,7 @@ function ClientCallbackInner() {
       return;
     }
 
-    // No code - already signed in?
+    // No token or code - already signed in?
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         router.replace(next);
