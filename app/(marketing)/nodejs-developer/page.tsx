@@ -39,8 +39,9 @@ export const metadata: Metadata = {
   },
   keywords: [
     "hire Node.js developer", "Node.js developer for hire", "freelance Node.js developer",
-    "Node.js developer UK", "Node.js developer Canada", "Node.js developer USA",
-    "hire Node.js developer UK", "hire Node.js developer Canada", "hire backend developer",
+    "Node.js developer UK", "Node.js developer India", "Node.js developer USA",
+    "hire Node.js developer UK", "hire Node.js developer India", "hire backend developer",
+    "hire Node.js developer Bengaluru", "freelance Node.js developer India", "remote Node.js developer India",
     "NestJS developer for hire", "Express.js developer", "hire NestJS developer",
     "Node.js API developer", "GraphQL developer for hire", "Node.js TypeScript developer",
     "Node.js PostgreSQL developer", "Node AWS developer", "hire backend Node.js developer",
@@ -131,6 +132,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does a Node.js developer cost?",
     a: "Fixed-price for scoped API projects - a REST API, an auth system, a microservice. Retainer for ongoing backend development. I quote in writing within 24 hours, with clear scope and no hidden costs.",
   },
@@ -164,7 +169,7 @@ const serviceSchema = {
   serviceType: "Node.js Backend Development",
   description: "Freelance Node.js developer with 4+ years shipping production APIs handling 10,000+ daily requests at 99.9% uptime. NestJS, Express, GraphQL, PostgreSQL, Redis, AWS Certified.",
   url: `${siteConfig.url}/nodejs-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Hire an AWS Developer - Production Cloud Architecture | Smit Parekh",
     description:
-      "AWS cloud architecture, serverless, CI/CD, and zero-downtime deploys. 99.9% uptime across deployed projects. Serving clients worldwide.",
+      "AWS cloud architecture, serverless, CI/CD, and zero-downtime deploys. 99.9% uptime across deployed projects. India-based, serving startups in India, the US, UK & the Gulf.",
     images: [{ url: `${siteConfig.url}/images/hire-aws-developer.png`, width: 1200, height: 630, alt: "Hire an AWS Developer - Smit Parekh" }],
   },
   twitter: {
@@ -40,7 +40,8 @@ export const metadata: Metadata = {
   },
   keywords: [
     "hire AWS developer", "AWS developer for hire", "freelance AWS developer",
-    "AWS cloud architect", "AWS developer UK", "AWS developer Canada", "AWS developer USA",
+    "AWS cloud architect", "AWS developer UK", "AWS developer India", "AWS developer USA",
+    "hire AWS developer India", "freelance AWS developer India", "remote AWS developer India",
     "remote AWS developer", "AWS Lambda developer", "serverless AWS developer",
     "AWS EC2 developer", "AWS RDS developer", "AWS CDK developer",
     "DevOps AWS developer", "cloud infrastructure developer", "AWS DevOps engineer",
@@ -138,6 +139,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "Are you AWS certified?",
     a: "I work with AWS daily in production and have deep hands-on experience across the core services. I prioritise real-world delivery over certification badges - though I'm in the process of formalising that with the SAA exam.",
   },
@@ -171,7 +176,7 @@ const serviceSchema = {
   serviceType: "AWS Cloud Architecture & DevOps",
   description: "Freelance AWS developer with production experience across EC2, RDS, Lambda, ECS, CDK, and Terraform. CI/CD pipelines, 99.9% uptime, cost optimisation, and zero-downtime deploys.",
   url: `${siteConfig.url}/aws-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements. Free architecture review within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free architecture review within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

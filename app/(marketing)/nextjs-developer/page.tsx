@@ -39,8 +39,9 @@ export const metadata: Metadata = {
   },
   keywords: [
     "hire Next.js developer", "Next.js developer for hire", "freelance Next.js developer",
-    "Next.js developer UK", "Next.js developer Canada", "Next.js developer USA",
-    "hire Next.js developer UK", "hire Next.js developer Canada", "Next.js App Router developer",
+    "Next.js developer UK", "Next.js developer India", "Next.js developer USA",
+    "hire Next.js developer UK", "hire Next.js developer India", "Next.js App Router developer",
+    "hire Next.js developer Bengaluru", "freelance Next.js developer India", "remote Next.js developer India",
     "Next.js full stack developer", "Next.js TypeScript developer", "Next.js SEO developer",
     "Next.js Vercel developer", "Next.js 15 developer", "Next.js performance developer",
     "hire full stack Next.js developer", "Next.js SaaS developer", "Next.js e-commerce developer",
@@ -129,6 +130,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does a Next.js developer cost?",
     a: "Fixed-price for scoped projects - a marketing site, a SaaS MVP, an App Router migration. Retainer for ongoing product work. I quote in writing within 24 hours of receiving a brief. No verbal estimates, no surprises.",
   },
@@ -162,7 +167,7 @@ const serviceSchema = {
   serviceType: "Next.js Full-Stack Development",
   description: "Freelance Next.js developer with 4+ years shipping full-stack production apps. App Router, Server Components, TypeScript strict, 95+ Lighthouse scores, SEO-first builds.",
   url: `${siteConfig.url}/nextjs-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

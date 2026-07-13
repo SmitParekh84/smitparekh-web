@@ -40,7 +40,8 @@ export const metadata: Metadata = {
   keywords: [
     "hire API developer", "API developer for hire", "freelance API developer",
     "REST API developer", "GraphQL API developer", "hire REST API developer",
-    "hire GraphQL developer", "API developer UK", "API developer Canada", "API developer USA",
+    "hire GraphQL developer", "API developer UK", "API developer India", "API developer USA",
+    "hire API developer India", "freelance API developer India", "remote API developer India",
     "hire backend API developer", "Node.js API developer", "TypeScript API developer",
     "JWT authentication developer", "OpenAPI developer", "Swagger API developer",
     "rate limiting API developer", "API integration developer", "webhook developer",
@@ -129,6 +130,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does an API developer cost?",
     a: "For a defined scope - a new API, an integration, a performance audit - I quote a fixed price. For ongoing API work I offer a weekly or monthly retainer. You'll have written numbers within 24 hours of sending a brief.",
   },
@@ -162,7 +167,7 @@ const serviceSchema = {
   serviceType: "REST & GraphQL API Development",
   description: "Freelance API developer with 4+ years building production REST and GraphQL APIs. TypeScript strict, JWT auth, rate limiting, Redis caching, and OpenAPI documentation.",
   url: `${siteConfig.url}/api-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

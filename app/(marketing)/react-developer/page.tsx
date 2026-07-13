@@ -40,8 +40,9 @@ export const metadata: Metadata = {
   keywords: [
     "hire React developer", "React developer for hire", "freelance React developer",
     "React.js developer", "hire React.js developer", "React developer UK",
-    "React developer Canada", "React developer USA", "remote React developer",
-    "hire React developer UK", "hire React developer Canada", "hire React developer USA",
+    "React developer India", "React developer USA", "remote React developer",
+    "hire React developer UK", "hire React developer USA", "hire React developer India",
+    "hire React developer Bengaluru", "freelance React developer India", "remote React developer India",
     "freelance React developer UK", "React TypeScript developer", "Redux developer",
     "React Redux developer for hire", "senior React developer", "experienced React developer",
     "React developer FinTech", "React SaaS developer", "hire frontend developer",
@@ -131,6 +132,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does a React developer cost?",
     a: "For a scoped project - an MVP, a dashboard, a component library - I work on a fixed price agreed upfront. For ongoing React work I offer a weekly or monthly retainer. Send me your brief and I'll turn around a written quote within 24 hours, no commitment required.",
   },
@@ -164,7 +169,7 @@ const serviceSchema = {
   serviceType: "React.js Frontend Development",
   description: "Freelance React developer with 4+ years shipping production applications for FinTech, SaaS, and enterprise. TypeScript strict, Redux Toolkit, 40% performance improvements, 10+ products delivered.",
   url: `${siteConfig.url}/react-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

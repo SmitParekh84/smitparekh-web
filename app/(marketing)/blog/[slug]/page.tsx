@@ -51,11 +51,19 @@ const SLUG_SEO_OVERRIDES: Record<string, SlugOverride> = {
   // GSC (3-mo to 2026-05-23): 5,357 impressions / 0 clicks at pos 7.3.
   // The DB title is stuffed with "2026" - irrelevant to real searchers.
   // Override to a click-worthy human title and let it re-earn CTR.
+  //
+  // 2026-07-13 update: after the title fix it climbed to 7,830 impressions
+  // and STILL earns 0 clicks (queries are machine/agent-shaped "vercel official
+  // docs deploy next.js 2026" variants - a solo blog can't win them, and the
+  // searchers aren't buyers). It's now 51% of all site impressions and is
+  // diluting quality signals. Noindex it: keep the content live for readers who
+  // land via internal links, but stop bidding for impressions it can't convert.
   "deploy-nextjs-on-vercel-in-2026-a-beginners-guide": {
     title:
       "Deploy a Next.js App on Vercel - Beginner's Guide",
     description:
       "Step-by-step beginner's guide to deploying a Next.js app on Vercel: GitHub import, env vars, preview deployments, and going live.",
+    robots: { index: false, follow: true },
   },
 };
 
@@ -140,13 +148,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // First match wins; falls back to /full-stack-developer.
 const TAG_TO_DEVELOPER_SLUG: Array<[RegExp, (typeof developerPages)[number]["slug"]]> = [
   [/^next\.?js$/i, "nextjs-developer"],
+  [/^(vercel|deployment|deploy)$/i, "nextjs-developer"],
   [/^nest\.?js$/i, "nestjs-developer"],
   [/^node\.?js?$/i, "nodejs-developer"],
+  [/^react native$/i, "react-native-developer"],
   [/^react$/i, "react-developer"],
   [/^typescript$/i, "typescript-developer"],
-  [/^postgres(ql)?$/i, "postgresql-developer"],
+  [/^(postgres(ql)?|sql|database)$/i, "postgresql-developer"],
+  [/^(aws|cloud|devops|serverless)$/i, "aws-developer"],
   [/^saas$/i, "saas-developer"],
-  [/^(api|rest|graphql)$/i, "api-developer"],
+  [/^(api|rest|http|graphql|backend)$/i, "api-developer"],
 ];
 
 function pickSpecialist(tags: string[], category: string) {

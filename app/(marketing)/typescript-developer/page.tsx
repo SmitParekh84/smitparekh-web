@@ -43,7 +43,8 @@ export const metadata: Metadata = {
   keywords: [
     "hire TypeScript developer", "TypeScript developer for hire", "freelance TypeScript developer",
     "TypeScript React developer", "TypeScript Node.js developer", "TypeScript NestJS developer",
-    "TypeScript developer UK", "TypeScript developer USA", "TypeScript developer Canada",
+    "TypeScript developer UK", "TypeScript developer USA", "TypeScript developer India",
+    "hire TypeScript developer India", "freelance TypeScript developer India", "remote TypeScript developer India",
     "senior TypeScript developer", "strict TypeScript developer", "full stack TypeScript developer",
     "hire TypeScript engineer", "TypeScript Next.js developer", "TypeScript API developer",
     "TypeScript PostgreSQL developer", "freelance TypeScript developer UK",
@@ -133,6 +134,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "What does strict-mode TypeScript actually mean?",
     a: "It means the compiler is configured with strictNullChecks, noImplicitAny, strictFunctionTypes, and related flags enabled. This catches entire categories of runtime errors at compile time - null dereferences, missing properties, incorrect function signatures - before they ever reach production.",
   },
@@ -166,7 +171,7 @@ const serviceSchema = {
   serviceType: "TypeScript Full-Stack Development",
   description: "Freelance TypeScript developer with 4+ years in strict-mode TypeScript across React, Next.js, Node.js, and NestJS. 30+ fully typed codebases delivered.",
   url: `${siteConfig.url}/typescript-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

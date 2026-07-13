@@ -39,7 +39,8 @@ export const metadata: Metadata = {
   },
   keywords: [
     "hire PostgreSQL developer", "PostgreSQL developer for hire", "freelance PostgreSQL developer",
-    "PostgreSQL developer UK", "PostgreSQL developer Canada", "PostgreSQL developer USA",
+    "PostgreSQL developer UK", "PostgreSQL developer India", "PostgreSQL developer USA",
+    "hire PostgreSQL developer India", "freelance PostgreSQL developer India", "remote PostgreSQL developer India",
     "hire database developer", "PostgreSQL schema design", "PostgreSQL query optimisation",
     "PostgreSQL performance tuning", "PostgreSQL indexing expert", "Supabase developer for hire",
     "PostgreSQL migration developer", "PostgreSQL RLS developer", "hire database engineer",
@@ -129,6 +130,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does hiring a PostgreSQL developer cost?",
     a: "For a scoped engagement - schema design, a query optimisation audit, or a migration project - I quote a fixed price after reviewing the brief. Ongoing database work runs on a retainer. I'll send written numbers within 24 hours.",
   },
@@ -162,7 +167,7 @@ const serviceSchema = {
   serviceType: "PostgreSQL Database Development & Optimisation",
   description: "Freelance PostgreSQL developer with 4+ years designing and optimising production databases. Schema design, query optimisation, RLS, Supabase, and AWS RDS.",
   url: `${siteConfig.url}/postgresql-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 

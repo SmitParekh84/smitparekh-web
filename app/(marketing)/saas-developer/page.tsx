@@ -39,7 +39,8 @@ export const metadata: Metadata = {
   },
   keywords: [
     "hire SaaS developer", "SaaS developer for hire", "freelance SaaS developer",
-    "SaaS developer UK", "SaaS developer Canada", "SaaS developer USA",
+    "SaaS developer UK", "SaaS developer India", "SaaS developer USA",
+    "hire SaaS developer India", "freelance SaaS developer India", "SaaS MVP developer India",
     "hire SaaS developer UK", "multi-tenant SaaS developer", "Stripe billing developer",
     "subscription SaaS developer", "hire SaaS MVP developer", "SaaS Next.js developer",
     "SaaS Supabase developer", "SaaS authentication developer", "hire full-stack SaaS developer",
@@ -129,6 +130,10 @@ const techStack = [
 
 const faqs = [
   {
+    q: "Do you work with startups and teams in India?",
+    a: "Yes - I'm based in India and work with founders and teams across Bengaluru, Mumbai, Delhi NCR, and Pune on the same timezone, with the option to meet in person. Indian clients are invoiced in INR (USD, AED, or GBP for international work), and I also work remotely with startups across the US, UK, and the Gulf.",
+  },
+  {
     q: "How much does building a SaaS product cost?",
     a: "An MVP with auth, Stripe billing, a core feature, and admin dashboard typically runs 4-8 weeks at a fixed price. I scope it from your brief - no verbal estimates, written proposal within 24 hours.",
   },
@@ -162,7 +167,7 @@ const serviceSchema = {
   serviceType: "SaaS Product Development",
   description: "Freelance SaaS developer with 4+ years building multi-tenant production applications. Auth, Stripe billing, subscriptions, onboarding flows, and admin dashboards.",
   url: `${siteConfig.url}/saas-developer`,
-  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements available. Free quote within 24 hours.", availability: "https://schema.org/InStock" },
+  offers: { "@type": "Offer", priceCurrency: "USD", description: "Fixed-price and retainer engagements, invoiced in USD (or INR, AED, GBP on request). Free quote within 24 hours.", availability: "https://schema.org/InStock" },
   ...serviceRatingFields(),
 };
 
