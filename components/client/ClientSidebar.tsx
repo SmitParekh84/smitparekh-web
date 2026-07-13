@@ -23,6 +23,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useClientMe } from "@/hooks/api/use-clients";
+import { useIsAdmin } from "@/hooks/api/use-auth";
 import { createClient } from "@/lib/supabase/client";
 import {
   Briefcase,
@@ -65,6 +66,7 @@ export function ClientSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data } = useClientMe();
+  const { isAdmin } = useIsAdmin();
   const client = data?.data;
   const navItems = NAV;
 
@@ -188,6 +190,12 @@ export function ClientSidebar() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                {isAdmin && (
+                  <DropdownMenuItem onClick={() => router.push("/admin")} className="gap-2">
+                    <Shield className="h-4 w-4" />
+                    Admin dashboard
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem onClick={handleLogout} className="gap-2 text-destructive">
                   <LogOut className="h-4 w-4" />
                   Sign out

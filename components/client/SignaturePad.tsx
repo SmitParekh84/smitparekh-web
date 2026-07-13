@@ -161,21 +161,14 @@ export function SignaturePad({ onSign, disabled, className }: Props) {
                 Use your finger, stylus, or mouse
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              {/* Landscape hint badge */}
-              <span className="hidden items-center gap-1 rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground sm:hidden landscape:hidden xs:flex">
-                <Smartphone className="h-3 w-3" />
-                Rotate for more space
-              </span>
-              <button
-                type="button"
-                onClick={close}
-                className="rounded-full p-1.5 text-muted-foreground hover:bg-muted"
-                aria-label="Close"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={close}
+              className="shrink-0 rounded-full p-1.5 text-muted-foreground hover:bg-muted"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </div>
 
           {!preview ? (

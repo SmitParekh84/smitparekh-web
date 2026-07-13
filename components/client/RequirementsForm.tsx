@@ -1165,9 +1165,9 @@ function ReviewRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex gap-4 px-4 py-3 text-sm">
-      <span className="w-40 shrink-0 text-muted-foreground">{label}</span>
-      <div className="min-w-0 flex-1">{children}</div>
+    <div className="grid gap-1 px-4 py-3 text-sm sm:grid-cols-[10rem_1fr] sm:gap-4">
+      <span className="text-muted-foreground">{label}</span>
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }

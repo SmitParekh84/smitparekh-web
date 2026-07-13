@@ -12,6 +12,7 @@ import {
   LogOut,
   Settings,
   UserRound,
+  Briefcase,
 } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
@@ -158,6 +159,10 @@ export function AdminTopbar() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => router.push("/client/dashboard")} className="gap-2">
+              <Briefcase className="h-4 w-4" />
+              Client portal
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => router.push("/admin/settings")} className="gap-2">
               <Settings className="h-4 w-4" />
               Settings

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { ChevronRight, LogOut, Moon, Sun } from "lucide-react";
+import { ChevronRight, LogOut, Moon, Shield, Sun } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useClientMe } from "@/hooks/api/use-clients";
+import { useIsAdmin } from "@/hooks/api/use-auth";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +38,7 @@ export function ClientTopbar() {
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
   const { data } = useClientMe();
+  const { isAdmin } = useIsAdmin();
   const client = data?.data;
 
   const displayName = client?.name || client?.email || "Client";
@@ -64,6 +67,20 @@ export function ClientTopbar() {
       </nav>
 
       <div className="ml-auto flex items-center gap-1.5">
+        {isAdmin && (
+          <Link
+            href="/admin"
+            aria-label="Switch to admin dashboard"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "sm" }),
+              "gap-1.5 border-blue-500/30 text-blue-600 dark:text-blue-400",
+            )}
+          >
+            <Shield className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Admin</span>
+          </Link>
+        )}
+
         <Button
           variant="ghost"
           size="icon"
@@ -99,6 +116,15 @@ export function ClientTopbar() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {isAdmin && (
+              <DropdownMenuItem
+                onClick={() => router.push("/admin")}
+                className="gap-2"
+              >
+                <Shield className="h-4 w-4" />
+                Admin dashboard
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem onClick={handleLogout} className="gap-2 text-destructive">
               <LogOut className="h-4 w-4" />
               Sign out

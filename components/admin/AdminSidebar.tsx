@@ -223,6 +223,15 @@ export function AdminSidebar() {
                   My Dashboard
                 </DropdownMenuItem>
 
+                {/* Switch to the client project portal */}
+                <DropdownMenuItem
+                  onClick={() => router.push("/client/dashboard")}
+                  className="gap-2"
+                >
+                  <Briefcase className="size-4" />
+                  Client portal
+                </DropdownMenuItem>
+
                 <DropdownMenuSeparator />
 
                 <DropdownMenuItem

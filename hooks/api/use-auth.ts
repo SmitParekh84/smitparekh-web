@@ -76,3 +76,14 @@ export function useSupabaseSession(): {
 
   return { session, isLoading };
 }
+
+/**
+ * True when the signed-in Supabase user has an admin role in `app_metadata`.
+ * Used to show cross-area shortcuts (switching between the client portal and the
+ * admin dashboard). Mirrors the client-side gating rule used by `AdminGuard`.
+ */
+export function useIsAdmin(): { isAdmin: boolean; isLoading: boolean } {
+  const { session, isLoading } = useSupabaseSession();
+  const role = session?.user?.app_metadata?.role as string | undefined;
+  return { isAdmin: role === "admin" || role === "superadmin", isLoading };
+}

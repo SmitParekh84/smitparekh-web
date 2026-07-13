@@ -275,7 +275,7 @@ function DashboardWithRequirements({
       ) : (
         <div className="flex items-center gap-2.5 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
           <CheckCircle2 className="h-5 w-5 shrink-0 text-green-500" />
-          <div>
+          <div className="min-w-0">
             <p className="text-[13.5px] font-medium text-green-700 dark:text-green-400">
               Requirements submitted
             </p>
@@ -285,7 +285,7 @@ function DashboardWithRequirements({
           </div>
           <Link
             href="/client/requirements"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "ml-auto")}
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "ml-auto shrink-0")}
           >
             View
           </Link>
