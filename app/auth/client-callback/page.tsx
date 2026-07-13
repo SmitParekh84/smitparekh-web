@@ -148,7 +148,7 @@ function ClientCallbackInner() {
           </h1>
           <p className="text-sm text-muted-foreground">
             {isExpired
-              ? "This link has already been used or has expired. Links are single-use and valid for 1 hour."
+              ? "This sign-in link has already been used. Links are single-use — sign in below and you'll be taken straight to your page."
               : (authError?.description ?? "Something went wrong with the sign-in link.")}
           </p>
         </div>
