@@ -53,8 +53,8 @@ export function WallpaperFilters({
   categories,
 }: WallpaperFiltersProps) {
   return (
-    <div className="sticky top-16 z-20 -mx-4 border-b border-border bg-background/85 px-4 py-3 backdrop-blur-md sm:top-16">
-      <div className="page-container space-y-3 px-0">
+    <div className="sticky top-16 z-20 border-b border-border bg-background/85 py-3 backdrop-blur-md">
+      <div className="page-container space-y-3">
         {/* Search */}
         <div className="relative max-w-md">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

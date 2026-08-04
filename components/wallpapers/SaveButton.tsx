@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Download, Loader2, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,8 +23,15 @@ export function SaveButton({
   onSaved,
 }: SaveButtonProps) {
   const [busy, setBusy] = useState(false);
-  // Decided once on mount - iOS gets "Save to Photos", everyone else "Download".
-  const [share] = useState(() => prefersShareSave());
+  // iOS gets "Save to Photos", everyone else "Download". Read via
+  // useSyncExternalStore so SSR returns the server snapshot (false) and the
+  // client snapshot is applied after hydration - no mismatch, and iOS users
+  // correctly see the share-to-Photos label.
+  const share = useSyncExternalStore(
+    () => () => {},
+    prefersShareSave,
+    () => false
+  );
 
   async function handleSave() {
     if (busy) return;
