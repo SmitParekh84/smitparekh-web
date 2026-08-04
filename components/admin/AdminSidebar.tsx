@@ -21,6 +21,7 @@ import {
   Bell,
   Briefcase,
   Receipt,
+  ImageIcon,
 } from "lucide-react";
 import {
   Sidebar,
@@ -57,6 +58,7 @@ const NAV_SECTIONS = [
     items: [
       { title: "Overview", href: "/admin", icon: LayoutDashboard },
       { title: "Projects", href: "/admin/projects", icon: FolderKanban },
+      { title: "Wallpapers", href: "/admin/wallpapers", icon: ImageIcon },
       { title: "Blog", href: "/admin/blogs", icon: FileText },
       { title: "Contacts", href: "/admin/contacts", icon: Mail },
       { title: "Feedback", href: "/admin/feedback", icon: MessageSquare },

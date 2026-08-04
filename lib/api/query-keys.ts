@@ -8,6 +8,15 @@ export const queryKeys = {
     bySlug: (slug: string) => [...queryKeys.projects.all, "slug", slug] as const,
     images: () => [...queryKeys.projects.all, "images"] as const,
   },
+  wallpapers: {
+    all: ["wallpapers"] as const,
+    list: (params?: object) => [...queryKeys.wallpapers.all, "list", params ?? {}] as const,
+    infinite: (params?: object) =>
+      [...queryKeys.wallpapers.all, "infinite", params ?? {}] as const,
+    categories: () => [...queryKeys.wallpapers.all, "categories"] as const,
+    bySlug: (slug: string) => [...queryKeys.wallpapers.all, "slug", slug] as const,
+    adminList: () => [...queryKeys.wallpapers.all, "admin"] as const,
+  },
   blogs: {
     all: ["blogs"] as const,
     list: () => [...queryKeys.blogs.all, "list"] as const,

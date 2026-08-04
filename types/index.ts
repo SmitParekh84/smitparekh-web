@@ -43,6 +43,58 @@ export interface ContactFormData {
   message: string;
 }
 
+export type WallpaperDevice = "phone" | "tablet" | "desktop";
+
+export interface Wallpaper {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  imageUrl: string;
+  publicId: string;
+  width: number;
+  height: number;
+  bytes: number;
+  format: string;
+  device: WallpaperDevice;
+  category: string;
+  tags: string[];
+  downloads: number;
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WallpaperCategory {
+  name: string;
+  count: number;
+}
+
+export interface WallpaperListParams {
+  q?: string;
+  category?: string;
+  device?: WallpaperDevice;
+  exclude?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface WallpaperListResponse {
+  success: boolean;
+  count: number;
+  total: number;
+  page: number;
+  hasMore: boolean;
+  data: Wallpaper[];
+}
+
+export type WallpaperUpdateInput = Partial<
+  Pick<
+    Wallpaper,
+    "title" | "description" | "category" | "tags" | "device" | "isPublished"
+  >
+>;
+
 export interface BackendProjectOutcome {
   label: string;
   value: string;

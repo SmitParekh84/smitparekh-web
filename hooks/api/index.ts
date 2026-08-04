@@ -1,5 +1,6 @@
 export * from "./use-auth";
 export * from "./use-projects";
+export * from "./use-wallpapers";
 export * from "./use-blogs";
 export * from "./use-contact";
 export * from "./use-feedback";
