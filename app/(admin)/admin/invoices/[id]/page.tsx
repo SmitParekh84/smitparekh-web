@@ -2,20 +2,41 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import {
   useAdminInvoice,
   useCancelInvoice,
   useMarkOverdue,
   useSendInvoice,
+  useUpdateInvoice,
 } from "@/hooks/api/use-invoices";
 import { ApiError } from "@/lib/api";
 import { toast } from "@/lib/toast";
 import { cn } from "@/lib/utils";
-import type { InvoiceStatus } from "@/types";
-import { AlertTriangle, ArrowLeft, Ban, CheckCircle2, Clock, Download, Send } from "lucide-react";
+import type { Invoice, InvoiceStatus } from "@/types";
+import { AlertTriangle, ArrowLeft, Ban, Check, CheckCircle2, Clock, Download, Loader2, Pencil, Send, X } from "lucide-react";
 import Link from "next/link";
-import { use } from "react";
+import { use, useState } from "react";
+
+/**
+ * The invoice "sheet" is always printed on white paper, so it must stay light
+ * even in dark mode — otherwise the theme's light-on-dark text renders on white
+ * and becomes unreadable. Pinning the semantic tokens locally forces a light
+ * palette for the sheet and everything inside it.
+ */
+const LIGHT_SHEET = {
+  "--background": "oklch(1 0 0)",
+  "--foreground": "oklch(0.145 0 0)",
+  "--card": "oklch(0.990 0.004 264)",
+  "--popover": "oklch(1 0 0)",
+  "--popover-foreground": "oklch(0.145 0 0)",
+  "--muted": "oklch(0.970 0.005 240)",
+  "--muted-foreground": "oklch(0.520 0.020 240)",
+  "--border": "oklch(0.910 0.010 240)",
+  "--input": "oklch(0.910 0.010 240)",
+  "--ring": "oklch(0.761 0.141 204.6)",
+} as React.CSSProperties;
 
 const INV_FROM = {
   name: "Smit Parekh",
@@ -98,6 +119,100 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
   );
 }
 
+/**
+ * Invoice number shown on the sheet. Editable inline for draft invoices only —
+ * the backend rejects edits once an invoice is sent, and enforces uniqueness.
+ */
+function InvoiceNumberField({ invoice }: { invoice: Invoice }) {
+  const update = useUpdateInvoice();
+  const [editing, setEditing] = useState(false);
+  const [value, setValue] = useState(invoice.invoiceNumber);
+  const canEdit = invoice.status === "draft";
+
+  function start() {
+    setValue(invoice.invoiceNumber);
+    setEditing(true);
+  }
+
+  async function save() {
+    const next = value.trim().toUpperCase();
+    if (!next || next === invoice.invoiceNumber) {
+      setEditing(false);
+      return;
+    }
+    try {
+      await update.mutateAsync({ id: invoice._id, input: { invoiceNumber: next } });
+      toast.success("Invoice number updated");
+      setEditing(false);
+    } catch (e) {
+      toast.error(
+        "Update failed",
+        e instanceof ApiError ? e.message : "Could not update the invoice number.",
+      );
+    }
+  }
+
+  if (editing) {
+    return (
+      <div className="flex items-center justify-end gap-1.5 print:hidden">
+        <Input
+          value={value}
+          onChange={(e) =>
+            setValue(e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 30))
+          }
+          onKeyDown={(e) => {
+            if (e.key === "Enter") save();
+            if (e.key === "Escape") setEditing(false);
+          }}
+          autoFocus
+          className="h-7 w-40 font-mono text-[12.5px]"
+        />
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-7 w-7 shrink-0"
+          onClick={save}
+          disabled={update.isPending}
+          aria-label="Save invoice number"
+        >
+          {update.isPending ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          ) : (
+            <Check className="h-3.5 w-3.5 text-green-600" />
+          )}
+        </Button>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-7 w-7 shrink-0"
+          onClick={() => setEditing(false)}
+          disabled={update.isPending}
+          aria-label="Cancel"
+        >
+          <X className="h-3.5 w-3.5" />
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center justify-end gap-1.5">
+      <span className="font-mono text-[12.5px] text-muted-foreground">{invoice.invoiceNumber}</span>
+      {canEdit && (
+        <button
+          type="button"
+          onClick={start}
+          aria-label="Edit invoice number"
+          title="Edit invoice number"
+          className="text-muted-foreground/70 transition-colors hover:text-foreground print:hidden"
+        >
+          <Pencil className="h-3 w-3" />
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function AdminInvoiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const { data, isLoading } = useAdminInvoice(id);
@@ -168,14 +283,14 @@ export default function AdminInvoiceDetailPage({ params }: { params: Promise<{ i
   return (
     <div className="mx-auto max-w-[800px] space-y-4 print:space-y-0">
       {/* Toolbar - hidden on print */}
-      <div className="flex items-center justify-between gap-3 print:hidden">
+      <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
         <Link
           href="/admin/invoices"
           className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "-ml-2")}
         >
           <ArrowLeft className="mr-1.5 h-4 w-4" /> Back to invoices
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           <Button variant="outline" size="sm" className="gap-1.5" onClick={() => window.print()}>
             <Download className="h-3.5 w-3.5" /> Download PDF
           </Button>
@@ -215,7 +330,8 @@ export default function AdminInvoiceDetailPage({ params }: { params: Promise<{ i
       {/* Invoice sheet */}
       <div
         data-print-invoice
-        className="overflow-hidden rounded-xl border border-border bg-white shadow-sm print:border-0 print:shadow-none print:rounded-none"
+        style={LIGHT_SHEET}
+        className="overflow-hidden rounded-xl border border-border bg-white text-foreground shadow-sm print:border-0 print:shadow-none print:rounded-none"
       >
         {/* Header */}
         <div className="border-b border-border px-8 py-7">
@@ -231,9 +347,7 @@ export default function AdminInvoiceDetailPage({ params }: { params: Promise<{ i
             </div>
             <div className="text-right">
               <div className="text-[22px] font-semibold tracking-tight">Invoice</div>
-              <div className="font-mono text-[12.5px] text-muted-foreground">
-                {inv.invoiceNumber}
-              </div>
+              <InvoiceNumberField invoice={inv} />
               <div className="mt-1.5">
                 <StatusBadge status={inv.status} />
               </div>

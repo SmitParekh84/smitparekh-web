@@ -1,7 +1,12 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { invoicesApi, type CreateInvoiceInput, type VerifyPaymentInput } from "@/lib/api/invoices";
+import {
+  invoicesApi,
+  type CreateInvoiceInput,
+  type UpdateInvoiceInput,
+  type VerifyPaymentInput,
+} from "@/lib/api/invoices";
 import { queryKeys } from "@/lib/api/query-keys";
 
 /* ─── Admin ───────────────────────────────────────────────────────────── */
@@ -49,7 +54,7 @@ export function useCreateInvoice() {
 export function useUpdateInvoice() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, input }: { id: string; input: Partial<CreateInvoiceInput> }) =>
+    mutationFn: ({ id, input }: { id: string; input: UpdateInvoiceInput }) =>
       invoicesApi.update(id, input),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.invoices.all }),
   });

@@ -147,7 +147,7 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
           {isDraft && (
             <Button
               size="sm"
-              className="h-7 gap-1.5 px-2.5 text-[12px] opacity-0 group-hover:opacity-100 transition-opacity"
+              className="h-7 gap-1.5 px-2.5 text-[12px] opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
               onClick={handleSend}
               disabled={busy}
             >
@@ -167,7 +167,7 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="h-7 w-7 text-muted-foreground opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
                   disabled={busy}
                 />
               }
@@ -216,7 +216,7 @@ function InvoiceRow({ inv }: { inv: Invoice }) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+              className="h-7 w-7 text-muted-foreground opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

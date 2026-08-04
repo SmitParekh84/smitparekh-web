@@ -13,6 +13,9 @@ export interface CreateInvoiceInput {
   invoicePrefix?: string;
 }
 
+/** Fields editable on a draft invoice. `invoiceNumber` is a manual override. */
+export type UpdateInvoiceInput = Partial<CreateInvoiceInput> & { invoiceNumber?: string };
+
 export interface NextInvoiceNumber {
   prefix: string;
   year: number;
@@ -42,7 +45,7 @@ export const invoicesApi = {
     return api.get<Ok<NextInvoiceNumber>>(`/invoices/next-number?${qs}`);
   },
   create: (input: CreateInvoiceInput) => api.post<Ok<Invoice>>("/invoices", input),
-  update: (id: string, input: Partial<CreateInvoiceInput>) =>
+  update: (id: string, input: UpdateInvoiceInput) =>
     api.patch<Ok<Invoice>>(`/invoices/${id}`, input),
   send: (id: string) => api.post<Ok<Invoice>>(`/invoices/${id}/send`, {}),
   cancel: (id: string) => api.post<Ok<Invoice>>(`/invoices/${id}/cancel`, {}),
