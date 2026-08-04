@@ -3,6 +3,7 @@ import { siteConfig } from "@/data/site";
 import { toolsSEO, getToolOgImage } from "@/data/tools-seo";
 import { fetchAllCaseStudies } from "@/lib/server/projects";
 import { fetchAllBlogs } from "@/lib/server/blogs";
+import { fetchAllPublishedWallpapers } from "@/lib/server/wallpapers";
 import { optimizeImageUrl } from "@/lib/cloudinary";
 import { servicePages, serviceOgImageUrl } from "@/data/services-catalog";
 import { geoCountries } from "@/data/geo-pages";
@@ -28,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Tier 2 - content hubs (high crawl value)
     { url: `${base}/free-tools`,              priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-free-developer-tools.png`] },
     { url: `${base}/blog`,                    priority: 0.9,  changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-blog-web-development.png`] },
+    { url: `${base}/wallpapers`,              priority: 0.7,  changeFrequency: "weekly",  lastModified, images: [defaultImage] },
     { url: `${base}/guides`,                  priority: 0.85, changeFrequency: "weekly",  lastModified, images: [defaultImage] },
     { url: `${base}/portfolio`,               priority: 0.85, changeFrequency: "weekly",  lastModified, images: [`${base}/images/smit-parekh-portfolio-case-studies.png`] },
     { url: `${base}/services`,                priority: 0.85, changeFrequency: "monthly", lastModified, images: [`${base}/images/smit-parekh-web-development-services.png`] },
@@ -137,6 +139,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     images: [`${base}/guides/${g.slug}/opengraph-image`],
   }));
 
+  const wallpapers = await fetchAllPublishedWallpapers();
+  const wallpaperRoutes: MetadataRoute.Sitemap = wallpapers.map((w) => ({
+    url: `${base}/wallpapers/${w.slug}`,
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+    lastModified: w.updatedAt ? new Date(w.updatedAt) : STATIC_LASTMOD,
+    images: [optimizeImageUrl(w.imageUrl)],
+  }));
+
   return [
     ...staticRoutes,
     ...serviceRoutes,
@@ -145,5 +156,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogRoutes,
     ...toolRoutes,
     ...guideRoutes,
+    ...wallpaperRoutes,
   ];
 }

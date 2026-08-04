@@ -213,6 +213,30 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   WALLPAPERS GREEN THEME  (app/(marketing)/wallpapers + admin uploader)
+   Scoped emerald override. Applied on a wrapper via className="theme-wallpapers"
+   so every shadcn component inside inherits green, while the rest of the site
+   stays blue. Overrides only the accent-carrying tokens.
+───────────────────────────────────────────────────────────────────────── */
+.theme-wallpapers {
+  --primary:             oklch(0.596 0.145 163.2);
+  --primary-foreground:  oklch(1 0 0);
+  --accent:              oklch(0.945 0.035 163.2);
+  --accent-foreground:   oklch(0.430 0.110 163.2);
+  --ring:                oklch(0.700 0.150 163.2);
+  --chart-1:             oklch(0.596 0.145 163.2);
+  --chart-2:             oklch(0.720 0.140 163.2);
+}
+
+.dark .theme-wallpapers {
+  --primary:             oklch(0.640 0.150 163.2);
+  --primary-foreground:  oklch(0.130 0.020 163.2);
+  --accent:              oklch(0.300 0.055 163.2);
+  --accent-foreground:   oklch(0.960 0 0);
+  --ring:                oklch(0.700 0.150 163.2);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    MARQUEE ANIMATION  (components/sections/Skills.tsx)
 ───────────────────────────────────────────────────────────────────────── */
 @keyframes marquee {

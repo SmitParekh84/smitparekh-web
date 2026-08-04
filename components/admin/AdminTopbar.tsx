@@ -36,6 +36,7 @@ const TITLES: Record<string, string> = {
   "/admin": "Overview",
   "/admin/projects": "Projects",
   "/admin/projects/new": "New project",
+  "/admin/wallpapers": "Wallpapers",
   "/admin/blogs": "Blog",
   "/admin/blogs/new": "New post",
   "/admin/contacts": "Contacts",
