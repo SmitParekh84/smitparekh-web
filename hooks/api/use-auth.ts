@@ -51,11 +51,23 @@ export function useSupabaseSession(): {
   session: Session | null;
   isLoading: boolean;
 } {
+  // `createClient()` throws when the Supabase env vars are missing. Resolve it
+  // during render so we degrade to a settled "signed out" state instead of
+  // taking down every component that renders the nav.
+  const [supabase] = useState(() => {
+    try {
+      return createClient();
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") console.warn(err);
+      return null;
+    }
+  });
   const [session, setSession] = useState<Session | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(supabase !== null);
 
   useEffect(() => {
-    const supabase = createClient();
+    if (!supabase) return;
+
     let mounted = true;
 
     supabase.auth.getSession().then(({ data }) => {
@@ -72,7 +84,7 @@ export function useSupabaseSession(): {
       mounted = false;
       sub.subscription.unsubscribe();
     };
-  }, []);
+  }, [supabase]);
 
   return { session, isLoading };
 }

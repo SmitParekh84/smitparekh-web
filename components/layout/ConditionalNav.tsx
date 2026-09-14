@@ -13,12 +13,14 @@ function hideShell(pathname: string) {
 
 export function ConditionalNavbar({
   featuredNavTools,
+  toolCount,
 }: {
   featuredNavTools: FeaturedNavTool[];
+  toolCount: number;
 }) {
   const pathname = usePathname();
   if (hideShell(pathname)) return null;
-  return <Navbar featuredNavTools={featuredNavTools} />;
+  return <Navbar featuredNavTools={featuredNavTools} toolCount={toolCount} />;
 }
 
 export function ConditionalFooter() {

@@ -16,6 +16,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { siteConfig } from "@/data/site";
 import { getFeaturedNavTools } from "@/lib/featured-nav-tools";
+import { TOOL_COUNT } from "@/data/tools-seo";
 
 const GA_MEASUREMENT_ID = "G-X9NMSPMQPD";
 const GTM_ID = "GTM-529BP97T";
@@ -181,7 +182,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <ScrollToTop />
-            <ConditionalNavbar featuredNavTools={featuredNavTools} />
+            <ConditionalNavbar featuredNavTools={featuredNavTools} toolCount={TOOL_COUNT} />
             <main className="flex-1">{children}</main>
             <ConditionalFooter />
             <ConditionalChat />

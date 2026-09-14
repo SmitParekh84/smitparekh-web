@@ -982,6 +982,13 @@ export function getToolSEO(slug: string): ToolSEO | undefined {
   return toolsSEO.find((t) => t.slug === slug);
 }
 
+/**
+ * Total number of published free tools. Import this from Server Components only
+ * (it keeps the whole `toolsSEO` array out of the client bundle) and pass the
+ * number down as a prop - see `app/layout.tsx` -> `<Navbar toolCount={...} />`.
+ */
+export const TOOL_COUNT = toolsSEO.length;
+
 const FALLBACK_TOOL_OG_IMAGE = "/images/tools-og/smit-parekh-free-developer-tools.png";
 
 export function getToolOgImage(slug: string): string {

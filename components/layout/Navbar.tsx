@@ -54,8 +54,10 @@ function groupTools(tools: FeaturedNavTool[]) {
 
 export default function Navbar({
   featuredNavTools,
+  toolCount,
 }: {
   featuredNavTools: FeaturedNavTool[];
+  toolCount: number;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
@@ -134,8 +136,13 @@ export default function Navbar({
 
   async function handleLogout() {
     setUserMenuOpen(false);
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+    } catch (err) {
+      // Missing Supabase env / offline - still send the user home.
+      if (process.env.NODE_ENV !== "production") console.warn(err);
+    }
     router.push("/");
     router.refresh();
   }
@@ -147,6 +154,30 @@ export default function Navbar({
     setToolsOpen(false);
     setMobileServicesOpen(false);
   }, [pathname]);
+
+  /* Escape closes whatever is open */
+  useEffect(() => {
+    if (!servicesOpen && !toolsOpen && !userMenuOpen && !mobileOpen) return;
+    const handle = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setServicesOpen(false);
+      setToolsOpen(false);
+      setUserMenuOpen(false);
+      setMobileOpen(false);
+    };
+    document.addEventListener("keydown", handle);
+    return () => document.removeEventListener("keydown", handle);
+  }, [servicesOpen, toolsOpen, userMenuOpen, mobileOpen]);
+
+  /* Lock body scroll while the mobile drawer is open */
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
 
   return (
     <>
@@ -165,7 +196,7 @@ export default function Navbar({
       >
         <nav
           className={cn(
-            "pointer-events-auto flex items-center justify-between gap-2 rounded-2xl px-3 h-12 w-full max-w-4xl transition-all duration-300",
+            "pointer-events-auto flex items-center justify-between gap-2 rounded-2xl px-3 h-12 w-full max-w-5xl transition-all duration-300",
             scrolled
               ? "border border-transparent shadow-none"
               : "bg-card/80 backdrop-blur-xl border border-border/70 shadow-md shadow-black/5"
@@ -187,13 +218,13 @@ export default function Navbar({
           </Link>
 
           {/* Desktop links - centered */}
-          <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
             {linkItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "px-2.5 py-1.5 text-sm rounded-xl transition-colors",
+                  "px-2.5 py-1.5 text-sm rounded-xl transition-colors whitespace-nowrap shrink-0",
                   pathname === item.href
                     ? "text-foreground font-medium bg-accent"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
@@ -207,7 +238,7 @@ export default function Navbar({
             {servicesNavItem?.categories && (
               <div
                 ref={servicesRef}
-                className="flex items-center"
+                className="flex items-center shrink-0"
                 onMouseEnter={() => {
                   if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
                   setServicesOpen(true);
@@ -223,13 +254,13 @@ export default function Navbar({
                     .flatMap((s) => s.items)
                     .some((i) => pathname.startsWith(i.href));
                   const baseClass = cn(
-                    "py-1.5 text-sm transition-colors",
+                    "py-1.5 text-sm transition-colors whitespace-nowrap",
                     isActive
                       ? "text-foreground font-medium"
                       : "text-muted-foreground hover:text-foreground"
                   );
                   return (
-                    <div className="group flex">
+                    <div className="group flex shrink-0">
                       <Link
                         href="/services"
                         className={cn(baseClass, "px-2.5 rounded-l-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-l-xl")}
@@ -238,7 +269,11 @@ export default function Navbar({
                       </Link>
                       <button
                         onClick={() => setServicesOpen((v) => !v)}
+                        onFocus={() => setServicesOpen(true)}
                         aria-label="Toggle services menu"
+                        aria-haspopup="true"
+                        aria-expanded={servicesOpen}
+                        aria-controls="services-mega-menu"
                         className={cn(baseClass, "px-1 pr-2 rounded-r-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-r-xl")}
                       >
                         <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", servicesOpen && "rotate-180")} />
@@ -252,6 +287,7 @@ export default function Navbar({
                   const activeSub = activeCat.subCategories[activeServiceSub] ?? activeCat.subCategories[0];
                   return (
                     <div
+                      id="services-mega-menu"
                       className="fixed top-[60px] left-1/2 -translate-x-1/2 pt-2 w-[min(96vw,900px)] z-50"
                       onMouseEnter={() => {
                         if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
@@ -380,7 +416,7 @@ export default function Navbar({
             {showToolsDropdown && (
               <div
                 ref={toolsRef}
-                className="flex items-center"
+                className="flex items-center shrink-0"
                 onMouseEnter={() => {
                   if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
                   setToolsOpen(true);
@@ -392,13 +428,13 @@ export default function Navbar({
                 {(() => {
                   const isActive = pathname.startsWith("/free-tools");
                   const baseClass = cn(
-                    "py-1.5 text-sm transition-colors",
+                    "py-1.5 text-sm transition-colors whitespace-nowrap",
                     isActive
                       ? "text-foreground font-medium"
                       : "text-muted-foreground hover:text-foreground"
                   );
                   return (
-                    <div className="group flex">
+                    <div className="group flex shrink-0">
                       <Link
                         href="/free-tools"
                         className={cn(baseClass, "px-2.5 rounded-l-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-l-xl")}
@@ -407,7 +443,11 @@ export default function Navbar({
                       </Link>
                       <button
                         onClick={() => setToolsOpen((v) => !v)}
+                        onFocus={() => setToolsOpen(true)}
                         aria-label="Toggle tools menu"
+                        aria-haspopup="true"
+                        aria-expanded={toolsOpen}
+                        aria-controls="tools-mega-menu"
                         className={cn(baseClass, "px-1 pr-2 rounded-r-xl group-hover:bg-accent/60", isActive && "bg-accent rounded-r-xl")}
                       >
                         <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", toolsOpen && "rotate-180")} />
@@ -422,6 +462,7 @@ export default function Navbar({
                   const cols = groupCount <= 4 ? groupCount : 3;
                   return (
                   <div
+                    id="tools-mega-menu"
                     className="fixed top-[60px] left-1/2 -translate-x-1/2 pt-2 max-w-[calc(100vw-2rem)] z-50"
                     style={{ width: `${cols * 240 + 40}px` }}
                     onMouseEnter={() => {
@@ -445,7 +486,7 @@ export default function Navbar({
                           onClick={() => setToolsOpen(false)}
                           className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600 transition-colors"
                         >
-                          Browse all 31 tools
+                          Browse all {toolCount} tools
                           <ArrowRight className="w-3 h-3" />
                         </Link>
                       </div>
@@ -534,16 +575,23 @@ export default function Navbar({
 
             {/* User avatar (logged in) OR Hire Me (guest) - desktop only */}
             {session ? (
-              <div ref={userMenuRef} className="relative hidden md:block">
+              <div ref={userMenuRef} className="relative hidden lg:block">
                 <button
                   onClick={() => setUserMenuOpen((v) => !v)}
                   className="flex items-center gap-2 rounded-xl px-2 py-1 hover:bg-accent transition-colors"
                   aria-label="User menu"
+                  aria-haspopup="true"
+                  aria-expanded={userMenuOpen}
                 >
                   {session.user.user_metadata?.avatar_url ? (
-                    <img
+                    <Image
                       src={session.user.user_metadata.avatar_url}
                       alt={session.user.user_metadata?.full_name ?? "User"}
+                      width={28}
+                      height={28}
+                      // OAuth avatars come from arbitrary provider hosts, so skip
+                      // the optimizer rather than allow-listing every one.
+                      unoptimized
                       className="w-7 h-7 rounded-full object-cover ring-2 ring-border"
                     />
                   ) : (
@@ -595,16 +643,16 @@ export default function Navbar({
                   href="/login"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "sm" }),
-                    "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
+                    "hidden lg:flex h-8 text-xs px-3.5 rounded-xl"
                   )}
                 >
                   Sign in
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/hire-me"
                   className={cn(
                     buttonVariants({ size: "sm" }),
-                    "hidden md:flex h-8 text-xs px-3.5 rounded-xl"
+                    "hidden lg:flex h-8 text-xs px-3.5 rounded-xl"
                   )}
                 >
                   Hire Me
@@ -617,9 +665,11 @@ export default function Navbar({
               onClick={() => setMobileOpen((v) => !v)}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "md:hidden h-8 w-8 rounded-xl"
+                "lg:hidden h-8 w-8 rounded-xl"
               )}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
             >
               {mobileOpen ? (
                 <X className="w-4 h-4" />
@@ -633,7 +683,7 @@ export default function Navbar({
 
       {/* Mobile full-screen overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div id="mobile-nav" className="fixed inset-0 z-40 lg:hidden">
           {/* Backdrop - click to close */}
           <div
             className="absolute inset-0 bg-background/92 backdrop-blur-2xl"
@@ -643,7 +693,13 @@ export default function Navbar({
           <nav className="relative z-10 flex flex-col px-6 pt-24 pb-10 h-full">
             <div className="flex-1 overflow-y-auto space-y-1 pb-2">
               {mobileNavItems
-                .filter((item) => item.href !== "/services" && item.href !== "/for-students")
+                .filter(
+                  (item) =>
+                    item.href !== "/services" &&
+                    item.href !== "/for-students" &&
+                    // "Hire Me" is the pinned CTA at the bottom of the drawer
+                    item.href !== "/hire-me"
+                )
                 .map((item) => (
                   <Link
                     key={item.href}
@@ -665,6 +721,7 @@ export default function Navbar({
                 <div>
                   <button
                     onClick={() => setMobileServicesOpen((v) => !v)}
+                    aria-expanded={mobileServicesOpen}
                     className={cn(
                       "flex w-full items-center justify-between px-4 py-3.5 text-lg font-medium rounded-2xl transition-colors",
                       servicesNavItem.categories
@@ -725,7 +782,7 @@ export default function Navbar({
                 </Link>
               )}
               <Link
-                href="/contact"
+                href="/hire-me"
                 onClick={() => setMobileOpen(false)}
                 className={cn(buttonVariants({ size: "lg" }), !session ? "flex-1" : "w-full", "rounded-2xl")}
               >
@@ -738,9 +795,12 @@ export default function Navbar({
               <div className="mt-3 space-y-2">
                 <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-muted/50">
                   {session.user.user_metadata?.avatar_url ? (
-                    <img
+                    <Image
                       src={session.user.user_metadata.avatar_url}
                       alt="Avatar"
+                      width={36}
+                      height={36}
+                      unoptimized
                       className="w-9 h-9 rounded-full object-cover ring-2 ring-border"
                     />
                   ) : (
