@@ -7,6 +7,7 @@ import StatsBar from "@/components/sections/StatsBar";
 // import MotionGraphicsLoop from "@/components/sections/MotionGraphicsLoop";
 import Services from "@/components/sections/Services";
 import FeaturedTools from "@/components/sections/FeaturedTools";
+import { TOOL_COUNT } from "@/data/tools-seo";
 import Portfolio from "@/components/sections/Portfolio";
 import LatestPosts from "@/components/sections/LatestPosts";
 import Skills from "@/components/sections/Skills";
@@ -320,7 +321,7 @@ export default function HomePage() {
       <StatsBar />
       {/* <MotionGraphicsLoop /> hidden for now - restore to bring back the hero video loop. */}
       <Services />
-      <FeaturedTools />
+      <FeaturedTools totalToolCount={TOOL_COUNT} />
       <Portfolio />
       <Suspense fallback={null}>
         <LatestPosts />

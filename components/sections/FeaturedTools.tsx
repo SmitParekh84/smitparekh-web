@@ -38,7 +38,17 @@ const iconMap = {
 
 type IconName = keyof typeof iconMap;
 
-export default function FeaturedTools() {
+/** Cards shown on the landing page - two full rows of the 3-col grid. */
+const FEATURED_LIMIT = 6;
+
+export default function FeaturedTools({
+  totalToolCount,
+}: {
+  /** Total published tools, so the CTA can name the real number. */
+  totalToolCount?: number;
+}) {
+  const tools = featuredTools.slice(0, FEATURED_LIMIT);
+
   return (
     <section className="page-section bg-muted/70">
       <div className="page-container">
@@ -51,7 +61,7 @@ export default function FeaturedTools() {
         </FadeInSection>
 
         <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10" delay={0.05}>
-          {featuredTools.map((tool) => {
+          {tools.map((tool) => {
             const Icon = iconMap[tool.iconName as IconName];
             return (
               <StaggerItem key={tool.slug}>
@@ -102,7 +112,7 @@ export default function FeaturedTools() {
             href="/free-tools"
             className={cn(buttonVariants({ variant: "outline", size: "lg" }), "gap-2")}
           >
-            Browse All Tools
+            {totalToolCount ? `Browse All ${totalToolCount} Tools` : "Browse All Tools"}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </FadeInSection>
